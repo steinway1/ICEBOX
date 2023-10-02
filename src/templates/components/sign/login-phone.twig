@@ -1,0 +1,14 @@
+<form id="frm_login_otp" method="post" action="/send-otp">
+	<div class="sign-modal__form-row">
+		<div class="sign-modal__tel-input-wrap">
+			{% include "../general/tel-input.twig" with {
+       name: "login_otp_phone",
+       id: "phone_input_Login"
+      } %}
+		</div>
+	</div>
+	<div class="sign-modal__form-row">
+		<button class="sign-modal__main-btn js-submit" data-sign-switch="code">Send a code</button>
+		<button type="button" data-sign-switch="login" class="sign-modal__sub-btn">Login With Email</button>
+	</div>
+</form>

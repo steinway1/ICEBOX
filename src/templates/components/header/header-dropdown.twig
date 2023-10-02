@@ -1,0 +1,43 @@
+{% if categoryDropdown is defined %}
+
+	<div class="dropdown-menu">
+		<div class="dropdown-menu__container">
+			<div class="dropdown-menu__max-area">
+
+				{% for item in categoryDropdown %}
+					<div class="dropdown-menu__category-block {{item.class}}">
+						<h4 class="dropdown-menu__heading">{{item.title}}</h4>
+						{% if item.list %}
+							<ul role="list" class="dropdown-menu__list">
+								{% for listItem in item.list %}
+									<li>
+										<a href="{{listItem.href}}">{{listItem.caption}}</a>
+									</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+						{% if item.spot is defined %}
+							<div class="dropdown-menu__featured">
+								{% for item in item.spot %}
+									<a href="{{item.href}}">
+										<img src="{{item.imgSrc}}" loading="eager" alt="">
+										<div>
+											<span>{{item.caption}}</span>
+											{% if item.subcaption %}
+												<span>{{item.subcaption}}</span>
+											{% endif %}
+										</div>
+									</a>
+								{% endfor %}
+							</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+
+
+			</div>
+		</div>
+	</div>
+
+
+{% endif %}

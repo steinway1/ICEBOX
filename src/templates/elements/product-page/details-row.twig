@@ -1,0 +1,30 @@
+<div class="side-row side-row_details">
+	<div class="side-row__body">
+		<div class="side-row__body-head">
+			<div class="product__more-btn is-active for_more">More Details</div>
+			<div class="product__more-btn for_warranty">Our Policy</div>
+		</div>
+		<div class="product__more-body">
+			<div class="product__about-wrap for_more">
+
+				{% for detail in product.details %}
+					<div class="product__about-row">
+						<div class="product__about-title">{{detail.title}}
+							{% if detail.titleSpan %}
+								{{detail.titleSpan}}
+							{% endif %}
+						</div>
+						<div class="product__about-stroke"></div>
+						<div class="product__about-name">{{detail.name}}</div>
+					</div>
+				{% endfor %}
+
+			</div>
+			<div class="product__about-wrap for_warranty">
+				<p class="warranty-p">Item design &amp; details may vary slightly from provided image. Icebox Diamonds &amp; Watches
+					<span>DOES NOT ACCEPT RETURNS OR ISSUE REFUNDS FOR ANY REASON.</span>
+					<br>We do allow (1) exchange within 14 days of the purchase date.</p>
+			</div>
+		</div>
+	</div>
+</div>

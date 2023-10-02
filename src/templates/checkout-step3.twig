@@ -1,0 +1,41 @@
+{% extends 'layouts/default.twig' %}
+{% set pageBanner = true %}
+{% set mainClass = 'main_checkout' %}
+
+{% set checkoutStep = 3 %}
+
+{% block include_head %}
+	{# Styles / preload scripts / etc... #}
+{% endblock %}
+
+{% block content %}
+
+	<div class="checkout-main">
+		<div class="checkout-main__wrapper">
+			<div class="checkout-wrapper">
+				<div class="sm-container">
+					<div class="checkout__page-controls">
+						<a class="checkout__page-btn" href="/cart">
+							{% include "./components/svg/back-arrow.svg" %}
+							Back To Shopping Cart
+						</a>
+					</div>
+					<div class="checkout-content">
+						<div class="checkout__cards-col">
+							{% include "./components/checkout/steps.twig" %}
+							<div class="checkout__cards-col-wrapper">
+								{% include "./components/checkout/3_step.twig" %}
+							</div>
+						</div>
+						{% include "./components/checkout/summary.twig" %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block include_script %}
+	{# Scripts / etc... #}
+{% endblock %}

@@ -1,0 +1,110 @@
+{% if filterStock == true %}
+	<div class="filter-row filter-row_stock">
+		<div class="filter-row__body">
+			<div class="filter-row__container">
+				<label><input type="checkbox" value="filterStock"><span>Show In Stock Only
+					</span>
+				</label>
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+{% if filterProduct == true %}
+	<div class="filter-row">
+		<div class="filter-row__header">
+			<span class="filter-title">Products</span>
+			<svg width="100%" height="100%" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
+			</svg>
+		</div>
+		<div class="filter-row__body">
+			<div class="filter-row__container">
+				{% for item in filters.product %}
+					<label><input type="checkbox" value="{{item.value}}"><span>{{item.caption}}<span>{{item.count}}</span>
+						</span>
+					</label>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+{% if filterCategory == true %}
+	<div class="filter-row">
+		<div class="filter-row__header">
+			<span class="filter-title">Category</span>
+			<svg width="100%" height="100%" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
+			</svg>
+		</div>
+		<div class="filter-row__body">
+			<div class="filter-row__container">
+				{% for item in filters.category %}
+					<a href="{{item.href}}">{{item.caption}}<span>{{item.count}}</span>
+					</a>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+{% if filterPriceRange == true %}
+	<div class="filter-row">
+		<div class="filter-row__header">
+			<span class="filter-title">Price Range</span>
+			<svg width="100%" height="100%" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
+			</svg>
+		</div>
+		<div class="filter-row__body">
+			<div class="filter-row__container">
+				{% for item in filters.priceRange %}
+					<label><input type="checkbox" value="{{item.value}}"><span>{{item.caption}}<span>{{item.count}}</span>
+						</span>
+					</label>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+{% if filterGender == true %}
+	<div class="filter-row">
+		<div class="filter-row__header">
+			<span class="filter-title">Gender</span>
+			<svg width="100%" height="100%" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
+			</svg>
+		</div>
+		<div class="filter-row__body">
+			<div class="filter-row__container">
+				{% for item in filters.gender %}
+					<label><input type="checkbox" value="{{item.value}}"><span>{{item.caption}}<span>{{item.count}}</span>
+						</span>
+					</label>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+
+{% if filterColor == true %}
+	<div class="filter-row">
+		<div class="filter-row__header">
+			<span class="filter-title">Gold Color</span>
+			<svg width="100%" height="100%" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
+			</svg>
+		</div>
+		<div class="filter-row__body">
+			<div class="filter-row__container">
+				{% for item in filters.color %}
+					<label class="label-color {{item.extraClass}}"><input type="checkbox" value="{{item.value}}"><span>{{item.caption}}</span>
+					</label>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endif %}

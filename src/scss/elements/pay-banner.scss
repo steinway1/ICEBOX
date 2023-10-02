@@ -1,0 +1,182 @@
+.pay-banner {
+  width: 100%;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  display: flex;
+
+  @include maxWidthXs {
+    padding: 0 14px 14px;
+  }
+}
+
+.pay-banner__box {
+  border: 1.5px solid #0095c6;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 68px;
+  display: flex;
+  position: relative;
+
+  @include maxWidthSm {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @include maxWidthXs {
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+  }
+}
+
+.pay-banner__content {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  img {
+    width: 54px;
+    margin-top: -4px;
+    margin-right: 12px;
+  }
+
+  div {
+    text-transform: uppercase;
+    font-size: 13px;
+    
+    @include maxWidthXs {
+      max-width: 200px;
+    }
+  }
+
+  div span {
+    font-weight: 600;
+  }
+
+  @include maxWidthXs {
+    flex-flow: row;
+    justify-content: space-between;
+
+    img {
+      width: 60px;
+      order: 1;
+      margin-top: 0;
+      margin-bottom: 6px;
+      margin-right: 0;
+    }
+
+    p {
+      max-width: 200px;
+      text-align: left;
+      margin-right: 18px;
+    }
+  }
+}
+
+.pay-banner__box-dash {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  overflow: hidden;
+  pointer-events: none;
+
+  span:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, #ffffff, #0095c6);
+    animation: payDash1 1s linear infinite;
+  }
+
+  span:nth-child(2) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, #ffffff, #0095c6);
+    animation: payDash2 1s linear infinite;
+    animation-delay: 0.5s;
+  }
+
+  span:nth-child(3) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to left, #ffffff, #0095c6);
+    animation: payDash3 1s linear infinite;
+  }
+
+  span:nth-child(4) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to top, #ffffff, #0095c6);
+    animation: payDash4 1s linear infinite;
+    animation-delay: 0.5s;
+  }
+
+}
+
+.pay-banner__box-dash:before {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  content: '';
+  width: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@keyframes payDash1 {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes payDash2 {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes payDash3 {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes payDash4 {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}

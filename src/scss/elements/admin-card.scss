@@ -1,0 +1,238 @@
+.admin-card {
+  position: relative;
+  width: 100%;
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+
+  @include maxWidthMd {
+    display: none !important;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 0;
+    margin: 0;
+
+    tbody {
+      display: grid;
+      grid-auto-columns: 1fr;
+      grid-column-gap: 8px;
+      grid-row-gap: 8px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+
+      tr {
+        display: flex;
+        justify-content: space-between;
+        line-height: 14px;
+        background-color: #f0f4f5;
+      }
+
+      th {
+        padding: 6px 4px;
+        color: #5f6466;
+        width: 30%;
+      }
+
+      td {
+        vertical-align: middle;
+        width: 30px;
+        padding: 4px;
+        margin-right: -1px;
+        font-size: 12px;
+        text-align: right;
+        font-weight: 600;
+        flex: 1;
+
+        &:not(.bg-golden) input {
+          width: 100%;
+          background-color: white;
+          padding: 4px 6px;
+          border: 1px solid transparent;
+
+          &:hover {
+            border-color: #0095c6;
+          }
+
+          &:focus {
+            border-color: #0095c6;
+          }
+        }
+
+        &:not(.bg-golden) select {
+          width: 100%;
+          padding: 4px;
+          background-image: url('../assets/select-dropdown-icon.png');
+          background-position: right 8px center;
+          border: 1px solid transparent;
+          background-repeat: no-repeat;
+          background-size: 9px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: white;
+            border-color: #0095c6;
+          }
+        }
+
+        &.bg-golden input {
+          width: 100%;
+          padding: 4px 6px;
+          border: 1px solid transparent;
+
+          &:hover {
+            background-color: white;
+            border-color: #0095c6;
+          }
+
+          &:focus {
+            background-color: white;
+            border-color: #0095c6;
+          }
+        }
+
+        svg {
+          display: none;
+        }
+
+        &.bg-rosegold {
+          background-color: rgba(221, 175, 156, .6);
+        }
+
+        &.bg-silver {
+          background-color: hsla(0, 0%, 96%, 0.6);
+        }
+
+        &.bg-golden {
+          background-color: #e9e4d9;
+        }
+      }
+    }
+  }
+
+
+}
+
+.admin-card__wrapper {
+  border: 4px solid #ebeff1;
+
+  &:hover {
+    border-color: rgba(0, 148, 198, 0.3);
+  }
+}
+
+.admin-card__select-wrap {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  border-bottom: 4px solid rgba(233, 237, 240, .9);
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 8px;
+  display: flex;
+}
+
+.admin-card__input-wrap {
+  min-width: 30%;
+  flex: 1;
+
+  select {
+    width: 100%;
+    height: 28px;
+    cursor: pointer;
+    background-color: #ecf0f2;
+    background-image: url('../assets/select-dropdown-icon.png');
+    background-position: right 8px center;
+    background-repeat: no-repeat;
+    background-size: 9px;
+    border: 1px solid #c5cdd0;
+    margin-bottom: 0;
+    padding: 0 20px 0 8px;
+    font-weight: 600;
+
+    &:hover {
+      background-color: white;
+      border-color: #0095c6;
+    }
+  }
+}
+
+.admin-card__footer {
+  padding: 8px;
+  border-top: 4px solid #ebeff1;
+
+  a {
+    position: relative;
+    flex: 1;
+    padding: 8px 4px;
+    min-height: 40px;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #253D6B;
+    border: 1px solid #d1d9dd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      border-color: #0095c6;
+      background-color: rgba(0, 148, 198, 0.08);
+    }
+  }
+
+  .icon {
+    transform: scale(0.8);
+    transform-origin: 50% 50%;
+    width: 18px;
+    height: 18px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: contain;
+
+    &.icon-admin-add {
+      background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.3333 13.6667V22H13.6667V13.6667H22V10.3333H13.6667V2H10.3333V10.3333H2V13.6667H10.3333Z" fill="%23253D6B"/></svg>')
+    }
+
+    &.icon-rating-empty {
+      background-image: url('data:image/svg+xml,<svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0L15.7082 7.24195L24 8.40325L18 14.0403L19.4164 22L12 18.242L4.58359 22L6 14.0403L0 8.40325L8.2918 7.24195L12 0Z" fill="%237183A5"/></svg>');
+    }
+
+    &.icon-rating-filled {
+      background-image: url('data:image/svg+xml,<svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0L15.7082 7.24195L24 8.40325L18 14.0403L19.4164 22L12 18.242L4.58359 22L6 14.0403L0 8.40325L8.2918 7.24195L12 0Z" fill="%23E7B330"/></svg>')
+    }
+
+    &.icon-admin-delete {
+      background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.36798 0.75H16.4185V3.48684H22V5.98684H20.4747V23.25H4.3118V5.98684H3V3.48684H8.36798V0.75ZM10.868 3.48684H13.9185V3.25H10.868V3.48684ZM6.8118 5.98684V20.75H17.9747V5.98684H6.8118ZM8.75 18V8H11.25V18H8.75ZM13.75 8V18H16.25V8H13.75Z" fill="%23253D6B"/></svg>');
+    }
+
+    &.icon-admin-edit {
+      background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.2603 3.59997L5.05034 12.29C4.74034 12.62 4.44034 13.27 4.38034 13.72L4.01034 16.96C3.88034 18.13 4.72034 18.93 5.88034 18.73L9.10034 18.18C9.55034 18.1 10.1803 17.77 10.4903 17.43L18.7003 8.73997C20.1203 7.23997 20.7603 5.52997 18.5503 3.43997C16.3503 1.36997 14.6803 2.09997 13.2603 3.59997Z" stroke="%23253D6B" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.8896 5.05005C12.3196 7.81005 14.5596 9.92005 17.3396 10.2" stroke="%23253D6B" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 22H21" stroke="%23253D6B" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+    }
+
+    &.icon-admin-view {
+      background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.02992 13.9999C8.63992 13.4299 8.41992 12.7399 8.41992 11.9999C8.41992 10.0199 10.0199 8.41992 11.9999 8.41992C13.9799 8.41992 15.5799 10.0199 15.5799 11.9999C15.5799 13.9799 13.9799 15.5799 11.9999 15.5799" stroke="%23253D6B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5598 5.57998C15.8698 4.37998 13.9698 3.72998 11.9998 3.72998C8.46984 3.72998 5.17984 5.80998 2.88984 9.40998C1.98984 10.82 1.98984 13.19 2.88984 14.6C5.17984 18.2 8.46984 20.28 11.9998 20.28C15.5298 20.28 18.8198 18.2 21.1098 14.6C22.0098 13.19 22.0098 10.82 21.1098 9.40998" stroke="%23253D6B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    }
+  }
+}
+
+.admin-card__actions {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-card__details {
+  padding: 8px;
+}
+
+.badge-shipping-today {
+  color: #015c32;
+}
+
+.badge-shipping-weeks span {
+  color: #0797e2;
+}

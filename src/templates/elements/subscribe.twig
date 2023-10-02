@@ -1,0 +1,25 @@
+<div class="subscribe-row">
+	<div class="wrapper">
+		<div class="subscribe-row__wrapper">
+			<span class="subscribe-row__place">Keep In Touch</span>
+			<h2 class="subscribe-row__heading">Subscribe Our Newsletters</h2>
+			<p class="subscribe-row__subheading">Stay in the Loop: Sparkle &amp; Shine with Icebox - Subscribe to Our Newsletters!</p>
+			<div class="subscribe-row__form-wrap">
+				<form id="subscribe-form" method="post">
+					<div class="subscribe-row__input-wrap">
+						<input type="email" id="footer_email" placeholder="Email address" autocomplete="off">
+						<button class="subscribe-row__btn">Subscribe Now</button>
+					</div>
+				</form>
+			</div>
+			<div class="subscribe-socials">
+				<h5>Keep In Touch on Social:</h5>
+				<div>
+        {% for item in social %}
+        <a href="{{item.href}}">{{item.caption}}</a>
+        {% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

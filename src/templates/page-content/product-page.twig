@@ -1,0 +1,86 @@
+<div
+	class="product__wrapper">
+
+
+	<!-- #region Viewer / Media -->
+	<div
+		class="product__view">
+
+		{# Desktop Viewer #}
+		<div class="product__desktop-viewer">
+			{% for item in product.media.yellow %}
+				{% include "../elements/product-page/product-media.twig" with {
+        type: item.type,
+        imgSrc: item.imgSrc,
+        alt: item.alt,
+        splide: false
+      } %}
+			{% endfor %}
+		</div>
+
+		{# Slider Viewer #}
+		<div class="product__slider-viewer">
+			<div class="product-slider splide product-slide-yellow">
+				<div class="splide__track">
+					<div class="splide__list">
+						{% for item in product.media.yellow %}
+							{% include "../elements/product-page/product-media.twig" with {
+              type: item.type,
+              imgSrc: item.imgSrc,
+              alt: item.alt,
+              splide: true
+            } %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+
+			{# Thumbnails Slider #}
+			<div class="product-slider_thumbnails splide product-thumb-yellow">
+				<div class="splide__track">
+					<div class="splide__list">
+						{% for item in product.media.yellow %}
+							{% include "../elements/product-page/product-media.twig" with {
+              type: item.type,
+              imgSrc: item.imgSrc,
+              alt: item.alt,
+              splide: true
+            } %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #endregion -->
+
+
+	<aside class="product__side">
+		<div
+			class="side-body">
+
+			{# BREADCRUMBS #}
+			{% include "../elements/product-page/breadcrumbs.twig" %}
+
+			{# ITEM #}
+			{% include "../elements/product-page/item-row.twig" %}
+
+			{# ITEM OPTIONS #}
+			{% include "../elements/product-page/options-row.twig" %}
+
+			{# ITEM DETAILS #}
+			{% include "../elements/product-page/details-row.twig" %}
+
+			{# GUIDE MODAL #}
+			{% include "../elements/pg-modal.twig" %}
+
+			{# FLOATING BTN #}
+			{% include "../elements/product-page/floating-btn.twig" %}
+
+
+		</div>
+	</aside>
+
+</div>
+
+{% include "../elements/product-page/promises.twig" %}

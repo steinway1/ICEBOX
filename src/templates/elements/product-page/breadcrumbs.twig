@@ -1,0 +1,17 @@
+<div class="side-body__breadcrumbs">
+	<ul role="list" class="product__breadcrumbs">
+		<li class="crumb">
+			<a href="/index.html" class="crumb__link">Icebox</a>
+			<span class="crumb__link-divider">/</span>
+		</li>
+		<li class="crumb">
+			<a href="{{product.category.href}}" class="crumb__link">{{product.category.caption}}</a>
+			<span class="crumb__link-divider">/</span>
+		</li>
+		{% if product.subcategory is defined %}
+			<li class="crumb">
+				<a href="{{product.subcategory.href}}" class="crumb__link">{{product.subcategory.caption}}</a>
+			</li>
+		{% endif %}
+	</ul>
+</div>

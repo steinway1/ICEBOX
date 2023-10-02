@@ -1,0 +1,108 @@
+<div class="sign-modal">
+	<div data-evt="toggleSign" class="sign-modal__backdrop"></div>
+
+	<div class="sign-modal__container">
+
+		<button data-evt="toggleSign" class="sign-modal-close">
+			{% include "../components/svg/close.svg" %}
+		</button>
+
+
+		<div
+			class="sign-modal__wrapper">
+
+			<!-- Sign Modal : Login -->
+			<div class="sign-modal__body">
+				<div class="sign-modal__inner-wrapper">
+					<div id="loginSignIn" class="sign-modal-view">
+						<div class="sign-modal-view__header">
+							<h3 class="sign-modal__title">Access With Icebox Account</h3>
+							<p class="sign-modal__subtitle">Stay in touch with the bling world. Log in your Icebox account now.</p>
+						</div>
+						<div class="sign-modal-view__body">
+							<div class="sign-modal__form-wrap">
+								{% include "../components/sign/login-form.twig" %}
+							</div>
+						</div>
+					</div>
+
+					<!--Sign modal : Reset password-->
+					<div id="loginPass" class="sign-modal-view">
+						<div class="sign-modal__pass-view">
+							<div class="sign-modal-view__header">
+								<h3 class="sign-modal__title">Forgot Password?</h3>
+								<span class="sign-modal__subtitle">Enter your email address below, and if an account exists, we'll send you a link to reset your password.</span>
+							</div>
+							<div class="sign-modal-view__body">
+								<div class="sign-modal__form-wrap">
+									{% include "../components/sign/reset-password.twig" %}
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--Sign modal : Sign In Phone-->
+					<div id="loginPhone" class="sign-modal-view">
+						<div class="sign-modal__phone-view">
+							<div class="sign-modal-view__header">
+								<h3 class="sign-modal__title">Login With Phone No</h3>
+								<span class="sign-modal__subtitle">Enter Your Phone Number</span>
+							</div>
+							<div class="sign-modal-view__body">
+								<div class="sign-modal__form-wrap">
+									{% include "../components/sign/login-phone.twig" %}
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--Sign modal : Verify-->
+					<div id="loginCode" class="sign-modal-view">
+						<div class="sign-modal__phone-view">
+							<div class="sign-modal-view__header">
+								<h3 class="sign-modal__title">Enter Verification Code</h3>
+								<span class="sign-modal__subtitle">We sent a code to
+									<span class="sign-modal__phone-span"></span>.<br>Please enter it below.</span>
+							</div>
+							<div class="sign-modal-view__body">
+								<div class="sign-modal__form-wrap">
+									{% include "../components/sign/verify.twig" %}
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<!--Sign modal : Sign Up-->
+					<div id="loginSignUp" class="sign-modal-view">
+						<div class="sign-modal-view__header">
+							<h3 class="sign-modal__title">Become an Icebox Member</h3>
+							<span class="sign-modal__subtitle">Create your Icebox profile and get first access to the very best of Icebox products.</span>
+						</div>
+						<div class="sign-modal-view__body">
+							<div class="sign-modal__form-wrap">
+								{% include "../components/sign/signup.twig" %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--Sign modal : footer-->
+			<div class="sign-modal__footer">
+				<div class="sign-modal__inner-wrapper">
+					<div class="sign-modal-view__header">
+						<h3 class="sign-modal__title">Don't Have an Account?</h3>
+						<span class="sign-modal__subtitle">Get first access to the very best of Icebox.</span>
+					</div>
+					<div class="sign-modal-view__body">
+						<div class="sign-modal__form-row">
+							<button data-sign-switch="register" class="sign-modal__sub-btn sign-modal__sub-btn_dim">Register Account</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

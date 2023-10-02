@@ -1,0 +1,82 @@
+{% set billing = user.billingAddress %}
+{% set address = user.address %}
+
+<div class="account__wrapper">
+	<aside class="account__sidebar">
+		<div
+			class="account__nav-wrap">
+			<!--Profile welcome title-->
+			<div class="account__nav-header">
+				<span class="account__membership">Member since
+					{{user.regDate|date("m/d/Y")}}</span>
+				<h2 class="account__welcome-title">Welcome
+					{{user.name}}!</h2>
+				<span class="account__subtitle">Manage your orders, subscriptions, wishlist.</span>
+			</div>
+			<!--Profile navigation-->
+			<nav class="account__nav-body">
+				<ul id="profile-tabs" role="list" class="account__nav-list">
+					<li class="account__nav-list-item">
+						<a href="/account" class="account__switch-btn">Overview</a>
+					</li>
+					<li class="account__nav-list-item">
+						<a href="/account/profile" class="account__switch-btn">My Profile</a>
+					</li>
+					<li class="account__nav-list-item">
+						<a href="/account/address" class="account__switch-btn">Addresses</a>
+					</li>
+					<li class="account__nav-list-item">
+						<a href="/account/orders" data-account="orders" class="account__switch-btn">My Orders</a>
+					</li>
+					<li class="account__nav-list-item">
+						<a href="/account/wishlist" class="account__switch-btn is-active">Wishlist</a>
+					</li>
+					<li class="account__nav-list-item">
+						<a href="/account/wishlist" class="account__switch-btn logout">Logout</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<!--Profile content-->
+	<div class="account__body">
+
+		<section class="account-main wishlist" style="display:block;">
+			<div class="account-main__header">
+				<h4 class="account-main__title">Wishlist</h4>
+			</div>
+			<div class="account__wishlist-grid">
+
+				{% for item in wishlist %}
+					<div class="profile__product-card">
+						<figure class="product-card__image">
+							<a href="{{item.href}}" target="_blank" class="link_overlap"></a>
+							<img src="{{item.imgSrc}}" loading="lazy" alt="{{item.name}}" class="product__image-product">
+						</figure>
+						<div class="product-card__details">
+							<div class="product-card__details-main">
+								<div class="product-card__details-title">{{item.name}}
+								</div>
+								{% if item.salePrice %}
+                  <div class="product-card__details-price is-sale">
+                  <span>$ {{item.price|number_format(0)}}</span>
+                  <span>$ {{item.salePrice|number_format(0)}}</span>
+                  </div>
+                {% else %}
+                  <div class="product-card__details-price">$ {{item.price|number_format(0)}}</div>
+                {% endif %}
+							</div>
+							<div class="product-card__actions">
+								<a href="{{item.href}}" class="product-card__actions-btn">Add to Cart</a>
+								<a href="/remove-from-wishlist/{{item.id}}" class="product-card__actions-btn">Remove</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+
+			</div>
+		</section>
+
+	</div>
+</div>

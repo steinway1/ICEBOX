@@ -1,0 +1,177 @@
+<section class="locations__more">
+	<div class="wrapper">
+		<div class="locations__stores-head">
+			<h2 class="locations__more-title">Our Stores</h2>
+			<span class="locations__more-subtitle">Exceptional craftsmanship and legacy brand qualities have made Icebox the most popular independent jewelry brand in the world. Visit today to experience a world of luxury.</span>
+		</div>
+
+		<div class="locations__stores-grid">
+			{% for location in locations %}
+				<div class="store-block">
+					<div class="store-block__pic-wrap">
+						<img src="{{location.imgSrc}}" loading="lazy" alt="{{location.name}}" class="store-block__store-pic">
+					</div>
+					<div class="store-block__info-wrap">
+						<div class="store-block__main-details">
+							<h3 class="store-block__heading">
+								<span class="store-block__heading-location">{{location.shortAddress}}</span>
+								{{location.name}}
+							</h3>
+							<a target="_blank" href="{{location.googleURL}}" class="store-block__direct-link">
+								{% for item in location.address %}
+									<span>{{item}}</span>
+								{% endfor %}
+							</a>
+						</div>
+						<div class="store-block__description-wrap">
+							<p class="store-block__description">{{location.description}}</p>
+							<a target="_blank" href="{{location.googleURL}}" class="locations__store-root">
+								{% include "../components/svg/direction.svg" %}
+								Click For Directions
+							</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+
+<section class="locations__main">
+	<div class="locations__main-info">
+		<div class="locations__main-info-title">
+			<h2 class="locations__main-title">Store Locations
+			</h2>
+			<span class="locations__main-subtitle">Visit us to experience exceptional luxury and explore our fine jewelry and genuine leather accessory collections.</span>
+		</div>
+		<div class="locations__main-subinfo">
+			<span>Our skilled Customer Experience Team offers guidance in selecting the perfect gift for yourself or someone special.</span>
+		</div>
+		<div class="locations__main-stores">
+			<ul role="list" class="locations__stores-list">
+
+				{% for location in locations %}
+					<li>
+						<div class="store-row">
+							<div class="store-row__head">
+								<div class="store-row__title-wrap">
+									{% include "../components/svg/geo-icon.svg" %}
+									<!--NEW HTML-->
+									<div class="store-row__info-row">
+										<div>
+											<span>{{location.storeName}}</span>
+											<span>{{location.cityRegion}}</span>
+										</div>
+										<span class="store-row__flagship-spot">{{location.spotName}}</span>
+									</div>
+									<!--END NEW HTML-->
+								</div>
+								{% include "../components/svg/half-next.svg" %}
+							</div>
+							<div
+								class="store-row__body is-visible">
+								<!--UPDATED HTML-->
+								<div class="store-row__body-inner-wrap">
+									<span class="store-row__description">{{location.description}}</span>
+									<span class="store-row__address">
+										<a target="_blank" href="{{location.googleURL}}" class="store-row__direct-link">{{location.address}}</a>
+									</span>
+									<div class="store-row__number">
+										<a href="tel:404-842-0266">{{location.phone}}</a>
+									</div>
+									{% for work in location.schedule %}
+										<div class="store-row__schedule-row">{{work.day}}<span>{{work.time}}</span>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</li>
+				{% endfor %}
+
+			</ul>
+		</div>
+	</div>
+	<div class="locations__map-wrap">
+		<div class="locations__map-embed">
+			<iframe src="./locations_files/3fb4c971-5de2-4f90-a4a1-fe48bb081045.html" allow="geolocation" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+		</div>
+	</div>
+</section>
+<!--Stores cards-->
+
+<!--Book block-->
+<section class="locations__more white_bg">
+	<div class="wrapper">
+		<div class="locations__book-wrap">
+			<div class="locations__book-info">
+				<h2 class="locations__more-title">Book an Appointment</h2>
+				<span class="locations__more-subtitle">For virtual and in-store appointments, please provide your phone number or email address. Or use our booking form to sign up.</span>
+				<div class="locations__book-form-wrap">
+					<form method="get">
+						<div class="locations__book-form-row">
+							<div class="locations__form-field-row">
+								<label class="locations__form-label">Phone or Email Address</label>
+								<input type="text" class="locations__form-field" placeholder="e.g. 1 990 99 00 99">
+							</div>
+						</div>
+						<div class="locations__book-form-row">
+							<div class="locations__book-btn-group">
+								<button class="locations__book-btn">Contact Me</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="locations__book-benefits-group">
+				<img src="./assets/locations-office.webp" loading="lazy" class="locations__book-store-img">
+				<div class="locations__book-benefits">
+					<div class="locations__book-benefits-grid">
+						<div class="locations__benefit-item">
+							<div class="locations__benefit-title-wrap">
+								<span class="locations__benefit-description">
+									<span class="locations__benefit-title">
+										Book an Appointment
+									</span>In-Store and Virtual Appointments are tailored to make your shopping experience easier and faster.
+									<br>
+									<a class="locations__benefit-link" href="tel:404-842-0266">Book</a>
+									yours now
+								</span>
+							</div>
+						</div>
+						<div class="locations__benefit-item">
+							<div class="locations__benefit-title-wrap">
+								<span class="locations__benefit-description">
+									<span class="locations__benefit-title">
+										Expert Guidance
+									</span>Our Customer Experience Team is at your service, assisting with your fine jewelry selections.
+									<br>
+									<a href="tel:404-842-0266">Call</a>
+									or
+									<a href="https://www.icebox.com/chat-whatsapp" target="_blank">connect</a>
+									now</span>
+							</div>
+						</div>
+						<div class="locations__benefit-item">
+							<div class="locations__benefit-title-wrap">
+								<span class="locations__benefit-description">
+									<span class="locations__benefit-title">
+										Complimentary Shipping
+									</span>Icebox offers complimentary, fast shipping or all online orders with a two week exchange policy.</span>
+							</div>
+						</div>
+						<div class="locations__benefit-item">
+							<div class="locations__benefit-title-wrap">
+								<span class="locations__benefit-description">
+									<span class="locations__benefit-title">
+										Concierge Service
+									</span>Personalized service, custom design, expert jewelry repair and cleaning, and one-year limited product warranties.</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

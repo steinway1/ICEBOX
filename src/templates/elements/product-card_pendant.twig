@@ -1,0 +1,30 @@
+<div class="product-card{% if splideClass is defined %} splide__slide{% else %}{% endif %}" data-id="{{productItem.dataID}}">
+	{% if productItem.inStock %}
+		<span class="product-card__shipping-tag">Ships Today</span>
+	{% else %}
+		<span class="product-card__shipping-tag is-made-order">Made To Order</span>
+	{% endif %}
+	<div class="product-card__wrapper">
+		<div class="product-card__media">
+			<a href="{{productItem.href}}">
+				<img src="{{productItem.imgSrc.pendant}}" loading="lazy" alt="{{productItem.alt}}" class="product-card__img {% if productItem.zoom is defined %}{{productItem.zoom}}{% endif %}">
+			</a>
+		</div>
+		<div class="product-card__details">
+			<div class="product-card__title-wrap">
+				{% if productItem.subDetails %}
+					<span class="product-card__sub-detail">{{productItem.subDetails}}</span>
+				{% endif %}
+				<h2>
+					<a href="{{productItem.href}}" class="product-card__name">{{productItem.name}}</a>
+				</h2>
+			</div>
+			<div class="{% if productItem.salePrice is defined %}product-card__price-wrap is-sale{% else %}product-card__price-wrap{% endif %}">
+				<span class="product-card__price">${{productItem.price}}</span>
+				{% if productItem.salePrice %}
+					<span class="product-card__sale-price">${{productItem.salePrice}}</span>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>

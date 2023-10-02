@@ -1,0 +1,256 @@
+.cur-modal__wrapper {
+  z-index: 1;
+  flex-direction: column;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.cur-modal__form-wrap {
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.cur-modal__group-title {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+}
+
+.cur-modal__container {
+  width: calc(100% - 38px);
+  max-width: 520px;
+  background-color: #fff;
+  transition: var(--modal-transition);
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: auto;
+  right: 0%;
+  overflow: hidden;
+  transform: translateX(100%)
+}
+
+.cur-item__symbol {
+  flex: none;
+  margin-left: 14px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.cur-modal__close-btn {
+  justify-content: center;
+  align-items: center;
+  padding: 26px 22px;
+  display: flex;
+  cursor: pointer;
+}
+
+.cur-item__subname {
+  color: rgba(23, 28, 41, .65);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  display: inline-block;
+}
+
+.cur-modal__input {
+  height: 46px;
+  background-color: #f3f3f3;
+  border: 1px solid #f3f3f3;
+  border-radius: 6px;
+  margin-bottom: 0;
+  padding: 8px 16px;
+  transition: none;
+  width: 100%;
+
+  &:hover {
+    background-color: #ebebeb;
+  }
+
+  &:focus {
+    background-color: #ebebeb;
+    border-color: #ebebeb;
+  }
+
+  &::-ms-input-placeholder {
+    color: #5f5f5f;
+  }
+
+  &::placeholder {
+    color: #5f5f5f;
+  }
+
+}
+
+.cur-modal__header {
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  flex: none;
+  align-items: center;
+  padding: 0;
+  display: flex;
+}
+
+.cur-modal__backdrop {
+  background-color: var(--backdrop-darkcolor);
+  transition: var(--modal-transition);
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  opacity: 0;
+}
+
+.cur-item__details {
+  grid-column-gap: 14px;
+  grid-row-gap: 14px;
+  align-items: center;
+  display: flex;
+}
+
+.cur-modal__heading {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cur-modal__group {
+  width: 100%;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cur-modal__main {
+  flex-direction: column;
+  display: flex;
+}
+
+.cur-modal__scrollable {
+  flex-direction: column;
+  flex: 1;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  display: flex;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.cur-modal__scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.cur-modal__input-wrap {
+  position: relative;
+  padding: 0px 22px 16px 22px;
+}
+
+.cur-item__name {
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.cur-item__img {
+  width: 24px;
+}
+
+.cur-item__main {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.cur-item {
+  cursor: pointer;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: -1px;
+  padding: 12px 28px;
+  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  position: relative;
+
+  &:hover {
+    background-color: #ececec;
+  }
+}
+
+.cur-item.is-active {
+  z-index: 1;
+  background-color: rgba(0, 149, 198, .04);
+  border-top-color: #0095c6;
+  border-bottom-color: #0095c6;
+}
+
+.cur-modal {
+  z-index: 9999;
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  display: none;
+}
+
+@media screen and (max-width: 991px) {
+  .cur-item:hover {
+    background-color: #fff;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .cur-modal__input {
+    border-radius: 6px;
+  }
+
+  .cur-modal__header {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.page-currency {
+  max-width: 300px;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  cursor: pointer;
+  align-items: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  display: flex;
+}
+
+.page-currency:hover {
+  opacity: .7;
+}
+
+.page-currency-current {
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+
+  img {
+    width: 20px;
+    margin-right: 6px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .page-currency {
+    justify-content: center;
+  }
+}

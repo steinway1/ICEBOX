@@ -1,0 +1,69 @@
+<div class="cart-modal">
+	<div data-evt="toggleCart" class="cart-modal__backdrop"></div>
+	<div class="cart-modal__container">
+		<div class="cart-modal__wrapper">
+			<div class="cart-modal__header">
+				<div data-evt="toggleCart" class="cart-modal__close-btn">
+					{% include "../components/svg/back-arrow.svg" with {width: 22, height: 22} %}
+				</div>
+				<h5 class="cart-modal__heading">Shopping Cart
+					<span>({{cartItems.length}})</span>
+				</h5>
+			</div>
+			<div class="cart-modal__scrollable">
+				<div class="cart-modal__rows-wrap">
+
+					<div class="cart-row">
+						<div class="cart-row__wrapper">
+							{% if cart.items.length > 0 %}
+								{% for item in cart.items %}
+									{% include "../components/cart/cart-item.twig" with {
+                imgSrc: item.imgSrc,
+                name: item.name,
+                href: item.href,
+                options: item.options,
+                notice: item.notice,
+                shippingDate: item.shippingDate,
+                price: item.price,
+                salePrice: item.salePrice
+							} %}
+								{% endfor %}
+							{% else %}
+								<span class="cart-empty-typo">No items in your cart yet</span>
+							{% endif %}
+						</div>
+					</div>
+
+					{% if cart.items.length > 0 %}
+						<div class="cart-row">
+							<div class="cart-row__wrapper">
+								<div class="cart-modal__summary-wrap">
+									<div class="cart-modal__summary-price">
+										<span>Original</span>
+										<span>$ {{ cart.originalPrice|number_format(2) }}</span>
+									</div>
+									<div class="cart-modal__summary-price is-discount">
+										<span>Discount</span>
+										<span>- $ {{cart.discountPrice|number_format(2)}}</span>
+									</div>
+									<div class="cart-modal__summary-price">
+										<span>Delivery Charge</span>
+										<span>On Checkout</span>
+									</div>
+									<div class="cart-modal__summary-price mybag-summary-price_total">
+										<span>Total</span>
+										<span class="cart-modal__total-price">$ {{ cart.fullPrice|number_format(2) }}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+
+				</div>
+			</div>
+			<div class="cart-modal__footer">
+				<a href="https://www.icebox.com/cart" class="cart-modal__btn">Go To Checkout</a>
+			</div>
+		</div>
+	</div>
+</div>

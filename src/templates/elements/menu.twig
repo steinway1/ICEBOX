@@ -1,0 +1,603 @@
+<div class="mob-menu">
+	<div onclick="menu.toggle();" class="mob-menu__backdrop"></div>
+	<div class="mob-menu__container">
+		<div
+			class="mob-menu__wrapper">
+			<!-- Menu main content -->
+			<div class="mob-menu__main-content">
+				<div class="mob-menu__scroll-content">
+					<div class="mob-menu__header">
+						<a href="/" aria-current="page" class="mob-menu__logo">
+							<img src="./assets/logo.svg" loading="eager" alt="Icebox logo">
+						</a>
+						<button onclick="menu.toggle();" class="mob-menu__close-btn">
+            {% include "../components/svg/close.svg" %}
+						</button>
+					</div>
+					<!-- Menu main navigation -->
+					<nav role="navigation" aria-label="Main" class="mob-menu__nav-list">
+						<div class="mob-menu__nav-item">
+							<a href="/results/pendants">Pendants</a>
+							<button data-menu-nav="Pendants" class="mob-menu__nav-step"></button>
+						</div>
+						<div class="mob-menu__nav-item">
+							<a href="/results/gold-chains">Gold Chains</a>
+							<button data-menu-nav="Gold Chains" class="mob-menu__nav-step"></button>
+						</div>
+						<div class="mob-menu__nav-item">
+							<a href="/results/earrings">Earrings</a>
+							<button data-menu-nav="Earrings" class="mob-menu__nav-step"></button>
+						</div>
+						<div class="mob-menu__nav-item">
+							<a href="/results/necklaces">Necklaces</a>
+							<button data-menu-nav="Necklaces" class="mob-menu__nav-step"></button>
+						</div>
+						<div class="mob-menu__nav-item">
+							<a href="/results/rings">Rings</a>
+							<button data-menu-nav="Rings" class="mob-menu__nav-step"></button>
+						</div>
+						<div class="mob-menu__nav-item">
+							<a href="/results/bracelets">Bracelets</a>
+							<button data-menu-nav="Bracelets" class="mob-menu__nav-step"></button>
+						</div>
+						<div class="mob-menu__nav-item">
+							<a href="/results/watches">Watches</a>
+							<button data-menu-nav="Watches" class="mob-menu__nav-step"></button>
+						</div>
+						<div class="mob-menu__nav-item">
+							<a href="/results/accessories">Accessories</a>
+							<button data-menu-nav="Accessories" class="mob-menu__nav-step"></button>
+						</div>
+						<div class="mob-menu__nav-item">
+							<a href="/results/custom">Custom</a>
+							<button data-menu-nav="Custom" class="mob-menu__nav-step"></button>
+						</div>
+						<div class="mob-menu__nav-item">
+							<a href="/results/glasses">Glasses</a>
+							<button data-menu-nav="Glasses" class="mob-menu__nav-step"></button>
+						</div>
+					</nav>
+					<!-- Menu sub navigation -->
+					<nav role="navigation" aria-label="Sub" class="mob-menu__sub-nav">
+						<a href="/cart" class="mob-menu__spot-link">
+							<span>My Cart<span class="mob-menu__cart-count ">(<span class="bag-counter">1</span>)</span>
+							</span>
+							<svg class="mob-menu__icon" width="12" height="12" viewbox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 1L12 11L1 21" stroke="currentColor" stroke-width="2.5"></path>
+							</svg>
+						</a>
+						<div class="mob-menu__sub-nav-list">
+							<a onclick="signModal.open('login')" href="javascript:void(0)" class="mob-menu__sub-nav-item">
+								<img src="./assets/menu/menu-icon_account.svg" loading="eager" alt="account icon">
+								<span>My Account</span>
+							</a>
+							<a onclick="signModal.open('register')" href="javascript:void(0);" class="mob-menu__sub-nav-item js-login-btn">
+								<img src="./assets/menu/menu-icon_account.svg" loading="eager" alt="account icon">
+								<span>Create Account</span>
+							</a>
+							<a href="/track-order" class="mob-menu__sub-nav-item">
+								<img src="./assets/menu/menu-icon_track.svg" loading="eager" alt="track order icon">
+								<span>Track Your Order</span>
+							</a>
+							<a href="/wishlist" class="mob-menu__sub-nav-item">
+								<img src="./assets/menu/menu-icon_wishlist.svg" loading="eager" alt="wishlist icon">
+								<span>Wishlist</span>
+							</a>
+							<a href="/logout" class="mob-menu__sub-nav-item">
+								<img src="./assets/menu/menu-icon_logout.svg" loading="eager" alt="sign out icon">
+								<span>Sign Out</span>
+							</a>
+						</div>
+						<div data-modal="currency" data-toggle="modal" data-target="#countryModal" class="mob-menu__mega-link">
+							<span class="mob-menu__mega-link-heading">Change Currency</span>
+							<span>USD</span>
+						</div>
+						<a href="/contact" class="mob-menu__mega-link">
+							<div class="mob-menu__mega-link-heading">
+								<span class="mob-menu__mega-link-subheading">Got any question?</span>
+								<span>Custom Care Center</span>
+							</div>
+							<svg class="mob-menu__icon" width="12" height="12" viewbox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 1L12 11L1 21" stroke="currentColor" stroke-width="2.5"></path>
+							</svg>
+						</a>
+						<a href="/chat-whatsapp" class="mob-menu__mega-link">
+							<div class="mob-menu__mega-link-heading">
+								<span class="mob-menu__mega-link-subheading">Do you need our help?</span>
+								<span>Chat on WhatsApp</span>
+							</div>
+							<svg class="mob-menu__icon" width="12" height="12" viewbox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 1L12 11L1 21" stroke="currentColor" stroke-width="2.5"></path>
+							</svg>
+						</a>
+					</nav>
+				</div>
+			</div>
+			<!-- Menu over content -->
+			<div class="mob-menu__over-content" style="transform: translateX(100%);">
+				<div class="mob-menu__scroll-content">
+					<div class="mob-menu__header">
+						<button data-evt="hideOver" class="mob-menu__step-back">
+							<svg width="25" height="25" viewbox="0 0 38 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M12.5 1L1.5 11L12.5 21" stroke="currentColor" stroke-width="2"></path>
+								<path d="M1.5 11H38" stroke="currentColor" stroke-width="2"></path>
+							</svg>
+						</button>
+						<span class="mob-menu__over-heading">Pendants Collection</span>
+					</div>
+					<div
+						class="mob-menu__step-block">
+
+						<!-- Over content -- Pendants -->
+						<div data-menu-over="Pendants" class="mob-menu__step-content">
+							<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
+								<div class="mob-menu__nav-item mob-menu__nav-item_bold">
+									<a href="/results/pendants">Shop All</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Jesus Pendants">
+										<span>Jesus
+											<span class="mob-menu__nav-item-count">15</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Angel Pendants">
+										<span>Angels
+											<span class="mob-menu__nav-item-count">5</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Crosses">
+										<span>Crosses
+											<span class="mob-menu__nav-item-count">72</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Other Pendants">
+										<span>Other Pendants
+											<span class="mob-menu__nav-item-count">321</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Letter Pendants">
+										<span>Letters &amp; Numbers
+											<span class="mob-menu__nav-item-count">8</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Religious Pendants">
+										<span>Religious
+											<span class="mob-menu__nav-item-count">111</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Photo Pendants">
+										<span>Photo
+											<span class="mob-menu__nav-item-count">13</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Animals">
+										<span>Animals
+											<span class="mob-menu__nav-item-count">88</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Hearts">
+										<span>Hearts
+											<span class="mob-menu__nav-item-count">17</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Sports">
+										<span>Sports
+											<span class="mob-menu__nav-item-count">25</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Weapons">
+										<span>Weapons
+											<span class="mob-menu__nav-item-count">42</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Icebox">
+										<span>Icebox Logo
+											<span class="mob-menu__nav-item-count">2</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Countries &amp; States">
+										<span>Countries &amp; States
+											<span class="mob-menu__nav-item-count">27</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Custom Pendants">
+										<span>Custom
+											<span class="mob-menu__nav-item-count">5</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/pendants?sub[]=Zodiac">
+										<span>Zodiac
+											<span class="mob-menu__nav-item-count">1</span>
+										</span>
+									</a>
+								</div>
+							</nav>
+						</div>
+						<!-- Over content -- Pendants -->
+						<div data-menu-over="Gold Chains" class="mob-menu__step-content">
+							<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
+								<div class="mob-menu__nav-item mob-menu__nav-item_bold">
+									<a href="/results/gold-chains">Shop All</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/gold-chains?sub[]=Franco">
+										<span>Franco
+											<span class="mob-menu__nav-item-count">9</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/gold-chains?sub[]=Rope">
+										<span>Rope
+											<span class="mob-menu__nav-item-count">12</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/gold-chains?sub[]=Miami Cuban">
+										<span>Miami Cuban
+											<span class="mob-menu__nav-item-count">19</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/gold-chains?sub[]=Rolo">
+										<span>Rolo
+											<span class="mob-menu__nav-item-count">2</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/gold-chains?sub[]=Figaro">
+										<span>Figaro
+											<span class="mob-menu__nav-item-count">4</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/gold-chains?sub[]=Byzantine">
+										<span>Byzantine
+											<span class="mob-menu__nav-item-count">1</span>
+										</span>
+									</a>
+								</div>
+							</nav>
+						</div>
+						<!-- Over content -- Pendants -->
+						<div data-menu-over="Earrings" class="mob-menu__step-content">
+							<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
+								<div class="mob-menu__nav-item mob-menu__nav-item_bold">
+									<a href="/results/earrings">Shop All</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/earrings?sub[]=Solitaire Earrings">
+										<span>Solitaires
+											<span class="mob-menu__nav-item-count">20</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/earrings?sub[]=Solitaire Halo Earrings">
+										<span>Solitaire-halo
+											<span class="mob-menu__nav-item-count">8</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/earrings?sub[]=Stud Earrings">
+										<span>Studs
+											<span class="mob-menu__nav-item-count">69</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/earrings?sub[]=Hoop Earrings">
+										<span>Hoops
+											<span class="mob-menu__nav-item-count">27</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/earrings?sub[]=Dangling Earrings">
+										<span>Dangling
+											<span class="mob-menu__nav-item-count">25</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/earrings?sub[]=Letter Earrings">
+										<span>Letter Earrings
+											<span class="mob-menu__nav-item-count">1</span>
+										</span>
+									</a>
+								</div>
+							</nav>
+						</div>
+						<!-- Over content -- Pendants -->
+						<div data-menu-over="Necklaces" class="mob-menu__step-content">
+							<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
+								<div class="mob-menu__nav-item mob-menu__nav-item_bold">
+									<a href="/results/necklaces">Shop All</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/necklaces?sub[]=Gold Chains">
+										<span>Gold Chains
+											<span class="mob-menu__nav-item-count">20</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/necklaces?sub[]=Diamond Cubans">
+										<span>Diamond Cubans
+											<span class="mob-menu__nav-item-count">25</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/necklaces?sub[]=Diamond Tennis Chains">
+										<span>Diamond Tennis Chains
+											<span class="mob-menu__nav-item-count">37</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/necklaces?sub[]=Other">
+										<span>Other
+											<span class="mob-menu__nav-item-count">15</span>
+										</span>
+									</a>
+								</div>
+							</nav>
+						</div>
+						<!-- Over content -- Pendants -->
+						<div data-menu-over="Rings" class="mob-menu__step-content">
+							<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
+								<div class="mob-menu__nav-item mob-menu__nav-item_bold">
+									<a href="/results/rings">Shop All</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/rings?sub[]=Engagement Rings">
+										<span>Engagement Rings
+											<span class="mob-menu__nav-item-count">349</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/rings?sub[]=Fashion Rings">
+										<span>Fashion Rings
+											<span class="mob-menu__nav-item-count">239</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/rings?sub[]=Wedding Bands">
+										<span>Wedding Bands
+											<span class="mob-menu__nav-item-count">67</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/rings?sub[]=Stackable Rings">
+										<span>Stackable Rings
+											<span class="mob-menu__nav-item-count">27</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/rings?sub[]=Custom Rings">
+										<span>Custom Rings
+											<span class="mob-menu__nav-item-count">7</span>
+										</span>
+									</a>
+								</div>
+							</nav>
+						</div>
+						<!-- Over content -- Pendants -->
+						<div data-menu-over="Bracelets" class="mob-menu__step-content">
+							<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
+								<div class="mob-menu__nav-item mob-menu__nav-item_bold">
+									<a href="/results/bracelets">Shop All</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/bracelets?sub[]=Diamond Cuban Bracelets">
+										<span>Diamond Cubans
+											<span class="mob-menu__nav-item-count">25</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/bracelets?sub[]=Gold Bracelets">
+										<span>Gold Bracelets
+											<span class="mob-menu__nav-item-count">48</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/bracelets?sub[]=Diamond Tennis Bracelets">
+										<span>Diamond Tennis
+											<span class="mob-menu__nav-item-count">17</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/bracelets?sub[]=Diamond Bracelets">
+										<span>Diamond Bracelets
+											<span class="mob-menu__nav-item-count">51</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/bracelets?sub[]=Diamond Bangles">
+										<span>Bangles
+											<span class="mob-menu__nav-item-count">15</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/bracelets?sub[]=Gold Bracelets">
+										<span>Gold Bracelets
+											<span class="mob-menu__nav-item-count">48</span>
+										</span>
+									</a>
+								</div>
+							</nav>
+						</div>
+						<!-- Over content -- Pendants -->
+						<div data-menu-over="Watches" class="mob-menu__step-content">
+							<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
+								<div class="mob-menu__nav-item mob-menu__nav-item_bold">
+									<a href="/results/watches">Shop All</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/watches?sub[]=Custom Rolex Watches">
+										<span>Rolex
+											<span class="mob-menu__nav-item-count">280</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/watches?sub[]=Custom Patek Philippe Watches">
+										<span>Patek Philippe
+											<span class="mob-menu__nav-item-count">7</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/watches?sub[]=Custom Audemars Piguet Watches">
+										<span>Audemars Piguet
+											<span class="mob-menu__nav-item-count">45</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/watches?sub[]=Bustdowns">
+										<span>Bustdowns
+											<span class="mob-menu__nav-item-count">38</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/watches?sub[]=Custom Hublot Watches">
+										<span>Hublot
+											<span class="mob-menu__nav-item-count">18</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/watches?sub[]=Custom Cartier Watches">
+										<span>Cartier
+											<span class="mob-menu__nav-item-count">28</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/watches?sub[]=Plain Watches">
+										<span>Plain Watches
+											<span class="mob-menu__nav-item-count">18</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item"></div>
+							</nav>
+						</div>
+						<!-- Over content -- Pendants -->
+						<div data-menu-over="Accessories" class="mob-menu__step-content">
+							<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
+								<div class="mob-menu__nav-item mob-menu__nav-item_bold">
+									<a href="/results/accessories">Shop All</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/accessories?sub[]=Items">
+										<span>Jewelry Accessories
+											<span class="mob-menu__nav-item-count">16</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/accessories?sub[]=Diamond Accessories">
+										<span>Diamond Accessories
+											<span class="mob-menu__nav-item-count">4</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/accessories?sub[]=Watch Bezels">
+										<span>Watch Bezels
+											<span class="mob-menu__nav-item-count">6</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/accessories?sub[]=Leather Goods">
+										<span>Leather Goods
+											<span class="mob-menu__nav-item-count">22</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/accessories?sub[]=Earring Backs">
+										<span>Earring Backs
+											<span class="mob-menu__nav-item-count">1</span>
+										</span>
+									</a>
+								</div>
+								<div class="mob-menu__nav-item">
+									<a href="/results/accessories?sub[]=Phone Cases">
+										<span>Phone Cases
+											<span class="mob-menu__nav-item-count">4</span>
+										</span>
+									</a>
+								</div>
+							</nav>
+						</div>
+						<!-- Over content -- Pendants -->
+						<div data-menu-over="Custom" class="mob-menu__step-content">
+							<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
+								<div class="mob-menu__nav-item mob-menu__nav-item_bold">
+									<a href="/results/custom">Shop All</a>
+								</div>
+							</nav>
+						</div>
+						<!-- Over content -- Pendants -->
+						<div data-menu-over="Glasses" class="mob-menu__step-content">
+							<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
+								<div class="mob-menu__nav-item mob-menu__nav-item_bold">
+									<a href="/results/glasses">Shop All</a>
+								</div>
+							</nav>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

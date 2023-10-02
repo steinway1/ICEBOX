@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+	<head>
+		{% include '../page-components/head.twig' %}
+		{{ block('include_head') }}
+	</head>
+
+
+	<body>
+		{% if pageBanner is defined %}
+			{% include "../elements/page-banner.twig" %}
+		{% endif %}
+		{% include "../elements/header.twig" %}
+
+
+		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
+
+			{% if logged %}
+				{% else %}
+					{# {% include "../elements/subscribe.twig" %} #}
+			{% endif %}
+			{% include "../elements/footer.twig" %}
+			{% include "../elements/affirm-disclaimer.twig" %}
+		</main>
+
+
+		{% include "../elements/menu.twig" %}
+		{% include "../elements/cart-modal.twig" %}
+		{% include "../elements/sign-modal.twig" %}
+		{% include "../elements/currency-modal.twig" %}
+		{% include "../page-components/scripts.twig" %}
+		{{ block('include_script') }}
+	</body>
+
+</html>

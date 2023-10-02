@@ -1,0 +1,14 @@
+<div class="checkout-box checkout-box_steps">
+	<div class="checkout-step checkout-step_contacts{% if checkoutStep == 1 or checkoutStep == 2 or checkoutStep == 3 %} is-active{% endif %}">
+		<span>CONTACTS</span>
+		{% include "../svg/checkout-contacts.svg" %}
+	</div>
+	<div class="checkout-step checkout-step_delivery{% if checkoutStep == 2 or checkoutStep == 3 %} is-active{% endif %}">
+		<span>DELIVERY</span>
+		{% include "../svg/checkout-delivery.svg" %}
+	</div>
+	<div class="checkout-step checkout-step_payment{% if checkoutStep == 3 %} is-active{% endif %}">
+		<span>PAYMENT</span>
+		{% include "../svg/checkout-payment.svg" %}
+	</div>
+</div>

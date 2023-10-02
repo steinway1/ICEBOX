@@ -1,0 +1,179 @@
+<div class="account__wrapper">
+	<aside class="account__sidebar">
+		<div
+			class="account__nav-wrap">
+			<!--Profile welcome title-->
+			<div class="account__nav-header">
+				<span class="account__membership">Member since
+					{{user.regDate|date("m/d/Y")}}</span>
+				<h2 class="account__welcome-title">Welcome
+					{{user.name}}!</h2>
+				<span class="account__subtitle">Manage your orders, subscriptions, wishlist.</span>
+			</div>
+			<!--Profile navigation-->
+			<nav class="account__nav-body">
+				<ul id="profile-tabs" role="list" class="account__nav-list">
+					<li class="account__nav-list-item">
+						<a href="/account" class="account__switch-btn is-active">Overview</a>
+					</li>
+					<li class="account__nav-list-item">
+						<a href="/account/profile" class="account__switch-btn">My Profile</a>
+					</li>
+					<li class="account__nav-list-item">
+						<a href="/account/address" class="account__switch-btn">Addresses</a>
+					</li>
+					<li class="account__nav-list-item">
+						<a href="/account/orders" data-account="orders" class="account__switch-btn">My Orders</a>
+					</li>
+					<li class="account__nav-list-item">
+						<a href="/account/wishlist" class="account__switch-btn">Wishlist</a>
+					</li>
+					<li class="account__nav-list-item">
+						<a href="/account/wishlist" class="account__switch-btn logout">Logout</a>
+					</li>
+
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<!--Profile content-->
+	<div
+		class="account__body">
+
+		<!--Overview container-->
+		<section class="account-main overview">
+			<div class="account-main__header">
+				<h4 class="account-main__title">Overview</h4>
+			</div>
+			<!--Overview cards-->
+			<div class="account-main__overview-grid">
+
+				<div class="overview-card">
+					<div class="overview-card__body">
+						<div class="overview-card__title-group">
+							<h6 class="overview-card__title">My Profile
+								<span class="overview-card__title-sub">Personal Information</span>
+							</h6>
+							{% include "../components/svg/account.svg" with {
+                width: 24,
+                height: 24
+              } %}
+						</div>
+						<div class="overview-card__details">
+							{% if user.name and user.surname %}
+								<div class="overview-card__details-row">{{user.name}}
+									{{user.surname}}</div>
+							{% endif %}
+							{% if user.email %}
+								<div class="overview-card__details-row">{{user.email}}</div>
+							{% endif %}
+							{% if user.phone %}
+								<div class="overview-card__details-row">{{user.phone}}</div>
+							{% endif %}
+						</div>
+					</div>
+					<div class="overview-card__footer">
+						<a data-account="profile" href="/account/profile" class="profile__overview-switch">
+							<span>Edit My Profile</span>
+							<div class="account__icon-next">
+								{% include "../components/svg/arrow-next.svg" %}
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="overview-card">
+					<div class="overview-card__body">
+						<div class="overview-card__title-group">
+							<h6 class="overview-card__title">Address Information
+								<span class="overview-card__title-sub">Shipping & Addresses</span>
+							</h6>
+							{% include "../components/svg/location.svg" with {
+                width: 26,
+                height: 26
+              } %}
+						</div>
+						<div class="overview-card__details">
+							{% if user.address %}
+								{% for item in user.address %}
+									<div class="overview-card__details-row">{{item}}</div>
+								{% endfor %}
+							{% endif %}
+						</div>
+					</div>
+					<div class="overview-card__footer">
+						<a data-account="address" href="/account/address" class="profile__overview-switch">
+							<span>Edit Addresses</span>
+							<div class="account__icon-next">
+								{% include "../components/svg/arrow-next.svg" %}
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="overview-card">
+					<div class="overview-card__body">
+						<div class="overview-card__title-group">
+							<h6 class="overview-card__title">My Orders
+								<span class="overview-card__title-sub">Check orders status</span>
+							</h6>
+							{% include "../components/svg/cart.svg" with {
+                width: 24,
+                height: 24
+              } %}
+						</div>
+						<div class="overview-card__details">
+							<div class="overview-card__details-row">
+								<span class="overview-card__details_no">{{user.orders.active.length}}</span>
+								active orders
+							</div>
+							<div class="overview-card__details-row">
+								<span class="overview-card__details_no">{{user.orders.pending.length}}</span>
+								pending orders needs payment
+							</div>
+						</div>
+					</div>
+					<div class="overview-card__footer">
+						<a data-account="orders" href="/account/orders" class="profile__overview-switch">
+							<span>Go To Orders</span>
+							<div class="account__icon-next">
+								{% include "../components/svg/arrow-next.svg" %}
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="overview-card">
+					<div class="overview-card__body">
+						<div class="overview-card__title-group">
+							<h6 class="overview-card__title">Wishlist
+								<span class="overview-card__title-sub">Saved products</span>
+							</h6>
+							{% include "../components/svg/wishlist.svg" with {
+                width: 24,
+                height: 24
+              } %}
+						</div>
+						<div class="overview-card__details">
+							<div class="overview-card__details-row">
+								<span class="overview-card__details_no">6</span>
+								saved product
+							</div>
+						</div>
+					</div>
+					<div class="overview-card__footer">
+						<a data-account="wishlist" href="/account/wishlist" class="profile__overview-switch">
+							<span>To Wishlist</span>
+							<div class="account__icon-next">
+								{% include "../components/svg/arrow-next.svg" %}
+							</div>
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+	</div>
+</div>

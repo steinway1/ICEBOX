@@ -1,0 +1,16 @@
+<div class="results-nav">
+	<div class="results-wrapper for_scrollable">
+		<div class="results-nav__wrapper">
+			<div class="results-nav__scrollable">
+				{% for item in category.nav %}
+					<a href="{{item.href}}" class="{% if item.active == true %} is-active{% endif %}">
+						<div>
+							<img src="{{item.imgSrc}}" loading="lazy" alt="">
+						</div>
+						<span>{{item.caption}}</span>
+					</a>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>

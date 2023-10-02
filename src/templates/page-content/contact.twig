@@ -1,0 +1,84 @@
+<div class="contact-content">
+	<div class="contact-container dark_bg">
+		<div class="wrapper">
+			<div class="contact__title-group">
+				<h2 class="contact-title">Customer Care Center
+					<span>We are here to solve your problems. Contact us the way that is most convenient for you.</span>
+				</h2>
+				<div class="contact__form-wrap">
+					<form action="/send-msg" id="contactForm" method="post">
+						<input type="text" name="full_name" value="{{user.name}} {{user.surname}}" required="" placeholder="Your Full Name">
+						<input type="email" name="email" placeholder="Email" value="{{user.email}}" required="">
+						<input type="submit" value="Contact Me" class="contact__main-btn">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="contact-container">
+		<div class="wrapper"></div>
+		<div class="wrapper">
+			<div class="contact__grid">
+				<div class="contact-card">
+					<div class="contact-card__details">
+						<h4>Via Email<span>Contact us by email with the necessary details and we will get back to you promptly.</span>
+						</h4>
+						<a href="mailto:sales@icebox.com">
+							<div>Send Email</div>
+						</a>
+					</div>
+					{% include "../components/svg/contact_email.svg" %}
+				</div>
+				<div class="contact-card">
+					<div class="contact-card__details">
+						<h4>Call Now<span>Call Icebox now and speak with our sales &amp; support team.</span>
+						</h4>
+						<a href="tel:404-842-0266">Call Now 404-842-0266</a>
+					</div>
+					{% include "../components/svg/contact_call.svg" %}
+				</div>
+				<div class="contact-card">
+					<div class="contact-card__details">
+						<h4>Live WhatsApp Chat<span>Click the button below to message us on Whatsapp, we will reply instantly during business hours!</span>
+						</h4>
+						<a href="/chat-whatsapp">Chat On WhatsApp</a>
+					</div>
+					{% include "../components/svg/contact_wa.svg" %}
+				</div>
+				<div class="contact-card">
+					<div class="contact-card__details">
+						<h4>Visit Our Store<span>Come to our store in person and get full concierge service.</span>
+						</h4>
+						<a href="https://goo.gl/maps/tSbUj8MuugytJkjm7">Google Maps</a>
+					</div>
+					{% include "../components/svg/contact_visit.svg" %}
+				</div>
+				<div class="contact-card">
+					<div class="contact-card__details">
+						<h4>Book an Appointment<span>Need a face-to-face meeting with a jewelry consultant or craftsman?Book an appointment and we&#x27;ll be waiting.</span>
+						</h4>
+						<a href="/we-buy-it-all">Book Now</a>
+					</div>
+					{% include "../components/svg/contact_book.svg" %}
+				</div>
+				<div class="contact-card">
+					<div class="contact-card__details">
+						<h4>FAQ<span>Most likely the answer to your question is already in our list of frequently asked questions. Read here</span>
+						</h4>
+						<a href="/faq/all">Explore FAQ</a>
+					</div>
+					{% include "../components/svg/contact_faq.svg" %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="contact-container dark_bg">
+		<div class="wrapper">
+			<div class="contact__location-wrap">
+				<h2 class="contact-title">Our Store Locations<span>We invite you to visit our store in person. See the variety of products and get concierge service right in the store.</span>
+				</h2>
+				<a href="/locations" class="contact__main-btn">Explore Our Locations</a>
+			</div>
+		</div>
+	</div>
+</div>

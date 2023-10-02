@@ -1,0 +1,73 @@
+<div class="mybag-card">
+	<div class="mybag-card__container">
+		<div class="mybag-card__wrap">
+			<div class="mybag-card__thumbnail">
+				<img src="{{imgSrc}}" loading="lazy" class="mybag-card__picture">
+			</div>
+			<div class="mybag-card__content">
+				<div class="mybag-card__content-wrap">
+					<div class="mybag-card__header">
+						<div class="mybag-card__thumbnail mybag-card__thumbnail_mobile">
+							<img src="{{imgSrc}}" loading="lazy" class="mybag-card__picture">
+						</div>
+						<div class="mybag-card__title-group">
+							<h5 class="mybag-card-title">{{name}}</h5>
+						</div>
+					</div>
+					<div class="mybag-card__details">
+						<div class="mybag-card__options">
+							{% for option in options %}
+								<div class="mybag-card__option-row">
+									<span>{{option.name}}</span>
+									<span>{{option.value}}</span>
+								</div>
+							{% endfor %}
+						</div>
+						<div class="mybag-card__controls">
+							<div class="mybag-card__controls-wrap">
+								<div class="mybag-card__controls-group">
+									<button class="mybag-card__main-btn">
+										{% include "../svg/circle-close.svg" %}
+									</button>
+									<button onclick="addToWishlist({{id}});" class="mybag-card__main-btn">
+										{% include "../svg/cart-wishlist.svg" %}
+									</button>
+								</div>
+								<div class="mybag-card__controls-group">
+									{% if salePrice %}
+                    <span class="mybag-card-price card-price_old">${{price}}</span>
+                    <span class="mybag-card-price card-price_new">${{salePrice}}</span>
+                  {% else %}
+                    <span class="mybag-card-price">${{price}}</span>
+                  {% endif %}
+									<div class="mybag-card__quantity">
+										<div class="mybag-card__select-wrap">
+											{% include "../svg/dropdown.svg" with { class: 'checkout__dd-icon' } %}
+											<select title="Quantity" class="mybag-card__select">
+												{% for selectOptions in 1..9 %}
+													{% if selectOptions == qty %}
+														<option value="{{qty}}" selected>{{qty}}</option>
+													{% else %}
+														<option value="{{selectOptions}}">{{selectOptions}}</option>
+													{% endif %}
+												{% endfor %}
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% if shipDate %}
+		<div class="mybag-card__notice">
+			<img src="./assets/checkout/icon_bag-notice.svg" loading="lazy">
+			<span class="mybag-card__notice-typo">This item is made to order and will ship in 4 weeks. Expect your item to arrive on or before
+				<span>{{shipDate}}</span>.</span>
+		</div>
+	{% endif %}
+
+</div>

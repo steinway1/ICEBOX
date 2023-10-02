@@ -1,0 +1,35 @@
+<div class="cart-item">
+	<div class="cart-item__main">
+		<div class="cart-item__media">
+			<img src="{{imgSrc}}" loading="lazy">
+		</div>
+		<div class="cart-item__details">
+			<div class="cart-item__info-row">
+				<div class="cart-item__title-group">
+					<a href="{{href}}" target="_blank" class="cart-item-name">{{name}}</a>
+					<div class="cart-item-remove">
+						{% include "../svg/close.svg" with {width: 12, height: 12} %}
+					</div>
+				</div>
+				<div class="cart-item__options-group">
+					{% for option in options %}
+						<span>{{ option.value }}</span>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="cart-item__price-row {% if salePrice %}is-sale{% endif %}">
+				<span class="cart-item-price">${{price}}</span>
+				{% if salePrice %}
+					<span class="cart-item-price_sale">${{salePrice}}</span>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% if shipDate %}
+		<div class="cart-item__notice">
+			This item is made to order and will ship in 4 weeks. Expect your item to arrive on or before
+			<span>{{shipDate}}</span>.
+		</div>
+		{% else %}
+	{% endif %}
+</div>

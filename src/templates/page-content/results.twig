@@ -1,0 +1,73 @@
+{% set banner = true %}
+{% set nav = true %}
+{% set category = results.pendants %}
+{% set searchQuery = "angels" %}
+{% set stickySidebar = true %}
+
+<div
+	class="results-content">
+	{# Banner #}
+	{% if category %}
+		{% if banner == true %}
+			{% include "../elements/results/results-banner.twig" %}
+		{% endif %}
+	{% else %}
+		{% include "../elements/results/results-empty.twig" %}
+	{% endif %}
+
+	<div
+		class="results__wrap">
+
+		{# Mobile filter bar #}
+		{% include "../elements/results/sticky-filters.twig" %}
+
+		{# Sub Categories Navigation #}
+		{% if nav == true %}
+			{% if category.nav is defined %}
+				{% include "../elements/results/results-nav.twig" %}
+			{% endif %}
+		{% endif %}
+
+		<div
+			class="results__main">
+
+			{# Results BAR #}
+			{% include "../elements/results/results-bar.twig" %}
+
+			<div class="results-wrapper with_cards">
+				<div class="results__main-wrapper">
+
+					<div class="filter-sidebar{% if stickySidebar == true %} to-stick{% endif %}">
+						{% include "../elements/results/filters.twig" with { 
+          filterCategory: true,
+          filterProduct: true,
+          filterPriceRange: true,
+          filterGender: true,
+          filterColor: true
+         } %}
+						<div class="filter-sidebar__overlay"></div>
+					</div>
+
+
+					<div class="results__items-grid">
+						{% for item in 0..3 %}
+							{% include "../elements/product-card.twig", with {
+                adminLayout: true
+              } %}
+						{% endfor %}
+						{% for item in 0..19 %}
+							{% include "../elements/product-card.twig" %}
+						{% endfor %}
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+
+</div>
+{% include "../elements/results/filter-modal.twig" %}

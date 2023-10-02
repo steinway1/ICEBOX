@@ -1,0 +1,80 @@
+<aside class="checkout-summary">
+	<div class="checkout-boxes-wrap">
+
+		<div class="checkout-box">
+			<div class="checkout-summary__header">
+				<h3 class="checkout-heading">Order Summary</h3>
+			</div>
+			<ul role="list" class="checkout-summary__list">
+
+				{% for item in cart.items %}
+					<li>
+						<a href="{{item.href}}" class="checkout-item">
+							<div class="checkout-item__pic-wrap">
+								<img src="{{item.imgSrc}}" alt="{{item.name}}">
+							</div>
+							<div class="checkout-item__details">
+								<div>
+									<h6 class="checkout-item-title">{{item.name}}</h6>
+									<div class="checkout-item__details-row">
+										{% for option in item.options %}
+											<span>{{option.value}}</span>
+										{% endfor %}
+									</div>
+								</div>
+								<div class="checkout-item-price{% if item.salePrice %} checkout-item-price_discount{% endif %}">
+									<span>{{item.price}}</span>
+									{% if item.salePrice %}
+										<span>{{item.salePrice}}</span>
+									{% endif %}
+								</div>
+							</div>
+						</a>
+					</li>
+				{% endfor %}
+
+			</ul>
+		</div>
+		<div class="checkout-box">
+			<div class="checkout-summary__main">
+				<div class="summary-price">
+					<span>Subtotal</span>
+					<span>${{cart.subtotalPrice|number_format(2)}}</span>
+				</div>
+				<div class="summary-price mybag-summary-price_discount">
+					<span>Discount</span>
+					<span>- ${{cart.discountPrice|number_format(2)}}</span>
+				</div>
+				<div class="summary-price">
+					<span>Delivery Charge</span>
+					<span>${{ cart.deliveryPrice|number_format(2) }}</span>
+				</div>
+				<div class="summary-price mybag-summary-price_total">
+					<span>Total</span>
+					<span>${{ cart.fullPrice|number_format(2) }}</span>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="checkout-box">
+			<div class="mybag-information">
+				<div class="mybag-information-row">
+					<img src="./assets/checkout/mybag-icon_call.svg" loading="lazy" alt="call Icebox icon">
+					<div class="mybag-information-row__wrap">
+						<span>Need Last Minute Help?</span>
+						<a href="tel:770-828-5540">Call us at (770) 828-5540.</a>
+					</div>
+				</div>
+				<div class="mybag-information-row">
+					<img src="./assets/checkout/mybag-icon_delivery.svg" loading="lazy" alt="Icebox safe delivery icon">
+					<div class="mybag-information-row__wrap">
+						<span>Safe and Secure Shipping Across the Globe.</span>
+						<a href="#">Learn more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</aside>

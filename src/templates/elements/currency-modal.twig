@@ -1,0 +1,55 @@
+<div class="cur-modal">
+	<div data-evt="toggleCurrency" class="cur-modal__backdrop"></div>
+	<div class="cur-modal__container">
+		<div class="cur-modal__wrapper">
+			<div class="cur-modal__header">
+				<div data-evt="toggleCurrency" class="cur-modal__close-btn">
+        {% include "../components/svg/back-arrow.svg" with {width: 22, height: 22} %}
+				</div>
+				<h2 class="cur-modal__heading">Change Currency</h2>
+			</div>
+			<div class="cur-modal__scrollable">
+				<div class="cur-modal__input-wrap">
+					<input type="text" class="cur-modal__input" placeholder="Find your currency" id="currencySearch" autocomplete="off">
+				</div>
+
+				<div class="cur-modal__main">
+
+					<div class="cur-modal__group">
+						<div class="cur-modal__group-title">— Popular</div>
+						{% for item in currency.popular %}
+							<div class="cur-item {% if item.isActive is defined %}is-active{% endif %}" onclick="window.location.href='/set-currency-red/{{item.name}}';">
+								<div class="cur-item__main">
+									<div class="cur-item__details">
+										<img src="{{item.imgSrc}}" loading="lazy" alt="" class="cur-item__img">
+										<div class="cur-item__name">{{item.name}}<br>
+											<span class="cur-item__subname">{{item.subname}}</span>
+										</div>
+									</div>
+									<div class="cur-item__symbol">{{item.symbol}}</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+
+					<div class="cur-modal__group">
+						<div class="cur-modal__group-title">— More</div>
+						{% for item in currency.other %}
+							<div class="cur-item" onclick="">
+								<div class="cur-item__main">
+									<div class="cur-item__details">
+										<img src="{{item.imgSrc}}" loading="lazy" alt="" class="cur-item__img">
+										<div class="cur-item__name">{{item.name}}<br>
+											<span class="cur-item__subname">{{item.subname}}</span>
+										</div>
+									</div>
+									<div class="cur-item__symbol">{{item.symbol}}</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

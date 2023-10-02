@@ -1,0 +1,116 @@
+<footer class="footer">
+	<div class="footer__wrapper">
+		<div class="wrapper wrapper_adjust">
+			<div class="footer__main">
+				<div class="footer-col">
+					<div class="footer-col__header">
+						<h5>About Icebox</h5>
+						<div>
+							{% include "../components/svg/dropdown.svg" %}
+						</div>
+					</div>
+					<div class="footer-col__body">
+						<div class="footer-col__body-scroll">
+							<div class="footer-col__content-wrap">
+								{% for item in footer.linksAbout %}
+									<a href="{{item.href}}" class="footer-link">{{item.caption}}</a>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-col">
+					<div class="footer-col__header">
+						<h5>Shop By Products</h5>
+						<div>
+							{% include "../components/svg/dropdown.svg" %}
+						</div>
+					</div>
+					<div class="footer-col__body">
+						<div class="footer-col__body-scroll">
+							<div class="footer-col__content-wrap">
+								{% for item in footer.linksProduct %}
+									<a href="{{item.href}}" class="footer-link">{{item.caption}}</a>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-col">
+					<div class="footer-col__header">
+						<h5>Customer Care</h5>
+						<div>
+							{% include "../components/svg/dropdown.svg" %}
+						</div>
+					</div>
+					<div class="footer-col__body">
+						<div class="footer-col__body-scroll">
+							<div class="footer-col__content-wrap">
+								{% for item in footer.linksContact %}
+									<a href="{{item.href}}" class="footer-contact-link">
+										<span class="footer-contact-link__heading">{{item.heading}}</span>
+										<span class="footer-contact-link__typo">{{item.caption}}</span>
+									</a>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-col footer-col_hide">
+					<div class="footer-col__header">
+						<h5>Our Locations</h5>
+						<div>
+            {% include "../components/svg/dropdown.svg" %}
+						</div>
+					</div>
+					<div class="footer-col__body">
+						<div class="footer-col__body-scroll">
+							<div class="footer-col__content-wrap"></div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-col footer-col_hide">
+					<div data-evt="toggleCurrency" class="footer-col__header">
+						<h5>Change Currency</h5>
+						<div data-evt="toggleCurrency" class="page-currency">
+							<div class="page-currency-current">
+								<img src="./assets/flags/usd.svg" loading="lazy" alt="">
+								<span>$ USD</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-sub-col">
+					<div class="footer-sub-col__body">
+						<img src="./assets/logo.svg" loading="lazy" alt="Icebox Logotype" class="footer-logo-img">
+						<div class="footer-sub-col__details">
+							<div class="footer-sub-col__item">3255 Peachtree Rd NE,<br>Suite #2<br>Atlanta, GA 30305, USA</div>
+							<div class="footer-sub-col__item">
+								<span>Monday - Friday:</span><br>11:00 AM - 06:00 PM
+							</div>
+							<div class="footer-sub-col__item">
+								<span>Weekends:</span><br>Closed
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-legal">
+			<div class="wrapper">
+				<div class="footer-legal__main">
+
+					<div data-evt="toggleCurrency" class="page-currency">
+						<span>Currency:</span>
+						<div class="page-currency-current">
+							<img src="./assets/flags/usd.svg" loading="lazy" alt="">
+							<span>$ USD</span>
+						</div>
+					</div>
+
+					<span class="footer-legal__copyright">Icebox.com, 2023 ©. All Rights Reserved.</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

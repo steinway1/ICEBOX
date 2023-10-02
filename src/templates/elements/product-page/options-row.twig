@@ -1,0 +1,278 @@
+<div class="side-row">
+	<div class="side-row__body">
+		<div class="side-row__options">
+
+			{% for option in product.options %}
+
+				{# Gold Color #}
+				{% if option.type == "goldColor" %}
+					<div id="{{option.id}}" class="product__item-option">
+						<div class="product-option__head">
+							<div class="product-option-name">{{option.name}}
+								<span data-tippy-content="{{option.tippy}}" class="item-option__mark"></span>
+							</div>
+							<div class="product-option__head-right">
+								<div class="product-option__dd-icon">
+									{% include "./svg/dropdown.svg" %}
+								</div>
+							</div>
+						</div>
+						<div class="product-option__body">
+							<div class="product-option__wrapper">
+								<div class="options-block">
+									{% for optionBtn in option.set %}
+										<div data-color="{{optionBtn.color}}" data-select="color" class="option-btn{% if optionBtn.active is defined %} is-active{% endif %}">
+											<div class="color-gradient {{optionBtn.color}}"></div>
+											<span>{{optionBtn.caption}}</span>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+				{# GIA Diamonds #}
+				{% if option.type  == "giaDiamond" %}
+					<div id="{{option.id}}" class="product__item-option">
+						<div class="product-option__head">
+							<div class="product-option-name">
+								<span class="typo_gia-spot"></span>
+								{{option.name}}</div>
+							<div class="product-option__head-right">
+								<div class="product-option__dd-icon">
+									{% include "./svg/dropdown.svg" %}
+								</div>
+							</div>
+						</div>
+						<div class="product-option__body">
+							<div class="product-option__wrapper">
+								<div class="options-block">
+									{% for optionBtn in option.set %}
+										<div class="option-btn{% if optionBtn.active is defined %} is-active{% endif %}">
+											<div class="option-gia">
+												<img src="./assets/gia-diamond.svg" loading="lazy" alt="">
+												<div class="option-gia__details">
+													<div class="option-gia__typo">{{optionBtn.ctw}}
+														Carat<span>{{optionBtn.details}}</span>
+													</div>
+													<span class="option-gia__price">${{optionBtn.price}}</span>
+												</div>
+											</div>
+										</div>
+									{% endfor %}
+								</div>
+								<div data-pg-open="diamonds" class="option-guide-btn">
+									<img src="./assets/pg-btn_diamond.svg" loading="lazy" alt="">
+									<span>How To Choose Diamond?</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+				{# Ring Size #}
+				{% if option.type  == "ringSize" %}
+					<div id="{{option.id}}" class="product__item-option">
+						<div class="product-option__head">
+							<div class="product-option-name">{{option.name}}</div>
+							<div class="product-option__head-right">
+								<div class="product-option__dd-icon">
+									{% include "./svg/dropdown.svg" %}
+								</div>
+							</div>
+						</div>
+						<div class="product-option__body">
+							<div class="product-option__wrapper">
+								<div class="options-block">
+									{% for optionBtn in option.set %}
+										<div class="option-btn{% if optionBtn.active is defined %} is-active{% endif %}" data-show data-value="{{optionBtn.value}}">
+											<span>{{optionBtn.value}}"</span>
+										</div>
+									{% endfor %}
+								</div>
+								<div data-pg-open="rings" class="option-guide-btn">
+									<img src="./assets/pg-btn_ring-size.svg" loading="lazy" alt="">
+									<span>Ring Size Chart</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+				{# Bracelet Length #}
+				{% if option.type  == "braceletLength" %}
+					<div id="{{option.id}}" class="product__item-option">
+						<div class="product-option__head">
+							<div class="product-option-name">{{option.name}}</div>
+							<div class="product-option__head-right">
+								<div class="product-option__dd-icon">
+									{% include "./svg/dropdown.svg" %}
+								</div>
+							</div>
+						</div>
+						<div class="product-option__body">
+							<div class="product-option__wrapper">
+								<div class="options-block">
+									{% for optionBtn in option.set %}
+										<div class="option-btn{% if optionBtn.active is defined %} is-active{% endif %}" data-show="{{optionBtn.dataShow}}" data-value="{{optionBtn.value}}">
+											<span>{{optionBtn.value}}"</span>
+										</div>
+									{% endfor %}
+								</div>
+								<div data-pg-open="bracelets" class="option-guide-btn"><img src="./assets/pg-btn_measure.svg" loading="lazy" alt="">
+									<span>How To Select Length?</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+				{# Necklace Length #}
+				{% if option.type  == "necklaceLength" %}
+					<div id="{{option.id}}" class="product__item-option">
+						<div class="product-option__head">
+							<div class="product-option-name">{{option.name}}</div>
+							<div class="product-option__head-right">
+								<div class="product-option__dd-icon">
+									{% include "./svg/dropdown.svg" %}
+								</div>
+							</div>
+						</div>
+						<div class="product-option__body">
+							<div class="product-option__wrapper">
+								<div class="options-block">
+									{% for optionBtn in option.set %}
+										<div class="option-btn{% if optionBtn.active is defined %} is-active{% endif %}" data-show="{{optionBtn.dataShow}}" data-value="{{optionBtn.value}}">
+											<span>{{optionBtn.value}}"</span>
+										</div>
+									{% endfor %}
+								</div>
+								<div data-pg-open="necklaces" class="option-guide-btn"><img src="./assets/pg-btn_measure.svg" loading="lazy" alt="">
+									<span>How To Select Length?</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+				{# Diamonds Select #}
+				{% if option.type  == "diamonds" %}
+					<div id="{{option.id}}" class="product__item-option">
+						<div class="product-option__head">
+							<div class="product-option-name">{{option.name}}</div>
+							<div class="product-option__head-right">
+								<div class="product-option__dd-icon">
+									{% include "./svg/dropdown.svg" %}
+								</div>
+							</div>
+						</div>
+						<div class="product-option__body">
+							<div class="product-option__wrapper">
+								<div class="options-block">
+									{% for optionBtn in option.set %}
+										<div class="option-btn{% if optionBtn.active is defined %} is-active{% endif %}" data-show data-value="{{optionBtn.value}}">
+											<span>{{optionBtn.value}}</span>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+				{# Increase Size #}
+				{% if option.type == "increaseSize" %}
+					<div id="{{option.id}}" class="product__item-option">
+						<div class="product-option__head">
+							<div class="product-option-name">{{option.name}}</div>
+							<div class="product-option__head-right">
+								<div class="product-option__dd-icon">
+									{% include "./svg/dropdown.svg" %}
+								</div>
+							</div>
+						</div>
+						<div class="product-option__body">
+							<div class="product-option__wrapper">
+								<div class="options-block">
+									{% for optionBtn in option.set %}
+										<div class="option-btn{% if optionBtn.active is defined %} is-active{% endif %}">
+											<span>{{optionBtn.caption}}</span>
+											<span class="option-size-price">+ ${{optionBtn.price}}</span>
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+				{# Diamond Color #}
+				{% if option.type == "diamondColor" %}
+					<div id="{{option.id}}" class="product__item-option">
+						<div class="product-option__head">
+							<div class="product-option-name">{{option.name}}<span class="item-option__mark"></span>
+							</div>
+							<div class="product-option__head-right">
+								<div class="product-option__dd-icon">
+									{% include "./svg/dropdown.svg" %}
+								</div>
+							</div>
+						</div>
+						<div class="product-option__body">
+							<div class="product-option__wrapper">
+								<div class="options-block">
+									{% for optionBtn in option.set %}
+										<div data-dm-color="{{optionBtn.color}}" class="option-btn{% if optionBtn.active is defined %} is-active{% endif %}">
+											<span>{{optionBtn.caption}}</span>
+											<img src="{{optionBtn.imgSrc}}" loading="lazy" alt="" class="diamond-color-img">
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+				{# Type Letters #}
+				{% if option.type == "typeLetters" %}
+					{% if option.active == true %}
+						<div id="{{option.id}}" class="product__item-option">
+							<div class="product-option__head">
+								<div class="product-option-name">{{option.name}}</div>
+								<div class="product-option__head-right">
+									<div class="product-option__dd-icon">
+										{% include "./svg/dropdown.svg" %}
+									</div>
+								</div>
+							</div>
+							<div class="product-option__body">
+								<div class="product-option__wrapper">
+									<input type="text" class="option-letters-input custom-fields-fetch alpha" data-min="1" data-type="tags" data-action="" data-name="TYPE YOUR LETTERS" placeholder="Type Your Letters">
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endif %}
+
+
+			{% endfor %}
+		</div>
+
+		{# Pay Buttons #}
+		<div class="side-row__payments">
+			<div class="product__btn-group">
+				<a id="productAddCart" href="javascript:void(0)" onclick="addToCartNew()" class="buy-btn">
+					<span>Add To Cart</span>
+					<span class="buy-btn__price">${{product.item.price}}</span>
+				</a>
+			</div>
+			<div class="side-row__pay-links">
+				<img src="./assets/pay-affirm.svg" loading="lazy" alt="">
+				<img src="./assets/pay-klarna.svg" loading="lazy" alt="">
+				<img src="./assets/pay-afterpay.svg" loading="lazy" alt="">
+			</div>
+		</div>
+
+	</div>
+</div>
