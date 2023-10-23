@@ -194,19 +194,150 @@
         <div class="header__sub-nav">
             <div class="wrapper">
                 <div class="header__sub-nav-list">
-                    <a href="https://www.icebox.com/results/pendants" class="" data-dropdown="jewelry">Fine Jewelry</a>
-                    <a href="https://www.icebox.com/results/gold-chains" class="" data-dropdown="mens">For Men</a>
-                    <a href="https://www.icebox.com/results/earrings" class="" data-dropdown="womens">For Women</a>
-                    <a href="https://www.icebox.com/results/watches" class="" data-dropdown="watches">Watches</a>
-                    <a href="https://www.icebox.com/results/accessories" class="" data-dropdown="accessories">Accessories</a>
-                    <a href="https://www.icebox.com/results/custom" class="" data-dropdown="">Custom</a>
-                    <a href="https://www.icebox.com/results/glasses" class="" data-dropdown="glasses">Glasses</a>
-                    <a href="https://www.icebox.com/results/glasses" class="is-sale" data-dropdown="private-sale">-50% Private Sale</a>
+                    <a href="https://www.icebox.com/results/pendants" class="header__sub-link" data-dropdown="jewelry">Fine Jewelry</a>
+                    <a href="https://www.icebox.com/results/gold-chains" class="header__sub-link" data-dropdown="men">For Men</a>
+                    <a href="https://www.icebox.com/results/earrings" class="header__sub-link" data-dropdown="women">For Women</a>
+                    <a href="https://www.icebox.com/results/watches" class="header__sub-link" data-dropdown="watches">Watches</a>
+                    <a href="https://www.icebox.com/results/accessories" class="header__sub-link" data-dropdown="accessories">Accessories</a>
+                    <a href="https://www.icebox.com/results/travel-cases" class="header__sub-link" data-dropdown="cases">Travel Cases</a>
+                    <a href="https://www.icebox.com/results/custom" class="header__sub-link" data-dropdown="">Custom</a>
+                    <a href="https://www.icebox.com/results/glasses" class="header__sub-link" data-dropdown="">Glasses</a>
+                    <a href="https://www.icebox.com/results/glasses" class="header__sub-link is-sale" data-dropdown="">-50% Private Sale</a>
+                </div>
+                <div class="nav-drop">
+                    <div class="nav-drop__container">
+                        <!-- Fine Jewelry -->
+                        <div id="dd_jewelry" class="nav-drop__content is-visible">
+                            <a href="/" class="nav-drop-link nav-drop-link_spot">
+                                Shop All
+                            </a>
+                            <div data-evt="subDrop" class="nav-drop-link nav-drop-link_spot nav-drop_more">
+                                By Category
+                                <div class="nav-drop__sub">
+                                    <div class="nav-drop__sub-wrap">
+                                        <a href="/results/pendants" class="nav-drop-link">Pendants</a>
+                                        <a href="/results/gold-chains" class="nav-drop-link">Gold Chains</a>
+                                        <a href="/results/earrings" class="nav-drop-link">Earrings</a>
+                                        <a href="/results/necklaces" class="nav-drop-link">Necklaces</a>
+                                        <a href="/results/rings" class="nav-drop-link">Rings</a>
+                                        <a href="/results/rings?sub[]=Engagement%20Rings" class="nav-drop-link">Engagement Rings</a>
+                                        <a href="/results/bracelets" class="nav-drop-link">Bracelets</a>
+                                        <a href="/results/bracelets?sub[]=Gold%20Bracelets" class="nav-drop-link">Gold Bracelets</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="https://www.icebox.com/sale?pricerange=$0-1500" class="nav-drop-link nav-drop-link_spot">
+                                Best Under $1500
+                            </a>
+                            <a href="https://www.icebox.com/sale?pricerange=$0-3000" class="nav-drop-link nav-drop-link_spot">
+                                Best Under $3000
+                            </a>
+                            <a href="https://www.icebox.com/sale?best-sellers" class="nav-drop-link">Hot Sellers</a>
+                            <a href="https://www.icebox.com/sale?newest" class="nav-drop-link">Newest Pieces</a>
+                            <a href="https://www.icebox.com/sale?most-viewed" class="nav-drop-link">Most Viewed</a>
+                        </div>
+
+                        <!-- For Men -->
+                        <div id="dd_men" class="nav-drop__content">
+                            <a href="https://www.icebox.com/sale?gender[]=Male%Unisex?sort=Best-Sellers" class="nav-drop-link nav-drop-link_spot">
+                                Men&#x27;s Collection
+                            </a>
+                            <a href="https://www.icebox.com/sale?gender[]=Male%Unisex?pricerange=$0-1500" class="nav-drop-link nav-drop-link_spot">
+                                Best Under $1500
+                            </a>
+                            <a href="https://www.icebox.com/results/pendants?gender[]=Male" class="nav-drop-link">Pendants</a>
+                            <a href="https://www.icebox.com/results/gold-chains?gender[]=Male" class="nav-drop-link">Gold Chains</a>
+                            <a href="https://www.icebox.com/results/necklaces?gender[]=Male" class="nav-drop-link">Necklaces</a>
+                            <a href="https://www.icebox.com/results/earrings?gender[]=Male" class="nav-drop-link">Earrings</a>
+                            <a href="https://www.icebox.com/results/rings?gender[]=Male" class="nav-drop-link">Rings</a>
+                            <a href="https://www.icebox.com/results/bracelets?gender[]=Male" class="nav-drop-link">Bracelets</a>
+                        </div>
+
+                        <!-- For Women -->
+                        <div id="dd_women" class="nav-drop__content">
+                            <a href="https://www.icebox.com/results/pendants?gender[]=Female?sort=Best-Sellers" class="nav-drop-link nav-drop-link_spot">
+                                Best Women&#x27;s Pick
+                            </a>
+                            <a href="https://www.icebox.com/sale?gender[]=Female%Unisex?pricerange=$0-1500" class="nav-drop-link nav-drop-link_spot">
+                                Hot Under $1500
+                            </a>
+                            <a href="/results/rings?sub[]=Engagement%20Rings" class="nav-drop-link nav-drop-link_spot">
+                                Engagement &amp; Wedding
+                            </a>
+                            <a href="https://www.icebox.com/results/pendants?gender[]=Female" class="nav-drop-link">Pendants</a>
+                            <a href="https://www.icebox.com/results/gold-chains?gender[]=Female" class="nav-drop-link">Gold Chains</a>
+                            <a href="https://www.icebox.com/results/necklaces?gender[]=Female" class="nav-drop-link">Necklaces</a>
+                            <a href="https://www.icebox.com/results/earrings?gender[]=Female" class="nav-drop-link">Earrings</a>
+                            <a href="https://www.icebox.com/results/rings?gender[]=Female" class="nav-drop-link">Rings</a>
+                            <a href="https://www.icebox.com/results/bracelets?gender[]=Female" class="nav-drop-link">Bracelets</a>
+                        </div>
+
+                        <!-- Watches -->
+                        <div id="dd_watches" class="nav-drop__content">
+                            <a href="/results/watches" class="nav-drop-link nav-drop-link_spot">
+                                Shop All Watches
+                            </a>
+                            <div data-evt="subDrop" class="nav-drop-link nav-drop-link_spot nav-drop_more">
+                                By Brand
+                                <div class="nav-drop__sub">
+                                    <div class="nav-drop__sub-wrap">
+                                        <a href="/results/watches?sub[]=Custom Rolex Watches" class="nav-drop-link">Rolex</a>
+                                        <a href="/results/watches?sub[]=Custom Patek Philippe Watches" class="nav-drop-link">Patek Philippe</a>
+                                        <a href="/results/watches?sub[]=Custom Audemars Piguet Watches" class="nav-drop-link">Audemars
+                                            Piguet</a>
+                                        <a href="/results/watches?sub[]=Bustdowns" class="nav-drop-link">Bustdowns</a>
+                                        <a href="/results/watches?sub[]=Custom Hublot Watches" class="nav-drop-link">Hublot</a>
+                                        <a href="/results/watches?sub[]=Custom Cartier Watches" class="nav-drop-link">Cartier</a>
+                                        <a href="/results/watches?sub[]=Plain Watches" class="nav-drop-link">Plain Watches</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="https://www.icebox.com/results/watches?sort=Best-Sellers" class="nav-drop-link nav-drop-link_spot">
+                                Best Sellers
+                            </a>
+                            <a href="https://www.icebox.com/results/watches?gender[]=Male" class="nav-drop-link">For Men</a>
+                            <a href="https://www.icebox.com/results/watches?gender[]=Female" class="nav-drop-link">For Women</a>
+                            <a href="https://www.icebox.com/results/watches?gender[]=Unisex" class="nav-drop-link">Unisex Watches</a>
+                        </div>
+
+                        <!-- Accessories -->
+                        <div id="dd_accessories" class="nav-drop__content">
+                            <a href="/results/accessories" class="nav-drop-link nav-drop-link_spot">
+                                Shop All Accessories
+                            </a>
+                            <a href="https://www.icebox.com/results/accessories?pricerange=$0-1500" class="nav-drop-link nav-drop-link_spot">
+                                Under $1500
+                            </a>
+                            <a href="/results/accessories?sub[]=Items" class="nav-drop-link">Diamond &amp; Jewelry</a>
+                            <a href="/results/accessories?sub[]=Leather Goods" class="nav-drop-link">Leather Goods</a>
+                            <a href="/results/accessories?sub[]=Phone Cases" class="nav-drop-link">Phone Cases</a>
+                            <a href="/results/accessories?sub[]=Glasses" class="nav-drop-link">Glasses</a>
+                            <a href="/results/accessories?sub[]=Watch Bezels" class="nav-drop-link">Watches Bezels</a>
+                            <a href="/results/accessories?sub[]=Earring Backs" class="nav-drop-link">Earring Backs</a>
+                        </div>
+
+                        <!-- Travel Cases -->
+                        <div id="dd_cases" class="nav-drop__content">
+                            <a href="/results/travel-cases" class="nav-drop-link nav-drop-link_spot">
+                                Shop All Cases
+                            </a>
+                            <a href="https://www.icebox.com/results/travel-cases?pricerange=$0-1500" class="nav-drop-link nav-drop-link_spot">
+                                Under $1500
+                            </a>
+                            <a href="/results/travel-cases?sub[]=Jewelry" class="nav-drop-link">Jewelry</a>
+                            <a href="/results/travel-cases?sub[]=Watches" class="nav-drop-link">Watches</a>
+                            <a href="/results/travel-cases?sub[]=Travel" class="nav-drop-link">Travel</a>
+                            <a href="/results/travel-cases?sub[]=Sunglasses" class="nav-drop-link">Sunglasses</a>
+                            <a href="/results/travel-cases?sub[]=Trays" class="nav-drop-link">Trays</a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
 
     </header>
+
 
     <main class="main_results">
         <div class="results-content">
@@ -220,15 +351,15 @@
                                 <span>/</span>
                                 <a href="/in-stock">All Jewelry</a>
                                 <span>/</span>
-                                <a href="/pendants">Pendants</a>
+                                <a href="/accessories">Accessories</a>
                             </div>
-                            <h1 class="results__heading">Pendants<span>89</span>
+                            <h1 class="results__heading">Accessories<span>89</span>
                             </h1>
-                            <p class="results__subheading">Discover the perfect diamond pendant to elevate any outfit and make a lasting impression.</p>
+                            <p class="results__subheading">Complete your look with our exquisite jewelry accessories at Icebox.</p>
                         </div>
                     </div>
                 </div>
-                <img src="./assets/banners/banner_pendants.webp" loading="eager" sizes="100vw" alt="">
+                <img src="./assets/banners/banner_accessories.webp" loading="eager" sizes="100vw" alt="">
             </div>
 
             <div class="results__wrap">
@@ -258,74 +389,6 @@
                 </div>
 
 
-                <div class="results-nav">
-                    <div class="results-wrapper for_scrollable">
-                        <div class="results-nav__wrapper">
-                            <div class="results-nav__scrollable">
-                                <a href="#" class=" is-active">
-                                    <div>
-                                        <img src="./assets/categories/pendants/pendants-all.png" loading="lazy" alt="">
-                                    </div>
-                                    <span>All</span>
-                                </a>
-                                <a href="#" class="">
-                                    <div>
-                                        <img src="./assets/categories/pendants/pendants-crosses.png" loading="lazy" alt="">
-                                    </div>
-                                    <span>Crosses</span>
-                                </a>
-                                <a href="#" class="">
-                                    <div>
-                                        <img src="./assets/categories/pendants/pendants-sport.png" loading="lazy" alt="">
-                                    </div>
-                                    <span>Sports</span>
-                                </a>
-                                <a href="#" class="">
-                                    <div>
-                                        <img src="./assets/categories/pendants/pendants-hearts.png" loading="lazy" alt="">
-                                    </div>
-                                    <span>Hearts</span>
-                                </a>
-                                <a href="#" class="">
-                                    <div>
-                                        <img src="./assets/categories/pendants/pendants-photo.png" loading="lazy" alt="">
-                                    </div>
-                                    <span>Photo</span>
-                                </a>
-                                <a href="#" class="">
-                                    <div>
-                                        <img src="./assets/categories/pendants/pendants-custom.png" loading="lazy" alt="">
-                                    </div>
-                                    <span>Custom</span>
-                                </a>
-                                <a href="#" class="">
-                                    <div>
-                                        <img src="./assets/categories/pendants/pendants-other.png" loading="lazy" alt="">
-                                    </div>
-                                    <span>Other</span>
-                                </a>
-                                <a href="#" class="">
-                                    <div>
-                                        <img src="./assets/categories/pendants/pendants-jesus.png" loading="lazy" alt="">
-                                    </div>
-                                    <span>Jesus</span>
-                                </a>
-                                <a href="#" class="">
-                                    <div>
-                                        <img src="./assets/categories/pendants/pendants-animals.png" loading="lazy" alt="">
-                                    </div>
-                                    <span>Animals</span>
-                                </a>
-                                <a href="#" class="">
-                                    <div>
-                                        <img src="./assets/categories/pendants/pendants-weapons.png" loading="lazy" alt="">
-                                    </div>
-                                    <span>Weapons</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="results__main">
 
@@ -335,7 +398,7 @@
                             <div class="results-bar__wrapper">
                                 <div class="results__show">Found
                                     <span>89</span>
-                                    Pendants
+                                    Accessories
                                 </div>
                                 <div class="results-bar__group">
                                     <div class="filter-dropdown">

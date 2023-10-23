@@ -88,9 +88,14 @@
 
   a {
     text-transform: uppercase;
-    border-bottom: 1.5px solid rgba(0, 0, 0, 0);
+    border-bottom: 2px solid rgba(0, 0, 0, 0);
     padding: 9px 14px;
     transition: all .25s cubic-bezier(.39, .575, .565, 1);
+
+    &.is-active {
+      color: #037ea7;
+      border-bottom: 2px solid #0095c6;
+    }
   }
 
   a:hover {
@@ -412,7 +417,7 @@
   -webkit-transition: all 200ms ease;
   transition: all 200ms ease;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
 
   &:hover {
     border-color: #1fa8d8;
@@ -450,3 +455,102 @@
     stroke: #171c29;
   }
 }
+
+/* #region  Dropdown */
+.nav-drop {
+  display: none;
+  opacity: 0;
+  z-index: 9999;
+  padding-top: 10px;
+  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  position: fixed;
+  top: 162px;
+  bottom: auto;
+  left: 100px;
+  right: auto;
+}
+
+.nav-drop__container {
+  z-index: 9999;
+  background-color: #fff;
+  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  position: relative;
+  box-shadow: 0 38px 96px rgba(80, 82, 87, .25);
+}
+
+.nav-drop__sub-wrap {
+  background-color: #fff;
+  flex-direction: column;
+  padding: 6px;
+  display: flex;
+  box-shadow: 0 18px 48px rgba(80, 82, 87, .3);
+}
+
+.nav-drop-link {
+  z-index: 2;
+  max-width: 270px;
+  min-width: 220px;
+  cursor: pointer;
+  background-color: #fff;
+  background-image: none;
+  background-repeat: repeat;
+  background-size: auto;
+  border: 1px solid #f3f8fa;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -1px;
+  padding: 12px 14px;
+  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  display: flex;
+  position: relative;
+  font-size: 14px;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #f6f8fa;
+    background-position: 95%;
+    padding-left: 18px;
+    border-color: #f3f8fa;
+    color: #171c29;
+  }
+
+  &.nav-drop-link_spot {
+    background-image: linear-gradient(156deg, rgba(7, 126, 165, .06), rgba(255, 255, 255, 0));
+    font-weight: 600;
+  }
+
+  &.nav-drop_more {
+    background-image: linear-gradient(156deg, rgba(7, 126, 165, .06), rgba(255, 255, 255, 0)),
+      url('data:image/svg+xml,<svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 5.5H14M14 5.5L9.1 1M14 5.5L9.1 10" stroke="%23171C29" stroke-width="1.5"/></svg>');
+    background-position: 0 0, 93%;
+    background-repeat: repeat, no-repeat;
+    background-size: auto, 15px;
+    font-weight: 600;
+  }
+}
+
+.nav-drop__sub {
+  padding-left: 16px;
+  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: none;
+}
+
+.nav-drop__content {
+  z-index: 2;
+  max-height: 80vh;
+  background-color: #fff;
+  flex-direction: column;
+  padding: 6px;
+  display: none;
+  position: relative;
+
+  &.is-visible {
+    display: block;
+  }
+}
+
+/* #endregion */
