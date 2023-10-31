@@ -475,7 +475,7 @@ const menu = {
 const cartModal = new Object({
   init: function () {
     this.renderDOM();
-    this.bindEvents();
+    this.bindToggle();
   },
   renderDOM: function () {
     this._ = $(".cart-modal");
@@ -483,8 +483,8 @@ const cartModal = new Object({
     this.container = this._.find(".cart-modal__container");
     this.evtToggle = getEvtDOM("toggleCart");
   },
-  bindEvents: function () {
-    this.evtToggle.click(function () {
+  bindToggle: function () {
+    $(document).click('[data-evt="toggleCart"]', () => {
       let el = $(".cart-modal")
       if (el.exists()) {
         let container = $(".cart-modal__container"),
@@ -505,7 +505,7 @@ const cartModal = new Object({
           }, 1);
         }
       }
-    });
+    })
   },
   toggle: function () {
     let el = cartModal._;
