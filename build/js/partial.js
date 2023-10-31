@@ -529,7 +529,7 @@ const cartModal = new Object({
           Object.assign(container[0].style, { transform: "translateX(100%)" });
           setTimeout(() => {
             el.hide();
-          }, getTransitionTime(el));
+          }, getTransitionTime(container));
         } else {
           lockScroll();
           el.show();
