@@ -255,18 +255,18 @@ const header = {
       }
     });
   },
-  setDropdowns: function(...args) {
+  setDropdowns: function (...args) {
     args = Array.from(document.querySelectorAll('.header__sub-link'))
-  
+
     if (args.length !== 0 && args) {
-  
+
       const dd = document.querySelector('.nav-drop')
       const cont = [...document.querySelectorAll('.nav-drop__content')]
       const subLink = [...document.querySelectorAll('.nav-drop_more')]
       const IS_ACTIVE = 'is-active'
-  
+
       let hideDelayTime, showDelayTime
-  
+
       if (dd && cont && subLink) {
         const pos = (el) => {
           return {
@@ -274,7 +274,7 @@ const header = {
             left: el.getBoundingClientRect().left + (el.offsetWidth / 2) - (dd.offsetWidth / 2)
           }
         }
-        
+
         const fn = {
           initial: () => {
             dd.style.top = `${pos(args[0]).top}px`
@@ -298,28 +298,28 @@ const header = {
             cont.filter(el => el.id == `dd_${attr}`).forEach(el => el.style.display = 'block')
           }
         }
-  
+
         const { initial: setInitial, hide: hide, show: show, switchContent: switchContent } = fn
-  
+
         for (let i = 0; i < subLink.length; i++) {
           const el = subLink[i],
             content = el.querySelector('.nav-drop__sub')
           el.onmouseover = () => { content.style.display = 'block' }
           el.onmouseleave = () => { content.style.display = 'none' }
         }
-  
+
         dd.onmouseover = (e) => {
           if (hideDelayTime) window.clearTimeout(hideDelayTime)
         }
-  
+
         dd.onmouseleave = (e) => {
           window.clearTimeout(showDelayTime)
           hideDelayTime = window.setTimeout(() => {
             hide()
           }, 150);
         }
-  
-  
+
+
         args.forEach((el) => {
           el.onmouseover = (e) => {
             const attr = el.dataset.dropdown
@@ -331,7 +331,7 @@ const header = {
               }, 200);
             }
           }
-  
+
           el.onmouseleave = (e) => {
             window.clearTimeout(showDelayTime)
             hideDelayTime = window.setTimeout(() => {
@@ -339,12 +339,12 @@ const header = {
             }, 150);
           }
         })
-  
+
         window.onscroll = () => {
           window.clearTimeout(showDelayTime)
           hide(); setInitial()
         }
-  
+
         setInitial()
       }
     }
@@ -1217,6 +1217,7 @@ const productPage = new Object({
     this.evtExpandSummary = $('[data-evt="expandSummary"]');
     this.summaryContainer = $(".product__item-summary");
     this.buyBtn = $(".buy-btn");
+    this.moreBtn = $('.product__more-btn')
     // Options
     this.optionBtn = $(".option-btn");
     this.optionBlock = $(".product__item-option");
@@ -1262,6 +1263,9 @@ const productPage = new Object({
         $(this).removeClass(BUTTON_LOADING);
       }, 2000);
     });
+    this.moreBtn.click(function() {
+      productPage.fn.toggleMoreDetails($(this))
+    })
   },
 
   fn: {
@@ -1320,39 +1324,41 @@ const productPage = new Object({
     },
     switchGoldColor: (attr) => {
       // Toggle Gold Color Header Background
-      let color;
+      let color, textColor
       switch (attr) {
-        case "yellow":
-          color = "#f1e9d8";
-          break;
-        case "rose":
-          color = "#f0dcda";
-          break;
-        case "white":
-          color = "#f1f1f1";
-          break;
-        default:
-          color = "#f1e9d8";
-          break;
+        case "Yellow": color = "#f1e9d8", textColor = "#171c29"; break;
+        case "Rose": color = "#f0dcda", textColor = "#171c29"; break;
+        case "White": color = "#f1f1f1", textColor = "#171c29"; break;
+        case "Red": color = "#d4474f", textColor = "#ffffff"; break;
+        case "Steel": color = "#ebebeb", textColor = "#171c29"; break;
+        case "Blue": color = "#e6f2f8", textColor = "#171c29"; break;
+        case "Black": color = "#232323", textColor = "#ffffff"; break;
+        case "Platinum": color = "#e7e7e4", textColor = "#171c29"; break;
+        case "Two_tone": color = "linear-gradient(34deg, #ebe3d3, #f8f6f2 29%, #f1e9d8 55%, #fff)", textColor = "#171c29"; break;
+        case "Tri_tone": color = "linear-gradient(34deg, #f0dcda, #f8f2f4 29%, #f1e9d8 55%, #fff)", textColor = "#171c29"; break;
+        case "Tri_tone_rose": color = "linear-gradient(34deg, #f0dcda, #f8f2f4 29%, #f1e9d8 55%, #fff)", textColor = "#171c29"; break;
+        case "Navy_blue": color = "#223164", textColor = "#ffffff"; break;
+        case "Two_tone_rose": color = "linear-gradient(34deg, #f0dcda, #f8f2f4 29%, #f0dcda 55%, #fff)", textColor = "#171c29"; break;
+        default: color = "#e6f2f8", textColor = "#171c29"; break;
       }
       productPage.goldOption
         .find(productPage.optionHead)
-        .css({ "background-color": color });
+        .css({ "background": color, color: textColor });
     },
     switchDiamondColor: (attr) => {
       // Toggle Diamond Color Header Background
       let bgColor, textColor;
       switch (attr) {
-        case "white":
+        case "White":
           (bgColor = "#f0f0f0"), (textColor = "#171c29");
           break;
-        case "black":
+        case "Black":
           (bgColor = "#434343"), (textColor = "#ffffff");
           break;
-        case "blue":
+        case "Blue":
           (bgColor = "#e3eeff"), (textColor = "#171c29");
           break;
-        case "yellow":
+        case "Yellow":
           (bgColor = "#fff9e4"), (textColor = "#171c29");
           break;
         default:
@@ -1366,19 +1372,16 @@ const productPage = new Object({
     toggleMoreDetails: (target) => {
       // Show / Hide Warranty or More Details
       let $this = target,
-        els = productPage.moreDetailsBtn,
-        container = productPage.moreDetailsContainer,
-        cls = productPage.classes.isActive;
-      els.removeClass(cls);
-      $this.addClass(cls);
-      if ($this.hasClass("for_more")) {
-        container.hide();
-        container.filter(".for_more").css({ display: "flex" });
-      }
-      if ($this.hasClass("for_warranty")) {
-        container.hide();
-        container.filter(".for_warranty").css({ display: "flex" });
-      }
+        els = productPage.moreBtn,
+        container = $('.product__about-wrap')
+        
+        els.removeClass(IS_ACTIVE)
+        $this.addClass(IS_ACTIVE)
+
+        container.hide()
+
+        if ($this[0].classList.contains('for_more')) container.filter('.for_more').show()
+        if ($this[0].classList.contains('for_warranty')) container.filter('.for_warranty').show()
     },
     openGuideModal: (target) => {
       if (target) {
@@ -1421,6 +1424,13 @@ const productPage = new Object({
         ),
         thisAttr = $(isActived).data("color");
       productPage.fn.switchGoldColor(thisAttr);
+    },
+    checkGoldColorNumber: () => {
+      const cont = productPage.goldOption,
+      btn = cont.find(productPage.optionBtn)
+      if (btn.length < 3) {
+        cont.find('.options-block').css({display: 'flex'})
+      }
     },
     checkDmColor: () => {
       // On load check active diamond color
@@ -1517,12 +1527,12 @@ const productPage = new Object({
         });
       }
     },
-    attachPayLaterBoxEvents: function(...args) {
+    attachPayLaterBoxEvents: function (...args) {
       args = [...document.querySelectorAll('[data-paylater]')]
-    
+
       const intro = document.getElementById('payLaterBoxIntro')
       const details = document.getElementById('payLaterBoxDetails')
-    
+
       if (args && args.length && details) {
         const toggle = (cond) => {
           if (cond) {
@@ -1531,7 +1541,7 @@ const productPage = new Object({
             intro.style.display = 'flex'; details.style.display = 'none'
           }
         }
-    
+
         args.forEach(el => el.onclick = () => {
           if (window.getComputedStyle(intro).display == 'none') {
             toggle(0)
@@ -1553,6 +1563,7 @@ const productSplide = new Object({
     this.renderDOM();
     this.initSplide();
     this.initialized = true;
+    this.initMoreSplide();
   },
   renderDOM: function () {
     this.sliderArr = Array.from(
@@ -1596,6 +1607,53 @@ const productSplide = new Object({
       main.sync(thumb);
       main.mount();
       thumb.mount();
+    });
+  },
+  initMoreSplide: function () {
+    const moreSliderArr = Array.from(
+      document.getElementsByClassName("more-row__splide")
+    );
+
+    $.each(moreSliderArr, function (i) {
+      const slider = moreSliderArr[i];
+      let main = new Splide(slider, {
+        type: "loop",
+        perPage: 5,
+        perMove: 1,
+        autoplay: 0,
+        gap: "12px",
+        arrows: 1,
+        pagination: 0,
+        speed: 750,
+        breakpoints: {
+          1680: {
+            perPage: 5,
+            perMove: 1,
+          },
+          1120: {
+            perPage: 4,
+            perMove: 1,
+          },
+          991: {
+            perPage: 4,
+            perMove: 1,
+          },
+          767: {
+            grid: {
+              rows: 2,
+              cols: 3,
+              gap: { row: "10px", col: "10px" },
+            },
+          },
+          478: {
+            grid: {
+              rows: 2,
+              cols: 2,
+              gap: { row: "10px", col: "10px" },
+            },
+          },
+        },
+      }).mount(window.splide.Extensions);
     });
   },
 });

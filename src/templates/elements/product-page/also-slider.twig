@@ -1,0 +1,37 @@
+<section class="more-row">
+
+	<div
+		class="more-row__splide splide">
+
+		{# Title Group #}
+		<div class="wrapper">
+			<div class="more-row__header">
+				<div class="flex-between">
+					<h3 class="more-row__title">You May Also Like</h3>
+					<div class="more-row__arrows-wrap splide__arrows">
+						<button class="more-row__slider-btn splide__arrow--prev">
+							{% include "./svg/slider-prev.svg" %}
+						</button>
+						<button class="more-row__slider-btn splide__arrow--next">
+							{% include "./svg/slider-next.svg" %}
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{# Slider #}
+		<div class="more-row__cards-wrap">
+			<div class="wrapper">
+				<div class="splide__track">
+					<div class="splide__list">
+						{% for i in 1..8 %}
+							{% include "../product-card_necklace.twig" with {splideClass: true} %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
