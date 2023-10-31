@@ -485,7 +485,26 @@ const cartModal = new Object({
   },
   bindEvents: function () {
     this.evtToggle.click(function () {
-      cartModal.toggle();
+      let el = $(".cart-modal")
+      if (el.exists()) {
+        let container = $(".cart-modal__container"),
+          backdrop = $(".cart-modal__backdrop")
+        if (el.isVisible()) {
+          unlockScroll();
+          Object.assign(backdrop[0].style, { opacity: 0 });
+          Object.assign(container[0].style, { transform: "translateX(100%)" });
+          setTimeout(() => {
+            el.hide();
+          }, getTransitionTime(el));
+        } else {
+          lockScroll();
+          el.show();
+          setTimeout(() => {
+            Object.assign(backdrop[0].style, { opacity: 1 });
+            Object.assign(container[0].style, { transform: "translateX(0%)" });
+          }, 1);
+        }
+      }
     });
   },
   toggle: function () {
@@ -1263,7 +1282,7 @@ const productPage = new Object({
         $(this).removeClass(BUTTON_LOADING);
       }, 2000);
     });
-    this.moreBtn.click(function() {
+    this.moreBtn.click(function () {
       productPage.fn.toggleMoreDetails($(this))
     })
   },
@@ -1374,14 +1393,14 @@ const productPage = new Object({
       let $this = target,
         els = productPage.moreBtn,
         container = $('.product__about-wrap')
-        
-        els.removeClass(IS_ACTIVE)
-        $this.addClass(IS_ACTIVE)
 
-        container.hide()
+      els.removeClass(IS_ACTIVE)
+      $this.addClass(IS_ACTIVE)
 
-        if ($this[0].classList.contains('for_more')) container.filter('.for_more').show()
-        if ($this[0].classList.contains('for_warranty')) container.filter('.for_warranty').show()
+      container.hide()
+
+      if ($this[0].classList.contains('for_more')) container.filter('.for_more').show()
+      if ($this[0].classList.contains('for_warranty')) container.filter('.for_warranty').show()
     },
     openGuideModal: (target) => {
       if (target) {
@@ -1427,9 +1446,9 @@ const productPage = new Object({
     },
     checkGoldColorNumber: () => {
       const cont = productPage.goldOption,
-      btn = cont.find(productPage.optionBtn)
+        btn = cont.find(productPage.optionBtn)
       if (btn.length < 3) {
-        cont.find('.options-block').css({display: 'flex'})
+        cont.find('.options-block').css({ display: 'flex' })
       }
     },
     checkDmColor: () => {
