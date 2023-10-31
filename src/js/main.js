@@ -484,7 +484,7 @@ const cartModal = new Object({
     this.evtToggle = getEvtDOM("toggleCart");
   },
   bindToggle: function () {
-    $(document).click('[data-evt="toggleCart"]', () => {
+    $(document).on('click', '[data-evt="toggleCart"]', function() {
       let el = $(".cart-modal")
       if (el.exists()) {
         let container = $(".cart-modal__container"),
