@@ -1,3 +1,9 @@
 {% for item in categoryLinks %}
 	<a href="{{item.href}}" class="header__sub-link{% if item.extraClass %} {{item.extraClass}}{% endif %}" data-dropdown="{{item.dataDropdown}}">{{item.caption}}</a>
 {% endfor %}
+
+{% if black_friday == true %}
+<a href="https://www.icebox.com/black-friday" class="header__sub-link is_bfs">
+<span data-text-glitch="BLACK FRIDAY">BLACK FRIDAY</span>
+</a>
+{% endif %}

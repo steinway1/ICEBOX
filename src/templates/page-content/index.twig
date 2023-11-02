@@ -1,4 +1,5 @@
-{% include "../elements/pay-banner.twig" %}
+{% if not black_friday == true %}{% include "elements/pay-banner.twig" %}{% endif %}
+{% if black_friday == true %} {% include "elements/black_friday/bfs-ticker.twig" %} {% endif %}
 
 
 <!-- #region Welcome Section -->

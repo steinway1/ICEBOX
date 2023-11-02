@@ -11,11 +11,18 @@
 							<img src="./assets/logo.svg" loading="eager" alt="Icebox logo">
 						</a>
 						<button onclick="menu.toggle();" class="mob-menu__close-btn">
-            {% include "../components/svg/close.svg" %}
+							{% include "../components/svg/close.svg" %}
 						</button>
 					</div>
 					<!-- Menu main navigation -->
 					<nav role="navigation" aria-label="Main" class="mob-menu__nav-list">
+						{% if black_friday == true %}
+							<div class="mob-menu__nav-item is_bfs">
+								<a href="https://www.icebox.com/black-friday">
+                <span data-text-glitch="BLACK FRIDAY">JOIN BLACK FRIDAY</span>
+                </a>
+							</div>
+						{% endif %}
 						<div class="mob-menu__nav-item">
 							<a href="/results/pendants">Pendants</a>
 							<button data-menu-nav="Pendants" class="mob-menu__nav-step"></button>

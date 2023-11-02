@@ -25,6 +25,10 @@
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="https://www.icebox.com/assets/public-2022/v4/favicons/new/apple-touch-icon.png?v=641530abd62e7">
     <link rel="icon" type="image/png" sizes="32x32" href="https://www.icebox.com/assets/public-2022/v4/favicons/new/favicon-32x32.png?v=641530abd62e8">
@@ -37,22 +41,69 @@
 
 
 <body>
-    <div class="page-banner">
-        <div class="wrapper">
-            <div class="page-banner__wrapper">
-                <div class="page-banner__container">
-                    <div class="banner-move">
-                        <div class="page-banner-text">Free shipping for all orders over $3000 USD</div>
-                        <div class="page-banner-text">The World Famous Jewelry &amp; Watches</div>
-                        <div class="page-banner-text">Explore Our Engagement Rings & Wedding Bands</div>
-                        <div class="page-banner-text">Free shipping for all orders over $3000 USD</div>
+    <header class="header">
+
+        <div class="bfs-banner">
+
+            <div class="bfs-banner__group to_left">
+                <img src="./assets/pay-klarna.svg" loading="eager" alt="pay later with Klarna">
+                <img src="./assets/pay-affirm.svg" loading="eager" alt="pay later with Affirm">
+                <img src="./assets/pay-afterpay.svg" loading="eager" alt="pay later with Afterpay">
+                <div class="bfs-banner__pay">
+                    <div>
+                        <div class="paylater-box">
+                            <div class="paylater-box__container">
+                                <div class="paylater-box__content">
+                                    <div class="paylater-box__wrapper">
+                                        <div class="paylater-box__row">
+                                            <h3>Take the stress out of payments with our convenient up to 12-month installment plan
+                                            </h3>
+                                            <p>Buy the jewelry you want right now.</p>
+                                            <p>During the checkout process, you will be redirected to the Affirm, Klarna or Afterpay page.</p>
+                                            <p>If you are a new customer, you&#x27;ll need to create an account and provide some basic information.</p>
+                                            <p>Once approved, they offers you a variety of repayment terms to choose from, allowing you to split your purchase into easy monthly installments</p>
+                                        </div>
+                                        <div class="paylater-box__row">
+                                            <h3>Why To Use Service?</h3>
+                                            <div class="paylater-box__features">
+                                                <span>No Any Additional Fees</span>
+                                                <span>No Credit Score Impact</span>
+                                                <span>Quick &amp; Easy To Follow</span>
+                                                <span>Personal Installments Plan</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
+            <a href="https://icebox.com/black-friday" class="bfs-banner__group to_center">
+                <img src="./assets/bfs/banner_main-desktop.webp" loading="eager" alt="black friday badge" class="for_desktop">
+                <img src="./assets/bfs/banner_main-mob.webp" loading="eager" alt="black friday badge" class="for_mobile">
+            </a>
+
+            <div class="bfs-banner__group to_right">
+                <div class="bfs-banner__timer">
+                    <div class="bfs-banner__timer-title">Black Friday Ends In</div>
+                    <div class="bfs-banner__timer-wrap">
+                        <span id="bfs_timer_days">10</span>
+                        <span>:</span>
+                        <span id="bfs_timer_hours">10</span>
+                        <span>:</span>
+                        <span id="bfs_timer_min">10</span>
+                        <span>:</span>
+                        <span id="bfs_timer_sec">10</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <button class="page-banner-close"></button>
-    </div>
-    <header class="header">
+
         <div class="header-nav-wrapper">
             <div class="wrapper">
                 <div class="header-nav">
@@ -202,7 +253,10 @@
                     <a href="https://www.icebox.com/results/travel-cases" class="header__sub-link" data-dropdown="cases">Travel Cases</a>
                     <a href="https://www.icebox.com/results/custom" class="header__sub-link" data-dropdown="">Custom</a>
                     <a href="https://www.icebox.com/results/glasses" class="header__sub-link" data-dropdown="">Glasses</a>
-                    <a href="https://www.icebox.com/results/glasses" class="header__sub-link is-sale" data-dropdown="">-50% Private Sale</a>
+
+                    <a href="https://www.icebox.com/black-friday" class="header__sub-link is_bfs">
+                        <span data-text-glitch="BLACK FRIDAY">BLACK FRIDAY</span>
+                    </a>
                 </div>
                 <div class="nav-drop">
                     <div class="nav-drop__container">
@@ -340,6 +394,49 @@
 
 
     <main class="main_results">
+
+        <div class="bfs-ticker">
+            <div class="bfs-ticker__tape">
+                <span>Hundreds of discounted items!</span>
+                <div></div>
+                <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
+                <div></div>
+                <span>Hundreds of discounted items!</span>
+                <div></div>
+                <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
+                <div></div>
+            </div>
+            <div class="bfs-ticker__tape">
+                <span>Hundreds of discounted items!</span>
+                <div></div>
+                <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
+                <div></div>
+                <span>Hundreds of discounted items!</span>
+                <div></div>
+                <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
+                <div></div>
+            </div>
+            <div class="bfs-ticker__tape">
+                <span>Hundreds of discounted items!</span>
+                <div></div>
+                <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
+                <div></div>
+                <span>Hundreds of discounted items!</span>
+                <div></div>
+                <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
+                <div></div>
+            </div>
+            <div class="bfs-ticker__tape">
+                <span>Hundreds of discounted items!</span>
+                <div></div>
+                <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
+                <div></div>
+                <span>Hundreds of discounted items!</span>
+                <div></div>
+                <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
+                <div></div>
+            </div>
+        </div>
         <div class="results-content">
 
             <div class="res-banner">
@@ -351,15 +448,15 @@
                                 <span>/</span>
                                 <a href="/in-stock">All Jewelry</a>
                                 <span>/</span>
-                                <a href="/accessories">Accessories</a>
+                                <a href="/bracelets">Bracelets</a>
                             </div>
-                            <h1 class="results__heading">Accessories<span>89</span>
+                            <h1 class="results__heading">Bracelets<span>89</span>
                             </h1>
-                            <p class="results__subheading">Complete your look with our exquisite jewelry accessories at Icebox.</p>
+                            <p class="results__subheading">Experience the allure of handmade craftsmanship with our artisanal bracelet pieces.</p>
                         </div>
                     </div>
                 </div>
-                <img src="./assets/banners/banner_accessories.webp" loading="eager" sizes="100vw" alt="">
+                <img src="./assets/banners/banner_bracelets.webp" loading="eager" sizes="100vw" alt="">
             </div>
 
             <div class="results__wrap">
@@ -389,6 +486,50 @@
                 </div>
 
 
+                <div class="results-nav">
+                    <div class="results-wrapper for_scrollable">
+                        <div class="results-nav__wrapper">
+                            <div class="results-nav__scrollable">
+                                <a href="#" class=" is-active">
+                                    <div>
+                                        <img src="./assets/categories/bracelets/bracelets-all.png" loading="lazy" alt="">
+                                    </div>
+                                    <span>All</span>
+                                </a>
+                                <a href="#" class="">
+                                    <div>
+                                        <img src="./assets/categories/bracelets/bracelets-cubans.png" loading="lazy" alt="">
+                                    </div>
+                                    <span>Cubans</span>
+                                </a>
+                                <a href="#" class="">
+                                    <div>
+                                        <img src="./assets/categories/bracelets/bracelets-gold.png" loading="lazy" alt="">
+                                    </div>
+                                    <span>Gold</span>
+                                </a>
+                                <a href="#" class="">
+                                    <div>
+                                        <img src="./assets/categories/bracelets/bracelets-tennis.png" loading="lazy" alt="">
+                                    </div>
+                                    <span>Tennis</span>
+                                </a>
+                                <a href="#" class="">
+                                    <div>
+                                        <img src="./assets/categories/bracelets/bracelets-diamond.png" loading="lazy" alt="">
+                                    </div>
+                                    <span>Diamond</span>
+                                </a>
+                                <a href="#" class="">
+                                    <div>
+                                        <img src="./assets/categories/bracelets/bracelets-bangles.png" loading="lazy" alt="">
+                                    </div>
+                                    <span>Bangles</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="results__main">
 
@@ -398,7 +539,7 @@
                             <div class="results-bar__wrapper">
                                 <div class="results__show">Found
                                     <span>89</span>
-                                    Accessories
+                                    Bracelets
                                 </div>
                                 <div class="results-bar__group">
                                     <div class="filter-dropdown">
@@ -791,226 +932,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="product-card__shipping-tag is-made-order">Made To Order</span>
-                                    <div class="product-card__wrapper">
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="./assets/sample-product.webp" loading="lazy" alt="testAlt" class="product-card__img zoom-0">
-                                            </a>
-                                        </div>
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">1 Color / Unisex</span>
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-card" data-id="4092">
-                                    <div class="admin-card" id="product_admin_overlay_4092">
-                                        <div class="admin-card__wrapper">
-                                            <div class="admin-card__header">
-
-                                                <div class="admin-card__form-wrap">
-                                                    <div class="admin-card__select-wrap">
-                                                        <div class="admin-card__input-wrap">
-                                                            <select class="admin-card__select md_select" onfocus="hideAdminTable(this)" onblur="showAdminTable(this);" id="zoom_select_4092" onchange="UpdateThumbnailZoom(4092);">
-                                                                <option value="-50">%-50</option>
-                                                                <option value="-40">%-40</option>
-                                                                <option value="-30">%-30</option>
-                                                                <option value="-20">%-20</option>
-                                                                <option value="-10">%-10</option>
-                                                                <option value="0" selected="">%0</option>
-                                                                <option value="10">%10</option>
-                                                                <option value="20">%20</option>
-                                                                <option value="30">%30</option>
-                                                                <option value="40">%40</option>
-                                                                <option value="50">%50</option>
-                                                                <option value="60">%60</option>
-                                                                <option value="70">%70</option>
-                                                                <option value="80">%80</option>
-                                                                <option value="90">%90</option>
-                                                                <option value="100">%100</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="admin-card__input-wrap">
-                                                            <select class="admin-card__select md_select" id="size_select_4092" onchange="UpdateItemSizeDropdown(4092);">
-                                                                <option value="">-</option>
-                                                                <option value="Size 1">Size 1</option>
-                                                                <option value="Size 2">Size 2</option>
-                                                                <option value="Size 3">Size 3</option>
-                                                                <option value="Size 4">Size 4</option>
-                                                                <option value="Size 5">Size 5</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="admin-card__input-wrap">
-                                                            <select class="admin-card__select md_select" id="blanket_select_4092" onchange="UpdateBlanketShipDate(4092);">
-                                                                <option value="">Blanket</option>
-                                                                <option value="1 Day">1 Day</option>
-                                                                <option value="1 Week">1 Week</option>
-                                                                <option value="2 Weeks">2 Weeks</option>
-                                                                <option value="3 Weeks">3 Weeks</option>
-                                                                <option value="4 Weeks">4 Weeks</option>
-                                                                <option value="5 Weeks">5 Weeks</option>
-                                                                <option value="6 Weeks">6 Weeks</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="admin-card__input-wrap">
-                                                            <select class="admin-card__select md_select" id="discount_select_4092" onchange="UpdateDiscountPercentage(4092);">
-                                                                <option value="0">Discount</option>
-                                                                <option value="10">%10</option>
-                                                                <option value="20">%20</option>
-                                                                <option value="30">%30</option>
-                                                                <option value="40">%40</option>
-                                                                <option value="50">%50</option>
-                                                                <option value="60">%60</option>
-                                                                <option value="70">%70</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="admin-card__details">
-                                                    <div class="admin-card__info-wrap">
-                                                        <table class="table-investory table">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <th>
-                                                                        <a href="/inventory?id=4092&amp;stock=In Stock" target="_blank">Stock</a>
-                                                                    </th>
-                                                                    <td class="bg-golden " style="border:1px solid red" ondblclick="SetSaleColor(4092,'Yellow',this);">0</td>
-                                                                    <td class="bg-silver " style="border:1px solid green" ondblclick="SetSaleColor(4092,'White',this);">1</td>
-                                                                    <td class="bg-rosegold " style="border:1px solid red" ondblclick="SetSaleColor(4092,'Rose',this);">0</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Sold</th>
-                                                                    <td class="bg-golden">0</td>
-                                                                    <td class="bg-silver">9</td>
-                                                                    <td class="bg-rosegold">0</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>RAT</th>
-                                                                    <td colspan="3" class="bg-golden">9</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Views</th>
-                                                                    <td colspan="3" class="bg-golden">31,746</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>V/Rat</th>
-                                                                    <td colspan="3" class="bg-golden">3,527</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>TRV</th>
-                                                                    <td colspan="3" class="bg-golden">$0.00</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>LS</th>
-                                                                    <td colspan="3" class="bg-golden">133 days</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>P#</th>
-                                                                    <td colspan="3" class="bg-golden">P3709</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>#</th>
-                                                                    <td colspan="3" class="bg-golden">
-                                                                        <a href="/inventory?search=100-02617" target="_blank">100-02617</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Stock</th>
-                                                                    <td>
-                                                                        <span class="badge-shipping-today">
-										<svg class="svgIcon-root" focusable="false" aria-hidden="true" viewbox="0 0 18 18">
-											<path fill-rule="evenodd" d="M16.5 9a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0zM18 9A9 9 0 110 9a9 9 0 0118 0zm-9.655 3.04l5.176-5-1.042-1.08-4.655 4.497L5.52 8.233 4.48 9.313l2.823 2.726.522.504.52-.504z"></path>
-										</svg>
-										<span>Ships Today!</span>
-                                                                        </span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Weight</th>
-                                                                    <td><input type="text" class="admin-card__price-input" onchange="setRingDiamondSize(4092)" id="diamond_size_4092" value="N/A"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Shape</th>
-                                                                    <td>
-                                                                        <select class="admin-card__select md_select" id="ring_diamond_shape_4092" onchange="UpdateRingDiamondShape(4092)">
-                                                                            <option value="">Select</option>
-                                                                            <option value="Round" selected="">Round</option>
-                                                                            <option value="Pear">Pear</option>
-                                                                            <option value="Princess">Princess</option>
-                                                                            <option value="Marquise">Marquise</option>
-                                                                            <option value="Oval">Oval</option>
-                                                                            <option value="Radiant">Radiant</option>
-                                                                            <option value="Emerald">Emerald</option>
-                                                                            <option value="Heart">Heart</option>
-                                                                            <option value="Cushion">Cushion</option>
-                                                                            <option value="Asscher">Asscher</option>
-                                                                            <option value="Composite">Composite</option>
-                                                                        </select>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>G / VS2</th>
-                                                                    <td colspan="3" class="bg-golden"><input data-prop="Diamond Price 1" data-id="4092" class="form-control admin_card_input" type="text" value="N/A"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>K / SI2</th>
-                                                                    <td colspan="3" class="bg-golden"><input data-prop="Diamond Price 2" data-id="4092" class="form-control admin_card_input" type="text" value="N/A"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>H / SI1</th>
-                                                                    <td colspan="3" class="bg-golden"><input data-prop="Diamond Price 3" data-id="4092" class="form-control admin_card_input" type="text" value="N/A"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>J / VS2</th>
-                                                                    <td colspan="3" class="bg-golden"><input data-prop="Diamond Price 4" data-id="4092" class="form-control admin_card_input" type="text" value="N/A"></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="admin-card__footer">
-                                                <div class="admin-card__actions">
-                                                    <a href="javascript:void(0);" id="add_hp_btn_4092" onclick="AddToHomePage(4092);" class="admin-card__link" title="Add To homepage">
-                                                        <i class="icon icon-admin-add"></i>
-                                                    </a>
-                                                    <a id="remove_hp_btn_4092" title="remove from homepage" onclick="RemoveFromHomepage(4092);" class="admin-card__link --delete">
-                                                        <i class="icon icon-admin-delete"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0);" id="add_ontime_stock_btn_4092" onclick="AddOneTimeStock(4092);" class="admin-card__link" title="Only 1 Can Sell">
-                                                        <i class="icon icon-rating-empty"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0);" id="remove_ontime_stock_btn_4092" onclick="RemoveOnTimeStock(4092);" class="admin-card__link" title="Remove From From Only 1 Can Sell">
-                                                        <i class="icon icon-rating-filled"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0);" id="add_liquidate_4092" onclick="AddToBlackFridayPage(4092);" class="admin-card__link" title="Add To Sales Page">
-                                                        <i class="icon icon-admin-add"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0);" id="remove_liquidate_4092" onclick="RemoveFromBlackFridayPage(4092);" class="admin-card__link" title="Remove From Sales Page">
-                                                        <i class="icon icon-admin-delete"></i>
-                                                    </a>
-                                                    <a onclick="sendToLast(4092)" class="admin-card__link" title="Place Item Last">Last</a>
-                                                    <a href="/admin/products/4092" target="_blank" class="admin-card__link">
-                                                        <i class="icon icon-admin-edit"></i>
-                                                    </a>
-                                                    <a href="/product/1-00ctw-double-halo-pear-diamond-engagement-ring-all-natural-4092" target="_blank" class="admin-card__link">
-                                                        <i class="icon icon-admin-view"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
                                         </div>
                                     </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
@@ -1235,6 +1160,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1457,6 +1388,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1479,6 +1416,212 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="admin-card" id="product_admin_overlay_4092">
+                                        <div class="admin-card__wrapper">
+                                            <div class="admin-card__header">
+
+                                                <div class="admin-card__form-wrap">
+                                                    <div class="admin-card__select-wrap">
+                                                        <div class="admin-card__input-wrap">
+                                                            <select class="admin-card__select md_select" onfocus="hideAdminTable(this)" onblur="showAdminTable(this);" id="zoom_select_4092" onchange="UpdateThumbnailZoom(4092);">
+                                                                <option value="-50">%-50</option>
+                                                                <option value="-40">%-40</option>
+                                                                <option value="-30">%-30</option>
+                                                                <option value="-20">%-20</option>
+                                                                <option value="-10">%-10</option>
+                                                                <option value="0" selected="">%0</option>
+                                                                <option value="10">%10</option>
+                                                                <option value="20">%20</option>
+                                                                <option value="30">%30</option>
+                                                                <option value="40">%40</option>
+                                                                <option value="50">%50</option>
+                                                                <option value="60">%60</option>
+                                                                <option value="70">%70</option>
+                                                                <option value="80">%80</option>
+                                                                <option value="90">%90</option>
+                                                                <option value="100">%100</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="admin-card__input-wrap">
+                                                            <select class="admin-card__select md_select" id="size_select_4092" onchange="UpdateItemSizeDropdown(4092);">
+                                                                <option value="">-</option>
+                                                                <option value="Size 1">Size 1</option>
+                                                                <option value="Size 2">Size 2</option>
+                                                                <option value="Size 3">Size 3</option>
+                                                                <option value="Size 4">Size 4</option>
+                                                                <option value="Size 5">Size 5</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="admin-card__input-wrap">
+                                                            <select class="admin-card__select md_select" id="blanket_select_4092" onchange="UpdateBlanketShipDate(4092);">
+                                                                <option value="">Blanket</option>
+                                                                <option value="1 Day">1 Day</option>
+                                                                <option value="1 Week">1 Week</option>
+                                                                <option value="2 Weeks">2 Weeks</option>
+                                                                <option value="3 Weeks">3 Weeks</option>
+                                                                <option value="4 Weeks">4 Weeks</option>
+                                                                <option value="5 Weeks">5 Weeks</option>
+                                                                <option value="6 Weeks">6 Weeks</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="admin-card__input-wrap">
+                                                            <select class="admin-card__select md_select" id="discount_select_4092" onchange="UpdateDiscountPercentage(4092);">
+                                                                <option value="0">Discount</option>
+                                                                <option value="10">%10</option>
+                                                                <option value="20">%20</option>
+                                                                <option value="30">%30</option>
+                                                                <option value="40">%40</option>
+                                                                <option value="50">%50</option>
+                                                                <option value="60">%60</option>
+                                                                <option value="70">%70</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="admin-card__details">
+                                                    <div class="admin-card__info-wrap">
+                                                        <table class="table-investory table">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>
+                                                                        <a href="/inventory?id=4092&amp;stock=In Stock" target="_blank">Stock</a>
+                                                                    </th>
+                                                                    <td class="bg-golden " style="border:1px solid red" ondblclick="SetSaleColor(4092,'Yellow',this);">0</td>
+                                                                    <td class="bg-silver " style="border:1px solid green" ondblclick="SetSaleColor(4092,'White',this);">1</td>
+                                                                    <td class="bg-rosegold " style="border:1px solid red" ondblclick="SetSaleColor(4092,'Rose',this);">0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Sold</th>
+                                                                    <td class="bg-golden">0</td>
+                                                                    <td class="bg-silver">9</td>
+                                                                    <td class="bg-rosegold">0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>RAT</th>
+                                                                    <td colspan="3" class="bg-golden">9</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Views</th>
+                                                                    <td colspan="3" class="bg-golden">31,746</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>V/Rat</th>
+                                                                    <td colspan="3" class="bg-golden">3,527</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>TRV</th>
+                                                                    <td colspan="3" class="bg-golden">$0.00</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>LS</th>
+                                                                    <td colspan="3" class="bg-golden">133 days</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>P#</th>
+                                                                    <td colspan="3" class="bg-golden">P3709</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <td colspan="3" class="bg-golden">
+                                                                        <a href="/inventory?search=100-02617" target="_blank">100-02617</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Stock</th>
+                                                                    <td>
+                                                                        <span class="badge-shipping-today">
+										<svg class="svgIcon-root" focusable="false" aria-hidden="true" viewbox="0 0 18 18">
+											<path fill-rule="evenodd" d="M16.5 9a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0zM18 9A9 9 0 110 9a9 9 0 0118 0zm-9.655 3.04l5.176-5-1.042-1.08-4.655 4.497L5.52 8.233 4.48 9.313l2.823 2.726.522.504.52-.504z"></path>
+										</svg>
+										<span>Ships Today!</span>
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Weight</th>
+                                                                    <td><input type="text" class="admin-card__price-input" onchange="setRingDiamondSize(4092)" id="diamond_size_4092" value="N/A"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Shape</th>
+                                                                    <td>
+                                                                        <select class="admin-card__select md_select" id="ring_diamond_shape_4092" onchange="UpdateRingDiamondShape(4092)">
+                                                                            <option value="">Select</option>
+                                                                            <option value="Round" selected="">Round</option>
+                                                                            <option value="Pear">Pear</option>
+                                                                            <option value="Princess">Princess</option>
+                                                                            <option value="Marquise">Marquise</option>
+                                                                            <option value="Oval">Oval</option>
+                                                                            <option value="Radiant">Radiant</option>
+                                                                            <option value="Emerald">Emerald</option>
+                                                                            <option value="Heart">Heart</option>
+                                                                            <option value="Cushion">Cushion</option>
+                                                                            <option value="Asscher">Asscher</option>
+                                                                            <option value="Composite">Composite</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>G / VS2</th>
+                                                                    <td colspan="3" class="bg-golden"><input data-prop="Diamond Price 1" data-id="4092" class="form-control admin_card_input" type="text" value="N/A"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>K / SI2</th>
+                                                                    <td colspan="3" class="bg-golden"><input data-prop="Diamond Price 2" data-id="4092" class="form-control admin_card_input" type="text" value="N/A"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>H / SI1</th>
+                                                                    <td colspan="3" class="bg-golden"><input data-prop="Diamond Price 3" data-id="4092" class="form-control admin_card_input" type="text" value="N/A"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>J / VS2</th>
+                                                                    <td colspan="3" class="bg-golden"><input data-prop="Diamond Price 4" data-id="4092" class="form-control admin_card_input" type="text" value="N/A"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="admin-card__footer">
+                                                <div class="admin-card__actions">
+                                                    <a href="javascript:void(0);" id="add_hp_btn_4092" onclick="AddToHomePage(4092);" class="admin-card__link" title="Add To homepage">
+                                                        <i class="icon icon-admin-add"></i>
+                                                    </a>
+                                                    <a id="remove_hp_btn_4092" title="remove from homepage" onclick="RemoveFromHomepage(4092);" class="admin-card__link --delete">
+                                                        <i class="icon icon-admin-delete"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" id="add_ontime_stock_btn_4092" onclick="AddOneTimeStock(4092);" class="admin-card__link" title="Only 1 Can Sell">
+                                                        <i class="icon icon-rating-empty"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" id="remove_ontime_stock_btn_4092" onclick="RemoveOnTimeStock(4092);" class="admin-card__link" title="Remove From From Only 1 Can Sell">
+                                                        <i class="icon icon-rating-filled"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" id="add_liquidate_4092" onclick="AddToBlackFridayPage(4092);" class="admin-card__link" title="Add To Sales Page">
+                                                        <i class="icon icon-admin-add"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" id="remove_liquidate_4092" onclick="RemoveFromBlackFridayPage(4092);" class="admin-card__link" title="Remove From Sales Page">
+                                                        <i class="icon icon-admin-delete"></i>
+                                                    </a>
+                                                    <a onclick="sendToLast(4092)" class="admin-card__link" title="Place Item Last">Last</a>
+                                                    <a href="/admin/products/4092" target="_blank" class="admin-card__link">
+                                                        <i class="icon icon-admin-edit"></i>
+                                                    </a>
+                                                    <a href="/product/1-00ctw-double-halo-pear-diamond-engagement-ring-all-natural-4092" target="_blank" class="admin-card__link">
+                                                        <i class="icon icon-admin-view"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1501,6 +1644,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1523,6 +1672,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1545,6 +1700,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1567,6 +1728,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1589,6 +1756,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1611,6 +1784,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1633,6 +1812,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1655,6 +1840,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1677,6 +1868,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1699,6 +1896,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1721,6 +1924,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1743,6 +1952,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1765,6 +1980,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1787,6 +2008,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1809,6 +2036,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1831,6 +2064,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1853,6 +2092,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1875,6 +2120,12 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -1897,6 +2148,40 @@
                                     </div>
                                 </div>
                                 <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
+                                    <span class="product-card__shipping-tag is-made-order">Made To Order</span>
+                                    <div class="product-card__wrapper">
+                                        <div class="product-card__media">
+                                            <a href="#">
+                                                <img src="./assets/sample-product.webp" loading="lazy" alt="testAlt" class="product-card__img zoom-0">
+                                            </a>
+                                        </div>
+                                        <div class="product-card__details">
+                                            <div class="product-card__title-wrap">
+                                                <span class="product-card__sub-detail">1 Color / Unisex</span>
+                                                <h2>
+                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                </h2>
+                                            </div>
+                                            <div class="product-card__price-wrap is-sale">
+                                                <span class="product-card__price">$6,550</span>
+                                                <span class="product-card__sale-price">$3,470</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-card" data-id="4092">
+                                    <div class="bfs-card">
+                                        <div class="bfs-badges">
+                                            <span class="bfs-badge">BLACK FRIDAY</span>
+                                            <span class="bfs-badge --discount">-50%</span>
+                                        </div>
+                                    </div>
                                     <span class="product-card__shipping-tag is-made-order">Made To Order</span>
                                     <div class="product-card__wrapper">
                                         <div class="product-card__media">
@@ -2305,6 +2590,11 @@
                         </div>
                         <!-- Menu main navigation -->
                         <nav role="navigation" aria-label="Main" class="mob-menu__nav-list">
+                            <div class="mob-menu__nav-item is_bfs">
+                                <a href="https://www.icebox.com/black-friday">
+                                    <span data-text-glitch="BLACK FRIDAY">JOIN BLACK FRIDAY</span>
+                                </a>
+                            </div>
                             <div class="mob-menu__nav-item">
                                 <a href="/results/pendants">Pendants</a>
                                 <button data-menu-nav="Pendants" class="mob-menu__nav-step"></button>
@@ -3506,6 +3796,8 @@
         </div>
     </div>
     <script src="./js/partial-min.js"></script>
+    <script src="./js/promo-min.js"></script>
+
 
 </body>
 

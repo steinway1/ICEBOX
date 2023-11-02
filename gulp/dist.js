@@ -59,6 +59,10 @@ const root = {
       },
       bundle: {
         main: './src/js/main.js'
+      },
+      promo: {
+        lib: './src/js/promo/libraries/*.js',
+        main: './src/js/promo/*.js'
       }
     },
     assets: './src/assets/**/*',
@@ -112,7 +116,7 @@ gulp.task('twig:build',
       .pipe(data(function (file) {
         return JSON.parse(fs.readFileSync(root.src.data + path.basename(file.path) + '.json'));
       }))
-      .pipe(twig())
+      .pipe(twig({base: 'src/templates', errorLogToConsole: true}))
       .pipe(prettyHtml())
       .pipe(gulp.dest(root.build._))
   }
@@ -150,6 +154,20 @@ gulp.task('js:build',
       .pipe(minify())
       // .pipe(babel())
       // .pipe(webpack(require('./../webpack.config.js')))
+      .pipe(gulp.dest(root.build.js))
+  })
+
+  gulp.task('js-promo:build',
+  () => {
+    return gulp
+      .src([
+        root.src.js.promo.lib,
+        root.src.js.promo.main
+      ])
+      .pipe(changed(root.build.js))
+      .pipe(plumber(setPlumberNotify('JS-PROMO')))
+      .pipe(concat('promo.js'))
+      .pipe(minify())
       .pipe(gulp.dest(root.build.js))
   })
 

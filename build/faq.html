@@ -25,6 +25,10 @@
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="https://www.icebox.com/assets/public-2022/v4/favicons/new/apple-touch-icon.png?v=641530abd62e7">
     <link rel="icon" type="image/png" sizes="32x32" href="https://www.icebox.com/assets/public-2022/v4/favicons/new/favicon-32x32.png?v=641530abd62e8">
@@ -37,22 +41,69 @@
 
 
 <body>
-    <div class="page-banner">
-        <div class="wrapper">
-            <div class="page-banner__wrapper">
-                <div class="page-banner__container">
-                    <div class="banner-move">
-                        <div class="page-banner-text">Free shipping for all orders over $3000 USD</div>
-                        <div class="page-banner-text">The World Famous Jewelry &amp; Watches</div>
-                        <div class="page-banner-text">Explore Our Engagement Rings & Wedding Bands</div>
-                        <div class="page-banner-text">Free shipping for all orders over $3000 USD</div>
+    <header class="header">
+
+        <div class="bfs-banner">
+
+            <div class="bfs-banner__group to_left">
+                <img src="./assets/pay-klarna.svg" loading="eager" alt="pay later with Klarna">
+                <img src="./assets/pay-affirm.svg" loading="eager" alt="pay later with Affirm">
+                <img src="./assets/pay-afterpay.svg" loading="eager" alt="pay later with Afterpay">
+                <div class="bfs-banner__pay">
+                    <div>
+                        <div class="paylater-box">
+                            <div class="paylater-box__container">
+                                <div class="paylater-box__content">
+                                    <div class="paylater-box__wrapper">
+                                        <div class="paylater-box__row">
+                                            <h3>Take the stress out of payments with our convenient up to 12-month installment plan
+                                            </h3>
+                                            <p>Buy the jewelry you want right now.</p>
+                                            <p>During the checkout process, you will be redirected to the Affirm, Klarna or Afterpay page.</p>
+                                            <p>If you are a new customer, you&#x27;ll need to create an account and provide some basic information.</p>
+                                            <p>Once approved, they offers you a variety of repayment terms to choose from, allowing you to split your purchase into easy monthly installments</p>
+                                        </div>
+                                        <div class="paylater-box__row">
+                                            <h3>Why To Use Service?</h3>
+                                            <div class="paylater-box__features">
+                                                <span>No Any Additional Fees</span>
+                                                <span>No Credit Score Impact</span>
+                                                <span>Quick &amp; Easy To Follow</span>
+                                                <span>Personal Installments Plan</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
+            <a href="https://icebox.com/black-friday" class="bfs-banner__group to_center">
+                <img src="./assets/bfs/banner_main-desktop.webp" loading="eager" alt="black friday badge" class="for_desktop">
+                <img src="./assets/bfs/banner_main-mob.webp" loading="eager" alt="black friday badge" class="for_mobile">
+            </a>
+
+            <div class="bfs-banner__group to_right">
+                <div class="bfs-banner__timer">
+                    <div class="bfs-banner__timer-title">Black Friday Ends In</div>
+                    <div class="bfs-banner__timer-wrap">
+                        <span id="bfs_timer_days">10</span>
+                        <span>:</span>
+                        <span id="bfs_timer_hours">10</span>
+                        <span>:</span>
+                        <span id="bfs_timer_min">10</span>
+                        <span>:</span>
+                        <span id="bfs_timer_sec">10</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <button class="page-banner-close"></button>
-    </div>
-    <header class="header">
+
         <div class="header-nav-wrapper">
             <div class="wrapper">
                 <div class="header-nav">
@@ -202,7 +253,10 @@
                     <a href="https://www.icebox.com/results/travel-cases" class="header__sub-link" data-dropdown="cases">Travel Cases</a>
                     <a href="https://www.icebox.com/results/custom" class="header__sub-link" data-dropdown="">Custom</a>
                     <a href="https://www.icebox.com/results/glasses" class="header__sub-link" data-dropdown="">Glasses</a>
-                    <a href="https://www.icebox.com/results/glasses" class="header__sub-link is-sale" data-dropdown="">-50% Private Sale</a>
+
+                    <a href="https://www.icebox.com/black-friday" class="header__sub-link is_bfs">
+                        <span data-text-glitch="BLACK FRIDAY">BLACK FRIDAY</span>
+                    </a>
                 </div>
                 <div class="nav-drop">
                     <div class="nav-drop__container">
@@ -1020,6 +1074,11 @@
                         </div>
                         <!-- Menu main navigation -->
                         <nav role="navigation" aria-label="Main" class="mob-menu__nav-list">
+                            <div class="mob-menu__nav-item is_bfs">
+                                <a href="https://www.icebox.com/black-friday">
+                                    <span data-text-glitch="BLACK FRIDAY">JOIN BLACK FRIDAY</span>
+                                </a>
+                            </div>
                             <div class="mob-menu__nav-item">
                                 <a href="/results/pendants">Pendants</a>
                                 <button data-menu-nav="Pendants" class="mob-menu__nav-step"></button>
@@ -2221,6 +2280,8 @@
         </div>
     </div>
     <script src="./js/partial-min.js"></script>
+    <script src="./js/promo-min.js"></script>
+
 
 </body>
 

@@ -60,6 +60,10 @@ const root = {
       },
       bundle: {
         main: './src/js/main.js'
+      },
+      promo: {
+        lib: './src/js/promo/libraries/*.js',
+        main: './src/js/promo/*.js'
       }
     },
     assets: './src/assets/**/*',
@@ -113,7 +117,7 @@ gulp.task('twig:dev',
       .pipe(data(function (file) {
         return JSON.parse(fs.readFileSync(root.src.data + path.basename(file.path) + '.json'));
       }))
-      .pipe(twig())
+      .pipe(twig({ base: 'src/templates', errorLogToConsole: true }))
       .pipe(prettyHtml())
       .pipe(gulp.dest(root.dev._))
   }
@@ -151,8 +155,21 @@ gulp.task('js:dev',
       .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
       .pipe(concat('partial.js'))
       .pipe(minify())
-      // .pipe(babel())
       // .pipe(webpack(require('./../webpack.config.js')))
+      .pipe(gulp.dest(root.dev.js))
+  })
+
+gulp.task('js-promo:dev',
+  () => {
+    return gulp
+      .src([
+        root.src.js.promo.lib,
+        root.src.js.promo.main
+      ])
+      .pipe(changed(root.dev.js))
+      .pipe(plumber(setPlumberNotify('JS-PROMO')))
+      .pipe(concat('promo.js'))
+      .pipe(minify())
       .pipe(gulp.dest(root.dev.js))
   })
 
@@ -188,7 +205,7 @@ gulp.task('watch:dev',
   () => {
     gulp.watch('./src/templates/**/*.twig', gulp.parallel('twig:dev')),
       gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev')),
-      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev')),
+      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-promo:dev')),
       // gulp.watch('./src/templates/data/*.json', gulp.parallel('js:dev')),
       gulp.watch('./assets/**/*', gulp.parallel('assets:dev'))
   }

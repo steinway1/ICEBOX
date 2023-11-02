@@ -215,7 +215,7 @@ class contentBackdrop {
       Object.assign(el[0].style, { opacity: 1 });
     }
   }
-  hide(done) {
+  hide() {
     let el = this._parent.find(`.${this.settings.class}`);
     if (this.elExist()) {
       Object.assign(el[0].style, { opacity: 0 });
@@ -224,7 +224,6 @@ class contentBackdrop {
       }, parseFloat(window.getComputedStyle(el[0]).transitionDuration) * 1000 +
       1);
     }
-    done();
   }
   elExist() {
     let el = this._parent.find(`.${this.settings.class}`);

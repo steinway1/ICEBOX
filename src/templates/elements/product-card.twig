@@ -2,6 +2,14 @@
 	{% if adminLayout == true %}
 		{% include "./admin-card.twig" %}
 	{% endif %}
+	{% if productItem.bfs is defined %}
+		<div class="bfs-card">
+			<div class="bfs-badges">
+				<span class="bfs-badge">BLACK FRIDAY</span>
+				<span class="bfs-badge --discount">-{{productItem.bfs}}%</span>
+			</div>
+		</div>
+	{% endif %}
 	{% if productItem.inStock %}
 		<span class="product-card__shipping-tag">Ships Today</span>
 	{% else %}

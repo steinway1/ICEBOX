@@ -1,4 +1,9 @@
 <header class="header">
+
+	{% if black_friday == true %}
+		{% include "elements/black_friday/bfs-banner.twig" %}
+	{% endif %}
+
 	<div class="header-nav-wrapper">
 		<div class="wrapper">
 			<div class="header-nav">
@@ -12,7 +17,7 @@
 			<div class="header__sub-nav-list">
 				{% include "../components/header/categories.twig" %}
 			</div>
-      {% include "../components/header/dropdown.twig" %}
+			{% include "../components/header/dropdown.twig" %}
 		</div>
 	</div>
 
