@@ -517,7 +517,7 @@ const cartModal = new Object({
     this.evtToggle = getEvtDOM("toggleCart");
   },
   bindToggle: function () {
-    $(document).on('click', '[data-evt="toggleCart"]', function() {
+    $(document).on('click', '[data-evt="toggleCart"]', function () {
       let el = $(".cart-modal")
       if (el.exists()) {
         let container = $(".cart-modal__container"),
@@ -1977,6 +1977,65 @@ const locationPage = new Object({
 /* #endregion */
 
 
+/* #region Page Alers */
+var alertTimer;
+const pageAlerts = {
+  classes: {
+    fullWidth: 'page-alert_backdrop',
+    error: 'page-alert_error',
+    warning: 'page-alert_warning',
+    info: 'page-alert_info',
+    visible: 'is-visible'
+  },
+  init: function () {
+    this.cacheDOM()
+    this.bindEvents()
+    // this.fullWidth()
+  },
+  cacheDOM: function () {
+    this.container = $('.page-alert')
+    this.title = $('.page-alert-title')
+    this.subtitle = $('.page-alert-text')
+    this.close = $('[data-evt="hidePageAlert"]')
+  },
+  bindEvents: function () {
+    this.close.click(this.hideAlert.bind(this))
+    clearTimeout(alertTimer)
+  },
+  fullWidth: function () {
+    this.container.addClass(this.classes.fullWidth)
+  },
+  showAlert: function (errorType = function () { pageAlerts.resetAlert() }, title, text, hideTime = 2500) {
+    clearTimeout(alertTimer)
+    this.resetAlert();
+
+    this.container.addClass(this.classes.visible).addClass(errorType)
+    this.changeMsg(title, text)
+    alertTimer = window.setTimeout(function () {
+      pageAlerts.hideAlert()
+    }, hideTime)
+  },
+  hideAlert: function () {
+    this.container.removeClass(this.classes.visible)
+  },
+  changeMsg: function (title, text) {
+    this.title.html(title)
+    this.subtitle.html(text)
+  },
+  resetAlert: function () {
+    this.container.removeClass(function () {
+      let i = pageAlerts.classes
+      return `${i.warning} ${i.info} ${i.error}`
+    })
+  }
+}
+
+function showMessage(type, title, msg) {
+  var alert_type = (type === 'success') ? pageAlerts.classes.info : pageAlerts.classes.error;
+  pageAlerts.showAlert(alert_type, title, msg);
+}
+/* #endregion */
+
 
 const initPageObjects = () => {
   const objArr = [
@@ -1994,7 +2053,8 @@ const initPageObjects = () => {
     pageEls,
     myBag,
     account,
-    locationPage
+    locationPage,
+    pageAlerts
   ];
 
   for (let i = 0; i < objArr.length; i++) {
