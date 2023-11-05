@@ -1,4 +1,5 @@
 {% set black_friday = true %}
+{% set userIsAdmin = true %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,12 +18,14 @@
 		{% include "../elements/header.twig" %}
 
 
-		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> 
-    {% block content %}{% endblock %}
+		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
 
 			{% if logged %}
 				{% else %}
-					{# {% include "../elements/subscribe.twig" %} #}
+				{# {% include "../elements/subscribe.twig" %} #}
+			{% endif %}
+			{% if userIsAdmin == true %}
+				{% include "elements/admin-bar.twig" %}
 			{% endif %}
 			{% include "../elements/footer.twig" %}
 			{% include "../elements/affirm-disclaimer.twig" %}
@@ -33,7 +36,7 @@
 		{% include "../elements/cart-modal.twig" %}
 		{% include "../elements/sign-modal.twig" %}
 		{% include "../elements/currency-modal.twig" %}
-    {% include "elements/page-alerts.twig" %}
+		{% include "elements/page-alerts.twig" %}
 		{% include "../page-components/scripts.twig" %}
 		{{ block('include_script') }}
 	</body>

@@ -710,11 +710,13 @@
       opacity: .7;
     }
 
-    input[type="checkbox"] {
+    input[type="checkbox"],
+    input[type="radio"] {
       display: none;
     }
 
-    input[type="checkbox"]:checked~span {
+    input[type="checkbox"]:checked~span,
+    input[type="radio"]:checked~span {
       font-weight: 600;
 
       &::before {
@@ -762,7 +764,8 @@
   label {
     &.label-color {
 
-      input[type="checkbox"]:checked~span::after {
+      input[type="checkbox"]:checked~span::after,
+      input[type="radio"]:checked~span::after {
         content: '';
         position: absolute;
         left: 0;
@@ -787,35 +790,72 @@
       }
 
       &.yellow_gold>span::before {
-        background-image: linear-gradient(45deg, #e9c483, #eed1a0 32%, #ffedcf 52%, #f2ddbb 72%, #f5e7cf);
+        // background-image: linear-gradient(45deg, #e9c483, #eed1a0 32%, #ffedcf 52%, #f2ddbb 72%, #f5e7cf);
+        background-color: #e5d5b0;
+        background-image: none;
       }
 
       &.rose_gold>span::before {
-        background-image: linear-gradient(45deg, #db998c, #e4aca3 29%, #fdd0ca 50%, #e9b7b0 75%, #f0c7c3);
+        // background-image: linear-gradient(45deg, #db998c, #e4aca3 29%, #fdd0ca 50%, #e9b7b0 75%, #f0c7c3);
+        background-color: #f0cac7;
+        background-image: none;
       }
 
       &.white_gold>span::before {
-        background-image: linear-gradient(45deg, #b0b0b0, #c1c1c1 28%, #ececec 52%, #dfdfdf 75%, #ececec);
+        // background-image: linear-gradient(45deg, #b0b0b0, #c1c1c1 28%, #ececec 52%, #dfdfdf 75%, #ececec);
+        background-color: #cacaca;
+        background-image: none;
       }
 
       &.red>span::before {
-        background-image: linear-gradient(45deg, #c7242d, #e15c61 35%, #ef7a7e 82%, #ffb0b1);
+        // background-image: linear-gradient(45deg, #c7242d, #e15c61 35%, #ef7a7e 82%, #ffb0b1);
+        background-image: linear-gradient(45deg, #c7242d, #ff9d9f);
       }
 
       &.steel>span::before {
-        background-image: linear-gradient(45deg, #747474, #a0a0a0 25%, #c4c4c4 50%, #e0e0e0 75%, #9b9b9b);
+        // background-image: linear-gradient(45deg, #747474, #a0a0a0 25%, #c4c4c4 50%, #e0e0e0 75%, #9b9b9b);
+        background: linear-gradient(45deg, #a3a3a3, #ebebeb 50%, #c2c0c0 51%, #e9e9e9);
       }
 
       &.two_tone>span::before {
-        background-image: linear-gradient(45deg, #fad490, #f9e5c5 25%, #fcf1df 49%, #f0f0f0 50%, #f8f8f8 75%, #fafafa);
+        // background-image: linear-gradient(45deg, #fad490, #f9e5c5 25%, #fcf1df 49%, #f0f0f0 50%, #f8f8f8 75%, #fafafa);
+        background: linear-gradient(45deg, #e2d2b6, #e6d6a8 50%, #f5f5f5 51%, #ebebeb);
+      }
+
+      &.two_tone_rose>span::before {
+        background: linear-gradient(45deg, #FDDDDD, #D2ACAC 50%, #f5f5f5 51%, #ebebeb);
       }
 
       &.tri_tone>span::before {
-        background-image: linear-gradient(45deg, #dc9d91, #ffe1da 32%, #fff 43%, #fff 50%, #fff 60%, #fff1db 68%, #fce6c1);
+        // background-image: linear-gradient(45deg, #dc9d91, #ffe1da 32%, #fff 43%, #fff 50%, #fff 60%, #fff1db 68%, #fce6c1);
+        background: linear-gradient(45deg, #e2c6cc, #e7cdd3 40%, #ebebeb 41%, #ddd 63%, #e2d2b6 64%, #ebe1c5);
+      }
+      
+      &.tri_tone_rose>span::before {
+        background: linear-gradient(45deg, #e2c6cc, #e7cdd3 40%, #ebebeb 41%, #ddd 63%, #e2d2b6 64%, #ebe1c5);
       }
 
       &.blue>span::before {
-        background-image: linear-gradient(45deg, #223164, #2c4688 35%, #315099 50%, #3557a5 65%, #3e68c2);
+        // background-image: linear-gradient(45deg, #223164, #2c4688 35%, #315099 50%, #3557a5 65%, #3e68c2);
+        background-color: #2cabd6;
+        background-image: none;
+      }
+
+      &.blue_gold>span::before {
+        background: linear-gradient(45deg, #88D3ED, #0095c6);
+      }
+
+      &.midnight_navy>span::before {
+        background: linear-gradient(45deg, #223164, #3e68c2);
+      }
+
+      &.platinum>span::before {
+        background-color: #cbcac6;
+        background-image: none;
+      }
+
+      &.black>span::before {
+        background: linear-gradient(45deg, #6F7174, #171C25);
       }
 
     }
@@ -866,6 +906,13 @@
 .filter-row__container {
   padding: 0px 0px 20px 0px;
   transition: all .45s cubic-bezier(.39, .575, .565, 1);
+
+  label input[type="radio"] {
+    &~span::before {
+      border-radius: 50px !important;
+      background-size: 56%;
+    }
+  }
 }
 
 .filter-row__form-wrap {

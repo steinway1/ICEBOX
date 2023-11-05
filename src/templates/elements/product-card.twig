@@ -1,3 +1,5 @@
+{% set discountRate = 80 %}
+
 <div class="product-card{% if splideClass is defined %} splide__slide{% else %}{% endif %}" data-id="{{productItem.dataID}}">
 	{% if adminLayout == true %}
 		{% include "./admin-card.twig" %}
@@ -9,6 +11,9 @@
 				<span class="bfs-badge --discount">-{{productItem.bfs}}%</span>
 			</div>
 		</div>
+	{% endif %}
+	{% if productItem.is_discounted and productItem.inStock %}
+		<span class="product-card__sale-badge discount_{{discountRate}}"></span>
 	{% endif %}
 	{% if productItem.inStock %}
 		<span class="product-card__shipping-tag">Ships Today</span>
