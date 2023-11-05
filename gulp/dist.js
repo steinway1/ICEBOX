@@ -51,6 +51,7 @@ const root = {
       _: './src/js/*.js',
       lib: {
         jquery: './src/js/jquery.js',
+        jqueryCrs: './src/js/jquery.crs.min.js',
         splide: './src/js/splide.js',
         splideGrid: './src/js/splide-grid.js',
         intlTelInput: './src/js/intlTelInput.js',
@@ -141,6 +142,7 @@ gulp.task('js:build',
     return gulp
       .src([
         root.src.js.lib.jquery,
+        root.src.js.lib.jqueryCrs,
         root.src.js.lib.splide,
         root.src.js.lib.splideGrid,
         root.src.js.lib.intlTelInput,

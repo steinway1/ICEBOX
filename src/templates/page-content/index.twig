@@ -1,5 +1,9 @@
-{% if not black_friday == true %}{% include "elements/pay-banner.twig" %}{% endif %}
-{% if black_friday == true %} {% include "elements/black_friday/bfs-ticker.twig" %} {% endif %}
+{% if not black_friday == true %}
+	{% include "elements/pay-banner.twig" %}
+{% endif %}
+{% if black_friday == true %}
+	{% include "elements/black_friday/bfs-ticker.twig" %}
+{% endif %}
 
 
 <!-- #region Welcome Section -->
@@ -143,26 +147,6 @@
 		</div>
 	</section>
 
-
-	<!-- Join Icebox -->
-	<section class="home-row">
-		<div class="home-row__wrapper">
-			<div class="home-spot">
-				<img src="./assets/banner_icebox.webp" alt="Icebox gift wrapping jewelery" class="home-spot__img">
-				<div class="wrapper">
-					<div class="home-spot__details right_align">
-						<h3 class="home-spot__heading">Join Icebox Family Now<span>Sparkle with the Icebox family and unlock a world of timeless elegance and luxury.</span>
-						</h3>
-						<a href="#" class="home-row-btn home-row-btn_black">
-							<span>Join Now For Free</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-
 	<!-- Gold Chains -->
 	<section class="home-row">
 		<div class="home-row__wrapper">
@@ -212,25 +196,23 @@
 	</section>
 
 
-	<!-- Custom Jewelry -->
+	<!-- Join Icebox -->
 	<section class="home-row">
 		<div class="home-row__wrapper">
 			<div class="home-spot">
-				<img src="./assets/banner_custom.webp" alt="Custom Icebox jewelry made by order" class="home-spot__img move_right">
-				<div class="wrapper for_custom">
-					<div class="home-spot__details white_color">
-						<h3 class="home-spot__heading">Custom Design Jewelry<span>Stand out from the crowd with our custom jewelry, made with attention to detail and passion.</span>
+				<img src="./assets/banner_icebox.webp" alt="Icebox gift wrapping jewelery" class="home-spot__img">
+				<div class="wrapper">
+					<div class="home-spot__details right_align">
+						<h3 class="home-spot__heading">Join Icebox Family Now<span>Sparkle with the Icebox family and unlock a world of timeless elegance and luxury.</span>
 						</h3>
-						<a href="#" class="home-row-btn white_stroke">
-							<span>Start Design Now</span>
-							{% include "../components/svg/arrow-next.svg" %}
+						<a href="#" class="home-row-btn home-row-btn_black">
+							<span>Join Now For Free</span>
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
 
 	<!-- Earrings -->
 	<section class="home-row">
@@ -304,6 +286,217 @@
 							<div class="splide__list">
 								{% for i in 1..8 %}
 									{% include "../elements/product-card_necklace.twig" with {splideClass: true} %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="home-row__footer">
+					<div class="wrapper">
+						<div class="home-row__controls">
+							<a href="#" class="home-row__mob-sub-link">Show More</a>
+							<div class="home-row__arrows-wrap splide__arrows">
+								<button class="home-row__slider-btn splide__arrow--prev">
+									{% include "../components/svg/slider-prev.svg" %}
+								</button>
+								<button class="home-row__slider-btn splide__arrow--next">
+									{% include "../components/svg/slider-next.svg" %}
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Custom Jewelry -->
+	<section class="home-row">
+		<div class="home-row__wrapper">
+			<div class="home-spot">
+				<img src="./assets/banner_custom.webp" alt="Custom Icebox jewelry made by order" class="home-spot__img move_right">
+				<div class="wrapper for_custom">
+					<div class="home-spot__details white_color">
+						<h3 class="home-spot__heading">Custom Design Jewelry<span>Stand out from the crowd with our custom jewelry, made with attention to detail and passion.</span>
+						</h3>
+						<a href="#" class="home-row-btn white_stroke">
+							<span>Start Design Now</span>
+							{% include "../components/svg/arrow-next.svg" %}
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Bracelets -->
+	<section class="home-row">
+		<div class="home-row__wrapper">
+			<div class="home-row__header">
+				<div class="home-row__img-flex">
+					<img src="./assets/banner_bracelets.webp" alt="Icebox Diamond Bracelets" class="home-row__img">
+					<div class="home-row__summary-center">
+						<h2 class="home-row__heading">Bracelets<span>Experience the allure of handmade craftsmanship with our artisanal bracelet pieces.</span>
+						</h2>
+						<a href="#" class="home-row-btn">
+							<span>200+ Bracelets</span>
+							{% include "../components/svg/arrow-next.svg" %}
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="home-row__body splide home-splide">
+				<div class="home-row__cards-wrap">
+					<div class="cards-holder">
+						<div class="splide__track">
+							<div class="splide__list">
+								{% for i in 1..8 %}
+									{% include "../elements/product-card_earring.twig" with {splideClass: true} %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="home-row__footer">
+					<div class="wrapper">
+						<div class="home-row__controls">
+							<a href="#" class="home-row__mob-sub-link">Show More</a>
+							<div class="home-row__arrows-wrap splide__arrows">
+								<button class="home-row__slider-btn splide__arrow--prev">
+									{% include "../components/svg/slider-prev.svg" %}
+								</button>
+								<button class="home-row__slider-btn splide__arrow--next">
+									{% include "../components/svg/slider-next.svg" %}
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Rings -->
+	<section class="home-row">
+		<div class="home-row__wrapper">
+			<div class="home-row__header">
+				<div class="home-row__img-flex">
+					<div class="home-row__summary-center">
+						<h2 class="home-row__heading">Rings<span>Elegance at its finest: Discover our stunning collection of diamond rings.</span>
+						</h2>
+						<a href="#" class="home-row-btn">
+							<span>200+ Rings</span>
+							{% include "../components/svg/arrow-next.svg" %}
+						</a>
+					</div>
+					<img src="./assets/banner_rings.webp" alt="Icebox Diamond Bracelets" class="home-row__img">
+				</div>
+			</div>
+			<div class="home-row__body splide home-splide">
+				<div class="home-row__cards-wrap">
+					<div class="cards-holder">
+						<div class="splide__track">
+							<div class="splide__list">
+								{% for i in 1..8 %}
+									{% include "../elements/product-card_earring.twig" with {splideClass: true} %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="home-row__footer">
+					<div class="wrapper">
+						<div class="home-row__controls">
+							<a href="#" class="home-row__mob-sub-link">Show More</a>
+							<div class="home-row__arrows-wrap splide__arrows">
+								<button class="home-row__slider-btn splide__arrow--prev">
+									{% include "../components/svg/slider-prev.svg" %}
+								</button>
+								<button class="home-row__slider-btn splide__arrow--next">
+									{% include "../components/svg/slider-next.svg" %}
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Watches -->
+	<section class="home-row">
+		<div class="home-row__wrapper">
+			<div class="home-row__header">
+				<div class="home-row__img-flex">
+					<img src="./assets/banner_watches.webp" alt="Icebox Diamond Bracelets" class="home-row__img">
+					<div class="home-row__summary-center">
+						<h2 class="home-row__heading">Watches<span>Timeless elegance meets sparkling luxury with our diamond-studded watch collection.</span>
+						</h2>
+						<a href="#" class="home-row-btn">
+							<span>200+ Watches</span>
+							{% include "../components/svg/arrow-next.svg" %}
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="home-row__body splide home-splide">
+				<div class="home-row__cards-wrap">
+					<div class="cards-holder">
+						<div class="splide__track">
+							<div class="splide__list">
+								{% for i in 1..8 %}
+									{% include "../elements/product-card_earring.twig" with {splideClass: true} %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="home-row__footer">
+					<div class="wrapper">
+						<div class="home-row__controls">
+							<a href="#" class="home-row__mob-sub-link">Show More</a>
+							<div class="home-row__arrows-wrap splide__arrows">
+								<button class="home-row__slider-btn splide__arrow--prev">
+									{% include "../components/svg/slider-prev.svg" %}
+								</button>
+								<button class="home-row__slider-btn splide__arrow--next">
+									{% include "../components/svg/slider-next.svg" %}
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Travel Cases -->
+	<section class="home-row">
+		<div class="home-row__wrapper">
+			<div class="home-row__header">
+				<div class="home-row__img-flex">
+					<div class="home-row__summary-center">
+						<h2 class="home-row__heading">Travel Cases<span>Your jewelry deserves the best, even when you're on the move.</span>
+						</h2>
+						<a href="#" class="home-row-btn">
+							<span>200+ Travel Cases</span>
+							{% include "../components/svg/arrow-next.svg" %}
+						</a>
+					</div>
+					<img src="./assets/banner_cases.webp" alt="Icebox Diamond Bracelets" class="home-row__img">
+				</div>
+			</div>
+			<div class="home-row__body splide home-splide">
+				<div class="home-row__cards-wrap">
+					<div class="cards-holder">
+						<div class="splide__track">
+							<div class="splide__list">
+								{% for i in 1..8 %}
+									{% include "../elements/product-card_earring.twig" with {splideClass: true} %}
 								{% endfor %}
 							</div>
 						</div>
