@@ -57,10 +57,12 @@ const root = {
         splideGrid: './src/js/splide-grid.js',
         intlTelInput: './src/js/intlTelInput.js',
         popper: './src/js/popper.js',
-        tippy: './src/js/tippy.js'
+        tippy: './src/js/tippy.js',
+        parsley: './src/js/parsley.min.js'
       },
       bundle: {
-        main: './src/js/main.js'
+        main: './src/js/main.js',
+        login: './src/js/login.js'
       },
       promo: {
         lib: './src/js/promo/libraries/*.js',
@@ -151,7 +153,9 @@ gulp.task('js:dev',
         root.src.js.lib.intlTelInput,
         root.src.js.lib.popper,
         root.src.js.lib.tippy,
-        root.src.js.bundle.main
+        root.src.js.lib.parsley,
+        root.src.js.bundle.main,
+        root.src.js.bundle.login
       ])
       .pipe(changed(root.dev.js))
       .pipe(plumber(setPlumberNotify('JAVASCRIPT')))

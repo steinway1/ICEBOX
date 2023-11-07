@@ -76,6 +76,7 @@ const initTelInput = () => {
   }
 };
 
+
 const getOrdinalTxt = (n) => {
   return n % 10 == 1 && n % 100 != 11 ? 'st' : n % 10 == 2 && n % 100 != 12 ? 'nd' : n % 10 == 3 && n % 100 != 13 ? 'rd' : 'th'
 }
@@ -607,135 +608,6 @@ const currencyModal = new Object({
         $(arr[index]).hide();
       }
     });
-  },
-});
-/* #endregion */
-
-
-/* #region  Sign Modal */
-const signModal = new Object({
-  init: function () {
-    this.renderDOM();
-    this.bindEvents();
-  },
-  renderDOM: function () {
-    this._ = $(".sign-modal");
-    this.backdrop = this._.find(".sign-modal__backdrop");
-    this.container = this._.find(".sign-modal__container");
-    this.footer = this._.find(".sign-modal__footer");
-
-    this.evtToggle = Array.from($('[data-evt="toggleSign"], .js-toggle-sign'));
-    this.evtTogglePassVisible = $('[data-evt="togglePasswordVisible"]');
-    this.evtSwitch = $("[data-sign-switch]");
-
-    this.view = $(".sign-modal-view");
-    this.viewLogin = this.view.filter("#loginSignIn");
-    this.viewPassword = this.view.filter("#loginPass");
-    this.viewPhone = this.view.filter("#loginPhone");
-    this.viewCode = this.view.filter("#loginCode");
-    this.viewRegister = this.view.filter("#loginSignUp");
-
-    this.submitBtn = this._.find(".js-submit");
-  },
-
-  bindEvents: function () {
-    // Toggle modal
-    $.each(signModal.evtToggle, (i) => {
-      let target = signModal.evtToggle[i];
-      target.onclick = () => {
-        signModal.toggle();
-      };
-    });
-    // Switch password visibility
-    this.evtTogglePassVisible.click(function () {
-      let input = $(this).siblings("input");
-      if (input.exists()) {
-        let type = input.attr("type");
-        if (type == "password") {
-          input.attr("type", "text");
-        } else {
-          input.attr("type", "password");
-        }
-      }
-    });
-    // Switch View
-    this.evtSwitch.click(function (e) {
-      let att = $(this).data("sign-switch");
-      e.preventDefault();
-      signModal.switch(att);
-    });
-    // Button Loading State
-    this.submitBtn.click(function (e) {
-      e.preventDefault();
-      $(this).appendButtonLoadingState();
-    });
-  },
-
-  switch: function (type) {
-    signModal.view
-      .filter(function () {
-        if ($(this).isVisible()) {
-          return this;
-        }
-      })
-      .hide();
-    signModal.footer.hide();
-
-    switch (type) {
-      case "login":
-        signModal.viewLogin.show();
-        signModal.footer.show();
-        break;
-      case "phone":
-        signModal.viewPhone.show();
-        break;
-      case "password":
-        signModal.viewPassword.show();
-        break;
-      case "register":
-        signModal.viewRegister.show();
-        break;
-      case "code":
-        signModal.viewCode.show();
-        break;
-      default:
-        signModal.viewLogin.show();
-        signModal.footer.show();
-        break;
-    }
-  },
-
-  toggle: function () {
-    if (signModal._.isVisible()) {
-      signModal.close();
-    } else {
-      signModal.open();
-    }
-  },
-  close: function () {
-    unlockScroll();
-    signModal.backdrop.css({ opacity: 0 });
-    signModal.container.css({ transform: "translateX(100%)" });
-    setTimeout(() => {
-      signModal._.hide();
-    }, getTransitionTime(signModal.container));
-  },
-  open: function (...args) {
-    lockScroll();
-    signModal._.show();
-    setTimeout(() => {
-      signModal.backdrop.css({ opacity: 1 });
-      signModal.container.css({ transform: "translateX(0%)" });
-    }, 1);
-    if (menu.states.isActive) {
-      menu.close();
-    }
-
-    if (args.length !== 0) {
-      $.each(args, (i) => {
-        signModal.switch(args[i]);
-      });
-    }
   },
 });
 /* #endregion */
@@ -2311,7 +2183,6 @@ const initPageObjects = () => {
     menu,
     cartModal,
     currencyModal,
-    signModal,
     pageBanner,
     homePageSplide,
     pgModal,
