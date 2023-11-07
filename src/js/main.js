@@ -18,7 +18,8 @@ $.fn.extend({
     });
   },
   isVisible: function () {
-    return $(this).is(":visible");
+    let target = this instanceof jQuery ? $(this).get(0) : this;
+    return window.getComputedStyle(target).getPropertyValue('display') !== 'none'
   },
   appendButtonLoadingState: function (time = 3000) {
     $(this).addClass(BUTTON_LOADING).prop("disabled", true);
@@ -74,6 +75,10 @@ const initTelInput = () => {
     });
   }
 };
+
+const getOrdinalTxt = (n) => {
+  return n % 10 == 1 && n % 100 != 11 ? 'st' : n % 10 == 2 && n % 100 != 12 ? 'nd' : n % 10 == 3 && n % 100 != 13 ? 'rd' : 'th'
+}
 /* #endregion */
 
 
@@ -2003,6 +2008,303 @@ function showMessage(type, title, msg) {
 /* #endregion */
 
 
+/* #region Sell Pages */
+const bookModal = {
+  step: 1,
+  apptData: {},
+
+  root: document.querySelector('.book-sell'),
+  backdrop: document.querySelector('.book-sell__backdrop'),
+  container: document.querySelector('.book-sell__container'),
+
+  evtNextStep: $('[data-evt="bookModalNext"]'),
+  evtBackStep: $('[data-evt="bookModalBack"]'),
+  evtToggle: $('[data-evt="toggleBookModal"]'),
+
+  sectionDate: $('#bookSectionDate'),
+  sectionPersonal: $('#bookSectionPersonal'),
+  sectionConfirm: $('#bookSectionConfirm'),
+
+  inputName: document.getElementById('bookFullName'),
+  inputEmail: document.getElementById('bookEmail'),
+  inputPhone: document.getElementById('bookPhone'),
+  inputArr: [this.inputName, this.inputEmail, this.inputPhone],
+
+  confirmName: document.getElementById('bookConfirmName'),
+  confirmEmail: document.getElementById('bookConfirmEmail'),
+  confirmPhone: document.getElementById('bookConfirmPhone'),
+  confirmDate: document.getElementById('bookConfirmDate'),
+  confirmTime: document.getElementById('bookConfirmTime'),
+
+  init: function () {
+    if (this.root !== null) {
+      this.dateTime.init()
+      this.attachEvents()
+    }
+  },
+
+  close: function () {
+    unlockScroll()
+    this.container.style.transform = 'translateX(100%)'
+    this.backdrop.style.opacity = 0
+    setTimeout(() => {
+      this.root.style.display = 'none'
+    }, getTransitionTime(this.container));
+  },
+  open: function () {
+    if (!$('.book-sell__date-box').length) { bookModal.dateTime.appendBoxes(bookModal.dateTime.getDates(true)) }
+    lockScroll()
+    this.root.style.display = 'block'
+    setTimeout(() => {
+      this.container.style.transform = 'translateX(0%)'
+      this.backdrop.style.opacity = 1
+    }, 1);
+  },
+  toggle: function () {
+    if (window.getComputedStyle(this.root).getPropertyValue('display') !== 'none') {
+      this.close()
+    } else {
+      this.open()
+    }
+  },
+  attachEvents: function () {
+    this.evtToggle.click(function () {
+      bookModal.toggle()
+    })
+    this.evtNextStep.click(function () {
+      switch (bookModal.step) {
+        case 1:
+          if (bookModal.apptData.date) {
+            bookModal.step = 2
+            bookModal.sectionDate.hide()
+            bookModal.sectionPersonal.show()
+            bookModal.observer()
+          }
+          break;
+        case 2:
+          if (bookModal.inputName.value && bookModal.inputEmail.value && bookModal.inputPhone.value) {
+            bookModal.step = 3
+            bookModal.sectionPersonal.hide()
+            bookModal.sectionConfirm.show()
+            bookModal.apptData.name = bookModal.inputName.value
+            bookModal.apptData.email = bookModal.inputEmail.value
+            bookModal.apptData.phone = bookModal.inputPhone.value
+            bookModal.observer()
+          }
+          break;
+        case 3:
+          alert(JSON.stringify(bookModal.apptData)) // change later
+          bookModal.close()
+          setTimeout(() => {
+            bookModal.reset()
+          }, getTransitionTime(bookModal.container));
+          break;
+      }
+    })
+    this.evtBackStep.click(function () {
+      switch (bookModal.step) {
+        case 1:
+          bookModal.close()
+          break;
+        case 2:
+          --bookModal.step
+          bookModal.observer()
+          bookModal.sectionPersonal.hide()
+          bookModal.sectionDate.show()
+          break;
+        case 3:
+          --bookModal.step
+          bookModal.observer()
+          bookModal.sectionConfirm.hide()
+          bookModal.sectionPersonal.show()
+          break;
+      }
+    })
+    const attachInputObesrver = () => {
+      let arr = [bookModal.inputName, bookModal.inputEmail, bookModal.inputPhone]
+      arr.forEach((el) => { el.oninput = () => { bookModal.observer() } })
+    }
+    attachInputObesrver()
+  },
+
+  dateTime: {
+    intervals: [[11, 0o0, 0o0], [13, 30, 0o0], [15, 30, 0o0], [16, 0o0, 0o0], [16, 30, 0o0]],
+    daysPerView: 3,
+    holder: document.getElementById('bookSellDates'),
+
+    init: function () {
+      this.attachEvents()
+      this.appendBoxes(this.getDates(true))
+    },
+    renderHTML: (date) => {
+      const weekday = date.toLocaleDateString('en-US', { weekday: 'long' }), day = date.getDate(), month = date.toLocaleDateString('en-US', { month: 'short' }), time = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' })
+
+      let ifPast = new Date() > date ? ' disabled' : ''
+      let dayTime = date.getDay() == 6 ? 'Closed' : date.getDay() == 0 ? 'Closed' : time
+      let isWeekend = date.getDay() == 6 ? ' is-closed' : date.getDay() == 0 ? ' is-closed' : ''
+
+      return `
+      <div class="book-sell__date-box${isWeekend}" data-time="${String(date)}"${ifPast}>
+        <span>${weekday}, ${day}${getOrdinalTxt(day)} ${month}</span>
+        <span>${dayTime}</span>
+      </div>
+      `
+    },
+    appendBoxes: function (arr) {
+      arr.forEach((el) => this.holder.insertAdjacentHTML('beforeend', el))
+    },
+    getDates: function (isNext) {
+      let daysArr = [], initial = 0
+      let arr = [...document.querySelectorAll('.book-sell__date-box')]
+      let initialDate
+
+      if (arr.length == 0) {
+        initialDate = new Date()
+      } else {
+        if (isNext == true) {
+          initialDate = new Date(arr[arr.length - 1].getAttribute('data-time'))
+        } else {
+          initialDate = new Date(arr[0].getAttribute('data-time'))
+        }
+      }
+
+      if (arr.length !== 0) {
+        arr.forEach(el => el.remove());
+        if (isNext == true) {
+          initialDate.setDate(initialDate.getDate() + 1)
+        } else { initialDate.setDate(initialDate.getDate() - 1) }
+      }
+
+      while (initial !== this.daysPerView) {
+        let dayDate = new Date(initialDate)
+        if (isNext == true) { daysArr.push(new Date(dayDate.setDate(initialDate.getDate() + initial))) } else {
+          daysArr.push(new Date(dayDate.setDate(initialDate.getDate() - initial)))
+        }
+        ++initial
+      }
+
+      let ints = isNext == true ? this.intervals : this.intervals.slice().reverse()
+
+      let htmlArr = daysArr.reduce((acc, date) => {
+        ints.forEach((interval) => {
+          let thisDate = new Date(date)
+          thisDate.setHours(...interval)
+          acc.push(this.renderHTML(thisDate))
+        })
+        return acc
+      }, [])
+
+      if (isNext == true) { return htmlArr } else { return htmlArr.reverse() }
+    },
+    attachEvents: function () {
+      $('[data-switch-time]').click(function () {
+        let attr = $(this).attr('data-switch-time')
+        switch (attr) {
+          case 'next':
+            bookModal.dateTime.appendBoxes(bookModal.dateTime.getDates(true))
+            break;
+          case 'prev':
+            if ([...document.querySelectorAll('.book-sell__date-box')][0])
+              bookModal.dateTime.appendBoxes(bookModal.dateTime.getDates(false))
+            break;
+        }
+      }),
+        $(document).on('click', '.book-sell__date-box', function () {
+          $(this).toggleClass(IS_ACTIVE).siblings().removeClass(IS_ACTIVE)
+          bookModal.observer()
+        })
+    }
+  },
+
+  observer: function () {
+    switch (this.step) {
+      case 1:
+        let activeDate = $('.book-sell__date-box').filter(`.${IS_ACTIVE}`)
+        if (activeDate.length) {
+          this.apptData.date = new Date(activeDate.attr('data-time'))
+          this.evtNextStep.attr('disabled', false)
+        } else {
+          delete this.apptData.date
+          this.evtNextStep.attr('disabled', true)
+        }
+        break;
+      case 2:
+        if (this.inputName.value && this.inputEmail.value && this.inputPhone.value && this.apptData.date) {
+          this.evtNextStep.attr('disabled', false)
+        } else {
+          this.evtNextStep.attr('disabled', true)
+        }
+        break;
+      case 3:
+        this.confirmName.innerHTML = this.apptData.name
+        this.confirmEmail.innerHTML = this.apptData.email
+        this.confirmPhone.innerHTML = this.apptData.phone
+        this.confirmDate.innerHTML = `${this.apptData.date.getDate()}${getOrdinalTxt(this.apptData.date.getDate())} ${this.apptData.date.toLocaleDateString('en-US', { month: 'long' })}`
+        this.confirmTime.innerHTML = this.apptData.date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' })
+        break;
+    }
+  },
+  reset: function () {
+    bookModal.step = 1
+    let inputArr = [this.inputName, this.inputEmail, this.inputPhone]
+    inputArr.forEach((el) => { el.value = '' })
+    $('.book-sell__date-box').removeClass(IS_ACTIVE)
+    bookModal.sectionConfirm.hide()
+    bookModal.sectionPersonal.hide()
+    bookModal.sectionDate.show()
+    Object.values(bookModal.apptData).forEach((el) => {
+      delete el
+    })
+    $('.book-sell__date-box').remove()
+    bookModal.observer()
+  }
+}
+const sellPage = {
+  faqItems: [...document.querySelectorAll('.sell-faq-item')],
+  init: function () {
+    if (this.faqItems.length) {
+      this.attachFaq()
+      $('.sell-faq-item__main').eq(0).trigger('click')
+    }
+  },
+  attachFaq: function () {
+    this.faqItems.forEach((el, index) => {
+      $(el).click(function () {
+        let main = $(this).find('.sell-faq-item__main'),
+          p = $(this).find('p'), svg = $(this).find('svg')
+        if (main.height() == 0) {
+          $(this).addClass(IS_ACTIVE)
+          main.css({ height: `${p[0].scrollHeight}px` })
+          svg.css({ transform: 'rotate(180deg)' })
+        } else {
+          $(this).removeClass(IS_ACTIVE)
+          main.css({ height: `0px` })
+          svg.css({ transform: 'rotate(0deg)' })
+        }
+      })
+    })
+  }
+}
+/* #endregion */
+
+
+/* #region rootLoader */
+const rootLoader = new Object({
+  class: 'root_loader',
+  renderHTML: () => { return `<div class=${rootLoader.class}></div>` },
+  isExist: () => { return $(document).find(`.${rootLoader.class}`).length ? true : false },
+
+  push: function (noLock = false) {
+    if (!noLock) { lockScroll() }
+    if (!this.isExist()) { $body.append(rootLoader.renderHTML()) }
+  },
+  remove: function (noUnlock = false) {
+    if (!noUnlock) unlockScroll();
+    if (this.isExist()) { $(document).find(`.${rootLoader.class}`).remove() }
+  }
+})
+/* #endregion */
+
 const initPageObjects = () => {
   const objArr = [
     header,
@@ -2020,7 +2322,9 @@ const initPageObjects = () => {
     myBag,
     account,
     locationPage,
-    pageAlerts
+    pageAlerts,
+    sellPage,
+    bookModal
   ];
 
   for (let i = 0; i < objArr.length; i++) {

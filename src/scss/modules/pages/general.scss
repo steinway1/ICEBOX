@@ -78,7 +78,7 @@
       grid-row-gap: 10px;
       padding: 10px;
     }
-  
+
     span {
       padding-top: 12px;
       padding-bottom: 12px;
@@ -90,4 +90,54 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.root_loader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99999;
+  background-color: rgba(9, 11, 13, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::after {
+    content: 'MOMENT...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(calc(-50% + 46px));
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    --bg:no-repeat linear-gradient(#ffffff 0 0);
+    background: 
+      var(--bg),var(--bg),var(--bg),
+      var(--bg),var(--bg),var(--bg),
+      var(--bg),var(--bg),var(--bg);
+    background-size: 6px 6px;
+    animation: 
+      rootLoaderAnimation1 1.4s infinite,
+      rootLoaderAnimation2 1.4s infinite;
+  }
+}
+
+@keyframes rootLoaderAnimation1 {
+  0%,100% {width:20px;height: 20px;}
+  35%,65% {width:36px;height: 36px;}
+}
+@keyframes rootLoaderAnimation2 {
+  0%,40%  {background-position: 0 0,0 50%, 0 100%,50% 100%,100% 100%,100% 50%,100% 0,50% 0,  50% 50% }
+  60%,100%{background-position: 0 50%, 0 100%,50% 100%,100% 100%,100% 50%,100% 0,50% 0,0 0,  50% 50% }
 }

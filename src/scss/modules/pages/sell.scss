@@ -1062,6 +1062,10 @@
   align-items: center;
   display: flex;
 
+  svg {
+    transition: all 400ms ease;
+  }
+
   h5 {
     font-size: 16px;
     font-weight: 700;
@@ -1076,6 +1080,22 @@
   padding-bottom: 22px;
   position: relative;
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none; 
+  transition: all 200ms ease;
+
+  &.is-active {
+    border-color: #0095c6;
+    z-index: 3;
+  }
+
+  &:hover {
+    z-index: 2;
+    border-color: #0095c6;
+  }
 
   p {
     font-size: 15px;
@@ -1086,17 +1106,21 @@
 .sell-faq-item__main {
   height: 0px;
   overflow: hidden;
+  transition: all 400ms ease;
 }
 
 .sell-faq__main {
   flex-direction: column;
   display: flex;
 
-  .sell-faq-item:first-child {
-    .sell-faq-item__main {
-      height: auto !important;
-    }
-  }
+  // .sell-faq-item:first-child {
+  //   .sell-faq-item__main {
+  //     height: auto;
+  //   }
+  //   svg {
+  //     transform: rotate(180deg);
+  //   }
+  // }
 }
 
 .sell-faq__head {

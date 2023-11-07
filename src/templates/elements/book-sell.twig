@@ -1,0 +1,106 @@
+<div class="book-sell">
+	<div data-evt="toggleBookModal" class="book-sell__backdrop"></div>
+	<div
+		class="book-sell__container">
+
+		{# Header #}
+		<div class="book-sell__header">
+			<h3>Book an In-Store Appointment</h3>
+			<p>We will evaluate your items with you in-store within 15 minutes and pay cash on the spot!</p>
+			<button data-evt="toggleBookModal" class="book-sell__close-btn">
+				<svg width="14" height="14" viewbox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M2 2L26 26" stroke="currentColor" stroke-width="3"></path>
+					<path d="M26 2L2 26" stroke="currentColor" stroke-width="3"></path>
+				</svg>
+			</button>
+		</div>
+
+		<div class="book-sell__main">
+			<div
+				class="book-sell__content">
+
+				{# Select Date & Time #}
+				<div id="bookSectionDate" class="book-sell__section">
+					<h5 class="book-sell__section-heading">Select Date &amp; Time</h5>
+					<div class="book-sell__section-content">
+						<div id="bookSellDates" class="book-sell__section-grid"></div>
+					</div>
+					<div class="book-sell__section-controls">
+						<button data-switch-time="prev">
+							<svg width="20" height="20" viewbox="0 0 43 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M43 12H3" stroke="currentColor" stroke-width="3"></path>
+								<path d="M13.5 1.5L3 12L13.5 22.5" stroke="currentColor" stroke-width="3"></path>
+							</svg>
+							<span>Prev</span>
+						</button>
+						<button data-switch-time="next">
+							<span>Next</span>
+							<svg width="20" height="20" viewbox="0 0 43 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M0 12H40" stroke="currentColor" stroke-width="3"></path>
+								<path d="M29.5 1.5L40 12L29.5 22.5" stroke="currentColor" stroke-width="3"></path>
+							</svg>
+						</button>
+					</div>
+				</div>
+
+				{# Personal Information #}
+				<div id="bookSectionPersonal" class="book-sell__section">
+					<h5 class="book-sell__section-heading">Personal Information</h5>
+					<div class="book-sell__section-content">
+						<div class="book-sell__inputs">
+							<div class="book-sell__input-wrap">
+								<label for="bookFullName">Full Name</label>
+								<input type="text" id="bookFullName">
+							</div>
+							<div class="book-sell__input-wrap">
+								<label for="bookEmail">Email Address</label>
+								<input type="text" id="bookEmail">
+							</div>
+							<div class="book-sell__input-wrap">
+								<label for="bookPhone">Phone Number</label>
+								<input id="bookPhone" type="tel" data-input="tel" autocorrect="off" spellcheck="false" required="" autocomplete="off" data-intl-tel-input-id="2">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{# Confirmation #}
+				<div id="bookSectionConfirm" class="book-sell__section">
+					<h5 class="book-sell__section-heading">
+						<span>Great!</span>We&#x27;re Almost Done.
+					</h5>
+					<div class="book-sell__section-content">
+						<div class="book-sell__summary">
+							<div class="book-sell__summary-row">Full Name<span id="bookConfirmName">Anna Steinway</span>
+							</div>
+							<div class="book-sell__summary-row">Email Address<span id="bookConfirmEmail">annasteinway1@gmail.com</span>
+							</div>
+							<div class="book-sell__summary-row">Phone Number<span id="bookConfirmPhone">89003403300</span>
+							</div>
+							<div class="book-sell__summary-row">Date<span id="bookConfirmDate">7th November</span>
+							</div>
+							<div class="book-sell__summary-row">Time<span id="bookConfirmTime">11:30 AM</span>
+							</div>
+						</div>
+						<div class="book-sell__store">
+							<img src="./assets/store3-atlanta.webp" loading="lazy" alt="">
+							<div class="book-sell__store-details">
+								<h6>Atlanta Flagship Store</h6>
+								<p>3255 Peachtree Rd NE<br>Suite #2<br>Atlanta, GA 30305</p>
+								<a href="#">Open on Google Maps</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+		{# Footer #}
+		<div class="book-sell__footer">
+			<button class="book-sell__btn" data-evt="bookModalBack">Get Back</button>
+			<button class="book-sell__btn" data-evt="bookModalNext" disabled>Continue</button>
+		</div>
+	</div>
+</div>
