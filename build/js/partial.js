@@ -99,8 +99,7 @@ const initTelInput = () => {
       initialCountry: "auto",
       preferredCountries: ["us", "gb", "br", "cn", "es", "it"],
       autoPlaceholder: "aggressive",
-      utilsScript:
-        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/js/utils.js",
+      utilsScript:"/assets/public-2020/js/plugins/phone/utils.js",
       geoIpLookup: function (callback) {
         fetch("https://ipinfo.io/json", {
           cache: "reload",
@@ -2574,3 +2573,84 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   initValidators()
 })
+
+/* LOGIN WITH PHONE NUMBER */
+$(document).ready(function(){
+  $('#btn_confirm_otp').on('click',function(){
+    confirmLoginOtp();
+  });
+  $('#resend-otp-btn').on('click',function(){
+    resendOtp();
+  });
+  $('#frm_login_otp').on('submit',function(e){
+    var phoneField =  document.querySelector('#phone_input_Login');
+    var iti = window.intlTelInputGlobals.getInstance(phoneField);
+    e.preventDefault();
+    var fullPhone = iti.getNumber();
+    var countryCode = '+' + iti.getSelectedCountryData().dialCode;
+    var phone = fullPhone.replace(countryCode,'');
+    var btn = $(e.target).find(".js-loading-btn");
+    $('#otp_phone').val(phone);
+    $('#otp_country').val(countryCode);
+    $.ajax({
+      url:'/send-otp',
+      type:'POST',
+      data:{country_code:countryCode,phone_number:phone},
+      success:function(data){
+        var r = $.parseJSON(data);
+        var MsgClass = (r.error) ? 'is-failed':'is-successful';
+        showAlternativeBtnText(btn,r.msg,MsgClass);
+        if(!r.error){
+          $('.sign-modal__phone-span').html(fullPhone);
+          signModal.switch('code');
+        }
+      }
+
+    });
+  });
+});
+
+
+function confirmLoginOtp(){
+  var otp = $('#otp_1').val() + $('#otp_2').val() + $('#otp_3').val() + $('#otp_4').val();
+  var phone = $('#otp_phone').val();
+  var countryCode  = $('#otp_country').val();
+  var btn = '#btn_confirm_otp';
+
+
+  if(otp != '' && otp.length == 4){
+    $(btn).appendButtonLoadingState();
+    $.ajax({
+      url:'/confirm-otp',
+      type:'POST',
+      data:{country_code:countryCode,phone_number:phone,otp_code:otp},
+      success:function(data){
+        var r = $.parseJSON(data);
+        var MsgClass = (r.error) ? 'is-failed':'is-successful';
+        showAlternativeBtnText(btn,r.msg,MsgClass);
+        if(!r.error){
+          window.location.reload();
+        }
+      }
+    });
+  }else{
+    showAlternativeBtnText(btn,'Enter 4 digits OTP','is-failed');
+  }
+}
+
+function resendOtp(){
+  var phone = $('#otp_phone').val();
+  var countryCode  = $('#otp_country').val();
+  var btn = '#resend-otp-btn';
+  $(btn).appendButtonLoadingState();
+  $.ajax({
+    url:'/resend-otp',
+    type:'POST',
+    data:{country_code:countryCode,phone_number:phone},
+    success:function(data){
+      var r = $.parseJSON(data);
+      var MsgClass = (r.error) ? 'is-failed':'is-successful';
+      showAlternativeBtnText(btn,r.msg,MsgClass);
+    }
+  })
+}
