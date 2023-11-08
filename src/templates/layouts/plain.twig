@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+	<head>
+		{% include '../page-components/head.twig' %}
+		{{ block('include_head') }}
+	</head>
+
+
+	<body>
+
+
+		<main
+    {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
+		</main>
+		{% include "../page-components/scripts.twig" %}
+		{{ block('include_script') }}
+	</body>
+
+</html>

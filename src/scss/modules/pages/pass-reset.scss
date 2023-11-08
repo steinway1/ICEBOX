@@ -1,0 +1,342 @@
+.pass-reset-page {
+  color: #171c29;
+  line-height: 22px;
+  word-spacing: 0px;
+
+  h2 {
+    font-weight: 600;
+    text-align: center;
+    font-size: 30px;
+    line-height: 40px;
+  }
+}
+
+.pass-reset-page p {
+  font-size: 14px;
+  letter-spacing: 0px;
+}
+
+.pass-reset-page input {
+  width: 100%;
+  padding: 12px;
+  transition: all 200ms ease;
+}
+
+.pass-reset-page input::placeholder {
+  font-size: 14px;
+}
+
+#passResetForm.is-disabled {
+  pointer-events: none;
+}
+
+.pass-reset-loader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  background-color: #42bae2;
+  width: 0%;
+  height: 100%;
+  border-radius: 50px;
+  transition: all 300ms ease;
+}
+
+.pass-reset-btn {
+  height: 46px;
+  min-width: 200px;
+  font-size: 14px;
+  color: #fff;
+  overflow: hidden;
+  background-color: #0095c6;
+  transform-origin: center;
+  border-radius: 5px;
+  letter-spacing: 0px;
+  justify-content: center;
+  align-items: center;
+  padding: 0 !important;
+  font-weight: 600;
+  line-height: 0px !important;
+  display: flex;
+  box-shadow: 0 16px 48px rgba(0, 149, 198, .2);
+  transition: all 300ms ease;
+  outline: 0;
+  border: 0;
+}
+
+.pass-reset-btn:hover {
+  background-color: #21abd8;
+  color: white;
+}
+
+.pass-reset-btn:active {
+  transform: scale(0.99);
+}
+
+.pass-reset-error {
+  position: absolute;
+  left: 50%;
+  bottom: -34px;
+  transform: translateX(-50%) translateY(14px);
+  color: #c02942;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  transition: all 200ms ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pass-reset__result .pass-reset-btn {
+  margin-top: 18px;
+}
+
+.pass-reset__input-holder {
+  position: relative;
+}
+
+.pass-reset__result {
+  transition: all .4s cubic-bezier(.39, .575, .565, 1);
+  display: none;
+  position: relative;
+  transform: none;
+}
+
+.pass-reset__logo-link {
+  z-index: 4;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: 10vh;
+}
+
+.pass-reset__background>div:nth-child(4) {
+  height: 68px;
+  opacity: .76;
+  background-image: linear-gradient(194deg, rgba(0, 149, 198, .22), rgba(249, 250, 251, 0) 84%);
+  margin-right: 40%;
+}
+
+.pass-reset__background>div:nth-child(2) {
+  height: 74px;
+  opacity: .44;
+  background-image: linear-gradient(194deg, rgba(0, 149, 198, .22), rgba(18, 167, 216, .64) 40%, rgba(249, 250, 251, 0) 84%);
+  margin-left: 20%;
+}
+
+.pass-reset-page {
+  z-index: 1;
+  background-color: #fafdff;
+  background-image: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  transition: all .45s;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.pass-reset__main-title-group {
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+  display: flex;
+}
+
+.pass-reset__content {
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  max-width: 380px;
+  justify-content: center;
+  align-items: center;
+  transition: all .45s cubic-bezier(.39, .575, .565, 1);
+  display: flex;
+  position: relative;
+}
+
+.pass-reset__footer>span {
+  color: rgba(23, 28, 41, .6);
+}
+
+.pass-reset__input-group {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  flex-direction: column;
+  display: flex;
+  position: relative;
+}
+
+.pass-reset__background {
+  z-index: 2;
+  width: 100%;
+  opacity: .4;
+  position: absolute;
+  top: 8%;
+  transform: skew(0deg, -14deg);
+}
+
+.pass-reset__background>div:nth-child(1) {
+  height: 24px;
+  opacity: .23;
+  background-image: linear-gradient(194deg, rgba(0, 149, 198, .22), rgba(56, 190, 235, .6) 37%, rgba(249, 250, 251, 0) 84%);
+  margin-left: 40%;
+}
+
+.pass-reset__background>div:nth-child(3) {
+  width: 100%;
+  height: 20vh;
+  opacity: 1;
+  background-color: #f5fafd;
+  background-image: linear-gradient(23deg, rgba(0, 149, 198, .15), #effaff 78%);
+  transform: none;
+}
+
+.pass-reset__input-holder>input[type='password'] {
+  height: 50px;
+  background-color: #fff;
+  border: 1px solid #ced6df;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.pass-reset__input-holder>input[type='password'].is-empty {
+  border: 1px solid #e28e9d;
+  background-color: rgba(240, 30, 68, 0.05);
+}
+
+.pass-reset__input-holder>input[type='password']:hover,
+.pass-reset__input-holder>input[type='password']:focus {
+  border-color: #0095c6;
+}
+
+.pass-reset__input-holder>input[type='password']::-ms-input-placeholder {
+  color: #868d90;
+}
+
+.pass-reset__input-holder>input[type='password']::placeholder {
+  color: #868d90;
+}
+
+.pass-reset__footer {
+  z-index: 4;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  transition: all .4s cubic-bezier(.39, .575, .565, 1);
+  display: flex;
+  position: absolute;
+  bottom: 10vh;
+}
+
+.pass-reset__footer>a {
+  color: #171c29;
+  border-bottom: 1px solid #171c29;
+  padding-bottom: 1px;
+  font-weight: 600;
+}
+
+.pass-reset__footer>a:hover {
+  color: #0095c6;
+}
+
+.pass-reset__main {
+  z-index: 4;
+  width: 100%;
+  max-width: 460px;
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+  transition: all .4s cubic-bezier(.39, .575, .565, 1);
+  position: relative;
+}
+
+.pass-reset__input-holder>label {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  text-transform: capitalize;
+  background-color: rgba(255, 255, 255, .01);
+  background-image: none;
+  margin-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 18px;
+  display: none;
+  position: absolute;
+  top: -8px;
+  left: 8px;
+}
+
+.pass-reset__main-title-group p,
+.pass-reset__result p {
+  width: 100%;
+  max-width: 300px;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 991px) {
+  .pass-reset__input-holder>input[type='password']:hover {
+    border-color: #d5dce4;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .pass-reset__background>div:nth-child(3) {
+    height: 10vh;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .pass-reset__logo-link {
+    top: 4vh;
+  }
+
+  .pass-reset__background>div:nth-child(2) {
+    height: 84px;
+    margin-left: -122%;
+  }
+
+  .pass-reset-page {
+    background-image: radial-gradient(circle farthest-side at 0 100%, rgba(7, 160, 211, .06), rgba(255, 255, 255, 0) 45%);
+  }
+
+  .pass-reset__background {
+    opacity: .3;
+    top: 16%;
+  }
+
+  .pass-reset__background>div:nth-child(1) {
+    margin-left: -48%;
+  }
+
+  .pass-reset__background>div:nth-child(3) {
+    height: 50px;
+  }
+
+  .pass-reset__input-holder>input[type='password'] {
+    border-radius: 0;
+  }
+
+  .pass-reset__footer {
+    bottom: 4vh;
+  }
+}
