@@ -50,6 +50,7 @@ const root = {
     scss: './src/scss/*.scss',
     js: {
       _: './src/js/*.js',
+      plugins: './src/js/plugins/**',
       lib: {
         jquery: './src/js/jquery.js',
         jqueryCrs: './src/js/jquery.crs.min.js',
@@ -79,6 +80,7 @@ const root = {
     html: './dev/html/',
     css: './dev/css/',
     js: './dev/js/',
+    jsPlugins: './dev/js/plugins/',
     assets: './dev/assets/',
     fonts: './dev/fonts/'
   }
@@ -178,6 +180,16 @@ gulp.task('js-promo:dev',
       .pipe(minify())
       .pipe(gulp.dest(root.dev.js))
   })
+
+gulp.task('js-plugins:dev',
+  () => {
+    return gulp
+      .src(root.src.js.plugins)
+      .pipe(plumber(setPlumberNotify('JS-PLUGIN')))
+      .pipe(fileInclude(settings.fileInclude))
+      .pipe(gulp.dest(root.dev.jsPlugins))
+  }
+)
 
 gulp.task('assets:dev',
   () => {

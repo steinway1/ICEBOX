@@ -49,6 +49,7 @@ const root = {
     scss: './src/scss/*.scss',
     js: {
       _: './src/js/*.js',
+      plugins: './src/js/plugins/**',
       lib: {
         jquery: './src/js/jquery.js',
         jqueryCrs: './src/js/jquery.crs.min.js',
@@ -78,6 +79,7 @@ const root = {
     html: './build/html/',
     css: './build/css/',
     js: './build/js/',
+    jsPlugins: './build/js/plugins/',
     assets: './build/assets/',
     fonts: './build/fonts/'
   }
@@ -176,6 +178,16 @@ gulp.task('js:build',
       .pipe(minify())
       .pipe(gulp.dest(root.build.js))
   })
+
+  gulp.task('js-plugins:build',
+  () => {
+    return gulp
+      .src(root.src.js.plugins)
+      .pipe(plumber(setPlumberNotify('JS-PLUGIN')))
+      .pipe(fileInclude(settings.fileInclude))
+      .pipe(gulp.dest(root.build.jsPlugins))
+  }
+)
 
 gulp.task('assets:build',
   () => {
