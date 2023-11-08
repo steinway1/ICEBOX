@@ -100,7 +100,7 @@ const initTelInput = () => {
       preferredCountries: ["us", "gb", "br", "cn", "es", "it"],
       autoPlaceholder: "aggressive",
       utilsScript:
-        "./js/plugins/phone/utils.js",
+        "/assets/public-2020/js/plugins/phone/utils.js",
       geoIpLookup: function (callback) {
         fetch("https://ipinfo.io/json", {
           cache: "reload",
