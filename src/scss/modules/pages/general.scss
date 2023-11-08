@@ -12,7 +12,7 @@
     font-size: 13px;
     font-weight: 600;
     text-decoration: none;
-    position: absolute;
+    position: static;
     top: auto;
     bottom: 0%;
     left: 0%;
@@ -20,8 +20,9 @@
   }
 
   img {
-    mix-blend-mode: darken;
+    // mix-blend-mode: darken;
     position: relative;
+    width: 100%;
 
     @include maxWidthXs {
       width: 100%;
@@ -29,19 +30,16 @@
   }
 
   a {
-    background-color: #f9f9f9;
-    border: 1px solid #f9f9f9;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
     flex: 1;
     justify-content: center;
     align-items: center;
-    padding: 18px 0 36px;
+    padding: 0px;
     transition: all .25s cubic-bezier(.39, .575, .565, 1);
     display: flex;
+    flex-direction: column;
     position: relative;
-
-    @include maxWidthMd {
-      padding-top: 30px;
-    }
 
     @include maxWidthSm {
       min-width: 30%;
@@ -49,8 +47,6 @@
 
     @include maxWidthXs {
       min-width: 45%;
-      padding-top: 20px;
-      padding-bottom: 36px;
     }
   }
 
