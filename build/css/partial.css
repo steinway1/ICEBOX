@@ -6248,7 +6248,7 @@ a {
 }
 
 .zoom-modal__container {
-  z-index: 1;
+  z-index: 3;
   height: 100%;
   background-color: #fff;
   flex-direction: column;
@@ -6267,6 +6267,10 @@ a {
   align-items: center;
   display: flex;
   flex: 1;
+}
+
+.zoom-modal__thumb img {
+  max-width: 58px;
 }
 
 .zoom-modal__thumb .splide__slide {
@@ -6322,6 +6326,15 @@ a {
   right: 0%;
 }
 
+.zoom-modal__holder > span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
 .zoom-modal__arrow {
   justify-content: center;
   align-items: center;
@@ -6362,7 +6375,7 @@ a {
   left: auto;
   right: 6px;
   background-image: url('data:image/svg+xml,<svg width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.0002 15.2676L1.88398 26.3839L0.116211 24.6161L11.2324 13.4999L0.116402 2.38386L1.88417 0.616089L13.0002 11.7321L24.1162 0.616089L25.884 2.38386L14.768 13.4999L25.8842 24.6161L24.1164 26.3839L13.0002 15.2676Z" fill="black"/></svg>');
-  background-size: 18px 18px;
+  background-size: 14px 14px;
   background-repeat: no-repeat;
   background-position: center center;
 }
