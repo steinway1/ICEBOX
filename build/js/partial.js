@@ -100,7 +100,7 @@ const initTelInput = () => {
       preferredCountries: ["us", "gb", "br", "cn", "es", "it"],
       autoPlaceholder: "aggressive",
       utilsScript:
-        "/assets/public-2020/js/plugins/phone/utils.js",
+        "./assets/public-2020/js/plugins/phone/utils.js",
       geoIpLookup: function (callback) {
         fetch("https://ipinfo.io/json", {
           cache: "reload",
@@ -278,20 +278,19 @@ const header = {
     this.loginLink = $('.login-nav__link')
   },
   bindEvents: function () {
-    this.loginBtn.on({
-      mouseenter: () => {
-        Object.assign(header.loginDropdown[0].style, {
-          display: "block",
-          opacity: 1,
-        });
-      },
-      mouseleave: () => {
-        Object.assign(header.loginDropdown[0].style, {
-          display: "none",
-          opacity: 0,
-        });
-      },
-    });
+    this.loginBtn.on('mouseover mouseleave', function (evt) {
+      let dd = header.loginDropdown
+      if (dd.length) {
+        switch (evt.type) {
+          case 'mouseover':
+            dd.css({ display: 'block', opacity: 1 })
+            break;
+          case 'mouseleave':
+            dd.css({ display: 'none', opacity: 0 })
+            break;
+        }
+      }
+    })
     this.loginLink.click(function (e) {
       e.stopPropagation()
     })
