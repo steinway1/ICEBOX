@@ -58,6 +58,7 @@ const signModal = new Object({
     this.renderDOM();
     this.bindEvents();
     this.attachSumbitEvents()
+    this.attachOTP()
   },
   renderDOM: function () {
     this._ = $(".sign-modal");
@@ -68,6 +69,7 @@ const signModal = new Object({
     this.evtToggle = Array.from($('[data-evt="toggleSign"], .js-toggle-sign'));
     this.evtTogglePassVisible = $('[data-evt="togglePasswordVisible"]');
     this.evtSwitch = $("[data-sign-switch]");
+    this.genderButton = $('.sign-modal__gender-select')
 
     this.view = $(".sign-modal-view");
     this.viewLogin = this.view.filter("#loginSignIn");
@@ -106,11 +108,54 @@ const signModal = new Object({
       e.preventDefault();
       signModal.switch(att);
     });
+    this.genderButton.click(function () {
+      $(this).siblings().removeClass(IS_ACTIVE)
+      $(this).addClass(IS_ACTIVE)
+      let attr = $(this).attr('data-gender')
+      $('#signup_gender').val(attr)
+    })
     // Button Loading State
     // this.submitBtn.click(function (e) {
     //   e.preventDefault();
     //   $(this).appendButtonLoadingState();
     // });
+  },
+  attachOTP: function () {
+    const inputs = document.querySelectorAll('.signmodal-otp');
+
+    inputs.forEach((input, index) => {
+      input.dataset.index = index;
+      input.addEventListener('keyup', handleOtp);
+      input.addEventListener('paste', handleOnPasteOtp);
+    });
+
+    function handleOtp(e) {
+      const input = e.target;
+      let value = input.value;
+      let isValidInput = value.match(/[0-9a-z]/gi);
+      input.value = "";
+      input.value = isValidInput ? value[0] : "";
+
+      let fieldIndex = input.dataset.index;
+      if (fieldIndex < inputs.length - 1 && isValidInput) {
+        input.nextElementSibling.focus();
+      }
+
+      if (e.key === 'Backspace' && fieldIndex > 0) {
+        input.previousElementSibling.focus();
+      }
+
+      if (fieldIndex == inputs.length - 1 && isValidInput) {
+      }
+    }
+
+    function handleOnPasteOtp(e) {
+      const data = e.clipboardData.getData('text');
+      const value = data.split("");
+      if (value.length === inputs.length) {
+        inputs.forEach((input, index) => (input.value = value[index]));
+      }
+    }
   },
   attachSumbitEvents: function () {
     const arr = this.formsArr
@@ -206,32 +251,32 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 /* LOGIN WITH PHONE NUMBER */
-$(document).ready(function(){
-  $('#btn_confirm_otp').on('click',function(){
+$(document).ready(function () {
+  $('#btn_confirm_otp').on('click', function () {
     confirmLoginOtp();
   });
-  $('#resend-otp-btn').on('click',function(){
+  $('#resend-otp-btn').on('click', function () {
     resendOtp();
   });
-  $('#frm_login_otp').on('submit',function(e){
-    var phoneField =  document.querySelector('#phone_input_Login');
+  $('#frm_login_otp').on('submit', function (e) {
+    var phoneField = document.querySelector('#phone_input_Login');
     var iti = window.intlTelInputGlobals.getInstance(phoneField);
     e.preventDefault();
     var fullPhone = iti.getNumber();
     var countryCode = '+' + iti.getSelectedCountryData().dialCode;
-    var phone = fullPhone.replace(countryCode,'');
+    var phone = fullPhone.replace(countryCode, '');
     var btn = $(e.target).find(".js-loading-btn");
     $('#otp_phone').val(phone);
     $('#otp_country').val(countryCode);
     $.ajax({
-      url:'/send-otp',
-      type:'POST',
-      data:{country_code:countryCode,phone_number:phone},
-      success:function(data){
+      url: '/send-otp',
+      type: 'POST',
+      data: { country_code: countryCode, phone_number: phone },
+      success: function (data) {
         var r = $.parseJSON(data);
-        var MsgClass = (r.error) ? 'is-failed':'is-successful';
-        showAlternativeBtnText(btn,r.msg,MsgClass);
-        if(!r.error){
+        var MsgClass = (r.error) ? 'is-failed' : 'is-successful';
+        showAlternativeBtnText(btn, r.msg, MsgClass);
+        if (!r.error) {
           $('.sign-modal__phone-span').html(fullPhone);
           signModal.switch('code');
         }
@@ -242,46 +287,46 @@ $(document).ready(function(){
 });
 
 
-function confirmLoginOtp(){
+function confirmLoginOtp() {
   var otp = $('#otp_1').val() + $('#otp_2').val() + $('#otp_3').val() + $('#otp_4').val();
   var phone = $('#otp_phone').val();
-  var countryCode  = $('#otp_country').val();
+  var countryCode = $('#otp_country').val();
   var btn = '#btn_confirm_otp';
 
 
-  if(otp != '' && otp.length == 4){
+  if (otp != '' && otp.length == 4) {
     $(btn).appendButtonLoadingState();
     $.ajax({
-      url:'/confirm-otp',
-      type:'POST',
-      data:{country_code:countryCode,phone_number:phone,otp_code:otp},
-      success:function(data){
+      url: '/confirm-otp',
+      type: 'POST',
+      data: { country_code: countryCode, phone_number: phone, otp_code: otp },
+      success: function (data) {
         var r = $.parseJSON(data);
-        var MsgClass = (r.error) ? 'is-failed':'is-successful';
-        showAlternativeBtnText(btn,r.msg,MsgClass);
-        if(!r.error){
+        var MsgClass = (r.error) ? 'is-failed' : 'is-successful';
+        showAlternativeBtnText(btn, r.msg, MsgClass);
+        if (!r.error) {
           window.location.reload();
         }
       }
     });
-  }else{
-    showAlternativeBtnText(btn,'Enter 4 digits OTP','is-failed');
+  } else {
+    showAlternativeBtnText(btn, 'Enter 4 digits OTP', 'is-failed');
   }
 }
 
-function resendOtp(){
+function resendOtp() {
   var phone = $('#otp_phone').val();
-  var countryCode  = $('#otp_country').val();
+  var countryCode = $('#otp_country').val();
   var btn = '#resend-otp-btn';
   $(btn).appendButtonLoadingState();
   $.ajax({
-    url:'/resend-otp',
-    type:'POST',
-    data:{country_code:countryCode,phone_number:phone},
-    success:function(data){
+    url: '/resend-otp',
+    type: 'POST',
+    data: { country_code: countryCode, phone_number: phone },
+    success: function (data) {
       var r = $.parseJSON(data);
-      var MsgClass = (r.error) ? 'is-failed':'is-successful';
-      showAlternativeBtnText(btn,r.msg,MsgClass);
+      var MsgClass = (r.error) ? 'is-failed' : 'is-successful';
+      showAlternativeBtnText(btn, r.msg, MsgClass);
     }
   })
 }

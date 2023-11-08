@@ -99,7 +99,8 @@ const initTelInput = () => {
       initialCountry: "auto",
       preferredCountries: ["us", "gb", "br", "cn", "es", "it"],
       autoPlaceholder: "aggressive",
-      utilsScript:"/assets/public-2020/js/plugins/phone/utils.js",
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/js/utils.js",
       geoIpLookup: function (callback) {
         fetch("https://ipinfo.io/json", {
           cache: "reload",
@@ -273,6 +274,8 @@ const header = {
     // Search
     this.searchBtn = $('[data-evt="toggleSearch"]');
     this.searchBlock = $(".header-search");
+
+    this.loginLink = $('.login-nav__link')
   },
   bindEvents: function () {
     this.loginBtn.on({
@@ -289,6 +292,9 @@ const header = {
         });
       },
     });
+    this.loginLink.click(function(e) {
+      e.stopPropagation()
+    })
     this.searchBtn.click(() => {
       const overlay = new contentBackdrop();
       let el = header.searchBlock;
@@ -1603,7 +1609,6 @@ if (typeof productSplide.init === "function") {
 }
 /* #endregion */
 
-
 /* #region  Filter Modal */
 const filterModal = {
   init: function () {
@@ -2223,12 +2228,15 @@ const rootLoader = new Object({
 /* #endregion */
 
 
+/* #region pageReset */
 const passReset = {
   IS_EMPTY: 'is-empty',
   IS_DISABLED: 'is-disabled',
   init: function () {
-    if ($('.pass-reset-page').length) {this.renderDOM()
-      this.bindEvents() }
+    if ($('.pass-reset-page').length) {
+      this.renderDOM()
+      this.bindEvents()
+    }
   },
   renderDOM: function () {
     this.form = $('#passResetForm')
@@ -2323,6 +2331,8 @@ const passReset = {
     Object.assign(this.error[0].style, { color: '#088d7b', opacity: 1, transform: 'translateX(-50%) translateY(0px)' })
   }
 }
+/* #endregion */
+
 
 const initPageObjects = () => {
   const objArr = [
@@ -2367,6 +2377,117 @@ document.addEventListener("DOMContentLoaded", function () {
   initPageObjects();
   initTelInput();
 })
+
+
+// document.addEventListener('DOMContentLoaded', function () {
+
+//   function createProductZoom() {
+//     /* #region Setting Object */
+//     const product = {};
+//     (function setName() {
+//       product.name = document.querySelector('#item_name').innerHTML;
+//     })();
+
+//     (function setPrices() {
+//       product.price = [[...document.querySelectorAll('.product__item-price')].map((el) => {
+//         return el.innerHTML.replaceAll(/[^0-9]/g, '')
+//       })]
+//     })();
+
+//     (function setColor() {
+//       const color = [...document.querySelectorAll('[data-color]')].filter((el) => el.classList.contains('is-active'))[0].getAttribute('data-color')
+//       return product.color = color
+//     })();
+
+//     (function setMedia() {
+//       product.media = []
+//       let media = Array.from(document.querySelectorAll('.product__desktop-viewer')).filter((el) => { if (el.style.display !== 'none') { return el } })[0].querySelectorAll('.product-media')
+
+//       media.forEach((el) => {
+//         let imgSrc = el.querySelector('img').getAttribute('src')
+//         if (!/(placeholder|store|pay)/gi.test(imgSrc)) { product.media.push(imgSrc) }
+//       })
+//     })();
+//     /* #endregion */
+
+
+//     const renderHtml = () => {
+
+//       this.prices = () => {
+//         let arr = product.price.flat(Infinity)
+//         if (arr.length == 1) {
+//           return `
+//           <div class="zoom-modal__price-wrap">
+//             <span>$${new Intl.NumberFormat('en-US').format(arr[0])}</span>
+//           </div>
+//           `
+//         } else {
+//           return `
+//           <div class="zoom-modal__price-wrap is-sale">
+//             <span>$${new Intl.NumberFormat('en-US').format(arr[0])}</span>
+//             <span>$${new Intl.NumberFormat('en-US').format(arr[1])}</span>
+//           </div>
+//           `
+//         }
+//       }
+
+
+//       return `
+//       <div class="zoom-modal">
+// 	<div class="zoom-modal__holder">
+// 		<div class="zoom-modal__container">
+// 			<button data-evt="toggleMenu" class="zoom-modal__close-btn"></button>
+// 			<div class="zoom-modal__media">
+// 				<div class="zoom-slider splide">
+// 					<div class="zoom-modal__media-wrap">
+// 						<div class="zoom-modal__viewer">
+// 							<div class="splide__track">
+// 								<div class="splide__list">
+// 								</div>
+// 							</div>
+// 						</div>
+// 					</div>
+// 					<div class="splide__arrows">
+// 						<button class="zoom-modal__arrow splide__arrow--next"></button>
+// 						<button class="zoom-modal__arrow splide__arrow--prev"></button>
+// 					</div>
+// 				</div>
+// 			</div>
+// 			<div class="zoom-modal__details">
+// 				<div class="zoom-modal__controls">
+// 					<h3>${product.name}</h3>
+//           ${this.prices()}
+// 					<div class="zoom-modal__pay">
+// 						<a href="javascript:void(0)" onclick="addToCartNew()">ADD TO CART NOW</a>
+// 						<div class="zoom-modal__color">
+// 							<span></span>${product.color} Color</div>
+// 					</div>
+// 				</div>
+// 				<div class="zoom-modal__thumb">
+// 					<div class="zoom-thumbs splide">
+// 						<div class="splide__track">
+// 							<div class="splide__list">
+// 							</div>
+// 						</div>
+// 					</div>
+// 				</div>
+// 			</div>
+// 		</div>
+// 	</div>
+// </div>
+//       `
+//     }
+
+//     // $('body').append(renderHtml())
+//     console.log(product.imgSrc)
+//   }
+
+
+
+
+
+//   createProductZoom()
+// })
 function initValidators() {
   $(".needs-validation").parsley({
     errorClass: 'is-invalid text-danger',
@@ -2427,6 +2548,7 @@ const signModal = new Object({
     this.renderDOM();
     this.bindEvents();
     this.attachSumbitEvents()
+    this.attachOTP()
   },
   renderDOM: function () {
     this._ = $(".sign-modal");
@@ -2437,6 +2559,7 @@ const signModal = new Object({
     this.evtToggle = Array.from($('[data-evt="toggleSign"], .js-toggle-sign'));
     this.evtTogglePassVisible = $('[data-evt="togglePasswordVisible"]');
     this.evtSwitch = $("[data-sign-switch]");
+    this.genderButton = $('.sign-modal__gender-select')
 
     this.view = $(".sign-modal-view");
     this.viewLogin = this.view.filter("#loginSignIn");
@@ -2475,11 +2598,54 @@ const signModal = new Object({
       e.preventDefault();
       signModal.switch(att);
     });
+    this.genderButton.click(function () {
+      $(this).siblings().removeClass(IS_ACTIVE)
+      $(this).addClass(IS_ACTIVE)
+      let attr = $(this).attr('data-gender')
+      $('#signup_gender').val(attr)
+    })
     // Button Loading State
     // this.submitBtn.click(function (e) {
     //   e.preventDefault();
     //   $(this).appendButtonLoadingState();
     // });
+  },
+  attachOTP: function () {
+    const inputs = document.querySelectorAll('.signmodal-otp');
+
+    inputs.forEach((input, index) => {
+      input.dataset.index = index;
+      input.addEventListener('keyup', handleOtp);
+      input.addEventListener('paste', handleOnPasteOtp);
+    });
+
+    function handleOtp(e) {
+      const input = e.target;
+      let value = input.value;
+      let isValidInput = value.match(/[0-9a-z]/gi);
+      input.value = "";
+      input.value = isValidInput ? value[0] : "";
+
+      let fieldIndex = input.dataset.index;
+      if (fieldIndex < inputs.length - 1 && isValidInput) {
+        input.nextElementSibling.focus();
+      }
+
+      if (e.key === 'Backspace' && fieldIndex > 0) {
+        input.previousElementSibling.focus();
+      }
+
+      if (fieldIndex == inputs.length - 1 && isValidInput) {
+      }
+    }
+
+    function handleOnPasteOtp(e) {
+      const data = e.clipboardData.getData('text');
+      const value = data.split("");
+      if (value.length === inputs.length) {
+        inputs.forEach((input, index) => (input.value = value[index]));
+      }
+    }
   },
   attachSumbitEvents: function () {
     const arr = this.formsArr
@@ -2575,32 +2741,32 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 /* LOGIN WITH PHONE NUMBER */
-$(document).ready(function(){
-  $('#btn_confirm_otp').on('click',function(){
+$(document).ready(function () {
+  $('#btn_confirm_otp').on('click', function () {
     confirmLoginOtp();
   });
-  $('#resend-otp-btn').on('click',function(){
+  $('#resend-otp-btn').on('click', function () {
     resendOtp();
   });
-  $('#frm_login_otp').on('submit',function(e){
-    var phoneField =  document.querySelector('#phone_input_Login');
+  $('#frm_login_otp').on('submit', function (e) {
+    var phoneField = document.querySelector('#phone_input_Login');
     var iti = window.intlTelInputGlobals.getInstance(phoneField);
     e.preventDefault();
     var fullPhone = iti.getNumber();
     var countryCode = '+' + iti.getSelectedCountryData().dialCode;
-    var phone = fullPhone.replace(countryCode,'');
+    var phone = fullPhone.replace(countryCode, '');
     var btn = $(e.target).find(".js-loading-btn");
     $('#otp_phone').val(phone);
     $('#otp_country').val(countryCode);
     $.ajax({
-      url:'/send-otp',
-      type:'POST',
-      data:{country_code:countryCode,phone_number:phone},
-      success:function(data){
+      url: '/send-otp',
+      type: 'POST',
+      data: { country_code: countryCode, phone_number: phone },
+      success: function (data) {
         var r = $.parseJSON(data);
-        var MsgClass = (r.error) ? 'is-failed':'is-successful';
-        showAlternativeBtnText(btn,r.msg,MsgClass);
-        if(!r.error){
+        var MsgClass = (r.error) ? 'is-failed' : 'is-successful';
+        showAlternativeBtnText(btn, r.msg, MsgClass);
+        if (!r.error) {
           $('.sign-modal__phone-span').html(fullPhone);
           signModal.switch('code');
         }
@@ -2611,46 +2777,46 @@ $(document).ready(function(){
 });
 
 
-function confirmLoginOtp(){
+function confirmLoginOtp() {
   var otp = $('#otp_1').val() + $('#otp_2').val() + $('#otp_3').val() + $('#otp_4').val();
   var phone = $('#otp_phone').val();
-  var countryCode  = $('#otp_country').val();
+  var countryCode = $('#otp_country').val();
   var btn = '#btn_confirm_otp';
 
 
-  if(otp != '' && otp.length == 4){
+  if (otp != '' && otp.length == 4) {
     $(btn).appendButtonLoadingState();
     $.ajax({
-      url:'/confirm-otp',
-      type:'POST',
-      data:{country_code:countryCode,phone_number:phone,otp_code:otp},
-      success:function(data){
+      url: '/confirm-otp',
+      type: 'POST',
+      data: { country_code: countryCode, phone_number: phone, otp_code: otp },
+      success: function (data) {
         var r = $.parseJSON(data);
-        var MsgClass = (r.error) ? 'is-failed':'is-successful';
-        showAlternativeBtnText(btn,r.msg,MsgClass);
-        if(!r.error){
+        var MsgClass = (r.error) ? 'is-failed' : 'is-successful';
+        showAlternativeBtnText(btn, r.msg, MsgClass);
+        if (!r.error) {
           window.location.reload();
         }
       }
     });
-  }else{
-    showAlternativeBtnText(btn,'Enter 4 digits OTP','is-failed');
+  } else {
+    showAlternativeBtnText(btn, 'Enter 4 digits OTP', 'is-failed');
   }
 }
 
-function resendOtp(){
+function resendOtp() {
   var phone = $('#otp_phone').val();
-  var countryCode  = $('#otp_country').val();
+  var countryCode = $('#otp_country').val();
   var btn = '#resend-otp-btn';
   $(btn).appendButtonLoadingState();
   $.ajax({
-    url:'/resend-otp',
-    type:'POST',
-    data:{country_code:countryCode,phone_number:phone},
-    success:function(data){
+    url: '/resend-otp',
+    type: 'POST',
+    data: { country_code: countryCode, phone_number: phone },
+    success: function (data) {
       var r = $.parseJSON(data);
-      var MsgClass = (r.error) ? 'is-failed':'is-successful';
-      showAlternativeBtnText(btn,r.msg,MsgClass);
+      var MsgClass = (r.error) ? 'is-failed' : 'is-successful';
+      showAlternativeBtnText(btn, r.msg, MsgClass);
     }
   })
 }

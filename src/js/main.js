@@ -53,7 +53,8 @@ const initTelInput = () => {
       initialCountry: "auto",
       preferredCountries: ["us", "gb", "br", "cn", "es", "it"],
       autoPlaceholder: "aggressive",
-      utilsScript:"/assets/public-2020/js/plugins/phone/utils.js",
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.6/js/utils.js",
       geoIpLookup: function (callback) {
         fetch("https://ipinfo.io/json", {
           cache: "reload",
@@ -227,6 +228,8 @@ const header = {
     // Search
     this.searchBtn = $('[data-evt="toggleSearch"]');
     this.searchBlock = $(".header-search");
+
+    this.loginLink = $('.login-nav__link')
   },
   bindEvents: function () {
     this.loginBtn.on({
@@ -243,6 +246,9 @@ const header = {
         });
       },
     });
+    this.loginLink.click(function(e) {
+      e.stopPropagation()
+    })
     this.searchBtn.click(() => {
       const overlay = new contentBackdrop();
       let el = header.searchBlock;
@@ -1556,7 +1562,6 @@ if (typeof productSplide.init === "function") {
   productSplide.init();
 }
 /* #endregion */
-
 
 /* #region  Filter Modal */
 const filterModal = {
