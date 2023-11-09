@@ -2376,160 +2376,160 @@ const initPageObjects = () => {
 document.addEventListener("DOMContentLoaded", function () {
   initPageObjects();
   initTelInput();
-})
+});
 
 
-document.addEventListener('DOMContentLoaded', function () {
+  // document.addEventListener('DOMContentLoaded', function () {
 
-  function createProductZoom() {
-    /* #region Setting Object */
-    const product = {};
-    (function setName() {
-      product.name = document.querySelector('#item_name').innerHTML;
-    })();
+  //   function createProductZoom() {
+  //     /* #region Setting Object */
+  //     const product = {};
+  //     (function setName() {
+  //       product.name = document.querySelector('#item_name').innerHTML;
+  //     })();
 
-    (function setPrices() {
-      product.price = [[...document.querySelectorAll('.product__item-price')].map((el) => {
-        return el.innerHTML.replaceAll(/[^0-9]/g, '')
-      })]
-    })();
+  //     (function setPrices() {
+  //       product.price = [[...document.querySelectorAll('.product__item-price')].map((el) => {
+  //         return el.innerHTML.replaceAll(/[^0-9]/g, '')
+  //       })]
+  //     })();
 
-    (function setColor() {
-      const color = [...document.querySelectorAll('[data-color]')].filter((el) => el.classList.contains('is-active'))[0].getAttribute('data-color')
-      return product.color = color
-    })();
+  //     (function setColor() {
+  //       const color = [...document.querySelectorAll('[data-color]')].filter((el) => el.classList.contains('is-active'))[0].getAttribute('data-color')
+  //       return product.color = color
+  //     })();
 
-    (function setMedia() {
-      product.media = []
-      let media = Array.from(document.querySelectorAll('.product__desktop-viewer')).filter((el) => { if (el.style.display !== 'none') { return el } })[0].querySelectorAll('.product-media')
+  //     (function setMedia() {
+  //       product.media = []
+  //       let media = Array.from(document.querySelectorAll('.product__desktop-viewer')).filter((el) => { if (el.style.display !== 'none') { return el } })[0].querySelectorAll('.product-media')
 
-      media.forEach((el) => {
-        let imgSrc = el.querySelector('img').getAttribute('src')
-        if (!/(placeholder|store|pay)/gi.test(imgSrc)) { product.media.push(imgSrc) }
-      })
-    })();
-    /* #endregion */
-
-
-    const renderHtml = () => {
-
-      this.prices = () => {
-        let arr = product.price.flat(Infinity)
-        if (arr.length == 1) {
-          return `
-          <div class="zoom-modal__price-wrap">
-            <span>$${new Intl.NumberFormat('en-US').format(arr[0])}</span>
-          </div>
-          `
-        } else {
-          return `
-          <div class="zoom-modal__price-wrap is-sale">
-            <span>$${new Intl.NumberFormat('en-US').format(arr[0])}</span>
-            <span>$${new Intl.NumberFormat('en-US').format(arr[1])}</span>
-          </div>
-          `
-        }
-      }
-
-      this.media = () => {
-        return product.media.reduce((acc, src) => {
-          acc += `<div class="splide__slide"><img src="${src}"></div>`
-          return acc
-        }, '')
-      }
+  //       media.forEach((el) => {
+  //         let imgSrc = el.querySelector('img').getAttribute('src')
+  //         if (!/(placeholder|store|pay)/gi.test(imgSrc)) { product.media.push(imgSrc) }
+  //       })
+  //     })();
+  //     /* #endregion */
 
 
-      return `
-      <div class="zoom-modal">
-	      <div class="zoom-modal__holder">
-        <span data-zoom-evt="destroy"></span>
-		      <div class="zoom-modal__container">
-			      <button data-zoom-evt="destroy" class="zoom-modal__close-btn"></button>
-			        <div class="zoom-modal__media">
-				        <div class="zoom-slider splide">
-					        <div class="zoom-modal__media-wrap">
-						        <div class="zoom-modal__viewer">
-							        <div class="splide__track">
-								        <div class="splide__list">
-                          ${this.media()}
-								        </div>
-							        </div>
-						        </div>
-					        </div>
-					          <div class="splide__arrows">
-						          <button class="zoom-modal__arrow splide__arrow--next"></button>
-						          <button class="zoom-modal__arrow splide__arrow--prev"></button>
-					          </div>
-				        </div>
-			        </div>
-			<div class="zoom-modal__details">
-				<div class="zoom-modal__controls">
-					<h3>${product.name}</h3>
-          ${this.prices()}
-					<div class="zoom-modal__pay">
-						<a href="javascript:void(0)" onclick="addToCartNew()">ADD TO CART NOW</a>
-						<div class="zoom-modal__color">
-							<span></span>${product.color} Color</div>
-					</div>
-				</div>
-				<div class="zoom-modal__thumb">
-					<div class="zoom-thumbs splide">
-						<div class="splide__track">
-							<div class="splide__list">
-                ${this.media()}
-							</div>
-						</div>
-					</div>
-          </div>
-				</div>
-		      </div>
-	      </div>
-    </div>
-      `
-    }
-    lockScroll()
-    $body.append(renderHtml())
+  //     const renderHtml = () => {
 
-    var main = new Splide('.zoom-slider', {
-      type: "loop",
-      perPage: 1,
-      perMove: 1,
-      autoplay: 0,
-      gap: "12px",
-      arrows: 1,
-      pagination: 0,
-      speed: 0,
-    });
+  //       this.prices = () => {
+  //         let arr = product.price.flat(Infinity)
+  //         if (arr.length == 1) {
+  //           return `
+  //           <div class="zoom-modal__price-wrap">
+  //             <span>$${new Intl.NumberFormat('en-US').format(arr[0])}</span>
+  //           </div>
+  //           `
+  //         } else {
+  //           return `
+  //           <div class="zoom-modal__price-wrap is-sale">
+  //             <span>$${new Intl.NumberFormat('en-US').format(arr[0])}</span>
+  //             <span>$${new Intl.NumberFormat('en-US').format(arr[1])}</span>
+  //           </div>
+  //           `
+  //         }
+  //       }
 
-    var thumbnails = new Splide('.zoom-thumbs', {
-      fixedWidth: 52,
-      fixedHeight: 52,
-      gap: 8,
-      rewind: true,
-      pagination: false,
-      arrows: false,
-      cover: true,
-      isNavigation: true
-    });
+  //       this.media = () => {
+  //         return product.media.reduce((acc, src) => {
+  //           acc += `<div class="splide__slide"><img src="${src}"></div>`
+  //           return acc
+  //         }, '')
+  //       }
 
-    main.sync(thumbnails);
-    main.mount();
-    thumbnails.mount();
 
-    const attachDestroy = () => {
-      const modal = $('.zoom-modal')
-      const evt = $('[data-zoom-evt="destroy"]')
-      $.each(evt, function(index) {
-        evt[index].onclick = () => { modal.remove(); unlockScroll() }
-      })
-    }
+  //       return `
+  //       <div class="zoom-modal">
+  // 	      <div class="zoom-modal__holder">
+  //         <span data-zoom-evt="destroy"></span>
+  // 		      <div class="zoom-modal__container">
+  // 			      <button data-zoom-evt="destroy" class="zoom-modal__close-btn"></button>
+  // 			        <div class="zoom-modal__media">
+  // 				        <div class="zoom-slider splide">
+  // 					        <div class="zoom-modal__media-wrap">
+  // 						        <div class="zoom-modal__viewer">
+  // 							        <div class="splide__track">
+  // 								        <div class="splide__list">
+  //                           ${this.media()}
+  // 								        </div>
+  // 							        </div>
+  // 						        </div>
+  // 					        </div>
+  // 					          <div class="splide__arrows">
+  // 						          <button class="zoom-modal__arrow splide__arrow--next"></button>
+  // 						          <button class="zoom-modal__arrow splide__arrow--prev"></button>
+  // 					          </div>
+  // 				        </div>
+  // 			        </div>
+  // 			<div class="zoom-modal__details">
+  // 				<div class="zoom-modal__controls">
+  // 					<h3>${product.name}</h3>
+  //           ${this.prices()}
+  // 					<div class="zoom-modal__pay">
+  // 						<a href="javascript:void(0)" onclick="addToCartNew()">ADD TO CART NOW</a>
+  // 						<div class="zoom-modal__color">
+  // 							<span></span>${product.color} Color</div>
+  // 					</div>
+  // 				</div>
+  // 				<div class="zoom-modal__thumb">
+  // 					<div class="zoom-thumbs splide">
+  // 						<div class="splide__track">
+  // 							<div class="splide__list">
+  //                 ${this.media()}
+  // 							</div>
+  // 						</div>
+  // 					</div>
+  //           </div>
+  // 				</div>
+  // 		      </div>
+  // 	      </div>
+  //     </div>
+  //       `
+  //     }
+  //     lockScroll()
+  //     $body.append(renderHtml())
 
-    attachDestroy()
-  }
-  
-  document.querySelectorAll('.product-media').forEach((el) => { el.onclick = () => { createProductZoom() } })
+  //     var main = new Splide('.zoom-slider', {
+  //       type: "loop",
+  //       perPage: 1,
+  //       perMove: 1,
+  //       autoplay: 0,
+  //       gap: "12px",
+  //       arrows: 1,
+  //       pagination: 0,
+  //       speed: 0,
+  //     });
 
-})
+  //     var thumbnails = new Splide('.zoom-thumbs', {
+  //       fixedWidth: 52,
+  //       fixedHeight: 52,
+  //       gap: 8,
+  //       rewind: true,
+  //       pagination: false,
+  //       arrows: false,
+  //       cover: true,
+  //       isNavigation: true
+  //     });
+
+  //     main.sync(thumbnails);
+  //     main.mount();
+  //     thumbnails.mount();
+
+  //     const attachDestroy = () => {
+  //       const modal = $('.zoom-modal')
+  //       const evt = $('[data-zoom-evt="destroy"]')
+  //       $.each(evt, function (index) {
+  //         evt[index].onclick = () => { modal.remove(); unlockScroll() }
+  //       })
+  //     }
+
+  //     attachDestroy()
+  //   }
+
+  //   document.querySelectorAll('.product-media').forEach((el) => { el.onclick = () => { createProductZoom() } })
+
+  // })
 function initValidators() {
   $(".needs-validation").parsley({
     errorClass: 'is-invalid text-danger',

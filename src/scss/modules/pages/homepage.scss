@@ -8,11 +8,11 @@
   line-height: 40px;
 
   @include maxWidthXs {
-    text-transform: uppercase;
+    // text-transform: uppercase;
     margin-bottom: 0;
-    font-size: 28px;
-    font-weight: 600;
-    line-height: 34px;
+    font-size: 32px;
+    // font-weight: 600;
+    line-height: 36px;
   }
 }
 
@@ -175,7 +175,8 @@
     line-height: 24px;
 
     @include maxWidthXs {
-      display: none;
+      margin-top: 6px;
+      display: block;
     }
   }
 }
@@ -211,6 +212,20 @@
     display: block;
   }
 
+  &:last-child {
+    .home-welcome-details {
+      background-image: linear-gradient(to top, #e8eaf0, rgba(236, 242, 248, 0) 57%, rgba(10, 11, 23, 0));
+      color: var(--black)
+    }
+
+    .home-welcome__link {
+      background-color: var(--black);
+      &::after {
+        background-color: var(--blue-gold);
+      }
+    }
+  }
+
   @include maxWidthSm {
     flex: none;
     height: 34vh;
@@ -239,8 +254,8 @@
   .home-welcome__link {
     grid-column-gap: 12px;
     grid-row-gap: 12px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .home-welcome {
@@ -248,20 +263,13 @@
     grid-row-gap: 10px;
   }
 
-  .home-welcome__title-wrap {
-    flex-direction: column;
-    align-items: flex-end;
-    display: flex;
-  }
-
   .home-welcome-details {
     height: 80%;
     grid-column-gap: 10px;
-    grid-row-gap: 18px;
-    text-align: right;
+    grid-row-gap: 12px;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: flex-start;
     padding: 20px;
   }
 
@@ -299,6 +307,9 @@
 .home-row__header {
   width: 100%;
   padding-bottom: 28px;
+  @include maxWidthXs {
+    padding-bottom: 34px;
+  }
 }
 
 .home-row__controls {
@@ -453,6 +464,21 @@
   padding-top: 58px;
   padding-bottom: 28px;
   position: relative;
+}
+
+.wrapper_engagement {
+  background-color: #000001;
+  margin-top: -2px;
+  padding-bottom: 38px;
+  
+  h3 {
+    color: white;
+  }
+
+  a {
+    border: 2px solid white !important;
+    background-color: transparent;
+  }
 }
 
 .home-row__footer {
@@ -785,7 +811,7 @@
   }
 
   .home-spot__details.white_color {
-    padding-top: 48px;
+    padding-top: 24px;
     padding-bottom: 48px;
   }
 
@@ -804,7 +830,8 @@
   }
 
   .wrapper.for_custom {
-    background-color: #050a19;
+    background-color: #000001;
+    margin-top: -2px;
   }
 
   .home-row__flex-space {

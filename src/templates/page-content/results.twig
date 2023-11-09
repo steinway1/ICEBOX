@@ -7,6 +7,7 @@
 {% if black_friday == true %} {% include "elements/black_friday/bfs-ticker.twig" %} {% endif %}
 <div
 	class="results-content">
+  {% include 'elements/pay-banner.twig' %}
 	{# Banner #}
 	{% if category %}
 		{% if banner == true %}
@@ -53,7 +54,7 @@
 					<div class="results__items-grid">
 						{% for item in 0..3 %}
 							{% include "../elements/product-card.twig", with {
-                adminLayout: true
+                adminLayout: false
               } %}
 						{% endfor %}
 						{% for item in 0..19 %}
