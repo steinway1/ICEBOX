@@ -715,8 +715,8 @@
       display: none;
     }
 
-    input[type="checkbox"]:checked~span,
-    input[type="radio"]:checked~span {
+    &:not(.label-color) input[type="checkbox"]:checked~span,
+    &:not(.label-color) input[type="radio"]:checked~span {
       font-weight: 600;
 
       &::before {
@@ -763,25 +763,37 @@
 
   label {
     &.label-color {
-
       input[type="checkbox"]:checked~span::after,
       input[type="radio"]:checked~span::after {
         content: '';
         position: absolute;
-        left: 0;
-        width: 20px;
-        height: 20px;
-        background-color: rgba(0, 148, 198, 1);
+        left: 10px;
+        top: 2px;
+        width: 10px;
+        height: 10px;
+        background-color: #0095c6;
         border: 1px solid #0095c6;
         background-image: url(../assets/cb-checkmark.svg);
-        background-position: 47% 50%;
+        background-position: 50% 50%;
         background-repeat: no-repeat;
-        background-size: 55%;
+        background-size: 90%;
         transition: all .2s cubic-bezier(.39, .575, .565, 1);
         z-index: 3;
       }
+      input[type="checkbox"]:checked~span::before,
+      input[type="radio"]:checked~span::before {
+        // background-color: transparent;
+        border: 1px solid #0095c6;
+        box-shadow: 10px 0px 12px rgba(0, 149, 199, 0.065);
+      }
+      input[type="checkbox"]:checked~span,
+      input[type="radio"]:checked~span {
+        color: #076888 !important;
+        font-weight: 600;
+      }
 
       >span {
+        position: relative;
         &::before {
           background-image: linear-gradient(45deg, #e9c483, #eed1a0 32%, #ffedcf 52%, #f2ddbb 72%, #f5e7cf);
           background-size: unset;
