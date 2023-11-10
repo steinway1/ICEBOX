@@ -7316,7 +7316,6 @@ form button.is-failed {
   display: flex;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
 }
 
 .product__side {
@@ -9002,6 +9001,128 @@ form button.is-failed {
   bottom: 0;
   opacity: 0;
   cursor: pointer;
+}
+
+.product__zoom-btn {
+  width: 38px;
+  height: 38px;
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 23L17.5 17.5" stroke="black" stroke-width="2"/><path d="M5.25 10.5H15.75" stroke="black" stroke-width="2"/><path d="M10.5 15.75L10.5 5.25" stroke="black" stroke-width="2"/><circle cx="10.5" cy="10.5" r="9.5" stroke="black" stroke-width="2"/></svg>');
+  background-size: 17px 17px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  display: flex;
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+.zoom_slider {
+  z-index: 999999;
+  display: none;
+  opacity: 0;
+  transition: all 400ms ease;
+  background-color: #fff;
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.zoom_slider .splide__arrows {
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+  left: 0%;
+  right: auto;
+}
+
+.zoom_slider .splide__arrows div {
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  background-color: #f0f2f3;
+  border: 1px solid #f5f8fa;
+  border-radius: 500px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  display: flex;
+  position: fixed;
+  top: 50%;
+  right: 12px;
+  transform: translate(0, -50%);
+  background-size: 12px 12px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.zoom_slider .splide__arrows .splide__arrow--prev {
+  right: auto;
+  left: 10px;
+  background-image: url('data:image/svg+xml,<svg width="14" height="23" viewBox="0 0 14 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 2L3 11.5L12.5 21" stroke="black" stroke-width="3"/></svg>');
+}
+
+.zoom_slider .splide__arrows .splide__arrow--next {
+  left: auto;
+  right: 10px;
+  background-image: url('data:image/svg+xml,<svg width="14" height="23" viewBox="0 0 14 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L11.5 11.5L2 21" stroke="black" stroke-width="3"/></svg>');
+}
+
+.zoom_slider .zoom_slider-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42px;
+  height: 42px;
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L22 22" stroke="black" stroke-width="3"/><path d="M22 2L2 22" stroke="black" stroke-width="3"/></svg>');
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.zoom_slider > div {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.zoom_slider > div > .zoom_slider_logo {
+  z-index: 1;
+  width: 140px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: 36px;
+}
+
+.zoom_slider > div > div.splide {
+  width: 100%;
+  border-top: 3px solid #0095c6;
+  border-bottom: 3px solid #0095c6;
+}
+
+.zoom_slider > div > div.splide img {
+  width: 100vw;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+}
+
+.splide__list {
+  display: flex;
 }
 
 /* #region  Overall */
@@ -14615,7 +14736,7 @@ width: calc(50% - 8px)
 
 .nopage-content {
   width: 100%;
-  max-width: 1060px;
+  max-width: 1320px;
   text-align: center;
   flex-direction: column;
   align-items: center;
@@ -14624,6 +14745,11 @@ width: calc(50% - 8px)
   padding-top: 98px;
   padding-bottom: 86px;
   display: flex;
+}
+
+.nopage-content .tabs-wrapper {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 .nopage__back-link {
@@ -19390,10 +19516,11 @@ width: calc(50% - 8px)
 
   .side-body__breadcrumbs {
     background-color: #fff;
-    margin-top: 12px;
+    margin-top: 16px;
     padding-left: 26px;
     padding-right: 26px;
-    box-shadow: 0 4px 12px rgba(23, 28, 41, 0.02);
+    border-top: 6px solid var(--main-grey);
+    border-bottom: 6px solid var(--main-grey);
   }
 
   .side-row {

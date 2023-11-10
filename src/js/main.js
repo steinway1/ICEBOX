@@ -1110,6 +1110,7 @@ const productPage = new Object({
       if (typeof target === "function") target();
     });
     this.intialized = true;
+    this.fn.initZoom()
   },
   renderDOM: function () {
     this.favButton = $(".product__add-fav");
@@ -2327,160 +2328,125 @@ const initPageObjects = () => {
   }
 };
 
+function initProductZoom() {
+  const isDesktop = window.innerWidth > 991 
+  window.removeSlider = (target) => {
+    unlockScroll()
+    const slider = target.closest('.zoom_slider'); slider.css({ opacity: 0 })
+    setTimeout(() => { slider.hide() }, 400);
+  }
+
+  const setDesktopZoom = () => {
+    [...document.querySelectorAll('.product-media__inner-wrap')].reduce((acc, el) => {
+      if (!/(placeholder|store|pay)/gi.test(el.querySelector('img').getAttribute('src'))) { acc.push(el) }
+      return acc
+    }, []).forEach((el) => { jQuery(el).zoom({ magnify: 1.4 }) })
+  }
+  const setMobileZoom = () => {
+    const sliders = [...document.querySelectorAll('.product-slider')] // Get all existing sliders
+
+    sliders.forEach((slider, index) => {
+      const button = $('<button/>', { class: `product__zoom-btn zoom_btn${index}` }); button.appendTo($(slider)) // Create & append zoom button
+      const renderNewSlider = (slider, index) => { // Get HTML new zoom slider
+        let mediaArr = [...slider.querySelectorAll('img')].reduce((acc, img) => {
+          const src = img.getAttribute('src')
+          if (!acc.includes(src) && !/(placeholder|store|pay)/gi.test(src)) { acc.push(src) }
+          return acc
+        }, []).sort()
+
+        this.renderMedia = () => {
+          return mediaArr.reduce((acc, src) => {
+            acc += `<div class="splide__slide"><img src="${src}"></div>`
+            return acc
+          }, '')
+        }
+
+        return `
+          <div class="zoom_slider zsl${index}">
+            <div>
+              <div class="zoom_slider_logo"><img src="./assets/logo.svg"></div>
+              <button class="zoom_slider-close" onclick="removeSlider($(this))"></button>
+              <div class="zoom-sl${index} splide">
+                <div class="splide__track">
+                  <div class="splide__list">
+                  ${this.renderMedia()}
+                  </div>
+                </div>
+                <div class="splide__arrows">
+                  <div class="splide__arrow--prev"></div>
+                  <div class="splide__arrow--next"></div>
+                </div>
+              </div>
+            </div>
+          </div>`
+      }
+      const appendNewSlider = (html) => { $body.append(html) } // Append Zoom Slider
+      const initNewSlider = (index) => { // Splide Initialization
+        this.settings = {
+          type: "loop",
+          perPage: 1,
+          perMove: 1,
+          autoplay: 0,
+          gap: "12px",
+          arrows: 1,
+          pagination: 0,
+          speed: 800,
+          drag: false,
+          dragAngleThreshold: 0
+        }
+        const zoomSlider = new Splide(`.zoom-sl${index}`, this.settings);
+        zoomSlider.mount()
+      }
+      const initZoom = (index) => { // Initialize jQuery zoom for the new slider
+        let slides = [...document.querySelector(`.zoom_slider.zsl${index}`).querySelectorAll('.splide__slide')]
+        slides.forEach((slide) => {
+          $(slide).zoom({
+            magnify: 1.4,
+            onZoomIn: function () {
+              $(this).closest('.splide').css('border-color', '#e6eaec')
+            },
+            onZoomOut: function () {
+              $(this).closest('.splide').css('border-color', '#0095c6')
+            }
+          })
+        })
+      }
+      const showNewSlider = (index) => {
+        let localSlider = $(`.zoom_slider.zsl${index}`)
+        if (localSlider) { localSlider.show(); lockScroll(); setTimeout(() => { localSlider.css({ opacity: 1 }) }, 1); }
+      }
+      const openSlider = (index) => {
+        let slider = $(`.zoom_slider.zsl${index}`)
+        if (slider) { slider.show(); lockScroll(); setTimeout(() => { slider.css({ opacity: 1 }) }, 1); }
+      }
+
+      button.click(() => {
+        const localSlider = document.querySelector(`.zoom_slider.zsl${index}`)
+        if (!localSlider) {
+          appendNewSlider(renderNewSlider(slider, index))
+          initNewSlider(index)
+          initZoom(index)
+          showNewSlider(index)
+        } else {
+          openSlider(index)
+        }
+      })
+    })
+  }
+  
+  const setZoom = () => {
+    $(document).ready(function () {
+      if (isDesktop && $('.main_product').length) { setDesktopZoom() } else {
+        setMobileZoom()
+      }
+    })
+  }
+
+  return setZoom()
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   initPageObjects();
   initTelInput();
+  initProductZoom()
 });
-
-
-  // document.addEventListener('DOMContentLoaded', function () {
-
-  //   function createProductZoom() {
-  //     /* #region Setting Object */
-  //     const product = {};
-  //     (function setName() {
-  //       product.name = document.querySelector('#item_name').innerHTML;
-  //     })();
-
-  //     (function setPrices() {
-  //       product.price = [[...document.querySelectorAll('.product__item-price')].map((el) => {
-  //         return el.innerHTML.replaceAll(/[^0-9]/g, '')
-  //       })]
-  //     })();
-
-  //     (function setColor() {
-  //       const color = [...document.querySelectorAll('[data-color]')].filter((el) => el.classList.contains('is-active'))[0].getAttribute('data-color')
-  //       return product.color = color
-  //     })();
-
-  //     (function setMedia() {
-  //       product.media = []
-  //       let media = Array.from(document.querySelectorAll('.product__desktop-viewer')).filter((el) => { if (el.style.display !== 'none') { return el } })[0].querySelectorAll('.product-media')
-
-  //       media.forEach((el) => {
-  //         let imgSrc = el.querySelector('img').getAttribute('src')
-  //         if (!/(placeholder|store|pay)/gi.test(imgSrc)) { product.media.push(imgSrc) }
-  //       })
-  //     })();
-  //     /* #endregion */
-
-
-  //     const renderHtml = () => {
-
-  //       this.prices = () => {
-  //         let arr = product.price.flat(Infinity)
-  //         if (arr.length == 1) {
-  //           return `
-  //           <div class="zoom-modal__price-wrap">
-  //             <span>$${new Intl.NumberFormat('en-US').format(arr[0])}</span>
-  //           </div>
-  //           `
-  //         } else {
-  //           return `
-  //           <div class="zoom-modal__price-wrap is-sale">
-  //             <span>$${new Intl.NumberFormat('en-US').format(arr[0])}</span>
-  //             <span>$${new Intl.NumberFormat('en-US').format(arr[1])}</span>
-  //           </div>
-  //           `
-  //         }
-  //       }
-
-  //       this.media = () => {
-  //         return product.media.reduce((acc, src) => {
-  //           acc += `<div class="splide__slide"><img src="${src}"></div>`
-  //           return acc
-  //         }, '')
-  //       }
-
-
-  //       return `
-  //       <div class="zoom-modal">
-  // 	      <div class="zoom-modal__holder">
-  //         <span data-zoom-evt="destroy"></span>
-  // 		      <div class="zoom-modal__container">
-  // 			      <button data-zoom-evt="destroy" class="zoom-modal__close-btn"></button>
-  // 			        <div class="zoom-modal__media">
-  // 				        <div class="zoom-slider splide">
-  // 					        <div class="zoom-modal__media-wrap">
-  // 						        <div class="zoom-modal__viewer">
-  // 							        <div class="splide__track">
-  // 								        <div class="splide__list">
-  //                           ${this.media()}
-  // 								        </div>
-  // 							        </div>
-  // 						        </div>
-  // 					        </div>
-  // 					          <div class="splide__arrows">
-  // 						          <button class="zoom-modal__arrow splide__arrow--next"></button>
-  // 						          <button class="zoom-modal__arrow splide__arrow--prev"></button>
-  // 					          </div>
-  // 				        </div>
-  // 			        </div>
-  // 			<div class="zoom-modal__details">
-  // 				<div class="zoom-modal__controls">
-  // 					<h3>${product.name}</h3>
-  //           ${this.prices()}
-  // 					<div class="zoom-modal__pay">
-  // 						<a href="javascript:void(0)" onclick="addToCartNew()">ADD TO CART NOW</a>
-  // 						<div class="zoom-modal__color">
-  // 							<span></span>${product.color} Color</div>
-  // 					</div>
-  // 				</div>
-  // 				<div class="zoom-modal__thumb">
-  // 					<div class="zoom-thumbs splide">
-  // 						<div class="splide__track">
-  // 							<div class="splide__list">
-  //                 ${this.media()}
-  // 							</div>
-  // 						</div>
-  // 					</div>
-  //           </div>
-  // 				</div>
-  // 		      </div>
-  // 	      </div>
-  //     </div>
-  //       `
-  //     }
-  //     lockScroll()
-  //     $body.append(renderHtml())
-
-  //     var main = new Splide('.zoom-slider', {
-  //       type: "loop",
-  //       perPage: 1,
-  //       perMove: 1,
-  //       autoplay: 0,
-  //       gap: "12px",
-  //       arrows: 1,
-  //       pagination: 0,
-  //       speed: 0,
-  //     });
-
-  //     var thumbnails = new Splide('.zoom-thumbs', {
-  //       fixedWidth: 52,
-  //       fixedHeight: 52,
-  //       gap: 8,
-  //       rewind: true,
-  //       pagination: false,
-  //       arrows: false,
-  //       cover: true,
-  //       isNavigation: true
-  //     });
-
-  //     main.sync(thumbnails);
-  //     main.mount();
-  //     thumbnails.mount();
-
-  //     const attachDestroy = () => {
-  //       const modal = $('.zoom-modal')
-  //       const evt = $('[data-zoom-evt="destroy"]')
-  //       $.each(evt, function (index) {
-  //         evt[index].onclick = () => { modal.remove(); unlockScroll() }
-  //       })
-  //     }
-
-  //     attachDestroy()
-  //   }
-
-  //   document.querySelectorAll('.product-media').forEach((el) => { el.onclick = () => { createProductZoom() } })
-
-  // })

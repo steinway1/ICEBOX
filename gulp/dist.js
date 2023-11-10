@@ -58,7 +58,8 @@ const root = {
         intlTelInput: './src/js/intlTelInput.js',
         popper: './src/js/popper.js',
         tippy: './src/js/tippy.js',
-        parsley: './src/js/parsley.min.js'
+        parsley: './src/js/parsley.min.js',
+        zoom: './src/js/jQuery-zoom.js'
       },
       bundle: {
         main: './src/js/main.js',
@@ -153,6 +154,7 @@ gulp.task('js:build',
         root.src.js.lib.popper,
         root.src.js.lib.tippy,
         root.src.js.lib.parsley,
+        root.src.js.lib.zoom,
         root.src.js.bundle.main,
         root.src.js.bundle.login
       ])
