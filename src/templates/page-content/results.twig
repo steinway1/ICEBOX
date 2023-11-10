@@ -1,6 +1,6 @@
 {% set banner = true %}
 {% set nav = true %}
-{% set category = results.bracelets %}
+{% set category = results.watches %}
 {% set searchQuery = "angels" %}
 {% set stickySidebar = true %}
 
@@ -32,6 +32,7 @@
 
 		<div
 			class="results__main">
+      {% if category == results.watches %}{% include "elements/results/watches-notice.twig" %}{% endif %}
 
 			{# Results BAR #}
 			{% include "../elements/results/results-bar.twig" %}
