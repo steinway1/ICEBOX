@@ -58,6 +58,7 @@
 
 
 					<div class="results__items-grid">
+						{% include "elements/pay-card.twig" %}
 						{% for item in 0..3 %}
 							{% include "../elements/product-card.twig", with {
                 adminLayout: false
@@ -71,7 +72,7 @@
 
 				</div>
 
-        {% include "elements/load-more.twig" %}
+				{% include "elements/load-more.twig" %}
 			</div>
 
 		</div>
