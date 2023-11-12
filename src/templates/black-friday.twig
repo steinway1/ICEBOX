@@ -1,5 +1,6 @@
 {% extends 'layouts/default.twig' %}
-{% set pageBanner = true %}
+{% set pageBanner = false %}
+{% set pagePromo = 'black_friday' %}
 {% set mainClass = 'bfs_results' %}
 
 {% block include_head %}
@@ -11,5 +12,6 @@
 {% endblock %}
 
 {% block include_script %}
+	<script src="./js/promo-min.js"></script>
 	{# Scripts / etc... #}
 {% endblock %}

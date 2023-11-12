@@ -16886,7 +16886,7 @@ width: calc(50% - 8px)
 }
 
 .bfs-poster__main-img {
-  width: 70%;
+  width: 78%;
 }
 
 .bfs-poster__content {
@@ -16906,6 +16906,7 @@ width: calc(50% - 8px)
 }
 
 .bfs-poster__typo {
+  display: none;
   letter-spacing: 0;
   text-transform: uppercase;
   -webkit-text-fill-color: transparent;
@@ -16944,6 +16945,7 @@ width: calc(50% - 8px)
 }
 
 .bfs-poster__subheading {
+  display: none;
   font-family: "Bebas Neue", sans-serif;
   color: #5ed8ff;
   letter-spacing: 2px;
@@ -17003,21 +17005,26 @@ width: calc(50% - 8px)
   align-items: center;
   margin-top: 18px;
   padding: 8px 28px;
-  font-size: 20px;
+  font-size: 46px;
   font-weight: 700;
-  line-height: 56px;
+  line-height: 62px;
   display: flex;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.bfs-poster__sale span {
-  color: #ebd8a2;
+.bfs-poster__sale span span {
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(to right, #5ed8ff, #fff);
   -webkit-background-clip: text;
   background-clip: text;
-  margin-left: 10px;
-  font-size: 38px;
+}
+
+.bfs-poster__sale span::before {
+  text-shadow: -2px 0 #84e0ff;
+}
+
+.bfs-poster__sale span::after {
+  text-shadow: -2px 0 #00d9ff, 2px 2px #23e5ff;
 }
 
 .bfs-poster__glow {
@@ -18255,10 +18262,6 @@ width: calc(50% - 8px)
   }
 
   .bfs-banner__group.to_center img {
-    width: 68%;
-  }
-
-  .bfs-poster__main-img {
     width: 68%;
   }
 
@@ -21644,6 +21647,10 @@ width: calc(50% - 8px)
     font-size: 9px;
   }
 
+  .bfs-poster__main-img {
+    width: 88%;
+  }
+
   .bfs-poster__typo span {
     font-size: 22px;
     line-height: 32px;
@@ -21654,8 +21661,17 @@ width: calc(50% - 8px)
     margin-bottom: 10px;
   }
 
+  .bfs-poster__sale {
+    margin-top: 2px;
+  }
+
   .bfs-poster__sale span {
-    font-size: 32px;
+    font-size: 9vw;
+    line-height: 14vw;
+  }
+
+  .bfs-poster__sale {
+    font-size: 9vw;
   }
 
   .bfs-poster__details {
@@ -21676,10 +21692,6 @@ width: calc(50% - 8px)
     padding-top: 32px;
     padding-bottom: 32px;
     position: relative;
-  }
-
-  .bfs-poster__main-img {
-    width: 86%;
   }
 
   .bfs-poster__content {

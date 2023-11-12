@@ -218,9 +218,9 @@ const blackFriday = {
     adjustStickyEls: () => {
       const elsArr = [...document.querySelectorAll('.filter-sidebar.to-stick'), ...document.querySelectorAll('.sticky-filters')]
       const banner = document.querySelector('.bfs-banner')
-      const bannerHeight = parseInt(window.getComputedStyle(banner).getPropertyValue('height'))
 
       if (elsArr.length && banner) {
+        const bannerHeight = parseInt(window.getComputedStyle(banner).getPropertyValue('height'))
         elsArr.forEach((el) => {
           let topValue = parseInt(window.getComputedStyle(el).getPropertyValue('top'))
           Object.assign(el.style, { top: `${bannerHeight + topValue}px` })
