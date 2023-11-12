@@ -1998,6 +1998,29 @@ const pageEls = new Object({
           })
         }
       }
+    },
+    togglePayModal: () => {
+      let evt = [...$('[data-evt="togglePayModal"]')]
+      evt.forEach((el) => { 
+        el.onclick = () => { 
+          let modal = $('.pay-modal')
+          if (modal) {
+            if (modal.isVisible()) {
+              unlockScroll()
+              modal.css({opacity: 0})
+              setTimeout(() => {
+                modal.hide()
+              }, getTransitionTime(modal));
+            } else {
+              lockScroll()
+              modal.show()
+              setTimeout(() => {
+                modal.css({ opacity: 1 })
+              }, 1);
+            }
+          }
+         }
+       })
     }
   }
 })

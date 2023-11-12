@@ -138,7 +138,7 @@ gulp.task('css:dev',
       .pipe(sourceMaps.init())
       .pipe(sassGlob())
       .pipe(sass())
-      .pipe(groupMedia())
+      // .pipe(groupMedia())
       .pipe(sourceMaps.write())
       .pipe(gulp.dest(root.dev.css))
   }
