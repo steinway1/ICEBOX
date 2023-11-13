@@ -336,7 +336,7 @@ const initTelInput = () => {
       preferredCountries: ["us", "gb", "br", "cn", "es", "it"],
       autoPlaceholder: "aggressive",
       utilsScript:
-        "assets/public-2020/js/plugins/phone/utils.js",
+        "/assets/public-2020/js/plugins/phone/utils.js",
       geoIpLookup: function (callback) {
         fetch("https://ipinfo.io/json", {
           cache: "reload",
@@ -1680,18 +1680,20 @@ const productPage = new Object({
         elHeight = el[0].scrollHeight;
       function attachTrigger() {
         let triggerEl = $("#productAddCart");
-        $(window).scroll(function () {
-          let hT = triggerEl.offset().top,
-            hH = triggerEl.outerHeight(),
-            wH = $(window).height(),
-            wS = $(this).scrollTop();
+        if (triggerEl.length) {
+          $(window).scroll(function () {
+            let hT = triggerEl.offset().top,
+              hH = triggerEl.outerHeight(),
+              wH = $(window).height(),
+              wS = $(this).scrollTop();
 
-          if (wS + 100 > hT - wH && hT > wS + 100 && wS + 100 + wH > hT) {
-            el.css({ transform: `translateY(${elHeight}px)` });
-          } else {
-            el.css({ transform: `translateY(0px)` });
-          }
-        });
+            if (wS + 100 > hT - wH && hT > wS + 100 && wS + 100 + wH > hT) {
+              el.css({ transform: `translateY(${elHeight}px)` });
+            } else {
+              el.css({ transform: `translateY(0px)` });
+            }
+          });
+        }
       }
       if (el.length > 0) {
         if ($(window).width() > 479) {
@@ -2001,13 +2003,13 @@ const pageEls = new Object({
     },
     togglePayModal: () => {
       let evt = [...$('[data-evt="togglePayModal"]')]
-      evt.forEach((el) => { 
-        el.onclick = () => { 
+      evt.forEach((el) => {
+        el.onclick = () => {
           let modal = $('.pay-modal')
-          if (modal) {
+          if (modal.length) {
             if (modal.isVisible()) {
               unlockScroll()
-              modal.css({opacity: 0})
+              modal.css({ opacity: 0 })
               setTimeout(() => {
                 modal.hide()
               }, getTransitionTime(modal));
@@ -2019,8 +2021,8 @@ const pageEls = new Object({
               }, 1);
             }
           }
-         }
-       })
+        }
+      })
     }
   }
 })
@@ -2634,7 +2636,7 @@ const initPageObjects = () => {
 };
 
 function initProductZoom() {
-  const isDesktop = window.innerWidth > 991 
+  const isDesktop = window.innerWidth > 991
   window.removeSlider = (target) => {
     unlockScroll()
     const slider = target.closest('.zoom_slider'); slider.css({ opacity: 0 })
@@ -2738,7 +2740,7 @@ function initProductZoom() {
       })
     })
   }
-  
+
   const setZoom = () => {
     $(document).ready(function () {
       if (isDesktop && $('.main_product').length) { setDesktopZoom() } else {
