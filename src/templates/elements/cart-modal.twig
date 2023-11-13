@@ -13,7 +13,7 @@
 			<div class="cart-modal__scrollable">
 				<div class="cart-modal__rows-wrap">
 
-					<div class="cart-row">
+					<div class="cart-row{% if cart.items.length == 0 %} is-empty{% endif %}">
 						<div class="cart-row__wrapper">
 							{% if cart.items.length > 0 %}
 								{% for item in cart.items %}
@@ -29,7 +29,33 @@
 							} %}
 								{% endfor %}
 							{% else %}
-								<span class="cart-empty-typo">No items in your cart yet</span>
+								<div class="cart-modal__empty-wrap">
+									<span>Your Cart Awaits Sparkle<span>Unocover The Brilliance of Icebox Collections.</span>
+									</span>
+									<a href="/" class="home-welcome__link">
+										<span>Start Shopping</span>
+										{% include "components/svg/arrow-next.svg" %}
+									</a>
+								</div>
+								<div class="cart-modal__empty-items">
+									<span>
+										{% if user.recentlyViewed.length > 0 %}Recently Viewed{% else %}Our Best Pieces
+										{% endif %}
+									</span>
+									<div class="cart-modal__empty-grid">
+										{% if user.recentlyViewed %}
+											{# Include Recently if available #}
+											{% for item in 0..5 %}
+												{% include "elements/product-card.twig" %}
+											{% endfor %}
+										{% else %}
+											{# Else Include Popular #}
+											{% for item in 0..5 %}
+												{% include "elements/product-card.twig" %}
+											{% endfor %}
+										{% endif %}
+									</div>
+								</div>
 							{% endif %}
 						</div>
 					</div>
@@ -40,11 +66,13 @@
 								<div class="cart-modal__summary-wrap">
 									<div class="cart-modal__summary-price">
 										<span>Original</span>
-										<span>$ {{ cart.originalPrice|number_format(2) }}</span>
+										<span>$
+											{{ cart.originalPrice|number_format(2) }}</span>
 									</div>
 									<div class="cart-modal__summary-price is-discount">
 										<span>Discount</span>
-										<span>- $ {{cart.discountPrice|number_format(2)}}</span>
+										<span>- $
+											{{cart.discountPrice|number_format(2)}}</span>
 									</div>
 									<div class="cart-modal__summary-price">
 										<span>Delivery Charge</span>
@@ -52,7 +80,8 @@
 									</div>
 									<div class="cart-modal__summary-price mybag-summary-price_total">
 										<span>Total</span>
-										<span class="cart-modal__total-price">$ {{ cart.fullPrice|number_format(2) }}</span>
+										<span class="cart-modal__total-price">$
+											{{ cart.fullPrice|number_format(2) }}</span>
 									</div>
 								</div>
 							</div>
@@ -61,9 +90,11 @@
 
 				</div>
 			</div>
-			<div class="cart-modal__footer">
-				<a href="https://www.icebox.com/cart" class="cart-modal__btn">Go To Checkout</a>
-			</div>
+			{% if cart.items.length > 0 %}
+				<div class="cart-modal__footer">
+					<a href="https://www.icebox.com/cart" class="cart-modal__btn">Go To Checkout</a>
+				</div>
+			{% endif %}
 		</div>
 	</div>
 </div>

@@ -288,6 +288,12 @@
   position: relative;
   overflow: hidden;
 
+  @media screen and (min-width: 992px) {
+    &:nth-child(odd) .home-row__summary-center {
+      order: -1 !important;
+    }
+  }
+
   .splide__track {
     padding-top: 3px;
     padding-bottom: 3px;
