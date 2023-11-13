@@ -2669,7 +2669,7 @@ function initProductZoom() {
         return `
           <div class="zoom_slider zsl${index}">
             <div>
-              <div class="zoom_slider_logo"><img src="\themes\default\frontend\oct-2023/assets/logo.svg"></div>
+              <div class="zoom_slider_logo"><img src="${String.raw`\themes\default\frontend\oct-2023/assets/logo.svg`}"></div>
               <button class="zoom_slider-close" onclick="removeSlider($(this))"></button>
               <div class="zoom-sl${index} splide">
                 <div class="splide__track">
