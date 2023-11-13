@@ -60,7 +60,8 @@ const root = {
         popper: './src/js/popper.js',
         tippy: './src/js/tippy.js',
         parsley: './src/js/parsley.min.js',
-        zoom: './src/js/jQuery-zoom.js'
+        zoom: './src/js/jQuery-zoom.js',
+        fancybox: './src/js/fancybox.min.js'
       },
       bundle: {
         main: './src/js/main.js',
@@ -158,6 +159,7 @@ gulp.task('js:dev',
         root.src.js.lib.tippy,
         root.src.js.lib.parsley,
         root.src.js.lib.zoom,
+        root.src.js.lib.fancybox,
         root.src.js.bundle.main,
         root.src.js.bundle.login
       ])
