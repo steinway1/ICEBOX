@@ -161,7 +161,7 @@ gulp.task('js:dev',
         root.src.js.lib.parsley,
         root.src.js.lib.zoom,
         root.src.js.lib.fancybox,
-        root.src.js.lib.sirv,
+        // root.src.js.lib.sirv,
         root.src.js.bundle.main,
         root.src.js.bundle.login
       ])
