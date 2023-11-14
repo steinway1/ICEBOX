@@ -2363,7 +2363,11 @@ function initProductZoom() {
 
   const setDesktopZoom = () => {
     [...document.querySelectorAll('.product-media__inner-wrap')].reduce((acc, el) => {
-      if (!/(placeholder|store|pay)/gi.test(el.querySelector('img').getAttribute('src'))) { acc.push(el) }
+      if (el.querySelector('img') && el.querySelector('img') !== null) {
+        if (!/(placeholder|store|pay)/gi.test(el.querySelector('img').getAttribute('src'))) {
+          acc.push(el)
+        }
+      }
       return acc
     }, []).forEach((el) => { jQuery(el).zoom({ magnify: 1.4 }) })
   }
