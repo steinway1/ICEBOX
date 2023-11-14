@@ -60,7 +60,8 @@ const root = {
         tippy: './src/js/tippy.js',
         parsley: './src/js/parsley.min.js',
         zoom: './src/js/jQuery-zoom.js',
-        fancybox: './src/js/fancybox.min.js'
+        fancybox: './src/js/fancybox.min.js',
+        sirv: './src/js/sirv.js'
       },
       bundle: {
         main: './src/js/main.js',
@@ -157,6 +158,7 @@ gulp.task('js:build',
         root.src.js.lib.parsley,
         root.src.js.lib.zoom,
         root.src.js.lib.fancybox,
+        root.src.js.lib.sirv,
         root.src.js.bundle.main,
         root.src.js.bundle.login
       ])
