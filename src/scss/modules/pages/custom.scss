@@ -147,14 +147,6 @@
   }
 }
 
-.wrapper {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 5vw;
-  padding-right: 5vw;
-}
-
 .custom-page__t2-details {
   z-index: 1;
   flex-direction: column;
@@ -166,6 +158,10 @@
   display: flex;
   position: relative;
   box-shadow: 24px 0 48px rgba(23, 28, 41, .15);
+
+  @include maxWidthMd {
+    border-top: 6px solid #f5f8fa;
+  }
 }
 
 .custom-page__main {
@@ -184,6 +180,10 @@
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 600;
+
+  @include maxWidthXs {
+    font-size: 11px;
+  }
 }
 
 .custom-page__sticky {
@@ -213,6 +213,10 @@
 .custom-page__item-price {
   font-size: 20px;
   font-weight: 600;
+
+  @include maxWidthMd {
+    display: none;
+  }
 }
 
 .custom-page__t2-typo {
@@ -249,13 +253,14 @@
   flex-direction: column;
   flex: 1;
   align-items: center;
+  padding-top: 8vw;
   padding-bottom: 8vw;
   padding-left: 8vw;
   padding-right: 8vw;
 }
 
 .custom-page__t2 {
-  border-bottom: 6px solid #f5f8fa;
+  border-top: 6px solid #f5f8fa;
   display: flex;
   overflow: hidden;
 
@@ -288,10 +293,6 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .wrapper {
-    padding-left: 7vw;
-    padding-right: 7vw;
-  }
 
   .custom-page__t1-content {
     max-width: 500px;
@@ -304,10 +305,6 @@
 }
 
 @media screen and (min-width: 1920px) {
-  .wrapper {
-    padding-left: 8vw;
-    padding-right: 8vw;
-  }
 
   .custom-page__sticky-holder {
     padding-left: 12vw;
@@ -316,9 +313,9 @@
 }
 
 @media screen and (max-width: 991px) {
-  .wrapper {
-    padding-left: 42px;
-    padding-right: 42px;
+
+  .custom-page__ship-badge {
+    display: none;
   }
 
   .custom-page__main {
@@ -341,13 +338,11 @@
 
   .custom-page__sticky-holder {
     z-index: 1;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
     padding: 34px 18vw;
     position: -webkit-sticky;
     position: sticky;
     bottom: 0;
-    box-shadow: 0 -18px 24px rgba(23, 28, 41, .2);
+    box-shadow: 0 -18px 24px rgba(23, 28, 41, .03);
   }
 }
 
@@ -362,15 +357,9 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .wrapper {
-    padding-left: 36px;
-    padding-right: 36px;
-  }
-
   .custom-page__t2-details {
     min-height: 120px;
     box-shadow: none;
-    border-top: 8px solid #f5f8fa;
     flex: 1;
     padding-top: 56px;
     padding-bottom: 56px;
@@ -418,15 +407,6 @@
     line-height: 30px;
   }
 
-  .custom-page__ship-badge {
-    display: none;
-  }
-
-  .wrapper {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-
   .custom-page__t2-details {
     padding-top: 46px;
     padding-bottom: 46px;
@@ -439,7 +419,7 @@
   }
 
   .custom-page__sticky-holder {
-    padding: 28px 20px;
+    padding: 24px;
   }
 
   .custom-page__btn {

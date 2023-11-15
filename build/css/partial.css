@@ -3445,7 +3445,7 @@ body.compensate-for-scrollbar {
   background-size: 14px;
   justify-content: center;
   align-items: center;
-  display: flex;
+  display: none;
   position: absolute;
   top: 0%;
   bottom: 0%;
@@ -7572,6 +7572,7 @@ body.compensate-for-scrollbar {
 .categories-tabs img {
   position: relative;
   width: 100%;
+  transition: all 250ms ease;
 }
 
 .categories-tabs a {
@@ -7586,9 +7587,8 @@ body.compensate-for-scrollbar {
   position: relative;
 }
 
-.categories-tabs a:hover {
-  background-color: #fff;
-  border-color: #0095c6;
+.categories-tabs div {
+  overflow: hidden;
 }
 
 .flex-between {
@@ -8813,9 +8813,12 @@ form button.is-failed {
 }
 
 .product__item-price {
-  letter-spacing: 0.4px;
-  font-size: 16px;
+  letter-spacing: 0px;
+  font-size: 18px;
+  line-height: 28px;
   font-weight: 600;
+  padding: 4px 9px;
+  background-color: #edf1f4;
 }
 
 .product__item-price.old_price {
@@ -10568,11 +10571,33 @@ form button.is-failed {
 
 .filter-sidebar__overlay {
   z-index: 10;
-  height: 40px;
-  background-image: linear-gradient(to top, #fff, rgba(255, 255, 255, 0));
+  height: 78px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-image: linear-gradient(to top, #fff 50%, rgba(255, 255, 255, 0));
+  padding-top: 36px;
+  font-size: 11px;
+  font-weight: 700;
   position: -webkit-sticky;
   position: sticky;
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 225ms ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.filter-sidebar__overlay::after {
+  content: "SCROLL DOWN";
+  text-align: center;
+  opacity: 0.5;
+  background-image: url('data:image/svg+xml,<svg width="26" height="20" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25 10L13 18L0.999999 10" stroke="black" stroke-width="2.5"/><path d="M25 2L13 10L0.999999 2" stroke="black" stroke-width="2.5"/></svg>');
+  background-position: 100% 44%;
+  background-repeat: no-repeat;
+  background-size: 14px;
+  padding-right: 24px;
 }
 
 /* #endregion */
@@ -11329,7 +11354,7 @@ form button.is-failed {
   flex: 1;
   justify-content: center;
   align-items: flex-start;
-  padding: 20px;
+  padding: 10px 20px;
   display: flex;
 }
 
@@ -16358,14 +16383,6 @@ width: calc(50% - 8px)
   display: none;
 }
 
-.wrapper {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 5vw;
-  padding-right: 5vw;
-}
-
 .custom-page__t2-details {
   z-index: 1;
   flex-direction: column;
@@ -16456,13 +16473,14 @@ width: calc(50% - 8px)
   flex-direction: column;
   flex: 1;
   align-items: center;
+  padding-top: 8vw;
   padding-bottom: 8vw;
   padding-left: 8vw;
   padding-right: 8vw;
 }
 
 .custom-page__t2 {
-  border-bottom: 6px solid #f5f8fa;
+  border-top: 6px solid #f5f8fa;
   display: flex;
   overflow: hidden;
 }
@@ -19018,6 +19036,16 @@ width: calc(50% - 8px)
   .zoom-modal__container {
     border-radius: 7px;
   }
+
+  .categories-tabs a:hover {
+    background-color: #fff;
+    border-color: #0095c6;
+    text-decoration: underline;
+  }
+
+  .categories-tabs a:hover img {
+    transform: scale(1.1);
+  }
 }
 
 @media screen and (min-width: 992px) {
@@ -19142,11 +19170,6 @@ width: calc(50% - 8px)
     margin-left: 20%;
   }
 
-  .wrapper {
-    padding-left: 7vw;
-    padding-right: 7vw;
-  }
-
   .custom-page__t1-content {
     max-width: 500px;
   }
@@ -19218,11 +19241,6 @@ width: calc(50% - 8px)
 
   .order__invoice {
     width: 26%;
-  }
-
-  .wrapper {
-    padding-left: 8vw;
-    padding-right: 8vw;
   }
 
   .custom-page__sticky-holder {
@@ -19868,13 +19886,20 @@ width: calc(50% - 8px)
     grid-template-columns: 1fr 1fr 1fr;
   }
 
+  .custom-page__t2-details {
+    border-top: 6px solid #f5f8fa;
+  }
+
   .custom-page__sticky > div {
     display: none;
   }
 
-  .wrapper {
-    padding-left: 42px;
-    padding-right: 42px;
+  .custom-page__item-price {
+    display: none;
+  }
+
+  .custom-page__ship-badge {
+    display: none;
   }
 
   .custom-page__main {
@@ -19897,13 +19922,11 @@ width: calc(50% - 8px)
 
   .custom-page__sticky-holder {
     z-index: 1;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
     padding: 34px 18vw;
     position: -webkit-sticky;
     position: sticky;
     bottom: 0;
-    box-shadow: 0 -18px 24px rgba(23, 28, 41, 0.2);
+    box-shadow: 0 -18px 24px rgba(23, 28, 41, 0.03);
   }
 
   .pass-reset__input-holder > input[type=password]:hover {
@@ -20324,8 +20347,20 @@ width: calc(50% - 8px)
     padding-right: 36px;
   }
 
-  .pay-card {
-    grid-area: span 1/span 2/span 1/span 2;
+  .pay-card img {
+    min-height: 24px;
+    width: 32%;
+    flex: 1;
+  }
+
+  .pay-card__typo {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .pay-card__heading {
+    font-size: 20px;
+    line-height: 24px;
   }
 
   .checkout__cards-col,
@@ -20634,15 +20669,9 @@ width: calc(50% - 8px)
     grid-template-columns: 1fr 1fr;
   }
 
-  .wrapper {
-    padding-left: 36px;
-    padding-right: 36px;
-  }
-
   .custom-page__t2-details {
     min-height: 120px;
     box-shadow: none;
-    border-top: 8px solid #f5f8fa;
     flex: 1;
     padding-top: 56px;
     padding-bottom: 56px;
@@ -21232,7 +21261,7 @@ width: calc(50% - 8px)
   }
 
   .tabs-wrapper .wrapper:last-child {
-    padding: 0;
+    padding: 0px 22px;
   }
 
   .categories-tabs {
@@ -21657,25 +21686,32 @@ width: calc(50% - 8px)
     padding-right: 22px;
   }
 
-  .pay-card {
-    grid-area: span 1/span 2/span 1/span 2;
-  }
-
-  .pay-card img {
-    min-height: 32px;
-    width: 31%;
-  }
-
-  .pay-card__pics {
-    justify-content: space-between;
+  .pay-card__typo {
+    font-size: 13px;
+    line-height: 16px;
   }
 
   .pay-card__details {
+    padding: 10px;
+  }
+
+  .pay-card__btn {
+    font-weight: 600;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .pay-card__heading {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .pay-card__heading br {
     display: none;
   }
 
-  .pay-card {
-    max-width: none;
+  .pay-card__heading span {
+    padding-left: 6px;
   }
 
   .pseudo-radio__space-row {
@@ -22312,6 +22348,10 @@ width: calc(50% - 8px)
     aspect-ratio: 1/1;
   }
 
+  .custom-page__item-include {
+    font-size: 11px;
+  }
+
   .custom-page__sub-typo {
     margin-bottom: 14px;
   }
@@ -22330,15 +22370,6 @@ width: calc(50% - 8px)
     line-height: 30px;
   }
 
-  .custom-page__ship-badge {
-    display: none;
-  }
-
-  .wrapper {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-
   .custom-page__t2-details {
     padding-top: 46px;
     padding-bottom: 46px;
@@ -22351,7 +22382,7 @@ width: calc(50% - 8px)
   }
 
   .custom-page__sticky-holder {
-    padding: 28px 20px;
+    padding: 24px;
   }
 
   .custom-page__btn {

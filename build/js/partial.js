@@ -1587,30 +1587,30 @@ const productPage = new Object({
 
   initFn: {
     // Events Fires on initialization
-    checkSummary: () => {
-      // If there is a list, then collapse description else nothing.
-      let container = productPage.summaryContainer,
-        list = container.find("ul"),
-        cls = productPage.classes.isCollapsed;
-      if (list.length == 0) {
-        return false;
-      } else {
-        const button = $("<button>", {
-          class: "product__summary-toggle",
-          html: "Show More...",
-        }).on("click", function () {
-          if (container.hasClass(cls)) {
-            container.removeClass(cls);
-            this.innerHTML = "Show Less...";
-          } else {
-            container.addClass(cls);
-            this.innerHTML = "Show More...";
-          }
-        });
+    // checkSummary: () => {
+    //   // If there is a list, then collapse description else nothing.
+    //   let container = productPage.summaryContainer,
+    //     list = container.find("ul"),
+    //     cls = productPage.classes.isCollapsed;
+    //   if (list.length == 0) {
+    //     return false;
+    //   } else {
+    //     const button = $("<button>", {
+    //       class: "product__summary-toggle",
+    //       html: "Show More...",
+    //     }).on("click", function () {
+    //       if (container.hasClass(cls)) {
+    //         container.removeClass(cls);
+    //         this.innerHTML = "Show Less...";
+    //       } else {
+    //         container.addClass(cls);
+    //         this.innerHTML = "Show More...";
+    //       }
+    //     });
 
-        container.addClass(cls).append(button);
-      }
-    },
+    //     container.addClass(cls).append(button);
+    //   }
+    // },
     checkGoldColor: () => {
       // On load check active gold color
       let buttons = [...productPage.goldOptionBtn],
@@ -1727,24 +1727,20 @@ const productPage = new Object({
     attachPayLaterBoxEvents: function (...args) {
       args = [...document.querySelectorAll('[data-paylater]')]
 
-      const intro = document.getElementById('payLaterBoxIntro')
+      const introEls = [...$('#payLaterBoxIntro').find('h3, p, button')]
       const details = document.getElementById('payLaterBoxDetails')
 
       if (args && args.length && details) {
-        const toggle = (cond) => {
-          if (cond) {
-            intro.style.display = 'none'; details.style.display = 'block'
+        const toggle = () => {
+          if (window.getComputedStyle(details).display == 'none') {
+            details.style.display = 'block'; introEls.forEach((el) => { el.style.display = 'none' })
           } else {
-            intro.style.display = 'flex'; details.style.display = 'none'
+            introEls.forEach((el) => { el.style.display = 'block' }); details.style.display = 'none'
           }
         }
 
         args.forEach(el => el.onclick = () => {
-          if (window.getComputedStyle(intro).display == 'none') {
-            toggle(0)
-          } else {
-            toggle(1)
-          }
+          toggle()
         })
       }
     }
@@ -2826,10 +2822,37 @@ function initProductZoom() {
   return setZoom()
 }
 
+function attachStickyScroll() {
+  const bar = $('.filter-sidebar'), overlay = $('.filter-sidebar__overlay')
+  if (bar.length && overlay.length) {
+    const els = bar.find('.filter-row')
+    $.each(els, function (i) {
+      els[i].onclick = () => {
+        let cont = $(this).find('.filter-row__container')
+        setTimeout(() => {
+          let currentHeight = bar.height()
+          let scrollHeight = bar[0].scrollHeight
+          if ((currentHeight - scrollHeight) <= -5) {
+            overlay.css({opacity: 1})
+          } else {
+            overlay.css({opacity: 0})
+          }
+        }, getTransitionTime(cont));
+      }
+    })
+    bar[0].addEventListener('scroll', function(e) {
+      if (this.scrollTop + this.clientHeight >= this.scrollHeight) {
+        overlay.css({opacity: 0})
+      } else { overlay.css({opacity: 1}) }
+    })
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   initPageObjects();
   initTelInput();
   initProductZoom()
+  attachStickyScroll()
 });
 function initValidators() {
   $(".needs-validation").parsley({
