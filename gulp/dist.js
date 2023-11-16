@@ -65,7 +65,8 @@ const root = {
       },
       bundle: {
         main: './src/js/main.js',
-        login: './src/js/login.js'
+        login: './src/js/login.js',
+        cartMail:'./src/js/cart-mail.js',
       },
       promo: {
         lib: './src/js/promo/libraries/*.js',
@@ -160,7 +161,8 @@ gulp.task('js:build',
         root.src.js.lib.fancybox,
         // root.src.js.lib.sirv,
         root.src.js.bundle.main,
-        root.src.js.bundle.login
+        root.src.js.bundle.login,
+        root.src.js.bundle.cartMail
       ])
       .pipe(changed(root.build.js))
       .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
