@@ -11382,6 +11382,29 @@ form button.is-failed {
   color: #484af7;
 }
 
+.product-picture_sirv {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+  transform: scale(1.15);
+  opacity: 0;
+  transition: all 225ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.product-picture_sirv.is-visible {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.results__item-card > a {
+  position: relative;
+}
+
 .mybag-main {
   font-size: 14px;
   display: block;
