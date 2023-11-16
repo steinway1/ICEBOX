@@ -7664,6 +7664,175 @@ form button.is-failed {
   border-color: #ac2f36;
 }
 
+.mail-modal {
+  display: none;
+  z-index: 1200;
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.mail-modal__backdrop {
+  background-color: rgba(23, 28, 41, 0.3);
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  pointer-events: auto;
+  transition: all 200ms ease;
+  opacity: 0;
+}
+
+.mail-modal__wrapper {
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  pointer-events: none;
+}
+
+.mail-modal__container {
+  pointer-events: auto;
+  width: 100%;
+  max-height: 80vh;
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 0px;
+  overflow: hidden;
+  padding: 38px;
+  position: relative;
+  box-shadow: 0 6px 14px rgba(23, 28, 41, 0.05);
+  transition: all 350ms ease;
+  opacity: 0;
+  transform: translateY(42px);
+}
+
+.mail-modal-wrap {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  pointer-events: auto;
+}
+
+.mail-modal__label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.mail-modal__subtitle {
+  max-width: 300px;
+  text-align: center;
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.mail-modal__controls-wrap {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.mail-modal__form-controls {
+  margin-top: 18px;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.mail-modal__form-submit {
+  color: #fff;
+  cursor: pointer;
+  background-color: #0995c6;
+  justify-content: center;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.mail-modal__form-submit:hover {
+  background-color: #16a9dd;
+}
+
+.mail-modal__form-wrap {
+  margin-bottom: 0;
+}
+
+.mail-modal__title {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.mail-modal-close {
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+  left: auto;
+  right: 0%;
+}
+
+.mail-modal-close:hover {
+  color: #171c25;
+}
+
+.mail-modal__input {
+  width: 100%;
+  height: 48px;
+  padding: 8px 18px;
+  border: 1px solid #d1d3d5;
+  border-radius: 0;
+  margin-bottom: 0;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.mail-modal__input:hover {
+  background-color: #fff;
+  border-color: #0995c6;
+}
+
+.mail-modal__input:focus {
+  background-color: rgba(9, 149, 198, 0.03);
+  border-color: #0995c6;
+  box-shadow: 0 0 0 3px rgba(9, 149, 198, 0.11);
+}
+
+.mail-modal__input::-ms-input-placeholder {
+  color: #8f8f8f;
+}
+
+.mail-modal__input::placeholder {
+  color: #8f8f8f;
+}
+
 /* #region  Welcome Section */
 
 .home-welcome-details h1,
@@ -21326,6 +21495,14 @@ width: calc(50% - 8px)
   .categories-tabs span {
     padding-top: 12px;
     padding-bottom: 12px;
+  }
+
+  .mail-modal__container {
+    padding: 52px 24px;
+  }
+
+  .mail-modal-close {
+    background-color: #fff;
   }
 
   .home-welcome-details h1,

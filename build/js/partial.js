@@ -2833,26 +2833,62 @@ function attachStickyScroll() {
           let currentHeight = bar.height()
           let scrollHeight = bar[0].scrollHeight
           if ((currentHeight - scrollHeight) <= -5) {
-            overlay.css({opacity: 1})
+            overlay.css({ opacity: 1 })
           } else {
-            overlay.css({opacity: 0})
+            overlay.css({ opacity: 0 })
           }
         }, getTransitionTime(cont));
       }
     })
-    bar[0].addEventListener('scroll', function(e) {
+    bar[0].addEventListener('scroll', function (e) {
       if (this.scrollTop + this.clientHeight >= this.scrollHeight) {
-        overlay.css({opacity: 0})
-      } else { overlay.css({opacity: 1}) }
+        overlay.css({ opacity: 0 })
+      } else { overlay.css({ opacity: 1 }) }
     })
   }
 }
+
+const mailModal = new Object({
+  init: function () {
+    this.renderDOM()
+    if (this.modal.length) {
+      this.bindEvents()
+    }
+  },
+  renderDOM: function () {
+    this.modal = $('.mail-modal')
+    this.backdrop = $('.mail-modal__backdrop')
+    this.container = $('.mail-modal__container')
+    this.evtClose = $('[data-mail-modal="close"]')
+  },
+  bindEvents: function () {
+    this.evtClose.on('click', function(){ mailModal.close() })
+  },
+  open: function () {
+    lockScroll()
+    this.modal.show()
+    this.modal.find('input').focus()
+    setTimeout(() => {
+      this.backdrop.css({ opacity: 1 })
+      this.container.css({ transform: 'translateY(0px)', opacity: 1 })
+    }, 2);
+  },
+  close: function () {
+    unlockScroll()
+    this.backdrop.css({ opacity: 0 })
+    this.container.css({ transform: 'translateY(42px)', opacity: 0 })
+    setTimeout(() => {
+      this.modal.hide()
+    }, getTransitionTime(this.container));
+  }
+})
 
 document.addEventListener("DOMContentLoaded", function () {
   initPageObjects();
   initTelInput();
   initProductZoom()
   attachStickyScroll()
+  mailModal.init()
 });
 function initValidators() {
   $(".needs-validation").parsley({
