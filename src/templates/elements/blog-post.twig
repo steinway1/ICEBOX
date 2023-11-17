@@ -1,0 +1,25 @@
+<div class="blog-post">
+	<a href="{{article.url}}" class="blog-post__pic-link">
+		<img src="{{article.imgSrc}}" loading="lazy" alt="" class="blog-post__pic">
+	</a>
+	<div class="blog-post__main">
+		<div class="blog-post__details">
+			<div class="blog-post__tags">
+				{% for tag in article.tags %}
+					<span class="post-tag{% if tag.extraClass %} {{tag.extraClass}}{% endif %}">{{tag.name}}</span>
+				{% endfor %}
+				<span class="post-date">{{article.date}}</span>
+			</div>
+			<h3 class="blog-post__title">
+				<a href="{{article.url}}">{{article.title}}</a>
+			</h3>
+			<p class="blog-post__excerpt">{{article.excerpt}}</p>
+			<span class="post-author">{{article.author}}</span>
+		</div>
+		<div class="blog-post__footer">
+			<a href="{{article.url}}" class="blog-post__btn">Read More</a>
+			<span>{{article.time}}
+				min read</span>
+		</div>
+	</div>
+</div>

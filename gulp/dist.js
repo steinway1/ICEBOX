@@ -122,6 +122,9 @@ gulp.task('twig:build',
       .pipe(data(function () {
         return JSON.parse(fs.readFileSync(`${root.src.data}cart.json`));
       }))
+      .pipe(data(function () {
+        return JSON.parse(fs.readFileSync(`${root.src.data}blog.json`));
+      }))
       .pipe(data(function (file) {
         return JSON.parse(fs.readFileSync(root.src.data + path.basename(file.path) + '.json'));
       }))

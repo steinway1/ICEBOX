@@ -1,0 +1,91 @@
+{% set article = articles.list[0] %}
+
+<div class="main_article">
+	<div class="article-wrapper">
+		<div class="article-container">
+			<div class="article__controls">
+				<a href="/blog">Back To Blog</a>
+				<a href="{% if articles.list[index + 1] %}{{ articles.list[index + 1].url }}{% else %}{{ articles.list[0].url }}{% endif %}">Next Article</a>
+			</div>
+			<div class="article__welcome">
+				<div class="article__inner-wrap">
+					<div class="article__main-details">
+						<span class="post-date">{{article.date}}</span>
+						<div class="blog-post__tags">
+							{% for tag in article.tags %}
+								<span class="post-tag{% if tag.extraClass %} {{tag.extraClass}}{% endif %}">{{tag.name}}</span>
+							{% endfor %}
+						</div>
+						<h3 class="article-title">{{article.title}}</h3>
+						<p class="article-summary">{{article.summary}}</p>
+					</div>
+				</div>
+			</div>
+			<img src="{{article.imgSrc}}" loading="lazy" alt="" class="article__main-img">
+			<div class="article__content">
+				<div
+					class="article__inner-wrap">
+					{# Include html ?? #}
+					<p class="article-indent article-indent_sub">
+						<em>Digitalize big picture, so cross functional teams enable out of the box brainstorming. Put a record on and see who dances deep dive. Criticality message the initiative, a tentative event rundown is attached for your reference.</em>
+					</p>
+					<div class="article-yt-wrap">
+						<div style="padding-top:56.17021276595745%" class="article-embed-yt">
+							<iframe src="https://www.youtube.com/embed/x3bZ25a2wYY?rel=0&amp;controls=1&amp;autoplay=0&amp;mute=0&amp;start=0" frameborder="0" style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:auto" allow="autoplay; encrypted-media" allowfullscreen="" title="The Voice Lil Durk Drops $100K at Icebox!"></iframe>
+						</div>
+						<span>The Voice Lil Durk Drops $100K at Icebox!</span>
+					</div>
+					<p class="article-indent">
+						<strong>Digitalize big picture, so cross functional teams enable out of the box brainstorming. Put a record on and see who dances deep dive.</strong>
+						Criticality message the initiative, a tentative event rundown is attached for your reference, including other happenings on the day you are most welcome to join us beforehand for a light lunch we would also like to invite you to other activities on the day, including the interim and closing panel discussions on the intersection of businesses and social innovation</p>
+					<p class="article-indent">Digitalize big picture, so cross functional teams enable out of the box brainstorming. Put a record on and see who dances deep dive.</p>
+					<div class="article__social-block">
+						<h3>👇 Want More Content?! 👇<span>Subscribe Now For Our Weekly Videos!</span>
+						</h3>
+						<div class="big-social-grid">
+							<a href="https://www.youtube.com/channel/UCv8gFyATae1x0VmDHmNbIhg?sub_confirmation=1" class="big-social-box">
+								<div>YouTube<span>2,000,000+ subscribers</span>
+								</div><img src="./assets/social-box_youtube.svg" loading="lazy" alt="">
+							</a>
+							<a href="https://www.tiktok.com/@icebox" class="big-social-box">
+								<div>TikTok<span>7,400,000+ followers</span>
+								</div><img src="./assets/social-box_tiktok.svg" loading="lazy" alt="">
+							</a>
+							<a href="https://www.instagram.com/icebox/" class="big-social-box">
+								<div>Instagram<span>4,400,000+ followers</span>
+								</div><img src="./assets/social-box_instagram.svg" loading="lazy" alt="">
+							</a>
+							<a href="https://www.twitter.com/icebox" class="big-social-box">
+								<div>Twitter<span>33,000+ followers</span>
+								</div><img src="./assets/social-box_twitter.svg" loading="lazy" alt="">
+							</a>
+							<a href="https://www.snapchat.com/p/76d86003-980f-4fa7-ae24-85adc580de82/1442749846900736?timestamp=1&chapterid=206898777550848%3Fshare_id%3DQTlEREI4&locale=en_GB" class="big-social-box">
+								<div>Snapchat<span>1,000,000+ followers</span>
+								</div><img src="./assets/social-box_snapchat.svg" loading="lazy" alt="">
+							</a>
+							<a href="https://www.facebook.com/Icebox" class="big-social-box">
+								<div>Facebook<span>900,000+ followers</span>
+								</div><img src="./assets/social-box_facebook.svg" loading="lazy" alt="">
+							</a>
+						</div>
+					</div>
+					<div class="article__share-block">
+						<div class="article__share-heading">Share This Article:</div>
+						<div class="article__share-grid">
+							<a href="#" class="to_facebook"></a>
+							<a href="#" class="to_twitter"></a>
+							<a href="#" class="to_linkedin"></a>
+							<a href="#" class="to_whatsapp"></a>
+							<a href="#" class="to_telegram"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="article__controls">
+				<a href="/blog">Back To Blog</a>
+				<a href="{% if articles.list[index + 1] %}{{ articles.list[index + 1].url }}{% else %}{{ articles.list[0].url }}{% endif %}">Next Article</a>
+			</div>
+		</div>
+	</div>
+	<div class="article-bg"></div>
+</div>
