@@ -1140,9 +1140,7 @@ const productPage = new Object({
     this.favButton[0].onclick = () => {
       productPage.fn.toggleFavState();
     };
-    this.optionBtn.click(function () {
-      productPage.fn.toggleButtonState($(this));
-    });
+
     this.optionHead.click(function () {
       productPage.fn.toggleOptionVisible($(this));
     });
