@@ -2567,7 +2567,7 @@ const mailModal = new Object({
     this.evtClose = $('[data-mail-modal="close"]')
   },
   bindEvents: function () {
-    this.evtClose.on('click', function(){ mailModal.close() })
+    this.evtClose.on('click', function () { mailModal.close() })
   },
   open: function () {
     lockScroll()
@@ -2588,10 +2588,48 @@ const mailModal = new Object({
   }
 })
 
+const bfsModal = new Object({
+  transitionTime: () => { return getTransitionTime(bfsModal._) },
+  init: function () {
+    this.renderDOM()
+    if (this._.length && this._ !== null) {
+      this.attachEvents()
+    }
+  },
+  renderDOM: function () {
+    this._ = $('.bfs-modal')
+    this.evtClose = $('[data-evt="closeBfsModal"]')
+  },
+  attachEvents: function () {
+    this.evtClose.click(function (e) {
+      bfsModal.close()
+    })
+  },
+  open: function () {
+    if (this._.length) {
+      lockScroll()
+      this._.show()
+      setTimeout(() => {
+        this._.css({ opacity: 1 })
+      }, 1);
+    }
+  },
+  close: function () {
+    if (this._.length) {
+      unlockScroll()
+      this._.css({ opacity: 0 })
+      setTimeout(() => {
+        this._.hide()
+      }, this.transitionTime());
+    }
+  }
+})
+
 document.addEventListener("DOMContentLoaded", function () {
   initPageObjects();
   initTelInput();
   initProductZoom()
   attachStickyScroll()
   mailModal.init()
+  bfsModal.init()
 });
