@@ -57,22 +57,25 @@
 					</div>
 
 
-					<div class="results__items-grid">
-						{% include "elements/pay-card.twig" %}
-						{% for item in 0..3 %}
-							{% include "../elements/product-card.twig", with {
+					<div class="results__items">
+						<div class="results__items-grid">
+							{% include "elements/pay-card.twig" %}
+							{% for item in 0..3 %}
+								{% include "../elements/product-card.twig", with {
                 adminLayout: false
               } %}
-						{% endfor %}
-						{% for item in 0..19 %}
-							{% include "../elements/product-card.twig" %}
-						{% endfor %}
+							{% endfor %}
+							{% for item in 0..19 %}
+								{% include "../elements/product-card.twig" %}
+							{% endfor %}
+						</div>
+            <div class="content-preloader"><span></span></div>
 					</div>
 
 
 				</div>
 
-				{% include "elements/load-more.twig" %}
+				{# {% include "elements/load-more.twig" %} #}
 			</div>
 
 		</div>
