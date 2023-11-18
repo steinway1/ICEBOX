@@ -1874,6 +1874,11 @@ const filterModal = {
       let thisAttr = $(this).attr('data-filter-evt')
       thisAttr == 'close' ? filterModal.close() : filterModal.open(thisAttr)
     })
+    $('#filterSort a').click(function() {
+      if (!$(this).hasClass(IS_ACTIVE)) {
+        $(this).addClass(IS_ACTIVE).siblings().removeClass(IS_ACTIVE)
+      }
+    })
   },
   open: function (att) {
     lockScroll()
