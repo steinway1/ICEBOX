@@ -230,47 +230,28 @@
         <div class="header__sub-nav">
             <div class="wrapper">
                 <div class="header__sub-nav-list">
-                    <a href="https://www.icebox.com/results/pendants" class="header__sub-link" data-dropdown="jewelry">Fine Jewelry</a>
+                    <a href="https://www.icebox.com/results/pendants" class="header__sub-link" data-dropdown="categories">By Category</a>
                     <a href="https://www.icebox.com/results/gold-chains" class="header__sub-link" data-dropdown="men">For Men</a>
                     <a href="https://www.icebox.com/results/earrings" class="header__sub-link" data-dropdown="women">For Women</a>
                     <a href="https://www.icebox.com/results/watches" class="header__sub-link" data-dropdown="watches">Watches</a>
                     <a href="https://www.icebox.com/results/accessories" class="header__sub-link" data-dropdown="accessories">Accessories</a>
                     <a href="https://www.icebox.com/results/travel-cases" class="header__sub-link" data-dropdown="cases">Travel Cases</a>
-                    <a href="https://www.icebox.com/results/custom" class="header__sub-link" data-dropdown="">Custom</a>
+                    <a href="https://www.icebox.com/results/custom" class="header__sub-link" data-dropdown="custom">Custom</a>
                     <a href="https://www.icebox.com/results/glasses" class="header__sub-link" data-dropdown="">Glasses</a>
 
                 </div>
                 <div class="nav-drop">
                     <div class="nav-drop__container">
                         <!-- Fine Jewelry -->
-                        <div id="dd_jewelry" class="nav-drop__content is-visible">
-                            <a href="/" class="nav-drop-link nav-drop-link_spot">
-                                Shop All
-                            </a>
-                            <div data-evt="subDrop" class="nav-drop-link nav-drop-link_spot nav-drop_more">
-                                By Category
-                                <div class="nav-drop__sub">
-                                    <div class="nav-drop__sub-wrap">
-                                        <a href="/results/pendants" class="nav-drop-link">Pendants</a>
-                                        <a href="/results/gold-chains" class="nav-drop-link">Gold Chains</a>
-                                        <a href="/results/earrings" class="nav-drop-link">Earrings</a>
-                                        <a href="/results/necklaces" class="nav-drop-link">Necklaces</a>
-                                        <a href="/results/rings" class="nav-drop-link">Rings</a>
-                                        <a href="/results/rings?sub[]=Engagement%20Rings" class="nav-drop-link">Engagement Rings</a>
-                                        <a href="/results/bracelets" class="nav-drop-link">Bracelets</a>
-                                        <a href="/results/bracelets?sub[]=Gold%20Bracelets" class="nav-drop-link">Gold Bracelets</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="https://www.icebox.com/sale?pricerange=$0-1500" class="nav-drop-link nav-drop-link_spot">
-                                Best Under $1500
-                            </a>
-                            <a href="https://www.icebox.com/sale?pricerange=$0-3000" class="nav-drop-link nav-drop-link_spot">
-                                Best Under $3000
-                            </a>
-                            <a href="https://www.icebox.com/sale?best-sellers" class="nav-drop-link">Hot Sellers</a>
-                            <a href="https://www.icebox.com/sale?newest" class="nav-drop-link">Newest Pieces</a>
-                            <a href="https://www.icebox.com/sale?most-viewed" class="nav-drop-link">Most Viewed</a>
+                        <div id="dd_categories" class="nav-drop__content">
+                            <a href="/results/pendants" class="nav-drop-link">Pendants</a>
+                            <a href="/results/gold-chains" class="nav-drop-link">Gold Chains</a>
+                            <a href="/results/earrings" class="nav-drop-link">Earrings</a>
+                            <a href="/results/necklaces" class="nav-drop-link">Necklaces</a>
+                            <a href="/results/rings" class="nav-drop-link">Rings</a>
+                            <a href="/results/rings?sub[]=Engagement%20Rings" class="nav-drop-link">Engagement Rings</a>
+                            <a href="/results/bracelets" class="nav-drop-link">Bracelets</a>
+                            <a href="/results/bracelets?sub[]=Gold%20Bracelets" class="nav-drop-link">Gold Bracelets</a>
                         </div>
 
                         <!-- For Men -->
@@ -334,6 +315,7 @@
                             <a href="https://www.icebox.com/results/watches?gender[]=Male" class="nav-drop-link">For Men</a>
                             <a href="https://www.icebox.com/results/watches?gender[]=Female" class="nav-drop-link">For Women</a>
                             <a href="https://www.icebox.com/results/watches?gender[]=Unisex" class="nav-drop-link">Unisex Watches</a>
+                            <div data-evt="openQuizModal" class="nav-drop-link nav-drop-link_wizard">Watch Wizard</div>
                         </div>
 
                         <!-- Accessories -->
@@ -365,6 +347,14 @@
                             <a href="/results/travel-cases?sub[]=Travel" class="nav-drop-link">Travel</a>
                             <a href="/results/travel-cases?sub[]=Sunglasses" class="nav-drop-link">Sunglasses</a>
                             <a href="/results/travel-cases?sub[]=Trays" class="nav-drop-link">Trays</a>
+                        </div>
+
+                        <!-- Custom -->
+                        <div id="dd_custom" class="nav-drop__content">
+                            <a href="/custom-design" class="nav-drop-link">Pendants</a>
+                            <a href="/custom-design/rings-men" class="nav-drop-link">Men Rings</a>
+                            <a href="/custom-design/rings-women" class="nav-drop-link">Women Rings</a>
+                            <a href="#" class="nav-drop-link">By The Letter</a>
                         </div>
 
                     </div>
@@ -2071,6 +2061,202 @@
                         <path d="M23 1L1 23" stroke="currentColor" stroke-width="2"></path>
                     </svg>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="quiz-modal">
+        <div data-evt="closeQuizModal" class="quiz-modal__backdrop"></div>
+        <div class="quiz-modal__wrapper">
+            <div class="quiz-container">
+
+                <div class="quiz-container__background">
+                    <div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div></div>
+                </div>
+
+                <div class="quiz-container__content">
+
+                    <div class="quiz-container__header">
+                        <div class="quiz-step-text">STEP
+                            <span class="quiz-current-step">1</span>
+                            OUT OF
+                            <span class="quiz-max-step">3</span>
+                        </div>
+                        <div class="quiz-progress-bar">
+                            <span class="quiz-bar"></span>
+                        </div>
+                    </div>
+
+                    <div class="quiz-container__body">
+                        <form id="quizWatchesFilter" method="get">
+                            <div class="quiz-container-height">
+
+                                <!-- Gender select -->
+                                <section class="quiz-poll">
+                                    <div class="quiz-poll__wrapper">
+                                        <div class="quiz-poll__header">
+                                            <h2 class="quiz-poll-title">Are you looking for a men's watch or ladies watch?</h2>
+                                        </div>
+                                        <div class="quiz-poll__answers-wrap restricted-width">
+
+                                            <label class="quiz-answer">
+                                                <input type="radio" name="quiz-gender" value="men">
+                                                <div class="quiz-answer__wrapper">
+                                                    <div class="quiz-answer__gender-wrap">
+                                                        <img src="./assets/quiz-modal/quiz-watches_gender-men.webp" loading="eager" class="quiz-answer__gender-img">
+                                                        <div class="quiz-answer__details">
+                                                            <span class="quiz-answer-title">For Men</span>
+                                                            <div class="quiz-answer-radio"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </label>
+
+                                            <label class="quiz-answer">
+                                                <input type="radio" name="quiz-gender" value="women">
+                                                <div class="quiz-answer__wrapper">
+                                                    <div class="quiz-answer__gender-wrap">
+                                                        <img src="./assets/quiz-modal/quiz-watches_gender-women.webp" loading="eager" class="quiz-answer__gender-img">
+                                                        <div class="quiz-answer__details">
+                                                            <span class="quiz-answer-title">For Ladies</span>
+                                                            <div class="quiz-answer-radio"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </section>
+
+
+                                <!-- Diamonds select -->
+                                <section class="quiz-poll">
+                                    <div class="quiz-poll__wrapper">
+                                        <div class="quiz-poll__header">
+                                            <h2 class="quiz-poll-title">Are you looking for a watch with diamonds?</h2>
+                                        </div>
+                                        <div class="quiz-poll__answers-wrap vertical_flow">
+
+                                            <label class="quiz-answer">
+                                                <input type="radio" name="quiz-diamonds" value="noDiamonds">
+                                                <div class="quiz-answer__wrapper">
+                                                    <div class="quiz-answer__diamond-wrap">
+                                                        <img src="./assets/quiz-modal/quiz-watches_diamond-no.webp" loading="eager" class="quiz-answer__diamond-img">
+                                                        <div class="quiz-answer__details">
+                                                            <span class="quiz-answer-title">No Diamonds</span>
+                                                            <div class="quiz-answer-radio"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </label>
+
+                                            <label class="quiz-answer">
+                                                <input type="radio" name="quiz-diamonds" value="withDiamonds">
+                                                <div class="quiz-answer__wrapper">
+                                                    <div class="quiz-answer__diamond-wrap">
+                                                        <img src="./assets/quiz-modal/quiz-watches_diamond-yes.webp" loading="eager" class="quiz-answer__diamond-img">
+                                                        <div class="quiz-answer__details">
+                                                            <span class="quiz-answer-title">With Diamonds</span>
+                                                            <div class="quiz-answer-radio"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Metal select -->
+                                <section class="quiz-poll">
+                                    <div class="quiz-poll__wrapper">
+                                        <div class="quiz-poll__header">
+                                            <h2 class="quiz-poll-title">What metal do you like?</h2>
+                                        </div>
+                                        <div class="quiz-poll__answers-wrap">
+                                            <div class="quiz-poll__metal-grid">
+
+
+                                                <label class="quiz-answer">
+                                                    <input type="radio" name="quiz-metal" value="twoTone">
+                                                    <div class="quiz-answer__wrapper">
+                                                        <div class="quiz-answer__metal-wrap">
+                                                            <div>
+                                                                <span class="quiz-answer-title">Two-Tone</span>
+                                                                <div class="quiz-answer-radio"></div>
+                                                            </div>
+                                                        </div>
+                                                        <img src="./assets/quiz-modal/quiz-watches_metal-twotone.webp" class="quiz-answer__metal-img">
+                                                    </div>
+                                                </label>
+
+                                                <label class="quiz-answer">
+                                                    <input type="radio" name="quiz-metal" value="steel">
+                                                    <div class="quiz-answer__wrapper">
+                                                        <div class="quiz-answer__metal-wrap">
+                                                            <div>
+                                                                <span class="quiz-answer-title">Steel</span>
+                                                                <div class="quiz-answer-radio"></div>
+                                                            </div>
+                                                        </div>
+                                                        <img src="./assets/quiz-modal/quiz-watches_metal-steel.webp" class="quiz-answer__metal-img">
+                                                    </div>
+                                                </label>
+
+                                                <label class="quiz-answer">
+                                                    <input type="radio" name="quiz-metal" value="gold">
+                                                    <div class="quiz-answer__wrapper">
+                                                        <div class="quiz-answer__metal-wrap">
+                                                            <div>
+                                                                <span class="quiz-answer-title">Gold</span>
+                                                                <div class="quiz-answer-radio"></div>
+                                                            </div>
+                                                        </div>
+                                                        <img src="./assets/quiz-modal/quiz-watches_metal-gold.webp" class="quiz-answer__metal-img">
+                                                    </div>
+                                                </label>
+
+                                                <label class="quiz-answer">
+                                                    <input type="radio" name="quiz-metal" value="twoTone">
+                                                    <div class="quiz-answer__wrapper">
+                                                        <div class="quiz-answer__metal-wrap">
+                                                            <div>
+                                                                <span class="quiz-answer-title">All</span>
+                                                                <div class="quiz-answer-radio"></div>
+                                                            </div>
+                                                        </div>
+                                                        <img src="./assets/quiz-modal/quiz-watches_metal-all.webp" class="quiz-answer__metal-img">
+                                                    </div>
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="quiz-container__footer">
+                        <button class="quiz-main-btn" data-evt="quizGoNext">Next</button>
+                    </div>
+
+                </div>
+
+                <button class="quiz-close-btn" data-evt="closeQuizModal">
+                    <svg width="14" height="14" viewbox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.5 1L25.5 25" stroke="currentColor" stroke-width="3"></path>
+                        <path d="M25.5 1L1.5 25" stroke="currentColor" stroke-width="3"></path>
+                    </svg>
+                </button>
             </div>
         </div>
     </div>
