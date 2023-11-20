@@ -110,6 +110,16 @@
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #eeeeee;
 
+  @include maxWidthSm {
+    &.res-banner_sale {
+      &>img {
+        width: 100%;
+        height: 240px !important;
+        min-height: unset !important;
+      }
+    }
+  }
+
   @include maxWidthMd {
     border-bottom: 0px solid #eeeeee;
   }
@@ -1671,3 +1681,206 @@
 .results__item-card>a {
   position: relative;
 }
+
+/* #region : Common Sale Banner */
+.sale-banner-tape {
+  width: 100%;
+  height: 42px;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+  margin-bottom: -1px;
+  background-color: #0095c6;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  pointer-events: none;
+
+  &>div {
+    height: 100%;
+    flex: none;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    animation: saleBannerTape 32s linear infinite;
+
+    span {
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      flex: none;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: 28px;
+      padding-right: 28px;
+      font-size: 13px;
+      font-weight: 700;
+
+      &::after {
+        content: '';
+        display: block;
+        margin-top: -1px;
+        position: absolute;
+        left: 0px;
+        width: 6px;
+        height: 6px;
+        background-color: #fff;
+        flex: none;
+        transform: rotate(45deg);
+      }
+
+      @include maxWidthXs {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  }
+}
+
+.sale-banner__subheading {
+  color: #0095c6;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+
+  span {
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+  }
+}
+
+.sale-banner__heading {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  color: #0095c6;
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+  font-size: 140px;
+  font-weight: 700;
+  line-height: 126px;
+  display: flex;
+
+  span {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 16px;
+  }
+}
+
+.sale-banner__main {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 58px 46px;
+  display: flex;
+  position: relative;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sale-banner__tape {
+  width: 100%;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  position: absolute;
+
+  &>div {
+    flex: none;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    animation: saleBannerTape 35s linear infinite;
+
+    span {
+      color: rgba(0, 149, 198, .06);
+      flex: none;
+      padding-left: 42px;
+      padding-right: 42px;
+      font-size: 28vw;
+      font-weight: 800;
+      line-height: 20vw;
+
+      @media screen and (min-width: 1440px) {
+        font-size: 24vw;
+      }
+
+      @include maxWidthMd {
+        font-size: 38vw;
+      }
+
+      @include maxWidthXs {
+        color: rgba(0, 149, 198, .04);
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 28vw;
+        line-height: 28vw;
+      }
+    }
+  }
+}
+
+.sale-banner__description {
+  z-index: 2;
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+@media screen and (max-width: 991px) {
+  .sale-banner__heading {
+    font-size: 100px;
+  }
+
+  .sale-banner__main {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .sale-banner__heading {
+    font-size: 24vw;
+    line-height: 22vw;
+  }
+
+  .sale-banner__main {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .sale-banner__subheading {
+    font-size: 28px;
+  }
+
+  .sale-banner__heading {
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    font-size: 28vw;
+    line-height: 24vw;
+  }
+}
+
+@keyframes saleBannerTape {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* #endregion : Common Sale Banner */

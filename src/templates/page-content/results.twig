@@ -13,7 +13,7 @@
 	{# Banner #}
 	{% if category %}
 		{% if banner == true %}
-			{% include "../elements/results/results-banner.twig" %}
+			{% include "../elements/results/results-banner_sale.twig" %}
 		{% endif %}
 	{% else %}
 		{% include "../elements/results/results-empty.twig" %}
@@ -35,9 +35,9 @@
 		<div
 			class="results__main">
 			{# {% if category == results.watches %}{% include "elements/results/watches-notice.twig" %}{% endif %} #}
-			{% if collection == 'men' or collection == 'women' %}
+			{# {% if collection == 'men' or collection == 'women' %}
 				{% include "elements/results/results-sub.twig" with { collection: 'engagement' } %}
-			{% endif %}
+			{% endif %} #}
 
 			{# Results BAR #}
 			{% include "../elements/results/results-bar.twig" %}

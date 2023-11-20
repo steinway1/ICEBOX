@@ -12152,6 +12152,153 @@ form button.is-failed {
   position: relative;
 }
 
+/* #region : Common Sale Banner */
+
+.sale-banner-tape {
+  width: 100%;
+  height: 42px;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+  margin-bottom: -1px;
+  background-color: #0095c6;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sale-banner-tape > div {
+  height: 100%;
+  flex: none;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  animation: saleBannerTape 32s linear infinite;
+}
+
+.sale-banner-tape > div span {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  flex: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 28px;
+  padding-right: 28px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sale-banner-tape > div span::after {
+  content: "";
+  display: block;
+  margin-top: -1px;
+  position: absolute;
+  left: 0px;
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+  flex: none;
+  transform: rotate(45deg);
+}
+
+.sale-banner__subheading {
+  color: #0095c6;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.sale-banner__subheading span {
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+}
+
+.sale-banner__heading {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  color: #0095c6;
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+  font-size: 140px;
+  font-weight: 700;
+  line-height: 126px;
+  display: flex;
+}
+
+.sale-banner__heading span {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.sale-banner__main {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 58px 46px;
+  display: flex;
+  position: relative;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sale-banner__tape {
+  width: 100%;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  position: absolute;
+}
+
+.sale-banner__tape > div {
+  flex: none;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  animation: saleBannerTape 35s linear infinite;
+}
+
+.sale-banner__tape > div span {
+  color: rgba(0, 149, 198, 0.06);
+  flex: none;
+  padding-left: 42px;
+  padding-right: 42px;
+  font-size: 28vw;
+  font-weight: 800;
+  line-height: 20vw;
+}
+
+.sale-banner__description {
+  z-index: 2;
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+@keyframes saleBannerTape {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* #endregion : Common Sale Banner */
+
 .mybag-main {
   font-size: 14px;
   display: block;
@@ -20599,6 +20746,10 @@ width: calc(50% - 8px)
     min-height: 340px;
   }
 
+  .sale-banner__tape > div span {
+    font-size: 24vw;
+  }
+
   .checkout-item__pic-wrap {
     width: 20%;
     flex: 0 auto;
@@ -21069,6 +21220,19 @@ width: calc(50% - 8px)
   .results-sub__item:hover {
     background-color: #f5f5f5;
     border-color: #f5f5f5;
+  }
+
+  .sale-banner__tape > div span {
+    font-size: 38vw;
+  }
+
+  .sale-banner__heading {
+    font-size: 100px;
+  }
+
+  .sale-banner__main {
+    padding-left: 22px;
+    padding-right: 22px;
   }
 
   .sm-container {
@@ -21893,6 +22057,12 @@ width: calc(50% - 8px)
     padding-right: 36px;
   }
 
+  .res-banner.res-banner_sale > img {
+    width: 100%;
+    height: 240px !important;
+    min-height: unset !important;
+  }
+
   .res-banner {
     flex-direction: column;
   }
@@ -21949,6 +22119,16 @@ width: calc(50% - 8px)
   .pay-card__heading {
     font-size: 20px;
     line-height: 24px;
+  }
+
+  .sale-banner__heading {
+    font-size: 24vw;
+    line-height: 22vw;
+  }
+
+  .sale-banner__main {
+    padding-top: 32px;
+    padding-bottom: 32px;
   }
 
   .checkout__cards-col,
@@ -23452,6 +23632,30 @@ width: calc(50% - 8px)
 
   .pay-card__heading span {
     padding-left: 6px;
+  }
+
+  .sale-banner-tape > div span {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .sale-banner__tape > div span {
+    color: rgba(0, 149, 198, 0.04);
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 28vw;
+    line-height: 28vw;
+  }
+
+  .sale-banner__subheading {
+    font-size: 28px;
+  }
+
+  .sale-banner__heading {
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    font-size: 28vw;
+    line-height: 24vw;
   }
 
   .pseudo-radio__space-row {
