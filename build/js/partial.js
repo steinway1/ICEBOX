@@ -2720,7 +2720,7 @@ function initProductZoom() {
         }
       }
       return acc
-    }, []).forEach((el) => { jQuery(el).zoom({ magnify: 1.4 }) })
+    }, []).forEach((el) => { jQuery(el).zoom({ magnify: 1.65 }) })
   }
   const setMobileZoom = () => {
     const sliders = [...document.querySelectorAll('.product-slider')] // Get all existing sliders
