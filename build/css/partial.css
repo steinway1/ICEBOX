@@ -9003,7 +9003,8 @@ form button.is-failed {
   grid-row-gap: 30px;
   background-color: #f5f8fa;
   flex-direction: column;
-  padding: 4.4vw;
+  padding: 0px;
+  padding-right: 4px !important;
   display: flex;
   overflow: hidden;
 }
@@ -9017,6 +9018,7 @@ form button.is-failed {
   position: relative;
   width: 50%;
   padding: 4px;
+  padding-top: 0px !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9024,6 +9026,11 @@ form button.is-failed {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  cursor: crosshair;
+}
+
+.product-media .zoomImg {
+  transition: all 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 .product-media::before {
@@ -9384,15 +9391,15 @@ form button.is-failed {
   background: linear-gradient(45deg, #6F7174, #171C25);
 }
 
-.color-gradient.Two_Tone {
+.color-gradient.Two_tone {
   background: linear-gradient(45deg, #e2d2b6, #e6d6a8 50%, #f5f5f5 51%, #ebebeb);
 }
 
-.color-gradient.Two_Tone_Rose {
+.color-gradient.Two_tone_rose {
   background: linear-gradient(45deg, #FDDDDD, #D2ACAC 50%, #f5f5f5 51%, #ebebeb);
 }
 
-.color-gradient.Tri_Tone {
+.color-gradient.Tri_tone {
   background: linear-gradient(45deg, #e2c6cc, #e7cdd3 40%, #ebebeb 41%, #ddd 63%, #e2d2b6 64%, #ebe1c5);
 }
 
@@ -9404,11 +9411,11 @@ form button.is-failed {
   background: linear-gradient(45deg, #959294, #3F383C);
 }
 
-.color-gradient.Blue_Gold {
+.color-gradient.Blue_gold {
   background: linear-gradient(45deg, #88D3ED, #0095c6);
 }
 
-.color-gradient.Navy_Blue {
+.color-gradient.Navy-Blue {
   background: linear-gradient(45deg, #223164, #3e68c2);
 }
 
@@ -9424,7 +9431,7 @@ form button.is-failed {
   background-color: #cbcac6;
 }
 
-.color-gradient.Tri_Tone_Rose {
+.color-gradient.Tri_tone_rose {
   background: linear-gradient(45deg, #e2c6cc, #e7cdd3 40%, #ebebeb 41%, #ddd 63%, #e2d2b6 64%, #ebe1c5);
 }
 
@@ -9954,9 +9961,9 @@ form button.is-failed {
 
 .product__item-title {
   letter-spacing: 0px;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 600;
-  line-height: 32px;
+  line-height: 34px;
 }
 
 .option-letters-input {
@@ -16997,11 +17004,10 @@ width: calc(50% - 8px)
 
 .nopage__heading {
   color: #08111f;
-  text-transform: uppercase;
   margin-top: 24px;
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 600;
-  line-height: 68px;
+  line-height: 34px;
 }
 
 .nopage__subheading {
@@ -17011,6 +17017,8 @@ width: calc(50% - 8px)
   font-size: 16px;
   font-weight: 600;
   line-height: 26px;
+  margin-top: 12px;
+  margin-bottom: 48px;
 }
 
 .nopage__input-wrap {
@@ -17109,6 +17117,10 @@ width: calc(50% - 8px)
   padding: 18px 14px;
   font-weight: 600;
   display: flex;
+}
+
+.wrapper.wrapper_404 {
+  background-color: #f5f8fa;
 }
 
 .sitemap__main {
@@ -20716,11 +20728,13 @@ width: calc(50% - 8px)
 
   .product__view {
     width: 66%;
-    padding: 4.8vw;
+    padding: 0px;
+    padding-right: 4px !important;
   }
 
   .product-media {
-    padding: 6px;
+    padding: 4px;
+    padding-top: 0px !important;
   }
 
   .side-body {
@@ -24242,12 +24256,6 @@ width: calc(50% - 8px)
 
   .nopage__nav-grid {
     grid-column-gap: 12px;
-  }
-
-  .nopage__heading {
-    margin-bottom: 6px;
-    font-size: 7vw;
-    line-height: 11vw;
   }
 
   .nopage__subheading {
