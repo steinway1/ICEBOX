@@ -22,19 +22,24 @@
 }
 
 .product__view {
-  width: 62%;
+  width: 60%;
   min-height: 120px;
   grid-column-gap: 30px;
   grid-row-gap: 30px;
   background-color: #f5f8fa;
   flex-direction: column;
-  padding: 4.4vw;
+  padding: 2.2vw;
   display: flex;
   overflow: hidden;
 
   @media screen and (min-width: 1440px) {
+    width: 64%;
+    padding: 1.6vw;
+  }
+
+  @media screen and (min-width: 1550px) {
     width: 66%;
-    padding: 4.8vw;
+    padding: 1.6vw;
   }
 
   @include maxWidthMd {
@@ -123,6 +128,11 @@
   display: flex;
   position: relative;
   overflow: hidden;
+
+  img {
+    cursor: crosshair;
+    transition: all 450ms cubic-bezier(.39, .575, .565, 1);
+  }
 
   @include maxWidthXs {
     border-style: none;
