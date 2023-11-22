@@ -192,7 +192,7 @@ const blackFriday = {
   initFn: {
     setTimer: () => {
       let timer
-      const compare = new Date(2023, 10, 20, 10, 0o0, 0o0)
+      const compare = new Date(2023, 10, 28, 10, 0o0, 0o0)
 
       const timeBetweenDates = (to) => {
         let entered = to,
