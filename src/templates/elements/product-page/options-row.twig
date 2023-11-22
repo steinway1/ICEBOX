@@ -6,7 +6,7 @@
 
 				{# Gold Color #}
 				{% if option.type == "goldColor" %}
-					<div id="{{option.id}}" class="product__item-option">
+					<div class="product__item-option{% if option.extraClass %} {{option.extraClass}}{% endif %}">
 						<div class="product-option__head">
 							<div class="product-option-name">{{option.name}}
 								<span data-tippy-content="{{option.tippy}}" class="item-option__mark"></span>
@@ -34,7 +34,7 @@
 
 				{# GIA Diamonds #}
 				{% if option.type  == "giaDiamond" %}
-					<div id="{{option.id}}" class="product__item-option">
+					<div class="product__item-option{% if option.extraClass %} {{option.extraClass}}{% endif %}">
 						<div class="product-option__head">
 							<div class="product-option-name">
 								<span class="typo_gia-spot"></span>
@@ -73,7 +73,7 @@
 
 				{# Ring Size #}
 				{% if option.type  == "ringSize" %}
-					<div id="{{option.id}}" class="product__item-option">
+					<div class="product__item-option{% if option.extraClass %} {{option.extraClass}}{% endif %}">
 						<div class="product-option__head">
 							<div class="product-option-name">{{option.name}}</div>
 							<div class="product-option__head-right">
@@ -102,7 +102,7 @@
 
 				{# Bracelet Length #}
 				{% if option.type  == "braceletLength" %}
-					<div id="{{option.id}}" class="product__item-option">
+					<div class="product__item-option{% if option.extraClass %} {{option.extraClass}}{% endif %}">
 						<div class="product-option__head">
 							<div class="product-option-name">{{option.name}}</div>
 							<div class="product-option__head-right">
@@ -130,7 +130,7 @@
 
 				{# Necklace Length #}
 				{% if option.type  == "necklaceLength" %}
-					<div id="{{option.id}}" class="product__item-option">
+					<div class="product__item-option{% if option.extraClass %} {{option.extraClass}}{% endif %}">
 						<div class="product-option__head">
 							<div class="product-option-name">{{option.name}}</div>
 							<div class="product-option__head-right">
@@ -158,7 +158,7 @@
 
 				{# Diamonds Select #}
 				{% if option.type  == "diamonds" %}
-					<div id="{{option.id}}" class="product__item-option">
+					<div class="product__item-option{% if option.extraClass %} {{option.extraClass}}{% endif %}">
 						<div class="product-option__head">
 							<div class="product-option-name">{{option.name}}</div>
 							<div class="product-option__head-right">
@@ -183,7 +183,7 @@
 
 				{# Increase Size #}
 				{% if option.type == "increaseSize" %}
-					<div id="{{option.id}}" class="product__item-option">
+					<div class="product__item-option{% if option.extraClass %} {{option.extraClass}}{% endif %}">
 						<div class="product-option__head">
 							<div class="product-option-name">{{option.name}}</div>
 							<div class="product-option__head-right">
@@ -209,7 +209,7 @@
 
 				{# Diamond Color #}
 				{% if option.type == "diamondColor" %}
-					<div id="{{option.id}}" class="product__item-option">
+					<div class="product__item-option{% if option.extraClass %} {{option.extraClass}}{% endif %}">
 						<div class="product-option__head">
 							<div class="product-option-name">{{option.name}}<span class="item-option__mark"></span>
 							</div>
@@ -237,7 +237,7 @@
 				{# Type Letters #}
 				{% if option.type == "typeLetters" %}
 					{% if option.active == true %}
-						<div id="{{option.id}}" class="product__item-option">
+						<div class="product__item-option{% if option.extraClass %} {{option.extraClass}}{% endif %}">
 							<div class="product-option__head">
 								<div class="product-option-name">{{option.name}}</div>
 								<div class="product-option__head-right">
@@ -259,7 +259,7 @@
 				{# Upload Image #}
 				{% if option.type == "photoUpload" %}
 					{% if option.active == true %}
-						<div id="{{option.id}}" class="product__item-option">
+						<div class="product__item-option{% if option.extraClass %} {{option.extraClass}}{% endif %}">
 							<div class="product-option__head">
 								<div class="product-option-name">{{option.name}}</div>
 								<div class="product-option__head-right">

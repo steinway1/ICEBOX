@@ -1386,52 +1386,64 @@
 
 
 /* #region OPTIONS ROWS */
-#optionGia .option-btn {
-  padding: 0px !important;
-  width: 100%;
-  min-width: 100%;
-  display: flex;
-  justify-content: space-between;
-  gap: 0;
-  text-align: left;
+.option_gia {
+  .option-btn {
+    padding: 0px !important;
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 0;
+    text-align: left;
+  }
+
+  .product-option__head {
+    background-color: rgba(180, 155, 120, .16);
+  }
 }
 
-#optionGia .product-option__head {
-  background-color: rgba(180, 155, 120, .16);
+.option_size {
+  .option-btn {
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
-#optionSize .option-btn {
-  min-width: 100%;
-  display: flex;
-  justify-content: space-between;
+.option_diamond-color {
+  .option-btn {
+    min-width: 46%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .product-option__head {
+    background-color: #f0f0f0;
+  }
 }
 
-#optionDiamondsColor .option-btn {
-  min-width: 46%;
-  display: flex;
-  justify-content: space-between;
+.option_ring-size {
+  .options-block {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr)
+  }
 }
 
-#optionDiamondsColor .product-option__head {
-  background-color: #f0f0f0;
+.option_bracelet-length {
+  .options-block {
+    display: flex;
+    grid-template-columns: repeat(5, 1fr)
+  }
 }
 
-#optionRingSize .options-block {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr)
+.option_necklace-length {
+  .options-block {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr)
+  }
 }
 
-#optionBraceletLength .options-block {
-  display: flex;
-  grid-template-columns: repeat(5, 1fr)
-}
-
-#optionNecklaceLength .options-block {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr)
-}
-
-#optionGoldColor .options-block {
+.option_gold-color .options-block {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
@@ -1440,10 +1452,10 @@
     padding-top: 12px;
     padding-bottom: 12px;
   }
-}
 
-#optionGoldColor .product-option__head {
-  background-color: #f1e9d8;
+  .product-option__head {
+    background-color: #f1e9d8;
+  }
 }
 
 .product__item-option.is-collapsed .product-option__dd-icon {

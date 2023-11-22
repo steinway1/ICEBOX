@@ -1419,13 +1419,13 @@ const productPage = new Object({
     this.optionBody = $(".product-option__body");
     this.optionHead = $(".product-option__head");
     // Gold Color
-    this.goldOption = $("#optionGoldColor");
+    this.goldOption = $(".option_gold-color");
     this.goldOptionBtn = this.goldOption.find(this.optionBtn);
     // Diamond Color
-    this.dmColorOption = $("#optionDiamondsColor");
+    this.dmColorOption = $(".option_diamond-color");
     this.dmColorOptionBtn = this.dmColorOption.find(this.optionBtn);
     // Ring Size
-    this.ringOption = $("#optionRingSize");
+    this.ringOption = $(".option_ring-size");
     // Floating controls
     this.floatingBtn = $(".floating-btn-mobile");
     // Guide controls
@@ -1435,7 +1435,12 @@ const productPage = new Object({
     this.favButton[0].onclick = () => {
       productPage.fn.toggleFavState();
     };
-
+    this.optionBtn.click(function() {
+      if ($(this).not(`.${IS_ACTIVE}`)) {
+        $(this).siblings().removeClass(IS_ACTIVE)
+        $(this).addClass(IS_ACTIVE)
+      }
+    })
     this.optionHead.click(function () {
       productPage.fn.toggleOptionVisible($(this));
     });
