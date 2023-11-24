@@ -1,6 +1,6 @@
 {% set discountRate = 80 %}
 
-<div class="product-card{% if splideClass is defined %} splide__slide{% else %}{% endif %}" data-id="{{productItem.dataID}}">
+<div class="product-card{% if splideClass is defined %} splide__slide{% else %}{% endif %}{% if productItem.cyberMonday is defined and cyber_monday == true %} --cm{% endif %}" data-id="{{productItem.dataID}}">
 	{% if adminLayout == true %}
 		{% include "./admin-card.twig" %}
 	{% endif %}
@@ -12,13 +12,23 @@
 			</div>
 		</div>
 	{% endif %}
+	{% if productItem.cyberMonday is defined and cyber_monday == true %}
+		<div class="cm-card">
+			<div class="cm-badges">
+				<span class="cm-badge">CYBER MONDAY</span>
+				<span class="cm-badge --discount">-{{productItem.bfs}}%</span>
+			</div>
+		</div>
+	{% endif %}
 	{% if productItem.is_discounted and productItem.inStock %}
 		<span class="product-card__sale-badge discount_{{discountRate}}"></span>
 	{% endif %}
-	{% if productItem.inStock %}
-		<span class="product-card__shipping-tag">Ships Today</span>
-	{% else %}
-		<span class="product-card__shipping-tag is-made-order">Made To Order</span>
+	{% if cyber_monday == false and black_friday == false %}
+		{% if productItem.inStock %}
+			<span class="product-card__shipping-tag">Ships Today</span>
+		{% else %}
+			<span class="product-card__shipping-tag is-made-order">Made To Order</span>
+		{% endif %}
 	{% endif %}
 	<div class="product-card__wrapper">
 		<div class="product-card__media">
@@ -42,7 +52,7 @@
 					<span class="product-card__sale-price">${{productItem.salePrice}}</span>
 				{% endif %}
 			</div>
-      {% include "elements/product-card/stock-dash-box.twig" %}
+			{% include "elements/product-card/stock-dash-box.twig" %}
 		</div>
 	</div>
 </div>

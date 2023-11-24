@@ -1,4 +1,4 @@
-function pushConfetti(holder) {
+function pushConfetti(holder, bColor = 230) {
   var bfs_promo = false;
   var $window = $(window)
     , random = Math.random
@@ -35,7 +35,7 @@ function pushConfetti(holder) {
     }
   ];
   function color(r, g, b) {
-    return 'rgb(' + 0 + ',' + g + ',' + 230 + ')';
+    return 'rgb(' + 0 + ',' + g + ',' + bColor + ')';
   }
   function interpolation(a, b, t) {
     return (1 - cos(PI * t)) / 2 * (b - a) + a;
@@ -238,7 +238,7 @@ const blackFriday = {
       }
     },
     pushConfettiOnLoad: () => {
-      pushConfetti($('body'))
+      pushConfetti($('body'), 110)
       setTimeout(() => {
         $('.confetti-holder').css({ opacity: 0 })
         setTimeout(() => {
@@ -284,6 +284,176 @@ const blackFriday = {
   }
 }
 
+function r(from, to) {
+  return ~~(Math.random() * (to - from + 1) + from);
+}
+function cmLetterPick() {
+  return arguments[r(0, arguments.length - 1)];
+}
+let arr = '-+%&1234567890ICEBOX/'.split('')
+function getChar() {
+  return arr[r(0, arr.length - 1)]
+}
+function loop(fn, delay) {
+  let stamp = Date.now();
+  function _loop() {
+    if (Date.now() - stamp >= delay) {
+      fn(); stamp = Date.now();
+    }
+    requestAnimationFrame(_loop);
+  }
+  requestAnimationFrame(_loop);
+}
+class Char {
+  constructor() {
+    this.element = document.createElement('span');
+    this.mutate();
+  }
+  mutate() {
+    this.element.textContent = getChar();
+  }
+}
+class Trail {
+  constructor(list = [], options) {
+    this.list = list;
+    this.options = Object.assign(
+      { size: 10, offset: 0 }, options
+    );
+    this.body = [];
+    this.move();
+  }
+  traverse(fn) {
+    this.body.forEach((n, i) => {
+      let last = (i == this.body.length - 1);
+      if (n) fn(n, i, last);
+    });
+  }
+  move() {
+    this.body = [];
+    let { offset, size } = this.options;
+    for (let i = 0; i < size; ++i) {
+      let item = this.list[offset + i - size + 1];
+      this.body.push(item);
+    }
+    this.options.offset =
+      (offset + 1) % (this.list.length + size - 1);
+  }
+}
+class Rain {
+  constructor({ target, row }) {
+    this.element = document.createElement('p');
+    this.build(row);
+    if (target) {
+      target.appendChild(this.element);
+    }
+    this.drop();
+  }
+  build(row = 30) {
+    let root = document.createDocumentFragment();
+    let chars = [];
+    for (let i = 0; i < row; ++i) {
+      let c = new Char();
+      root.appendChild(c.element);
+      chars.push(c);
+      if (Math.random() < .5) {
+        loop(() => c.mutate(), r(1e3, 5e3));
+      }
+    }
+    this.trail = new Trail(chars, {
+      size: r(10, 30), offset: r(0, 100)
+    });
+    this.element.appendChild(root);
+  }
+  drop() {
+    let trail = this.trail;
+    let len = trail.body.length;
+    let delay = r(30, 70);
+    loop(() => {
+      trail.move();
+      trail.traverse((c, i, last) => {
+        c.element.style = `
+          color: hsl(150, 100%, ${85 / len * (i + 1)}%)
+        `;
+        if (last) {
+          c.mutate();
+          c.element.style = `
+            color: hsl(160, 50%, 85%)`;
+        }
+      });
+    }, delay);
+  }
+}
+
+const cyberMonday = {
+  init: function () {
+    Object.values(this.initFn).forEach((fn) => { if (fn && typeof fn == 'function') fn() })
+  },
+  initFn: {
+    setTimer: () => {
+      let timer
+      const compare = new Date(2023, 10, 26, 10, 0o0, 0o0)
+
+      const timeBetweenDates = (to) => {
+        let entered = to,
+          now = new Date(),
+          difference = entered.getTime() - now.getTime()
+
+        if (difference <= 0) {
+          clearInterval(timer)
+        } else {
+          let seconds = Math.floor(difference / 1000)
+          let minutes = Math.floor(seconds / 60)
+          let hours = Math.floor(minutes / 60)
+          let days = Math.floor(hours / 24)
+
+          hours %= 24
+          minutes %= 60
+          seconds %= 60
+
+          $("#bfs_timer_days").attr('data-text-glitch', days).text(days)
+          $("#bfs_timer_hours").attr('data-text-glitch', hours).text(hours)
+          $("#bfs_timer_min").attr('data-text-glitch', minutes).text(minutes)
+          $("#bfs_timer_sec").text(seconds)
+        }
+      }
+
+      timer = setInterval(function () {
+        timeBetweenDates(compare);
+      }, 1000);
+    },
+    adjustStickyEls: () => {
+      const elsArr = [...document.querySelectorAll('.filter-sidebar.to-stick'), ...document.querySelectorAll('.sticky-filters')]
+      const banner = document.querySelector('.bfs-banner')
+
+      if (elsArr.length && banner) {
+        const bannerHeight = parseInt(window.getComputedStyle(banner).getPropertyValue('height'))
+        elsArr.forEach((el) => {
+          let topValue = parseInt(window.getComputedStyle(el).getPropertyValue('top'))
+          Object.assign(el.style, { top: `${bannerHeight + topValue}px` })
+        })
+      }
+    },
+    pushConfettiOnLoad: () => {
+      pushConfetti($('body'), 110)
+      setTimeout(() => {
+        $('.confetti-holder').css({ opacity: 0 })
+        setTimeout(() => {
+          $('.confetti-holder').remove()
+        }, 350);
+      }, 6000);
+    },
+    pushMatrix: () => {
+      const main = document.querySelector('.cm-banner__matrix');
+      if (main !== null) {
+        for (let i = 0; i < 30; ++i) {
+          new Rain({ target: main, row: 30 });
+        }
+      }
+    }
+  }
+}
+
 $(function () {
-  blackFriday.init()
+  // blackFriday.init()
+  cyberMonday.init()
 })

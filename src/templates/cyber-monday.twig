@@ -1,0 +1,17 @@
+{% extends 'layouts/default.twig' %}
+{% set pageBanner = false %}
+{% set pagePromo = 'cyber_monday' %}
+{% set mainClass = 'cm_results' %}
+
+{% block include_head %}
+	{# Styles / preload scripts / etc... #}
+{% endblock %}
+
+{% block content %}
+	{% include "./page-content/cyber-monday.twig" %}
+{% endblock %}
+
+{% block include_script %}
+	<script src="./js/promo-min.js"></script>
+	{# Scripts / etc... #}
+{% endblock %}
