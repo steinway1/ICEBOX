@@ -185,7 +185,7 @@ const blackFriday = {
   initFn: {
     setTimer: () => {
       let timer
-      const compare = new Date(2023, 10, 26, 10, 0o0, 0o0)
+      const compare = new Date(2023, 10, 26, 24, 0o0, 0o0)
 
       const timeBetweenDates = (to) => {
         let entered = to,
@@ -391,7 +391,7 @@ const cyberMonday = {
   initFn: {
     setTimer: () => {
       let timer
-      const compare = new Date(2023, 10, 26, 10, 0o0, 0o0)
+      const compare = new Date(2023, 10, 27, 24, 0o0, 0o0)
 
       const timeBetweenDates = (to) => {
         let entered = to,
