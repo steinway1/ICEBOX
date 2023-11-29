@@ -20,7 +20,60 @@
   color: var(--toolbar-color);
   font-size: var(--toolbar-fontsize);
   width: 92%;
-  margin: 16px auto
+  margin: 16px auto;
+
+  .iba-button--toggle {
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+
+      &:not(:first-child) {
+        display: none;
+      }
+    }
+  }
+
+  &.is-minimized {
+    padding: 6px;
+    left: 24px !important;
+    bottom: 24px !important;
+    transform: unset;
+
+    #ibaToolbarStock {
+      display: none;
+    }
+
+    #ibaToolbarLabels {
+      display: none;
+    }
+
+    .iba-button-icon {
+      margin: 0 !important;
+      width: auto;
+      padding-left: 12px;
+      padding-right: 12px;
+
+      &.iba-button--toggle {
+        border-radius: 4px;
+        span {
+          &:first-child {
+            display: none;
+          }
+          &:not(:first-child) {
+            display: flex !important;
+          }
+        }
+      }
+    }
+
+    .iba-button-icon:not(.iba-button--toggle) {
+      display: none;
+    }
+  }
 }
 
 .product__certificate-link {
@@ -46,17 +99,20 @@
   transition: all 0ms !important;
   text-transform: uppercase;
 }
-.product__certificate-link svg{
+
+.product__certificate-link svg {
   width: 18px;
   height: 18px;
   margin-right: 10px;
 }
+
 .product__certificate-link:hover {
   color: #0995c6;
   border-left: 0px solid var(--blue-gold);
   padding-left: 0px;
   text-decoration: underline !important;
 }
+
 .product__certificate-link:hover span {
   color: #0995c6;
   border-left: 0px solid var(--blue-gold);
@@ -80,7 +136,11 @@
   -ms-flex-pack: center;
   justify-content: center;
   margin-right: var(--toolbar-spacing);
-  cursor: pointer
+  cursor: pointer;
+
+  path {
+    fill: currentColor;
+  }
 }
 
 .iba-button-icon .svgIcon-root {

@@ -6764,6 +6764,57 @@ body.compensate-for-scrollbar {
   margin: 16px auto;
 }
 
+.iba-toolbar .iba-button--toggle span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.iba-toolbar .iba-button--toggle span:not(:first-child) {
+  display: none;
+}
+
+.iba-toolbar.is-minimized {
+  padding: 6px;
+  left: 24px !important;
+  bottom: 24px !important;
+  transform: unset;
+}
+
+.iba-toolbar.is-minimized #ibaToolbarStock {
+  display: none;
+}
+
+.iba-toolbar.is-minimized #ibaToolbarLabels {
+  display: none;
+}
+
+.iba-toolbar.is-minimized .iba-button-icon {
+  margin: 0 !important;
+  width: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.iba-toolbar.is-minimized .iba-button-icon.iba-button--toggle {
+  border-radius: 4px;
+}
+
+.iba-toolbar.is-minimized .iba-button-icon.iba-button--toggle span:first-child {
+  display: none;
+}
+
+.iba-toolbar.is-minimized .iba-button-icon.iba-button--toggle span:not(:first-child) {
+  display: flex !important;
+}
+
+.iba-toolbar.is-minimized .iba-button-icon:not(.iba-button--toggle) {
+  display: none;
+}
+
 .product__certificate-link {
   display: -webkit-box;
   display: -webkit-flex;
@@ -6825,6 +6876,10 @@ body.compensate-for-scrollbar {
   justify-content: center;
   margin-right: var(--toolbar-spacing);
   cursor: pointer;
+}
+
+.iba-button-icon path {
+  fill: currentColor;
 }
 
 .iba-button-icon .svgIcon-root {

@@ -298,7 +298,8 @@ const IS_VISIBLE = "is-visible",
   IS_ACTIVE = "is-active",
   BUTTON_LOADING = "button_loading",
   IS_HIDDEN = 'is-hidden',
-  IS_EXPANDED = 'is-expanded'
+  IS_EXPANDED = 'is-expanded',
+  IS_MINIMIZED = 'is-minimized'
 
 /* #region  Extends */
 $.fn.extend({
@@ -1435,7 +1436,7 @@ const productPage = new Object({
     this.favButton[0].onclick = () => {
       productPage.fn.toggleFavState();
     };
-    this.optionBtn.click(function() {
+    this.optionBtn.click(function () {
       if ($(this).not(`.${IS_ACTIVE}`)) {
         $(this).siblings().removeClass(IS_ACTIVE)
         $(this).addClass(IS_ACTIVE)
@@ -1879,7 +1880,7 @@ const filterModal = {
       let thisAttr = $(this).attr('data-filter-evt')
       thisAttr == 'close' ? filterModal.close() : filterModal.open(thisAttr)
     })
-    $('#filterSort a').click(function() {
+    $('#filterSort a').click(function () {
       if (!$(this).hasClass(IS_ACTIVE)) {
         $(this).addClass(IS_ACTIVE).siblings().removeClass(IS_ACTIVE)
       }
@@ -2962,7 +2963,7 @@ const quizModal = {
     this.closeBtn.click(function () {
       quizModal.close()
     })
-    this.evtOpen.click(function() {
+    this.evtOpen.click(function () {
       quizModal.open()
     })
   },
@@ -3047,6 +3048,17 @@ const quizModal = {
     setTimeout(() => {
       quizModal.modal.hide()
     }, timeToHide);
+  }
+}
+
+function toggleAdminBar() {
+  let bar = document.querySelector('.iba-toolbar')
+  if (bar && bar !== null) {
+    if (bar.classList.contains(IS_MINIMIZED)) {
+      bar.classList.remove(IS_MINIMIZED)
+    } else {
+      bar.classList.add(IS_MINIMIZED)
+    }
   }
 }
 
