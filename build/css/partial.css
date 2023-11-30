@@ -12271,6 +12271,56 @@ form button.is-failed {
   background-color: #484af7;
 }
 
+.pay-card.--crypto {
+  background-image: linear-gradient(to right, #53AE94, #53AE94);
+}
+
+.pay-card.--crypto .pay-card__wrapper {
+  box-shadow: inset 0 2px 48px rgba(83, 174, 148, 0.1);
+}
+
+.pay-card.--crypto .pay-card__pics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 18px;
+  gap: 6px;
+}
+
+.pay-card.--crypto .pay-card__pics span {
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  padding: 4px 8px;
+  letter-spacing: 0px;
+  width: 60%;
+  background-color: #f5f8fa;
+  text-transform: uppercase;
+}
+
+.pay-card.--crypto .pay-card__pics span:first-child {
+  background-color: #F7931A;
+}
+
+.pay-card.--crypto .pay-card__pics span:nth-child(2) {
+  background-color: #53AE94;
+}
+
+.pay-card.--crypto .pay-card__pics span:nth-child(3) {
+  background-color: #627EEA;
+}
+
+.pay-card.--crypto .pay-card__details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pay-card.--crypto img {
+  background-color: unset;
+  width: 90%;
+}
+
 .load-more__btn-wrap {
   justify-content: center;
   align-items: center;
@@ -12653,7 +12703,8 @@ form button.is-failed {
 
 .checkout-form__radio-details-typo {
   max-width: 320px;
-  line-height: 22px;
+  line-height: 24px;
+  font-size: 15px;
 }
 
 .checkout-box__content {
@@ -13230,25 +13281,31 @@ form button.is-failed {
 }
 
 .crypto-how-btn {
-  color: var(--white);
+  color: #fff;
   text-transform: uppercase;
   cursor: pointer;
-  background-color: #067cdd;
+  background-color: #02a1d6;
+  border: 2px solid #02a1d6;
   justify-content: center;
   align-items: center;
-  margin-bottom: 12px;
-  padding: 8px 22px;
+  margin-top: 10px;
+  padding: 9px 22px;
   font-size: 12px;
   font-weight: 700;
-  transition: all 0.15s var(--main-easing);
+  transition: all 0.15s cubic-bezier(0.39, 0.575, 0.565, 1);
   display: flex;
   position: relative;
-  box-shadow: 0 12px 28px rgba(6, 96, 221, 0.22);
+  box-shadow: 0 12px 28px rgba(16, 171, 223, 0.3);
+}
+
+.crypto-how-btn:active {
+  border-color: #dee5ee;
 }
 
 .crypto-how-btn:hover {
-  background-color: #19a1eb;
-  box-shadow: 0 12px 28px rgba(21, 169, 248, 0.22);
+  color: #048dbb;
+  background-color: rgba(2, 161, 214, 0);
+  box-shadow: 0 12px 28px rgba(21, 169, 248, 0);
 }
 
 .crypto-how-btn img {
@@ -13325,6 +13382,7 @@ form button.is-failed {
 }
 
 .checkout-form__radio-details {
+  position: relative;
   box-shadow: none;
   background-color: var(--main-grey);
   border: 1px solid #dee5ee;
@@ -13334,6 +13392,29 @@ form button.is-failed {
   margin-bottom: -1px;
   padding: 20px;
   display: none;
+}
+
+.checkout-form__radio-details.is-copied::after {
+  content: "ADDRESS COPIED";
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(245, 248, 250, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.checkout-form__radio-details.is-copied.is-error::after {
+  content: "NOT SUPPORTED. COPY MANUALLY.";
 }
 
 .checkout-form__radio-details[visible] {
@@ -13413,12 +13494,6 @@ form button.is-failed {
   margin-bottom: 0;
   padding-left: 0;
   font-weight: 400;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 .checkout__sub-form {
@@ -13435,23 +13510,20 @@ form button.is-failed {
 }
 
 .copy-address-btn {
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
+  letter-spacing: 1px;
   text-transform: uppercase;
+  word-break: break-all;
   cursor: pointer;
-  border: 1px solid #c6d3e0;
+  background-color: #fff;
+  border: 1px solid #dee5ee;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10px 14px;
-  font-weight: 400;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
   display: flex;
-  background-color: transparent;
-}
-
-.copy-address-btn:hover {
-  border: 1px solid #c6d3e0;
-  background-color: var(--sub-grey);
+  position: relative;
 }
 
 .copy-address-btn:focus,
@@ -21424,6 +21496,12 @@ width: calc(50% - 8px)
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .pay-card.--crypto .pay-card__pics span {
+    width: 70%;
+  }
+}
+
 @media screen and (max-width: 991px) {
   :root {
     --main-wrapper-padding: 0px 46px;
@@ -24131,6 +24209,27 @@ width: calc(50% - 8px)
   .results-sub__wrap {
     padding-left: 22px;
     padding-right: 22px;
+  }
+
+  .pay-card.--crypto .pay-card__wrapper {
+    gap: 10px;
+    padding: 10px;
+    box-shadow: inset 0 2px 28px rgba(83, 174, 148, 0.1);
+  }
+
+  .pay-card.--crypto .pay-card__pics {
+    padding-top: 0px;
+    gap: 4px;
+  }
+
+  .pay-card.--crypto .pay-card__pics span {
+    width: 100%;
+    font-size: 11px;
+    padding: 1px 6px;
+  }
+
+  .pay-card.--crypto img {
+    width: 96%;
   }
 
   .pay-card__typo {

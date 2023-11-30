@@ -4,7 +4,9 @@ const IS_VISIBLE = "is-visible",
   BUTTON_LOADING = "button_loading",
   IS_HIDDEN = 'is-hidden',
   IS_EXPANDED = 'is-expanded',
-  IS_MINIMIZED = 'is-minimized'
+  IS_MINIMIZED = 'is-minimized',
+  IS_COPIED = 'is-copied',
+  IS_ERROR = 'is-error'
 
 /* #region  Extends */
 $.fn.extend({
@@ -2767,12 +2769,44 @@ function toggleAdminBar() {
   }
 }
 
+const attachCheckoutCopy = () => {
+  const btnArr = [...document.querySelectorAll('.crypto-how-btn'), ...document.querySelectorAll('.copy-address-btn')]
+  if (btnArr.length) {
+    btnArr.forEach((btn) => {
+      btn.onclick = () => {
+        if (!window.getSelection().toString()) {
+          let details = btn.closest('.checkout-form__radio-details')
+          if (details !== null) {
+            let address = details.querySelector('.copy-address-btn__typo').innerHTML
+            async function copyAddress() {
+              try {
+                await navigator.clipboard.writeText(address);
+                details.classList.add(IS_COPIED)
+                setTimeout(() => {
+                  details.classList.remove(IS_COPIED)
+                }, 1300);
+              } catch (err) {
+                details.classList.remove(IS_COPIED, IS_ERROR)
+                setTimeout(() => {
+                  details.classList.remove(IS_COPIED, IS_ERROR)
+                }, 2100);
+              }
+            }
+            copyAddress()
+          }
+        }
+      }
+    })
+  }
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
   initPageObjects();
   initTelInput();
   initProductZoom()
   attachStickyScroll()
+  attachCheckoutCopy()
   mailModal.init()
   bfsModal.init()
   quizModal.init()
