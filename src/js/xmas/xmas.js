@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, delay)
   }
 
-  const setTimer = () => {
+  const setXmasTimer = () => {
     let timer
     const compare = new Date(2023, 11, 5, 24, 0o0, 0o0)
 
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
         hours %= 24
         minutes %= 60
         seconds %= 60
-        
+
 
         days <= 9 ? $("#bfs_timer_days").text('0' + days) : $("#bfs_timer_days").text(days)
         hours <= 9 ? $("#bfs_timer_hours").text('0' + hours) : $("#bfs_timer_hours").text(hours)
@@ -208,8 +208,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 1000);
   }
 
+  const xmasAdjustStickyEls = () => {
+    const elsArr = [...document.querySelectorAll('.filter-sidebar.to-stick'), ...document.querySelectorAll('.sticky-filters')]
+    const banner = document.querySelector('.bfs-banner')
+
+    if (elsArr.length && banner) {
+      const bannerHeight = parseInt(window.getComputedStyle(banner).getPropertyValue('height'))
+      elsArr.forEach((el) => {
+        let topValue = parseInt(window.getComputedStyle(el).getPropertyValue('top'))
+        Object.assign(el.style, { top: `${bannerHeight + topValue}px` })
+      })
+    }
+  }
+
   pushBuckeyes()
   pushXmasPosterSnow()
   intervalFireworks()
-  setTimer()
+  setXmasTimer()
+  xmasAdjustStickyEls()
 })
