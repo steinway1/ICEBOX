@@ -13,16 +13,13 @@
 		{% include "../elements/results/sticky-filters.twig" %}
 
 		{# Sub Categories Navigation #}
-		{% if nav == true %}
-			{% if category.nav is defined %}
-				{% include "../elements/results/results-nav.twig" %}
-			{% endif %}
-		{% endif %}
+    {% include "../elements/results/results-nav.twig" %}
 
 		<div
 			class="results__main">
 
 			{# Results BAR #}
+      {% include "elements/results/results-sub.twig" with { collection: 'xmas' } %}
 			{% include "../elements/results/results-bar.twig" %}
 
 			<div class="results-wrapper with_cards">
