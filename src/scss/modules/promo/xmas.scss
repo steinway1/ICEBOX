@@ -1,0 +1,277 @@
+.bfs-banner {
+  &.--xmas {
+    background-color: #27252c;
+    background-image: linear-gradient(to right, #27252c 7%, rgba(39, 37, 44, .45) 50%, #27252c 93%), url(../assets/xmas/snow-pattern.webp);
+    background-position: 0 0, 0 0;
+    background-size: auto, 90px;
+    font-weight: 600;
+
+    .to_center {
+      img {
+        height: 54px !important;
+        margin-top: -4px;
+        margin-bottom: -4px;
+
+        @include maxWidthXs {
+          height: 46px !important;
+          margin-left: -8px;
+        }
+      }
+    }
+
+    .to_left {
+      img {
+        padding: 3px;
+        border: 1px solid #ffe8c3;
+      }
+    }
+
+    .bfs-banner__timer-title {
+      color: #ffe8c3;
+    }
+  }
+}
+
+.xmas-decor__desk2 {
+  transform-style: preserve-3d;
+  transform: rotateX(0)rotateY(-180deg)rotateZ(0);
+}
+
+.xmas-poster__content {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-image: url('../images/Group-8887-1_1Group 8887 (1).webp');
+  background-position: 0 0;
+  background-size: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 46px;
+  padding-bottom: 46px;
+  transition: all .2s;
+  display: flex;
+  box-shadow: inset 0 0 100px rgba(254, 241, 222, .3);
+}
+
+.xmas-poster__tag {
+  background-color: rgba(235, 221, 199, .07);
+
+  div {
+    letter-spacing: 5px;
+    -webkit-text-fill-color: transparent;
+    background-color: #ebddc7;
+    background-image: linear-gradient(to right, #ffedd2, #fff7ec 38%, #f1d8b2 69%, #ffeed6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    border: 1px solid #ebddc7;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: 700;
+
+    @include maxWidthXs {
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      padding-left: 12px;
+      padding-right: 12px;
+      font-size: 13px;
+      line-height: 24px;
+    }
+  }
+}
+
+.xmas-poster__mob-title {
+  width: 90%;
+  display: none;
+}
+
+.xmas-poster__main {
+  z-index: 2;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.xmas-poster__desktop-title {
+  width: 64%;
+}
+
+.xmas-poster {
+  min-height: 390px;
+  color: #fff;
+  background-color: #1e1e25;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  #xmasPosterSnow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+}
+
+.xmas-poster__subheading {
+  max-width: 380px;
+  color: #ebddc7;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(81deg, #ffedd2, #fff7ec 33%, #f1d8b2 64%, #ffeed6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  position: relative;
+}
+
+.xmas-decor__mob {
+  display: none;
+}
+
+.xmas-decor__mob.is-flipped {
+  transform-style: preserve-3d;
+}
+
+.xmas-poster__decor {
+  background-image: linear-gradient(#323139, #201f27);
+  justify-content: space-between;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+@media screen and (min-width: 1920px) {
+  .xmas-poster__desktop-title {
+    margin-top: -20px;
+    margin-bottom: -20px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .xmas-poster__desktop-title {
+    width: 76%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .xmas-poster__subheading {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .xmas-decor__desk2 {
+    display: none;
+  }
+
+  .xmas-poster__content {
+    height: 100%;
+  }
+
+  .xmas-decor__desk1 {
+    display: none;
+  }
+
+  .xmas-poster__mob-title {
+    width: 100%;
+    display: block;
+  }
+
+  .xmas-poster__desktop-title {
+    display: none;
+  }
+
+  .xmas-poster {
+    height: 440px;
+  }
+
+  .xmas-poster__subheading {
+    max-width: 280px;
+  }
+
+  .xmas-decor__mob {
+    object-fit: cover;
+    object-position: 50% 100%;
+    margin-top: -30%;
+    display: block;
+  }
+
+  .xmas-decor__mob.is-flipped {
+    margin-top: auto;
+    margin-bottom: -30%;
+    transform: rotateX(0)rotateY(-180deg)rotateZ(0)rotateX(180deg)rotateY(0)rotateZ(0);
+  }
+
+  .xmas-poster__decor {
+    flex-direction: column;
+  }
+}
+
+.product-card.--xmas {
+  @media screen and (min-width: 991px) {
+    &:hover {
+      border-color: #a59278;
+
+      .xmas-card {
+        box-shadow: inset 0 0 58px rgba(223, 208, 186, .25);
+      }
+    }
+  }
+}
+
+.xmas-card {
+  z-index: 2;
+  border: 2px solid #dfd0ba;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  box-shadow: inset 0 0 32px rgba(223, 208, 186, .15);
+  transition: all 200ms ease;
+  pointer-events: none;
+}
+
+.xmas-badges {
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
+  align-items: center;
+  padding: 4px;
+  display: flex;
+
+  span {
+    color: #fdf2e0;
+    background-color: #27262e;
+    padding: 3px 10px 1px;
+    font-family: Bebas Neue, sans-serif;
+    font-weight: 600;
+  }
+}
+
+#xmasPosterOverlay {
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  opacity: .07;
+  mix-blend-mode: screen;
+  object-fit: cover;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}

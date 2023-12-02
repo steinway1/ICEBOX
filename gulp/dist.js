@@ -71,6 +71,10 @@ const root = {
       promo: {
         lib: './src/js/promo/libraries/*.js',
         main: './src/js/promo/*.js'
+      },
+      xmas: {
+        lib: './src/js/xmas/libraries/*.js',
+        main: './src/js/xmas/*.js'
       }
     },
     assets: './src/assets/**/*',
@@ -189,6 +193,21 @@ gulp.task('js:build',
       .pipe(minify())
       .pipe(gulp.dest(root.build.js))
   })
+
+  gulp.task('js-xmas:build',
+  () => {
+    return gulp
+      .src([
+        root.src.js.xmas.lib,
+        root.src.js.xmas.main
+      ])
+      .pipe(changed(root.build.js))
+      .pipe(plumber(setPlumberNotify('JS-XMAS')))
+      .pipe(concat('xmas.js'))
+      .pipe(minify())
+      .pipe(gulp.dest(root.build.js))
+  })
+
 
   gulp.task('js-plugins:build',
   () => {

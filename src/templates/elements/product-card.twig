@@ -1,6 +1,6 @@
 {% set discountRate = 80 %}
 
-<div class="product-card{% if splideClass is defined %} splide__slide{% else %}{% endif %}{% if productItem.cyberMonday is defined and cyber_monday == true %} --cm{% endif %}" data-id="{{productItem.dataID}}">
+<div class="product-card{% if splideClass is defined %} splide__slide{% else %}{% endif %}{% if productItem.cyberMonday is defined and cyber_monday == true %} --cm{% endif %}{% if productItem.xmas is defined and christmas == true %} --xmas{% endif %}" data-id="{{productItem.dataID}}">
 	{% if adminLayout == true %}
 		{% include "./admin-card.twig" %}
 	{% endif %}
@@ -20,10 +20,18 @@
 			</div>
 		</div>
 	{% endif %}
+	{% if productItem.xmas is defined and christmas == true %}
+		<div class="xmas-card">
+			<div class="xmas-badges">
+				<span>XMAS SALE</span>
+				<span>-{{productItem.xmas}}%</span>
+			</div>
+		</div>
+	{% endif %}
 	{% if productItem.is_discounted and productItem.inStock %}
 		<span class="product-card__sale-badge discount_{{discountRate}}"></span>
 	{% endif %}
-	{% if cyber_monday == false and black_friday == false %}
+	{% if cyber_monday == false and black_friday == false and christmas == false %}
 		{% if productItem.inStock %}
 			<span class="product-card__shipping-tag">Ships Today</span>
 		{% else %}

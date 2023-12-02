@@ -1,6 +1,7 @@
 {% set black_friday = false %}
 {% set cyber_monday = false %}
-{% set userIsAdmin = true %}
+{% set christmas = true %}
+{% set userIsAdmin = false %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@
 
 
 	<body>
-		{% if pageBanner == true and not black_friday == true and not cyber_monday == true %}
+		{% if pageBanner == true and not black_friday == true and not cyber_monday == true and not christmas == true %}
 			{% include "../elements/page-banner.twig" %}
 		{% endif %}
 		{% include "../elements/header.twig" %}

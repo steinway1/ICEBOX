@@ -67,11 +67,15 @@ const root = {
       bundle: {
         main: './src/js/main.js',
         login: './src/js/login.js',
-        cartMail:'./src/js/cart-mail.js',
+        cartMail: './src/js/cart-mail.js',
       },
       promo: {
         lib: './src/js/promo/libraries/*.js',
         main: './src/js/promo/*.js'
+      },
+      xmas: {
+        lib: './src/js/xmas/libraries/*.js',
+        main: './src/js/xmas/*.js'
       }
     },
     assets: './src/assets/**/*',
@@ -193,6 +197,20 @@ gulp.task('js-promo:dev',
       .pipe(gulp.dest(root.dev.js))
   })
 
+gulp.task('js-xmas:dev',
+  () => {
+    return gulp
+      .src([
+        root.src.js.xmas.lib,
+        root.src.js.xmas.main
+      ])
+      .pipe(changed(root.dev.js))
+      .pipe(plumber(setPlumberNotify('JS-XMAS')))
+      .pipe(concat('xmas.js'))
+      .pipe(minify())
+      .pipe(gulp.dest(root.dev.js))
+  })
+
 gulp.task('js-plugins:dev',
   () => {
     return gulp
@@ -235,7 +253,7 @@ gulp.task('watch:dev',
   () => {
     gulp.watch('./src/templates/**/*.twig', gulp.parallel('twig:dev')),
       gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev')),
-      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-promo:dev')),
+      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-promo:dev', 'js-xmas:dev')),
       // gulp.watch('./src/templates/data/*.json', gulp.parallel('js:dev')),
       gulp.watch('./assets/**/*', gulp.parallel('assets:dev'))
   }
