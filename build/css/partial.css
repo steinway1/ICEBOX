@@ -9264,6 +9264,7 @@ form button.is-failed {
   position: absolute;
   top: 10px;
   left: 10px;
+  z-index: 99;
 }
 
 .product-media__zoom-select.admin-card_select {
@@ -11436,7 +11437,8 @@ form button.is-failed {
 }
 
 .results-bar {
-  z-index: 2;
+  z-index: 10;
+  position: relative;
   width: 100%;
   margin-bottom: 24px;
 }
@@ -19127,6 +19129,12 @@ width: calc(50% - 8px)
   right: 0%;
 }
 
+.product-card.--xmas .stock-dash-box span {
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  font-weight: 700;
+}
+
 .xmas-card {
   z-index: 2;
   border: 2px solid #dfd0ba;
@@ -21865,6 +21873,10 @@ width: calc(50% - 8px)
 
   .product-media {
     width: 33.3333333333%;
+  }
+
+  .product-media__zoom-select {
+    display: none !important;
   }
 
   .side-body {
@@ -25528,6 +25540,11 @@ width: calc(50% - 8px)
 
   .xmas-poster__decor {
     flex-direction: column;
+  }
+
+  .product-card.--xmas .stock-dash-box span {
+    font-size: 2.5vw !important;
+    letter-spacing: 0px;
   }
 
   .bfs-banner__group.to_center img.for_desktop {

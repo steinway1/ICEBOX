@@ -174,7 +174,42 @@ document.addEventListener('DOMContentLoaded', function () {
     }, delay)
   }
 
+  const setTimer = () => {
+    let timer
+    const compare = new Date(2023, 11, 5, 24, 0o0, 0o0)
+
+    const timeBetweenDates = (to) => {
+      let entered = to,
+        now = new Date(),
+        difference = entered.getTime() - now.getTime()
+
+      if (difference <= 0) {
+        clearInterval(timer)
+      } else {
+        let seconds = Math.floor(difference / 1000)
+        let minutes = Math.floor(seconds / 60)
+        let hours = Math.floor(minutes / 60)
+        let days = Math.floor(hours / 24)
+
+        hours %= 24
+        minutes %= 60
+        seconds %= 60
+        
+
+        days <= 9 ? $("#bfs_timer_days").text('0' + days) : $("#bfs_timer_days").text(days)
+        hours <= 9 ? $("#bfs_timer_hours").text('0' + hours) : $("#bfs_timer_hours").text(hours)
+        minutes <= 9 ? $("#bfs_timer_min").text('0' + minutes) : $("#bfs_timer_min").text(minutes)
+        seconds <= 9 ? $("#bfs_timer_sec").text('0' + seconds) : $("#bfs_timer_sec").text(seconds)
+      }
+    }
+
+    timer = setInterval(function () {
+      timeBetweenDates(compare);
+    }, 1000);
+  }
+
   pushBuckeyes()
   pushXmasPosterSnow()
   intervalFireworks()
+  setTimer()
 })
