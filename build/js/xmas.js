@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const setXmasTimer = () => {
     let timer
-    const compare = new Date(2023, 11, 5, 24, 0o0, 0o0)
+    const compare = new Date(2023, 11, 23, 24, 0o0, 0o0)
 
     const timeBetweenDates = (to) => {
       let entered = to,
