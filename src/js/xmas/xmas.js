@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+
   const xmasPoster = document.querySelector('.xmas-poster'),
     snowHolder = document.querySelector('#xmasPosterSnow')
 
@@ -174,6 +175,35 @@ document.addEventListener('DOMContentLoaded', function () {
     }, delay)
   }
 
+  const xmasConfettiBlow = () => {
+    function rng(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+    const count = window.innerWidth > 479 ? 40 : 25
+    const settings = (xCoor, yCoor) => {
+      return {
+        startVelocity: 30,
+        colors: ["#ffe8c3", "#34343f"],
+        spread: 120,
+        ticks: 400,
+        zIndex: 100,
+        origin: { x: xCoor, y: yCoor },
+        particleCount: count,
+        shape: {
+          type: ["square", "triangle"]
+        }
+      }
+    }
+
+    confetti(settings(rng(0, 0.3), rng(0.2, 0.8)))
+    setTimeout(() => {
+      confetti(settings(rng(0.4, 0.7), rng(0.2, 0.8)))
+      setTimeout(() => {
+        confetti(settings(rng(0.7, 1), rng(0.2, 0.8)))
+      }, 200);
+    }, 200);
+  }
+
   const setXmasTimer = () => {
     let timer
     const compare = new Date(2023, 11, 23, 24, 0o0, 0o0)
@@ -222,8 +252,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   pushBuckeyes()
-  pushXmasPosterSnow()
   intervalFireworks()
+  // xmasConfettiBlow()
+  pushXmasPosterSnow()
   setXmasTimer()
   xmasAdjustStickyEls()
 })
