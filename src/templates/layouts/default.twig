@@ -13,7 +13,7 @@
 	</head>
 
 
-	<body>
+	<body{% if christmas == true %} class="xmas_update"{% endif %}>
 		{% if pageBanner == true and not black_friday == true and not cyber_monday == true and not christmas == true %}
 			{% include "../elements/page-banner.twig" %}
 		{% endif %}

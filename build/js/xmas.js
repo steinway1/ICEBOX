@@ -10,7 +10,14 @@ function hexToRgb(e){var a=/^#?([a-f\d])([a-f\d])([a-f\d])$/i;e=e.replace(a,func
 document.addEventListener('DOMContentLoaded', function () {
 
   const xmasPoster = document.querySelector('.xmas-poster'),
-    snowHolder = document.querySelector('#xmasPosterSnow')
+    snowHolder = document.querySelector('#xmasPosterSnow'),
+    confettiColors = []
+
+  if ($('body').hasClass('xmas_update')) {
+    confettiColors.push(...["#ffe8c3", "#f81721"])
+  } else {
+    confettiColors.push(...["#ffe8c3", "#34343f"])
+  }
 
   const pushXmasPosterSnow = () => {
     if (xmasPoster !== null && snowHolder !== null) {
@@ -42,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const pushBuckeyes = () => {
     const end = window.innerWidth > 479 ? Date.now() + 7 * 1000 : Date.now() + 3 * 1000,
-      colors = ["#ffe8c3", "#34343f"],
+      colors = confettiColors,
       count = window.innerWidth > 479 ? 2 : 1.4,
       originY = window.innerWidth > 779 ? 0.7 : 0.9
 
@@ -149,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
           confetti(
             Object.assign({}, defaults, {
               particleCount,
-              colors: ["#ffe8c3", "#34343f"],
+              colors: confettiColors,
               origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
               shape: {
                 type: ["square", "triangle"]
@@ -164,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
           confetti(
             Object.assign({}, defaults, {
               particleCount,
-              colors: ["#ffe8c3", "#34343f"],
+              colors: confettiColors,
               origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
               shape: {
                 type: ["square", "triangle"]
@@ -192,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const settings = (xCoor, yCoor) => {
       return {
         startVelocity: 30,
-        colors: ["#ffe8c3", "#34343f"],
+        colors: confettiColors,
         spread: 120,
         ticks: 400,
         zIndex: 100,
