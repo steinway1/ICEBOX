@@ -2103,3 +2103,116 @@
     flex-direction: column;
   }
 }
+
+.mybag-main {
+  .polish-item {
+    margin-bottom: 20px;
+
+    @include maxWidthXs {
+      margin-bottom: 28px;
+    }
+  }
+}
+
+.polish-item {
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
+  padding-top: 32px;
+  display: flex;
+  position: relative;
+
+  &::before {
+    content: 'Free With Purchase over $1000';
+    height: 28px;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: #12a9db;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    position: absolute;
+    top: 0%;
+    bottom: auto;
+    left: 0%;
+    right: auto;
+  }
+}
+
+.polish-item__details {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  background-color: #fff;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+  display: flex;
+
+  &>span {
+    grid-column-gap: 6px;
+    grid-row-gap: 6px;
+    color: #0095c6;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+
+    span {
+      color: #08111f;
+      font-size: 14px;
+      text-decoration: line-through;
+    }
+  }
+
+  h4 {
+    max-width: 400px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 18px;
+
+    span {
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 4px;
+      font-weight: 400;
+      display: block;
+    }
+  }
+}
+
+.polish-item__pic {
+  width: 160px;
+  border: 4px solid #fff;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 6px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  @include maxWidthXs {
+    width: 30%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.4);
+
+    @include maxWidthXs {
+      height: 72px;
+    }
+  }
+}
