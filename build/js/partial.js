@@ -2020,32 +2020,72 @@ const pageEls = new Object({
           })
         }
       }
-    },
-    togglePayModal: () => {
-      let evt = [...$('[data-evt="togglePayModal"]')]
-      evt.forEach((el) => {
-        el.onclick = () => {
-          let modal = $('.pay-modal')
-          if (modal.length) {
-            if (modal.isVisible()) {
-              unlockScroll()
-              modal.css({ opacity: 0 })
-              setTimeout(() => {
-                modal.hide()
-              }, getTransitionTime(modal));
-            } else {
-              lockScroll()
-              modal.show()
-              setTimeout(() => {
-                modal.css({ opacity: 1 })
-              }, 1);
-            }
-          }
-        }
-      })
     }
+    // togglePayModal: () => {
+    //   let evt = [...$('[data-evt="togglePayModal"]')]
+    //   evt.forEach((el) => {
+    //     el.onclick = () => {
+    //       let modal = $('.pay-modal')
+    //       if (modal.length) {
+    //         if (modal.isVisible()) {
+    //           unlockScroll()
+    //           modal.css({ opacity: 0 })
+    //           setTimeout(() => {
+    //             modal.hide()
+    //           }, getTransitionTime(modal));
+    //         } else {
+    //           lockScroll()
+    //           modal.show()
+    //           setTimeout(() => {
+    //             modal.css({ opacity: 1 })
+    //           }, 1);
+    //         }
+    //       }
+    //     }
+    //   })
+    // }
   }
 })
+
+const attachPayModal = () => {
+  let evtOpenLater = $('[data-evt="payModalLater"]'),
+    evtOpenCrypto = $('[data-evt="payModalCrypto"]'),
+    evtClose = $('[data-evt="closePayModal"]'),
+    crypto = $('#payModalCrypto'),
+    later = $('#payModalLater'),
+    modal = $('.pay-modal')
+
+  const openModal = () => {
+    lockScroll()
+    modal.show()
+    setTimeout(() => {
+      modal.css({ opacity: 1 })
+    }, 1);
+  }
+
+  const closeModal = () => {
+    unlockScroll()
+    modal.css({opacity: 0})
+    setTimeout(() => {
+      modal.hide()
+    }, getTransitionTime(modal));
+  }
+
+  evtOpenLater.add(evtOpenCrypto).click(function () {
+    openModal()
+    crypto.add(later).hide()
+    if ($(this).is(evtOpenCrypto)) {
+      crypto.show()
+    }
+    if ($(this).is(evtOpenLater)) {
+      later.show()
+    }
+  })
+
+  evtClose.click(function() {
+    closeModal()
+  })
+}
 /* #endregion */
 
 
@@ -3102,6 +3142,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initProductZoom()
   attachStickyScroll()
   attachCheckoutCopy()
+  attachPayModal()
   mailModal.init()
   bfsModal.init()
   quizModal.init()

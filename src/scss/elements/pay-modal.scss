@@ -45,6 +45,35 @@
   @include maxWidthXs {
     max-width: calc(100% - 24px);
   }
+
+  &#payModalLater {
+    display: none;
+  }
+
+  &#payModalCrypto {
+    background-image: linear-gradient(to right, #53AE94, #53AE94);
+
+    .pay-modal__content-wrap {
+      box-shadow: inset 0 2px 48px rgba(83, 174, 148, 0.1);
+    }
+
+    .pay-modal__close-btn {
+      border-color: #53AE94;
+    }
+
+    .paylater-box__row p {
+      line-height: 23px !important;
+      font-size: 15px !important;
+    }
+
+    .pay-modal__wrapper {
+      padding-bottom: 56px;
+
+      @include maxWidthXs {
+        padding-bottom: 38px;
+      }
+    }
+  }
 }
 
 .pay-modal__content-wrap {

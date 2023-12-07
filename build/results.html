@@ -737,7 +737,21 @@
 
                             <div class="results__items">
                                 <div class="results__items-grid">
-
+                                    <div class="pay-card">
+                                        <div class="pay-card__wrapper">
+                                            <div data-evt="togglePayModal" class="pay-card__pics">
+                                                <img src="./assets/pay-klarna.svg" loading="lazy" alt="">
+                                                <img src="./assets/pay-affirm.svg" loading="lazy" alt="">
+                                                <img src="./assets/pay-afterpay.svg" loading="lazy" alt="">
+                                            </div>
+                                            <div class="pay-card__details">
+                                                <div class="pay-card__heading">Buy Now. Pay Later.<br><span>No Fees.</span>
+                                                </div>
+                                                <p class="pay-card__typo">Take the stress out of payments with our convenient up to 12-month installment plan</p>
+                                                <button data-evt="payModalLater" class="pay-card__btn">Learn More</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="pay-card --crypto">
                                         <div class="pay-card__wrapper">
                                             <div class="pay-card__pics">
@@ -747,7 +761,7 @@
                                             </div>
                                             <div class="pay-card__details">
                                                 <img src="./assets/pay-crypto-sum.svg" alt="">
-                                                <button class="pay-card__btn">Learn More</button>
+                                                <button data-evt="payModalCrypto" class="pay-card__btn">Learn More</button>
                                             </div>
                                         </div>
                                     </div>
@@ -3165,7 +3179,7 @@
         </div>
     </div>
     <div class="pay-modal">
-        <div class="pay-modal__container">
+        <div id="payModalLater" class="pay-modal__container">
             <div class="pay-modal__content-wrap">
                 <div class="pay-modal__pics">
                     <div><img src="./assets/pay-klarna.svg" loading="lazy" alt=""></div>
@@ -3191,7 +3205,30 @@
             </div>
             <div data-evt="togglePayModal" class="pay-modal__close-btn"></div>
         </div>
-        <div data-evt="togglePayModal" class="pay-modal__backdrop"></div>
+
+        <div id="payModalCrypto" class="pay-modal__container">
+            <div class="pay-modal__content-wrap">
+                <div class="pay-modal__pics">
+                    <div><img src="./assets/pay-usdt.svg" loading="lazy" alt=""></div>
+                    <div><img src="./assets/pay-eth.svg" loading="lazy" alt=""></div>
+                    <div><img src="./assets/pay-btc.svg" loading="lazy" alt=""></div>
+                </div>
+                <div class="pay-modal__wrapper">
+                    <h3 class="pay-card__heading">How It Works:</h3>
+                    <div class="pay-modal__details">
+                        <div class="paylater-box__row">
+                            <p>Add items to cart and go through the checkout process</p>
+                            <p>Click on the crypto payment type you would like to send.</p>
+                            <p>Send the amount to the address in the checkout.</p>
+                            <p>Send screenshot to us in Whatsapp to the phone number in the checkout, or by email to orders@icebox.com.</p>
+                            <p>We will confirm we got the payment and communicate with you to make sure you get your order is completed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-evt="closePayModal" class="pay-modal__close-btn"></div>
+        </div>
+        <div data-evt="closePayModal" class="pay-modal__backdrop"></div>
     </div>
     <div class="mail-modal">
         <div class="mail-modal__backdrop" data-mail-modal="close"></div>
