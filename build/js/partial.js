@@ -2065,7 +2065,7 @@ const attachPayModal = () => {
 
   const closeModal = () => {
     unlockScroll()
-    modal.css({opacity: 0})
+    modal.css({ opacity: 0 })
     setTimeout(() => {
       modal.hide()
     }, getTransitionTime(modal));
@@ -2082,7 +2082,7 @@ const attachPayModal = () => {
     }
   })
 
-  evtClose.click(function() {
+  evtClose.click(function () {
     closeModal()
   })
 }
@@ -3136,6 +3136,42 @@ const attachCheckoutCopy = () => {
 }
 
 
+const salesModal = {
+  init: function () {
+    this.renderDOM()
+    if (this.modal.length) {
+      this.bindEvents()
+    }
+  },
+  renderDOM: function () {
+    this.modal = $('.sale-history-modal')
+    this.container = $('.sale-history__container')
+    this.evtClose = $('[data-evt="closeSalesModal"]')
+  },
+  bindEvents: function () {
+    this.evtClose.click(function () {
+      salesModal.close()
+    })
+  },
+  open: function () {
+    lockScroll()
+    this.modal.show()
+    setTimeout(() => {
+      this.modal.css({ 'background-color': "rgba(13, 16, 26, .7)" })
+      this.container.css({ 'transform': 'translateX(0%)' })
+    }, 1);
+  },
+  close: function() {
+    unlockScroll()
+    this.modal.css({ 'background-color': "rgba(13, 16, 26, 0)" })
+    this.container.css({ 'transform': 'translateX(100%)' })
+    setTimeout(() => {
+      this.modal.hide()
+    }, getTransitionTime(this.modal));
+  }
+}
+
+
 document.addEventListener("DOMContentLoaded", function () {
   initPageObjects();
   initTelInput();
@@ -3146,6 +3182,7 @@ document.addEventListener("DOMContentLoaded", function () {
   mailModal.init()
   bfsModal.init()
   quizModal.init()
+  salesModal.init()
 });
 function initValidators() {
   $(".needs-validation").parsley({
