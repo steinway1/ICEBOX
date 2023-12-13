@@ -258,9 +258,41 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // const xmasProductCountdown = () => {
+  const xmasProductCountdown = () => {
+    const tomorrow = new Date()
+    tomorrow.setUTCHours(23,59,59,999);
 
-  // }
+    let timer
+
+    const btwDates = (to) => {
+      let entered = to,
+        now = new Date(),
+        difference = entered.getTime() - now.getTime()
+
+      if (difference <= 0) {
+        clearInterval(timer)
+      } else {
+        let seconds = Math.floor(difference / 1000)
+        let minutes = Math.floor(seconds / 60)
+        let hours = Math.floor(minutes / 60)
+        let days = Math.floor(hours / 24)
+
+        hours %= 24
+        minutes %= 60
+        seconds %= 60
+
+
+        days <= 9 ? $("#xdelivery_days").text('0' + days) : $("#xdelivery_days").text(days)
+        hours <= 9 ? $("#xdelivery_hours").text('0' + hours) : $("#xdelivery_hours").text(hours)
+        minutes <= 9 ? $("#xdelivery_mins").text('0' + minutes) : $("#xdelivery_mins").text(minutes)
+        seconds <= 9 ? $("#xdelivery_seconds").text('0' + seconds) : $("#xdelivery_seconds").text(seconds)
+      }
+    }
+
+    timer = setInterval(function () {
+      btwDates(tomorrow);
+    }, 1000);
+  }
 
   pushBuckeyes()
   intervalFireworks()
@@ -268,5 +300,5 @@ document.addEventListener('DOMContentLoaded', function () {
   pushXmasPosterSnow()
   setXmasTimer()
   xmasAdjustStickyEls()
-  // xmasProductCountdown()
+  xmasProductCountdown()
 })
