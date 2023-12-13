@@ -267,10 +267,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  // const xmasProductCountdown = () => {
+
+  // }
+
   pushBuckeyes()
   intervalFireworks()
   // xmasConfettiBlow()
   pushXmasPosterSnow()
   setXmasTimer()
   xmasAdjustStickyEls()
+  // xmasProductCountdown()
 })
