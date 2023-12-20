@@ -7,7 +7,7 @@
 				<span class="bfs-badge --discount">-30%</span>
 			</div>
 		{% endif %}
-    {% include "elements/product-card/stock-dash-box.twig" %}
+		{# {% include "elements/product-card/stock-dash-box.twig" %} #}
 		<div class="side-row__title-wrap">
 			<h1 id="item_name" class="product__item-title">{{product.item.name}}</h1>
 			<div class="product__add-fav {% if itemIsWishlisted %}is-active{% endif %}" id="wishlist_btn_{{product.item.id}}" onclick="addToWishlist({{product.item.id}});">
@@ -15,17 +15,34 @@
 			</div>
 		</div>
 
-		<div class="side-row__line_price">
-			{% if product.item.salePrice is defined %}
-				<span class="product__item-price old_price">$
-					{{product.item.price}}</span>
-				<span class="product__item-price sale_price">$
-					{{product.item.salePrice}}</span>
-				<span class="product-discount-rate">-{{product.item.discount}}%</span>
-			{% else %}
-				<span class="product__item-price">$
-					{{product.item.price}}</span>
+		<div class="side-row__price">
+			<div class="side-row__line_price">
+				{% if product.item.salePrice is defined %}
+					<span class="product__item-price old_price">$
+						{{product.item.price}}</span>
+					<span class="product__item-price sale_price">$
+						{{product.item.salePrice}}</span>
+					<span class="product-discount-rate">-{{product.item.discount}}%</span>
+				{% else %}
+					<span class="product__item-price">$
+						{{product.item.price}}</span>
+				{% endif %}
+			</div>
+
+			{# Detailed Price #}
+			{% if product.item.detailedPrice is defined %}
+				{% set prices = product.item.detailedPrice %}
+				<div class="side-row__detailed-price">
+					{% for price in prices %}
+						<span {% if price.extraClass is defined %} class="{{price.extraClass}}" {% endif %}>
+							<span>{{price.title}}:</span>
+							<span></span>
+							<span>${{price.value}}</span>
+						</span>
+					{% endfor %}
+				</div>
 			{% endif %}
+
 		</div>
 
 		<div class="side-row__line">

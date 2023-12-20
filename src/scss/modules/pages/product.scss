@@ -2435,3 +2435,55 @@
     }
   }
 }
+
+.side-row__price {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-row__detailed-price {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &>span {
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding-left: 26px;
+    font-weight: 600;
+    font-size: 13px;
+    background-size: 20px 20px;
+    background-position: left 0px center;
+    background-repeat: no-repeat;
+    background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.4273 8C20.0187 9.59154 21 11.7717 21 14.1765C21 19.0496 16.9706 23 12 23C7.02944 23 3 19.0496 3 14.1765C3 11.7717 3.98129 9.59154 5.57271 8" stroke="%23171C29" stroke-width="1.5"/><path d="M17.6 1H6.4L5 4.4375L12 12L19 4.4375L17.6 1Z" stroke="%23171C29" stroke-width="1.5"/></svg>');
+
+    &.--diamond {
+      background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.4" d="M18.4273 8C20.0187 9.59154 21 11.7717 21 14.1765C21 19.0496 16.9706 23 12 23C7.02944 23 3 19.0496 3 14.1765C3 11.7717 3.98129 9.59154 5.57271 8" stroke="%23171C29" stroke-width="1.5"/><path d="M17.6 1H6.4L5 4.4375L12 12L19 4.4375L17.6 1Z" stroke="%23171C29" stroke-width="1.5"/></svg>');
+    }
+
+    &.--ring {
+      background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.4273 8C20.0187 9.59154 21 11.7717 21 14.1765C21 19.0496 16.9706 23 12 23C7.02944 23 3 19.0496 3 14.1765C3 11.7717 3.98129 9.59154 5.57271 8" stroke="%23171C29" stroke-width="1.5"/><path opacity="0.4" d="M17.6 1H6.4L5 4.4375L12 12L19 4.4375L17.6 1Z" stroke="%23171C29" stroke-width="1.5"/></svg>');
+    }
+
+    &>span:nth-child(2) {
+      height: 1px;
+      color: rgba(8, 17, 31, 0);
+      border-top: 1px dashed #000;
+      flex: 1;
+    }
+
+    &>span:last-child {
+      min-width: 100px;
+      text-align: center;
+      background-color: rgba(237, 241, 244, .68);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-weight: 600;
+    }
+  }
+}

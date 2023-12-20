@@ -15,14 +15,34 @@
 						</div>
 					</div>
 					<div class="mybag-card__details">
-						<div class="mybag-card__options">
-							{% for option in options %}
-								<div class="mybag-card__option-row">
-									<span>{{option.name}}</span>
-									<span>{{option.value}}</span>
+
+						<div class="mybag-card__sum">
+							<div class="mybag-card__options">
+								{% for option in options %}
+									<div class="mybag-card__option-row">
+										<span>{{option.name}}</span>
+										<span>{{option.value}}</span>
+									</div>
+								{% endfor %}
+							</div>
+							<div class="item-protect">
+								<div class="item-protect__title">
+									<h5>Protect Your Purchase<span>Add a protection plan from <span>ICEBOX</span></span>
+									</h5>
+									<button>Learn More</button>
 								</div>
-							{% endfor %}
+								<div class="item-protect__plans">
+									<button class="is-active">No Plan</button>
+									<button>
+										<span>2 Years</span>$84.99</button>
+									<button>
+										<span>3 Years</span>$119.00</button>
+									<button>
+										<span>5 Years</span>$169.00</button>
+								</div>
+							</div>
 						</div>
+
 						<div class="mybag-card__controls">
 							<div class="mybag-card__controls-wrap">
 								<div class="mybag-card__controls-group">
@@ -35,11 +55,11 @@
 								</div>
 								<div class="mybag-card__controls-group">
 									{% if salePrice %}
-                    <span class="mybag-card-price card-price_old">${{price}}</span>
-                    <span class="mybag-card-price card-price_new">${{salePrice}}</span>
-                  {% else %}
-                    <span class="mybag-card-price">${{price}}</span>
-                  {% endif %}
+										<span class="mybag-card-price card-price_old">${{price}}</span>
+										<span class="mybag-card-price card-price_new">${{salePrice}}</span>
+									{% else %}
+										<span class="mybag-card-price">${{price}}</span>
+									{% endif %}
 									<div class="mybag-card__quantity">
 										<div class="mybag-card__select-wrap">
 											{% include "../svg/dropdown.svg" with { class: 'checkout__dd-icon' } %}

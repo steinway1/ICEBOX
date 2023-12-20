@@ -3639,6 +3639,10 @@ body.compensate-for-scrollbar {
   border-bottom: 2px solid #0095c6;
 }
 
+.header__sub-nav-list a.sub-link_spot {
+  font-weight: 600;
+}
+
 .header__sub-nav-list a:hover {
   border-bottom-color: #0095c6;
 }
@@ -11346,6 +11350,58 @@ form button.is-failed {
   line-height: 22px;
 }
 
+.side-row__price {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-row__detailed-price {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.side-row__detailed-price > span {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  padding-left: 26px;
+  font-weight: 600;
+  font-size: 13px;
+  background-size: 20px 20px;
+  background-position: left 0px center;
+  background-repeat: no-repeat;
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.4273 8C20.0187 9.59154 21 11.7717 21 14.1765C21 19.0496 16.9706 23 12 23C7.02944 23 3 19.0496 3 14.1765C3 11.7717 3.98129 9.59154 5.57271 8" stroke="%23171C29" stroke-width="1.5"/><path d="M17.6 1H6.4L5 4.4375L12 12L19 4.4375L17.6 1Z" stroke="%23171C29" stroke-width="1.5"/></svg>');
+}
+
+.side-row__detailed-price > span.--diamond {
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.4" d="M18.4273 8C20.0187 9.59154 21 11.7717 21 14.1765C21 19.0496 16.9706 23 12 23C7.02944 23 3 19.0496 3 14.1765C3 11.7717 3.98129 9.59154 5.57271 8" stroke="%23171C29" stroke-width="1.5"/><path d="M17.6 1H6.4L5 4.4375L12 12L19 4.4375L17.6 1Z" stroke="%23171C29" stroke-width="1.5"/></svg>');
+}
+
+.side-row__detailed-price > span.--ring {
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.4273 8C20.0187 9.59154 21 11.7717 21 14.1765C21 19.0496 16.9706 23 12 23C7.02944 23 3 19.0496 3 14.1765C3 11.7717 3.98129 9.59154 5.57271 8" stroke="%23171C29" stroke-width="1.5"/><path opacity="0.4" d="M17.6 1H6.4L5 4.4375L12 12L19 4.4375L17.6 1Z" stroke="%23171C29" stroke-width="1.5"/></svg>');
+}
+
+.side-row__detailed-price > span > span:nth-child(2) {
+  height: 1px;
+  color: rgba(8, 17, 31, 0);
+  border-top: 1px dashed #000;
+  flex: 1;
+}
+
+.side-row__detailed-price > span > span:last-child {
+  min-width: 100px;
+  text-align: center;
+  background-color: rgba(237, 241, 244, 0.68);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-weight: 600;
+}
+
 /* #region  Overall */
 
 .results-content {
@@ -14591,6 +14647,110 @@ form button.is-failed {
   font-size: 11px;
   font-weight: 700;
   line-height: 18px;
+}
+
+.mybag-card__sum {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item-protect {
+  border-top: 1px solid #e4e8ec;
+  padding-top: 14px;
+}
+
+.item-protect__plans {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 12px;
+  display: flex;
+}
+
+.item-protect__plans button {
+  height: 48px;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid #e4e8ec;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.25s;
+  display: flex;
+  overflow: hidden;
+}
+
+.item-protect__plans button span {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.item-protect__plans button:hover {
+  color: #0388b4;
+  border-color: #0095c6;
+}
+
+.item-protect__plans button:active {
+  opacity: 0.7;
+  transform: scale(0.97);
+}
+
+.item-protect__plans button.is-active {
+  color: #0388b4;
+  background-color: rgba(0, 149, 198, 0.02);
+  border-color: #0095c6;
+}
+
+.item-protect__title {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.item-protect__title button {
+  text-align: right;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.item-protect__title h4,
+.item-protect__title h5,
+.item-protect__title h6 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.item-protect__title h4 > span,
+.item-protect__title h5 > span,
+.item-protect__title h6 > span {
+  color: rgba(8, 17, 31, 0.7);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  display: block;
+}
+
+.item-protect__title h4 > span span,
+.item-protect__title h5 > span span,
+.item-protect__title h6 > span span {
+  font-weight: 700;
+  color: #0095c6;
 }
 
 .sub-box {
@@ -25293,6 +25453,15 @@ body.xmas_update .xmas-badges span {
 
   .polish-item__pic img {
     height: 72px;
+  }
+
+  .item-protect__plans {
+    grid-column-gap: 6px;
+    grid-row-gap: 6px;
+  }
+
+  .item-protect__plans button {
+    min-width: 40%;
   }
 
   .sub-wrapper {

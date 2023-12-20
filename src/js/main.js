@@ -121,7 +121,7 @@ class rippleClickEffect {
 }
 let rippleTriggerArr = [
   ...$(
-    ".product-option__head, .option-btn, .home-welcome__link, .sign-modal__main-btn"
+    ".product-option__head, .option-btn, .home-welcome__link, .sign-modal__main-btn, .item-protect__plans button"
   ),
 ];
 $.each(rippleTriggerArr, function (i) {
@@ -1812,6 +1812,19 @@ const myBag = new Object({
           el.removeClass(IS_HIDDEN)
         } else {
           el.addClass(IS_HIDDEN)
+        }
+      })
+    },
+
+    attachToggleProtect: function() {
+      const plans = $('.item-protect__plans'),
+      button = plans.find('button')
+
+      button.click(function() {
+        if (!$(this).is(`.${IS_ACTIVE}`)) {
+          let sbs = $(this).siblings()
+          sbs.removeClass(IS_ACTIVE)
+          $(this).addClass(IS_ACTIVE)
         }
       })
     }
