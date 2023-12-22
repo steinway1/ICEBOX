@@ -2051,15 +2051,26 @@ const bookModal = {
             bookModal.apptData.name = bookModal.inputName.value
             bookModal.apptData.email = bookModal.inputEmail.value
             bookModal.apptData.phone = bookModal.inputPhone.value
+            bookModal.apptData.url = window.location.href;
             bookModal.observer()
           }
           break;
         case 3:
-          alert(JSON.stringify(bookModal.apptData)) // change later
-          bookModal.close()
-          setTimeout(() => {
-            bookModal.reset()
-          }, getTransitionTime(bookModal.container));
+          bookModal.apptData.date_day = $('#bookConfirmDate').text();
+          bookModal.apptData.time     = $('#bookConfirmTime').text();
+          //alert(JSON.stringify(bookModal.apptData)) // change later
+          $.ajax({
+            url:'/json/book-appointment',
+            type:'POST',
+            data:{json:JSON.stringify(bookModal.apptData)},
+            success:function(data){
+              bookModal.close()
+              setTimeout(() => {
+                bookModal.reset()
+              }, getTransitionTime(bookModal.container));
+            }
+          });
+
           break;
       }
     })
