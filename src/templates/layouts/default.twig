@@ -1,6 +1,7 @@
 {% set black_friday = false %}
 {% set cyber_monday = false %}
 {% set christmas = false %}
+{% set new_year = true %}
 {% set userIsAdmin = false %}
 
 <!DOCTYPE html>
@@ -14,7 +15,7 @@
 
 
 	<body{% if christmas == true %} class="xmas_update"{% endif %}>
-		{% if pageBanner == true and not black_friday == true and not cyber_monday == true and not christmas == true %}
+		{% if pageBanner == true and not black_friday == true and not cyber_monday == true and not christmas == true and not new_year == true %}
 			{% include "../elements/page-banner.twig" %}
 		{% endif %}
 		{% include "../elements/header.twig" %}
@@ -42,7 +43,7 @@
 		{% include "elements/pay-modal.twig" %}
 		{% include "elements/mail-modal.twig" %}
 		{% include "elements/quiz-modal.twig" %}
-		{% include "elements/black_friday/bfs-modal.twig" %}
+		{# {% include "elements/black_friday/bfs-modal.twig" %} #}
 		{% include "../page-components/scripts.twig" %}
 		{{ block('include_script') }}
 	</body>

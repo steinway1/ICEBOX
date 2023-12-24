@@ -1,0 +1,56 @@
+{% set stickySidebar = true %}
+
+<div
+	class="results-content">
+	{# Banner #}
+  
+
+	<div
+		class="results__wrap">
+    {% include "elements/new_year/ny-poster.twig" %}
+
+		{# Mobile filter bar #}
+		{% include "../elements/results/sticky-filters.twig" %}
+
+		{# Sub Categories Navigation #}
+    {% include "../elements/results/results-nav.twig" %}
+
+		<div
+			class="results__main">
+
+			{# Results BAR #}
+			{% include "../elements/results/results-bar.twig" %}
+
+			<div class="results-wrapper with_cards">
+				<div class="results__main-wrapper">
+
+					<div class="filter-sidebar{% if stickySidebar == true %} to-stick{% endif %}">
+						{% include "../elements/results/filters.twig" with { 
+          filterCategory: true,
+          filterProduct: true,
+          filterPriceRange: true,
+          filterGender: true,
+          filterColor: true
+         } %}
+						<div class="filter-sidebar__overlay"></div>
+					</div>
+
+
+					<div class="results__items-grid">
+          {% include "elements/crypto-card.twig" %}
+						{% for item in 0..19 %}
+							{% include "../elements/product-card.twig" %}
+						{% endfor %}
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+
+</div>
+{% include "../elements/results/filter-modal.twig" %}

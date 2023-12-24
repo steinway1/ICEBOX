@@ -30,9 +30,16 @@
 								</a>
 							</div>
 						{% endif %}
-						<a href="/christmas" class="xmas-nav-link">
-            <img src="./assets/xmas/poster-desktop-title.webp" loading="eager" alt="">
-						</a>
+						{% if new_year == true %}
+							<div class="mob-menu__nav-item is_ny">
+								<a href="/new-year">
+									<img src="./assets/new-year/menu-title.webp" loading="eager" alt="">
+								</a>
+							</div>
+						{% endif %}
+						{# <a href="/christmas" class="xmas-nav-link">
+						            <img src="./assets/xmas/poster-desktop-title.webp" loading="eager" alt="">
+												</a> #}
 						<div class="mob-menu__nav-item">
 							<a href="/results/pendants">Pendants</a>
 							<button data-menu-nav="Pendants" class="mob-menu__nav-step"></button>

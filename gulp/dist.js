@@ -75,6 +75,10 @@ const root = {
       xmas: {
         lib: './src/js/xmas/libraries/*.js',
         main: './src/js/xmas/*.js'
+      },
+      newyear: {
+        lib: './src/js/new-year/libraries/*.js',
+        main: './src/js/new-year/*.js'
       }
     },
     assets: './src/assets/**/*',
@@ -204,6 +208,20 @@ gulp.task('js:build',
       .pipe(changed(root.build.js))
       .pipe(plumber(setPlumberNotify('JS-XMAS')))
       .pipe(concat('xmas.js'))
+      .pipe(minify())
+      .pipe(gulp.dest(root.build.js))
+  })
+
+  gulp.task('js-new-year:build',
+  () => {
+    return gulp
+      .src([
+        root.src.js.newyear.lib,
+        root.src.js.newyear.main
+      ])
+      .pipe(changed(root.build.js))
+      .pipe(plumber(setPlumberNotify('JS-NEW-YEAR')))
+      .pipe(concat('newyear.js'))
       .pipe(minify())
       .pipe(gulp.dest(root.build.js))
   })

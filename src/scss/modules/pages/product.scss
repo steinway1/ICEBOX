@@ -2192,128 +2192,6 @@
   display: flex;
 }
 
-.sale-history-modal {
-  display: none;
-  z-index: 9999;
-  background-color: rgba(13, 16, 26, .0);
-  transition: all .4s cubic-bezier(.39, .575, .565, 1);
-  position: fixed;
-  top: 0%;
-  bottom: 0%;
-  left: 0%;
-  right: 0%;
-
-  h2 {
-    margin-bottom: 28px;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 36px;
-  }
-}
-
-.sale-history__container {
-  width: 100%;
-  max-width: 670px;
-  background-color: #fff;
-  padding: 54px 43px;
-  position: absolute;
-  top: 14px;
-  bottom: 14px;
-  right: 14px;
-  overflow: auto;
-  transition: all .4s cubic-bezier(.39, .575, .565, 1);
-  z-index: 2;
-  transform: translateX(calc(100% + 20px));
-
-  @include maxWidthSm {
-    height: 100%;
-    max-height: 80vh;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
-  @include maxWidthXs {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  &>button {
-    cursor: pointer;
-    background-color: #f1f1f1;
-    border-bottom-left-radius: 12px;
-    justify-content: center;
-    align-items: center;
-    padding: 14px;
-    display: flex;
-    position: absolute;
-    top: 0%;
-    bottom: auto;
-    left: auto;
-    right: 0%;
-  }
-}
-
-.sale-history__backdrop {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.sale-history-modal {
-  table {
-    border-spacing: 1;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 6px;
-    overflow: hidden;
-    max-width: 800px;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-
-    * {
-      position: relative
-    }
-
-    td,
-    th {
-      padding-left: 8px;
-      text-align: left;
-    }
-
-    thead tr {
-      height: 42px;
-      background: #f3f5f8;
-      font-size: 14px;
-    }
-
-    tbody tr {
-      height: 48px;
-      border-bottom: 1px solid #e8ecf0;
-
-      // &:nth-child(even) {
-      //   background: #f3f5f8;
-      // }
-
-      &:hover {
-        background: #e8f9ff;
-        border-color: transparent;
-      }
-
-      &:last-child {
-        border: 0;
-      }
-    }
-  }
-}
-
 .product-discount-rate {
   letter-spacing: 1px;
   background-color: rgba(223, 9, 44, 0.07);
@@ -2487,3 +2365,128 @@
     }
   }
 }
+
+/*#region Sales History */
+.sale-history-modal {
+  display: block;
+  z-index: 9999;
+  background-color: rgba(13, 16, 26, .7);
+  transition: all .4s cubic-bezier(.39, .575, .565, 1);
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+
+  h2 {
+    margin-bottom: 28px;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 36px;
+  }
+}
+
+.sale-history__container {
+  width: 100%;
+  max-width: 700px;
+  background-color: #fff;
+  padding: 54px 43px;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  overflow: auto;
+  transition: all .4s cubic-bezier(.39, .575, .565, 1);
+  z-index: 2;
+  // transform: translateX(calc(100% + 20px));
+
+  @include maxWidthSm {
+    height: 100%;
+    max-height: 80vh;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  @include maxWidthXs {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  &>button {
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border-bottom-left-radius: 12px;
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+    display: flex;
+    position: absolute;
+    top: 0%;
+    bottom: auto;
+    left: auto;
+    right: 0%;
+  }
+}
+
+.sale-history__backdrop {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.sale-history-modal {
+  table {
+    border-spacing: 1;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+
+    * {
+      position: relative
+    }
+
+    td,
+    th {
+      padding-left: 8px;
+      text-align: left;
+    }
+
+    thead tr {
+      height: 42px;
+      background: #f3f5f8;
+      font-size: 14px;
+    }
+
+    tbody tr {
+      height: 48px;
+      border-bottom: 1px solid #e8ecf0;
+
+      // &:nth-child(even) {
+      //   background: #f3f5f8;
+      // }
+
+      &:hover {
+        background: #e8f9ff;
+        border-color: transparent;
+      }
+
+      &:last-child {
+        border: 0;
+      }
+    }
+  }
+}
+
+/*#endregion */
