@@ -653,6 +653,15 @@ a {
   padding: 4px;
 }
 
+.no_bar::-webkit-scrollbar {
+  display: none;
+}
+
+.no_scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .splide__container {
   box-sizing: border-box;
   position: relative;
@@ -11305,7 +11314,7 @@ form button.is-failed {
 /*#region Sales History */
 
 .sale-history-modal {
-  display: block;
+  display: none;
   z-index: 9999;
   background-color: rgba(13, 16, 26, 0.7);
   transition: all 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -11316,18 +11325,10 @@ form button.is-failed {
   right: 0%;
 }
 
-.sale-history-modal h2 {
-  margin-bottom: 28px;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 36px;
-}
-
 .sale-history__container {
   width: 100%;
   max-width: 700px;
   background-color: #fff;
-  padding: 54px 43px;
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -11335,21 +11336,13 @@ form button.is-failed {
   overflow: auto;
   transition: all 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
   z-index: 2;
+  transform: translateX(calc(100% + 20px));
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.sale-history__container > button {
-  cursor: pointer;
-  background-color: #f1f1f1;
-  border-bottom-left-radius: 12px;
-  justify-content: center;
-  align-items: center;
-  padding: 14px;
-  display: flex;
-  position: absolute;
-  top: 0%;
-  bottom: auto;
-  left: auto;
-  right: 0%;
+.sale-history__container::-webkit-scrollbar {
+  display: none;
 }
 
 .sale-history__backdrop {
@@ -11359,48 +11352,102 @@ form button.is-failed {
   bottom: 0;
   left: 0;
   right: 0;
+  opacity: 0;
+}
+
+.sale-history__head {
+  background-color: #f3f5f8;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  padding-right: 48px;
+  display: flex;
+  text-align: right;
+}
+
+.sale-history__head h2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 28px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+.sale-history__head h2 span {
+  font-weight: 400;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 18px;
+  margin-top: 6px;
+}
+
+.sale-history__head > button {
+  cursor: pointer;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: #171c29;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 22px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+}
+
+.sale-history__head > button:hover {
+  background-color: #363c4b;
 }
 
 .sale-history-modal table {
   border-spacing: 1;
   border-collapse: collapse;
   background: white;
-  border-radius: 6px;
-  overflow: hidden;
-  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   position: relative;
 }
 
-.sale-history-modal table * {
-  position: relative;
-}
-
 .sale-history-modal table td,
 .sale-history-modal table th {
-  padding-left: 8px;
+  padding-left: 18px;
   text-align: left;
 }
 
-.sale-history-modal table thead tr {
+.sale-history-modal table th {
+  background-color: #d9dee5;
+  position: sticky;
+  z-index: 2;
+  top: 0;
   height: 42px;
-  background: #f3f5f8;
   font-size: 14px;
 }
 
-.sale-history-modal table tbody tr {
+.sale-history-modal table tr:first-child {
+  background-color: #d9dee5 !important;
+}
+
+.sale-history-modal table tr:nth-child(odd) {
+  background-color: rgba(243, 245, 248, 0.65);
+}
+
+.sale-history-modal table tr:not(:first-child):hover {
+  background-color: rgba(217, 222, 230, 0.55);
+}
+
+.sale-history-modal table tr:not(:first-child) a {
+  color: #0095c6;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.sale-history-modal table tr:not(:first-child) td {
   height: 48px;
-  border-bottom: 1px solid #e8ecf0;
-}
-
-.sale-history-modal table tbody tr:hover {
-  background: #e8f9ff;
-  border-color: transparent;
-}
-
-.sale-history-modal table tbody tr:last-child {
-  border: 0;
 }
 
 /*#endregion */

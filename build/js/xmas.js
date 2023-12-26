@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const xmasProductCountdown = () => {
     const tomorrow = new Date()
-    tomorrow.setUTCHours(22,00,00,0000);
+    tomorrow.setUTCHours(17,00,00,0000);
 
     let timer
 

@@ -2368,7 +2368,7 @@
 
 /*#region Sales History */
 .sale-history-modal {
-  display: block;
+  display: none;
   z-index: 9999;
   background-color: rgba(13, 16, 26, .7);
   transition: all .4s cubic-bezier(.39, .575, .565, 1);
@@ -2377,20 +2377,12 @@
   bottom: 0%;
   left: 0%;
   right: 0%;
-
-  h2 {
-    margin-bottom: 28px;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 36px;
-  }
 }
 
 .sale-history__container {
   width: 100%;
   max-width: 700px;
   background-color: #fff;
-  padding: 54px 43px;
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -2398,7 +2390,13 @@
   overflow: auto;
   transition: all .4s cubic-bezier(.39, .575, .565, 1);
   z-index: 2;
-  // transform: translateX(calc(100% + 20px));
+  transform: translateX(calc(100% + 20px));
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @include maxWidthSm {
     height: 100%;
@@ -2415,21 +2413,6 @@
     padding-left: 24px;
     padding-right: 24px;
   }
-
-  &>button {
-    cursor: pointer;
-    background-color: #f1f1f1;
-    border-bottom-left-radius: 12px;
-    justify-content: center;
-    align-items: center;
-    padding: 14px;
-    display: flex;
-    position: absolute;
-    top: 0%;
-    bottom: auto;
-    left: auto;
-    right: 0%;
-  }
 }
 
 .sale-history__backdrop {
@@ -2439,6 +2422,56 @@
   bottom: 0;
   left: 0;
   right: 0;
+  opacity: 0;
+}
+
+.sale-history__head {
+  background-color: #f3f5f8;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  padding-right: 48px;
+  display: flex;
+  text-align: right;
+
+  h2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 28px;
+    line-height: 30px;
+    font-weight: 600;
+
+    span {
+      font-weight: 400;
+      font-size: 14px;
+      font-style: italic;
+      line-height: 18px;
+      margin-top: 6px;
+    }
+  }
+
+  &>button {
+    cursor: pointer;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: #171c29;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 22px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+
+    &:hover {
+      background-color: #363c4b;
+    }
+  }
 }
 
 .sale-history-modal {
@@ -2446,44 +2479,48 @@
     border-spacing: 1;
     border-collapse: collapse;
     background: white;
-    border-radius: 6px;
-    overflow: hidden;
-    max-width: 800px;
     width: 100%;
     margin: 0 auto;
     position: relative;
 
-    * {
-      position: relative
-    }
-
     td,
     th {
-      padding-left: 8px;
+      padding-left: 18px;
       text-align: left;
     }
 
-    thead tr {
+    th {
+      background-color: #d9dee5;
+      position: sticky;
+      z-index: 2;
+      top: 0;
       height: 42px;
-      background: #f3f5f8;
       font-size: 14px;
     }
 
-    tbody tr {
-      height: 48px;
-      border-bottom: 1px solid #e8ecf0;
-
-      // &:nth-child(even) {
-      //   background: #f3f5f8;
-      // }
-
-      &:hover {
-        background: #e8f9ff;
-        border-color: transparent;
+    tr {
+      &:first-child {
+        background-color: #d9dee5 !important;
       }
 
-      &:last-child {
-        border: 0;
+      &:nth-child(odd) {
+        background-color: rgba(243, 245, 248, 0.65);
+      }
+
+      &:not(:first-child) {
+        &:hover {
+          background-color: rgba(217, 222, 230, 0.55);
+        }
+
+        a {
+          color: #0095c6;
+          text-decoration: underline;
+          font-weight: 600;
+        }
+
+        td {
+          height: 48px;
+        }
       }
     }
   }
