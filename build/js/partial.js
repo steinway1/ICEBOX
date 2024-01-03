@@ -3178,6 +3178,12 @@ const salesModal = {
     })
   },
   open: function () {
+    window.addEventListener('keydown', function(evt) {
+      if (evt.key === 'Escape') {
+        evt.preventDefault()
+        salesModal.close()
+      }
+    }, { once: true })
     lockScroll()
     this.modal.show()
     setTimeout(() => {
