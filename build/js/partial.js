@@ -2111,11 +2111,11 @@ const myBag = new Object({
       })
     },
 
-    attachToggleProtect: function() {
+    attachToggleProtect: function () {
       const plans = $('.item-protect__plans'),
-      button = plans.find('button')
+        button = plans.find('button')
 
-      button.click(function() {
+      button.click(function () {
         if (!$(this).is(`.${IS_ACTIVE}`)) {
           let sbs = $(this).siblings()
           sbs.removeClass(IS_ACTIVE)
@@ -2352,13 +2352,13 @@ const bookModal = {
           break;
         case 3:
           bookModal.apptData.date_day = $('#bookConfirmDate').text();
-          bookModal.apptData.time     = $('#bookConfirmTime').text();
+          bookModal.apptData.time = $('#bookConfirmTime').text();
           //alert(JSON.stringify(bookModal.apptData)) // change later
           $.ajax({
-            url:'/json/book-appointment',
-            type:'POST',
-            data:{json:JSON.stringify(bookModal.apptData)},
-            success:function(data){
+            url: '/json/book-appointment',
+            type: 'POST',
+            data: { json: JSON.stringify(bookModal.apptData) },
+            success: function (data) {
               bookModal.close()
               setTimeout(() => {
                 bookModal.reset()
@@ -3178,7 +3178,7 @@ const salesModal = {
     })
   },
   open: function () {
-    window.addEventListener('keydown', function(evt) {
+    window.addEventListener('keydown', function (evt) {
       if (evt.key === 'Escape') {
         evt.preventDefault()
         salesModal.close()
@@ -3191,7 +3191,7 @@ const salesModal = {
       this.container.css({ 'transform': 'translateX(0%)' })
     }, 1);
   },
-  close: function() {
+  close: function () {
     unlockScroll()
     this.modal.css({ 'background-color': "rgba(13, 16, 26, 0)" })
     this.container.css({ 'transform': 'translateX(100%)' })
@@ -3200,6 +3200,82 @@ const salesModal = {
     }, getTransitionTime(this.modal));
   }
 }
+
+const formPage = new Object({
+  init: function () {
+    if ($('.main_formpage').length) {
+      this.bindEvents()
+      this.imgUpload()
+    }
+  },
+  bindEvents: function () {
+    $('.formpage__upload-btn').click(function () {
+      if ($('#image_upload').length) { $('#image_upload').trigger('click') }
+    })
+  },
+  imgUpload: function () {
+    let imgWrap = "", imgArray = []
+
+    $('#image_upload').on('change', function (e) {
+      imgWrap = $('.formpage__images-thumbnails'), maxLength = 12
+
+      let files = e.target.files,
+        filesArr = Array.prototype.slice.call(files),
+        iterator = 0
+
+      filesArr.forEach(function (f, index) {
+
+        if (!f.type.match('image.*')) {
+          return
+        }
+
+        if (imgArray.length > maxLength) {
+          return false
+        } else {
+          let len = 0
+          for (let i = 0; i < imgArray.length; i++) {
+            if (imgArray[i] !== undefined) {
+              len++
+            }
+          }
+          if (len > maxLength) {
+            return false
+          } else {
+            imgArray.push(f)
+
+            var reader = new FileReader()
+            reader.onload = function (e) {
+              let html =
+                `
+              <div class="formpage__upload">
+                <div class="formpage__input-boxes">
+                  <div>
+                    <input type="checkbox" id="image_${$(".formpage__upload-close").length}" value="image_${$(".formpage__upload-close").length}" checked>
+                    <label for="image_${$(".formpage__upload-close").length}"></label>
+                  </div>
+                </div>
+                <div style="background-image: url(${e.target.result})" data-number="${$(".formpage__upload-close").length}" data-file="${f.name}" class="formpage__upload-bg">
+                </div>
+              </div>
+              `
+              imgWrap.append(html)
+              iterator++
+            }
+            reader.readAsDataURL(f)
+          }
+        }
+      });
+    });
+
+    $('body').on('click', ".formpage__upload", function () {
+      let cb = $(this).find('input[type="checkbox"]'),
+        active = cb.prop("checked") ? 1 : 0
+      if (active) { cb.prop('checked', false) } else {
+        cb.prop('checked', true)
+      }
+    });
+  }
+})
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -3213,6 +3289,7 @@ document.addEventListener("DOMContentLoaded", function () {
   bfsModal.init()
   quizModal.init()
   salesModal.init()
+  formPage.init()
 });
 function initValidators() {
   $(".needs-validation").parsley({
