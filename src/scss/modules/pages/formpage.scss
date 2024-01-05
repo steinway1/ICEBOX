@@ -417,6 +417,22 @@
       bottom: 0;
       left: 0;
       right: 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background-color: #171c29d7;
+        background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L23 23" stroke="white" stroke-width="2"/><path d="M23 1L1 23" stroke="white" stroke-width="3"/></svg>');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 38% 38%;
+        cursor: pointer;
+      }
     }
 
     &:not(:first-child) {
@@ -432,6 +448,11 @@
       left: 50%;
       z-index: 2;
       transform: translateX(-50%) translateY(-50%);
+
+      @include maxWidthXs {
+        width: 96vw;
+        height: 96vw;
+      }
     }
   }
 }

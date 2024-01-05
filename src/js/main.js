@@ -2991,20 +2991,22 @@ const formPage = new Object({
     }
 
     // Setting checkbox toggle on appended images
-    $body.on('click', ".formpage__upload", function () {
-      // let html = 
-      // `
-      // <div class="formpage-zoom">
-      //   <div></div>
-      //   <div></div>
-      // </div>
-      // `
-      let cb = $(this).find('input[type="checkbox"]'),
-        active = cb.prop("checked") ? 1 : 0
-      if (active) { cb.prop('checked', false) } else {
-        cb.prop('checked', true)
-      }
+    $body.on('click', ".formpage__upload-bg", function () {
+      lockScroll()
+      let html = 
+      `
+      <div class="formpage-zoom">
+        <div data-evt="closeFormpageZoom"></div>
+        <div data-block="formpageZoom"></div>
+      </div>
+      `
+      $body.append(html)
+      $('[data-block="formpageZoom"]').attr('style', $(this).attr('style'))
     });
+    $body.on('click', '[data-evt="closeFormpageZoom"]', function() {
+      unlockScroll()
+      $('.formpage-zoom').remove()
+    })
   }
 })
 
