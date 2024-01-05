@@ -41,9 +41,12 @@
     <main class="main_formpage">
         <div class="formpage__wrapper">
 
-            <a href="#" class="formpage__logo">
-                <img src="./assets/logo.svg" loading="eager">
-            </a>
+            <div class="formpage__header">
+                <a href="#" class="formpage__logo">
+                    <img src="./assets/admin_logo.svg" loading="eager">
+                </a>
+                <h1>Add Watch</h1>
+            </div>
 
             <div class="formpage__form-wrap">
                 <form id="formpage_form" method="get" class="formpage__form">
@@ -99,7 +102,7 @@
                     </div>
 
                     <div class="formpage__input-box">
-                        <label for="model">Model</label>
+                        <label for="model">Model #</label>
                         <div class="formpage__input-wrap">
                             <input type="text" class="formpage__input" placeholder="Input text..." id="model">
                         </div>
@@ -142,25 +145,26 @@
                         </div>
                     </div>
 
-                    <div class="formpage__input-box">
-                        <label>Real Papers*</label>
-                        <div class="formpage__input-wrap">
-                            <div class="formpage__input-boxes">
-                                <div>
-                                    <input type="checkbox" id="papers_yes" value="real_papers">
-                                    <label for="papers_yes">Yes</label>
+                    <div class="formpage__input-box --boxes">
+                        <div>
+                            <label for="papers_yes">Papers</label>
+                            <div class="formpage__input-wrap">
+                                <div class="formpage__input-boxes">
+                                    <div>
+                                        <input type="checkbox" id="papers_yes" value="real_papers">
+                                        <label for="papers_yes">Yes</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="formpage__input-box">
-                        <label>Icebox Appraisal</label>
-                        <div class="formpage__input-wrap">
-                            <div class="formpage__input-boxes">
-                                <div>
-                                    <input type="checkbox" id="icebox_appraisal" value="icebox_appraisal">
-                                    <label for="icebox_appraisal">Yes</label>
+                        <div>
+                            <label for="icebox_appraisal">Icebox Appraisal</label>
+                            <div class="formpage__input-wrap">
+                                <div class="formpage__input-boxes">
+                                    <div>
+                                        <input type="checkbox" id="icebox_appraisal" value="icebox_appraisal">
+                                        <label for="icebox_appraisal">Yes</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -192,22 +196,30 @@
                         </div>
                     </div>
 
-                    <div class="formpage__input-box --full_width">
-                        <label for="name">Description</label>
-                        <div class="formpage__input-wrap">
-                            <textarea class="formpage__input --textarea" rows="10" cols="20" wrap="hard"></textarea>
+                    <div class="formpage__input-box --half_width">
+                        <div>
+                            <label for="description">Description</label>
+                            <div class="formpage__input-wrap">
+                                <textarea id="description" class="formpage__input --textarea" rows="10" cols="20" wrap="hard"></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="in_house_description">In-House Description</label>
+                            <div class="formpage__input-wrap">
+                                <textarea id="in_house_description" class="formpage__input --textarea" rows="10" cols="20" wrap="hard"></textarea>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="formpage__input-box --full_width">
+                    <div class="formpage__input-box --half_width">
+                        <label>Upload Images</label>
                         <div class="formpage__input-wrap">
                             <label class="formpage__upload-label" for="image_upload">
-                                <p>Click To Upload Images</p>
+                                <p>Click OR Drag &amp; Drop To Upload Images</p>
                                 <input class="formpage__input" type="file" name="files[]" id="image_upload" multiple accept="image/jpeg, image/png, image/gif,">
                             </label>
                         </div>
-                        <div class="formpage__images-thumbnails">
-                        </div>
+                        <div class="formpage__images-thumbnails"></div>
                         <div class="formpage__upload-disclaimer">
                             <div>*Asteriks items are shown for admin. Not for users.</div>
                             <div>Photos are all hidden after upload and shown when we hit the checkbox</div>

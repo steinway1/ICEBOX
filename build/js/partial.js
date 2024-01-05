@@ -3202,10 +3202,12 @@ const salesModal = {
 }
 
 const formPage = new Object({
+  uploadedImages: [],
   init: function () {
     if ($('.main_formpage').length) {
       this.bindEvents()
-      this.imgUpload()
+      // this.imgUpload()
+      this.attachImagesUploader()
     }
   },
   bindEvents: function () {
@@ -3213,61 +3215,85 @@ const formPage = new Object({
       if ($('#image_upload').length) { $('#image_upload').trigger('click') }
     })
   },
-  imgUpload: function () {
-    let imgWrap = "", imgArray = []
+  attachImagesUploader: () => {
+    const uploadLabel = document.querySelector('.formpage__upload-label'),
+      uploadInput = document.querySelector('#image_upload'),
+      imagesWrap = $('.formpage__images-thumbnails')
 
-    $('#image_upload').on('change', function (e) {
-      imgWrap = $('.formpage__images-thumbnails'), maxLength = 12
+    // Setting drag&drop event
+    if (uploadLabel !== null) {
+      uploadLabel.ondragover = (evt) => {
+        evt.preventDefault()
+        uploadLabel.classList.add(IS_ACTIVE)
+      }
+      uploadLabel.ondragleave = (evt) => {
+        evt.preventDefault()
+        uploadLabel.classList.remove(IS_ACTIVE)
+      }
+      uploadLabel.ondrop = (evt) => {
+        evt.preventDefault()
+        uploadLabel.classList.remove(IS_ACTIVE)
 
-      let files = e.target.files,
-        filesArr = Array.prototype.slice.call(files),
-        iterator = 0
-
-      filesArr.forEach(function (f, index) {
-
-        if (!f.type.match('image.*')) {
-          return
-        }
-
-        if (imgArray.length > maxLength) {
-          return false
-        } else {
-          let len = 0
-          for (let i = 0; i < imgArray.length; i++) {
-            if (imgArray[i] !== undefined) {
-              len++
-            }
+        const files = [], items = [...evt.dataTransfer.items]
+        items.forEach((item, i) => {
+          if (item.kind === 'file') {
+            files.push(item.getAsFile())
           }
-          if (len > maxLength) {
-            return false
-          } else {
-            imgArray.push(f)
+        })
 
-            var reader = new FileReader()
-            reader.onload = function (e) {
-              let html =
-                `
-              <div class="formpage__upload">
-                <div class="formpage__input-boxes">
-                  <div>
-                    <input type="checkbox" id="image_${$(".formpage__upload-close").length}" value="image_${$(".formpage__upload-close").length}" checked>
-                    <label for="image_${$(".formpage__upload-close").length}"></label>
-                  </div>
-                </div>
-                <div style="background-image: url(${e.target.result})" data-number="${$(".formpage__upload-close").length}" data-file="${f.name}" class="formpage__upload-bg">
-                </div>
-              </div>
+        processFiles([...files])
+      }
+    }
+
+    // Setting manual files upload
+    if (uploadInput !== null) {
+      uploadInput.onchange = (evt) => {
+        const files = [...evt.target.files]
+
+        processFiles(files)
+      }
+    }
+
+    function processFiles(files) {
+      if (files.length) {
+        files.forEach((file, i) => {
+          if (!file.type.match('image.*')) { return }
+
+          let getIndex = () => {
+            return $('.formpage__upload').length + 1
+          }
+
+          let reader = new FileReader()
+          reader.onload = function (e) {
+            let html =
               `
-              imgWrap.append(html)
-              iterator++
-            }
-            reader.readAsDataURL(f)
+               <div class="formpage__upload" data-img-id="${getIndex()}">
+                 <div class="formpage__input-boxes">
+                   <div>
+                     <input value="image_${getIndex()}" id="image_${getIndex()}" type="checkbox" checked>
+                     <label for="image_${getIndex()}"></label>
+                   </div>
+                 </div>
+                   <div data-name="${file.name}" style="background-image: url(${e.target.result})" class="formpage__upload-bg">
+                 </div>
+               </div>
+             `
+            imagesWrap.append(html)
           }
-        }
-      });
-    });
+          reader.readAsDataURL(file)
+        })
+      }
+    }
 
-    $('body').on('click', ".formpage__upload", function () {
+    // Setting checkbox toggle on appended images
+    $body.on('click', ".formpage__upload", function () {
+      // let html = 
+      // `
+      // <div class="formpage-zoom">
+      //   <div></div>
+      //   <div></div>
+      // </div>
+      // `
       let cb = $(this).find('input[type="checkbox"]'),
         active = cb.prop("checked") ? 1 : 0
       if (active) { cb.prop('checked', false) } else {

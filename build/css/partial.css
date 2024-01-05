@@ -19603,17 +19603,44 @@ width: calc(50% - 8px)
   background-color: #f5f7fa;
 }
 
+.formpage__header {
+  width: 100%;
+  background-color: #fff;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 32px;
+  display: flex;
+  border-bottom: 8px solid #f5f7fa;
+  gap: 8px;
+}
+
+.formpage__header h1 {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.formpage__logo {
+  width: 158px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.formpage__logo img {
+  width: 100%;
+}
+
 .formpage__form-wrap {
   min-height: 60vh;
   background-color: #fff;
-  border-radius: 12px;
   margin-bottom: 0;
   padding: 34px;
-  box-shadow: 0 16px 98px rgba(23, 28, 41, 0.08);
 }
 
 .formpage__form {
-  grid-column-gap: 16px;
+  grid-column-gap: 28px;
   grid-row-gap: 16px;
   flex-flow: wrap;
   align-items: flex-start;
@@ -19623,20 +19650,7 @@ width: calc(50% - 8px)
 .formpage__upload-disclaimer div {
   font-size: 12px;
   font-weight: 600;
-  line-height: 24px;
-}
-
-.formpage__logo {
-  width: 160px;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-}
-
-.formpage__logo img {
-  width: 100%;
+  line-height: 18px;
 }
 
 .formpage__submit-wrap {
@@ -19672,19 +19686,16 @@ width: calc(50% - 8px)
 
 .formpage__wrapper {
   width: 100%;
-  max-width: 720px;
-  grid-column-gap: 58px;
-  grid-row-gap: 58px;
+  max-width: 1120px;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 58px;
   padding-bottom: 58px;
   display: flex;
 }
 
 .formpage__input-box {
-  min-width: 46%;
+  min-width: 30%;
   grid-column-gap: 6px;
   grid-row-gap: 6px;
   flex-direction: column;
@@ -19692,12 +19703,30 @@ width: calc(50% - 8px)
   display: flex;
 }
 
+.formpage__input-box.--half_width {
+  min-width: 48%;
+}
+
+.formpage__input-box.--half_width > div:not([class]) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .formpage__input-box.--full_width {
   width: 100%;
   flex: 0 auto;
 }
 
-.formpage__input-box > label {
+.formpage__input-box.--boxes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.formpage__input-box > label,
+.formpage__input-box > div > label {
   align-items: center;
   margin-bottom: 0;
   padding-right: 6px;
@@ -19706,7 +19735,8 @@ width: calc(50% - 8px)
   justify-content: space-between;
 }
 
-.formpage__input-box > label > span {
+.formpage__input-box > label > span,
+.formpage__input-box > div > label > span {
   font-size: 12px;
   opacity: 0.6;
 }
@@ -19777,8 +19807,8 @@ width: calc(50% - 8px)
 }
 
 .formpage__upload-bg {
-  width: 82px;
-  height: 82px;
+  width: 64px;
+  height: 64px;
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
@@ -19814,9 +19844,7 @@ width: calc(50% - 8px)
   min-width: 180px;
   text-align: center;
   width: 100%;
-  white-space: nowrap;
-  height: 46px;
-  max-width: 240px;
+  height: 64px;
   box-shadow: none;
   color: #0779cb;
   letter-spacing: 1px;
@@ -19832,12 +19860,22 @@ width: calc(50% - 8px)
   display: flex;
 }
 
+.formpage__upload-label.is-active {
+  opacity: 0.4;
+}
+
+.formpage__upload-label p {
+  width: 100%;
+  text-align: center;
+}
+
 .formpage__upload-label input {
   position: absolute;
   width: 0.1px;
   height: 0.1px;
   overflow: hidden;
   z-index: -1;
+  opacity: 0;
 }
 
 .formpage__images-thumbnails {
@@ -19865,7 +19903,12 @@ width: calc(50% - 8px)
 
 .formpage__input.--textarea {
   min-height: 72px;
+  padding: 14px;
   background-color: #f5f8fa;
+}
+
+.formpage__input.--textarea:focus {
+  background-color: white;
 }
 
 .formpage__input:hover {
@@ -19909,6 +19952,39 @@ width: calc(50% - 8px)
   height: 7px;
   border-left: 1.5px solid black;
   border-bottom: 1.5px solid black;
+}
+
+.formpage-zoom {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.formpage-zoom > div:first-child {
+  background-color: rgba(23, 28, 41, 0.65);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.formpage-zoom > div:not(:first-child) {
+  width: 50vw;
+  height: 50vw;
+  max-width: 720px;
+  max-height: 720px;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .bfs-banner.--xmas {
@@ -26471,6 +26547,14 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     grid-row-gap: 12px;
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  .formpage__header {
+    flex-direction: column;
+  }
+
+  .formpage__header h1 {
+    margin-top: 12px;
   }
 
   .formpage__form-wrap {
