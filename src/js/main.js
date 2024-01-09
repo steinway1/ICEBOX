@@ -2993,8 +2993,8 @@ const formPage = new Object({
     // Setting checkbox toggle on appended images
     $body.on('click', ".formpage__upload-bg", function () {
       lockScroll()
-      let html = 
-      `
+      let html =
+        `
       <div class="formpage-zoom">
         <div data-evt="closeFormpageZoom"></div>
         <div data-block="formpageZoom"></div>
@@ -3003,12 +3003,25 @@ const formPage = new Object({
       $body.append(html)
       $('[data-block="formpageZoom"]').attr('style', $(this).attr('style'))
     });
-    $body.on('click', '[data-evt="closeFormpageZoom"]', function() {
+    $body.on('click', '[data-evt="closeFormpageZoom"]', function () {
       unlockScroll()
       $('.formpage-zoom').remove()
     })
   }
 })
+
+const adjustStickyEls = () => {
+  const elsArr = [...document.querySelectorAll('.filter-sidebar.to-stick'), ...document.querySelectorAll('.sticky-filters')]
+  const header = document.querySelector('.header')
+
+  if (elsArr.length && header) {
+    const headerHeight = parseInt(window.getComputedStyle(header).getPropertyValue('height'))
+    elsArr.forEach((el) => {
+      let topValue = $(window).width() > 991 ? headerHeight + 24 : headerHeight
+      Object.assign(el.style, { top: `${topValue}px` })
+    })
+  }
+}
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -3018,6 +3031,7 @@ document.addEventListener("DOMContentLoaded", function () {
   attachStickyScroll()
   attachCheckoutCopy()
   attachPayModal()
+  adjustStickyEls()
   mailModal.init()
   bfsModal.init()
   quizModal.init()
