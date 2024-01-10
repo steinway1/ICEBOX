@@ -1,6 +1,6 @@
 {% set banner = true %}
 {% set nav = true %}
-{% set category = results.pendants %}
+{% set category = results.watches %}
 {% set searchQuery = "angels" %}
 {% set stickySidebar = true %}
 {% set collection = 'men' %}
@@ -33,52 +33,46 @@
 		{% endif %}
 
 		<div class="results__main">
-			{# {% if category == results.watches %}{% include "elements/results/watches-notice.twig" %}{% endif %} #}
+			{% if category == results.watches %}{% include "elements/results/watches-notice.twig" %}{% endif %}
 			{# {% if collection == 'men' or collection == 'women' %}
 							{% include "elements/results/results-sub.twig" with { collection: 'engagement' } %}
 						{% endif %} #}
 				<div class="results-sub"> <div class="results-sub__wrap">
 					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
 						<div>
-							<img src="./assets/sub_men-pendants.webp" loading="lazy" alt="">
+							<img src="./assets/tab-rolex.webp" loading="lazy" alt="">
 						</div>
-						<span>Pendants</span>
+						<span>Rolex</span>
 					</a>
 					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
 						<div>
-							<img src="./assets/sub_men-earrings.webp" loading="lazy" alt="">
+							<img src="./assets/tab-patek.webp" loading="lazy" alt="">
 						</div>
-						<span>Earrings</span>
+						<span>Patek Philippe</span>
 					</a>
 					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
 						<div>
-							<img src="./assets/sub_men-necklaces.webp" loading="lazy" alt="">
+							<img src="./assets/tab-cartier.webp" loading="lazy" alt="">
 						</div>
-						<span>Necklaces</span>
+						<span>Cartier</span>
 					</a>
 					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
 						<div>
-							<img src="./assets/sub_men-rings.webp" loading="lazy" alt="">
+							<img src="./assets/tab-audemars.webp" loading="lazy" alt="">
 						</div>
-						<span>Rings</span>
+						<span>Audemars Piguet</span>
 					</a>
 					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
 						<div>
-							<img src="./assets/sub_men-bracelets.webp" loading="lazy" alt="">
+							<img src="./assets/tab-hublot.webp" loading="lazy" alt="">
 						</div>
-						<span>Bracelets</span>
+						<span>Hublot</span>
 					</a>
 					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
 						<div>
-							<img src="./assets/tab-watches.webp" loading="lazy" alt="">
+							<img src="./assets/tab-plain.webp" loading="lazy" alt="">
 						</div>
-						<span>Watches</span>
-					</a>
-					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
-						<div>
-							<img src="./assets/tab-custom.webp" loading="lazy" alt="">
-						</div>
-						<span>Custom</span>
+						<span>Plain Watches</span>
 					</a>
 				</div>
 			</div>
