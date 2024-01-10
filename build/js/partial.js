@@ -3201,6 +3201,7 @@ const salesModal = {
   }
 }
 
+
 const formPage = new Object({
   uploadedImages: [],
   init: function () {
@@ -3214,11 +3215,44 @@ const formPage = new Object({
     $('.formpage__upload-btn').click(function () {
       if ($('#image_upload').length) { $('#image_upload').trigger('click') }
     })
+    $('#formpage_form').on('submit',function(e){
+      e.preventDefault();
+      formPage.submitAjax();
+    });
+  },
+  submitAjax: function(){
+    var color = $('#metal_type').val();
+    if(color != ''){
+      var form = $("#formpage_form");
+      var formData = new FormData(form[0]);
+      $.ajax({
+        type: "POST",
+        url: $(form).prop("action"),
+        data: formData,
+        contentType: false,
+        processData: false,
+        cache: false,
+
+        success : function(data){
+          var r = $.parseJSON(data);
+          if(!r.error){
+            showMessage('success','Great',r.msg);
+            window.open(r.link,r.product_id);
+            $("#formpage_form")[0].reset();
+            $('.formpage__images-thumbnails').empty();
+          }else{
+            showMessage('error','Error',r.msg);
+          }
+        }
+      });
+    }else{
+      showMessage('error','Error','Please select a metal type first !');
+    }
   },
   attachImagesUploader: () => {
     const uploadLabel = document.querySelector('.formpage__upload-label'),
-      uploadInput = document.querySelector('#image_upload'),
-      imagesWrap = $('.formpage__images-thumbnails')
+        uploadInput = document.querySelector('#image_upload'),
+        imagesWrap = $('.formpage__images-thumbnails')
 
     // Setting drag&drop event
     if (uploadLabel !== null) {
@@ -3249,7 +3283,7 @@ const formPage = new Object({
     if (uploadInput !== null) {
       uploadInput.onchange = (evt) => {
         const files = [...evt.target.files]
-
+        $('.formpage__images-thumbnails').empty()
         processFiles(files)
       }
     }
@@ -3266,11 +3300,11 @@ const formPage = new Object({
           let reader = new FileReader()
           reader.onload = function (e) {
             let html =
-              `
+                `
                <div class="formpage__upload" data-img-id="${getIndex()}">
                  <div class="formpage__input-boxes">
                    <div>
-                     <input value="image_${getIndex()}" id="image_${getIndex()}" type="checkbox" checked>
+                     <input value="1" name="visible_image_${i}" id="image_${i}" type="checkbox" checked>
                      <label for="image_${getIndex()}"></label>
                    </div>
                  </div>
@@ -3289,7 +3323,7 @@ const formPage = new Object({
     $body.on('click', ".formpage__upload-bg", function () {
       lockScroll()
       let html =
-        `
+          `
       <div class="formpage-zoom">
         <div data-evt="closeFormpageZoom"></div>
         <div data-block="formpageZoom"></div>
@@ -3298,12 +3332,13 @@ const formPage = new Object({
       $body.append(html)
       $('[data-block="formpageZoom"]').attr('style', $(this).attr('style'))
     });
-    $body.on('click', '[data-evt="closeFormpageZoom"]', function () {
+    $body.on('click', '[data-evt="closeFormpageZoom"]', function() {
       unlockScroll()
       $('.formpage-zoom').remove()
     })
   }
 })
+
 
 const adjustStickyEls = () => {
   const elsArr = [...document.querySelectorAll('.filter-sidebar.to-stick'), ...document.querySelectorAll('.sticky-filters')]

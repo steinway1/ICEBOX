@@ -1,6 +1,6 @@
 {% set banner = true %}
 {% set nav = true %}
-{% set category = results.watches %}
+{% set category = results.pendants %}
 {% set searchQuery = "angels" %}
 {% set stickySidebar = true %}
 {% set collection = 'men' %}
@@ -13,7 +13,7 @@
 	{# Banner #}
 	{% if category %}
 		{% if banner == true %}
-			{% include "../elements/results/results-banner_sale.twig" %}
+			{% include "../elements/results/results-banner.twig" %}
 		{% endif %}
 	{% else %}
 		{% include "../elements/results/results-empty.twig" %}
@@ -32,12 +32,57 @@
 			{% endif %}
 		{% endif %}
 
-		<div
-			class="results__main">
+		<div class="results__main">
 			{# {% if category == results.watches %}{% include "elements/results/watches-notice.twig" %}{% endif %} #}
 			{# {% if collection == 'men' or collection == 'women' %}
-				{% include "elements/results/results-sub.twig" with { collection: 'engagement' } %}
-			{% endif %} #}
+							{% include "elements/results/results-sub.twig" with { collection: 'engagement' } %}
+						{% endif %} #}
+				<div class="results-sub"> <div class="results-sub__wrap">
+					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+						<div>
+							<img src="./assets/sub_men-pendants.webp" loading="lazy" alt="">
+						</div>
+						<span>Pendants</span>
+					</a>
+					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+						<div>
+							<img src="./assets/sub_men-earrings.webp" loading="lazy" alt="">
+						</div>
+						<span>Earrings</span>
+					</a>
+					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+						<div>
+							<img src="./assets/sub_men-necklaces.webp" loading="lazy" alt="">
+						</div>
+						<span>Necklaces</span>
+					</a>
+					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+						<div>
+							<img src="./assets/sub_men-rings.webp" loading="lazy" alt="">
+						</div>
+						<span>Rings</span>
+					</a>
+					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+						<div>
+							<img src="./assets/sub_men-bracelets.webp" loading="lazy" alt="">
+						</div>
+						<span>Bracelets</span>
+					</a>
+					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+						<div>
+							<img src="./assets/tab-watches.webp" loading="lazy" alt="">
+						</div>
+						<span>Watches</span>
+					</a>
+					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+						<div>
+							<img src="./assets/tab-custom.webp" loading="lazy" alt="">
+						</div>
+						<span>Custom</span>
+					</a>
+				</div>
+			</div>
+
 
 			{# Results BAR #}
 			{% include "../elements/results/results-bar.twig" %}
@@ -70,7 +115,9 @@
 								{% include "../elements/product-card.twig" %}
 							{% endfor %}
 						</div>
-            <div class="content-preloader"><span></span></div>
+						<div class="content-preloader">
+							<span></span>
+						</div>
 					</div>
 
 

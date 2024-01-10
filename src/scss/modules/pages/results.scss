@@ -128,7 +128,7 @@
     flex-direction: column;
 
     img {
-      width: 100%;
+      width: 100% !important;
       min-height: 320px;
     }
 
@@ -1384,8 +1384,8 @@
 }
 
 .results-sub__wrap {
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
   flex-wrap: wrap;
   padding-left: 4vw;
   padding-right: 4vw;
@@ -1399,30 +1399,45 @@
 }
 
 .results-sub__item {
-  min-width: 160px;
+  // min-width: 160px;
   cursor: pointer;
-  background-color: #f5f5f5;
-  border: 1px solid #f5f5f5;
+  background-color: transparent;
+  border: 0px solid #f5f5f5;
   border-radius: 500px;
   flex: none;
   align-items: center;
-  font-size: 16px;
+  justify-content: center;
+  padding-right: 20px;
+  font-size: 14px;
   font-weight: 600;
   transition: all .25s;
   display: flex;
+  gap: 8px;
+  flex-direction: column;
+
+  @include maxWidthXs {
+    padding-right: 10px;
+  }
+
+  &:hover {
+    opacity: 0.6;
+  }
 
   &>div {
-    padding: 4px;
-    width: 58px;
-    height: 58px;
+    padding: 2px;
+    background-image: linear-gradient(60deg, #dd2853, #e5a532);
+    width: 84px;
+    height: 84px;
     border-radius: 500px;
     overflow: hidden;
 
     img {
+      background-color: white;
       width: 100%;
       height: 100%;
-      transform: scale(2);
-      object-fit: contain;
+      padding: 3px;
+      // transform: scale(2);
+      object-fit: cover;
     }
   }
 
@@ -1431,17 +1446,12 @@
     height: 56px;
     border-radius: 50px;
   }
-
-  span {
-    padding-left: 16px;
-    padding-right: 20px;
-  }
 }
 
-.results-sub__item:hover {
-  background-color: #e0e0e0;
-  border-color: #e0e0e0;
-}
+// .results-sub__item:hover {
+//   background-color: #e0e0e0;
+//   border-color: #e0e0e0;
+// }
 
 @media screen and (max-width: 991px) {
   .results-sub__wrap {
