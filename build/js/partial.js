@@ -2794,7 +2794,7 @@ function initProductZoom() {
       return acc
     }, []).forEach((el) => {
       $(el).zoom({ magnify: 1.9, on: 'click' })
-      $(el).on('mouseleave', function() { $(document).trigger('click') })
+      $(el).on('mouseleave', function () { $(document).trigger('click') })
     })
   }
 
@@ -3349,11 +3349,15 @@ const adjustStickyEls = () => {
   const header = document.querySelector('.header')
 
   if (elsArr.length && header) {
-    const headerHeight = parseInt(window.getComputedStyle(header).getPropertyValue('height'))
-    elsArr.forEach((el) => {
-      let topValue = $(window).width() > 991 ? headerHeight + 24 : headerHeight
-      Object.assign(el.style, { top: `${topValue}px` })
-    })
+    function adjust() {
+      console.log('a')
+      let headerHeight = parseInt(window.getComputedStyle(header).getPropertyValue('height'))
+      elsArr.forEach((el) => {
+        let topValue = $(window).width() > 991 ? headerHeight + 24 : headerHeight
+        Object.assign(el.style, { top: `${topValue}px` })
+      })
+    }
+    ['load', 'resize'].forEach((event) => { window.addEventListener(event, () => { adjust() }) })
   }
 }
 

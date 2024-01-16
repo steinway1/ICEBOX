@@ -6151,12 +6151,26 @@ body.compensate-for-scrollbar {
 }
 
 .product-card__sub-detail {
-  color: rgba(8, 17, 31, 0.65);
+  color: rgba(8, 17, 31, 0.5);
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   font-size: 10px;
+  line-height: 12px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 4px;
+}
+
+.product-card__sub-detail > span.--blue {
+  color: #0095c6 !important;
+}
+
+.product-card__sub-detail > span.--red {
+  color: #cf0725 !important;
 }
 
 .product-card__name {
@@ -24383,7 +24397,8 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   }
 
   .product-card__sub-detail {
-    display: none;
+    margin-bottom: 8px;
+    font-size: 9px;
   }
 
   .quiz-answer__metal-img {
