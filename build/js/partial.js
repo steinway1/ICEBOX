@@ -2785,15 +2785,19 @@ function initProductZoom() {
   }
 
   const setDesktopZoom = () => {
-    [...document.querySelectorAll('.product-media__inner-wrap')].reduce((acc, el) => {
-      if (el.querySelector('img') && el.querySelector('img') !== null) {
-        if (!/(placeholder|store|pay)/gi.test(el.querySelector('img').getAttribute('src'))) {
-          acc.push(el)
+    [...document.querySelectorAll('.product-media-img')].reduce((acc, el) => {
+      if (el && el !== null) {
+        if (!/(placeholder|store|pay)/gi.test(el.getAttribute('src'))) {
+          acc.push($(el).parent('.product-media__inner-wrap'))
         }
       }
       return acc
-    }, []).forEach((el) => { jQuery(el).zoom({ magnify: 1.6 }) })
+    }, []).forEach((el) => {
+      $(el).zoom({ magnify: 1.9, on: 'click' })
+      $(el).on('mouseleave', function() { $(document).trigger('click') })
+    })
   }
+
   const setMobileZoom = () => {
     const sliders = [...document.querySelectorAll('.product-slider')] // Get all existing sliders
 
@@ -3215,14 +3219,14 @@ const formPage = new Object({
     $('.formpage__upload-btn').click(function () {
       if ($('#image_upload').length) { $('#image_upload').trigger('click') }
     })
-    $('#formpage_form').on('submit',function(e){
+    $('#formpage_form').on('submit', function (e) {
       e.preventDefault();
       formPage.submitAjax();
     });
   },
-  submitAjax: function(){
+  submitAjax: function () {
     var color = $('#metal_type').val();
-    if(color != ''){
+    if (color != '') {
       var form = $("#formpage_form");
       var formData = new FormData(form[0]);
       $.ajax({
@@ -3233,26 +3237,26 @@ const formPage = new Object({
         processData: false,
         cache: false,
 
-        success : function(data){
+        success: function (data) {
           var r = $.parseJSON(data);
-          if(!r.error){
-            showMessage('success','Great',r.msg);
-            window.open(r.link,r.product_id);
+          if (!r.error) {
+            showMessage('success', 'Great', r.msg);
+            window.open(r.link, r.product_id);
             $("#formpage_form")[0].reset();
             $('.formpage__images-thumbnails').empty();
-          }else{
-            showMessage('error','Error',r.msg);
+          } else {
+            showMessage('error', 'Error', r.msg);
           }
         }
       });
-    }else{
-      showMessage('error','Error','Please select a metal type first !');
+    } else {
+      showMessage('error', 'Error', 'Please select a metal type first !');
     }
   },
   attachImagesUploader: () => {
     const uploadLabel = document.querySelector('.formpage__upload-label'),
-        uploadInput = document.querySelector('#image_upload'),
-        imagesWrap = $('.formpage__images-thumbnails')
+      uploadInput = document.querySelector('#image_upload'),
+      imagesWrap = $('.formpage__images-thumbnails')
 
     // Setting drag&drop event
     if (uploadLabel !== null) {
@@ -3300,7 +3304,7 @@ const formPage = new Object({
           let reader = new FileReader()
           reader.onload = function (e) {
             let html =
-                `
+              `
                <div class="formpage__upload" data-img-id="${getIndex()}">
                  <div class="formpage__input-boxes">
                    <div>
@@ -3323,7 +3327,7 @@ const formPage = new Object({
     $body.on('click', ".formpage__upload-bg", function () {
       lockScroll()
       let html =
-          `
+        `
       <div class="formpage-zoom">
         <div data-evt="closeFormpageZoom"></div>
         <div data-block="formpageZoom"></div>
@@ -3332,7 +3336,7 @@ const formPage = new Object({
       $body.append(html)
       $('[data-block="formpageZoom"]').attr('style', $(this).attr('style'))
     });
-    $body.on('click', '[data-evt="closeFormpageZoom"]', function() {
+    $body.on('click', '[data-evt="closeFormpageZoom"]', function () {
       unlockScroll()
       $('.formpage-zoom').remove()
     })

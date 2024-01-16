@@ -3,6 +3,7 @@
 {% set christmas = false %}
 {% set new_year = false %}
 {% set userIsAdmin = false %}
+{% set vday = true %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +15,8 @@
 	</head>
 
 
-	<body{% if christmas == true %} class="xmas_update"{% endif %}>
-		{% if pageBanner == true and not black_friday == true and not cyber_monday == true and not christmas == true and not new_year == true %}
+	<body{% if christmas == true %} class="xmas_update"{% endif %}{% if vday == true %} class="promo_vday"{% endif %}>
+		{% if pageBanner == true and not black_friday == true and not cyber_monday == true and not christmas == true and not new_year == true and not vday == true %}
 			{% include "../elements/page-banner.twig" %}
 		{% endif %}
 		{% include "../elements/header.twig" %}

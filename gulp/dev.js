@@ -80,6 +80,10 @@ const root = {
       newyear: {
         lib: './src/js/new-year/libraries/*.js',
         main: './src/js/new-year/*.js'
+      },
+      vday: {
+        lib: './src/js/vday/libraries/*.js',
+        main: './src/js/vday/*.js'
       }
     },
     assets: './src/assets/**/*',
@@ -229,6 +233,20 @@ gulp.task('js-new-year:dev',
       .pipe(gulp.dest(root.dev.js))
   })
 
+gulp.task('js-vday:dev',
+  () => {
+    return gulp
+      .src([
+        root.src.js.vday.lib,
+        root.src.js.vday.main
+      ])
+      .pipe(changed(root.dev.js))
+      .pipe(plumber(setPlumberNotify('JS-VDAY')))
+      .pipe(concat('vday.js'))
+      .pipe(minify())
+      .pipe(gulp.dest(root.dev.js))
+  })
+
 gulp.task('js-plugins:dev',
   () => {
     return gulp
@@ -271,7 +289,7 @@ gulp.task('watch:dev',
   () => {
     gulp.watch('./src/templates/**/*.twig', gulp.parallel('twig:dev')),
       gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev')),
-      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-promo:dev', 'js-xmas:dev', 'js-new-year:dev')),
+      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-vday:dev')),
       // gulp.watch('./src/templates/data/*.json', gulp.parallel('js:dev')),
       gulp.watch('./assets/**/*', gulp.parallel('assets:dev'))
   }

@@ -79,6 +79,10 @@ const root = {
       newyear: {
         lib: './src/js/new-year/libraries/*.js',
         main: './src/js/new-year/*.js'
+      },
+      vday: {
+        lib: './src/js/vday/libraries/*.js',
+        main: './src/js/vday/*.js'
       }
     },
     assets: './src/assets/**/*',
@@ -222,6 +226,20 @@ gulp.task('js:build',
       .pipe(changed(root.build.js))
       .pipe(plumber(setPlumberNotify('JS-NEW-YEAR')))
       .pipe(concat('newyear.js'))
+      .pipe(minify())
+      .pipe(gulp.dest(root.build.js))
+  })
+
+  gulp.task('js-vday:build',
+  () => {
+    return gulp
+      .src([
+        root.src.js.vday.lib,
+        root.src.js.vday.main
+      ])
+      .pipe(changed(root.build.js))
+      .pipe(plumber(setPlumberNotify('JS-VDAY')))
+      .pipe(concat('vday.js'))
       .pipe(minify())
       .pipe(gulp.dest(root.build.js))
   })

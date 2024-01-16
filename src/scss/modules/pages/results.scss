@@ -1419,8 +1419,15 @@
     padding-right: 10px;
   }
 
+  img {
+    transition: all .25s ease;
+  }
+
   &:hover {
-    opacity: 0.6;
+    &>div {
+      padding: 3px;
+      opacity: .8;
+    }
   }
 
   &>div {
@@ -1430,6 +1437,7 @@
     height: 84px;
     border-radius: 500px;
     overflow: hidden;
+    transition: all .25s ease;
 
     img {
       background-color: white;
@@ -1547,7 +1555,7 @@
     .pay-card__btn {
       border: 2px solid #53AE94;
     }
-    
+
     .pay-card__wrapper {
       box-shadow: inset 0 2px 48px rgba(83, 174, 148, .1);
 
@@ -1613,6 +1621,7 @@
     img {
       background-color: unset;
       width: 90%;
+
       @include maxWidthXs {
         width: 96%;
       }

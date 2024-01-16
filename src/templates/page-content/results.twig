@@ -33,11 +33,14 @@
 		{% endif %}
 
 		<div class="results__main">
-			{% if category == results.watches %}{% include "elements/results/watches-notice.twig" %}{% endif %}
+			{% if category == results.watches %}
+				{% include "elements/results/watches-notice.twig" %}
+			{% endif %}
 			{# {% if collection == 'men' or collection == 'women' %}
-							{% include "elements/results/results-sub.twig" with { collection: 'engagement' } %}
-						{% endif %} #}
-				<div class="results-sub"> <div class="results-sub__wrap">
+										{% include "elements/results/results-sub.twig" with { collection: 'engagement' } %}
+									{% endif %} #}
+			<div class="results-sub">
+				<div class="results-sub__wrap">
 					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
 						<div>
 							<img src="./assets/tab-rolex.webp" loading="lazy" alt="">

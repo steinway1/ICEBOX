@@ -1,0 +1,827 @@
+:root {
+  --vday_rose: #cc446c;
+  --vday_rose_dark: #b22b53;
+}
+
+body.promo_vday {
+  .cart-count {
+    background-color: var(--vday_rose);
+  }
+
+  .header__sub-nav-list a {
+    &:hover {
+      border-bottom-color: var(--vday_rose);
+      color: var(--vday_rose)
+    }
+
+    &.is-active {
+      border-bottom-color: var(--vday_rose);
+      color: var(--vday_rose)
+    }
+  }
+
+  .filter-row label:not(.label-color) input[type=checkbox]:checked ~ span::before, .filter-row label:not(.label-color) input[type=radio]:checked ~ span::before {
+    background-color: var(--vday_rose);
+    border-color: var(--vday_rose);
+  }
+}
+
+.vday_results {
+  .results-sub__item {
+    &>div {
+      background-image: linear-gradient(60deg, #b8224e, #fa7bac);
+    }
+  }
+}
+
+.vday-banner {
+  color: #fff;
+  background-color: var(--vday_rose);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+
+  span {
+    text-align: center;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+
+    @include maxWidthXs {
+      font-size: 3vw;
+    }
+  }
+}
+
+/* #region POSTER */
+.vday-poster {
+  width: 100vw;
+  height: 320px;
+  background-color: #ffe4eb;
+  background-image: radial-gradient(circle farthest-side, rgba(139, 0, 42, .05), rgba(255, 238, 242, 0)), linear-gradient(#ffeef2, #fdd5df);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 48px 48px rgba(204, 68, 108, .12);
+}
+
+.vday-poster__bg {
+  opacity: .04;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="88" height="88" viewBox="0 0 88 88" fill="none"><path d="M44 65C43.5964 65.0004 43.1979 64.9107 42.8347 64.7375C41.904 64.2912 20 53.6363 20 36.1249C20 33.5292 20.7819 30.9918 22.2469 28.8335C23.7118 26.6752 25.7939 24.9929 28.23 23.9994C30.6661 23.0059 33.3468 22.7458 35.9331 23.2519C38.5194 23.758 40.8952 25.0077 42.76 26.8428L44 28.0635L45.24 26.8428C47.1049 25.0077 49.4806 23.758 52.0669 23.2519C54.6532 22.7458 57.3339 23.0059 59.77 23.9994C62.2061 24.9929 64.2882 26.6752 65.7531 28.8335C67.2181 30.9918 68 33.5292 68 36.1249C68 53.5707 46.1013 64.286 45.168 64.7375C44.8039 64.9111 44.4045 65.0008 44 65Z" fill="%23D23E6B"/></svg>');
+  background-position: 50%;
+  background-repeat: repeat;
+  background-size: 32px 32px;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.vday-poster__decor {
+  z-index: 3;
+  width: 100vw;
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  overflow: hidden;
+
+  &>div {
+    &:nth-child(1) {
+      animation: heart1 2.3s ease-in-out infinite;
+    }
+
+    &:nth-child(2) {
+      animation: heart2 2.3s ease-in-out infinite;
+    }
+
+    &:nth-child(3) {
+      animation: heart3 2.3s ease-in-out infinite;
+    }
+
+    &:nth-child(4) {
+      animation: heart4 2.3s ease-in-out infinite;
+    }
+
+    &:nth-child(5) {
+      animation: heart5 2.3s ease-in-out infinite;
+    }
+
+    &:nth-child(6) {
+      animation: heart6 2.3s ease-in-out infinite;
+    }
+
+    &:nth-child(7) {
+      animation: heart7 2.3s ease-in-out infinite;
+    }
+
+    &:nth-child(8) {
+      animation: heart8 2.3s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes heart1 {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(-12deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes heart2 {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(13deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes heart3 {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-9px) rotate(-16deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes heart4 {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(-12deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes heart5 {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(10deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes heart6 {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-9px) rotate(13deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes heart7 {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(14deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes heart8 {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-11px) rotate(-12deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.vday-nav-link {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid var(--vday_rose);
+  justify-content: center;
+  padding: 7px 12px 6px 68px !important;
+  font-size: 12px;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+  color: var(--vday_rose) !important;
+  background-image: linear-gradient(230deg, rgba(204, 68, 108, .1), #fff 80%);
+  border-radius: 13px;
+  font-weight: 700;
+  transition: all .35s cubic-bezier(.39, .575, .565, 1);
+
+  img {
+    width: 160px;
+    height: 110px;
+    mix-blend-mode: darken;
+    position: absolute;
+    top: -22.7969px;
+    left: -49px;
+  }
+
+  span {
+    z-index: 2;
+    position: relative;
+  }
+
+  &:hover {
+    background-color: rgba(204, 68, 108, .0);
+    transform: translate(0, -1.5px);
+    box-shadow: 0 6px 12px rgba(204, 68, 108, .08);
+  }
+
+  @include maxWidthMd {
+    display: none !important;
+  }
+}
+
+.vday-shape {
+  z-index: 1;
+  width: 20vw;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+
+  &.left_t {
+    width: 8vw;
+    top: 4vw;
+    left: 2vw;
+    transform: rotate(26deg);
+
+    &.to-flipped {
+      top: 5.3vw;
+      left: auto;
+      right: 2vw;
+      transform: rotate(-26deg);
+    }
+  }
+
+  &.left_b {
+    bottom: -5.2vw;
+    left: -2.5vw;
+    transform: rotate(-20deg);
+
+    &.to-flipped {
+      bottom: -4.2vw;
+      left: auto;
+      right: -2.5vw;
+      transform: rotate(16deg);
+    }
+  }
+}
+
+.vday-heart_red {
+  z-index: 3;
+  width: 14vw;
+  height: 14vw;
+  max-height: 240px;
+  max-width: 240px;
+  position: absolute;
+  top: -4vw;
+  right: 28%;
+
+  &.left_c {
+    width: 10vw;
+    height: 10vw;
+    top: 43%;
+    left: 5vw;
+    right: auto;
+  }
+
+  &.right_t {
+    width: 9vw;
+    height: 9vw;
+    top: 17%;
+    left: auto;
+    right: 6vw;
+  }
+
+  &.center_bl {
+    width: 15vw;
+    height: 15vw;
+    top: auto;
+    bottom: -7.8vw;
+    left: 28%;
+    right: auto;
+  }
+}
+
+.vday-poster__info {
+  z-index: 5;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 52px;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+
+  &>span {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #7c2436;
+    background-color: rgba(255, 243, 246, .21);
+    border: 1px dashed var(--vday_rose);
+    margin-top: 24px;
+    padding: 16px 16px 14px;
+    font-size: 29px;
+
+    @include maxWidthXs {
+      padding-top: 4.2vw;
+      padding-bottom: 3.2vw;
+      font-size: 8vw;
+    }
+
+    span {
+      color: #d23e6a;
+    }
+  }
+}
+
+.vday-poster__main-img {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+
+  img {
+    z-index: 2;
+    width: 100%;
+    position: relative;
+  }
+}
+
+.vday-heart_rose {
+  z-index: 2;
+  width: 14vw;
+  height: 14vw;
+  max-height: 240px;
+  max-width: 240px;
+  position: absolute;
+  top: -2vw;
+  left: 18%;
+
+  &.left_b {
+    width: 10vw;
+    height: 10vw;
+    top: auto;
+    bottom: 0%;
+    left: 14%;
+  }
+
+  &.right_b {
+    width: 11vw;
+    height: 11vw;
+    top: 53%;
+    left: auto;
+    right: 10.6vw;
+  }
+
+  &.center_br {
+    top: auto;
+    bottom: -5.8vw;
+    left: auto;
+    right: 32%;
+  }
+}
+
+.vday-poster__ticker {
+  font-family: 'Bebas Neue', sans-serif;
+  z-index: 2;
+  width: 100%;
+  color: #af2b52;
+  background-color: rgba(255, 145, 177, .19);
+  border-top: 1px dashed var(--vday_rose);
+  border-bottom: 1px dashed var(--vday_rose);
+  justify-content: flex-end;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 19px;
+  display: flex;
+  position: absolute;
+  top: 8px;
+  bottom: auto;
+  left: 0%;
+  right: 0%;
+  overflow: hidden;
+
+  &>div {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    flex: none;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    display: flex;
+    animation: vDayTicker 55s linear infinite;
+
+    &>span:nth-child(even) {
+      color: #b8687f;
+    }
+  }
+}
+
+@keyframes vDayTicker {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.vday-cloud {
+  z-index: 4;
+  width: 30vw;
+  opacity: .7;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  bottom: -3.7vw;
+  left: 30%;
+  transform: translate(0, 50%);
+
+  &.left_b {
+    max-width: 420px;
+    opacity: .7;
+    top: 77%;
+    bottom: auto;
+    left: -10vw;
+    transform: translate(0, -50%);
+  }
+
+  &.left_r {
+    max-width: 520px;
+    opacity: .6;
+    top: 61%;
+    bottom: auto;
+    left: auto;
+    right: -11.1vw;
+    transform: translate(0, -50%);
+  }
+}
+
+.vday-heart_rose img,
+.vday-heart_red img,
+.vday-cloud img,
+.vday-shape img {
+  z-index: 1;
+  filter: hue-rotate(-4deg);
+  position: relative;
+
+  &.rot_1 {
+    transform: rotate(34deg);
+  }
+
+  &.rot_2 {
+    transform-style: preserve-3d;
+    transform: rotateX(0)rotateY(180deg)rotateZ(-4deg);
+
+    @include maxWidthXs {
+      transform: rotate(-23deg);
+    }
+  }
+
+  &.rot_3 {
+    transform-style: preserve-3d;
+    transform: rotateX(0)rotateY(-180deg)rotateZ(31deg);
+  }
+
+  &.rot_4 {
+    transform-style: preserve-3d;
+    transform: rotateX(0)rotateY(-180deg)rotateZ(-4deg);
+  }
+
+  &.rot_5 {
+    transform: rotate(4deg);
+  }
+
+  &.rot_6 {
+    transform-style: preserve-3d;
+    transform: rotateX(0)rotateY(180deg)rotateZ(-34deg);
+  }
+
+  &.rot_7 {
+    transform-style: preserve-3d;
+    transform: rotateX(0)rotateY(-180deg)rotateZ(34deg);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .vday-shape {
+    width: 15vw;
+  }
+
+  .vday-shape.left_t {
+    width: 6vw;
+    top: 2.8vw;
+  }
+
+  .vday-shape.left_t.to-flipped {
+    top: 4.6vw;
+  }
+
+  .vday-shape.left_b {
+    bottom: -4.6vw;
+  }
+
+  .vday-heart_red {
+    width: 12vw;
+    height: 12vw;
+    top: -3.1vw;
+  }
+
+  .vday-heart_red.left_c {
+    width: 8vw;
+    height: 8vw;
+    top: 37%;
+  }
+
+  .vday-heart_red.right_t {
+    width: 7.4vw;
+    height: 7.4vw;
+    right: 5.6vw;
+  }
+
+  .vday-heart_red.center_bl {
+    width: 13vw;
+    height: 13vw;
+    bottom: -6.8vw;
+  }
+
+  .vday-heart_rose.left_b {
+    width: 8vw;
+    height: 8vw;
+    bottom: 5%;
+  }
+
+  .vday-heart_rose.right_b {
+    width: 9vw;
+    height: 9vw;
+  }
+
+  .vday-heart_rose.center_br {
+    width: 10vw;
+    height: 10vw;
+    bottom: -1.9vw;
+  }
+
+  .vday-heart_rose.left_t {
+    width: 11vw;
+    height: 11vw;
+    top: -1.4vw;
+    left: 23%;
+  }
+
+  .vday-cloud {
+    width: 34vw;
+  }
+
+  .vday-cloud.left_b,
+  .vday-cloud.left_r {
+    max-width: 520px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .vday-shape {
+    width: 32vw;
+  }
+
+  .vday-shape.left_b {
+    left: -9.9vw;
+  }
+
+  .vday-shape.left_b.to-flipped {
+    right: -9.9vw;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .vday-shape.left_t {
+    width: 14vw;
+    top: -.2vw;
+    left: -5.1vw;
+  }
+
+  .vday-shape.left_t.to-flipped {
+    display: none;
+  }
+
+  .vday-shape.left_b {
+    width: 15vw;
+    top: 42px;
+    bottom: auto;
+    left: 11.1vw;
+  }
+
+  .vday-shape.left_b.to-flipped {
+    width: 26vw;
+    top: auto;
+    bottom: -4.8vw;
+    right: -6.4vw;
+  }
+
+  .vday-heart_red {
+    width: 30vw;
+    height: 30vw;
+    top: -.3vw;
+    right: 2%;
+  }
+
+  .vday-heart_red.left_c {
+    width: 17vw;
+    height: 17vw;
+    top: auto;
+    bottom: 22%;
+    left: .3vw;
+  }
+
+  .vday-heart_red.right_t {
+    width: 16vw;
+    height: 16vw;
+    top: 19%;
+    right: -4.3vw;
+  }
+
+  .vday-heart_red.center_bl {
+    width: 38vw;
+    height: 38vw;
+    bottom: -16.5vw;
+    left: 0%;
+  }
+
+  .vday-poster__main-img {
+    width: 90vw;
+  }
+
+  .vday-heart_rose.left_b {
+    width: 26vw;
+    height: 26vw;
+    bottom: -6%;
+    left: 27%;
+  }
+
+  .vday-heart_rose.right_b {
+    width: 15vw;
+    height: 15vw;
+    top: 2%;
+    right: 26vw;
+  }
+
+  .vday-heart_rose.center_br {
+    display: none;
+  }
+
+  .vday-heart_rose.left_t {
+    width: 24vw;
+    height: 24vw;
+    display: none;
+    top: auto;
+    bottom: 36%;
+    left: -12%;
+  }
+
+  .vday-cloud {
+    width: 75vw;
+    bottom: 3.9vw;
+    left: 49%;
+  }
+
+  .vday-cloud.left_b {
+    top: 105%;
+    left: -19.2vw;
+  }
+
+  .vday-cloud.left_r {
+    top: 6%;
+    right: -27.9vw;
+  }
+}
+
+/* #endregion POSTER */
+
+.product-card {
+  &.--vday {
+    &:hover {
+      border-color: #ffd4e1;
+    }
+
+    .product-card__sale-price {
+      color: var(--vday_rose);
+    }
+
+    .product-card__name:hover {
+      color: var(--vday_rose_dark)
+    }
+
+    .stock-dash-box {
+      color: var(--vday_rose);
+      border-color: var(--vday_rose);
+      background-color: rgb(255 154 183 / 0%);
+
+      &>span {
+        font-size: 11px;
+        letter-spacing: 0.6px;
+      }
+
+      &>div {
+        span:nth-child(1) {
+          background: linear-gradient(to right, #ffffff, var(--vday_rose));
+        }
+
+        span:nth-child(2) {
+          background: linear-gradient(to bottom, #ffffff, var(--vday_rose));
+        }
+
+        span:nth-child(3) {
+          background: linear-gradient(to left, #ffffff, var(--vday_rose));
+        }
+
+        span:nth-child(4) {
+          background: linear-gradient(to top, #ffffff, var(--vday_rose));
+        }
+      }
+    }
+  }
+}
+
+.vday-card {
+  border: 1.5px solid var(--vday_rose);
+  pointer-events: none;
+  align-items: flex-start;
+  display: flex;
+  position: absolute;
+  z-index: 2;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  box-shadow: inset 0 0 0 7px rgba(204, 68, 108, .06);
+
+  div {
+    padding: 10px;
+
+    img {
+      width: 52px;
+    }
+  }
+}

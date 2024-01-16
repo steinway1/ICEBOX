@@ -1,5 +1,9 @@
 <a href="https://www.icebox.com" class="header-logo">
-	<img src="{% if christmas == true %}assets/logo-xmas.webp{% else %}assets/logo.svg{% endif %}" loading="eager" alt="Icebox Logotype">
+	{% if vday == true %}
+		<img src="./assets/vday/logo-vday.webp" loading="eager" alt="Icebox Logotype">
+	{% else %}
+		<img src="{% if christmas == true %}assets/logo-xmas.webp{% else %}assets/logo.svg{% endif %}" loading="eager" alt="Icebox Logotype">
+	{% endif %}
 </a>
 
 <div class="header-nav__group">
@@ -13,6 +17,10 @@
 			{% include "../svg/location.svg" %}
 			<span>Our Locations</span>
 		</div>
+	</a>
+	<a class="vday-nav-link is-valentine">
+		<img src="./assets/vday/link-ring.webp" loading="eager" alt="">
+		<span>Valentine&#x27;s Sale</span>
 	</a>
 	<a href="javascript:void(0);" data-evt="toggleMenu">
 		<div>
