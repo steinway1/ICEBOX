@@ -18,10 +18,12 @@
 			<span>Our Locations</span>
 		</div>
 	</a>
-	<a class="vday-nav-link is-valentine">
-		<img src="./assets/vday/link-ring.webp" loading="eager" alt="">
-		<span>Valentine&#x27;s Sale</span>
-	</a>
+	{% if vday == true %}
+		<a href="#" class="vday-nav-link is-valentine">
+			<img src="./assets/vday/link-ring.webp" loading="eager" alt="">
+			<span>Valentine&#x27;s Sale</span>
+		</a>
+	{% endif %}
 	<a href="javascript:void(0);" data-evt="toggleMenu">
 		<div>
 			{% include "../svg/menu.svg" %}

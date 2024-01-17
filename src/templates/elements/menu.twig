@@ -8,7 +8,7 @@
 				<div class="mob-menu__scroll-content">
 					<div class="mob-menu__header">
 						<a href="/" aria-current="page" class="mob-menu__logo">
-							<img src="./assets/logo.svg" loading="eager" alt="Icebox logo">
+							<img src="{% if vday == true %}./assets/vday/logo-vday.webp{% else %}./assets/logo.svg{% endif %}" loading="eager" alt="Icebox logo">
 						</a>
 						<button onclick="menu.toggle();" class="mob-menu__close-btn">
 							{% include "../components/svg/close.svg" %}
@@ -37,9 +37,12 @@
 								</a>
 							</div>
 						{% endif %}
-						{# <a href="/christmas" class="xmas-nav-link">
-						            <img src="./assets/xmas/poster-desktop-title.webp" loading="eager" alt="">
-												</a> #}
+						<div class="mob-menu__nav-item --vday">
+							<a href="#" class="vday-nav-link is-valentine">
+								<img src="./assets/vday/link-ring.webp" loading="eager" alt="">
+								<span>Valentine's Sale</span>
+							</a>
+						</div>
 						<div class="mob-menu__nav-item">
 							<a href="/results/pendants">Pendants</a>
 							<button data-menu-nav="Pendants" class="mob-menu__nav-step"></button>

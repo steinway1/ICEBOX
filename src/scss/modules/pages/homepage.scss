@@ -220,6 +220,7 @@
 
     .home-welcome__link {
       background-color: var(--black);
+
       &::after {
         background-color: var(--blue-gold);
       }
@@ -313,6 +314,7 @@
 .home-row__header {
   width: 100%;
   padding-bottom: 28px;
+
   @include maxWidthXs {
     padding-bottom: 34px;
   }
@@ -446,7 +448,7 @@
 }
 
 .home-row__cards-wrap {
-  background-color: #f9f9f9;
+  background-color: #f5f8fa;
   padding-top: 28px;
   padding-bottom: 28px;
   padding-left: 5vw;
@@ -476,7 +478,7 @@
   background-color: #000001;
   margin-top: -2px;
   padding-bottom: 38px;
-  
+
   h3 {
     color: white;
   }
@@ -546,7 +548,7 @@
 }
 
 .home-row__body {
-  background-color: #f9f9f9;
+  background-color: #f5f8fa;
 }
 
 .home-row__summary-center {
@@ -957,11 +959,84 @@
 }
 
 @media screen and (max-width: 767px) {
-  .home-splide .splide__list > .splide__slide {
+  .home-splide .splide__list>.splide__slide {
     width: 100% !important;
   }
 
   .home-splide .product-card {
     max-width: none;
   }
+}
+
+.home-categories-splide {
+  padding: 0px 48px;
+
+  @include maxWidthXs {
+    padding: 0px 12px;
+
+    .splide__arrow {
+      width: 24px;
+      height: 24px;
+      border-radius: 0%;
+      &.splide__arrow--prev {
+        left: 0px;
+        margin-left: -12px;
+      }
+  
+      &.splide__arrow--next {
+        right: 0px;
+        margin-right: -12px;
+      }
+    }
+  }
+
+  .splide__arrow {
+    background-color: white;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+    margin-top: -10px;
+
+    &.splide__arrow--prev {
+      left: 8px;
+      transform: translateY(-50%) rotateZ(180deg);
+    }
+
+    &.splide__arrow--next {
+      right: 8px;
+    }
+  }
+
+  a {
+    // padding: 8px;
+    // border: 1px solid red;
+    // background-color: #f5f8fa;
+
+    &:hover {
+      img {
+        transform: scale(1.13);
+      }
+    }
+
+    div {
+      overflow: hidden;
+
+      img {
+        transition: all 250ms ease;
+      }
+    }
+
+    span {
+      display: block;
+      font-weight: 600;
+      margin-top: 8px;
+      // text-transform: uppercase;
+      // letter-spacing: 0.6px;
+      // font-size: 13px;
+    }
+  }
+}
+
+.tabs-wrapper {
+  overflow: hidden;
 }

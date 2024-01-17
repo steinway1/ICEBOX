@@ -9028,7 +9028,7 @@ form button.is-failed {
 }
 
 .home-row__cards-wrap {
-  background-color: #f9f9f9;
+  background-color: #f5f8fa;
   padding-top: 28px;
   padding-bottom: 28px;
   padding-left: 5vw;
@@ -9117,7 +9117,7 @@ form button.is-failed {
 }
 
 .home-row__body {
-  background-color: #f9f9f9;
+  background-color: #f5f8fa;
 }
 
 .home-row__summary-center {
@@ -9262,6 +9262,49 @@ form button.is-failed {
 .diamonds-row__grid a img {
   width: 100%;
   position: relative;
+}
+
+.home-categories-splide {
+  padding: 0px 48px;
+}
+
+.home-categories-splide .splide__arrow {
+  background-color: white;
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  margin-top: -10px;
+}
+
+.home-categories-splide .splide__arrow.splide__arrow--prev {
+  left: 8px;
+  transform: translateY(-50%) rotateZ(180deg);
+}
+
+.home-categories-splide .splide__arrow.splide__arrow--next {
+  right: 8px;
+}
+
+.home-categories-splide a:hover img {
+  transform: scale(1.13);
+}
+
+.home-categories-splide a div {
+  overflow: hidden;
+}
+
+.home-categories-splide a div img {
+  transition: all 250ms ease;
+}
+
+.home-categories-splide a span {
+  display: block;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.tabs-wrapper {
+  overflow: hidden;
 }
 
 .main_product {
@@ -20024,6 +20067,7 @@ width: calc(50% - 8px)
 
 :root {
   --vday_rose: #cc446c;
+  --vday_rose_light: #ff6392;
   --vday_rose_dark: #b22b53;
 }
 
@@ -20045,6 +20089,136 @@ body.promo_vday .filter-row label:not(.label-color) input[type=checkbox]:checked
 body.promo_vday .filter-row label:not(.label-color) input[type=radio]:checked ~ span::before {
   background-color: var(--vday_rose);
   border-color: var(--vday_rose);
+}
+
+body.promo_vday .home-welcome-details h2 {
+  margin-bottom: 8px;
+}
+
+body.promo_vday .home-welcome__link,
+body.promo_vday .home-row-btn {
+  background-color: var(--vday_rose) !important;
+}
+
+body.promo_vday .home-welcome__link::after,
+body.promo_vday .home-row-btn::after {
+  background-color: var(--vday_rose_light) !important;
+}
+
+body.promo_vday .cart-modal__btn {
+  background-color: var(--vday_rose) !important;
+}
+
+body.promo_vday .cart-modal__btn:hover {
+  background-color: var(--vday_rose_light) !important;
+}
+
+body.promo_vday .cart-item-price_sale {
+  color: var(--vday_rose);
+}
+
+body.promo_vday .home-row__heading {
+  color: var(--vday_rose);
+}
+
+body.promo_vday .home-row__heading span {
+  color: var(--black);
+}
+
+body.promo_vday .home-row-btn.white_stroke,
+body.promo_vday .home-row-btn.home-row-btn_stroke {
+  border: none;
+  color: white;
+}
+
+body.promo_vday .home-row-btn.white_stroke:hover,
+body.promo_vday .home-row-btn.home-row-btn_stroke:hover {
+  color: white;
+}
+
+body.promo_vday .wrapper_engagement a {
+  border: none !important;
+}
+
+body.promo_vday .product-card__sale-price {
+  color: var(--vday_rose);
+}
+
+body.promo_vday .mob-menu__spot-link {
+  background-color: var(--vday_rose);
+}
+
+.mob-menu .vday-nav-link {
+  display: flex !important;
+  border-radius: 0px;
+  padding: 10px 22px !important;
+  border-left: none;
+  border-right: none;
+  text-align: left;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-image: linear-gradient(230deg, #fff 30%, rgba(204, 68, 108, 0.08) 100%);
+}
+
+.mob-menu .vday-nav-link span {
+  order: -1;
+}
+
+.mob-menu .vday-nav-link img {
+  width: 210px;
+  height: 140px;
+  right: -60px;
+  left: auto !important;
+  top: -30px;
+}
+
+.home-row.--vday .home-row__header {
+  background-color: var(--vday_rose);
+  padding: 0;
+}
+
+.home-row.--vday .home-row__body {
+  background-color: transparent;
+}
+
+.home-row.--vday .home-row__cards-wrap {
+  background-color: transparent;
+  padding-bottom: 0px;
+}
+
+.home-row.--vday .home-row__heading {
+  color: white !important;
+  letter-spacing: 1px;
+  line-height: 30px;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.home-row.--vday .home-row__heading span {
+  margin-top: 14px;
+  color: white !important;
+}
+
+.home-row.--vday .home-row-btn {
+  margin-top: 28px;
+  border: 2px solid white;
+}
+
+.home-row.--vday .home-row-btn:hover {
+  color: var(--vday_rose);
+}
+
+.home-row.--vday .home-row-btn::after {
+  background-color: white !important;
+}
+
+.home-row.--vday .home-row__img {
+  width: 50%;
+}
+
+.home-row.--vday .home-row__summary-center {
+  padding-bottom: 36px;
 }
 
 .vday_results .results-sub__item > div {
@@ -20590,17 +20764,13 @@ body.promo_vday .filter-row label:not(.label-color) input[type=radio]:checked ~ 
   border-color: #ffd4e1;
 }
 
-.product-card.--vday .product-card__sale-price {
-  color: var(--vday_rose);
-}
-
 .product-card.--vday .product-card__name:hover {
   color: var(--vday_rose_dark);
 }
 
 .product-card.--vday .stock-dash-box {
   color: var(--vday_rose);
-  border-color: var(--vday_rose);
+  border-color: #f19db6;
   background-color: rgba(255, 154, 183, 0);
 }
 
@@ -20610,19 +20780,19 @@ body.promo_vday .filter-row label:not(.label-color) input[type=radio]:checked ~ 
 }
 
 .product-card.--vday .stock-dash-box > div span:nth-child(1) {
-  background: linear-gradient(to right, #ffffff, var(--vday_rose));
+  background: linear-gradient(to right, #ffffff, #f19db6);
 }
 
 .product-card.--vday .stock-dash-box > div span:nth-child(2) {
-  background: linear-gradient(to bottom, #ffffff, var(--vday_rose));
+  background: linear-gradient(to bottom, #ffffff, #f19db6);
 }
 
 .product-card.--vday .stock-dash-box > div span:nth-child(3) {
-  background: linear-gradient(to left, #ffffff, var(--vday_rose));
+  background: linear-gradient(to left, #ffffff, #f19db6);
 }
 
 .product-card.--vday .stock-dash-box > div span:nth-child(4) {
-  background: linear-gradient(to top, #ffffff, var(--vday_rose));
+  background: linear-gradient(to top, #ffffff, #f19db6);
 }
 
 .vday-card {
@@ -25098,6 +25268,16 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     padding-right: 14px;
   }
 
+  .home-row.--vday .home-row__heading span {
+    margin-top: 8px;
+  }
+
+  .home-row.--vday .home-row__img {
+    width: 100%;
+    order: -1;
+    max-height: 280px;
+  }
+
   .vday-shape {
     width: 32vw;
   }
@@ -25974,6 +26154,26 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     grid-template-columns: 1fr 1fr 1fr;
     padding-top: 20px;
     padding-bottom: 20px;
+  }
+
+  .home-categories-splide {
+    padding: 0px 12px;
+  }
+
+  .home-categories-splide .splide__arrow {
+    width: 24px;
+    height: 24px;
+    border-radius: 0%;
+  }
+
+  .home-categories-splide .splide__arrow.splide__arrow--prev {
+    left: 0px;
+    margin-left: -12px;
+  }
+
+  .home-categories-splide .splide__arrow.splide__arrow--next {
+    right: 0px;
+    margin-right: -12px;
   }
 
   .product__view {
@@ -27325,6 +27525,14 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     height: 96vw;
   }
 
+  .home-row.--vday .home-row-btn {
+    margin-top: 20px;
+  }
+
+  .home-row.--vday .home-row__summary-center {
+    padding: 48px 22px;
+  }
+
   .vday-banner span {
     font-size: 3vw;
   }
@@ -27440,6 +27648,21 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   .vday-cloud.left_r {
     top: 6%;
     right: -27.9vw;
+  }
+
+  .product-card.--vday .stock-dash-box > span {
+    font-size: 2.5vw;
+    letter-spacing: 0px;
+    padding-top: 1.3vw;
+    padding-bottom: 1.3vw;
+  }
+
+  .vday-card div {
+    padding: 7px;
+  }
+
+  .vday-card div img {
+    width: 42px;
   }
 
   .bfs-banner.--xmas .to_center img {

@@ -10,12 +10,12 @@ $(function () {
 
   function pushIntervalFireworks() {
     if (!resultsPage) {
-      const rng = (min, max) => { return Math.random() * (max - min) + min; },
-        interval = 5 * 1000
+      let rng = (min, max) => { return Math.random() * (max - min) + min; },
+        interval = 5000
 
       let particleCount = window.innerWidth <= 479 ? 70 : 120
-      
-      setInterval(() => {
+
+      const pushConfetti = () => {
         confetti(
           Object.assign({}, {
             particleCount,
@@ -24,6 +24,13 @@ $(function () {
             origin: { x: rng(0.2, 0.8), y: rng(0.2, 0.8) },
           })
         )
+      }
+
+      setTimeout(() => { pushConfetti() }, 1000)
+      setInterval(() => {
+        if (document.hasFocus()) {
+          pushConfetti()
+        }
       }, interval);
     }
   }

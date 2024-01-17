@@ -979,6 +979,33 @@ const footer = new Object({
 
 
 /* #region  Homepage SPLIDE */
+const homepageCategoriesSlider = new Object({
+  init: function () {
+    const el = document.querySelector('.home-categories-splide')
+    if (el && el !== null) {
+      let slider = new Splide(el, {
+        type: "loop",
+        perPage: 6,
+        perMove: 2,
+        autoplay: 0,
+        gap: "12px",
+        arrows: 1,
+        pagination: 0,
+        speed: 750,
+        breakpoints: {
+          1680: { perPage: 7, },
+          1440: { perPage: 6, },
+          1200: { perPage: 5, },
+          991: { perPage: 4, },
+          767: { perPage: 3, perMove: 1 },
+          478: { perPage: 2, perMove: 1, gap: 6 }
+        }
+      })
+      slider.mount()
+    }
+  }
+})
+
 const homePageSplide = new Object({
   init: function () {
     const homeSplideArr = Array.from(
@@ -998,7 +1025,7 @@ const homePageSplide = new Object({
         speed: 750,
         breakpoints: {
           1680: {
-            perPage: 6,
+            perPage: 5,
             perMove: 1,
           },
           1120: {
@@ -3375,6 +3402,7 @@ document.addEventListener("DOMContentLoaded", function () {
   quizModal.init()
   salesModal.init()
   formPage.init()
+  homepageCategoriesSlider.init()
 });
 function initValidators() {
   $(".needs-validation").parsley({
