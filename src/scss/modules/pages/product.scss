@@ -2068,6 +2068,279 @@
   cursor: pointer;
 }
 
+/* #region ZOOM THINGS */
+
+// New ZOOM MODAL : BEGIN
+.zoom-hint {
+  z-index: 10;
+  width: 136px;
+  height: 148px;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  color: #fff;
+  text-align: center;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, .55);
+  background-image: url('data:image/svg+xml,<svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 31V27H7.828L12.414 22.414L9.586 19.586L0.171997 29L9.586 38.414L12.414 35.586L7.828 31H21ZM48.414 19.586L45.586 22.414L50.172 27H37V31H50.172L45.586 35.586L48.414 38.414L57.828 29L48.414 19.586ZM31 50.171V37H27V50.171L22.414 45.586L19.586 48.414L29 57.829L38.414 48.414L35.586 45.586L31 50.171ZM27 7.82902V21H31V7.82902L35.586 12.414L38.414 9.58602L29 0.171021L19.586 9.58602L22.414 12.414L27 7.82902Z" fill="white"/></svg>');
+  background-position: 50% 22px;
+  background-repeat: no-repeat;
+  background-size: 40%;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 14px;
+  padding-left: 18px;
+  padding-right: 18px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 350ms ease;
+  pointer-events: none;
+  opacity: 0;
+
+  &::after {
+    content: 'Grab & Drag to zoom more';
+  }
+}
+
+.zoom-modal {
+  z-index: 99999;
+  background-color: #f8fafd;
+  transition: all .35s;
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  opacity: 0;
+
+  .splide__track {
+    height: 100%;
+    max-height: 60%;
+  }
+
+  .splide__arrows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 12;
+
+    &>div {
+      width: 42px;
+      height: 42px;
+      position: absolute;
+      background-color: white;
+      border-radius: 500px;
+      cursor: pointer;
+      background-size: 14px;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      @include maxWidthXs {
+        width: 36px;
+        height: 36px;
+      }
+
+      &.splide__arrow--prev {
+        left: 12px;
+        background-image: url('data:image/svg+xml,<svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 1L6 12L17 23" stroke="currentColor" stroke-width="3"></path></svg>');
+
+        @include maxWidthXs {
+          left: 6px;
+        }
+      }
+
+      &.splide__arrow--next {
+        right: 12px;
+        background-image: url('data:image/svg+xml,<svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1L18 12L7 23" stroke="currentColor" stroke-width="3"></path></svg>');
+
+        @include maxWidthXs {
+          right: 6px;
+        }
+      }
+    }
+  }
+}
+
+.zoom-modal__name {
+  max-width: 320px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.zoom-modal__holder {
+  width: 100%;
+  height: 100%;
+  max-width: 860px;
+  background-color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  position: relative;
+}
+
+.zoom-modal__close-btn {
+  z-index: 10;
+  background-color: #fff;
+  border-radius: 500px;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  position: absolute;
+  top: 12px;
+  bottom: auto;
+  left: auto;
+  right: 12px;
+  background-image: url('data:image/svg+xml,<svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 1L25.5 25" stroke="black" stroke-width="3"/><path d="M25.5 1L1.5 25" stroke="black" stroke-width="3"/></svg>');
+  background-size: 14px 14px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.zoom-modal__slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  @include maxWidthXs {
+    // padding: 20px;
+  }
+}
+
+.zoom-modal__footer {
+  z-index: 2;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  background-color: #fff;
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 34px;
+  display: flex;
+  position: absolute;
+  top: auto;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  transition: all 300ms ease;
+}
+
+.zoom-modal__header {
+  z-index: 2;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+  padding-top: 34px;
+  padding-bottom: 34px;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+  left: 0%;
+  right: 0%;
+  transition: all 300ms ease;
+
+  img {
+    width: 146px;
+
+    @include maxWidthXs {
+      width: 136px;
+    }
+  }
+}
+
+.zoom-modal__buy-btn {
+  height: 40px;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: #171c29;
+  justify-content: center;
+  align-items: center;
+  padding: 11px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  transition: all 250ms ease;
+
+  &:hover {
+    background-color: var(--blue-gold);
+  }
+
+  span {
+    margin-left: 24px;
+  }
+}
+
+.zoom-modal__pic {
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: relative;
+}
+
+.zoom-modal__slider {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+@media screen and (max-width: 991px) {
+  .zoom-modal__holder {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .zoom-modal__holder {
+    max-width: 100%;
+  }
+
+  .zoom-modal__close-btn {
+    border-radius: 0;
+    padding: 20px;
+    top: 0;
+    right: 0;
+  }
+
+  .zoom-modal__footer {
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .zoom-modal__header {
+    padding: 20px;
+  }
+}
+
+// New ZOOM MODAL : END
+
 .product__zoom-btn {
   width: 38px;
   height: 38px;
@@ -2130,13 +2403,13 @@
     .splide__arrow--prev {
       right: auto;
       left: 10px;
-      background-image: url('data:image/svg+xml,<svg width="14" height="23" viewBox="0 0 14 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 2L3 11.5L12.5 21" stroke="black" stroke-width="3"/></svg>');
+      background-image: url('data:image/svg+xml,<svg width="14" height="14" viewBox="0 0 14 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 2L3 11.5L12.5 21" stroke="black" stroke-width="3"/></svg>');
     }
 
     .splide__arrow--next {
       left: auto;
       right: 10px;
-      background-image: url('data:image/svg+xml,<svg width="14" height="23" viewBox="0 0 14 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L11.5 11.5L2 21" stroke="black" stroke-width="3"/></svg>');
+      background-image: url('data:image/svg+xml,<svg width="14" height="14" viewBox="0 0 14 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L11.5 11.5L2 21" stroke="black" stroke-width="3"/></svg>');
     }
   }
 
@@ -2187,6 +2460,8 @@
     }
   }
 }
+
+/* #endregion ZOOM THINGS */
 
 .splide__list {
   display: flex;
