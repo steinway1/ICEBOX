@@ -3334,14 +3334,16 @@ const formPage = new Object({
       uploadLabel.ondrop = (evt) => {
         evt.preventDefault()
         uploadLabel.classList.remove(IS_ACTIVE)
-
+        $('#image_upload').prop('files', evt.dataTransfer.files);
         const files = [], items = [...evt.dataTransfer.items]
         items.forEach((item, i) => {
           if (item.kind === 'file') {
             files.push(item.getAsFile())
           }
         })
-
+        if (files.length) {
+          $('.formpage__images-thumbnails').empty()
+        }
         processFiles([...files])
       }
     }
