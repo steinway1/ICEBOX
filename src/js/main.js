@@ -2661,7 +2661,7 @@ function initProductZoom() {
   const setZoom = () => {
     $(document).ready(function () {
       if (document.querySelector('.main_product_zoom') == null) {
-        if (isDesktop && $('.main_product').length ) { setDesktopZoom() } else {
+        if (isDesktop && $('.main_product').length) { setDesktopZoom() } else {
           setMobileZoom()
         }
       }
@@ -3293,6 +3293,7 @@ const adjustStickyEls = () => {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  homepageCategoriesSlider.init()
   initPageObjects();
   initTelInput();
   initProductZoom()
@@ -3305,5 +3306,4 @@ document.addEventListener("DOMContentLoaded", function () {
   quizModal.init()
   salesModal.init()
   formPage.init()
-  homepageCategoriesSlider.init()
 });
