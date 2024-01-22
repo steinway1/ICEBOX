@@ -13,17 +13,16 @@
 	</div>
 	<div class="article-wrapper">
 		<div class="article-container">
-
 			<div class="article__welcome">
 				<div class="article__inner-wrap">
 					<div class="article__main-details">
 						<span class="post-date">Posted on
 							{{article.date}}</span>
 						{# <div class="blog-post__tags">
-													{% for tag in article.tags %}
-														<span class="post-tag{% if tag.extraClass %} {{tag.extraClass}}{% endif %}">{{tag.name}}</span>
-													{% endfor %}
-												</div> #}
+																																																	{% for tag in article.tags %}
+																																																		<span class="post-tag{% if tag.extraClass %} {{tag.extraClass}}{% endif %}">{{tag.name}}</span>
+																																																	{% endfor %}
+																																																</div> #}
 						<h3 class="article-title">{{article.title}}</h3>
 						<div class="article-author"><img src="./assets/ib-author.svg" alt="">{{article.author}}</div>
 						<p class="article-summary">{{article.summary}}</p>
@@ -48,6 +47,29 @@
 						<strong>Digitalize big picture, so cross functional teams enable out of the box brainstorming. Put a record on and see who dances deep dive.</strong>
 						Criticality message the initiative, a tentative event rundown is attached for your reference, including other happenings on the day you are most welcome to join us beforehand for a light lunch we would also like to invite you to other activities on the day, including the interim and closing panel discussions on the intersection of businesses and social innovation</p>
 					<p class="article-indent">Digitalize big picture, so cross functional teams enable out of the box brainstorming. Put a record on and see who dances deep dive.</p>
+				</div>
+
+				<div class="article__inner-wrap">
+					<div class="article-splide splide">
+						<div class="splide__track">
+							<div class="splide__list">
+								{% for i in 1..8 %}
+									{% include "elements/product-card_necklace.twig" with {splideClass: true} %}
+								{% endfor %}
+							</div>
+						</div>
+						<div class="more-row__arrows-wrap splide__arrows">
+							<button class="more-row__slider-btn splide__arrow--prev">
+								{% include "elements/product-page/svg/slider-prev.svg" %}
+							</button>
+							<button class="more-row__slider-btn splide__arrow--next">
+								{% include "elements/product-page/svg/slider-next.svg" %}
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="article__inner-wrap">
 					<div class="article__social-block">
 						<h3>👇 Want More Content?! 👇<span>Subscribe Now For Our Weekly Videos!</span>
 						</h3>
@@ -89,6 +111,7 @@
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>

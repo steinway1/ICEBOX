@@ -566,6 +566,41 @@
   }
 }
 
+.article-splide {
+  padding: 20px 0px;
+  // background-color: #f4f6fa;
+  
+  .more-row__arrows-wrap {
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    padding-top: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-card__sub-detail {
+    display: none !important;
+  }
+
+  .more-row__slider-btn {
+    background-color: #171c29;
+    border: 1px solid #171c29;
+    color: white;
+    width: 46px;
+    padding: 4px 12px;
+    border-radius: 500px;
+
+    &:not(:disabled):hover {
+    background-color: transparent;
+    color: #171c29;
+    }
+
+    &:disabled {
+      opacity: .2;
+    }
+  }
+}
+
 @media screen and (min-width: 1440px) {
   .article-bg {
     background-size: 36%;
