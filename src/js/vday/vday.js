@@ -73,6 +73,6 @@ $(function () {
     }
   }
 
-  pushVdayPageFireworks()
-  pushIntervalFireworks()
+  // pushVdayPageFireworks()
+  // pushIntervalFireworks()
 })

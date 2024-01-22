@@ -1,27 +1,36 @@
 {% set article = articles.list[0] %}
 
 <div class="main_article">
+	<div class="article__controls">
+		<a href="/blog">Back To Blog</a>
+		<a href="{% if articles.list[index + 1] %}{{ articles.list[index + 1].url }}{% else %}{{ articles.list[0].url }}{% endif %}">
+			<span>Next Article</span>
+			<svg width="14" height="14" viewbox="0 0 25 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M0 7.5H24" stroke="currentColor" stroke-width="2"></path>
+				<path d="M17 0.5L24 7.5L17 14.5" stroke="currentColor" stroke-width="2"></path>
+			</svg>
+		</a>
+	</div>
 	<div class="article-wrapper">
 		<div class="article-container">
-			<div class="article__controls">
-				<a href="/blog">Back To Blog</a>
-				<a href="{% if articles.list[index + 1] %}{{ articles.list[index + 1].url }}{% else %}{{ articles.list[0].url }}{% endif %}">Next Article</a>
-			</div>
+
 			<div class="article__welcome">
 				<div class="article__inner-wrap">
 					<div class="article__main-details">
-						<span class="post-date">{{article.date}}</span>
-						<div class="blog-post__tags">
-							{% for tag in article.tags %}
-								<span class="post-tag{% if tag.extraClass %} {{tag.extraClass}}{% endif %}">{{tag.name}}</span>
-							{% endfor %}
-						</div>
+						<span class="post-date">Posted on
+							{{article.date}}</span>
+						{# <div class="blog-post__tags">
+													{% for tag in article.tags %}
+														<span class="post-tag{% if tag.extraClass %} {{tag.extraClass}}{% endif %}">{{tag.name}}</span>
+													{% endfor %}
+												</div> #}
 						<h3 class="article-title">{{article.title}}</h3>
+						<div class="article-author"><img src="./assets/ib-author.svg" alt="">{{article.author}}</div>
 						<p class="article-summary">{{article.summary}}</p>
 					</div>
 				</div>
 			</div>
-			<img src="{{article.imgSrc}}" loading="lazy" alt="" class="article__main-img">
+			<div class="article__inner-wrap"><img src="{{article.imgSrc}}" loading="lazy" alt="" class="article__main-img"></div>
 			<div class="article__content">
 				<div
 					class="article__inner-wrap">
@@ -81,11 +90,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="article__controls">
-				<a href="/blog">Back To Blog</a>
-				<a href="{% if articles.list[index + 1] %}{{ articles.list[index + 1].url }}{% else %}{{ articles.list[0].url }}{% endif %}">Next Article</a>
-			</div>
 		</div>
 	</div>
-	<div class="article-bg"></div>
+	<div class="article__controls">
+		<a href="/blog">Back To Blog</a>
+		<a href="{% if articles.list[index + 1] %}{{ articles.list[index + 1].url }}{% else %}{{ articles.list[0].url }}{% endif %}">
+			<span>Next Article</span>
+			<svg width="14" height="14" viewbox="0 0 25 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M0 7.5H24" stroke="currentColor" stroke-width="2"></path>
+				<path d="M17 0.5L24 7.5L17 14.5" stroke="currentColor" stroke-width="2"></path>
+			</svg>
+		</a>
+	</div>
 </div>
