@@ -998,7 +998,7 @@ const homepageCategoriesSlider = new Object({
           1200: { perPage: 5, },
           991: { perPage: 4, },
           767: { perPage: 3, perMove: 1 },
-          478: { perPage: 2, perMove: 1, gap: 6 }
+          478: { perPage: 2, perMove: 1, gap: 6, pagination: 1 }
         }
       })
       slider.mount()
