@@ -3018,12 +3018,12 @@ function initTestProductZoom() {
             <div class="splide__arrow--next"></div>
           </div>
           <div class="zoom-modal__header">
-            <img style="display: none" src="${String.raw`\themes\default\frontend\oct-2023/assets/logo.svg`}" loading="lazy" alt="">
-            <img src="${String.raw`./assets/logo.svg`}" loading="lazy" alt="">
+            <img src="${String.raw`\themes\default\frontend\oct-2023/assets/logo.svg`}" loading="lazy" alt="">
+            <img style="display: none" src="${String.raw`./assets/logo.svg`}" loading="lazy" alt="">
           </div>
           <div class="zoom-modal__footer">
             <h1 class="zoom-modal__name">${productTitle}</h1>
-            <a href="javascript:void(0)" class="zoom-modal__buy-btn" onclick="addToCart()">Add To Cart<span>${price} USD</span></a>
+            <a href="javascript:void(0)" data-evt="closeZoomModal" class="zoom-modal__buy-btn" onclick="addToCart()">Add To Cart<span>${price} USD</span></a>
           </div>
           <div class="zoom-modal__slider">
             <div class="splide__track">
@@ -3066,6 +3066,7 @@ function initTestProductZoom() {
             on: 'grab',
             onZoomIn: function () {
               $('.zoom-modal .splide__arrows').css({ opacity: 0 })
+              $('.zoom-hint').css({ opacity: 0 })
             },
             onZoomOut: function () {
               $('.zoom-modal .splide__arrows').css({ opacity: 1 })
@@ -3098,7 +3099,12 @@ function initTestProductZoom() {
             if (zoomOpenCount <= 1) { $(holder).append(zoomHint); setTimeout(() => { zoomHint.css({ opacity: 1 }) }, 500) }
           }, 1);
 
-          zoomModal.addEventListener('mousedown', () => { zoomHint.css({ opacity: 0 }); setTimeout(() => { zoomHint.remove() }, 450) })
+          zoomModal.addEventListener('mousedown', () => {
+            zoomHint.css({ opacity: 0 });
+            setTimeout(() => {
+              zoomHint.remove()
+            }, 450)
+          })
           zoomOpenCount++
         } catch {
           throw new Error('JS : Init Product Zoom Error')

@@ -1,6 +1,6 @@
 {% set banner = true %}
 {% set nav = true %}
-{% set category = results.watches %}
+{% set category = results.pendants %}
 {% set searchQuery = "angels" %}
 {% set stickySidebar = true %}
 {% set collection = 'men' %}
@@ -26,66 +26,62 @@
 		{% include "../elements/results/sticky-filters.twig" %}
 
 		{# Sub Categories Navigation #}
-		{% if nav == true %}
-			{% if category.nav is defined %}
-				{% include "../elements/results/results-nav.twig" %}
-			{% endif %}
-		{% endif %}
+		{# {% if nav == true %}
+							{% if category.nav is defined %}
+								{% include "elements/results/results-nav.twig" %}
+							{% endif %}
+						{% endif %} #}
 
-		<div class="results__main">
-			{% if category == results.watches %}
+			<div class="results__main"> {% if category == results.watches %}
 				{% include "elements/results/watches-notice.twig" %}
 			{% endif %}
-			{# {% if collection == 'men' or collection == 'women' %}
-										{% include "elements/results/results-sub.twig" with { collection: 'engagement' } %}
-									{% endif %} #}
-			<div class="results-sub">
-				<div class="results-sub__wrap">
-					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
-						<div>
-							<img src="./assets/tab-rolex.webp" loading="lazy" alt="">
-						</div>
-						<span>Rolex</span>
-					</a>
-					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
-						<div>
-							<img src="./assets/tab-patek.webp" loading="lazy" alt="">
-						</div>
-						<span>Patek Philippe</span>
-					</a>
-					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
-						<div>
-							<img src="./assets/tab-cartier.webp" loading="lazy" alt="">
-						</div>
-						<span>Cartier</span>
-					</a>
-					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
-						<div>
-							<img src="./assets/tab-audemars.webp" loading="lazy" alt="">
-						</div>
-						<span>Audemars Piguet</span>
-					</a>
-					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
-						<div>
-							<img src="./assets/tab-hublot.webp" loading="lazy" alt="">
-						</div>
-						<span>Hublot</span>
-					</a>
-					<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
-						<div>
-							<img src="./assets/tab-plain.webp" loading="lazy" alt="">
-						</div>
-						<span>Plain Watches</span>
-					</a>
-				</div>
-			</div>
+			{% include "elements/results/results-sub.twig" with { collection: 'engagement' } %}
+			{# <div class="results-sub">
+										<div class="results-sub__wrap">
+											<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+												<div>
+													<img src="./assets/tab-rolex.webp" loading="lazy" alt="">
+												</div>
+												<span>Rolex</span>
+											</a>
+											<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+												<div>
+													<img src="./assets/tab-patek.webp" loading="lazy" alt="">
+												</div>
+												<span>Patek Philippe</span>
+											</a>
+											<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+												<div>
+													<img src="./assets/tab-cartier.webp" loading="lazy" alt="">
+												</div>
+												<span>Cartier</span>
+											</a>
+											<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+												<div>
+													<img src="./assets/tab-audemars.webp" loading="lazy" alt="">
+												</div>
+												<span>Audemars Piguet</span>
+											</a>
+											<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+												<div>
+													<img src="./assets/tab-hublot.webp" loading="lazy" alt="">
+												</div>
+												<span>Hublot</span>
+											</a>
+											<a href="/results/pendants?gender[]=Male" class="results-sub__item ">
+												<div>
+													<img src="./assets/tab-plain.webp" loading="lazy" alt="">
+												</div>
+												<span>Plain Watches</span>
+											</a>
+										</div>
+									</div> #}
 
 
 			{# Results BAR #}
 			{% include "../elements/results/results-bar.twig" %}
 
-			<div class="results-wrapper with_cards">
-				<div class="results__main-wrapper">
+				<div class="results-wrapper with_cards"> <div class="results__main-wrapper">
 
 					<div class="filter-sidebar{% if stickySidebar == true %} to-stick{% endif %}">
 						{% include "../elements/results/filters.twig" with { 
