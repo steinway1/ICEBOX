@@ -9,6 +9,13 @@
 			<a href="{{productItem.href}}">
 				<img src="{{productItem.imgSrc.earring}}" loading="lazy" alt="{{productItem.alt}}" class="product-card__img {% if productItem.zoom is defined %}{{productItem.zoom}}{% endif %}">
 			</a>
+			{% if productItem.availableColors is defined %}
+				<div class="product-card__colors">
+					{% for color in productItem.availableColors %}
+						<span class="{{color.class}}"></span>
+					{% endfor %}
+				</div>
+			{% endif %}
 		</div>
 		<div class="product-card__details">
 			<div class="product-card__title-wrap">

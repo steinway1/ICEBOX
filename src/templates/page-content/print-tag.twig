@@ -1,0 +1,130 @@
+<div class="formpage__wrapper">
+
+	<div class="formpage__header">
+		<a href="#" class="formpage__logo">
+			<img src="./assets/admin_logo.svg" loading="eager">
+		</a>
+	</div>
+
+	<div class="formpage__form-wrap">
+		<div class="formpage__form-header">
+			<h2>Print Tag
+				<span>Fill up the fields to create a new tag.</span>
+			</h2>
+			<button>Print Tag</button>
+		</div>
+		<form id="formpage_form" method="get" class="formpage__form">
+			<div
+				class="formpage__dbl">
+
+				{# INPUTS #}
+				<div class="formpage__print-inputs">
+					<div class="formpage__input-box">
+						<label for="item_type">Item Type</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="item_type">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<label for="notes">Notes</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="notes">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<label for="style_n">Style #</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="style_n">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<label for="invoice_n">Invoice #</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="invoice_n">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<label for="p_n">P#</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="p_n">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<label for="karat_gold">Karat Gold</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="karat_gold">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<label for="gold_color">Gold Color</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="gold_color">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<label for="gram_weight">Gram Weight</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="gram_weight">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<label for="dia_weight">Dia Weight</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="dia_weight">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<label for="dia_quality">Dia Quality</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="dia_quality">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<label for="ring_size">Ring Size</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="ring_size">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<label for="length">Length</label>
+						<div class="formpage__input-wrap">
+							<input type="text" class="formpage__input" placeholder="Input text..." id="length">
+						</div>
+					</div>
+					<div class="formpage__input-box">
+						<div class="formpage__input-wrap">
+							<label id="printTag_uploader" class="formpage__upload-label" for="image_upload_tag">
+								<p>Click OR Drag &amp; Drop To Upload Images</p>
+								<input class="formpage__input" type="file" name="files[]" id="image_upload_tag" accept="image/jpeg, image/png, image/webp, image/gif,">
+							</label>
+						</div>
+					</div>
+				</div>
+
+				{# TAG PREVIEW #}
+				<div class="formpage__tag-preview">
+					<h4>Tag Preview</h4>
+					<div class="tag-preview__output"></div>
+					<div class="tag-preview__pic"></div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+</div>
+<div class="print-tag__controls">
+	<button>Print Tag</button>
+	<button data-evt="togglePrintTagPreview">Show Preview</button>
+</div>
+
+<div class="tag-preview-modal">
+	<div class="tag-preview-modal__backdrop"></div>
+	<div class="tag-preview-modal__container">
+		<div class="tag-preview-modal__wrapper">
+    </div>
+		<div class="tag-preview-modal__controls">
+			<button>Print Tag</button>
+			<button data-evt="togglePrintTagPreview">Close</button>
+		</div>
+	</div>
+</div>

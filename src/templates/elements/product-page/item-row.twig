@@ -8,6 +8,7 @@
 			</div>
 		{% endif %}
 		{# {% include "elements/product-card/stock-dash-box.twig" %} #}
+    {% if tags == true %}<div class="side-row__tags"><span>Rings</span><span>0.75CTW</span><span>Unisex</span></div>{% endif %}
 		<div class="side-row__title-wrap">
 			<h1 id="item_name" class="product__item-title">{{product.item.name}}</h1>
 			<div class="product__add-fav {% if itemIsWishlisted %}is-active{% endif %}" id="wishlist_btn_{{product.item.id}}" onclick="addToWishlist({{product.item.id}});">

@@ -301,7 +301,8 @@ const IS_VISIBLE = "is-visible",
   IS_EXPANDED = 'is-expanded',
   IS_MINIMIZED = 'is-minimized',
   IS_COPIED = 'is-copied',
-  IS_ERROR = 'is-error'
+  IS_ERROR = 'is-error',
+  IS_EMPTY = 'is-empty'
 
 /* #region  Extends */
 $.fn.extend({
@@ -2798,6 +2799,38 @@ const sirvCards = {
 //   }
 // }
 
+const pageReview = {
+  init: function () {
+    if (document.querySelector('.page-reviews.splide') !== null) {
+      this.initSplide()
+    }
+  },
+  initSplide: function () {
+    try {
+      let main = new Splide('.page-reviews', {
+        type: "slider",
+        perPage: 2.2,
+        perMove: 1,
+        autoplay: 0,
+        pauseOnHover: 1,
+        pauseOnFocus: 1,
+        gap: 12,
+        arrows: 1,
+        pagination: 1,
+        speed: 500,
+        breakpoints: {
+          991: {
+            perPage: 1.2
+          }
+        }
+      })
+      main.mount()
+    } catch {
+      console.log('Page Review SPLIDE ERR')
+    }
+  }
+}
+
 const initPageObjects = () => {
   const objArr = [
     header,
@@ -2818,7 +2851,8 @@ const initPageObjects = () => {
     sellPage,
     bookModal,
     passReset,
-    sirvCards
+    sirvCards,
+    pageReview
     // blogPage,
   ];
 
@@ -3105,6 +3139,26 @@ function initTestProductZoom() {
               zoomHint.remove()
             }, 450)
           })
+          document.onkeydown = (e) => {
+            e = e || window.event
+            let isEsc = false
+            if ('key' in e) {
+              isEsc = (e.key === "Escape" || e.key === "Esc");
+            } else {
+              isEsc = (e.keyCode === 27);
+            }
+            if (isEsc) {
+              e.preventDefault()
+              unlockScroll()
+              let modal = $('.zoom-modal')
+              if (modal.length) {
+                modal.css({ opacity: 0 })
+                setTimeout(() => {
+                  modal.remove()
+                }, getTransitionTime(modal));
+              }
+            }
+          }
           zoomOpenCount++
         } catch {
           throw new Error('JS : Init Product Zoom Error')
@@ -3483,7 +3537,7 @@ const formPage = new Object({
     }
   },
   attachImagesUploader: () => {
-    const uploadLabel = document.querySelector('.formpage__upload-label'),
+    const uploadLabel = document.querySelector('#formpage_img-uploader'),
       uploadInput = document.querySelector('#image_upload'),
       imagesWrap = $('.formpage__images-thumbnails')
 
@@ -3539,7 +3593,7 @@ const formPage = new Object({
                <div class="formpage__upload" data-img-id="${getIndex()}">
                  <div class="formpage__input-boxes">
                    <div>
-                     <input value="1" name="visible_image_${i}" id="image_${i}" type="checkbox" checked>
+                     <input value="1" name="visible_image_${i}" id="image_${i + 1}" type="checkbox" checked>
                      <label for="image_${getIndex()}"></label>
                    </div>
                  </div>
@@ -3592,6 +3646,222 @@ const adjustStickyEls = () => {
   }
 }
 
+function testProductSplide() {
+  if (document.querySelector('.slider-viewer__main') !== null) {
+    let main = new Splide('.slider-viewer__main', {
+      type: "slide",
+      perPage: 1,
+      perMove: 1,
+      autoplay: false,
+      pauseOnHover: true,
+      pauseOnFocus: true,
+      gap: 0,
+      arrows: true,
+      pagination: false,
+      speed: 750,
+      breakpoints: {
+        478: {
+          perPage: 1,
+          perMove: 1,
+        },
+      },
+    });
+    let thumb = new Splide('.slider-viewer__thumbs', {
+      fixedWidth: 70,
+      fixedHeight: 70,
+      gap: 8,
+      rewind: true,
+      pagination: false,
+      arrows: false,
+      cover: true,
+      isNavigation: true,
+    });
+    main.sync(thumb);
+    main.mount();
+    thumb.mount();
+  }
+}
+testProductSplide()
+
+
+const tagPreview = {
+  init: function () {
+    try {
+      if (document.querySelector('.main_print-tag') !== null) {
+        this.resetOutput()
+        this.attachInput()
+        this.attachImageUploader()
+        this.attachPreviewControls()
+      }
+    } catch {
+      console.log('TAG PREVIEW ERR')
+    }
+  },
+  resetOutput: function () {
+    const outputHolder = document.querySelector('.tag-preview__output'),
+      outputImage = document.querySelector('.tag-preview__pic')
+    outputHolder.innerHTML = ''
+    outputHolder.classList.add(IS_EMPTY)
+    outputImage.classList.add(IS_EMPTY)
+  },
+  attachInput: function () {
+    const outputObj = new Object(),
+      inputs = [...document.querySelectorAll('input[type="text"].formpage__input')],
+      outputHolder = document.querySelector('.tag-preview__output'),
+      updateOutput = () => {
+        let filled = 0, html = ``
+        for (const key in outputObj) {
+          if (outputObj.hasOwnProperty(key)) {
+            const obj = outputObj[key]
+            if (obj.value.length !== 0) {
+              ++filled
+              html += `
+                <div id="${obj.id}" class="tag-output-row">
+                  <span>${obj.title}</span>
+                  <span>${obj.value}</span>
+                </div>
+                `
+            }
+          }
+        }
+        if (filled !== 0) {
+          outputHolder.innerHTML = html
+          outputHolder.classList.remove(IS_EMPTY)
+        } else {
+          outputHolder.innerHTML = ''
+          outputHolder.classList.add(IS_EMPTY)
+        }
+      }
+
+    inputs.forEach((input, index) => {
+      outputObj[index] = {
+        id: input.id,
+        value: '',
+        title: input.closest('.formpage__input-box').querySelector('label').innerHTML
+      }
+
+      input.oninput = () => {
+        outputObj[index].value = input.value || ''
+        updateOutput()
+      }
+      input.onkeydown = (e) => {
+        const
+          isEnter = e.key === 'Enter' || e.keyCode === 13,
+          isBackscape = e.key === 'Backspace' || e.key === 'Delete',
+          isEsc = e.key === 'Escape' || e.key === 'Esc',
+          isUp = e.key === 'ArrowUp',
+          isDown = e.key === 'ArrowDown',
+          next = inputs[index + 1],
+          prev = inputs[index - 1]
+
+        if (isEnter || isDown) {
+          if (next !== undefined) { next.focus() }
+        }
+        if (isBackscape) {
+          if (input.value.length == 0 && prev !== undefined) { prev.focus() }
+        }
+        if (isEsc) {
+          e.preventDefault(); input.blur()
+        }
+        if (isUp) {
+          if (prev !== undefined) { prev.focus() }
+        }
+      }
+      ['focus', 'blur'].forEach((ev) => {
+        if (window.innerWidth <= 479) {
+          const label = input.closest('.formpage__input-box').querySelector('label')
+          input.addEventListener(ev, function () {
+            switch (ev) {
+              case 'focus':
+                label.style.opacity = 0
+                break;
+              case 'blur':
+                if (input.value.length !== 0) { label.style.opacity = 0 } else {
+                  label.style.opacity = 0.5
+                }
+                break;
+            }
+          })
+        }
+      })
+
+    })
+  },
+  attachImageUploader: function () {
+    const uploadLabel = document.querySelector('#printTag_uploader'),
+      uploadInput = document.querySelector('#image_upload_tag'),
+      imgPreview = document.querySelector('.tag-preview__pic')
+
+    // DRAG & DROP
+    if (uploadLabel !== null) {
+      uploadLabel.ondragover = (evt) => {
+        evt.preventDefault()
+        uploadLabel.classList.add(IS_ACTIVE)
+      }
+      uploadLabel.ondragleave = (evt) => {
+        evt.preventDefault()
+        uploadLabel.classList.remove(IS_ACTIVE)
+      }
+      uploadLabel.ondrop = (evt) => {
+        evt.preventDefault()
+        uploadLabel.classList.remove(IS_ACTIVE)
+        $('#image_upload_tag').prop('files', evt.dataTransfer.files);
+        const files = [...evt.dataTransfer.items],
+          file = files.find((item) => { if (item.kind === 'file') { return item } })
+        processImage(file.getAsFile())
+      }
+
+      // MANUAL
+      if (uploadInput !== null) {
+        uploadInput.onchange = (evt) => {
+          const file = [...evt.target.files][0]
+          processImage(file)
+        }
+      }
+
+      // PROCESS IMAGE
+      function processImage(file) {
+        if (file) {
+          let reader = new FileReader()
+          reader.onload = (e) => {
+            imgPreview.classList.remove(IS_EMPTY)
+            imgPreview.style.backgroundImage = `url(${e.target.result})`
+          }
+          reader.readAsDataURL(file)
+        }
+      }
+
+    }
+  },
+  attachPreviewControls: function () {
+    const modal = document.querySelector('.tag-preview-modal')
+    if (modal !== null) {
+      const holder = document.querySelector('.tag-preview-modal__wrapper')
+      const toggle = () => {
+        let displayed = window.getComputedStyle(modal).getPropertyValue('display') !== 'none'
+        if (displayed) {
+          unlockScroll()
+          const preview = holder.querySelector('.formpage__tag-preview')
+          if (preview !== null) { preview.remove() }
+          modal.style.display = 'none'
+        } else {
+          lockScroll()
+          const preview = document.querySelector('.formpage__tag-preview')
+          holder.appendChild(preview.cloneNode(true))
+          modal.style.display = 'block'
+        }
+      }
+
+      document.addEventListener('click', function (e) {
+        const target = e.target
+        if (target.getAttribute('data-evt') == 'togglePrintTagPreview') {
+          toggle()
+        }
+      })
+    }
+  }
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
   homepageCategoriesSlider.init()
@@ -3607,6 +3877,7 @@ document.addEventListener("DOMContentLoaded", function () {
   quizModal.init()
   salesModal.init()
   formPage.init()
+  tagPreview.init()
 });
 function initValidators() {
   $(".needs-validation").parsley({

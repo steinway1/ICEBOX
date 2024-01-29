@@ -1,0 +1,89 @@
+<div class="side-row">
+	<div class="side-row__body">
+
+		{% if black_friday == true %}
+			<div class="bfs-badges">
+				<span class="bfs-badge">BLACK FRIDAY</span>
+				<span class="bfs-badge --discount">-30%</span>
+			</div>
+		{% endif %}
+		{# {% include "elements/product-card/stock-dash-box.twig" %} #}
+		{% if tags == true %}
+			<div class="side-row__tags">
+				<span>Rings</span>
+				<span>0.75CTW</span>
+				<span>Unisex</span>
+			</div>
+		{% endif %}
+		<div class="side-row__title-wrap">
+			<h1 id="item_name" class="product__item-title">{{product.item.name}}</h1>
+		</div>
+
+		<div class="side-row__price">
+			<div class="side-row__line_price">
+				{% if product.item.salePrice is defined %}
+					<span class="product__item-price sale_price">${{product.item.salePrice}}</span>
+					<span class="product__item-price old_price">$
+						{{product.item.price}}</span>
+					<span class="product-discount-rate">-{{product.item.discount}}%</span>
+				{% else %}
+					<span class="product__item-price">$
+						{{product.item.price}}</span>
+				{% endif %}
+			</div>
+
+			<div class="side-row__ship-line">
+				<div class="product__item-availability{% if product.item.stock == true %} availability_order{% endif %}">
+					<div class="product__availability-svg">
+						{% include "./svg/ship.svg" %}
+					</div>
+					<span class="product__availability-info">
+						{% if product.item.stock == false %}
+							In Stock
+						{% else %}
+							This item is made to order &amp; Ships by
+						{% endif %}
+					</span>
+				</div>
+			</div>
+
+			{# Detailed Price #}
+			{% if product.item.detailedPrice is defined %}
+				{% set prices = product.item.detailedPrice %}
+				<div class="side-row__detailed-price">
+					{% for price in prices %}
+						<span {% if price.extraClass is defined %} class="{{price.extraClass}}" {% endif %}>
+							<span>{{price.title}}:</span>
+							<span></span>
+							<span>${{price.value}}</span>
+						</span>
+					{% endfor %}
+				</div>
+			{% endif %}
+
+		</div>
+
+		<div class="side-row__line">
+			<div class="product__item-summary">
+				{% if product.item.mainDescription %}
+					<p>{{product.item.mainDescription}}</p>
+				{% endif %}
+
+				{% if product.item.summary %}
+					<ul role="list">
+						{% for item in product.item.summary %}
+							<li>
+								<p>{{item}}</p>
+							</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+
+				{% if product.item.subDescription %}
+					<p>{{product.item.subDescription}}</p>
+				{% endif %}
+			</div>
+		</div>
+
+	</div>
+</div>

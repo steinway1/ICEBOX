@@ -1,0 +1,52 @@
+<div class="page-reviews splide">
+	<div class="page-reviews__content">
+
+		<div class="page-reviews__header">
+			<div class="wrapper">
+				<h3>Our Client's Experience</h3>
+			</div>
+		</div>
+
+		<div class="page-reviews__main">
+			<div class="wrapper">
+				<div class="page-reviews__splide">
+					<div class="splide__track">
+						<div class="splide__list">
+							{% for review in pageReviews %}
+								<div class="page-review splide__slide">
+									<div class="page-review__rating">
+										<div class="five-star-box"></div>
+										<span>5 OUT OF 5</span>
+									</div>
+									<h4>{{review.title}}</h4>
+									<p>{{review.text}}</p>
+									<div class="page-review__footer">
+										<span>{{review.author}}</span>
+										<span>|</span>
+										<span>{{review.date}}</span>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="page-reviews__footer">
+			<div class="wrapper">
+				<div class="page-reviews__splide-controls">
+					<ul class="splide__pagination"></ul>
+					<div class="splide__arrows">
+						<button class="page-reviews__splide-arrow splide__arrow--prev">
+							{% include "components/svg/slider-prev.svg" %}
+						</button>
+						<button class="page-reviews__splide-arrow splide__arrow--next">
+							{% include "components/svg/slider-next.svg" %}
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

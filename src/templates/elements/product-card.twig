@@ -56,13 +56,22 @@
 		<div class="product-card__media">
 			<a href="{{productItem.href}}">
 				<img src="{{productItem.imgSrc.all}}" loading="lazy" alt="{{productItem.alt}}" class="product-card__img {% if productItem.zoom is defined %}{{productItem.zoom}}{% endif %}">
-
 			</a>
+			{% if productItem.availableColors is defined %}
+				<div class="product-card__colors">
+					{% for color in productItem.availableColors %}
+						<span class="{{color.class}}"></span>
+					{% endfor %}
+				</div>
+			{% endif %}
 		</div>
 		<div class="product-card__details">
 			<div class="product-card__title-wrap">
 				{% if productItem.subDetails %}
-					<span class="product-card__sub-detail"><span>{{productItem.subDetails}}</span><span class="--blue --bold">40mm</span></span>
+					<span class="product-card__sub-detail">
+						<span>{{productItem.subDetails}}</span>
+						<span class="--blue --bold">40mm</span>
+					</span>
 				{% endif %}
 				<h2>
 					<a href="{{productItem.href}}" class="product-card__name">{{productItem.name}}</a>

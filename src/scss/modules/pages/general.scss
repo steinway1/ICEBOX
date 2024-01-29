@@ -520,3 +520,209 @@ form button {
 .green_tag {
   background-color: #08b17b !important;
 }
+
+/* #region Page Reviews */
+
+.home-content {
+  .page-reviews {
+    border-bottom: 1px solid #e3e9ec;
+    border-top: 1px solid #e3e9ec;
+  }
+}
+.main_product {
+  .page-reviews {
+    border-bottom: 1px solid #e3e9ec;
+  }
+}
+
+.page-reviews {
+  padding: 58px 0px;
+
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+  }
+}
+
+.page-review {
+  border: 1px solid #e3e9ec;
+  border-radius: 14px;
+  flex: none;
+  padding: 34px 46px;
+  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+
+  &:hover {
+    border-color: var(--blue-gold);
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 14px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  @include maxWidthSm {
+    padding: 20px;
+
+    p {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 10;
+      line-clamp: 10;
+      -webkit-box-orient: vertical;
+    }
+  }
+}
+
+.page-reviews__splide {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 4;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    background-image: linear-gradient(270deg, #fff 20%, rgba(255, 255, 255, 0));
+    pointer-events: none;
+  }
+}
+
+.page-reviews__splide-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .splide__pagination {
+    position: static;
+    left: 0;
+    bottom: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    button {
+      background: #e3e9ec;
+      border-radius: 0px;
+      width: 10px;
+      height: 10px;
+      transform: rotate(45deg);
+      opacity: 1 !important;
+
+      &.is-active {
+        transform: rotate(45deg);
+        background: var(--black)
+      }
+    }
+  }
+
+  .splide__arrows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+  }
+}
+
+.page-reviews__splide-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 500px;
+  border: 1px solid var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  right: 0;
+  transition: all 150ms ease;
+
+  &:not(:disabled) {
+    &:hover {
+      background-color: var(--black);
+      color: white;
+    }
+
+    &:active {
+      transform: scale(.95);
+    }
+  }
+
+  &:disabled {
+    border-color: #e3e9ec;
+    color: #e3e9ec;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.page-reviews__main {
+  .wrapper {
+    padding-right: 0px;
+  }
+}
+
+.page-reviews__header {
+  margin-bottom: 32px;
+}
+
+.page-reviews__footer {
+  margin-top: 32px;
+}
+
+.page-review__rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+
+  &>span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+
+  @include maxWidthSm {
+    margin-bottom: 18px;
+  }
+}
+
+.page-review__footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+
+  span {
+    font-size: 12px;
+    font-weight: 600;
+    opacity: .65;
+  }
+}
+
+.five-star-box {
+  height: 22px;
+  width: 100px;
+  background-image: url('data:image/svg+xml,<svg width="131" height="22" viewBox="0 0 131 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.8255 0L15.3522 7.1459L23.2382 8.2918L17.5319 13.8541L18.8789 21.7082L11.8255 18L4.7721 21.7082L6.11918 13.8541L0.412842 8.2918L8.29881 7.1459L11.8255 0Z" fill="%23FFC148"/><path d="M119.413 0L122.939 7.1459L130.825 8.2918L125.119 13.8541L126.466 21.7082L119.413 18L112.359 21.7082L113.706 13.8541L108 8.2918L115.886 7.1459L119.413 0Z" fill="%23FFC148"/><path d="M65.4764 0L69.0031 7.1459L76.8891 8.2918L71.1827 13.8541L72.5298 21.7082L65.4764 18L58.423 21.7082L59.7701 13.8541L54.0637 8.2918L61.9497 7.1459L65.4764 0Z" fill="%23FFC148"/><path d="M38.651 0L42.1777 7.1459L50.0636 8.2918L44.3573 13.8541L45.7044 21.7082L38.651 18L31.5975 21.7082L32.9446 13.8541L27.2383 8.2918L35.1242 7.1459L38.651 0Z" fill="%23FFC148"/><path d="M92.3018 0L95.8285 7.1459L103.715 8.2918L98.0082 13.8541L99.3553 21.7082L92.3018 18L85.2484 21.7082L86.5955 13.8541L80.8892 8.2918L88.7751 7.1459L92.3018 0Z" fill="%23FFC148"/></svg>');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+/* #endregion : Page Reviews */
