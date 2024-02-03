@@ -1,0 +1,62 @@
+<div class="am-content w_max_900">
+	<div
+		class="am-content__wrapper">
+
+		{# VENDORS #}
+		<div class="am-main__header">
+			<div class="am-container">
+				<div class="am-row__header-wrapper">
+					<div class="am-row__header">
+						<div class="am_vertical-start">
+							<h2 class="am-main__header-title">Evique. Assigned Orders.</h2>
+							<span class="am-main__subtitle">Processing Orders.</span>
+						</div>
+						<div class="am_flex8">
+							<a href="javascript:void(0);" class="am-vendor-btn" onclick="acceptAll();">Accept All Orders<span>327</span>
+							</a>
+							<div class="am-select-wrap">
+								<select class="am-select" onchange="exportList();" id="export_type">
+									<option value="">Export</option>
+									<option value="processing">Processing</option>
+									<option value="open">Open</option>
+									<option value="closed">Closed</option>
+									<option value="all">All</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="am-upload-input">
+						{% include "admin/svg/icon_input.svg" %}
+						<div>
+							<span>Click To Upload Excel File</span>
+							<span>Upload In-Store Orders</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- #region Content : Main -->
+		<div class="am-main__flow">
+			<div class="am-container">
+				<div class="am-main__content">
+					<div class="am__dbl-wrap">
+						<div class="am-main__orders">
+							<div class="am-content-divider">{{items|length}}
+								Items total<span></span>
+							</div>
+							{% include "admin/components/pagination.twig" %}
+							{# ORDERS #}
+							{% for item in items %}
+								{% include "admin/components/item-vendor.twig" %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+
+
+	</div>
+</div>

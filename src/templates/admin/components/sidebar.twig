@@ -1,0 +1,79 @@
+<aside class="am-sidebar">
+	<div class="am-sidebar__wrapper">
+		<div class="am-sidebar__content">
+			<div class="am-sidebar__main">
+				<div
+					class="am-sidebar__nav">
+
+					{# Main Navigation #}
+					{% for nav in navigation %}
+						<h4 class="am-sidebar__group-title">{{nav.title}}</h4>
+						<div class="am-sidebar__nav-list">
+							{% for link in nav.links %}
+								<a href="{{link.url}}" class="am-sidebar__link{% if link.isActive == true %} is-active{% endif %}">
+									<div>
+										<span>
+											{% if link.indicate is defined %}
+												<span class="link-indicator {{link.indicate.class}}"></span>
+											{% endif %}
+											<span>{{link.title}}</span>
+											{% if link.count is defined %}
+												<span class="link-count">{{link.count}}</span>
+											{% endif %}
+										</span>
+									</div>
+								</a>
+							{% endfor %}
+						</div>
+					{% endfor %}
+
+					{# Sub Navigation #}
+					{% if subnavigation is defined %}
+						<div class="am-sidebar__sub-nav-list">
+							{% for link in subnavigation %}
+								<a href="{{link.url}}" class="am-sidebar__sub-link">
+									<div>
+										{% if link.type == 'google' %}
+											{% include "admin/svg/icon_google.svg" %}
+										{% endif %}
+										{% if link.type == 'facebook' %}
+											{% include "admin/svg/icon_facebook.svg" %}
+										{% endif %}
+										{% if link.type == 'instagram' %}
+											{% include "admin/svg/icon_instagram.svg" %}
+										{% endif %}
+										{% if link.type == 'x' %}
+											{% include "admin/svg/icon_x.svg" %}
+										{% endif %}
+										{% if link.type == 'youtube' %}
+											{% include "admin/svg/icon_youtube.svg" %}
+										{% endif %}
+										{% if link.type == 'tiktok' %}
+											{% include "admin/svg/icon_tiktok.svg" %}
+										{% endif %}
+										{% if link.type == 'pinterest' %}
+											{% include "admin/svg/icon_pinterest.svg" %}
+										{% endif %}
+									</div>
+									<span>{{link.count}}</span>
+								</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+
+				</div>
+			</div>
+
+			{# Footer #}
+			<div class="am-sidebar__footer">
+				<span class="am-profile-short">{{pageUser.short}}</span>
+				<span class="am-profile-name">{{pageUser.name}}<span>{{pageUser.role}}</span>
+				</span>
+			</div>
+
+		</div>
+	</div>
+	<button data-am-evt="toggleSidebar" class="am-header__nav-btn">
+		{% include "admin/svg/icon_sidebar.svg" %}
+	</button>
+</aside>

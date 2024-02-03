@@ -1,0 +1,104 @@
+<div
+	class="am-item">
+
+	{# Card Overlay #}
+	<div class="am-item__over">
+		<div>
+			<span>Order #{{order.number}}</span>
+		</div>
+	</div>
+
+	<div class="am-item__body">
+		<div
+			class="am-item__row">
+
+			<!-- #region ITEM : TOP -->
+			<div class="am-item__main">
+
+				<div class="am-item__pic-wrap">
+					<img src="{{order.imgURL}}" loading="eager" alt="">
+					<button class="am-zoom-btn"></button>
+				</div>
+
+				<div class="am-item__main-details">
+					<h4 class="am-item__title">
+						{{order.title}}
+					</h4>
+					{% for option in order.options %}
+						<div class="am-item__options">
+							<div>{{option.name}}:
+								<span>{{option.value}}</span>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+				<div class="am-item__main-spot">
+					{% if order.details is defined %}
+						{% set details = order.details %}
+						<div class="am-item__spot-details">
+
+							{% if details.date.value is defined %}
+								<div>
+									<span>{{details.date.value}}</span>
+									{% include "admin/svg/icon_date.svg" %}
+								</div>
+							{% endif %}
+
+							{% if details.style.value is defined %}
+								<div>
+									<span>Style:
+										{{details.style.value}}</span>
+									{% include "admin/svg/icon_docs.svg" %}
+								</div>
+							{% endif %}
+
+							{% if details.projectNum.value is defined %}
+								<div>
+									<span>Proejct#:
+										{{details.projectNum.value}}</span>
+									{% include "admin/svg/icon_doc.svg" %}
+								</div>
+							{% endif %}
+
+						</div>
+					{% endif %}
+				</div>
+
+			</div>
+			<!-- #endregion ITEM : TOP -->
+
+
+			<div class="am-item__details">
+
+
+				<div class="am-item__details-row to_space to_wrap">
+					<div class="flex-row_8">
+						<div class="am-select-wrap">
+							<select class="am-select" id="mfg_{{vendor.id}}" onchange="UpdateVendor({{vendor.id}});">
+								<option value="0">Unselected</option>
+								<option value="evique">Evique</option>
+								<option value="veda" selected="">Veda</option>
+								<option value="gs">GS</option>
+								<option value="premier">Premier</option>
+								<option value="shipped">shipped</option>
+								<option value="in-house">In-house</option>
+								<option value="americas-gold">Americas Gold</option>
+								<option value="alessi">Alessi</option>
+								<option value="fancy-chains">Fancy Chains</option>
+								<option value="melano">Melano</option>
+								<option value="daniel-jewelry">Daniel Jewelry</option>
+								<option value="haimov">Haimov</option>
+								<option value="deco">Deco</option>
+							</select>
+						</div>
+					</div>
+					<div class="flex-row_8">
+						<a class="am-item__btn is-green" onclick="OrderRecieved({{order.id}});">Confirmed</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

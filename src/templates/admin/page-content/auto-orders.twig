@@ -1,0 +1,45 @@
+<div class="am-content w_max_1080">
+	<div
+		class="am-content__wrapper">
+
+		{# MFC - Auto Orders #}
+		<div class="am-main__header">
+			<div class="am-container">
+				<div class="am-row__header-wrapper">
+					<div class="am-row__header">
+						<div class="am_vertical-start">
+							<h2 class="am-main__header-title">Manufacturing. Auto Orders.</h2>
+							<span class="am-main__subtitle">Auto Orders</span>
+						</div>
+						<div class="am_flex8">
+							<a href="#" class="am-mfc-btn">Export</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- #region Content : Main -->
+		<div class="am-main__flow">
+			<div class="am-container">
+				<div class="am-main__content">
+					<div class="am__dbl-wrap">
+						<div class="am-main__orders">
+							<div class="am-content-divider">{{orders|length}}
+								Orders Total<span></span>
+							</div>
+              {% include "admin/components/pagination.twig" %}
+							{# ORDERS #}
+							{% for order in orders %}
+								{% include "admin/components/item-mfc-auto.twig" %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+
+
+	</div>
+</div>

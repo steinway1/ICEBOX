@@ -1,0 +1,172 @@
+<div
+	class="am-item">
+
+	{# Card Overlay #}
+	<div class="am-item__over">
+		<div>
+			<span>Order #{{order.number}}</span>
+			<span>${{order.orderAmount}}</span>
+		</div>
+	</div>
+
+	<div class="am-item__body">
+		<div
+			class="am-item__row">
+
+			<!-- #region ITEM : TOP -->
+			<div class="am-item__main">
+
+				<div class="am-item__pic-wrap">
+					<img src="{{order.imgURL}}" loading="eager" alt="">
+					<button class="am-zoom-btn"></button>
+				</div>
+
+				<div class="am-item__main-details">
+					<h4 class="am-item__title">
+						{{order.title}}
+					</h4>
+					{% for option in order.options %}
+						<div class="am-item__options">
+							<div>{{option.name}}:
+								<span>{{option.value}}</span>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+				<div class="am-item__main-spot">
+					{% if order.details is defined %}
+						{% set details = order.details %}
+						<div class="am-item__spot-details">
+
+							{% if details.RNum.value is defined %}
+								<a target="_blank" class="st_defined" href="{{details.RNum.url}}">
+									<span>
+										<span>R#:
+											{{details.RNum.value}}</span>
+									</span>
+									{% include "admin/svg/icon_doc.svg" %}
+								</a>
+							{% else %}
+								<a class="xEdit editable editable-click editable-empty" data-name="orders/edge_sale_key" data-type="text" data-pk="id/{{order.id}}" data-url="https://www.icebox.com/admin/xedit/save" data-inputclass="input-list-name-edit" data-title="Value">
+									<span>R#:
+										<span class="st_edit">Empty</span>
+									</span>
+								</a>
+							{% endif %}
+
+							{% if details.PO.value is defined %}
+								<a target="_blank" class="st_defined" href="{{details.RNum.url}}">
+									<span>
+										<span>PO:
+											{{details.PO.value}}</span>
+									</span>
+									{% include "admin/svg/icon_num.svg" %}
+								</a>
+							{% else %}
+								<a class="xEdit editable editable-click editable-empty" data-name="order_items/po_number" data-type="text" data-pk="id/{{order.id}}" data-url="https://www.icebox.com/admin/xedit/save" data-inputclass="input-list-name-edit" data-title="Value">
+									<span>PO:
+										<span class="st_edit">Empty</span>
+									</span>
+								</a>
+							{% endif %}
+
+							{% if details.style.value is defined %}
+								<a target="_blank" class="st_defined" href="{{details.RNum.url}}">
+									<span>
+										<span>Style:
+											{{details.style.value}}</span>
+									</span>
+									{% include "admin/svg/icon_docs.svg" %}
+								</a>
+							{% else %}
+								<a class="xEdit editable editable-click editable-empty" data-name="order_items/vendor_item_number" data-type="text" data-pk="id/{{order.id}}" data-url="https://www.icebox.com/admin/xedit/save" data-inputclass="input-list-name-edit" data-title="Value">
+									<span>Style:
+										<span class="st_edit">Empty</span>
+									</span>
+								</a>
+							{% endif %}
+
+						</div>
+					{% endif %}
+				</div>
+
+			</div>
+			<!-- #endregion ITEM : TOP -->
+
+
+			<div class="am-item__details">
+
+				<div class="am-item__details-row">
+					<div class="am-select-wrap">
+						<select onchange="updateOrderItemType({{order.id}});" class="am-select" id="order_type_{{order.id}}">
+							<option value="Special Order">Special Order</option>
+							<option value="Stock">Stock</option>
+						</select>
+					</div>
+					<div class="am-select-wrap">
+						<select class="am-select" id="mfg_{{order.id}}" onchange="updateMfg({{order.id}});">
+							<option value="0" selected="">Unselected</option>
+							<option value="evique">Evique</option>
+							<option value="recieved">Received Orders</option>
+							<option value="veda">Veda</option>
+							<option value="gs">GS</option>
+							<option value="premier">Premier</option>
+							<option value="shipped">shipped</option>
+							<option value="in-house">In-house</option>
+							<option value="americas-gold">Americas Gold</option>
+							<option value="alessi">Alessi</option>
+							<option value="fancy-chains">Fancy Chains</option>
+							<option value="melano">Melano</option>
+							<option value="daniel-jewelry">Daniel Jewelry</option>
+							<option value="haimov">Haimov</option>
+							<option value="deco">Deco</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="am-item__details-row">
+					{% for link in order.links %}
+						<a href="{{link.url}}" target="_blank" class="am-item__link">{{link.title}}</a>
+					{% endfor %}
+					<span class="am-item__color-tag">{{order.status}}</span>
+				</div>
+
+				<div class="am-item__details-row to_end">
+					<div class="flex-row_8">
+						<a id="asana_btn_{{order.id}}" class="am-item__btn" onclick="exportAsana({{order.id}});">
+							Export To Asana
+						</a>
+            <a class="am-item__btn is-green" onclick="OrderRecieved({{order.id}});">Item Recieved ?</a>
+					</div>
+				</div>
+
+				<div class="am-item__details-row to_end">
+					<div class="am-item__price-wrap">
+						<div class="am-item__price for_cost">Price: ${{order.price.value}}<span>Cost: ${{order.price.cost}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="am-item__details-row">
+					<div class="am-item__note-wrap">
+						<div class="am-item__note-form">
+							<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_{{itemID}}">
+							<button data-am-evt="submitNote" onclick="addNotes({{itemID}})">Add</button>
+						</div>
+						{% for note in order.notes %}
+							<div class="am-item-note">
+								<div>
+									<span>{{note.author}}</span>:
+									{{note.text}}
+								</div>
+								<div>{{note.date}}</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

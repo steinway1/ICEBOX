@@ -47,6 +47,16 @@ const root = {
     _: './src/',
     html: './src/html/*.html',
     scss: './src/scss/*.scss',
+    adminSCSS: './src/scss/admin/*.scss',
+    adminJS: {
+      _: './src/js/admin/*.js',
+      lib: {
+        jquery: './src/js/admin/lib/jquery.js'
+      },
+      bundle: {
+        main: './src/js/admin/main.js'
+      }
+    },
     js: {
       _: './src/js/*.js',
       plugins: './src/js/plugins/**',
@@ -66,7 +76,7 @@ const root = {
       bundle: {
         main: './src/js/main.js',
         login: './src/js/login.js',
-        cartMail:'./src/js/cart-mail.js',
+        cartMail: './src/js/cart-mail.js',
       },
       promo: {
         lib: './src/js/promo/libraries/*.js',
@@ -86,17 +96,25 @@ const root = {
       }
     },
     assets: './src/assets/**/*',
+    adminAssets: './src/templates/admin/assets/**/*',
     fonts: './src/fonts/*',
     templates: './src/templates/*.twig',
-    data: './src/templates/data/'
+    adminTemplates: './src/templates/admin/*.twig',
+    data: './src/templates/data/',
+    adminData: './src/templates/data/admin/'
   },
   build: {
     _: './build/',
     html: './build/html/',
+    adminPages: './build/admin/',
+    adminCSS: './build/admin/css/',
+    adminJS: './build/admin/js/',
+    adminFonts: './build/admin/fonts/',
     css: './build/css/',
     js: './build/js/',
     jsPlugins: './build/js/plugins/',
     assets: './build/assets/',
+    adminAssets: './build/admin/assets/',
     fonts: './build/fonts/'
   }
 }
@@ -114,6 +132,68 @@ gulp.task('include:build',
       .pipe(gulp.dest(root.build.html))
   }
 )
+
+//  ADMIN
+gulp.task('twig-admin:build',
+  () => {
+    return gulp
+      .src(root.src.adminTemplates)
+      .pipe(changed(root.build.adminPages))
+      .pipe(plumber(setPlumberNotify('ADMIN TWIG')))
+      .pipe(data(function (file) {
+        return JSON.parse(fs.readFileSync(root.src.adminData + path.basename(file.path) + '.json'));
+      }))
+      .pipe(twig({ base: 'src/templates', errorLogToConsole: true }))
+      .pipe(prettyHtml())
+      .pipe(gulp.dest(root.build.adminPages))
+  }
+)
+
+gulp.task('css-admin:build',
+  () => {
+    return gulp
+      .src(root.src.adminSCSS)
+      .pipe(changed(root.build.adminCSS))
+      .pipe(plumber(setPlumberNotify('ADMIN SCSS')))
+      .pipe(sassGlob())
+      .pipe(sass())
+      .pipe(groupMedia())
+      .pipe(gulp.dest(root.build.adminCSS))
+  }
+)
+
+gulp.task('js-admin:build',
+  () => {
+    return gulp
+      .src([
+        root.src.adminJS.lib.jquery,
+        root.src.adminJS.bundle.main
+      ])
+      .pipe(changed(root.build.adminJS))
+      .pipe(plumber(setPlumberNotify('ADMIN JAVASCRIPT')))
+      .pipe(concat('partial.js'))
+      .pipe(minify())
+      .pipe(gulp.dest(root.build.adminJS))
+  })
+
+gulp.task('fonts-admin:build',
+  () => {
+    return gulp
+      .src(root.src.fonts)
+      .pipe(changed(root.build.adminFonts))
+      .pipe(gulp.dest(root.build.adminFonts))
+  }
+)
+
+gulp.task('assets-admin:build',
+  () => {
+    return gulp
+      .src(root.src.adminAssets)
+      .pipe(changed(root.build.adminAssets))
+      .pipe(gulp.dest(root.build.adminAssets))
+  }
+)
+// ADMIN END
 
 
 gulp.task('twig:build',
@@ -140,7 +220,7 @@ gulp.task('twig:build',
       .pipe(data(function (file) {
         return JSON.parse(fs.readFileSync(root.src.data + path.basename(file.path) + '.json'));
       }))
-      .pipe(twig({base: 'src/templates', errorLogToConsole: true}))
+      .pipe(twig({ base: 'src/templates', errorLogToConsole: true }))
       .pipe(prettyHtml())
       .pipe(gulp.dest(root.build._))
   }
@@ -188,7 +268,7 @@ gulp.task('js:build',
       .pipe(gulp.dest(root.build.js))
   })
 
-  gulp.task('js-promo:build',
+gulp.task('js-promo:build',
   () => {
     return gulp
       .src([
@@ -202,7 +282,7 @@ gulp.task('js:build',
       .pipe(gulp.dest(root.build.js))
   })
 
-  gulp.task('js-xmas:build',
+gulp.task('js-xmas:build',
   () => {
     return gulp
       .src([
@@ -216,7 +296,7 @@ gulp.task('js:build',
       .pipe(gulp.dest(root.build.js))
   })
 
-  gulp.task('js-new-year:build',
+gulp.task('js-new-year:build',
   () => {
     return gulp
       .src([
@@ -230,7 +310,7 @@ gulp.task('js:build',
       .pipe(gulp.dest(root.build.js))
   })
 
-  gulp.task('js-vday:build',
+gulp.task('js-vday:build',
   () => {
     return gulp
       .src([
@@ -245,7 +325,7 @@ gulp.task('js:build',
   })
 
 
-  gulp.task('js-plugins:build',
+gulp.task('js-plugins:build',
   () => {
     return gulp
       .src(root.src.js.plugins)

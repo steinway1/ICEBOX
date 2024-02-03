@@ -48,6 +48,16 @@ const root = {
     _: './src/',
     html: './src/html/*.html',
     scss: './src/scss/*.scss',
+    adminSCSS: './src/scss/admin/*.scss',
+    adminJS: {
+      _: './src/js/admin/*.js',
+      lib: {
+        jquery: './src/js/admin/lib/jquery.js'
+      },
+      bundle: {
+        main: './src/js/admin/main.js'
+      }
+    },
     js: {
       _: './src/js/*.js',
       plugins: './src/js/plugins/**',
@@ -87,17 +97,25 @@ const root = {
       }
     },
     assets: './src/assets/**/*',
+    adminAssets: './src/templates/admin/assets/**/*',
     fonts: './src/fonts/*',
     templates: './src/templates/*.twig',
-    data: './src/templates/data/'
+    adminTemplates: './src/templates/admin/*.twig',
+    data: './src/templates/data/',
+    adminData: './src/templates/data/admin/'
   },
   dev: {
     _: './dev/',
     html: './dev/html/',
+    adminPages: './dev/admin/',
+    adminCSS: './dev/admin/css/',
+    adminJS: './dev/admin/js/',
+    adminFonts: './dev/admin/fonts/',
     css: './dev/css/',
     js: './dev/js/',
     jsPlugins: './dev/js/plugins/',
     assets: './dev/assets/',
+    adminAssets: './dev/admin/assets/',
     fonts: './dev/fonts/'
   }
 }
@@ -105,17 +123,70 @@ const root = {
 
 
 // Tasks
-gulp.task('include:dev',
+
+//  ADMIN
+gulp.task('twig-admin:dev',
   () => {
     return gulp
-      .src(root.src.html)
-      .pipe(changed(root.dev.html, { hasChanged: changed.compareContents }))
-      .pipe(plumber(setPlumberNotify('HTML')))
-      .pipe(fileInclude(settings.fileInclude))
-      .pipe(gulp.dest(root.dev.html))
+      .src(root.src.adminTemplates)
+      .pipe(changed(root.dev.adminPages))
+      .pipe(plumber(setPlumberNotify('ADMIN TWIG')))
+      .pipe(data(function (file) {
+        return JSON.parse(fs.readFileSync(root.src.adminData + path.basename(file.path) + '.json'));
+      }))
+      .pipe(twig({ base: 'src/templates', errorLogToConsole: true }))
+      .pipe(prettyHtml())
+      .pipe(gulp.dest(root.dev.adminPages))
   }
 )
 
+gulp.task('css-admin:dev',
+  () => {
+    return gulp
+      .src(root.src.adminSCSS)
+      .pipe(changed(root.dev.adminCSS))
+      .pipe(plumber(setPlumberNotify('ADMIN SCSS')))
+      .pipe(sourceMaps.init())
+      .pipe(sassGlob())
+      .pipe(sass())
+      // .pipe(groupMedia())
+      .pipe(sourceMaps.write())
+      .pipe(gulp.dest(root.dev.adminCSS))
+  }
+)
+
+gulp.task('js-admin:dev',
+  () => {
+    return gulp
+      .src([
+        root.src.adminJS.lib.jquery,
+        root.src.adminJS.bundle.main
+      ])
+      .pipe(changed(root.dev.adminJS))
+      .pipe(plumber(setPlumberNotify('ADMIN JAVASCRIPT')))
+      .pipe(concat('partial.js'))
+      .pipe(minify())
+      .pipe(gulp.dest(root.dev.adminJS))
+  })
+
+gulp.task('fonts-admin:dev',
+  () => {
+    return gulp
+      .src(root.src.fonts)
+      .pipe(changed(root.dev.adminFonts))
+      .pipe(gulp.dest(root.dev.adminFonts))
+  }
+)
+
+gulp.task('assets-admin:dev',
+  () => {
+    return gulp
+      .src(root.src.adminAssets)
+      .pipe(changed(root.dev.adminAssets))
+      .pipe(gulp.dest(root.dev.adminAssets))
+  }
+)
+// ADMIN END
 
 gulp.task('twig:dev',
   () => {
@@ -287,11 +358,13 @@ gulp.task('clean:dev', (done) => {
 
 gulp.task('watch:dev',
   () => {
-    gulp.watch('./src/templates/**/*.twig', gulp.parallel('twig:dev')),
-      gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev')),
-      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-vday:dev')),
-      // gulp.watch('./src/templates/data/*.json', gulp.parallel('js:dev')),
-      gulp.watch('./assets/**/*', gulp.parallel('assets:dev'))
+    gulp.watch('./src/templates/**/*.twig', gulp.parallel('twig:dev', 'twig-admin:dev')),
+      gulp.watch('./src/templates/data/**', gulp.parallel('twig:dev' ,'twig-admin:dev')),
+      gulp.watch('./src/templates/admin/svg/**', gulp.parallel('twig-admin:dev')),
+      gulp.watch('./src/templates/admin/assets/**/*', gulp.parallel('assets-admin:dev')),
+      gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev', 'css-admin:dev')),
+      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-vday:dev', 'js-admin:dev')),
+      gulp.watch('./src/assets/**/*', gulp.parallel('assets:dev'))
   }
 )
 
@@ -302,3 +375,14 @@ gulp.task('server:dev',
       .pipe(server(settings.server))
   }
 )
+
+// gulp.task('include:dev',
+//   () => {
+//     return gulp
+//       .src(root.src.html)
+//       .pipe(changed(root.dev.html, { hasChanged: changed.compareContents }))
+//       .pipe(plumber(setPlumberNotify('HTML')))
+//       .pipe(fileInclude(settings.fileInclude))
+//       .pipe(gulp.dest(root.dev.html))
+//   }
+// )

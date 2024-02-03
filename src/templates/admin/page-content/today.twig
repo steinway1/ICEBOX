@@ -1,0 +1,98 @@
+<div class="am-content w_max_1080">
+	<div
+		class="am-content__wrapper">
+
+		{# Mobile Arrows #}
+		{% include "admin/components/page-arrows.twig" %}
+
+
+		<!-- #region Content : Header -->
+		<div class="am-main__header for_today">
+			<div class="am-container">
+				<div class="am-row__header-wrapper">
+					<div class="am-row__header">
+						<div class="am_vertical-start">
+							<h2 class="am-main__header-title">Transactions Report For
+								{{today.day}}
+								{{today.date}}
+							</h2>
+							<div class="am-main__subtitle">
+								{% include "admin/svg/icon_clock.svg" %}
+								<span>{{today.left.hours}}
+									hrs,
+									{{today.left.minutes}}
+									mins left today.</span>
+							</div>
+						</div>
+						<div class="am_flex8">
+							<a data-fancybox="" data-src="/admin/orders/print-slip-date" data-type="ajax" class="am-today-btn">Print Day Packing Slips</a>
+							<a href="javascript:void(0);" onclick="sendSaksItemsRequests();" class="am-today-btn">[<span id="total_saks_orders_email">0</span>] Send SAKS Orders</a>
+						</div>
+					</div>
+					<div class="am_flex8">
+						<div class="am-select-wrap to-extend">
+							<input data-date-end-date="0d" name="date_from" type="text" value="" class="am-input datepicker" id="datepicker_from" placeholder="Start Date">
+						</div>
+						<div class="am-select-wrap to-extend">
+							<input data-date-end-date="0d" name="date" type="text" value="01/01/2024" class="am-input datepicker" id="datepicker" placeholder="End Date">
+						</div>
+						<div class="am-select-wrap to-extend">
+							<select class="am-select" id="mfg" name="mfg">
+								<option value="">Unselected</option>
+								<option value="veda">Veda</option>
+								<option value="gs">Gs</option>
+								<option value="premier">Premier</option>
+								<option value="in-house">In-house</option>
+								<option value="shipped">Shipped</option>
+								<option value="americas-gold">Americas-gold</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+
+
+		<!-- #region Content : Main -->
+		<div class="am-main__flow">
+			<div class="am-container">
+				<div class="am-main__content">
+					<div class="am__dbl-wrap">
+						<div class="am-main__orders">
+							<div class="am-content-divider">{{stats.totalOrders}}
+								Orders total<span></span>
+							</div>
+							{# ORDERS #}
+							{% for order in orders %}
+								{% include "admin/components/item-today.twig" %}
+							{% endfor %}
+
+							<div class="am-box">
+								<div class="am-box__stat-row">
+									<span>Total Business</span>
+									<span>${{stats.earned}}</span>
+								</div>
+								<div class="am-box__stat-row">
+									<span>Total Tax</span>
+									<span>${{stats.totalTax}}</span>
+								</div>
+								<div class="am-box__stat-row last">
+									<span>Total Shipping</span>
+									<span>${{stats.totalShipping}}</span>
+								</div>
+							</div>
+
+						</div>
+
+						{# Today Statistics #}
+						{% include "admin/components/today-stats.twig" %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+
+	</div>
+</div>

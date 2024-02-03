@@ -1,0 +1,88 @@
+<div class="am-content w_max_1080">
+	<div
+		class="am-content__wrapper">
+
+		{# MFC - Online Orders #}
+		<div class="am-main__header">
+			<div class="am-container">
+				<div class="am-row__header-wrapper">
+					<div class="am-row__header">
+						<div class="am_vertical-start">
+							<h2 class="am-main__header-title">Manufacturing. Online Orders.</h2>
+							<span class="am-main__subtitle">Online Orders</span>
+						</div>
+					</div>
+					<div class="am_flex8">
+						<div class="am-select-wrap">
+							<select class="am-select" id="statusSelect">
+								<option value="" selected="">Status</option>
+								<option value="Processing">Processing</option>
+								<option value="Special Order">Special Order</option>
+								<option value="Synced">Synced</option>
+							</select>
+						</div>
+						<div class="am-select-wrap to-extend">
+							<select class="am-select" id="catSelect">
+								<option value="">Category</option>
+								<option value="9">Pendants</option>
+								<option value="23">Gold Chains</option>
+								<option value="8">Earrings</option>
+								<option value="4">Necklaces</option>
+								<option value="5">Rings</option>
+								<option value="7">Bracelets</option>
+								<option value="10">Watches</option>
+								<option value="15">Accessories</option>
+								<option value="19">Custom</option>
+								<option value="25">Watch Market</option>
+								<option value="26">Travel Cases</option>
+							</select>
+						</div>
+						<div class="am-select-wrap to-extend">
+							<select class="am-select" id="mfgSelect">
+								<option value="0">Unselected</option>
+								<option value="evique">Evique</option>
+								<option value="recieved">Received Orders</option>
+								<option value="veda">Veda</option>
+								<option value="gs">GS</option>
+								<option value="premier">Premier</option>
+								<option value="shipped">shipped</option>
+								<option value="in-house">In-house</option>
+								<option value="americas-gold">Americas Gold</option>
+								<option value="alessi">Alessi</option>
+								<option value="fancy-chains">Fancy Chains</option>
+								<option value="melano">Melano</option>
+								<option value="daniel-jewelry">Daniel Jewelry</option>
+								<option value="haimov">Haimov</option>
+								<option value="deco">Deco</option>
+							</select>
+						</div>
+						<button class="am-mfc-btn" onclick="exportList();">Export</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- #region Content : Main -->
+		<div class="am-main__flow">
+			<div class="am-container">
+				<div class="am-main__content">
+					<div class="am__dbl-wrap">
+						<div class="am-main__orders">
+							<div class="am-content-divider">{{orders|length}}
+								Orders Total<span></span>
+							</div>
+              {% include "admin/components/pagination.twig" %}
+							{# ORDERS #}
+							{% for order in orders %}
+								{% include "admin/components/item-mfc-online.twig" %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+
+
+	</div>
+</div>
