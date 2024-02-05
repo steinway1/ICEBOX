@@ -331,16 +331,18 @@
 }
 
 .stock-dash-box {
-  box-shadow: none;
-  padding-top: 0;
-  padding-left: 0;
-  padding-right: 0;
+  width: 100%;
+  color: #0481aa;
+  text-align: center;
+  letter-spacing: .6px;
+  text-transform: uppercase;
   position: relative;
-  overflow: hidden;
-  color: #027ba3;
-  background-color: rgba(0, 149, 198, .04);
-  border: 1px solid rgba(0, 149, 198, .5);
-  pointer-events: none;
+  background-color: rgba(0, 149, 198, .08);
+  border-radius: 0;
+  margin-top: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-weight: 700;
 
   &>span {
     text-align: center;
@@ -375,16 +377,6 @@
     right: 1.5px;
     overflow: hidden;
 
-    &::before {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      bottom: 2px;
-      content: '';
-      width: 50%;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
     &>span {
       position: absolute;
 
@@ -393,7 +385,7 @@
         left: 0;
         width: 100%;
         height: 1px;
-        background: linear-gradient(to right, #ffffff, #0095c6);
+        background: linear-gradient(to right, #ffffff, #8fd3ea);
         animation: stockDash_1 1s linear infinite;
       }
 
@@ -402,7 +394,7 @@
         right: 0;
         width: 1px;
         height: 100%;
-        background: linear-gradient(to bottom, #ffffff, #0095c6);
+        background: linear-gradient(to bottom, #ffffff, #8fd3ea);
         animation: stockDash_2 1s linear infinite;
         animation-delay: 0.5s;
       }
@@ -412,7 +404,7 @@
         left: 0;
         width: 100%;
         height: 1px;
-        background: linear-gradient(to left, #ffffff, #0095c6);
+        background: linear-gradient(to left, #ffffff, #8fd3ea);
         animation: stockDash_3 1s linear infinite;
       }
 
@@ -421,7 +413,7 @@
         left: 0;
         width: 1px;
         height: 100%;
-        background: linear-gradient(to top, #ffffff, #0095c6);
+        background: linear-gradient(to top, #ffffff, #8fd3ea);
         animation: stockDash_4 1s linear infinite;
         animation-delay: 0.5s;
       }
@@ -502,3 +494,433 @@
     }
   }
 }
+
+
+/* #region  NEW Card Item */
+
+.card-item {
+  max-width: 420px;
+  position: relative;
+
+  .stock-dash-box {
+    margin-top: 6px;
+
+    &>div {
+        display: none !important;
+    }
+    
+    &>span {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .6px;
+      line-height: 14px;
+
+      @include maxWidthXs {
+        padding-left: 0px;
+        padding-right: 0px;
+        font-size: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        font-weight: 700;
+      }
+    }
+
+    @include maxWidthXs {
+      background-color: rgba(0, 149, 198, .08);
+    }
+  }
+
+  &:hover {
+    .card-item-fav {
+      opacity: 1;
+    }
+  }
+
+  // Valentine
+  &.--vday {
+    .card-item__main::after {
+      content: '';
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      border: 0px solid #e4bac7;
+      // box-shadow: inset 0 0 0 6px rgba(186, 46, 86, .04);
+      transition: all 200ms ease;
+    }
+
+    &:hover {
+      .card-item__main::after {
+        @media screen and (min-width: 992px) {
+          border-color: #d18ba2;
+        }
+      }
+    }
+  
+
+    .stock-dash-box {
+      background-color: rgba(207, 77, 115, 0.05);
+      color: #b92d56;
+    }
+
+    .card-item__sub-details {
+      span {
+        &.--blue {
+          color: #ba2e56;
+        }
+      }
+    }
+
+    .card-item__price {
+      &.is-sale {
+        color: #ba2e56;
+      }
+    }
+
+    .card-item__tags {
+      img {
+        width: 50px;
+      }
+    }
+  }
+}
+
+.card-item__media {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1.22;
+
+  a {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    overflow: hidden;
+  }
+}
+
+.card-item__wrapper {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+  position: relative;
+}
+
+.card-item__colors {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+
+  @include maxWidthXs {
+    grid-column-gap: 1.4vw;
+    grid-row-gap: 1.4vw;
+  }
+
+  &>span {
+    width: 8px;
+    height: 8px;
+    transform-style: preserve-3d;
+    background-color: #ded1b3;
+    transform: rotateX(0)rotateY(0)rotateZ(45deg);
+
+    @include maxWidthXs {
+      width: 2vw;
+      height: 2vw;
+    }
+
+    &.Yellow {
+      background-color: #e5d5b0;
+      background-image: none;
+    }
+
+    &.White {
+      background-color: #cacaca;
+      background-image: none;
+    }
+
+    &.Rose {
+      background-color: #f0cac7;
+      background-image: none;
+    }
+
+    &.Black {
+      background: linear-gradient(45deg, #6F7174, #171C25);
+    }
+
+    &.Two_Tone {
+      background: linear-gradient(45deg, #e2d2b6, #e6d6a8 50%, #f5f5f5 51%, #ebebeb);
+    }
+
+    &.Two_Tone_Rose {
+      background: linear-gradient(45deg, #FDDDDD, #D2ACAC 50%, #f5f5f5 51%, #ebebeb);
+    }
+
+    &.Tri_Tone {
+      background: linear-gradient(45deg, #e2c6cc, #e7cdd3 40%, #ebebeb 41%, #ddd 63%, #e2d2b6 64%, #ebe1c5);
+    }
+
+    &.Steel {
+      background: linear-gradient(45deg, #a3a3a3, #ebebeb 50%, #c2c0c0 51%, #e9e9e9);
+    }
+
+    &.Titanium {
+      background: linear-gradient(45deg, #959294, #3F383C);
+    }
+
+    &.Blue_Gold {
+      background: linear-gradient(45deg, #88D3ED, #0095c6);
+    }
+
+    &.Navy_Blue {
+      background: linear-gradient(45deg, #223164, #3e68c2);
+    }
+
+    &.Red {
+      background-image: linear-gradient(45deg, #c7242d, #ff9d9f);
+    }
+
+    &.Blue {
+      background-color: #2cabd6;
+    }
+
+    &.Platinum {
+      background-color: #cbcac6;
+    }
+
+    &.Tri_Tone_Rose {
+      background: linear-gradient(45deg, #e2c6cc, #e7cdd3 40%, #ebebeb 41%, #ddd 63%, #e2d2b6 64%, #ebe1c5);
+    }
+  }
+}
+
+.card-item__info-wrapper {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  flex-direction: column;
+  flex: 1;
+  padding-top: 10px;
+  display: flex;
+
+  @include maxWidthXs {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+.card-item__tags {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+  left: 0%;
+  right: auto;
+
+  @include maxWidthXs {
+    padding: 6px;
+  }
+}
+
+.card-item-tag {
+  z-index: 2;
+  color: #058567;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  background-color: rgba(4, 158, 117, .07);
+  padding: 0 8px;
+  font-size: 10px;
+  font-weight: 700;
+  overflow: hidden;
+
+  &.made_order {
+    color: #0489b4;
+    background-color: rgba(4, 137, 180, .05);
+  }
+}
+
+.card-item__title {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+
+  @include maxWidthXs {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  a {
+    transition: all .2s cubic-bezier(.39, .575, .565, 1);
+    display: block;
+
+    &:hover {
+      color: #0095c6;
+    }
+  }
+}
+
+.card-item__title-wrap {
+  flex-direction: column;
+  display: flex;
+}
+
+.card-item__price {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card-item__price.is-sale {
+  color: #0095c6;
+}
+
+.card-item__price.is-off {
+  opacity: .6;
+  margin-top: -2px;
+  font-size: 14px;
+  text-decoration: line-through;
+}
+
+.card-item__img {
+  width: 100%;
+  height: 100%;
+  filter: brightness(98%);
+  object-fit: contain;
+  background-color: #fff;
+  position: relative;
+
+  &.zoom-0 {
+    transform: scale(1.0);
+  }
+
+  &.zoom-10 {
+    transform: scale(1.1);
+  }
+
+  &.zoom-20 {
+    transform: scale(1.2);
+  }
+
+  &.zoom-30 {
+    transform: scale(1.3);
+  }
+
+  &.zoom-40 {
+    transform: scale(1.4);
+  }
+
+  &.zoom-50 {
+    transform: scale(1.5);
+  }
+
+  &.zoom-60 {
+    transform: scale(1.6);
+  }
+
+  &.zoom-70 {
+    transform: scale(1.7);
+  }
+
+  &.zoom-80 {
+    transform: scale(1.8);
+  }
+
+  &.zoom-90 {
+    transform: scale(1.9);
+  }
+
+  &.zoom-100 {
+    transform: scale(2);
+  }
+}
+
+.card-item__main {
+  position: relative;
+}
+
+.card-item-fav {
+  z-index: 2;
+  opacity: 0;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  transition: all .2s;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+  left: auto;
+  right: 0%;
+  background-image: url('data:image/svg+xml,<svg width="48" height="41" viewBox="0 0 48 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.77724 23.4286L24 41L42.2227 23.4286C45.3856 21.0471 47.4286 17.2715 47.4286 13.0157C47.4286 5.83137 41.5972 0 34.4128 0C30.157 0 26.3686 2.05703 24 5.21989C21.6314 2.05703 17.843 0 13.5872 0C6.40278 0 0.571411 5.83137 0.571411 13.0157C0.571411 17.2715 2.61438 21.0471 5.77724 23.4286ZM13.5872 2.34286C16.9257 2.34286 20.1167 3.94303 22.1245 6.62326L24 9.12777L25.8754 6.62443C27.8833 3.94303 31.0742 2.34286 34.4128 2.34286C40.2981 2.34286 45.0857 7.13049 45.0857 13.0157C45.0857 16.3988 43.5289 19.5125 40.8123 21.5566L40.6987 21.6421L40.5956 21.7417L24 37.7458L7.40435 21.7417L7.30127 21.6421L7.18764 21.5566C4.47227 19.5125 2.91427 16.3988 2.91427 13.0157C2.91427 7.13049 7.7019 2.34286 13.5872 2.34286Z" fill="black"/></svg>');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+
+  @include maxWidthMd {
+    display: none !important;
+  }
+
+  &:hover {
+    opacity: .5 !important;
+  }
+
+  &.is-active {
+    opacity: 1 !important;
+  }
+}
+
+.card-item__price-wrap {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  display: flex;
+}
+
+.card-main__info {
+  flex-direction: column;
+  display: flex;
+}
+
+.card-item__sub-details {
+  grid-column-gap: 6px;
+  grid-row-gap: 4px;
+  color: rgba(32, 33, 36, .5);
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  display: flex;
+
+  &>span {
+    &.--blue {
+      color: #0095c6;
+      order: -1 !important;
+    }
+  }
+}
+
+/* #endregion NEW Card Item */

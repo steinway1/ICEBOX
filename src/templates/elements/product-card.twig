@@ -77,12 +77,14 @@
 					<a href="{{productItem.href}}" class="product-card__name">{{productItem.name}}</a>
 				</h2>
 			</div>
+
 			<div class="{% if productItem.salePrice is defined %}product-card__price-wrap is-sale{% else %}product-card__price-wrap{% endif %}">
 				<span class="product-card__price">${{productItem.price}}</span>
 				{% if productItem.salePrice %}
 					<span class="product-card__sale-price">${{productItem.salePrice}}</span>
 				{% endif %}
 			</div>
+      
 			{% include "elements/product-card/stock-dash-box.twig" %}
 		</div>
 	</div>

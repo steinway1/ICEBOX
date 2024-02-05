@@ -1,0 +1,86 @@
+{% set card = productItem %}
+<div class="card-item">
+	<div class="card-item__wrapper">
+		<div
+			class="card-item__main">
+
+			<!-- #region Media / Pictures -->
+			<div class="card-item__media">
+				<a href="{{card.href}}">
+					<img src="{{card.imgSrc.earring}}" loading="lazy" alt="{{card.alt}}" class="card-item__img{% if card.zoom is defined %} {{card.zoom}}{% endif %}">
+				</a>
+			</div>
+			<!-- #endregion -->
+
+
+			<!-- #region Available Colors -->
+			{% if card.availableColors is defined %}
+				<div class="card-item__colors">
+					{% for color in card.availableColors %}
+						<span class="{{color.class}}"></span>
+					{% endfor %}
+				</div>
+			{% endif %}
+			<!-- #endregion -->
+
+
+			<!-- #region Tags -->
+			<div class="card-item__tags">
+				{% if card.inStock %}
+					<span class="card-item-tag">Ships Today</span>
+				{% else %}
+					<span class="card-item-tag made_order">Made To Order</span>
+				{% endif %}
+			</div>
+			<!-- #endregion -->
+
+
+			<!-- #region Add To Wishlist -->
+			<button id="wishlist_btn_{{card.dataID}}" onclick="addToWishlist({{card.dataID}});" class="card-item-fav"></button>
+			<!-- #endregion -->
+		</div>
+
+		<!-- #region Only One At This Price -->
+		{% if card.oneLeft == true %}
+			{% include "elements/product-card/stock-dash-box.twig" %}
+		{% endif %}
+		<!-- #endregion -->
+
+
+		<div class="card-item__info-wrapper">
+			<div
+				class="card-main__info">
+
+				<!-- #region Sub Details -->
+				{% if card.subDetails %}
+					<span class="card-item__sub-details">
+						<span>{{card.subDetails}}</span>
+						<span class="--blue">40mm</span>
+					</span>
+				{% endif %}
+				<!-- #endregion -->
+
+				<!-- #region Item Title -->
+				<div class="card-item__title-wrap">
+					<h3 class="card-item__title">
+						<a href="{{card.href}}">{{card.name}}</a>
+					</h3>
+				</div>
+				<!-- #endregion -->
+			</div>
+
+			<!-- #region Price -->
+			<div class="card-item__price-wrap">
+				{% if card.salePrice is defined %}
+					<div class="card-item__price is-sale">${{card.salePrice}}</div>
+					<div class="card-item__price is-off">${{card.price}}</div>
+				{% else %}
+					<div class="card-item__price">${{card.price}}</div>
+				{% endif %}
+			</div>
+			<!-- #endregion -->
+
+
+		</div>
+	</div>
+</div>

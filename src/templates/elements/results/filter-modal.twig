@@ -1,40 +1,21 @@
 <div class="filter-modal">
 	<div data-filter-evt="close" class="filter-modal__backdrop"></div>
 	<div class="filter-modal__container">
+		<div class="filter-modal__header">
+			<div class="filter-modal-title">Price Range</div>
+			<div data-filter-evt="close" class="filter-modal__close-btn">
+				<svg width="14" height="14" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 1L23 23" stroke="currentColor" stroke-width="2.5"></path>
+					<path d="M23 1L1 23" stroke="currentColor" stroke-width="2.5"></path>
+				</svg>
+			</div>
+		</div>
 		<div class="filter-modal__wrapper">
-			<div class="filter-modal__header">
-				<h2 class="filter-modal__heading">Filter By</h2>
-				<div data-filter-evt="close" class="filter-modal__close-btn">
-					<svg width="12" height="12" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M1 1L23 23" stroke="currentColor" stroke-width="2.5"></path>
-						<path d="M23 1L1 23" stroke="currentColor" stroke-width="2.5"></path>
-					</svg>
-				</div>
-			</div>
-      <div class="filter-modal__stock-row">
-      </div>
-			<div id="filterFilter" class="filter-modal__content">
-				{% include "./filters.twig" with { 
-          filterCategory: true,
-          filterProduct: true,
-          filterPriceRange: true,
-          filterGender: true,
-          filterColor: true,
-          filterStock: true
-         } %}
-			</div>
-
-			<div id="filterSort" class="filter-modal__content">
-				<a class="is-active" onclick="updateSortByFilter('Newest');">Newest First</a>
-				<a onclick="updateSortByFilter('Popular');">Popular</a>
-				<a onclick="updateSortByFilter('Low');">Price: Low - High</a>
-				<a onclick="updateSortByFilter('High');">Price: High - Low</a>
-				<a onclick="updateSortByFilter('Best-Sellers');">Best Sellers</a>
-			</div>
-
-			<div class="filter-modal__footer">
-				<button class="filter-modal__btn">Apply Filters</button>
-			</div>
+			<div class="filter-modal__content"></div>
+		</div>
+		<div class="filter-modal__footer">
+			<button data-filter-evt="close" class="filter-modal__btn btn_sub">Cancel</button>
+			<button class="filter-modal__btn">Apply</button>
 		</div>
 	</div>
 </div>
