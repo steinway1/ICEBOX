@@ -1,91 +1,117 @@
-{% set discountRate = 80 %}
+<div class="{% if productItem.unpublished %} unpublished-card {% endif %} product-card {% if cyber_monday %} --cm {% endif %} {% if xmas %} --xmas {% endif %} {% if new_year == true %} --ny{% endif %} {% if vday == true %} --vday{% endif %} {% if splideClass is defined %} splide__slide{% else %}{% endif %}" data-id="{{productItem.id}}">
 
-<div class="product-card{% if splideClass is defined %} splide__slide{% else %}{% endif %}{% if productItem.cyberMonday is defined and cyber_monday == true %} --cm{% endif %}{% if productItem.xmas is defined and christmas == true %} --xmas{% endif %}{% if productItem.newYear is defined and new_year == true %} --ny{% endif %}{% if productItem.vday is defined and vday == true %} --vday{% endif %}" data-id="{{productItem.dataID}}">
-	{% if adminLayout == true %}
-		{% include "./admin-card.twig" %}
+	{% if user.admin == true %}
+		{% include "elements/admin-card.twig" %}
 	{% endif %}
-	{% if productItem.bfs is defined and black_friday == true %}
-		<div class="bfs-card">
-			<div class="bfs-badges">
-				<span class="bfs-badge">BLACK FRIDAY</span>
-				<span class="bfs-badge --discount">-{{productItem.bfs}}%</span>
-			</div>
-		</div>
-	{% endif %}
-	{% if productItem.cyberMonday is defined and cyber_monday == true %}
-		<div class="cm-card">
-			<div class="cm-badges">
-				<span class="cm-badge">CYBER WEEK</span>
-				<span class="cm-badge --discount">-{{productItem.bfs}}%</span>
-			</div>
-		</div>
-	{% endif %}
-	{% if productItem.xmas is defined and christmas == true %}
-		<div class="xmas-card">
-			<div class="xmas-badges">
-				<span>SALE</span>
-				<span>{{productItem.xmas}}%</span>
-			</div>
-		</div>
-	{% endif %}
-	{% if productItem.newYear is defined and new_year == true %}
-		<div class="ny-card">
-			<div>
-				<img src="./assets/new-year/tag{{productItem.newYear}}.svg" loading="lazy" alt="" class="">
-			</div>
-		</div>
-	{% endif %}
-	{% if productItem.vday is defined and vday == true %}
-		<div class="vday-card">
-			<div>
-				<img src="./assets/vday/tag{{productItem.vday}}.svg" loading="lazy" alt="" class="">
-			</div>
-		</div>
-	{% endif %}
-	{% if productItem.is_discounted and productItem.inStock %}
-		<span class="product-card__sale-badge discount_{{discountRate}}"></span>
-	{% endif %}
-	{% if cyber_monday == false and black_friday == false and christmas == false and new_year == false and vday == false %}
-		{% if productItem.inStock %}
-			<span class="product-card__shipping-tag">Ships Today</span>
-		{% else %}
-			<span class="product-card__shipping-tag is-made-order">Made To Order</span>
-		{% endif %}
-	{% endif %}
+
 	<div class="product-card__wrapper">
+
 		<div class="product-card__media">
 			<a href="{{productItem.href}}">
-				<img src="{{productItem.imgSrc.all}}" loading="lazy" alt="{{productItem.alt}}" class="product-card__img {% if productItem.zoom is defined %}{{productItem.zoom}}{% endif %}">
+				<img src="{{productItem.cover}}" {% if productItem.extra_classes == '' %} loading="lazy" {% endif %} alt="{{productItem.alt}}" class="product-card__img {% if disableZoom is not defined %}{{ productItem.extra_classes }} {% endif %}">
+				{% if productItem.sirv_html is defined %}
+					{{ productItem.sirv_html | raw }}
+				{% endif %}
 			</a>
-			{% if productItem.availableColors is defined %}
+      
+			{% if productItem.available_colors is defined %}
 				<div class="product-card__colors">
-					{% for color in productItem.availableColors %}
-						<span class="{{color.class}}"></span>
+					{% for color in productItem.available_colors %}
+						<span class="{{color}}"></span>
 					{% endfor %}
 				</div>
 			{% endif %}
+
+			<!-- #region SALE THINGS -->
+			{% if productItem.is_discounted == false and productItem.is_watch_market == false %}
+				{% if productItem.inStock %}
+					<span class="product-card__shipping-tag">In Stock</span>
+				{% else %}
+					<span class="product-card__shipping-tag is-made-order">{{ productItem.stock_status }}</span>
+				{% endif %}
+			{% endif %}
+
+			{% if (productItem.inStock or productItem.force_sale) and productItem.is_discounted %}
+
+				{% if black_friday %}
+					<div class="bfs-card">
+						<div class="bfs-badges">
+							<span class="bfs-badge">BLACK FRIDAY</span>
+							<span class="bfs-badge --discount">{{productItem.discountRate}}%</span>
+						</div>
+					</div>
+				{% endif %}
+
+				{% if cyber_monday %}
+					<div class="cm-card">
+						<div class="cm-badges">
+							<span class="cm-badge">CYBER WEEK</span>
+							<span class="cm-badge --discount">{{productItem.discountRate}}%</span>
+						</div>
+					</div>
+
+				{% endif %}
+
+				{% if xmas %}
+					<div class="xmas-card">
+						<div class="xmas-badges">
+							<span>SALE</span>
+							<span>{{productItem.discountRate}}%</span>
+						</div>
+					</div>
+				{% endif %}
+				{% if new_year %}
+					<div class="ny-card">
+						<div>
+							<img src="{{ constant('THEME_ASSETS_FOLDER') }}/assets/new-year/tag{{productItem.discountRate}}.svg" loading="lazy" alt="" class="">
+						</div>
+					</div>
+				{% endif %}
+
+				{% if vday %}
+					<div class="vday-card">
+						<div>
+							<img src="{{THEME_ASSETS_FOLDER}}/vday/tag{{productItem.discountRate}}.svg" loading="lazy" alt="" class="">
+						</div>
+					</div>
+				{% endif %}
+
+				{% if black_friday == false and cyber_monday == false and xmas == false and new_year == false and vday == false %}
+					<span class="product-card__sale-badge discount_{{productItem.discountRate}}"></span>
+				{% endif %}
+
+			{% endif %}
+			<!-- #endregion -->
 		</div>
+
+		{% if  (productItem.inStock or productItem.force_sale) and productItem.is_discounted and productItem.is_gold_chain == false %}
+			{% include "elements/product-card/stock-dash-box.twig" %}
+		{% endif %}
+
+
 		<div class="product-card__details">
 			<div class="product-card__title-wrap">
-				{% if productItem.subDetails %}
-					<span class="product-card__sub-detail">
-						<span>{{productItem.subDetails}}</span>
-						<span class="--blue --bold">40mm</span>
+				{% if productItem.details %}
+					<span class="product-card__sub-detail">{{productItem.details}}
+						{% if productItem.custom_tag %}
+							<span class="--blue">{{ productItem.custom_tag }}</span>
+						{% endif %}
 					</span>
 				{% endif %}
+
 				<h2>
 					<a href="{{productItem.href}}" class="product-card__name">{{productItem.name}}</a>
 				</h2>
 			</div>
-
 			<div class="{% if productItem.salePrice is defined %}product-card__price-wrap is-sale{% else %}product-card__price-wrap{% endif %}">
-				<span class="product-card__price">${{productItem.price}}</span>
+				<span class="product-card__price">{{productItem.price}}</span>
 				{% if productItem.salePrice %}
-					<span class="product-card__sale-price">${{productItem.salePrice}}</span>
+					<span class="product-card__sale-price">{{productItem.salePrice}}</span>
 				{% endif %}
 			</div>
-      
-			{% include "elements/product-card/stock-dash-box.twig" %}
 		</div>
+		{% if user.admin %}
+			{{ productItem.extra_html | raw}}
+		{% endif %}
 	</div>
 </div>

@@ -1,0 +1,20 @@
+<div class="watch-swipe-page">
+	<div class="watch-swiper">
+		<div class="watch-swiper__header"><img src="https://uploads-ssl.webflow.com/6505537c7e0e1974b3e64dda/65098b9b701bc12c6caed38a_logo_blue.svg" loading="lazy" alt="" class="ggtemp1"></div>
+		<div class="watch-swiper__cards">
+    
+    {% for i in 0..20 %}
+      {% include "elements/watch-swipe-card.twig" %}
+    {% endfor %}
+
+		</div>
+		<div class="watch-swiper__footer"></div>
+	</div>
+
+	<!-- #region Background -->
+	<div class="watch-swiper__bg">
+		<div class="watch-swiper__bg-side is-reject"></div>
+		<div class="watch-swiper__bg-side is-accept"></div>
+	</div>
+	<!-- #endregion -->
+</div>
