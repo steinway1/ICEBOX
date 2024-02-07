@@ -176,12 +176,17 @@
   cursor: pointer;
   justify-content: flex-start;
   align-items: stretch;
-  font-size: 17px;
-  line-height: 23px;
+  font-size: 15px;
+  line-height: 20px;
   font-weight: 500;
   display: flex;
   position: relative;
   overflow: hidden;
+  margin-bottom: 2px;
+
+  &.--vday {
+    margin-bottom: 8px;
+  }
 
   &.is-sale {
     color: #0095c6;
@@ -190,11 +195,21 @@
     font-weight: 600;
   }
 
+  &.is-active {
+    a {
+      border-top: 1px solid #99d0e2;
+      border-bottom: 1px solid #99d0e2;
+      background-color: rgba(0, 149, 198, 0.071);
+      color: #0681a9;
+      font-weight: 600;
+    }
+  }
+
   a {
     flex: 1;
     align-items: center;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 9px;
+    padding-bottom: 9px;
     padding-left: 20px;
     display: flex;
     position: relative;
