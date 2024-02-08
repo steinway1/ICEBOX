@@ -443,9 +443,6 @@ const setPageFilters = () => {
     }
   }
 }
-
-setPageFilters()
-setFiltersStickyPos()
 /* #endregion Results Filters */
 
 
@@ -3818,6 +3815,8 @@ bindCardFav()
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  setPageFilters()
+  setFiltersStickyPos()
   homepageCategoriesSlider.init()
   initPageObjects();
   initTelInput();
