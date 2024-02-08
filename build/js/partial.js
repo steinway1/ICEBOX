@@ -595,6 +595,7 @@ const setPageFilters = () => {
                 const toMove = links.length !== 0 ? links : labels
                 toMove.forEach((node) => { emptyBox.querySelector('div').appendChild(node) })
                 emptyBox.classList.remove(IS_EMPTY)
+                $('.filter-modal__content').empty()
               }
             }, getTransitionTime(filterModal.container));
           }

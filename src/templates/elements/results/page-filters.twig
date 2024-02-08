@@ -5,10 +5,10 @@
 
 					{% for pageFilter in pageFilters %}
 						<div id="{{pageFilter.filterID}}" class="page-filter-box">
-							<button class="page-filter-btn">
+							<div class="page-filter-btn">
 								<span>{{pageFilter.title}}</span>
 								{% include "elements/results/svg/arrow.svg" %}
-							</button>
+							</div>
 							{% if pageFilter.options.length %}
 								<div class="page-filter-drop">
 									<div class="page-filter-drop__container">
@@ -33,11 +33,11 @@
 				</div>
 				<div class="page-filters__group">
 					<div class="page-filter-box">
-						<button class="page-filter-btn">
+						<div class="page-filter-btn">
 							{% include "elements/results/svg/sort_new.svg" %}
 							<span>Most Popular</span>
 							{% include "elements/results/svg/arrow.svg" %}
-						</button>
+						</div>
 						<div class="page-filter-drop">
 							<div class="page-filter-drop__container">
 								{% for sort in pageSort %}

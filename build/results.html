@@ -418,11 +418,12 @@
                                 <div class="page-filters__group">
 
                                     <div id="pageFilterGender" class="page-filter-box">
-                                        <button class="page-filter-btn">
+                                        <div class="page-filter-btn">
                                             <span>Gender</span>
                                             <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-                                            </svg> </button>
+                                            </svg>
+                                        </div>
                                         <div class="page-filter-drop">
                                             <div class="page-filter-drop__container">
                                                 <label>
@@ -450,11 +451,12 @@
                                         </div>
                                     </div>
                                     <div id="pageFilterPrice" class="page-filter-box">
-                                        <button class="page-filter-btn">
+                                        <div class="page-filter-btn">
                                             <span>Price Range</span>
                                             <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-                                            </svg> </button>
+                                            </svg>
+                                        </div>
                                         <div class="page-filter-drop">
                                             <div class="page-filter-drop__container">
                                                 <label>
@@ -496,11 +498,12 @@
                                         </div>
                                     </div>
                                     <div id="pageFilterThickness" class="page-filter-box">
-                                        <button class="page-filter-btn">
+                                        <div class="page-filter-btn">
                                             <span>Thickness</span>
                                             <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-                                            </svg> </button>
+                                            </svg>
+                                        </div>
                                         <div class="page-filter-drop">
                                             <div class="page-filter-drop__container">
                                                 <label>
@@ -535,11 +538,12 @@
                                         </div>
                                     </div>
                                     <div id="" class="page-filter-box">
-                                        <button class="page-filter-btn">
+                                        <div class="page-filter-btn">
                                             <span>Color</span>
                                             <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-                                            </svg> </button>
+                                            </svg>
+                                        </div>
                                         <div class="page-filter-drop">
                                             <div class="page-filter-drop__container">
                                                 <label>
@@ -661,7 +665,7 @@
                                 </div>
                                 <div class="page-filters__group">
                                     <div class="page-filter-box">
-                                        <button class="page-filter-btn">
+                                        <div class="page-filter-btn">
                                             <svg width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 6H23" stroke="currentColor" stroke-width="1.5"></path>
                                                 <path d="M5 12H19" stroke="currentColor" stroke-width="1.5"></path>
@@ -669,7 +673,8 @@
                                             </svg> <span>Most Popular</span>
                                             <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-                                            </svg> </button>
+                                            </svg>
+                                        </div>
                                         <div class="page-filter-drop">
                                             <div class="page-filter-drop__container">
                                                 <a class="is-active" onclick="updateSortByFilter('Popular','Popular');">Most Popular</a>
@@ -700,7 +705,7 @@
                             </div>
                             <div class="filter-modal__footer">
                                 <button data-filter-evt="close" class="filter-modal__btn btn_sub">Cancel</button>
-                                <button class="filter-modal__btn">Apply</button>
+                                <button data-filter-evt="close" class="filter-modal__btn">Apply</button>
                             </div>
                         </div>
                     </div>
@@ -722,18 +727,663 @@
 
                                 <div class="results__items">
                                     <div class="cards-grid">
-                                        <div class="pay-card">
-                                            <div class="pay-card__wrapper">
-                                                <div data-evt="togglePayModal" class="pay-card__pics">
-                                                    <img src="./assets/pay-klarna.svg" loading="lazy" alt="">
-                                                    <img src="./assets/pay-affirm.svg" loading="lazy" alt="">
-                                                    <img src="./assets/pay-afterpay.svg" loading="lazy" alt="">
-                                                </div>
-                                                <div class="pay-card__details">
-                                                    <div class="pay-card__heading">Buy Now. Pay Later.<br><span>No Fees.</span>
+                                        <div class=" product-card     --vday " data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-sample3.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
                                                     </div>
-                                                    <p class="pay-card__typo">Take the stress out of payments with our convenient up to 12-month installment plan</p>
-                                                    <button data-evt="payModalLater" class="pay-card__btn">Learn More</button>
+
+                                                    <!-- #region SALE THINGS -->
+
+
+
+
+
+                                                    <div class="vday-card">
+                                                        <div>
+                                                            <img src="./assets//vday/tag60.svg" loading="lazy" alt="" class="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- #endregion -->
+                                                </div>
+
+                                                <div class="stock-dash-box">
+                                                    <div>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <span>Only One At This Price</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+													<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">6,550</span>
+                                                        <span class="product-card__sale-price">3,470</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" product-card     --vday " data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-sample3.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+
+
+
+
+
+                                                    <div class="vday-card">
+                                                        <div>
+                                                            <img src="./assets//vday/tag60.svg" loading="lazy" alt="" class="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- #endregion -->
+                                                </div>
+
+                                                <div class="stock-dash-box">
+                                                    <div>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <span>Only One At This Price</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+													<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">6,550</span>
+                                                        <span class="product-card__sale-price">3,470</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" product-card     --vday " data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-sample3.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+
+
+
+
+
+                                                    <div class="vday-card">
+                                                        <div>
+                                                            <img src="./assets//vday/tag60.svg" loading="lazy" alt="" class="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- #endregion -->
+                                                </div>
+
+                                                <div class="stock-dash-box">
+                                                    <div>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <span>Only One At This Price</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+													<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">6,550</span>
+                                                        <span class="product-card__sale-price">3,470</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" product-card     --vday " data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-sample3.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+
+
+
+
+
+                                                    <div class="vday-card">
+                                                        <div>
+                                                            <img src="./assets//vday/tag60.svg" loading="lazy" alt="" class="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- #endregion -->
+                                                </div>
+
+                                                <div class="stock-dash-box">
+                                                    <div>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <span>Only One At This Price</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+													<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">6,550</span>
+                                                        <span class="product-card__sale-price">3,470</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" product-card     --vday " data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-sample3.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+
+
+
+
+
+                                                    <div class="vday-card">
+                                                        <div>
+                                                            <img src="./assets//vday/tag60.svg" loading="lazy" alt="" class="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- #endregion -->
+                                                </div>
+
+                                                <div class="stock-dash-box">
+                                                    <div>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <span>Only One At This Price</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+													<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">6,550</span>
+                                                        <span class="product-card__sale-price">3,470</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" product-card     --vday " data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-sample3.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+
+
+
+
+
+                                                    <div class="vday-card">
+                                                        <div>
+                                                            <img src="./assets//vday/tag60.svg" loading="lazy" alt="" class="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- #endregion -->
+                                                </div>
+
+                                                <div class="stock-dash-box">
+                                                    <div>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <span>Only One At This Price</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+													<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">6,550</span>
+                                                        <span class="product-card__sale-price">3,470</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" product-card     --vday " data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-sample3.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+
+
+
+
+
+                                                    <div class="vday-card">
+                                                        <div>
+                                                            <img src="./assets//vday/tag60.svg" loading="lazy" alt="" class="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- #endregion -->
+                                                </div>
+
+                                                <div class="stock-dash-box">
+                                                    <div>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <span>Only One At This Price</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+													<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">6,550</span>
+                                                        <span class="product-card__sale-price">3,470</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" product-card     --vday " data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-sample3.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+
+
+
+
+
+                                                    <div class="vday-card">
+                                                        <div>
+                                                            <img src="./assets//vday/tag60.svg" loading="lazy" alt="" class="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- #endregion -->
+                                                </div>
+
+                                                <div class="stock-dash-box">
+                                                    <div>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <span>Only One At This Price</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+													<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">6,550</span>
+                                                        <span class="product-card__sale-price">3,470</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" product-card     --vday " data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-sample3.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+
+
+
+
+
+                                                    <div class="vday-card">
+                                                        <div>
+                                                            <img src="./assets//vday/tag60.svg" loading="lazy" alt="" class="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- #endregion -->
+                                                </div>
+
+                                                <div class="stock-dash-box">
+                                                    <div>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <span>Only One At This Price</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+													<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">6,550</span>
+                                                        <span class="product-card__sale-price">3,470</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" product-card     --vday " data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-sample3.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+
+
+
+
+
+                                                    <div class="vday-card">
+                                                        <div>
+                                                            <img src="./assets//vday/tag60.svg" loading="lazy" alt="" class="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- #endregion -->
+                                                </div>
+
+                                                <div class="stock-dash-box">
+                                                    <div>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <span>Only One At This Price</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+													<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">6,550</span>
+                                                        <span class="product-card__sale-price">3,470</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" product-card     --vday " data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-sample3.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+
+
+
+
+
+                                                    <div class="vday-card">
+                                                        <div>
+                                                            <img src="./assets//vday/tag60.svg" loading="lazy" alt="" class="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- #endregion -->
+                                                </div>
+
+                                                <div class="stock-dash-box">
+                                                    <div>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <span>Only One At This Price</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+													<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">6,550</span>
+                                                        <span class="product-card__sale-price">3,470</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
