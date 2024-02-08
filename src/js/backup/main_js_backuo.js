@@ -224,6 +224,23 @@ class contentBackdrop {
 
 
 /* #region  Results Filters */
+const setFiltersStickyPos = () => {
+  const pageFilters = document.querySelector('.page-filters'),
+    header = document.querySelector('.header')
+
+  if (pageFilters !== null && header !== null) {
+    function adjust() {
+      try {
+        let headerHeight = parseInt(window.getComputedStyle(header).getPropertyValue('height'))
+        pageFilters.style.top = `${headerHeight}px`
+      } catch {
+        console.log('page filters err')
+      }
+    }
+    ['load', 'resize'].forEach((event) => { window.addEventListener(event, () => { adjust() }) })
+  }
+}
+
 const setPageFilters = () => {
   const filters = Array.from(document.querySelectorAll('.page-filter-box')).reduce((acc, box) => {
     if (box.querySelector('.page-filter-drop') !== null && box.querySelector('.page-filter-btn') !== null) { acc.push(box) }
@@ -576,25 +593,6 @@ const header = {
   }
 };
 /* #endregion */
-
-
-const pgFilter = {
-  init: function () {
-    this.setFiltersStickyPos()
-  },
-  setFiltersStickyPos: function () {
-    const pageFilters = document.querySelector('.page-filters'),
-      header = document.querySelector('.header')
-
-    if (pageFilters !== null && header !== null) {
-      function adjust() {
-        let headerHeight = parseInt(window.getComputedStyle(header).getPropertyValue('height'))
-        pageFilters.style.top = `${headerHeight}px`
-      }
-      ['load', 'resize'].forEach((event) => { window.addEventListener(event, () => { adjust() }) })
-    }
-  }
-}
 
 
 /* #region  Menu */
@@ -2775,7 +2773,6 @@ const initPageObjects = () => {
   const objArr = [
     header,
     menu,
-    pgFilter,
     cartModal,
     currencyModal,
     pageBanner,
@@ -3819,6 +3816,7 @@ bindCardFav()
 
 document.addEventListener("DOMContentLoaded", function () {
   setPageFilters()
+  setFiltersStickyPos()
   homepageCategoriesSlider.init()
   initPageObjects();
   initTelInput();
