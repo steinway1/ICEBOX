@@ -8,7 +8,13 @@ const IS_VISIBLE = "is-visible",
   IS_COPIED = 'is-copied',
   IS_ERROR = 'is-error',
   IS_EMPTY = 'is-empty'
-
+const paceOptions = {
+  ajax: true,
+  document: true,
+  elements: {
+    selectors: ['main']
+  }
+};
 /* #region  Extends */
 $.fn.extend({
   exists: function () {
