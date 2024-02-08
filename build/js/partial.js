@@ -893,7 +893,10 @@ const pgFilter = {
         let headerHeight = parseInt(window.getComputedStyle(header).getPropertyValue('height'))
         pageFilters.style.top = `${headerHeight}px`
       }
-      ['load', 'resize'].forEach((event) => { window.addEventListener(event, () => { adjust() }) })
+      adjust()
+      window.addEventListener('resize', () => {
+        adjust()
+      })
     }
   }
 }
