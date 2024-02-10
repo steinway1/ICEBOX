@@ -1,0 +1,24 @@
+{% set featured = blogs[0] %}
+
+<div class="main_blog">
+
+    <div class="blog__featured">
+        {% include "elements/blog-post.twig" with {
+            article: featured
+        } %}
+    </div>
+
+    <div class="blog__posts">
+        <div class="blog__wrapper">
+            <div class="blog__posts-grid">
+                {% for blog in blogs %}
+                    {% include "elements/blog-post.twig" with {
+                        article: blog
+                    } %}
+                {% endfor %}
+            </div>
+        </div>
+
+
+    </div>
+</div>

@@ -2706,41 +2706,67 @@ const sirvCards = {
 }
 /* #endregion */
 
-// const blogPage = {
-//   init: function () {
-//     Object.values(this.initFn).forEach((fn) => {
-//       if (typeof fn === 'function') {
-//         try { fn() }
-//         catch { console.log('blog JS ERR') }
-//       }
-//     })
-//   },
-//   initFn: {
-//     initArticleProducts: () => {
-//       const slider = document.querySelector('.article-splide')
-//       if (slider !== null) {
-//         let main = new Splide(slider, {
-//           type: "slider",
-//           perPage: 3,
-//           perMove: 1,
-//           autoplay: 0,
-//           pauseOnHover: 1,
-//           pauseOnFocus: 1,
-//           gap: 8,
-//           arrows: 1,
-//           pagination: 0,
-//           speed: 250,
-//           breakpoints: {
-//             991: {
-//               perPage: 2
-//             }
-//           },
-//         })
-//         main.mount()
-//       }
-//     }
-//   }
-// }
+const blogPage = {
+  init: function () {
+    Object.values(this.initFn).forEach((fn) => {
+      if (typeof fn === 'function') {
+        try { fn() }
+        catch { console.log('blog JS ERR') }
+      }
+    })
+  },
+  initFn: {
+    attachCommentSubmit: () => {
+      const commentArea = document.querySelector('[data-article="commentArea"]')
+      const commentSubmit = document.querySelector('[data-article="commentSubmit"]')
+      const holder = document.querySelector('.article__comments-wrap')
+
+      if (commentArea !== null && commentSubmit !== null) {
+        const submit = () => {
+          const
+            val = commentArea.value
+          if (val.length !== 0) {
+            const
+              user = 'Guets',
+              date = new Date().toLocaleDateString('en-us', { year: "numeric", month: "short", day: "numeric" }),
+              html = `
+              <div class="article-comment"><span>${user}</span><span>${val}</span><span>${date}</span></div>
+              `
+
+            holder.insertAdjacentHTML("beforeend", html)
+            commentArea.value = ''
+          }
+        }
+
+        commentSubmit.onclick = () => {
+          submit()
+        }
+
+        commentArea.onkeydown = (e) => {
+          const isEnter = e.key === 'Enter' || e.keyCode === 13
+          if (isEnter) {
+            e.preventDefault()
+            submit()
+          }
+        }
+      }
+    },
+    attachScroll: () => {
+      const img = document.querySelector('.article-top-cover img')
+      if (img !== null) {
+        let max = img.offsetHeight + 100
+        window.onscroll = () => {
+          let y = window.scrollY
+          if (max > y) {
+            let f = 1 - (y * 100 / max * 0.01)
+            img.style.marginTop = `-${y * 0.08}px`
+            img.style.opacity = f
+          }
+        }
+      }
+    }
+  }
+}
 
 const pageReview = {
   init: function () {
@@ -2796,8 +2822,8 @@ const initPageObjects = () => {
     bookModal,
     passReset,
     sirvCards,
-    pageReview
-    // blogPage,
+    pageReview,
+    blogPage
   ];
 
   for (let i = 0; i < objArr.length; i++) {
@@ -3390,7 +3416,6 @@ const attachCheckoutCopy = () => {
   }
 }
 
-
 const salesModal = {
   init: function () {
     this.renderDOM()
@@ -3431,7 +3456,6 @@ const salesModal = {
     }, getTransitionTime(this.modal));
   }
 }
-
 
 const formPage = new Object({
   uploadedImages: [],
