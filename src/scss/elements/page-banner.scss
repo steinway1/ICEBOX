@@ -1,7 +1,7 @@
 .page-banner {
   z-index: 101;
-  background-color: #f8f8f8;
-  background-image: linear-gradient(to right, rgba(46, 203, 255, .13), rgba(150, 204, 255, .1));
+  background-color: #fff;
+  background-image: linear-gradient(to right, #dfe4e7, #f2f6fc);
   position: relative;
   top: 0%;
   bottom: auto;
@@ -10,6 +10,7 @@
   transition: all 300ms ease;
 
   .bfs-banner__group {
+    display: none !important;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -28,11 +29,16 @@
   }
 }
 
+.page-banner-text {
+  font-weight: 600 !important;
+  font-size: 11px !important;
+}
+
 .page-banner__wrapper {
   justify-content: center;
   align-items: center;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   display: flex;
   position: relative;
 

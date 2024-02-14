@@ -33,7 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     pageBackdrop = document.querySelector('.am-backdrop'),
     amHeader = document.querySelector('.am-header')
 
-  const IS_VISIBLE = 'is-visible'
+  const IS_VISIBLE = 'is-visible',
+    IS_ACTIVE = 'is-active'
+
+  HTMLElement.prototype.isVisible = function () {
+    return window.getComputedStyle(this).getPropertyValue('display') !== 'none'
+  }
 
   const getTransitionTime = (target) => {
     let el = target instanceof jQuery ? target[0] : target;
@@ -284,9 +289,120 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const whalesPage = {
+    init: function () {
+      Object.values(this.initFn).forEach((fn) => {
+        if (typeof fn === 'function') {
+          try {
+            fn()
+          } catch (err) {
+            console.log(`whales init fn err : ${err.message}`)
+          }
+        }
+      })
+    },
+    toggleView: function (viewType = 'list') {
+      const grid = document.querySelector('.tb-grid-container')
+      const list = document.querySelector('.tb-table-container')
+      if (list !== undefined && grid !== undefined) {
+        switch (viewType) {
+          case 'grid':
+            list.style.opacity = 0
+            setTimeout(() => {
+              list.style.display = 'none'
+              grid.style.display = 'block'
+              setTimeout(() => {
+                grid.style.opacity = 1
+              }, 3);
+            }, getTransitionTime(list));
+            break;
+          case 'list':
+            grid.style.opacity = 0
+            setTimeout(() => {
+              grid.style.display = 'none'
+              list.style.display = 'block'
+              setTimeout(() => {
+                list.style.opacity = 1
+              }, 3);
+            }, getTransitionTime(list));
+            break;
+          default:
+            break;
+        }
+      }
+    },
+    initFn: {
+      attachDropdownBtnClick: () => {
+        const btnArr = [...document.querySelectorAll('[data-tb-dropdown]')]
+        btnArr.forEach((btn) => {
+          btn.onclick = () => {
+            const dropdown = btn.parentNode.querySelector('.tb-dropdown')
+            if (dropdown !== null) {
+              if (dropdown.isVisible()) {
+                btn.classList.remove(IS_ACTIVE)
+                dropdown.classList.remove(IS_VISIBLE)
+                setTimeout(() => {
+                  dropdown.style.display = 'none'
+                }, getTransitionTime(dropdown));
+              } else {
+                dropdown.style.display = 'block'
+                btn.classList.add(IS_ACTIVE)
+                setTimeout(() => {
+                  dropdown.classList.add(IS_VISIBLE)
+                }, 1);
+              }
+            }
+          }
+        })
+      },
+      attachViewSwitch: () => {
+        const btnArr = [...document.querySelectorAll('[data-switch-view]')]
+        cosnt = removeCls = () => {
+          btnArr.forEach((btn) => { btn.classList.remove(IS_ACTIVE) })
+        }
+        btnArr.forEach((btn) => {
+          btn.onclick = () => {
+            const attr = btn.getAttribute('data-switch-view')
+            if (attr !== null && !btn.classList.contains(IS_ACTIVE)) {
+              removeCls()
+              btn.classList.add(IS_ACTIVE)
+              whalesPage.toggleView(attr)
+            }
+          }
+        })
+      },
+      attachDocClick: () => {
+        const dropdowns = [...document.querySelectorAll('.tb-dropdown')]
+        const dropButtons = [...document.querySelectorAll('[data-tb-dropdown]')]
+
+        document.addEventListener('click', function(e) {
+          const target = e.target
+          if (!target.closest('.tb-btn')) {
+            dropdowns.forEach((drop) => {
+              drop.classList.remove(IS_VISIBLE)
+              setTimeout(() => {
+                drop.style.display = 'none'
+              }, getTransitionTime(drop));
+            })
+            dropButtons.forEach((btn) => { btn.classList.remove(IS_ACTIVE) })
+          }
+        })
+      }
+    }
+  }
+
   pageBackdrop.onclick = () => { pageSearch.close(); pageMenu.close(); pageSidebar.close() }
 
-  const pageObjects = [orderZoom, orderNotes, pageSearch, pageMenu, pageSidebar]
+
+  const pageObjects = [
+    orderZoom,
+    orderNotes,
+    pageSearch,
+    pageMenu,
+    pageSidebar,
+    whalesPage
+  ]
+
   pageObjects.forEach((obj) => {
     if (obj.init !== undefined && typeof obj.init === 'function') {
       try {

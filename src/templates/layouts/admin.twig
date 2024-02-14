@@ -7,7 +7,7 @@
 	</head>
 
 
-	<body>
+	<body {% if bodyClass is defined %} class="{{bodyClass}}"{% endif %}>
 		{% include "admin/components/header.twig" %}
 
 		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}

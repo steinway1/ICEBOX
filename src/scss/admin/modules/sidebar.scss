@@ -101,6 +101,12 @@
   justify-content: space-between;
   display: flex;
   overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .am-profile-short {
@@ -236,6 +242,7 @@
       align-items: center;
       display: flex;
       position: relative;
+      padding-right: 48px;
     }
   }
 }
@@ -261,6 +268,7 @@
 @media screen and (max-width: 991px) {
   .am-sidebar__footer {
     background-color: rgba(64, 140, 241, .15);
+    backdrop-filter: blur(20px);
   }
 
   .am-sidebar__wrapper {

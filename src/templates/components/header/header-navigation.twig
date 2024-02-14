@@ -7,15 +7,16 @@
 </a>
 
 <div class="header-nav__group">
+	<div href="https://www.icebox.com/locations" data-evt="toggleMenu">
+		<div>
+			{% include "components/svg/menu.svg" %}
+			<span>Menu</span>
+		</div>
+	</div>
 	<a href="javascript:void(0);" data-evt="toggleSearch">
 		<div>
-			{% include "../svg/search.svg" %}
-		</div>
-	</a>
-	<a href="https://www.icebox.com/locations" data-evt="locations">
-		<div>
-			{% include "../svg/location.svg" %}
-			<span>Our Locations</span>
+			{% include "components/svg/search.svg" %}
+			<span>Search</span>
 		</div>
 	</a>
 	{% if vday == true %}
@@ -24,26 +25,16 @@
 			<span>Valentine&#x27;s Sale</span>
 		</a>
 	{% endif %}
-	<a href="javascript:void(0);" data-evt="toggleMenu">
-		<div>
-			{% include "../svg/menu.svg" %}
-		</div>
-	</a>
 </div>
 
 <div class="header-nav__group">
 	<div data-evt="toggleAccountDropdown" data-sign-switch="login" class="js-login-dropdown js-toggle-sign">
 		<div>
 			{% include "../svg/account.svg" %}
-			<!-- <span>My Account</span> -->
+			<span>My Account</span>
 		</div>
 		{% include "./login-dropdown.twig" %}
 	</div>
-	<a href="/wishlist" data-evt="toggleWishlist">
-		<div>
-			{% include "../svg/wishlist.svg" %}
-		</div>
-	</a>
 	<a href="javascript:void(0);" data-evt="toggleCart">
 		<div>
 			{% include "../svg/cart.svg" %}

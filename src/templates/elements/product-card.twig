@@ -13,7 +13,7 @@
 					{{ productItem.sirv_html | raw }}
 				{% endif %}
 			</a>
-      
+
 			{% if productItem.available_colors is defined %}
 				<div class="product-card__colors">
 					{% for color in productItem.available_colors %}
@@ -98,18 +98,23 @@
 						{% endif %}
 					</span>
 				{% endif %}
-
 				<h2>
 					<a href="{{productItem.href}}" class="product-card__name">{{productItem.name}}</a>
 				</h2>
 			</div>
-			<div class="{% if productItem.salePrice is defined %}product-card__price-wrap is-sale{% else %}product-card__price-wrap{% endif %}">
-				<span class="product-card__price">{{productItem.price}}</span>
-				{% if productItem.salePrice %}
-					<span class="product-card__sale-price">{{productItem.salePrice}}</span>
-				{% endif %}
-			</div>
+
+			{% if productItem.salePrice is defined %}
+				<div class="product-card__price-wrap">
+					<span class="product-card__price">{{productItem.salePrice}}</span>
+					<span class="product-card__sale-price">{{productItem.price}}</span>
+				</div>
+			{% else %}
+				<div class="product-card__price-wrap">
+					<span class="product-card__price">{{productItem.price}}</span>
+				</div>
+			{% endif %}
 		</div>
+
 		{% if user.admin %}
 			{{ productItem.extra_html | raw}}
 		{% endif %}
