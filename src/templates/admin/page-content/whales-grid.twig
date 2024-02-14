@@ -128,68 +128,6 @@
 						{% endfor %}
 					</div>
 				</div>
-
-				{# Table #}
-				<div class="tb-table-container">
-					<table class="tb-table">
-						<thead>
-							<tr>
-								{% for head in table.headings %}
-									<th {% if head.sort is defined %} data-sort-evt="{{head.sort}}" {% endif %}>{{head.caption}}</th>
-								{% endfor %}
-							</tr>
-						</thead>
-						<tbody>
-							{% for row in table.rows %}
-								<tr {% if row.active == true %} class="row_active" {% endif %}>
-
-									{% for col in row.columns %}
-
-										{% if col.isName == true %}
-											<!-- #region : Full Name -->
-											<td data-td="{{col.data_name}}">
-												<div class="tb-name-wrap">
-													<img src="{{row.person.avatar}}" alt="">
-													<div>
-														<div class="person-name">{{row.person.full_name}}</div>
-														<div class="typo_sm">{{row.person.dob}}</div>
-														<div class="typo_sm">{{row.person.score}}</div>
-													</div>
-												</div>
-											</td>
-											<!-- #endregion : Full Name -->
-										{% else %}
-											<!-- #region : Regular Columns -->
-											<td data-td="{{col.data_name}}">
-												{% for caption in col.captions %}
-													{% if caption.editable == true %}
-														<a id="{{caption.id}}" class="xEdit editable editable-click{% if caption.value == 'Empty' %} is-empty{% endif %}" data-name="{{caption.data_name}}" data-type="select" data-pk="id/{{caption.pk_id}}" data-url="http://www.icebox.com/admin/xedit/save" data-inputclass="input-list-name-edit" data-source="{{caption.data_soruce}}" data-value="" data-title="Value">{{caption.value}}</a>
-													{% elseif caption.href is defined %}
-														<div>
-															<a target="_blank" href="{{caption.href}}" {% for attr in caption.data_attr %} {{attr.name}}="{{attr.value}}" {% endfor %}>{{caption.value}}</a>
-														</div>
-													{% else %}
-														<div>{{caption.value}}</div>
-													{% endif %}
-												{% endfor %}
-												{% for social in col.socials %}
-													<a class="tb-social-btn {{social.type}}">
-														<div>{{social.name}}</div>
-														<div class="tb-social-count">{{social.count}}</div>
-													</a>
-												{% endfor %}
-											</td>
-											<!-- #endregion : Regular Columns -->
-										{% endif %}
-
-									{% endfor %}
-
-								</tr>
-							{% endfor %}
-
-						</tbody>
-					</table>
-				</div>
 			</div>
 			<!-- #endregion -->
 

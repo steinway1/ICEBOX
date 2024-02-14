@@ -4,9 +4,9 @@
 		<img src="{{THEME_ASSETS_FOLDER}}hero_collection.webp" loading="eager" alt="" class="hero-banner__pic">
 		<a href="/valentines-day" class="hero-banner_overlay"></a>
 		<div class="hero-banner__summary">
-			<h2>Icebox Jewelry Collection 2024</h2>
-			<p>Discover the Icy Elegance: Introducing the Icebox Jewelry Collection 2024</p>
-			<div>
+			<h2 class="hero-title">Icebox Jewelry Collection 2024</h2>
+			<p class="hero-subtitle">Discover the Icy Elegance: Introducing the Icebox Jewelry Collection 2024</p>
+			<div class="hero-controls">
 				<a href="/valentines-day" class="hero-banner__btn">
 					<span>Shop Now</span>
 					{% include "components/svg/arrow-next.svg" %}
@@ -30,29 +30,13 @@
 	</div>
 </section>
 
-<!-- Pendants Collection -->
+<!-- Dynamic Collections -->
 {% for section in homepage_sections %}
-	{% include "elements/hero-section.twig", with { section: section } %}
+	{% include "elements/hero-section.twig", with {
+    section: section,
+    items: section.items
+    } %}
 {% endfor %}
-<section class="hero-section">
-
-	<div class="splide hero_splide">
-		<div class="splide__track">
-			<div class="splide__list">
-				{% for item in trending_items %}
-					{% include "elements/product-card.twig", with {
-          splideClass: true,
-          productItem: item,
-          disableZoom: false
-          } %}
-				{% endfor %}
-			</div>
-		</div>
-	</div>
-	<div class="hero-btn-wrap">
-		<a href="/valentines-day" class="hero-btn">Shop All</a>
-	</div>
-</section>
 
 
 {# REVIEW #}

@@ -1,16 +1,65 @@
-<section class="hero-section">
-	<div class="hero-banner">
-		<img src="{{THEME_ASSETS_FOLDER}}hero_{{section.banner}}.webp" loading="eager" alt="" class="hero-banner__pic">
-		<a href="{{section.href}}" class="hero-banner_overlay"></a>
-		<div class="hero-banner__summary">
-			<h2>{{section.title}}</h2>
-			<p>{{section.banner_text}}</p>
-			<div>
-				<a href="{{section.href}}" class="hero-banner__btn">
-					<span>Shop Now</span>
-					{% include "components/svg/arrow-next.svg" %}
-				</a>
+{% if not section.special_type == true %}
+	<section class="hero-section">
+		<div class="hero-banner">
+			<img src="{{THEME_ASSETS_FOLDER}}hero_{{section.banner}}.webp" loading="eager" alt="" class="hero-banner__pic">
+			<a href="{{section.href}}" class="hero-banner_overlay"></a>
+			<div class="hero-banner__summary">
+				<h2 class="hero-title">{{section.title}}</h2>
+				<p class="hero-subtitle">{{section.banner_text}}</p>
+				<div class="hero-controls">
+					<a href="{{section.href}}" class="hero-banner__btn">
+						<span>Shop Now</span>
+						{% include "components/svg/arrow-next.svg" %}
+					</a>
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
+
+		{% if section.grid == true %}
+			<div class="hero-cards-wrap">
+				<div class="hero-cards-grid">
+					{% for item in trending_items|slice(0, 9) %}
+						{% include "elements/product-card.twig", with {
+          splideClass: false,
+          productItem: item,
+          disableZoom: false
+          } %}
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+
+		{% if section.slider == true %}
+			<div class="splide hero_splide">
+				<div class="splide__track">
+					<div class="splide__list">
+						{% for item in trending_items %}
+							{% include "elements/product-card.twig", with {
+          splideClass: true,
+          productItem: item,
+          disableZoom: false
+          } %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		{% endif %}
+
+		{% if not section.static == true %}
+			<div class="hero-btn-wrap">
+				<a href="{{section.href}}" class="hero-btn">Shop All</a>
+			</div>
+		{% endif %}
+	</section>
+{% else %}
+	{# Diamond Shape #}
+	{% if section.type == 'diamond_shapes' and section.include == true %}
+		<section class="hero-section special_type">
+			<div class="hero-header">
+				<h2 class="hero-title">Explore By Diamond Shape</h2>
+				<p class="hero-subtitle">Discover the Icy Elegance: Introducing the Icebox Jewelry Collection 2024</p>
+			</div>
+      <div class="hero-cards-wrap"></div>
+		</section>
+	{% endif %}
+{% endif %}
