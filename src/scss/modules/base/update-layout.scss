@@ -11,10 +11,6 @@ body.update_layout {
     }
   }
 
-  .page-reviews {
-    margin-top: 100vh;
-  }
-
   .header-nav__group {
 
     a,
@@ -25,11 +21,57 @@ body.update_layout {
 }
 
 /* #region  Hero Banner */
+
+.hero-section__media {
+  position: relative;
+}
+
 .hero-section {
   position: relative;
 
-  &.special_type {
+  &.hero-section_locations {
+    .hero-subtitle {
+      max-width: 420px;
+    }
+  }
+
+  &.hero-section_min {
+    .hero-banner {
+      height: 40vh;
+
+      @include maxWidthSm {
+        height: 60vh;
+      }
+    }
+
+    .hero-banner__pic {
+      object-position: 80% 50%;
+    }
+
+    @include maxWidthXs {
+      .hero-banner__summary {
+        position: relative;
+        color: var(--black);
+        padding: 14px;
+      }
+    }
+  }
+
+  &.diamond_shapes {
     padding-top: 38px;
+
+    .hero-cards-grid {
+      grid-template-columns: repeat(6, 1fr);
+
+      @include maxWidthMd {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px
+      }
+
+      @include maxWidthSm {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   }
 }
 
@@ -68,7 +110,7 @@ body.update_layout {
 .hero-title {
   text-transform: uppercase;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 650;
   line-height: 30px;
   margin-bottom: 4px;
 
@@ -335,6 +377,79 @@ body.update_layout {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding-left: 14px;
+  padding-right: 14px;
 }
 
 /* #endregion */
+
+.hero-card {
+  position: relative;
+}
+
+.hero-card__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-card__media {
+  aspect-ratio: 1/1 !important;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(326deg, #03244d 13%, #e4f2ff 56%, #1c2c3c);
+    pointer-events: none;
+    opacity: .06;
+    transition: all 250ms ease;
+  }
+
+  @media screen and (min-width: 992px) {
+    &:hover {
+      &::after {
+        opacity: .13;
+      }
+    }
+  }
+
+  &>a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 100%;
+    width: 100% !important;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.hero-card__over {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  pointer-events: none;
+
+  span {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}

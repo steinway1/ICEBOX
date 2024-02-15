@@ -44,34 +44,27 @@
 
 
 <!-- Locations -->
-<section class="home-row">
-	<div class="home-row__wrapper">
-		<div class="wrapper">
-			<div class="home-row__row-details">
-				<div class="home-row__place-name">Locations</div>
-				<h3 class="home-spot__heading">Visit Icebox Store<span>Immerse yourself in the enchanting world of Icebox Jewelry at our store – we&#x27;re waiting you.</span>
-				</h3>
-			</div>
+<section class="hero-section hero-section_locations">
+	<div class="wrapper">
+		<h2 class="hero-title">Visit Icebox</h2>
+		<p class="hero-subtitle">Our flagship showroom is located in Atlanta, and three Icebox boutiques located in Saks Fifth Avenue in Miami Brickell, NYC and Atlanta.</p>
 
-			<div class="home-locations">
-				<div class="home-locations__grid">
-
-					{% for item in locations %}
-						<div class="home-location-item">
-							<img src="{{item.imgSrc}}" loading="lazyload" alt="{{item.alt}}">
-							<div class="home-location-item__details">
-								<div>
-									<span class="home-location-item__city">{{item.shortAddress}}</span>
-									<h5 class="home-location-item__name">{{item.name}}</h5>
-									<p class="home-location-item__summary">{{item.description}}</p>
-								</div>
-								<a href="{{item.href}}">Book an Apppointment</a>
+		<div class="home-locations">
+			<div class="home-locations__grid">
+				{% for item in locations %}
+					<div class="home-location-item">
+						<img src="{{item.imgSrc}}" loading="lazyload" alt="{{item.alt}}">
+						<div class="home-location-item__details">
+							<div>
+								<span class="home-location-item__city">{{item.shortAddress}}</span>
+								<h5 class="home-location-item__name">{{item.name}}</h5>
+								<p class="home-location-item__summary">{{item.description}}</p>
 							</div>
+							<a href="{{item.href}}">Book an Apppointment</a>
 						</div>
-					{% endfor %}
-
-				</div>
+					</div>
+				{% endfor %}
 			</div>
 		</div>
 	</div>
-</section></div><!-- #endregion -->
+</section>

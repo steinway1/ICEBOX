@@ -1,8 +1,10 @@
 {% if not section.special_type == true %}
-	<section class="hero-section">
-		<div class="hero-banner">
-			<img src="{{THEME_ASSETS_FOLDER}}hero_{{section.banner}}.webp" loading="eager" alt="" class="hero-banner__pic">
-			<a href="{{section.href}}" class="hero-banner_overlay"></a>
+	<section class="hero-section{% if section.minimal == true %} hero-section_min{% endif %}">
+		<div class="hero-section__media">
+			<div class="hero-banner">
+				<img src="{{THEME_ASSETS_FOLDER}}hero_{{section.banner}}.webp" loading="eager" alt="" class="hero-banner__pic">
+				<a href="{{section.href}}" class="hero-banner_overlay"></a>
+			</div>
 			<div class="hero-banner__summary">
 				<h2 class="hero-title">{{section.title}}</h2>
 				<p class="hero-subtitle">{{section.banner_text}}</p>
@@ -45,7 +47,7 @@
 			</div>
 		{% endif %}
 
-		{% if not section.static == true %}
+		{% if not section.static == true and not section.minimal == true %}
 			<div class="hero-btn-wrap">
 				<a href="{{section.href}}" class="hero-btn">Shop All</a>
 			</div>
@@ -54,12 +56,16 @@
 {% else %}
 	{# Diamond Shape #}
 	{% if section.type == 'diamond_shapes' and section.include == true %}
-		<section class="hero-section special_type">
+		<section class="hero-section diamond_shapes">
 			<div class="hero-header">
-				<h2 class="hero-title">Explore By Diamond Shape</h2>
-				<p class="hero-subtitle">Discover the Icy Elegance: Introducing the Icebox Jewelry Collection 2024</p>
+				<h2 class="hero-title">{{section.title}}</h2>
+				<p class="hero-subtitle">{{section.subtitle}}</p>
 			</div>
-      <div class="hero-cards-wrap"></div>
+			<div class="hero-cards-wrap">
+				<div class="hero-cards-grid">
+					{% include "components/hero-diamond-cards.twig" %}
+				</div>
+			</div>
 		</section>
 	{% endif %}
 {% endif %}
