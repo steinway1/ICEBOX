@@ -141,6 +141,9 @@ gulp.task('twig-admin:build',
       .src(root.src.adminTemplates)
       .pipe(changed(root.build.adminPages))
       .pipe(plumber(setPlumberNotify('ADMIN TWIG')))
+      .pipe(data(function () {
+        return JSON.parse(fs.readFileSync(`src/templates/data/admin/data.json`));
+      }))
       .pipe(data(function (file) {
         return JSON.parse(fs.readFileSync(root.src.adminData + path.basename(file.path) + '.json'));
       }))

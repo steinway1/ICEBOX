@@ -1,0 +1,125 @@
+<div class="side-row">
+	<div
+		class="side-row__body">
+
+		{# Title #}
+		<div class="side-row__title-wrap">
+			<h1 id="item_name" class="product__item-title">{{product.item.name}}</h1>
+			{% if user != false %}
+				<div class="product__add-fav {% if product.is_in_wishlist %}is-active{% endif %}" id="wishlist_btn_{{product.item.id}}" {% if (product.is_in_wishlist == false) and (user) %} onclick="addToWishlist({{product.item.id}});" {% endif %}>
+					{% include "elements/product-page/svg/heart.svg" %}
+				</div>
+			{% endif %}
+		</div>
+
+		{# Stock Availability #}
+		{% include "elements/product-page/stock-availability.twig" %}
+
+		{# Price #}
+		<div class="side-row__price">
+			<div class="side-row__line_price">
+				{% if product.call_for_price != false %}
+					<div class="product-page__price">
+						<span id="current_base_price" class="item-price">{{ product.call_for_price_text }}</span>
+						<span class="item-price_sub is_xs">Shipping Cost On Checkout</span>
+					</div>
+				{% else %}
+					{% if product.item.salePrice is defined %}
+						<div class="product-page__price">
+							<span id="current_base_price" class="item-price">{{ product.item.salePrice }}</span>
+							<span class="item-price_sub">{{ product.item.discountRate }}% Discount</span>
+						</div>
+						<div class="product-page__price is_off">
+							<span class="item-price" data-old-price="{{ product.item.old_price }}">{{ product.item.price }}</span>
+							<span class="item-price_sub">NO DISCOUNT</span>
+						</div>
+					{% else %}
+						<div class="product-page__price">
+							<span id="current_base_price" class="item-price">{{ product.item.price }}</span>
+							<span class="item-price_sub is_xs">Shipping Cost On Checkout</span>
+						</div>
+					{% endif %}
+				{% endif %}
+			</div>
+			{# Diamond Prices #}
+			<div class="side-row__detailed-price" style="display:none;">
+				<span class="--diamond">
+					<span>Diamond Price:</span>
+					<span></span>
+					<span id="diamond_ring_price"></span>
+				</span>
+				<span class="--ring">
+					<span>Ring Price:</span>
+					<span></span>
+					<span id="ring_ring_price"></span>
+				</span>
+				<span>
+					<span>Total Price:</span>
+					<span></span>
+					<span id="ring_total_price"></span>
+				</span>
+			</div>
+		</div>
+
+
+		{# Options #}
+		<div class="side-row__options">
+			{% for option in product.options %}
+				{% if option.type == "goldColor" %}
+					<div class="side-row__color-picker">
+						{% for optionBtn in option.set %}
+							<div data-color="{{optionBtn.color}}" data-select="color" class="color-pick-btn{% if optionBtn.active %} is-active{% endif %}">
+								<span class="color-gradient {{optionBtn.class}}"></span>
+							</div>
+						{% endfor %}
+						<input type="hidden" id="current_selected_color" class="custom-fields-fetch" name="customInputNew[color]" value="{{ product.selected_color }}">
+					</div>
+				{% else %}
+					{% include 'elements/product-page/custom-fields/' ~ option.type ~ '.twig' %}
+				{% endif %}
+			{% endfor %}
+		</div>
+
+
+		{# Add To Cart #}
+		{% include 'elements/product-page/add-to-cart-btn-v2.twig'%}
+
+
+		{# Description #}
+		<div class="side-row__line">
+			<div class="product__item-summary">
+				{% if product.item.mainDescription %}
+					<p>{{product.item.mainDescription | raw }}</p>
+				{% endif %}
+			</div>
+		</div>
+
+		{# Matching Item #}
+		{% if product.matching_items is defined and user.admin and product.show_perfect_match %}
+			{% set matching_item = product.matching_items[0] %}
+			<div class="side-row__line">
+				<div class="match-box">
+					<div class="match-box-dash">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+					<p class="match-box-heading">Perfect Matching
+						{{ matching_item.category_name }}</p>
+					<div class="match-box__wrapper">
+						<img src="{{matching_item.cover}}" loading="lazy" alt="{{matching_item.alt}}" class="match-box-thumbnail">
+						<div class="match-box__details-wrapper">
+							<a href="{{matching_item.href}}">
+								<span class="match-box-title">{{matching_item.name}}</span>
+							</a>
+							<span class="match-box-price">{{matching_item.price}}</span>
+							<button data-fancybox data-type="iframe" data-src="{{ matching_item.quick_view }}" class="match-box-btn">ADD TO CART</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+
+	</div>
+</div>

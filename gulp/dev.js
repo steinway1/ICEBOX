@@ -131,6 +131,9 @@ gulp.task('twig-admin:dev',
       .src(root.src.adminTemplates)
       .pipe(changed(root.dev.adminPages))
       .pipe(plumber(setPlumberNotify('ADMIN TWIG')))
+      .pipe(data(function () {
+        return JSON.parse(fs.readFileSync(`src/templates/data/admin/data.json`));
+      }))
       .pipe(data(function (file) {
         return JSON.parse(fs.readFileSync(root.src.adminData + path.basename(file.path) + '.json'));
       }))
@@ -359,7 +362,7 @@ gulp.task('clean:dev', (done) => {
 gulp.task('watch:dev',
   () => {
     gulp.watch('./src/templates/**/*.twig', gulp.parallel('twig:dev', 'twig-admin:dev')),
-      gulp.watch('./src/templates/data/**', gulp.parallel('twig:dev' ,'twig-admin:dev')),
+      gulp.watch('./src/templates/data/**', gulp.parallel('twig:dev', 'twig-admin:dev')),
       gulp.watch('./src/templates/admin/svg/**', gulp.parallel('twig-admin:dev')),
       gulp.watch('./src/templates/admin/assets/**/*', gulp.parallel('assets-admin:dev')),
       gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev', 'css-admin:dev')),

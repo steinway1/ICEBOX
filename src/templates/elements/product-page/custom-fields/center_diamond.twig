@@ -1,0 +1,34 @@
+<div id="optionGia" class="product__item-option option_gia">
+	<div class="product-option__head">
+		<div class="product-option-name">
+			<span class="typo_gia-spot"></span>
+			{{option.name}}</div>
+		<div class="product-option__head-right">
+			<div class="product-option__dd-icon">
+				{% include "elements/product-page/svg/dropdown.svg" %}
+			</div>
+		</div>
+	</div>
+	<div data-pg-open="diamonds" class="option-guide-btn">
+		<img src="{{THEME_ASSETS_FOLDER}}/pg-btn_diamond.svg" loading="lazy" alt="">
+		<span>How To Choose Diamond?</span>
+	</div>
+	<div class="product-option__body">
+		<div class="product-option__wrapper">
+			<div class="options-block">
+				{% for optionBtn in option.set %}
+					<div data-value="{{optionBtn.value}}" class="cust_field_btn option-btn{% if optionBtn.active is defined %} is-active{% endif %}">
+						<div class="option-gia">
+							<img src="{{THEME_ASSETS_FOLDER}}gia-diamond.svg" loading="lazy" alt="">
+							<div class="option-gia__details">
+								<div class="option-gia__typo">{{ optionBtn.caption }}</span>
+							</div>
+							<span class="option-gia__price">{{optionBtn.price}}</span>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+<input type="hidden" data-name="{{option.name}}" id="custom_field_{{ option.id }}" data-action="Pick" class="custom-fields-fetch" name="customInputNew[field][{{ option.id }}]" value="{{ option.selected_value }}"></div>

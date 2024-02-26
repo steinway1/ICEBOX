@@ -1,0 +1,28 @@
+<div class="product-sticky-buy">
+	<div class="product-sticky__wrapper">
+		<div class="product-sticky__item">
+			<div class="product-sticky__img-wrap">
+				<img src="{{product.media[0].elements[0].src}}" loading="lazy" alt="">
+			</div>
+			<div class="product-sticky__name">{{product.item.name}}</div>
+		</div>
+		{% if product.temp_unavailable == false %}
+			{% if product.call_for_price == false %}
+				<a id="ajax-button" href="javascript:void(0);" class="buy-btn" onclick="addToCart({{IN_IFRAME}})">
+					<span>ADD TO CART</span>
+					<span>—</span>
+					<span class="buy-btn__price" id="add_cart_btn_price">...</span>
+				</a>
+			{% else %}
+				<a href="tel:+1770828554" class="buy-btn">
+					<span>{{ product.call_for_price_text }}</span>
+				</a>
+			{% endif %}
+
+		{% else %}
+			<a href="javascript:void(0)" class="buy-btn">
+				<span>Temporarily Unavailable</span>
+			</a>
+		{% endif %}
+	</div>
+</div>

@@ -1,0 +1,43 @@
+<div class="side-row__payments">
+	<div class="product__btn-group">
+		{% if product.temp_unavailable == false %}
+			{% if product.call_for_price == false %}
+				<a id="ajax-button" href="javascript:void(0);" class="buy-btn" onclick="addToCart({{IN_IFRAME}})">
+					<span>ADD TO CART</span>
+					<span>—</span>
+					<span class="buy-btn__price" id="add_cart_btn_price">...</span>
+				</a>
+			{% else %}
+				<a href="tel:+1770828554" class="buy-btn">
+					<span>{{ product.call_for_price_text }}</span>
+				</a>
+			{% endif %}
+
+		{% else %}
+			<a href="javascript:void(0)" class="buy-btn">
+				<span>Temporarily Unavailable</span>
+			</a>
+		{% endif %}
+		<a href="javascript:void(0);" class="buy-btn buy-btn_sub">
+			<span>Contact Us Now</span>
+		</a>
+	</div>
+
+	<div class="paylater-box is-short">
+		<div class="paylater-box__container">
+
+			<div id="payLaterBoxIntro" class="paylater-box__content">
+				<div data-paylater class="paylater-box__img-wrap">
+					<img src="./assets/pay-icon_klarna.svg" loading="lazy" alt="pay later with Klarna">
+					<img src="./assets/pay-icon_affirm.svg" loading="lazy" alt="pay later with Affirm">
+					<img src="./assets/pay-icon_afterpay.svg" loading="lazy" alt="pay later with Afterpay">
+				</div>
+				<div class="paylater-box__controls">
+					<div class="paylater-button">Pay Later.<span> Learn More</span></div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>

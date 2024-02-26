@@ -33,8 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
     pageBackdrop = document.querySelector('.am-backdrop'),
     amHeader = document.querySelector('.am-header')
 
-  const IS_VISIBLE = 'is-visible',
-    IS_ACTIVE = 'is-active'
+  const
+    IS_VISIBLE = 'is-visible',
+    IS_ACTIVE = 'is-active',
+    IS_HIDDEN = 'is-hidden'
 
   HTMLElement.prototype.isVisible = function () {
     return window.getComputedStyle(this).getPropertyValue('display') !== 'none'
@@ -375,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dropdowns = [...document.querySelectorAll('.tb-dropdown')]
         const dropButtons = [...document.querySelectorAll('[data-tb-dropdown]')]
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
           const target = e.target
           if (!target.closest('.tb-btn')) {
             dropdowns.forEach((drop) => {
@@ -391,6 +393,111 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const whaleCardsArr = [...document.querySelectorAll('.whale-card')]
+  const whaleCards = {
+    init: function () {
+      const main = document.querySelector('.main_whales')
+      if (main) {
+        Object.values(this.initFn).forEach((fn) => {
+          if (typeof fn === 'function') {
+            try {
+              fn()
+            } catch (err) {
+              console.log(`whales cards init fn err : ${err.message}`)
+            }
+          }
+        })
+      }
+    },
+    updateNotesCount: (cards = whaleCardsArr) => {
+      cards = Array.isArray(cards) ? cards : [cards]
+      cards.forEach((card) => {
+        const
+          noteCount = card.querySelector('.whale-notes-count'),
+          notes = card.querySelectorAll('.whale-card__note')
+        if (noteCount) {
+          let count = notes.length || 0
+          noteCount.innerHTML = count
+        }
+      })
+    },
+    appendNote: function (parent, author, text) {
+      let date = new Date(Date.now()).toLocaleString()
+      const html = `
+      <div class="whale-card__note">
+        <div class="whale-card__note-date">${date}</div>
+        <div class="whale-card__note-text">
+        <span class="whale-card__note-author">${author}</span>:
+        ${text}
+        </div>
+      </div>
+     `
+      parent.insertAdjacentHTML('beforeend', html)
+    },
+    initFn: {
+      setInitialStats: () => {
+        whaleCards.updateNotesCount()
+      },
+      attachNoteButtonClick: () => {
+        const arr = [...document.querySelectorAll('[data-evt="toggleWhaleNotes"]')]
+        arr.forEach((btn) => {
+          btn.onclick = () => {
+            const
+              card = btn.closest('.whale-card'),
+              noteContainer = card.querySelector('.whale-card__notes'),
+              cells = card.querySelector('.whale-card__cells')
+            if (noteContainer && cells) {
+              if (noteContainer.isVisible()) {
+                btn.classList.remove(IS_ACTIVE)
+                noteContainer.classList.remove(IS_VISIBLE)
+                cells.classList.remove(IS_HIDDEN)
+                setTimeout(() => {
+                  noteContainer.style.display = 'none'
+                }, getTransitionTime(noteContainer));
+              } else {
+                btn.classList.add(IS_ACTIVE)
+                noteContainer.style.display = 'block'
+                cells.classList.add(IS_HIDDEN)
+                setTimeout(() => {
+                  noteContainer.classList.add(IS_VISIBLE)
+                }, 1);
+              }
+            }
+          }
+        })
+      },
+      attachNoteSubmit: () => {
+        const inputs = [...document.querySelectorAll('.am-note-input')]
+        const buttons = [...document.querySelectorAll('[data-whale-evt="submitNote"]')]
+        inputs.forEach((input) => {
+          input.submit = () => {
+            const val = input.value
+            if (val) {
+              const holder = input.parentNode.closest('.whale-card__notes').querySelector('.whale-card__notes-scroll')
+              if (holder) {
+                input.value = ''
+                whaleCards.appendNote(holder, 'Zahir', val)
+                holder.scrollTop = holder.scrollHeight
+              }
+            }
+          }
+          input.onkeydown = (e) => {
+            if (e.key == 'Enter' || e.keyCode == 13) {
+              e.preventDefault()
+              input.submit()
+            }
+          }
+        })
+        buttons.forEach((btn) => {
+          btn.onclick = () => {
+            const input = btn.parentNode.querySelector('.am-note-input')
+            input.submit()
+          }
+        })
+      }
+    }
+  }
+
   pageBackdrop.onclick = () => { pageSearch.close(); pageMenu.close(); pageSidebar.close() }
 
 
@@ -400,7 +507,8 @@ document.addEventListener('DOMContentLoaded', () => {
     pageSearch,
     pageMenu,
     pageSidebar,
-    whalesPage
+    whalesPage,
+    whaleCards
   ]
 
   pageObjects.forEach((obj) => {

@@ -1,56 +1,114 @@
-<div class="am-content">
-	<div class="am-content__wrapper">
-
-		<div
-			class="tb-box">
-			<!-- #region Title -->
-			<div class="tb-box__title">
-				<h3>{{tableTitle}}</h3>
-			</div>
-			<!-- #endregion -->
-
-			<!-- #region Controls -->
-			<div class="tb-box__controls">
-				<div class="tb-controls-group">
-					<button class="tb-btn">
-						<span>CSV</span>
-					</button>
-					<button class="tb-btn">
-						<span>Excel</span>
-					</button>
-					<button class="tb-btn">
-						{% include "admin/svg/icon_print2.svg" %}
-						<span>Print</span>
-					</button>
-					<button class="tb-btn">
-						{% include "admin/svg/icon_copy.svg" %}
-						<span>Copy</span>
-					</button>
-					<button class="tb-btn">
-						{% include "admin/svg/icon_layers.svg" %}
-						<span>PDF</span>
-					</button>
+{% if table_view %}
+	<div class="am-content">
+		<div class="am-content__wrapper">
+			<div
+				class="tb-box">
+				<!-- #region Title -->
+				<div class="tb-box__title">
+					<h3>{{ title }}</h3>
 				</div>
-				<div class="tb-controls-group">
-					<button class="tb-btn">
-						{% include "admin/svg/icon_columns.svg" %}
-						<span>Columns</span>
-					</button>
-					<div class="tb-btn-wrap">
-						<button data-tb-dropdown class="tb-btn">
-							{% include "admin/svg/icon_more.svg" %}
+				<!-- #endregion -->
+				<!-- #region Controls -->
+				<div class="tb-box__controls">
+
+					<div class="tb-controls-group">
+						<button class="tb-btn">
+							{% if table_view %}
+								{% include "admin/svg/icon_columns.svg" %}
+							{% else %}
+								{% include "admin/svg/icon_grid.svg" %}
+							{% endif %}
+							<span>
+								{% if table_view %}
+									Table View
+								{% else %}
+									Grid View
+								{% endif %}
+
+							</span>
 						</button>
-						<div class="tb-dropdown">
-							<div class="tb-dropdown__wrapper">
+						<div class="tb-btn-wrap">
+							<button data-tb-dropdown class="tb-btn">
+								{% include "admin/svg/icon_more.svg" %}
+							</button>
+							<div class="tb-dropdown">
+								<div class="tb-dropdown__wrapper">
+									<div class="tb-view-switch">
+										<a href="{{ table_view_link }}" class="tab-view-btn {%if table_view %} is-active {% endif %}">
+											{% include "admin/svg/icon_list.svg" %}
+											<span>Table</span>
+										</a>
+										<a href="{{ grid_view_link }}" class="tab-view-btn {%if table_view == false %} is-active {% endif %}">
+											{% include "admin/svg/icon_grid.svg" %}
+											<span>Grid</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- #endregion -->
+
+				<!-- #endregion -->
+				<!-- #region Table -->
+					<div
+					class="tb-main-content"> {# Table #}
+					<div class="tb-table-container">
+						<table class="datatables" id="allTable">
+							<thead>
+								<tr>
+									<th>Salesperson(s)</th>
+									<th>Full Name</th>
+									<th>Instagram Full</th>
+									<th>Salary</th>
+									<th>Team</th>
+									<th>Total Pay</th>
+									<th>Social</th>
+									<th>City</th>
+									<th>State</th>
+									<th>ATL Stop</th>
+									<th>URL</th>
+									<th>Actions</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+{% else %}
+	<div class="am-content am-content_whales">
+		<div
+			class="am-content__wrapper">
+			<!-- #region Content : Header -->
+			<div class="am-main__header">
+				<div class="am-container">
+					<div class="am-row__header-wrapper">
+						<div class="am-row__header">
+							<div class="am_vertical-start">
+								<h2 class="am-main__header-title">Icebox Whales</h2>
+								<div class="am-main__subtitle">
+									<span>All Whales</span>
+								</div>
+							</div>
+							<div class="am_flex8">
+								<button class="am-btn">{% include "admin/svg/icon_cards.svg" %}CRM Cards</button>
 								<div class="tb-view-switch">
-									<button data-switch-view="list" class="tab-view-btn is-active">
-                  {% include "admin/svg/icon_list.svg" %}
-										<span>List</span>
-									</button>
-									<button data-switch-view="grid" class="tab-view-btn">
-                  {% include "admin/svg/icon_grid.svg" %}
+									<a href="{{ table_view_link }}" class="tab-view-btn {%if table_view %} is-active {% endif %}">
+										{% include "admin/svg/icon_list.svg" %}
+										<span>Table</span>
+									</a>
+									<a href="{{ grid_view_link }}" class="tab-view-btn {%if table_view == false %} is-active {% endif %}">
+										{% include "admin/svg/icon_grid.svg" %}
 										<span>Grid</span>
-									</button>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -58,109 +116,46 @@
 				</div>
 			</div>
 			<!-- #endregion -->
-
-			<!-- #region Table Search -->
-			<div class="tb-box__controls">
-				<div class="tb-form__wrap">
-					<div class="tb-input__wrap">
-						<div class="am-search__icon">{% include "admin/svg/icon_search.svg" %}</div>
-						<input class="tb-input" type="text" placeholder="Search for whale...">
-					</div>
-					<div class="am-select-wrap">
-						<select class="tb-select">
-							<option value="50">50 Entries</option>
-							<option value="100">100 Entries</option>
-							<option value="250">250 Entries</option>
-							<option value="500">500 Entries</option>
-							<option value="1000">1,000 Entries</option>
-						</select>
-					</div>
-				</div>
-			</div>
-			<!-- #endregion -->
-
-			<!-- #region Table -->
-			<div
-				class="tb-main-content">
-
-				{# Table #}
-				<div class="tb-table-container">
-					<table class="tb-table">
-						<thead>
-							<tr>
-								{% for head in table.headings %}
-									<th {% if head.sort is defined %} data-sort-evt="{{head.sort}}" {% endif %}>{{head.caption}}</th>
-								{% endfor %}
-							</tr>
-						</thead>
-						<tbody>
-							{% for row in table.rows %}
-								<tr {% if row.active == true %} class="row_active" {% endif %}>
-
-									{% for col in row.columns %}
-
-										{% if col.isName == true %}
-											<!-- #region : Full Name -->
-											<td data-td="{{col.data_name}}">
-												<div class="tb-name-wrap">
-													<img src="{{row.person.avatar}}" alt="">
-													<div>
-														<div class="person-name">{{row.person.full_name}}</div>
-														<div class="typo_sm">{{row.person.dob}}</div>
-														<div class="typo_sm">{{row.person.score}}</div>
-													</div>
-												</div>
-											</td>
-											<!-- #endregion : Full Name -->
-										{% else %}
-											<!-- #region : Regular Columns -->
-											<td data-td="{{col.data_name}}">
-												{% for caption in col.captions %}
-													{% if caption.editable == true %}
-														<a id="{{caption.id}}" class="xEdit editable editable-click{% if caption.value == 'Empty' %} is-empty{% endif %}" data-name="{{caption.data_name}}" data-type="select" data-pk="id/{{caption.pk_id}}" data-url="http://www.icebox.com/admin/xedit/save" data-inputclass="input-list-name-edit" data-source="{{caption.data_soruce}}" data-value="" data-title="Value">{{caption.value}}</a>
-													{% elseif caption.href is defined %}
-														<div>
-															<a target="_blank" href="{{caption.href}}" {% for attr in caption.data_attr %} {{attr.name}}="{{attr.value}}" {% endfor %}>{{caption.value}}</a>
-														</div>
-													{% else %}
-														<div>{{caption.value}}</div>
-													{% endif %}
-												{% endfor %}
-												{% for social in col.socials %}
-													<a class="tb-social-btn {{social.type}}">
-														<div>{{social.name}}</div>
-														<div class="tb-social-count">{{social.count}}</div>
-													</a>
-												{% endfor %}
-											</td>
-											<!-- #endregion : Regular Columns -->
-										{% endif %}
-
-									{% endfor %}
-
+			<!-- #region Main Content -->
+			<div class="am-main__flow">
+				<div class="am-container">
+					<div class="am-main__content">
+						<div class="am-content-divider">
+							{{total_whales}}
+							Whales total<span></span>
+						</div>
+						<table class="datatables" id="allTable" {% if table_view == false %} style="display:none" {% endif %}>
+							<thead>
+								<tr>
+									<th>Salesperson(s)</th>
+									<th>Full Name</th>
+									<th>Instagram Full</th>
+									<th>Salary</th>
+									<th>Team</th>
+									<th>Total Pay</th>
+									<th>Social</th>
+									<th>City</th>
+									<th>State</th>
+									<th>ATL Stop</th>
+									<th>URL</th>
+									<th>Actions</th>
+									<th></th>
+									<th></th>
 								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+						<div class="tb-grid">
+							{% for whale in whales %}
+								{% include "admin/components/whale-card.twig" %}
 							{% endfor %}
-
-						</tbody>
-					</table>
+						</div>
+						<span class="loader"></span>
+					</div>
 				</div>
-			</div>
-			<!-- #endregion -->
-
-			<!-- #region Controls -->
-			<div class="tb-box__controls">
-				<div class="tb-box-sum">
-					<div>Showing 1 to 50 of
-						{{table.filteredEntries}}
-						entries</div>
-					<div>(filtered from
-						{{table.totalEntries}}
-						total entries)</div>
-				</div>
-				{% include "admin/components/pagination.twig" %}
 			</div>
 			<!-- #endregion -->
 		</div>
-
 	</div>
-</div>
+
+{% endif %}

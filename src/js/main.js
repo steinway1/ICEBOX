@@ -384,6 +384,8 @@ const setPageFilters = () => {
               if (obj.drop.isHidden()) {
                 pageFilters.hideAll(obj.drop)
                 obj.drop.show()
+                const isIntersecting = obj.drop.getBoundingClientRect().right > window.innerWidth
+                if (isIntersecting) obj.drop.style.right = 0
               } else {
                 obj.drop.hide()
               }
@@ -610,6 +612,7 @@ const menu = {
     this.renderDOM();
     this.bindEvents();
     this.initialState();
+    this.attachHoverEffect()
   },
   renderDOM: function () {
     // modal
@@ -663,15 +666,21 @@ const menu = {
           menu.states.overIsActive = true;
           content.hide();
           toShow.show();
-          Object.assign(main.style, { transform: "translateX(-30%)" });
-          Object.assign(over.style, { transform: "translateX(0%)" });
+          over.style.display = 'block'
+          setTimeout(() => {
+            Object.assign(main.style, { transform: "translateX(-20%)" });
+            Object.assign(over.style, { transform: "translateX(0%)", opacity: 1 });
+          }, 1);
           menu.overHeading.html(title);
         }
       }
     } else {
       menu.states.overIsActive = false;
       Object.assign(main.style, { transform: "translateX(0%)" });
-      Object.assign(over.style, { transform: "translateX(100%)" });
+      Object.assign(over.style, { transform: "translateX(30%)", opacity: 0 });
+      setTimeout(() => {
+        over.style.display = 'none'
+      }, getTransitionTime(over));
     }
   },
   toggle: function () {
@@ -703,17 +712,42 @@ const menu = {
     if (menu.states.overIsActive) {
       menu.states.overIsActive = false;
       Object.assign(menu.main[0].style, { transform: "translateX(0%)" });
-      Object.assign(menu.over[0].style, { transform: "translateX(100%)" });
+      Object.assign(menu.over[0].style, { transform: "translateX(30%)", opacity: 0 });
+      setTimeout(() => {
+        menu.over[0].style.display = 'none'
+      }, getTransitionTime(menu.over[0]));
     }
   },
   initialState: function () {
     this.modal.hide();
     Object.assign(this.backdrop[0].style, { opacity: 0 });
     Object.assign(this.container[0].style, { transform: "translateX(-100%)" });
-    Object.assign(this.over[0].style, { transform: "translateX(100%)" });
+    Object.assign(this.over[0].style, { transform: "translateX(30%)" });
     this.states.isActive = false;
     this.states.overIsActive = false;
   },
+  attachHoverEffect: function () {
+    let isMobile = window.innerWidth < 479
+    if (isMobile) return
+    const rows = [...document.querySelectorAll('.mob-menu__nav-item')]
+    rows.forEach((row) => {
+      const sibs = row.parentNode.querySelectorAll('.mob-menu__nav-item')
+      row.onmouseenter = () => {
+        sibs.forEach((s) => {
+          if (s !== row) {
+            s.style.opacity = 0.5
+          }
+        })
+      }
+      row.onmouseleave = () => {
+        sibs.forEach((s) => {
+          if (s !== row) {
+            s.style.opacity = 1
+          }
+        })
+      }
+    })
+  }
 };
 /* #endregion */
 
@@ -1314,7 +1348,7 @@ const pgModal = new Object({
       pgModal.container.addClass("is-hidden");
       setTimeout(() => {
         pgModal.modal.hide();
-      }, parseFloat(window.getComputedStyle(pgModal.container[0]).transitionDuration) * 1000);
+      }, 475);
     },
     setMobile: function () {
       if ($(window).width() < 480) {
@@ -1361,6 +1395,225 @@ const pgModal = new Object({
 
 
 /* #region  Product Page : Main */
+const productPage_v2 = {
+  init: function () {
+    const new_page_exist = document.querySelector('.main_product_upd') !== null
+    if (new_page_exist) {
+      this.renderDOM()
+      this.setDOMMethods()
+      Object.values(this.initFn).forEach((fn) => {
+        if (typeof fn === 'function') { fn() }
+      })
+    }
+  },
+  renderDOM: function () {
+    this.optionsArr = document.querySelectorAll('.product__item-option')
+    this.colorPickArr = document.querySelectorAll('.color-pick-btn')
+    this.optionBtnArr = document.querySelectorAll('.option-btn')
+    this.summary = document.querySelector('.product__item-summary')
+    this.stickyBuyButton = document.querySelector('.product-sticky-buy')
+  },
+  setDOMMethods: function () {
+    const optArr = productPage_v2.optionsArr
+    this.setDropdown = () => {
+      optArr.forEach((option) => {
+        const body = option.querySelector('.product-option__body')
+        const wrapper = option.querySelector('.product-option__wrapper')
+        const arrow = option.querySelector('.product-option__dd-icon')
+        if (body && wrapper) {
+          option.open = () => {
+            option.classList.add(IS_ACTIVE)
+            body.style.display = 'block'
+            if (arrow) { arrow.style.transform = 'rotate(180deg)' }
+            setTimeout(() => {
+              wrapper.style.opacity = 1
+              wrapper.style.transform = 'translateY(0px)'
+            }, 1);
+          }
+          option.close = () => {
+            option.classList.remove(IS_ACTIVE)
+            wrapper.style.opacity = 0
+            wrapper.style.transform = 'translateY(-8px)'
+            if (arrow) { arrow.style.transform = 'rotate(0deg)' }
+            setTimeout(() => {
+              body.style.display = 'none'
+            }, getTransitionTime(wrapper))
+          }
+          option.toggle = () => {
+            if (option.classList.contains(IS_ACTIVE)) {
+              option.close()
+            } else {
+              option.open()
+            }
+          }
+        }
+      })
+    }
+    this.setHideAllOptions = () => {
+      productPage_v2.optionsArr.hideVisible = () => {
+        productPage_v2.optionsArr.forEach((option) => {
+          if (option.classList.contains(IS_ACTIVE)) {
+            option.close()
+          }
+        })
+      }
+    }
+    this.setUpdateOption = () => {
+      optArr.forEach((opt) => {
+        opt.update = () => {
+          const active = opt.querySelector('.option-btn.is-active')
+          const typo = opt.querySelector('.option-btn_active-typo')
+          const holder = opt.querySelector('.product-option__head-right')
+          if (active && holder) {
+            let val = active.getAttribute('data-value')
+            if (val.length) {
+              if (!typo) {
+                holder.insertAdjacentHTML('afterbegin', `<span class="option-btn_active-typo">${val}</span>`)
+              } else {
+                typo.innerText = active.getAttribute('data-value')
+              }
+            }
+          }
+        }
+      })
+    }
+    this.setUpdateAllOptions = () => {
+      optArr.updateAll = () => {
+        optArr.forEach((opt) => {
+          opt.update()
+        })
+      }
+    }
+
+    const methods = [
+      this.setDropdown,
+      this.setHideAllOptions,
+      this.setUpdateOption,
+      this.setUpdateAllOptions
+    ]
+    methods.forEach((method) => { method() })
+  },
+  initFn: {
+    attachClickOption: () => {
+      productPage_v2.optionsArr.forEach((option) => {
+        const head = option.querySelector('.product-option__head')
+        const body = option.querySelector('.product-option__body')
+        if (head && body) {
+          head.onclick = () => {
+            if (option.classList.contains(IS_ACTIVE)) {
+              option.close()
+            } else {
+              productPage_v2.optionsArr.hideVisible()
+              option.open()
+            }
+          }
+        }
+      })
+    },
+    attachDocumentClick: () => {
+      document.onclick = (e) => {
+        if (!e.target.closest('.product__item-option')) {
+          productPage_v2.optionsArr.hideVisible()
+        }
+      }
+    },
+    attachColorClick: () => {
+      const pickers = productPage_v2.colorPickArr
+      pickers.forEach((picker) => {
+        picker.onclick = () => {
+          if (!picker.classList.contains(IS_ACTIVE)) {
+            pickers.forEach((pick) => {
+              if (pick !== picker) {
+                pick.classList.remove(IS_ACTIVE)
+              }
+            })
+            picker.classList.add(IS_ACTIVE)
+          }
+        }
+      })
+    },
+    attachOptionBtnClick: () => {
+      const buttons = productPage_v2.optionBtnArr
+      buttons.forEach((btn) => {
+        btn.onclick = (e) => {
+          const $thisRipple = new rippleClickEffect($(btn), e);
+          $thisRipple.push();
+          let isActive = btn.classList.contains(IS_ACTIVE)
+          let option = btn.parentNode.closest('.product__item-option')
+          if (!isActive) {
+            const sibs = btn.parentNode.querySelectorAll('.option-btn')
+            sibs.forEach((sib) => {
+              if (sib !== btn) {
+                sib.classList.remove(IS_ACTIVE)
+              }
+            })
+            btn.classList.add(IS_ACTIVE)
+            option.update() // Update active typo
+          }
+        }
+      })
+    },
+    setupSummary: () => {
+      const
+        sum = productPage_v2.summary,
+        maxHeight = 150
+
+      if (sum) {
+        let isBigger = sum.scrollHeight > maxHeight
+        if (isBigger) {
+          sum.style.height = `${maxHeight}px`
+          sum.insertAdjacentHTML(
+            'beforeend',
+            `<div class="product__item-summary-gradient"></div>
+            `
+          )
+
+          const expandElement = document.createElement('div');
+          expandElement.classList.add('product__item-summary-expand');
+          expandElement.onclick = () => {
+            if (sum.classList.contains(IS_EXPANDED)) {
+              sum.classList.remove(IS_EXPANDED)
+            } else[
+              sum.classList.add(IS_EXPANDED)
+            ]
+          };
+
+          sum.appendChild(expandElement);
+        }
+      }
+    },
+    setupStickyBuyButton: () => {
+      const stickyButton = productPage_v2.stickyBuyButton
+      if (stickyButton) {
+        stickyButton.hide = () => {
+          stickyButton.classList.remove(IS_VISIBLE)
+        }
+        stickyButton.show = () => {
+          stickyButton.classList.add(IS_VISIBLE)
+        }
+
+        const mainBtn = document.querySelector('.product__side .buy-btn')
+        if (mainBtn) {
+          const obs = new IntersectionObserver((els) => {
+            els.forEach((el) => {
+              if (!el.isIntersecting) {
+                stickyButton.show()
+              } else {
+                stickyButton.hide()
+              }
+            })
+          })
+          obs.observe(mainBtn)
+        }
+      }
+    },
+    updateOption: () => {
+      productPage_v2.optionsArr.updateAll()
+    }
+  }
+}
+productPage_v2.init()
+
 const productPage = new Object({
   initialized: undefined,
   classes: {
@@ -1369,13 +1622,17 @@ const productPage = new Object({
   },
 
   init: function () {
-    this.renderDOM();
-    this.bindEvents();
-    Object.values(this.initFn).forEach((target) => {
-      if (typeof target === "function") target();
-    });
-    this.intialized = true;
-    this.fn.initZoom()
+    // NEW UPDATE -- DELETE LATER
+    const new_page_exist = document.querySelector('.main_product_upd') !== null
+    if (!new_page_exist) {
+      this.renderDOM();
+      this.bindEvents();
+      Object.values(this.initFn).forEach((target) => {
+        if (typeof target === "function") target();
+      });
+      this.intialized = true;
+      // this.fn.initZoom()
+    }
   },
   renderDOM: function () {
     this.favButton = $(".product__add-fav");
@@ -1457,7 +1714,7 @@ const productPage = new Object({
         isActived = els.filter((el) => el.classList.contains(cls));
 
       $(isActived).removeClass(cls);
-      target.addClass(cls);
+      target.addClass(cls)
     },
     toggleOptionVisible: (target) => {
       // Show / Hide Option Body
@@ -1473,7 +1730,8 @@ const productPage = new Object({
         thisBody.css({ height: currentHeight });
         setTimeout(() => {
           thisBody.css({ height: 0 });
-          thisWrapper.css({ transform: "translateY(-26px)", opacity: 0 });
+          thisWrapper.css({ transform: "translateY(-8px)", opacity: 0 });
+          target.css('border-color', '#dcdfe7')
         }, 3);
       } else {
         const transitionTime =
@@ -1485,6 +1743,7 @@ const productPage = new Object({
         thisOption.removeClass(productPage.classes.isCollapsed);
         thisBody.css({ height: `${toHeight}px` });
         thisWrapper.css({ transform: "translateY(0px)", opacity: 1 });
+        target.css('border-color', '#171c29')
         setTimeout(() => {
           thisBody.css({ height: "auto" });
         }, transitionTime);
@@ -1662,39 +1921,41 @@ const productPage = new Object({
     },
     initFloating: () => {
       // Initialize floating button mobile
-      let el = productPage.floatingBtn,
-        elHeight = el[0].scrollHeight;
-      function attachTrigger() {
-        let triggerEl = $("#productAddCart");
-        if (triggerEl.length) {
-          $(window).scroll(function () {
-            let hT = triggerEl.offset().top,
-              hH = triggerEl.outerHeight(),
-              wH = $(window).height(),
-              wS = $(this).scrollTop();
+      let el = productPage.floatingBtn
+      if (el.length) {
+        let elHeight = el[0].scrollHeight
+        function attachTrigger() {
+          let triggerEl = $("#productAddCart");
+          if (triggerEl.length) {
+            $(window).scroll(function () {
+              let hT = triggerEl.offset().top,
+                hH = triggerEl.outerHeight(),
+                wH = $(window).height(),
+                wS = $(this).scrollTop();
 
-            if (wS + 100 > hT - wH && hT > wS + 100 && wS + 100 + wH > hT) {
-              el.css({ transform: `translateY(${elHeight}px)` });
-            } else {
-              el.css({ transform: `translateY(0px)` });
-            }
-          });
+              if (wS + 100 > hT - wH && hT > wS + 100 && wS + 100 + wH > hT) {
+                el.css({ transform: `translateY(${elHeight}px)` });
+              } else {
+                el.css({ transform: `translateY(0px)` });
+              }
+            });
+          }
         }
-      }
-      if (el.length > 0) {
-        if ($(window).width() > 479) {
-          el.hide();
-        } else {
-          attachTrigger();
-        }
-        $(window).on("load resize", function () {
+        if (el.length > 0) {
           if ($(window).width() > 479) {
             el.hide();
           } else {
-            el.show();
             attachTrigger();
           }
-        });
+          $(window).on("load resize", function () {
+            if ($(window).width() > 479) {
+              el.hide();
+            } else {
+              el.show();
+              attachTrigger();
+            }
+          });
+        }
       }
     },
     attachPayLaterBoxEvents: function (...args) {
@@ -2070,16 +2331,18 @@ const myBag = new Object({
   attachEvents: {
 
     toggleFloating: function () {
-      const el = $('.mybag-floating'),
-        triggerElPosition = $('.mybag-summary__footer').offset().top
-      $(window).scroll(function () {
-        let yScroll = window.scrollY
-        if (yScroll < (triggerElPosition - screen.availHeight) || yScroll > (triggerElPosition)) {
-          el.removeClass(IS_HIDDEN)
-        } else {
-          el.addClass(IS_HIDDEN)
-        }
-      })
+      const el = $('.mybag-floating')
+      if (el.length) {
+        const triggerElPosition = $('.mybag-summary__footer').offset().top
+        $(window).scroll(function () {
+          let yScroll = window.scrollY
+          if (yScroll < (triggerElPosition - screen.availHeight) || yScroll > (triggerElPosition)) {
+            el.removeClass(IS_HIDDEN)
+          } else {
+            el.addClass(IS_HIDDEN)
+          }
+        })
+      }
     },
 
     attachToggleProtect: function () {
@@ -2806,6 +3069,7 @@ const pageReview = {
 }
 /* #endregion */
 
+
 /* #region  Hero Splides */
 const heroSplide = {
   init: function () {
@@ -2876,11 +3140,7 @@ const initPageObjects = () => {
         obj.init();
       }
     } catch (error) {
-      if (error instanceof ReferenceError) {
-        console.log("obj not declared");
-      } else {
-        console.log("other error");
-      }
+      console.log(error)
     }
   }
 };

@@ -232,14 +232,8 @@ body.update_layout {
 }
 
 .hero-cards-wrap,
-.hero_splide {
-  padding: 12px;
-  position: relative;
-
-  @include maxWidthXs {
-    padding: 8px;
-  }
-
+.hero_splide,
+.main_results_upd {
   .product-card {
     cursor: auto;
 
@@ -253,6 +247,15 @@ body.update_layout {
 
     .stock-dash-box {
       display: none;
+    }
+
+    .product-card__sale-price {
+      color: #9398a7;
+
+      &::after {
+        background-color: #171c29;
+        height: 1px;
+      }
     }
 
     .product-card__media {
@@ -320,6 +323,16 @@ body.update_layout {
         color: var(--black) !important;
       }
     }
+  }
+}
+
+.hero-cards-wrap,
+.hero_splide {
+  padding: 12px;
+  position: relative;
+
+  @include maxWidthXs {
+    padding: 8px;
   }
 }
 

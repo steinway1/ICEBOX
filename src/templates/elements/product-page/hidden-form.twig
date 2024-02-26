@@ -1,0 +1,23 @@
+<input type="hidden" id="cart_default_base_price" value="{{ product.item.price }}"/>
+<input type="hidden" id="cart_price_usd" value="{{ product.item.price }}"/>
+<input type="hidden" id="cart_base_price" value="{{ product.item.price }}"/>
+<input type="hidden" id="cart_total_price" value="0"/>
+{% if product.item.salePrice is defined %}
+	<input type="hidden" id="sales_discount" value="{{product.item.discount}}"/>
+{% else %}
+	<input type="hidden" id="sales_discount" value="0"/>
+{% endif %}
+<input type="text" id="format_input" style="display:none"/>
+<input type="hidden" id="cart_price_increases" value="0"/>
+<input type="text" id="masked_price" value="{{ product.item.price }}" style="display:none"/>
+<input type="hidden" class="custom-fields-fetch" name="customInputNew[product_id]" value="{{ product.item.id }}">
+<form id="addToCartFrm" style="display:none;">
+	<input type="hidden" id="product_category_name" value="{{ product.category.caption }}"/>
+	<input type="hidden" id="cart_product_id" name="product_id" value="{{ product.item.id }}"/>
+	<input type="hidden" id="cart_product_color" name="color" data-action="Select" data-name="Color"/>
+	{% for option in product.options %}
+		{% if option.type != 'upload' and option.type != 'goldColor' %}
+			<input type="hidden" class="" id="custom_form_input_{{ option.id }}" value="{{ option.selected_value }}" name="customInputNew[field][{{ option.id }}]" data-name="{{option.name}}" data-action=""/>
+		{% endif %}
+	{% endfor %}
+</form>

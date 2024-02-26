@@ -4,38 +4,6 @@
   --tb-padding: 14px;
 }
 
-.body_whales {
-
-  // background-color: #f3f5f8;
-  .am-sidebar__link {
-    &>div {
-      padding-top: 11px;
-      padding-bottom: 11px;
-    }
-  }
-
-  @media screen and (min-width: 992px) {
-    .am-sidebar {
-      width: 250px;
-    }
-
-    .am-content {
-      padding-left: 250px;
-    }
-  }
-}
-
-.main_whales {
-  .am-content__wrapper {
-    padding: 24px;
-    padding-bottom: 240px;
-
-    @include maxWidthSm {
-      padding: 14px;
-    }
-  }
-}
-
 .tb-box {
   width: 100%;
   background-color: white;
@@ -483,7 +451,7 @@
 
 .tb-grid {
   grid-column-gap: var(--tb-padding);
-  grid-row-gap: var(--tb-padding);
+  grid-row-gap: 36px;
   grid-template-rows: auto;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-columns: 1fr;
@@ -498,7 +466,10 @@
   }
 
   @include maxWidthXs {
+    padding-left: 20px;
+    padding-right: 20px;
     grid-template-columns: 1fr;
+    grid-row-gap: 24px;
   }
 }
 
@@ -627,25 +598,24 @@
 
 .tb-view-switch {
   min-height: 20px;
-  background-color: #f2f3f7;
-  border: 1px solid #e6e8ee;
+  background-color: #edf0f5;
+  border: 1px solid #edf0f5;
   border-radius: 7px;
   align-items: center;
   display: flex;
   gap: 6px;
-  padding: 2px;
+  padding: 4px;
 }
 
 .tab-view-btn {
-  padding: 8px;
+  padding: 8px 12px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 6px;
   flex: 1;
-  font-size: 13px;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 8px;
   transition: all 200ms ease;
   border: 1px solid transparent;
   
@@ -659,7 +629,7 @@
 
   &.is-active {
     background-color: white;
-    box-shadow: 0 0px 12px rgba(18, 25, 46, 0.15);
+    box-shadow: 0 2px 5px rgba(23, 28, 41, .11);
     cursor: not-allowed;
   }
 }

@@ -1,0 +1,102 @@
+{% if product.temp_unavailable == false %}
+	<div class="side-row__ship-line">
+		<div class="product__item-availability in_stock_msg" style="display:none;">
+			<div class="product__availability-svg">
+				{% include "elements/product-page/svg/ship.svg" %}
+			</div>
+			<span class="product__availability-info">In Stock</span>
+		</div>
+
+		{% if product.category_id == 10 %}
+			{% if product.restock_msg == '' %}
+				{% if product.blanket_ship_date == '' %}
+					{% if product.is_plain_watch %}
+						<div class="product__item-availability availability_order out_of_stock_msg" style="display:none;">
+							<div class="product__availability-svg">
+								{% include "elements/product-page/svg/ship.svg" %}
+							</div>
+							<span class="product__availability-info">This watch will ship on
+								<span class="product__availability-date">{{ "+4weeks"|date("F d, Y") }}</span>
+							</span>
+						</div>
+					{% else %}
+						{# watch is not plain gold  #}
+						<div class="product__item-availability availability_order out_of_stock_msg" style="display:none;">
+							<div class="product__availability-svg">
+								{% include "elements/product-page/svg/ship.svg" %}
+							</div>
+							<span class="product__availability-info">This watch will ship on
+								<span class="product__availability-date">10-14 days</span>
+							</span>
+						</div>
+					{% endif %}
+				{% else %}
+					{# product have a blanket ship date #}
+					<div class="product__item-availability availability_order out_of_stock_msg" style="display:none;">
+						<div class="product__availability-svg">
+							{% include "elements/product-page/svg/ship.svg" %}
+						</div>
+						<span class="product__availability-info">This watch will ship on
+							<span class="product__availability-date">{{ product.blanket_ship_date_formatted | date("F d, Y") }}</span>
+						</span>
+					</div>
+				{% endif %}
+			{% else %}
+				{# product have a restock message - show that #}
+				<div class="product__item-availability availability_order out_of_stock_msg" style="display:none;">
+					<div class="product__availability-svg">
+						{% include "elements/product-page/svg/ship.svg" %}
+					</div>
+
+					<span class="product__availability-info">{{ product.restock_msg }}</span>
+				</div>
+			{% endif %}
+
+		{% else %}
+
+			{#item not a watch #}
+			<div class="product__item-availability availability_order out_of_stock_msg">
+				<div class="product__availability-svg">
+					{% include "elements/product-page/svg/ship.svg" %}
+				</div>
+				{% if product.blanket_ship_date == '' %}
+					{% if product.restock_msg == ''%}
+						{% if (product.category_id == 23)  or ((product.category_id == 7) and (product.have_diamonds == false)) %}
+							<span class="product__availability-info">This item is made to order and will ship in
+								<span class="product__availability-date">5 days</span>
+							</span>
+						{% else %}
+							{% if product.category_id != 25 %}
+								<span class="product__availability-info">This item is made to order and will ship by
+									<span class="product__availability-date">{{ "+4weeks"|date("F d, Y") }}</span>
+								</span>
+							{% else %}
+								<span class="product__availability-info">This item will be shipped with insurance & signature required.</span>
+							{% endif %}
+						{% endif %}
+					{% else %}
+						{# item have a restock message #}
+						<span class="product__availability-info">{{ product.restock_msg }}</span>
+					</span>
+				{% endif %}
+			{% else %}
+				{# item have a blanket ship date #}
+				<span class="product__availability-info">This item is made to order and will ship by
+					<span class="product__availability-date">{{ product.blanket_ship_date | date("F d, Y")}}</span>
+				</span>
+			{% endif %}
+
+		</div>
+	{% endif %}
+
+</div>
+{% else%}
+{#item temporary unavailable#}
+<div class="side-row__ship-line">
+	<div class="product__item-availability availability_order">
+		<div class="product__availability-svg">
+			{% include "elements/product-page/svg/ship.svg" %}
+		</div>
+		<span class="product__availability-info">This item is temporarily unavailable !</span>
+	</div>
+</div>{% endif %}

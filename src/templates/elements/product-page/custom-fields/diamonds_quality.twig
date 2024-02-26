@@ -1,0 +1,23 @@
+<div  class="product__item-option">
+    <div class="product-option__head">
+        <div class="product-option-name">{{option.name}}</div>
+        <div class="product-option__head-right">
+            <div class="product-option__dd-icon">
+                {% include "elements/product-page/svg//dropdown.svg" %}
+            </div>
+        </div>
+    </div>
+    <div class="product-option__body">
+        <div class="product-option__wrapper">
+            <div class="options-block">
+                {% for optionBtn in option.set %}
+                    <div class="cust_field_btn option-btn{% if optionBtn.active is defined %} is-active{% endif %}" data-show data-value="{{optionBtn.value}}">
+                        <span>{{optionBtn.value}}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <input  id="diamond_quality_mags" data-name="Diamond Quality" data-action="Pick"  class="custom-fields-fetch old-diamond-quality" type="hidden" name="customInputNew[attributes][Diamond Quality]" value="{{ option.default_value }}" />
+
+</div>
