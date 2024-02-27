@@ -1,0 +1,512 @@
+{% set whale = whales[0] %}
+<div class="edit-modal">
+	<div data-evt="closeEditModal" class="edit-modal__backdrop"></div>
+	<div class="edit-modal__container">
+		<div class="edit-modal__main">
+			<div
+				class="edit-modal__scroll">
+
+				<!-- #region Header -->
+				<div class="edit-modal__header">
+					<div class="wrapper">
+						<div class="am-row__header">
+							<div class="flex-row">
+								<div class="whale-card__avatar">
+									<img src="{{whale.photo}}" alt="">
+								</div>
+								<h3 class="whale-card__name">{{whale.full_name}}</h3>
+							</div>
+							<div class="flex-row">
+								<a href="javascript:;" data-fancybox="" data-type="ajax" data-src="/admin/whale/{{whale.previous}}" class="am-close-btn">
+									{% include "admin/svg/icon_arrow-prev.svg" %}
+									<span>Prev</span>
+								</a>
+								<a href="javascript:;" data-fancybox="" data-type="ajax" data-src="/admin/whale/{{whale.next}}" class="am-close-btn">
+									<span>Next</span>
+									{% include "admin/svg/icon_arrow-next.svg" %}
+								</a>
+								<a href="javascript:;" data-evt="closeEditModal" class="am-close-btn">
+									{% include "admin/svg/icon_cross.svg" %}
+									<span>Close</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- #endregion -->
+
+				<!-- #region Main Content -->
+				<div class="edit-modal__content">
+					<div
+						class="wrapper">
+						<!-- #region Overview -->
+						<div class="wh-box">
+							<div class="wh-box__wrapper">
+								<div class="wh-flex-row">
+									<div class="whale-card__avatar">
+										<img src="{{whale.photo}}" alt="">
+									</div>
+									<div class="wh-col-start">
+										<h3 class="whale-card__name">{{whale.full_name}}<span>{{whale.tab}}</span>
+										</h3>
+										<div class="wh-spot-row">
+											{% if whale.birthday %}
+												<div class="wh-spot-box">
+													<span>Birthday</span>
+													<span>{{whale.birthday}}</span>
+												</div>
+											{% endif %}
+											{% if whale.age %}
+												<div class="wh-spot-box">
+													<span>Age</span>
+													<span>{{whale.age}}</span>
+												</div>
+											{% endif %}
+											{% if whale.state or whale.city %}
+												<div class="wh-spot-box">
+													<span>Address</span>
+													<span>
+														{{ whale.city ?: 'N/A' }},
+														{{ whale.state ?: 'N/A' }}
+													</span>
+												</div>
+											{% endif %}
+											{% if whale.socials %}
+												{% for key, obj in whale.socials %}
+													{% if key == 'instagram' %}
+														<div class="wh-spot-box">
+															<span>Instagram</span>
+															<span>
+																<a class="tb-social-btn instagram" href="{{ obj.link }}" target="_blank">
+																	<span>{{ obj.username }}</span>
+																	<span class="tb-social-count">{{ obj.followers }}</span>
+																</a>
+															</span>
+														</div>
+													{% endif %}
+													{% if key == 'twitter' %}
+														<div class="wh-spot-box">
+															<span>Twitter</span>
+															<span>
+																<a class="tb-social-btn x" href="{{ obj.link }}" target="_blank">
+																	<span>{{ obj.username }}</span>
+																	<span class="tb-social-count">{{ obj.followers }}</span>
+																</a>
+															</span>
+														</div>
+													{% endif %}
+													{% if key == 'tiktok' %}
+														<div class="wh-spot-box">
+															<span>TikTok</span>
+															<span>
+																<a class="tb-social-btn tiktok" href="{{ obj.link }}" target="_blank">
+																	<span>{{ obj.username }}</span>
+																	<span class="tb-social-count">{{ obj.followers }}</span>
+																</a>
+															</span>
+														</div>
+													{% endif %}
+												{% endfor %}
+											{% endif %}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- #endregion -->
+
+						<!-- #region Personal Information -->
+						<div class="wh-box">
+							<div class="wh-box__wrapper">
+								<div class="wh-box__header">
+									<div class="flex-row">
+										<div class="wh-icon">
+											{% include "admin/svg/icon_person.svg" %}
+										</div>
+										<h4 class="wh-box__heading">Personal Information</h4>
+									</div>
+								</div>
+								<div class="wh-box__body">
+									<div
+										class="wh-inputs-grid">
+										{# Active Client #}
+										<div class="wh-input-box">
+											<label>Active Client</label>
+											<div class="wh-input-wrap --select">
+												<select class="wh-input" name="active">
+													<option value="0">No</option>
+													<option value="1" selected="">Yes</option>
+												</select>
+											</div>
+										</div>
+
+										{# First Name #}
+										<div class="wh-input-box">
+											<label>First Name</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="first_name" class="wh-input" placeholder="First Name" autocomplete="off" {% if whale.first_name %} value="{{ whale.first_name }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Last Name #}
+										<div class="wh-input-box">
+											<label>Last Name</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="last_name" class="wh-input" placeholder="Last Name" autocomplete="off" {% if whale.last_name %} value="{{ whale.last_name }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Birthday #}
+										<div class="wh-input-box">
+											<label>Birthday</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="birthday" class="wh-input" placeholder="Birthday" autocomplete="off" {% if whale.birthday %} value="{{ whale.birthday }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Email #}
+										<div class="wh-input-box">
+											<label>Email</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="birthday" class="wh-input" placeholder="Email" autocomplete="off" {% if whale.email %} value="{{ whale.email }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Phone 1 #}
+										<div class="wh-input-box">
+											<label>Phone 1</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="phone1" class="wh-input" placeholder="Phone 1" autocomplete="off" {% if whale.phone1 %} value="{{ whale.phone1 }}" {% endif %}>
+											</div>
+
+											<label class="wh-checkbox">
+												<input type="checkbox" name="need_phone">
+												<div class="checkbox-toggle"></div>
+												<span>Need To Add</span>
+											</label>
+										</div>
+
+										{# Phone 2 #}
+										<div class="wh-input-box">
+											<label>Phone 2</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="phone2" class="wh-input" placeholder="Phone 2" autocomplete="off" {% if whale.phone2 %} value="{{ whale.phone2 }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Zip Code #}
+										<div class="wh-input-box">
+											<label>ZIP Code</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="zipCode" class="wh-input" placeholder="ZIP Code" autocomplete="off" {% if whale.zipCode %} value="{{ whale.zipCode }}" {% endif %}>
+											</div>
+										</div>
+
+										{# City #}
+										<div class="wh-input-box">
+											<label>City</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="city" class="wh-input" placeholder="City" autocomplete="off" {% if whale.city %} value="{{ whale.city }}" {% endif %}>
+											</div>
+										</div>
+
+										{# State #}
+										<div class="wh-input-box">
+											<label>State</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="state" class="wh-input" placeholder="State" autocomplete="off" {% if whale.state %} value="{{ whale.state }}" {% endif %}>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- #endregion -->
+
+						<!-- #region Professonal Information -->
+						<div class="wh-box">
+							<div class="wh-box__wrapper">
+								<div class="wh-box__header">
+									<div class="flex-row">
+										<div class="wh-icon">
+											{% include "admin/svg/icon_job.svg" %}
+										</div>
+										<h4 class="wh-box__heading">Professional Information</h4>
+									</div>
+								</div>
+								<div class="wh-box__body">
+									<div
+										class="wh-inputs-grid">
+										{# Active Client #}
+										<div class="wh-input-box">
+											<label>Status</label>
+											<div class="wh-input-wrap --select">
+												<select class="wh-input" name="status">
+													<option value="">Select</option>
+													<option value="Current" selected="">Current</option>
+													<option value="Injured">Injured</option>
+													<option value="Retired">Retired</option>
+													<option value="Free Agent">Free Agent</option>
+												</select>
+											</div>
+										</div>
+
+										{# Salesperson #}
+										<div class="wh-input-box">
+											<label>Salesperson</label>
+											<div class="wh-input-wrap --select">
+												<select class="wh-input" name="salesperson">
+													<option value="0" selected>Empty</option>
+												</select>
+											</div>
+										</div>
+
+										{# Tab #}
+										<div class="wh-input-box">
+											<label>Tab</label>
+											<div class="wh-input-wrap --select">
+												<select class="wh-input" name="salesperson">
+													<option value="1">None</option>
+													<option value="2">NFL</option>
+													<option value="3" selected="">NBA</option>
+													<option value="4">MLB</option>
+													<option value="5">Soccer</option>
+													<option value="6">Musicians</option>
+													<option value="7">NHL</option>
+													<option value="8">Influencers</option>
+													<option value="9">Boxers</option>
+													<option value="10">WNBA</option>
+													<option value="11">Local Spenders</option>
+													<option value="15">Retired</option>
+												</select>
+											</div>
+										</div>
+
+										{# Draft Year #}
+										<div class="wh-input-box">
+											<label>Draft Year</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="draft_year" class="wh-input" placeholder="Draft Year" autocomplete="off" {% if whale.draft_year %} value="{{ whale.draft_year }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Team #}
+										<div class="wh-input-box">
+											<label>Team</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="team" class="wh-input" placeholder="Team" autocomplete="off" {% if whale.team %} value="{{ whale.team }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Jersey Number #}
+										<div class="wh-input-box">
+											<label>Jersey Number</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="jersey_number" class="wh-input" placeholder="Jersey Number" autocomplete="off" {% if whale.jersey_number %} value="{{ whale.jersey_number }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Position #}
+										<div class="wh-input-box">
+											<label>Position</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="position" class="wh-input" placeholder="Position" autocomplete="off" {% if whale.position %} value="{{ whale.position }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Hometown #}
+										<div class="wh-input-box">
+											<label>Hometown</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="hometown" class="wh-input" placeholder="Hometown" autocomplete="off" {% if whale.hometown %} value="{{ whale.hometown }}" {% endif %}>
+											</div>
+										</div>
+
+										{# College #}
+										<div class="wh-input-box">
+											<label>College</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="college" class="wh-input" placeholder="College" autocomplete="off" {% if whale.college %} value="{{ whale.college }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Offseason City #}
+										<div class="wh-input-box">
+											<label>Offseason City</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="offseason_city" class="wh-input" placeholder="Offseason City" autocomplete="off" {% if whale.offseason_city %} value="{{ whale.offseason_city }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Salary #}
+										<div class="wh-input-box">
+											<label>Salary</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="salary" class="wh-input" placeholder="Salary" autocomplete="off" {% if whale.salary %} value="{{ whale.salary }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Wiki #}
+										<div class="wh-input-box">
+											<label>Wiki</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="wiki" class="wh-input" placeholder="Wiki" autocomplete="off" {% if whale.wiki %} value="{{ whale.wiki }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Next ATL Stop #}
+										<div class="wh-input-box">
+											<label>Next ATL Stop</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="next_atl_stop" class="wh-input" placeholder="Next ATL Stop" autocomplete="off" {% if whale.next_atl_stop %} value="{{ whale.next_atl_stop }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Career Earnings #}
+										<div class="wh-input-box">
+											<label>Career Earnings</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="career_earnings" class="wh-input" placeholder="Career Earnings" autocomplete="off" {% if whale.career_earnings %} value="{{ whale.career_earnings }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Transfer Market #}
+										<div class="wh-input-box">
+											<label>Transfer Market</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="transfermarket" class="wh-input" placeholder="Transfer Market" autocomplete="off" {% if whale.transfermarket %} value="{{ whale.transfermarket }}" {% endif %}>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- #endregion -->
+
+						<!-- #region Social Media -->
+						<div class="wh-box">
+							<div class="wh-box__wrapper">
+								<div class="wh-box__header">
+									<div class="flex-row">
+										<div class="wh-icon">
+											{% include "admin/svg/icon_fire.svg" %}
+										</div>
+										<h4 class="wh-box__heading">Social Media</h4>
+									</div>
+								</div>
+								<div class="wh-box__body">
+									<div
+										class="wh-inputs-grid">
+
+										{# Instagram #}
+										<div class="wh-input-box --third">
+											<label>Instagram</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="instagram" class="wh-input" placeholder="Instagram ID" autocomplete="off" {% if whale.instagram %} value="{{ whale.instagram }}" {% endif %}>
+											</div>
+											<div class="wh-input-wrap">
+												<input type="text" name="instagram_followers" class="wh-input" placeholder="Followers" autocomplete="off" {% if whale.instagram.followers %} value="{{ whale.instagram.followers }}" {% endif %}>
+											</div>
+											<label class="wh-checkbox">
+												<input type="checkbox" name="instagram_verified">
+												<div class="checkbox-toggle"></div>
+												<span>Verified</span>
+											</label>
+										</div>
+
+										{# Twitter #}
+										<div class="wh-input-box --third">
+											<label>Twitter</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="twitter" class="wh-input" placeholder="Twitter ID" autocomplete="off" {% if whale.twitter %} value="{{ whale.twitter }}" {% endif %}>
+											</div>
+											<div class="wh-input-wrap">
+												<input type="text" name="twitter_followers" class="wh-input" placeholder="Followers" autocomplete="off" {% if whale.twitter.followers %} value="{{ whale.twitter.followers }}" {% endif %}>
+											</div>
+											<label class="wh-checkbox">
+												<input type="checkbox" name="twitter_verified">
+												<div class="checkbox-toggle"></div>
+												<span>Verified</span>
+											</label>
+										</div>
+
+										{# TikTok #}
+										<div class="wh-input-box --third">
+											<label>TikTok</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="tiktok" class="wh-input" placeholder="TikTok ID" autocomplete="off" {% if whale.tiktok %} value="{{ whale.tiktok }}" {% endif %}>
+											</div>
+											<div class="wh-input-wrap">
+												<input type="text" name="tiktok_followers" class="wh-input" placeholder="Followers" autocomplete="off" {% if whale.tiktok.followers %} value="{{ whale.tiktok.followers }}" {% endif %}>
+											</div>
+											<label class="wh-checkbox">
+												<input type="checkbox" name="tiktok_verified">
+												<div class="checkbox-toggle"></div>
+												<span>Verified</span>
+											</label>
+										</div>
+
+										{# DM Reply #}
+										<div class="wh-input-box --third">
+											<label>DM Reply</label>
+											<div class="wh-input-wrap --select">
+												<select name="dm_reply" class="wh-input" placeholder="DM Reply" autocomplete="off" {% if whale.dm_reply %} value="{{ whale.dm_reply }}" {% endif %}>
+													<option value="">Select</option>
+													<option value="0" selected="">No</option>
+													<option value="1">Yes</option>
+												</select>
+											</div>
+										</div>
+										{# Visited #}
+										<div class="wh-input-box --third">
+											<label>Visited</label>
+											<div class="wh-input-wrap --select">
+												<select name="visited" class="wh-input" placeholder="Visited" autocomplete="off" {% if whale.visited %} value="{{ whale.visited }}" {% endif %}>
+													<option value="">Select</option>
+													<option value="0" selected="">No</option>
+													<option value="1">Yes</option>
+												</select>
+											</div>
+										</div>
+										{# Follow Icebox #}
+										<div class="wh-input-box --third">
+											<label>Follow Icebox</label>
+											<div class="wh-input-wrap --select">
+												<select name="follow_icebox" class="wh-input" placeholder="Follow Icebox" autocomplete="off" {% if whale.follow_icebox %} value="{{ whale.follow_icebox }}" {% endif %}>
+													<option value="">Select</option>
+													<option value="0" selected="">No</option>
+													<option value="1">Yes</option>
+												</select>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- #endregion -->
+					</div>
+				</div>
+				<!-- #endregion -->
+
+				<div class="edit-modal__footer">
+					<div class="wrapper">
+						<div class="flex-row_8">
+								<a class="am-item__btn is-green-border" onclick="Submit();">
+									<span>Save</span>
+								</a>
+								<a class="am-item__btn is-border" onclick="SubmitPrevious();">
+									<span>Save & Back</span>
+								</a>
+								<a class="am-item__btn" onclick="SubmitNext();">
+									<span>Save & Next</span>
+								</a>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* #region  Lock & Unlock scroll // body scroll // overflow scroll */
   function lockScroll() {
     setTimeout(function () {
       if (!document.body.hasAttribute("ib-scroll-lock")) {
@@ -498,6 +497,58 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const editModal = {
+    init: function () {
+      if (document.querySelector('.edit-modal')) {
+        Object.values(this.initFn).forEach((fn) => {
+          if (typeof fn === 'function') {
+            try {
+              fn()
+            } catch (err) {
+              console.log(`edit modal init fn err : ${err.message}`)
+            }
+          }
+        })
+      }
+    },
+    open: function () {
+      lockScroll()
+      const modal = document.querySelector('.edit-modal')
+      if (modal) {
+        modal.style.display = 'block'
+        setTimeout(() => {
+          modal.classList.add(IS_VISIBLE)
+        }, 1);
+      }
+    },
+    close: function () {
+      unlockScroll()
+      const modal = document.querySelector('.edit-modal')
+      if (modal) {
+        modal.classList.remove(IS_VISIBLE)
+        setTimeout(() => {
+          modal.style.display = 'none'
+        }, getTransitionTime(modal));
+      }
+    },
+    initFn: {
+      bindToggle: function () {
+        const closeEvt = document.querySelectorAll('[data-evt="closeEditModal"]')
+        const openEvt = document.querySelectorAll('[data-evt="openEditModal"]')
+        closeEvt.forEach((btn) => {
+          btn.onclick = () => {
+            editModal.close()
+          }
+        })
+        openEvt.forEach((btn) => {
+          btn.onclick = () => {
+            editModal.open()
+          }
+        })
+      }
+    }
+  }
+
   pageBackdrop.onclick = () => { pageSearch.close(); pageMenu.close(); pageSidebar.close() }
 
 
@@ -508,7 +559,8 @@ document.addEventListener('DOMContentLoaded', () => {
     pageMenu,
     pageSidebar,
     whalesPage,
-    whaleCards
+    whaleCards,
+    editModal
   ]
 
   pageObjects.forEach((obj) => {
