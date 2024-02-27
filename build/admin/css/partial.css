@@ -2724,8 +2724,6 @@ table.dataTable tbody a:hover {
 
 select {
   cursor: pointer !important;
-  background-color: #fff !important;
-  border: 1px solid #e6e8ee !important;
   justify-content: center !important;
   align-items: center !important;
   padding: 10px 14px !important;
@@ -2733,8 +2731,6 @@ select {
   font-weight: 600 !important;
   transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) !important;
   gap: 6px !important;
-  box-shadow: 0 2px 3px rgba(23, 28, 41, 0.03) !important;
-  border-radius: 6px !important;
 }
 
 .dt-buttons {
@@ -4557,6 +4553,49 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 }
 
 @media screen and (min-width: 992px) {
+  [data-am-evt=togglePageNav] {
+    display: none !important;
+  }
+
+  .am-header__page-nav {
+    transform: translate(0, 0);
+  }
+
+  .am-header__page-nav .am-page-nav__wrapper {
+    padding: 10px;
+    gap: 16px;
+  }
+
+  .am-header__page-nav .am-page-nav__wrapper a {
+    flex-direction: row;
+  }
+
+  .am-header__page-nav .am-page-nav__wrapper a > div {
+    padding: 6px;
+  }
+
+  .am-header__page-nav .am-page-nav__wrapper a > div svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .am-header__page-nav .am-page-nav__wrapper a:hover {
+    color: #a6e3ff;
+  }
+
+  .am-header__page-nav .am-page-nav__wrapper a:hover > div {
+    background-color: rgba(64, 140, 241, 0.15);
+    border-color: var(--blue_gold);
+  }
+
+  .am-sidebar__wrapper {
+    padding-top: 118px !important;
+  }
+
+  .am-content {
+    padding-top: 118px !important;
+  }
+
   .whale-card:hover {
     border-color: var(--bright_blue);
     z-index: 1;

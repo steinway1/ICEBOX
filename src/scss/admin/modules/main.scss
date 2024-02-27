@@ -1442,7 +1442,7 @@ body {
   svg {
     width: 10px;
     height: 10px;
-    
+
     path {
       stroke-width: 3px;
     }
@@ -1454,4 +1454,50 @@ body {
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
+}
+
+@include minWidthMd {
+
+  [data-am-evt="togglePageNav"] {
+    display: none !important;
+  }
+
+  .am-header__page-nav {
+    transform: translate(0, 0);
+    // background-color: #386095;
+
+    .am-page-nav__wrapper {
+      padding: 10px;
+      gap: 16px;
+
+      a {
+        flex-direction: row;
+
+        &>div {
+          padding: 6px;
+
+          svg {
+            width: 14px;
+            height: 14px;
+          }
+        }
+
+        &:hover {
+          color: #a6e3ff;
+          &>div {
+            background-color: rgba(64, 140, 241, 0.15);
+            border-color: var(--blue_gold);
+          }
+        }
+      }
+    }
+  }
+
+  .am-sidebar__wrapper {
+    padding-top: 118px !important;
+  }
+
+  .am-content {
+    padding-top: 118px !important;
+  }
 }
