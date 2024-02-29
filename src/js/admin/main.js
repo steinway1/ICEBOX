@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+
 
   function lockScroll() {
     setTimeout(function () {
@@ -822,4 +822,3 @@ document.addEventListener('DOMContentLoaded', () => {
   //   })
   // }
 
-})
