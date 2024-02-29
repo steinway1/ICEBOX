@@ -731,3 +731,43 @@ form button {
 }
 
 /* #endregion : Page Reviews */
+
+.wa-float {
+  position: fixed;
+  z-index: 20;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    display: block;
+    transition: all 250ms ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &.--desktop {
+      width: 150px;
+    }
+
+    &.--mobile {
+      width: 54px;
+      height: 54px;
+    }
+
+    @include maxWidthMd {
+      &.--desktop {
+        display: none;
+      }
+    }
+
+    @include minWidthMd {
+      &.--mobile {
+        display: none;
+      }
+    }
+  }
+}

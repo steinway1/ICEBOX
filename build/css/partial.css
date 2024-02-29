@@ -9154,6 +9154,34 @@ form button.is-failed {
 
 /* #endregion : Page Reviews */
 
+.wa-float {
+  position: fixed;
+  z-index: 20;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wa-float img {
+  display: block;
+  transition: all 250ms ease;
+}
+
+.wa-float img:hover {
+  transform: scale(1.05);
+}
+
+.wa-float img.--desktop {
+  width: 150px;
+}
+
+.wa-float img.--mobile {
+  width: 54px;
+  height: 54px;
+}
+
 /* #region  Welcome Section */
 
 .home-welcome-details h1,
@@ -26247,6 +26275,10 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     border-color: #d18ba2;
   }
 
+  .wa-float img.--mobile {
+    display: none;
+  }
+
   .home-row:nth-child(odd) .home-row__summary-center {
     order: -1 !important;
   }
@@ -26685,6 +26717,10 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   .categories-tabs .categories-tabs {
     grid-column-gap: 10px;
     grid-row-gap: 10px;
+  }
+
+  .wa-float img.--desktop {
+    display: none;
   }
 
   .home-row__img {
