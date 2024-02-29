@@ -501,6 +501,23 @@ document.addEventListener('DOMContentLoaded', () => {
             input.submit()
           }
         })
+      },
+      attachContractSearch: () => {
+        const evtArr = [...document.querySelectorAll('[data-evt="contractGoogleSearch"]')]
+        const googleContract = (name) => {
+          const query = `${name} contract`
+          const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+          window.open(url, '_blank');
+        }
+        evtArr.forEach((btn) => {
+          btn.onclick = () => {
+            const card = btn.parentNode.closest('.whale-card')
+            if (card) {
+              const name = card.querySelector('.whale-card__name').textContent
+              googleContract(name)
+            }
+          }
+        })
       }
     }
   }
@@ -584,6 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   })
+
 
   // SWIPER
 
