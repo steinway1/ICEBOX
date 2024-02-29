@@ -88,22 +88,22 @@
 				<div class="whale-card__cell" data-cell="socials">
 					{% for key, obj in whale.socials %}
 						{% if key == 'instagram' %}
-							<a class="tb-social-btn instagram" href="{{ obj.link }}" target="_blank">
-								<div>{{ obj.username }}</div>
-								<div class="tb-social-count">{{ obj.followers }}</div>
-							</a>
+							<div class="tb-social-btn instagram">
+								<a href="{{ obj.link }}" target="_blank">{{ obj.username }}</a>
+								<span class="tb-social-count">{{ obj.followers }}</span>
+							</div>
 						{% endif %}
 						{% if key == 'twitter' %}
-							<a class="tb-social-btn x" href="{{ obj.link }}" target="_blank">
-								<div>{{ obj.username }}</div>
-								<div class="tb-social-count">{{ obj.followers }}</div>
-							</a>
+							<div class="tb-social-btn x">
+								<a href="{{ obj.link }}" target="_blank">{{ obj.username }}</a>
+								<span class="tb-social-count">{{ obj.followers }}</span>
+							</div>
 						{% endif %}
 						{% if key == 'tiktok' %}
-							<a class="tb-social-btn tiktok" href="{{ obj.link }}" target="_blank">
-								<div>{{ obj.username }}</div>
-								<div class="tb-social-count">{{ obj.followers }}</div>
-							</a>
+							<div class="tb-social-btn tiktok">
+								<a href="{{ obj.link }}" target="_blank">{{ obj.username }}</a>
+								<span class="tb-social-count">{{ obj.followers }}</span>
+							</div>
 						{% endif %}
 					{% endfor %}
 				</div>
