@@ -501,6 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       },
       attachContractSearch: () => {
+        return
         const evtArr = [...document.querySelectorAll('[data-evt="contractGoogleSearch"]')]
         const googleContract = (name) => {
           const query = `${name} contract`
@@ -572,6 +573,149 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const toolbar = {
+    init: function () {
+      Object.values(this.initFn).forEach((fn) => {
+        if (typeof fn === 'function') {
+          try {
+            fn()
+          } catch (err) {
+            console.log(`toolbar init fn err : ${err.message}`)
+          }
+        }
+      })
+    },
+    initFn: {
+      renderPTSLottie: () => {
+        const lottieContainers = [...document.querySelectorAll('[data-lottie="diamondSpin"]')]
+        lottieContainers.forEach((container) => {
+          const animation = bodymovin.loadAnimation({
+            container: container,
+            path: 'https://gist.githubusercontent.com/steinway1/4de3da6a3a8364ede5c3e5fff52c5113/raw/94ab2c03988700c56cffeb4f5fc06ce2e605120f/spin-diamond.json',
+            autoplay: true,
+            renderer: 'svg',
+            loop: true
+          })
+        })
+      }
+    }
+  }
+
+  const gTip = {
+    card: null,
+    query: undefined,
+    elem: document.querySelector('.g-tip'),
+    input: document.querySelector('.g-tip__input'),
+    init: function () {
+      if (this.elem && this.input) {
+        this.extendElem()
+        this.bindEvents()
+      }
+    },
+    extendElem: function () {
+      this.elem.open = () => {
+        if (gTip.card) {
+          const anchor = gTip.card.querySelector('.ext-search')
+          if (anchor) {
+            const rect = anchor.getBoundingClientRect(), box = gTip.elem
+            box.style.display = 'block'
+
+            let left = rect.left > (box.offsetWidth / 2) ?
+              rect.left - (box.offsetWidth / 2) + (anchor.offsetWidth / 2) :
+              rect.left
+
+            let top = (window.innerHeight - rect.bottom) < (box.offsetHeight + 20) ?
+              window.scrollY + rect.top - box.offsetHeight - 10 :
+              window.scrollY + rect.top + anchor.offsetHeight + 10
+
+            if (left < 0) {
+              left = 0;
+            } else if (left + box.offsetWidth > window.innerWidth) {
+              left = window.innerWidth - box.offsetWidth;
+            }
+
+            box.style.left = `${left}px`
+            box.style.top = `${top}px`
+          }
+        }
+      }
+      this.elem.reset = () => {
+        const box = gTip.elem
+        box.style.display = 'none'
+        if (gTip.card) {
+          gTip.card = null
+          gTip.query = undefined
+        }
+      }
+      this.elem.submit = () => {
+        const query = `${name} contract`
+        const url = `https://www.google.com/search?q=${encodeURIComponent(gTip.query)}`;
+        window.open(url, '_blank');
+      }
+    },
+    bindEvents: () => {
+      const btnArr = [...document.querySelectorAll('[data-evt="openGoogleTip"]')]
+      btnArr.forEach((btn) => {
+        btn.onclick = (e) => {
+          gTip.card = e.target.closest('.whale-card')
+          gTip.elem.open()
+        }
+      })
+
+      const queries = [...document.querySelectorAll('.g-tip__queries a')]
+      queries.forEach((query) => {
+        query.onclick = (e) => {
+          if (gTip.card) {
+            let name = gTip.card.querySelector('.whale-card__name')
+            if (name) {
+              gTip.query = `${name.textContent} ${query.textContent}`
+              gTip.elem.submit()
+            }
+          }
+        }
+      })
+
+      const input = gTip.elem.querySelector('input')
+      const submitInputArr = [...document.querySelectorAll('[data-evt="submitGoogleTip"]')]
+      if (input) {
+        input.onkeydown = (e) => {
+          if (e.key == 'Enter') {
+            e.preventDefault()
+            if (gTip.card) {
+              let name = gTip.card.querySelector('.whale-card__name')
+              if (name) {
+                gTip.query = `${name.textContent} ${input.value}`
+                gTip.elem.submit()
+              }
+            }
+          }
+        }
+      }
+      submitInputArr.forEach((btn) => {
+        btn.onclick = () => {
+          if (gTip.card) {
+            let name = gTip.card.querySelector('.whale-card__name')
+            if (name) {
+              gTip.query = `${name.textContent} ${input.value}`
+              gTip.elem.submit()
+            }
+          }
+        }
+      })
+
+      window.onscroll = () => {
+        gTip.elem.reset()
+      }
+
+      document.addEventListener('click', (e) => {
+        const target = e.target
+        if (!target.classList.contains('ext-search') && !target.closest('.g-tip')) {
+          gTip.elem.reset()
+        }
+      })
+    }
+  }
+
   pageBackdrop.onclick = () => { pageSearch.close(); pageMenu.close(); pageSidebar.close() }
 
 
@@ -583,7 +727,9 @@ document.addEventListener('DOMContentLoaded', () => {
     pageSidebar,
     whalesPage,
     whaleCards,
-    editModal
+    editModal,
+    toolbar,
+    gTip
   ]
 
   pageObjects.forEach((obj) => {
@@ -591,11 +737,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         obj.init()
       } catch (err) {
-        if (err instanceof ReferenceError) {
-          console.log("obj not declared");
-        } else {
-          console.log("other error");
-        }
+        console.error(err.message)
       }
     }
   })

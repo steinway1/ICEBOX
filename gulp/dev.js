@@ -52,7 +52,8 @@ const root = {
     adminJS: {
       _: './src/js/admin/*.js',
       lib: {
-        jquery: './src/js/admin/lib/jquery.js'
+        jquery: './src/js/admin/lib/jquery.js',
+        lottie: './src/js/admin/lib/lottie.js'
       },
       bundle: {
         main: './src/js/admin/main.js'
@@ -163,6 +164,7 @@ gulp.task('js-admin:dev',
     return gulp
       .src([
         root.src.adminJS.lib.jquery,
+        root.src.adminJS.lib.lottie,
         root.src.adminJS.bundle.main
       ])
       .pipe(changed(root.dev.adminJS))

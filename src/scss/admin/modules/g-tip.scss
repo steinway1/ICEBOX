@@ -1,0 +1,113 @@
+.g-tip {
+  display: none;
+  z-index: 9999;
+  background-color: #4285f4;
+  background-image: linear-gradient(153deg, #4285f4, #4285f4 25%, #db4437 25%, #db4437 50%, #f4b400 50%, #f4b400 75%, #0f9d58 75%, #0f9d58);
+  border-radius: 16px;
+  padding: 2px;
+  position: absolute;
+  box-shadow: 0 24px 58px rgba(66, 133, 244, .19);
+  // transition: all .4s cubic-bezier(.39, .575, .565, 1);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  @include maxWidthMd {
+    width: clamp(220px, 260px, 260px);
+  }
+}
+
+.g-tip__box {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  background-color: #fff;
+  border-radius: 14px;
+  flex-direction: column;
+  padding: 16px;
+  display: flex;
+  box-shadow: inset 0 0 32px rgba(66, 133, 244, .1);
+}
+
+.g-tip__queries {
+  max-width: 200px;
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+  display: flex;
+
+  a {
+    color: #fff;
+    cursor: pointer;
+    background-color: #4285f4;
+    border: 1px solid #4285f4;
+    border-radius: 7px;
+    padding: 1px 6px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all .2s cubic-bezier(.39, .575, .565, 1);
+
+    &:hover {
+      background-color: white;
+      color: #4285f4
+    }
+  }
+}
+
+.g-tip__form {
+  position: relative;
+
+  input {
+    height: 38px;
+    width: 100%;
+    background-color: #eef0f7;
+    border: 1px solid #eef0f7;
+    border-radius: 8px;
+    margin-bottom: 0;
+    padding: 0 12px;
+    font-size: 13px;
+    transition: all .2s cubic-bezier(.39, .575, .565, 1);
+    font-weight: 600;
+
+    &::placeholder {
+      color: #4d5b6d;
+      font-weight: 400;
+    }
+
+    &:hover,
+    &:focus {
+      border-color: #4285f4;
+      background-color: white;
+    }
+
+    &:active {
+      opacity: .6;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    display: flex;
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    right: 4px;
+    background-image: url(../assets/google-search-icon.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 13px 13px;
+    transition: all .2s cubic-bezier(.39, .575, .565, 1);
+
+    &:hover {
+      background-size: 16px 16px;
+    }
+  }
+}
