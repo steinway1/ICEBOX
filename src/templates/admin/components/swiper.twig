@@ -1,0 +1,31 @@
+<div class="swiper">
+	<div class="swiper__backdrop"></div>
+	<div class="swiper__container">
+		<div class="swiper__header">
+			<img src="{{ THEME_ASSETS_FOLDER }}/swiper-logo.svg" alt="" class="swiper__logo">
+		</div>
+		<div class="swiper__cards"></div>
+		<div class="swiper__footer">
+			<button class="am-item__btn">
+				{% include "admin/svg/icon_arrow-prev.svg" %}
+			</button>
+			<button class="am-item__btn">
+				{% include "admin/svg/icon_arrow-next.svg" %}
+			</button>
+		</div>
+	</div>
+	<div data-swiper-evt="backCard" class="swiper__side-arrow --left">
+		<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 40 40" width="12" height="12" focusable="false">
+			<path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z" stroke="currentColor"></path>
+		</svg>
+	</div>
+	<div data-swiper-evt="nextCard" class="swiper__side-arrow --right">
+		<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 40 40" width="12" height="12" focusable="false">
+			<path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z" stroke="currentColor"></path>
+		</svg>
+	</div>
+	<div class="swiper__stash"></div>
+	<button data-swiper-evt="close" class="am-close-btn">
+		{% include "admin/svg/icon_cross.svg" %}
+	</button>
+</div>

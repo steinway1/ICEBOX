@@ -28,7 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scroll(0, o);
     }
   }
-  /* #endregion */
+
+  Number.prototype.between = function (min, max) {
+    return this >= min && this <= max
+  }
 
   const body = document.querySelector('body'),
     pageBackdrop = document.querySelector('.am-backdrop'),
@@ -37,7 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const
     IS_VISIBLE = 'is-visible',
     IS_ACTIVE = 'is-active',
-    IS_HIDDEN = 'is-hidden'
+    IS_HIDDEN = 'is-hidden',
+    __BACK = '--back',
+    __MOVING = '--moving',
+    __STASH = '--stash'
 
   HTMLElement.prototype.isVisible = function () {
     return window.getComputedStyle(this).getPropertyValue('display') !== 'none'
@@ -578,5 +584,84 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   })
+
+  // SWIPER
+
+  // const
+  //   swiper = document.querySelector('.swiper'),
+  //   stash = document.querySelector('.swiper__stash'),
+  //   holder = document.querySelector('.swiper__cards')
+
+  // if (swiper && stash && holder) {
+
+  //   let
+  //     card,
+  //     drag,
+  //     deg,
+  //     degOffset = 25,
+  //     maxDrag = 350,
+  //     minDrag = 100,
+  //     maxPrevCards = 20,
+  //     maxNextCards = 20,
+  //     downEvents = ['mousedown', 'touchstart', 'click'],
+  //     moveEvents = ['mousemove', 'touchmove'],
+  //     upEvents = ['mouseup', 'touchend'],
+  //     memoryCards = {},
+  //     initCard
+
+  //   swiper.open = function () {
+  //     lockScroll()
+  //     swiper.style.display = 'block'
+  //     setTimeout(() => {
+  //       swiper.classList.add(IS_VISIBLE)
+  //     }, 1);
+  //   }
+  //   swiper.close = function () {
+  //     unlockScroll()
+  //     swiper.classList.remove(IS_VISIBLE)
+  //     setTimeout(() => {
+  //       swiper.style.display = 'none'
+  //       destroy()
+  //     }, getTransitionTime(swiper));
+  //   }
+
+  //   const createSwiper = () => {
+  //     memoryCards = {}
+  //     let fromCard = initCard !== null && initCard !== undefined ? initCard : [...document.querySelectorAll('.whale-card')][0]
+
+  //     let
+  //       nextCards = [],
+  //       prevCards = [],
+  //       next = fromCard.nextElementSibling,
+  //       prev = fromCard.previousElementSibling
+
+  //     if (fromCard) {
+  //       while (next && nextCards.length < maxNextCards) {
+  //         nextCards = [...nextCards, next]
+  //         next = next.nextElementSibling
+  //       }
+  //       while (prev && prevCards.length < maxPrevCards) {
+  //         prevCards = [...prevCards, prev]
+  //         prev = prev.previousElementSibling
+  //       }
+  //       nextCards = [fromCard, ...nextCards]
+
+  //       memoryCards.prev = prevCards
+  //       memoryCards.next = nextCards
+  //     } else { return }
+
+  //     console.log(memoryCards)
+  //   }
+
+
+
+  //   document.querySelectorAll('[data-evt="cardGoCRM"]').forEach((btn) => {
+  //     btn.onclick = () => {
+  //       initCard = btn.closest('.whale-card')
+  //       createSwiper()
+  //       swiper.open()
+  //     }
+  //   })
+  // }
 
 })

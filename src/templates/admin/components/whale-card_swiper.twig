@@ -1,0 +1,112 @@
+<div class="whale-card swiper__card">
+
+	<div class="whale-card__saleperson" data-cell="saleperson">
+		{{ whale.saleperson_xedit | raw }}
+	</div>
+
+	<button class="am-btn" data-evt="cardGoCRM">Go CRM</button>
+
+	<div class="whale-card__top">
+		<div class="whale-card__avatar">
+			<img src="{{whale.photo}}" alt="">
+		</div>
+		<div class="whale-card__sum">
+			<h3 class="whale-card__name">{{whale.full_name}}</h3>
+			<span class="spot-typo">{{whale.tab}}</span>
+			{{ whale.action_bar | raw }}
+		</div>
+	</div>
+
+	<div class="whale-card__main">
+
+		<div class="whale-card__notes">
+			<div class="whale-card__notes-scroll">
+				{% for note in whale.notes %}
+					<div class="whale-card__note">
+						<div class="whale-card__note-date">{{note.date}}</div>
+						<div class="whale-card__note-text">
+							<span class="whale-card__note-author">{{note.author}}
+							</span>:
+							{{note.text}}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="whale-card__notes-footer">
+				<div class="am-item__note-form">
+					<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text">
+					<button data-whale-evt="submitNote">Add</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="whale-card__cells">
+			<div class="whale-card__cell" data-cell="phone">
+				<span class="cell-title">Phone</span>
+				<span class="cell-value">{{ whale.have_phone ?: 'N/A' }}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="email">
+				<span class="cell-title">Email</span>
+				<span class="cell-value">{{ whale.have_email ?: 'N/A' }}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="salary">
+				<span class="cell-title">Salary</span>
+				<span class="cell-value">{{ whale.salary ?: 'N/A' }}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="team">
+				<span class="cell-title">Team</span>
+				<span class="cell-value">{{ whale.team_html ? whale.team_html | raw : 'N/A'}}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="total_pay">
+				<span class="cell-title">Earnings</span>
+				<span class="cell-value">{{ whale.career_earnings ?: 'N/A' }}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="address">
+				<span class="cell-title">Address</span>
+				<span class="cell-value">
+					{{ whale.city ?: 'N/A' }},
+					{{ whale.state ?: 'N/A' }}
+				</span>
+			</div>
+			<div class="whale-card__cell" data-cell="birthday">
+				<span class="cell-title">Birthday</span>
+				<span class="cell-value">{{ whale.birthday ?: 'N/A' }}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="at_atl">
+				<span class="cell-title">At ATL</span>
+				<span class="cell-value">{{ whale.at_atl ? whale.at_atl | raw : 'No Visits' }}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="wiki">
+				<span class="cell-title">Wikipedia</span>
+				<span class="cell-value">
+					<a href="{{wiki_link}}">Wiki</a>
+				</span>
+			</div>
+			{% if whale.socials %}
+				<div class="whale-card__cell" data-cell="socials">
+					{% for key, obj in whale.socials %}
+						{% if key == 'instagram' %}
+							<a class="tb-social-btn instagram" href="{{ obj.link }}" target="_blank">
+								<div>{{ obj.username }}</div>
+								<div class="tb-social-count">{{ obj.followers }}</div>
+							</a>
+						{% endif %}
+						{% if key == 'twitter' %}
+							<a class="tb-social-btn x" href="{{ obj.link }}" target="_blank">
+								<div>{{ obj.username }}</div>
+								<div class="tb-social-count">{{ obj.followers }}</div>
+							</a>
+						{% endif %}
+						{% if key == 'tiktok' %}
+							<a class="tb-social-btn tiktok" href="{{ obj.link }}" target="_blank">
+								<div>{{ obj.username }}</div>
+								<div class="tb-social-count">{{ obj.followers }}</div>
+							</a>
+						{% endif %}
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+
+	</div>
+</div>

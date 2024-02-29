@@ -1926,7 +1926,7 @@ const productPage = new Object({
   init: function () {
     // NEW UPDATE -- DELETE LATER
     const new_page_exist = document.querySelector('.main_product_upd') !== null
-    if (!new_page_exist) {
+    if (new_page_exist) {
       this.renderDOM();
       this.bindEvents();
       Object.values(this.initFn).forEach((target) => {
