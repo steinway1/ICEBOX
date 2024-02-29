@@ -716,7 +716,7 @@
     }
   }
 
-  pageBackdrop.onclick = () => { pageSearch.close(); pageMenu.close(); pageSidebar.close() }
+
 
 
   const pageObjects = [
@@ -732,15 +732,19 @@
     gTip
   ]
 
-  pageObjects.forEach((obj) => {
-    if (obj.init !== undefined && typeof obj.init === 'function') {
-      try {
-        obj.init()
-      } catch (err) {
-        console.error(err.message)
+  $(document).ready(function(){
+    pageObjects.forEach((obj) => {
+      if (obj.init !== undefined && typeof obj.init === 'function') {
+        try {
+          obj.init()
+        } catch (err) {
+          console.error(err.message)
+        }
       }
-    }
+    })
+    pageBackdrop.onclick = () => { pageSearch.close(); pageMenu.close(); pageSidebar.close() }
   })
+
 
 
   // SWIPER
