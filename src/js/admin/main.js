@@ -1,4 +1,4 @@
-
+document.addEventListener('DOMContentLoaded', () => {
 
   function lockScroll() {
     setTimeout(function () {
@@ -573,17 +573,268 @@
     }
   }
 
-  const toolbar = {
+
+  const toolba = {
+    menuOpened: false,
+    sortOpened: false,
+    filterOpened: false,
+    elem: document.querySelector('.toolbar'),
+    menu: document.querySelector('.toolbar-menu'),
+    sortMenu: document.querySelector('#toolbarSort'),
+    filterMenu: document.querySelector('#toolbarFilter'),
+    sortToggleArr: document.querySelectorAll('[data-evt="toggleSortMenu"]'),
+    filterToggleArr: document.querySelectorAll('[data-evt="toggleFilterMenu"]'),
+    resetFormArr: document.querySelectorAll('[data-evt="resetToolbarForm"]'),
+
     init: function () {
-      Object.values(this.initFn).forEach((fn) => {
-        if (typeof fn === 'function') {
-          try {
-            fn()
-          } catch (err) {
-            console.log(`toolbar init fn err : ${err.message}`)
+      if (this.elem) {
+        this.attachEvents()
+        Object.values(this.initFn).forEach((fn) => {
+          if (typeof fn === 'function') {
+            try {
+              fn()
+            } catch (err) {
+              console.log(`toolbar init fn err : ${err.message}`)
+            }
+          }
+        })
+      }
+    },
+    openMenu: function () {
+      if (this.menu) {
+        this.menuOpened = true
+        this.elem.classList.add(IS_ACTIVE)
+        setTimeout(() => {
+          this.menu.style.height = `${this.menu.scrollHeight}px`
+        }, 10)
+      }
+    },
+    closeMenu: function () {
+      if (this.menu) {
+        this.menuOpened = false
+        this.elem.classList.remove(IS_ACTIVE)
+        this.menu.style.height = 0
+      }
+    },
+    adjustMenuHeight: function() {
+      const wrapper = document.querySelector('.toolbar-menu__wrapper')
+      if (wrapper) {
+        let height = wrapper.clientHeight
+        this.menu.style.height = `${height}px`
+      }
+    },
+    toggleMenu: function () {
+      if (this.menuOpened) {
+        this.closeMenu()
+      } else {
+        this.openMenu()
+      }
+    },
+    openSort: function () {
+      if (this.menu && this.sortMenu) {
+        this.checkSortState()
+        this.checkFilterState()
+        if (!this.menuOpened) {
+          this.openMenu()
+          this.sortOpened = true
+          this.sortMenu.style.display = 'block'
+          this.filterMenu.style.display = 'none'
+        } else {
+          if (!this.filterOpened) {
+            this.closeMenu()
+            this.sortOpened = false
+          } else {
+            this.sortOpened = true
+            this.filterOpened = false
+            this.sortMenu.style.display = 'block'
+            this.filterMenu.style.display = 'none'
+            this.adjustMenuHeight()
+          }
+        }
+      }
+    },
+    openFilter: function () {
+      if (this.menu && this.filterMenu) {
+        this.checkSortState()
+        this.checkFilterState()
+        if (!this.menuOpened) {
+          this.openMenu()
+          this.filterOpened = true
+          this.filterMenu.style.display = 'block'
+          this.sortMenu.style.display = 'none'
+        } else {
+          if (!this.sortOpened) {
+            this.closeMenu()
+            this.filterOpened = false
+          } else {
+            this.filterOpened = true
+            this.sortOpened = false
+            this.filterMenu.style.display = 'block'
+            this.sortMenu.style.display = 'none'
+            this.adjustMenuHeight()
+          }
+        }
+      }
+    },
+    checkSortState: function () {
+      if (this.sortMenu && this.sortToggleArr.length) {
+        const inputs = this.sortMenu.querySelectorAll('input:checked')
+        inputs.length ? this.sortToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.sortToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
+      }
+    },
+    checkFilterState: function () {
+      if (this.filterMenu && this.filterToggleArr.length) {
+        const inputs = this.filterMenu.querySelectorAll('input:checked')
+        inputs.length ? this.filterToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.filterToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
+      }
+    },
+
+    attachEvents: function () {
+      this.sortToggleArr.forEach((btn) => {
+        btn.onclick = () => {
+          this.openSort()
+        }
+      })
+      this.filterToggleArr.forEach((btn) => {
+        btn.onclick = () => {
+          this.openFilter()
+        }
+      })
+      this.resetFormArr.forEach((btn) => {
+        btn.onclick = () => {
+          const form = btn.parentNode.closest('.toolbar-form')
+          if (form) {
+            let inputs = form.querySelectorAll('input:checked')
+            inputs.forEach((input) => { input.checked = false })
           }
         }
       })
+    },
+
+    initFn: {
+      renderPTSLottie: () => {
+        const lottieContainers = [...document.querySelectorAll('[data-lottie="diamondSpin"]')]
+        lottieContainers.forEach((container) => {
+          const animation = bodymovin.loadAnimation({
+            container: container,
+            path: 'https://gist.githubusercontent.com/steinway1/4de3da6a3a8364ede5c3e5fff52c5113/raw/94ab2c03988700c56cffeb4f5fc06ce2e605120f/spin-diamond.json',
+            autoplay: true,
+            renderer: 'svg',
+            loop: true
+          })
+        })
+      }
+    }
+  }
+
+  const toolbar = {
+    opened: false,
+    sortOpened: false,
+    filterOpened: false,
+    elem: document.querySelector('.toolbar'),
+    sortMenu: document.querySelector('#toolbarSort'),
+    filterMenu: document.querySelector('#toolbarFilter'),
+    sortToggleArr: document.querySelectorAll('[data-evt="toggleSortMenu"]'),
+    filterToggleArr: document.querySelectorAll('[data-evt="toggleFilterMenu"]'),
+    init: function () {
+      if (this.elem) {
+        Object.values(this.initFn).forEach((fn) => {
+          if (typeof fn === 'function') {
+            try {
+              fn()
+            } catch (err) {
+              console.log(`toolbar init fn err : ${err.message}`)
+            }
+          }
+        })
+      }
+    },
+    open: () => {
+      toolbar.opened = true
+      const menu = document.querySelector('.toolbar-menu')
+      if (menu) {
+        toolbar.elem.classList.add(IS_ACTIVE)
+        setTimeout(() => {
+          menu.style.height = menu.clientHeight ? 0 : menu.scrollHeight + 'px'
+        }, 100);
+      }
+    },
+    close: () => {
+      toolbar.opened = false
+      const menu = document.querySelector('.toolbar-menu')
+      if (menu) {
+        menu.style.height = menu.clientHeight ? 0 : menu.scrollHeight + 'px'
+        setTimeout(() => {
+          toolbar.elem.classList.remove(IS_ACTIVE)
+        }, 100);
+      }
+    },
+    toggle: () => {
+      return toolbar.elem.classList.contains(IS_ACTIVE) ? toolbar.close() : toolbar.open()
+    },
+    openSort: () => {
+      if (toolbar.sortMenu) {
+        toolbar.sortMenu.style.display = 'block'
+        toolbar.filterMenu.style.display = 'none'
+      }
+    },
+    openFilter: () => {
+      if (toolbar.sortMenu) {
+        toolbar.sortMenu.style.display = 'none'
+        toolbar.filterMenu.style.display = 'block'
+      }
+    },
+    toggleSort: () => {
+      if (toolbar.sortMenu) {
+        toolbar.checkSortState()
+        toolbar.checkFilterState()
+        if (toolbar.opened) {
+          toolbar.close()
+          toolbar.sortOpened = false
+        } else {
+          toolbar.open()
+          toolbar.sortOpened = true
+          toolbar.sortMenu.style.display = 'block'
+          if (toolbar.filterMenu) {
+            toolbar.filterMenu.style.display = 'none'
+          }
+        }
+      }
+    },
+    toggleFilter: () => {
+      if (toolbar.filterMenu) {
+        toolbar.checkFilterState()
+        toolbar.checkSortState()
+        if (toolbar.opened) {
+          toolbar.close()
+          toolbar.filterOpened = false
+        } else {
+          toolbar.open()
+          toolbar.filterOpened = true
+          toolbar.filterMenu.style.display = 'block'
+          if (toolbar.sortMenu) {
+            toolbar.sortMenu.style.display = 'none'
+          }
+        }
+      }
+    },
+    checkSortState: () => {
+      const inputs = document.querySelectorAll('#toolbarSort input:checked')
+      const evtToggle = document.querySelectorAll('[data-evt="toggleSortMenu"]')
+      if (inputs.length) {
+        evtToggle.forEach((btn) => btn.classList.add(IS_ACTIVE))
+      } else {
+        evtToggle.forEach((btn) => btn.classList.remove(IS_ACTIVE))
+      }
+    },
+    checkFilterState: () => {
+      const inputs = document.querySelectorAll('#toolbarFilter input:checked')
+      const evtToggle = document.querySelectorAll('[data-evt="toggleFilterMenu"]')
+      if (inputs.length) {
+        evtToggle.forEach((btn) => btn.classList.add(IS_ACTIVE))
+      } else {
+        evtToggle.forEach((btn) => btn.classList.remove(IS_ACTIVE))
+      }
     },
     initFn: {
       renderPTSLottie: () => {
@@ -596,6 +847,34 @@
             renderer: 'svg',
             loop: true
           })
+        })
+      },
+      bindEvents: () => {
+        toolbar.sortToggleArr.forEach((btn) => {
+          btn.onclick = () => {
+            if (toolbar.opened && toolbar.filterOpened) {
+              toolbar.openSort()
+            } else {
+              toolbar.toggleSort()
+            }
+          }
+        })
+
+        toolbar.filterToggleArr.forEach((btn) => {
+          btn.onclick = () => {
+            toolbar.toggleFilter()
+          }
+        })
+
+        const resetButtons = [...document.querySelectorAll('[data-evt="resetToolbarForm"]')]
+        resetButtons.forEach((btn) => {
+          btn.onclick = () => {
+            const form = btn.closest('.toolbar-form')
+            if (form) {
+              let inputs = form.querySelectorAll('input')
+              inputs.forEach((input) => input.checked = false)
+            }
+          }
         })
       }
     }
@@ -716,7 +995,7 @@
     }
   }
 
-
+  pageBackdrop.onclick = () => { pageSearch.close(); pageMenu.close(); pageSidebar.close() }
 
 
   const pageObjects = [
@@ -728,24 +1007,19 @@
     whalesPage,
     whaleCards,
     editModal,
-    toolbar,
+    toolba,
     gTip
   ]
 
-  $(document).ready(function(){
-    pageObjects.forEach((obj) => {
-      if (obj.init !== undefined && typeof obj.init === 'function') {
-        try {
-          obj.init()
-        } catch (err) {
-          console.error(err.message)
-        }
+  pageObjects.forEach((obj) => {
+    if (obj.init !== undefined && typeof obj.init === 'function') {
+      try {
+        obj.init()
+      } catch (err) {
+        console.error(err.message)
       }
-    })
-    pageBackdrop.onclick = () => { pageSearch.close(); pageMenu.close(); pageSidebar.close() }
+    }
   })
-
-
 
   // SWIPER
 
@@ -826,3 +1100,4 @@
   //   })
   // }
 
+})

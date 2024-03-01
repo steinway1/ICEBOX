@@ -1,12 +1,59 @@
 <div class="toolbar">
 	<div class="toolbar__wrapper">
 		<div class="toolbar__container">
+			<div class="toolbar-menu">
+
+				<div
+					class="toolbar-menu__wrapper">
+					{# SORT #}
+					{% if page_sort %}
+						<div id="toolbarSort" class="toolbar-content">
+							<div class="toolbar-form">
+								<button data-evt="resetToolbarForm" class="toolbar-form-reset">Reset</button>
+								{% for sort in page_sort %}
+									<label>
+										<input type="radio" id="{{sort.id}}" name="{{sort.name}}"/>
+										<div>
+											<span>{{sort.caption}}</span>
+											<span></span>
+										</div>
+									</label>
+								{% endfor %}
+							</div>
+						</div>
+					{% endif %}
+					{# FILTERS #}
+					{# <div id="toolbarFilter" class="toolbar-content">
+						<div class="toolbar-form">
+							<button data-evt="resetToolbarForm" class="toolbar-form-reset">Reset</button>
+							{% for Filter in page_filters %}
+								<label>
+									<input type="checkbox" id="{{Filter.id}}" name="{{Filter.name}}"/>
+									<div>
+										<span>{{Filter.caption}}</span>
+										<span></span>
+									</div>
+								</label>
+							{% endfor %}
+						</div>
+					</div> #}
+				</div>
+
+			</div>
 			<div class="toolbar__btn-group">
-				<button class="toolbar-btn">
-					{% include "admin/svg/icon_sort.svg" %}
-					<span>Sort</span>
-				</button>
-				<button class="toolbar-btn">
+				{% if page_sort %}
+					<button data-evt="toggleSortMenu" class="toolbar-btn">
+						{% include "admin/svg/icon_sort.svg" %}
+						<span>Sort</span>
+					</button>
+				{% endif %}
+				{# {% if page_filters %}
+					<button data-evt="toggleFilterMenu" class="toolbar-btn">
+						{% include "admin/svg/icon_filter.svg" %}
+						<span>Filter</span>
+					</button>
+				{% endif %} #}
+				<button data-evt="togglePoints" class="toolbar-btn">
 					<div data-lottie="diamondSpin"></div>
 					<span>
 						<span data-id="pts">{{user.pts}}</span>

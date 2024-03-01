@@ -3764,11 +3764,11 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   min-height: 20px;
   background-color: #e9eef7;
   border: 1px solid #e9eef7;
-  border-radius: 7px;
+  border-radius: 0px;
   align-items: center;
   display: flex;
   gap: 6px;
-  padding: 0px;
+  padding: 3px;
 }
 
 .tab-view-btn {
@@ -3779,7 +3779,7 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   gap: 6px;
   flex: 1;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 0px;
   transition: all 200ms ease;
   border: 1px solid transparent;
 }
@@ -3813,7 +3813,7 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 }
 
 .am-content_whales .am-btn {
-  border-radius: 8px;
+  border-radius: 0px;
   box-shadow: 0 6px 12px rgba(64, 140, 241, 0.19);
 }
 
@@ -3824,7 +3824,7 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 .whale-card {
   background-color: #fff;
   border: 1px solid #fff;
-  border-radius: 10px;
+  border-radius: 0px;
   flex-direction: column;
   position: relative;
   transition: all 0.15s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -3843,7 +3843,7 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 .whale-card > .am-btn:active {
@@ -5017,6 +5017,26 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   right: 0px;
   bottom: 0px;
   z-index: 30;
+  transition: all 350ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  min-width: 142px;
+}
+
+.toolbar:not(.is-active) .toolbar-form {
+  opacity: 0;
+  transition: all 130ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.toolbar.is-active {
+  min-width: 460px;
+  margin-bottom: 4px;
+}
+
+.toolbar.is-active [data-evt=togglePoints] {
+  display: none;
+}
+
+.toolbar.is-active .toolbar-menu {
+  max-width: 9999px;
 }
 
 .toolbar__wrapper {
@@ -5024,8 +5044,6 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 }
 
 .toolbar__container {
-  grid-column-gap: 4px;
-  grid-row-gap: 4px;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   background-color: rgba(35, 48, 75, 0.5);
@@ -5043,6 +5061,10 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   overflow: auto;
 }
 
+.toolbar__btn-group::-webkit-scrollbar {
+  display: none;
+}
+
 .toolbar-btn {
   height: 44px;
   min-width: 44px;
@@ -5054,10 +5076,10 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   white-space: nowrap;
   cursor: pointer;
   background-color: #2d3441;
-  border: 1px solid #1c222e;
+  border: 1px solid #2d3441;
   border-radius: 6px;
   flex: 1 0 auto;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding-left: 14px;
   padding-right: 14px;
@@ -5067,6 +5089,11 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   display: flex;
   position: relative;
   overflow: hidden;
+}
+
+.toolbar-btn:active {
+  background-color: #4e5767 !important;
+  border-color: #4e5767 !important;
 }
 
 .toolbar-btn > svg {
@@ -5083,6 +5110,17 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   margin-left: -9px;
 }
 
+.toolbar-btn[data-evt=toggleSortMenu].is-active::after,
+.toolbar-btn[data-evt=toggleFilterMenu].is-active::after {
+  display: block;
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50px;
+  background-color: #97deff;
+  margin-left: 6px;
+}
+
 [data-lottie] {
   pointer-events: none;
 }
@@ -5092,8 +5130,128 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 }
 
 [data-id=pts] {
-  color: #64caf8;
+  color: #97deff;
   font-weight: 700;
+}
+
+.toolbar-menu {
+  color: white;
+  overflow: hidden;
+  height: 0px;
+  max-width: 142px;
+  transition: all 350ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.toolbar-menu__wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4px;
+}
+
+.toolbar-form::-webkit-scrollbar {
+  display: none;
+}
+
+.toolbar-form {
+  position: relative;
+  transition: all 350ms cubic-bezier(0.39, 0.575, 0.565, 1) 200ms;
+  overflow: auto;
+  max-height: 320px;
+}
+
+.toolbar-form::-webkit-scrollbar {
+  display: none;
+}
+
+.toolbar-form > label input {
+  display: none;
+}
+
+.toolbar-form > label input:checked ~ div {
+  background-color: #4b5363;
+}
+
+.toolbar-form > label input:checked ~ div > span:last-child {
+  background-color: transparent;
+  border-color: #8b92a1;
+  background-image: url('data:image/svg+xml,<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 4L5.44444 8L11 3" stroke="white" stroke-width="2"/></svg>');
+}
+
+.toolbar-form > label:active > div {
+  opacity: 0.5;
+}
+
+.toolbar-form > label > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 1px solid #4b5363;
+  transition: all 200ms ease;
+}
+
+.toolbar-form > label > div span {
+  transition: all 200ms ease;
+}
+
+.toolbar-form > label > div span:last-child {
+  width: 18px;
+  height: 18px;
+  border-radius: 50px;
+  border: 1px solid #4c5566;
+  background-color: #4c5566;
+  background-size: 9px 9px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.toolbar-form > label > div:hover {
+  background-color: rgba(75, 83, 99, 0.65);
+}
+
+.toolbar-form > label > div:hover span:last-child {
+  background-color: transparent;
+  border-color: #8b92a1;
+}
+
+.toolbar-form > label:last-child {
+  border: none;
+}
+
+.toolbar-content {
+  display: none;
+  background-color: #373e4c;
+  border-radius: 7px;
+}
+
+.toolbar-form-reset {
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: rgba(76, 83, 99, 0.54);
+  border-radius: 7px;
+  padding: 4px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 20px;
+  transition: all 0.2s;
+  display: block;
+  width: calc(100% - 12px);
+  margin: 6px auto 6px;
+  text-align: center;
+  position: relative;
+}
+
+.toolbar-form-reset:hover {
+  color: white;
+  background-color: #408cf1;
+}
+
+.toolbar-form-reset:active {
+  background-color: #5da1f9;
 }
 
 .g-tip {
@@ -5991,7 +6149,7 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   }
 
   .am-main__content .tb-grid {
-    padding: 20px !important;
+    padding: 12px !important;
   }
 
   .tb-grid {
@@ -6071,6 +6229,14 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 
   .wh-input-box {
     min-width: 100%;
+  }
+
+  .toolbar.is-active {
+    min-width: 100%;
+  }
+
+  .toolbar {
+    max-width: 100%;
   }
 
   .toolbar__wrapper {
