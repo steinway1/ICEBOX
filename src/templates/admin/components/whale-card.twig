@@ -12,6 +12,7 @@
 		</div>
 		<div class="whale-card__sum">
 			<h3 class="whale-card__name">{{whale.full_name}} <span data-evt="openGoogleTip" class="ext-search"></span></h3>
+      <span class="spend-typo">{{whale.total_spend ?: '$0.00'}}</span>
       <span class="xs-typo">Last updated {{whale.last_updated}} days ago</span>
 			<span class="spot-typo">{{whale.tab}}</span>
 			{{ whale.action_bar | raw }}
