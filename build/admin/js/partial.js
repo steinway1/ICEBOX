@@ -700,6 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       },
       attachCRM: () => {
+        if (window.innerWidth < 1024) return
         const evtGoCrm = [
           ...document.querySelectorAll('[data-evt="goCRM"]'),
           ...document.querySelectorAll('[data-evt="cardGoCRM"]')
