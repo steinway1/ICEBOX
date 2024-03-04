@@ -3640,6 +3640,11 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   padding: 0px !important;
 }
 
+.tb-grid.--highlight .whale-card:not(.--highlight) {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
 .tb-card {
   background-color: #fff;
   border: 1px solid #d9dfe9;
@@ -3829,8 +3834,26 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   position: relative;
   transition: all 0.15s cubic-bezier(0.39, 0.575, 0.565, 1);
   display: flex;
-  overflow: hidden;
   box-shadow: 0 10px 24px 3px rgba(192, 196, 211, 0.3);
+}
+
+.whale-card.--highlight {
+  border-color: #87ace0;
+  transition: all 250ms ease;
+}
+
+.whale-card.--highlight::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 0px;
+  background-color: #63a4ff;
+  transition: all 300ms ease;
+  opacity: 0;
+  animation: whale-card-highlight 0.9s ease infinite;
 }
 
 .whale-card > .am-btn {
@@ -3854,6 +3877,16 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 .whale-card .tb-social-btn a {
   padding: 0 !important;
   width: auto !important;
+}
+
+@keyframes whale-card-highlight {
+  50% {
+    opacity: 0.1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .whale-card__top {
@@ -4161,7 +4194,7 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 .edit-modal {
   display: none;
   pointer-events: none;
-  z-index: 100;
+  z-index: calc(infinity);
   position: fixed;
   top: 0%;
   bottom: 0%;
@@ -4576,7 +4609,7 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 }
 
 .swiper {
-  z-index: 30;
+  z-index: 200;
   position: fixed;
   top: 0%;
   bottom: 0%;
@@ -4630,6 +4663,20 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 
 .swiper .am-close-btn:hover {
   background-color: var(--blue_gold);
+}
+
+.swiper .swipe-modal__load {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.swiper.--empty .swipe-modal__load {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.swiper.--empty .swiper__container {
+  pointer-events: none;
 }
 
 .swiper__backdrop {
@@ -4721,10 +4768,11 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   -ms-user-select: none;
   user-select: none;
   --card-gap: 1vh;
-  --transition-time: all .4s cubic-bezier(.39, .575, .565, 1);
+  --transition-time: all .2s cubic-bezier(.39, .575, .565, 1);
 }
 
 .swiper__card.--stash {
+  z-index: 99;
   opacity: 0 !important;
   transform: scale(1.1) !important;
 }
@@ -4735,8 +4783,6 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 
 .swiper__card.--go-right {
   transition: var(--transition-time);
-  transform: translateX(300px) rotate(25deg) !important;
-  opacity: 0;
 }
 
 .swiper__card.--go-left {
@@ -4748,10 +4794,6 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 .swiper__card.--back {
   transition: var(--transition-time);
   pointer-events: none;
-}
-
-.swiper__card:hover {
-  z-index: 100;
 }
 
 .swiper__card:not(:last-child) {
@@ -5008,6 +5050,48 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 
 .swiper__stash {
   display: none;
+}
+
+.swipe-modal__load {
+  width: 100%;
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  font-weight: 600;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 200ms ease;
+}
+
+.swipe-modal__load-btn {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  background-color: rgba(211, 215, 223, 0);
+  border: 1px solid #c3c9d5;
+  border-radius: 500px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  font-size: 12px;
+  font-style: normal;
+  transition: all 0.2s;
+  display: flex;
+  font-weight: 600;
+}
+
+.swipe-modal__load-btn:hover {
+  color: #fff;
+  background-color: #408cf1;
+  border-color: #408cf1;
 }
 
 /* #endregion */
@@ -5463,7 +5547,6 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 
   .whale-card:hover {
     border-color: var(--bright_blue);
-    z-index: 1;
     box-shadow: 0 10px 62px rgba(16, 82, 168, 0.1);
   }
 }

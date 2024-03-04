@@ -71,14 +71,31 @@
   position: relative;
   transition: all .15s cubic-bezier(.39, .575, .565, 1);
   display: flex;
-  overflow: hidden;
   box-shadow: 0 10px 24px 3px rgba(192, 196, 211, .3);
 
   @include minWidthMd {
     &:hover {
       border-color: var(--bright_blue);
-      z-index: 1;
       box-shadow: 0 10px 62px rgba(16, 82, 168, .1);
+    }
+  }
+
+  &.--highlight {
+    border-color: #87ace0;
+    transition: all 250ms ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 0px;
+      background-color: #63a4ff;
+      transition: all 300ms ease;
+      opacity: 0;
+      animation: whale-card-highlight .9s ease infinite;
     }
   }
 
@@ -105,6 +122,16 @@
       padding: 0 !important;
       width: auto !important;
     }
+  }
+}
+
+@keyframes whale-card-highlight {
+  50% {
+    opacity: .1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
 
@@ -194,6 +221,7 @@
 
       &.--delete {
         cursor: pointer !important;
+
         &:hover {
           background-color: #fff;
           border-color: #f87373;
@@ -258,7 +286,7 @@
 
   &[data-cell="socials"] {
     width: 100%;
-    
+
     a {
       width: 100%;
       background-size: 14px 14px;

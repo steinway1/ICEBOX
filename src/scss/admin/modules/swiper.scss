@@ -1,5 +1,5 @@
 .swiper {
-  z-index: 30;
+  z-index: 200;
   position: fixed;
   top: 0%;
   bottom: 0%;
@@ -55,6 +55,22 @@
 
     &:hover {
       background-color: var(--blue_gold);
+    }
+  }
+
+  .swipe-modal__load {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &.--empty {
+    .swipe-modal__load {
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    .swiper__container {
+      pointer-events: none;
     }
   }
 }
@@ -156,9 +172,10 @@
   -ms-user-select: none;
   user-select: none;
   --card-gap: 1vh;
-  --transition-time: all .4s cubic-bezier(.39, .575, .565, 1);
+  --transition-time: all .2s cubic-bezier(.39, .575, .565, 1);
 
   &.--stash {
+    z-index: 99;
     opacity: 0 !important;
     transform: scale(1.1) !important;
   }
@@ -169,8 +186,8 @@
 
   &.--go-right {
     transition: var(--transition-time);
-    transform: translateX(300px) rotate(25deg) !important;
-    opacity: 0;
+    // transform: translateX(300px) rotate(25deg) !important;
+    // opacity: 0;
   }
 
   &.--go-left {
@@ -182,10 +199,6 @@
   &.--back {
     transition: var(--transition-time);
     pointer-events: none;
-  }
-
-  &:hover {
-    z-index: 100;
   }
 
   * {
@@ -467,4 +480,47 @@
   display: none;
 }
 
+.swipe-modal__load {
+  width: 100%;
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  font-weight: 600;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 200ms ease;
+}
+
+.swipe-modal__load-btn {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  background-color: rgba(211, 215, 223, 0);
+  border: 1px solid #c3c9d5;
+  border-radius: 500px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  font-size: 12px;
+  font-style: normal;
+  transition: all .2s;
+  display: flex;
+  font-weight: 600;
+}
+
+.swipe-modal__load-btn:hover {
+  color: #fff;
+  background-color: #408cf1;
+  border-color: #408cf1;
+}
+
 /* #endregion */
+

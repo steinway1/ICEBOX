@@ -6,6 +6,7 @@ const fs = require('fs')
 const clean = require('gulp-clean')
 const changed = require('gulp-changed')
 const server = require('gulp-server-livereload');
+const webserver = require('gulp-webserver');
 // HTML
 const fileInclude = require('gulp-file-include')
 const prettyHtml = require('gulp-pretty-html')
@@ -57,7 +58,8 @@ const root = {
       },
       bundle: {
         main: './src/js/admin/main.js'
-      }
+      },
+      modules: './src/js/admin/modules/*.mjs'
     },
     js: {
       _: './src/js/*.js',
@@ -111,6 +113,7 @@ const root = {
     adminPages: './dev/admin/',
     adminCSS: './dev/admin/css/',
     adminJS: './dev/admin/js/',
+    adminJSModules: './dev/admin/js/modules',
     adminFonts: './dev/admin/fonts/',
     css: './dev/css/',
     js: './dev/js/',
@@ -172,7 +175,17 @@ gulp.task('js-admin:dev',
       .pipe(concat('partial.js'))
       .pipe(minify())
       .pipe(gulp.dest(root.dev.adminJS))
-  })
+  }
+)
+
+gulp.task('js-admin-modules:dev',
+  () => {
+    return gulp
+      .src(root.src.adminJS.modules)
+      .pipe(changed(root.dev.adminJS))
+      .pipe(gulp.dest(root.dev.adminJSModules))
+  }
+)
 
 gulp.task('fonts-admin:dev',
   () => {
@@ -368,7 +381,7 @@ gulp.task('watch:dev',
       gulp.watch('./src/templates/admin/svg/**', gulp.parallel('twig-admin:dev')),
       gulp.watch('./src/templates/admin/assets/**/*', gulp.parallel('assets-admin:dev')),
       gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev', 'css-admin:dev')),
-      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-vday:dev', 'js-admin:dev')),
+      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-vday:dev', 'js-admin:dev', 'js-admin-modules:dev')),
       gulp.watch('./src/assets/**/*', gulp.parallel('assets:dev'))
   }
 )

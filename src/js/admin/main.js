@@ -1,56 +1,357 @@
-document.addEventListener('DOMContentLoaded', () => {
+const
+  IS_VISIBLE = 'is-visible',
+  IS_ACTIVE = 'is-active',
+  IS_HIDDEN = 'is-hidden',
+  __BACK = '--back',
+  __MOVING = '--moving',
+  __STASH = '--stash'
 
-  function lockScroll() {
-    setTimeout(function () {
-      if (!document.body.hasAttribute("ib-scroll-lock")) {
-        let o = window.pageYOffset || document.documentElement.scrollTop;
-        document.body.setAttribute("ib-scroll-lock", o),
-          (document.body.style.overflow = "hidden"),
-          (document.body.style.position = "fixed"),
-          (document.body.style.top = "-" + o + "px"),
-          (document.body.style.left = "0"),
-          (document.body.style.width = "100%");
-      }
-    }, 1);
+function lockScroll() {
+  setTimeout(function () {
+    if (!document.body.hasAttribute("ib-scroll-lock")) {
+      let o = window.pageYOffset || document.documentElement.scrollTop;
+      document.body.setAttribute("ib-scroll-lock", o),
+        (document.body.style.overflow = "hidden"),
+        (document.body.style.position = "fixed"),
+        (document.body.style.top = "-" + o + "px"),
+        (document.body.style.left = "0"),
+        (document.body.style.width = "100%");
+    }
+  }, 1);
+}
+
+function unlockScroll() {
+  if (document.body.hasAttribute("ib-scroll-lock")) {
+    let o = document.body.getAttribute("ib-scroll-lock");
+    document.body.removeAttribute("ib-scroll-lock"),
+      (document.body.style.overflow = ""),
+      (document.body.style.position = ""),
+      (document.body.style.top = ""),
+      (document.body.style.left = ""),
+      (document.body.style.width = ""),
+      window.scroll(0, o);
+  }
+}
+Number.prototype.between = function (min, max) {
+  return this >= min && this <= max
+}
+HTMLElement.prototype.isVisible = function () {
+  return window.getComputedStyle(this).getPropertyValue('display') !== 'none'
+}
+
+const getTransitionTime = (target) => {
+  let el = target instanceof jQuery ? target[0] : target;
+  return parseFloat(window.getComputedStyle(el).transitionDuration) * 1000;
+}
+
+/**
+* Swiper component for customer relationship management interface.
+* Allows navigation through cards representing different entities or data points.
+*
+* @class
+* @param {Object} settings - Configuration settings for the swiper component.
+* @param {HTMLElement} initialCard - The initial card to be displayed on swiper load.
+*/
+class crmSwiper {
+  constructor(settings, initialCard) {
+    this.settings = {
+      startEvents: settings.startEvents || ['mousedown', 'touchstart', 'click'],
+      endEvents: settings.endEvents || ['mouseup', 'touchend'],
+      moveEvents: settings.moveEvents || ['mousemove', 'touchmove'],
+      maxPrevCards: settings.maxPrevCards || 50,
+      maxNextCards: settings.maxNextCards || 50,
+      loadMoreAmount: settings.loadMoreAmount || 50,
+      autoLoad: settings.autoLoad || false
+    }
+    this.initialized = false
+    this.opened = false
+    this.initialCard = initialCard || document.querySelector('.whale-card')
+    this.anchorCard = null
+    this.anchorCardIndex = undefined
+    this.activeCard = null
+    this.lastActive = undefined
+    this.nextCards = []
+    this.prevCards = []
+    this.storage = []
+    this.cardClass = 'whale-card'
+    this.swiperClass = 'swiper__card'
+    this.stashClass = '--stash'
+    this.highlightClass = '--highlight'
+    this.emptyClass = '--empty'
+    this.keyEvents = ['ArrowLeft', 'ArrowRight', 'Escape']
+    this.modal = document.querySelector('.swiper')
+    this.holder = document.querySelector('.swiper__cards')
+    this.stash = document.querySelector('.swiper__stash')
+    this.grid = document.querySelector('.tb-grid')
+    this.evtNextArr = [...document.querySelectorAll('[data-swiper-evt="nextCard"]')]
+    this.evtPrevArr = [...document.querySelectorAll('[data-swiper-evt="prevCard"]')]
+    this.evtClose = [...document.querySelectorAll('[data-swiper-evt="close"]')]
+    this.evtLoadMore = [...document.querySelectorAll('[data-swiper-evt="loadMore"]')]
   }
 
-  function unlockScroll() {
-    if (document.body.hasAttribute("ib-scroll-lock")) {
-      let o = document.body.getAttribute("ib-scroll-lock");
-      document.body.removeAttribute("ib-scroll-lock"),
-        (document.body.style.overflow = ""),
-        (document.body.style.position = ""),
-        (document.body.style.top = ""),
-        (document.body.style.left = ""),
-        (document.body.style.width = ""),
-        window.scroll(0, o);
+  /**
+   * Settings basic methods
+   * 
+   * @anchor {HTMLElement}
+   * @cards {Array}
+   * @initialCard {HTMLElement}
+   * @index {Number}
+   */
+  get getGridCards() {
+    if (this.grid) {
+      return [...this.grid.querySelectorAll('.whale-card')]
+    }
+  }
+  get getAllSwiperCards() {
+    if (this.holder) {
+      return [...this.holder.querySelectorAll('.whale-card')]
+    }
+  }
+  get getLastActive() {
+    return this.holder.querySelectorAll('.swiper__card').length ?
+      [...this.holder.querySelectorAll('.swiper__card')].at(-1) :
+      [...this.stash.querySelectorAll('.swiper__card')].at(-1)
+  }
+  addCardsToSwiper(cardsArr) {
+    if (Array.isArray(cardsArr)) for (const card of cardsArr) {
+      if (card) {
+        card.classList.add(this.swiperClass)
+        card.classList.add(this.stashClass)
+        this.holder.appendChild(card)
+        setTimeout(() => {
+          card.classList.remove(this.stashClass)
+        }, 1);
+      } else {
+        throw new Error('JS : Add Cards To Swiper Error')
+      }
+    }
+  }
+  addCardsToStash(cardsArr) {
+    if (Array.isArray(cardsArr)) {
+      for (const card of cardsArr) {
+        if (card) {
+          card.classList.add(this.swiperClass)
+          card.classList.add(this.stashClass)
+          this.stash.appendChild(card)
+        } else {
+          throw new Error('JS : Add Cards To Stash Error')
+        }
+      }
+    }
+  }
+  setAnchor(index) {
+    this.anchorCard = this.getGridCards[index] || undefined
+  }
+  findCardIndexInGrid(card) {
+    return this.getGridCards.indexOf(card)
+  }
+
+  /**
+   * Initial setup
+   * Set anchor
+   * Add cards to stash
+   * Add cards to swiper 
+   * 
+   * Open {@link crmSwiper#open}
+   * Attach events {@link crmSwiper#attachEvents}
+   */
+  initialSetup() {
+    if (this.initialCard) {
+      this.setAnchor(this.findCardIndexInGrid(this.initialCard) + this.settings.maxNextCards + 1)
+      let next = this.initialCard.nextElementSibling
+      let prev = this.initialCard.previousElementSibling
+
+      while (next && this.nextCards.length < this.settings.maxNextCards) {
+        this.nextCards = [...this.nextCards, next]
+        next = next.nextElementSibling
+      }
+      this.nextCards = [this.initialCard, ...this.nextCards]
+      while (prev && this.prevCards.length < this.settings.maxPrevCards) {
+        this.prevCards = [...this.prevCards, prev]
+        prev = prev.previousElementSibling
+      }
+      try {
+        this.addCardsToStash(this.prevCards.reverse())
+        this.addCardsToSwiper(this.nextCards.reverse())
+        this.open()
+        this.attachEvents()
+      } catch (err) {
+        throw new Error(`JS Initial Swiper Setup Error: ${err.message}`)
+      }
     }
   }
 
-  Number.prototype.between = function (min, max) {
-    return this >= min && this <= max
+  /**
+   * Class methods
+   * Initializes swiper
+   * 
+   * @initial {HTMLElement}
+   */
+  init() {
+    if (this.modal && this.getGridCards.length && this.initialCard) {
+      this.initialized = true
+      this.initialSetup()
+    }
   }
+  next() {
+    const card = [...this.holder.querySelectorAll('.whale-card')].at(-1)
+    if (!card) return
+    this.nextCards = this.nextCards.filter((c) => c !== card)
+    this.prevCards = [...this.prevCards, card]
+    card.classList.add(this.stashClass)
+    this.checkCardsAvailability()
+    setTimeout(() => {
+      this.stash.appendChild(card)
+    }, getTransitionTime(card));
+  }
+  prev() {
+    const card = [...this.stash.querySelectorAll('.whale-card')].at(-1)
+    if (!card) return
+    this.prevCards = this.prevCards.filter((c) => c !== card)
+    this.nextCards = [...this.nextCards, card]
+    this.holder.appendChild(card)
+    this.checkCardsAvailability()
+    setTimeout(() => {
+      card.classList.remove(this.stashClass)
+    }, 1);
+  }
+  open() {
+    if (this.initialized) {
+      this.opened = true
+      this.modal.style.display = 'block'
+      setTimeout(() => {
+        this.modal.classList.add(IS_VISIBLE)
+      }, 1);
+    }
+  }
+  close() {
+    if (this.initialized) {
+      this.opened = false
+      this.modal.classList.remove(IS_VISIBLE)
+      this.modal.classList.remove(this.emptyClass)
+      this.destroy()
+      setTimeout(() => {
+        this.modal.style.display = 'none'
+      }, getTransitionTime(this.modal));
+    }
+  }
+  destroy() {
+    this.returnCards()
+    this.highlightLast()
+    this.initialized = false
+    this.nextCards = []
+    this.prevCards = []
+    this.initialCard = null
+    this.anchorCard = undefined
+    this.anchorCardIndex = undefined
+  }
+  returnCards() {
+    this.lastActive = this.getLastActive
+    const cards = [...this.prevCards, ...this.nextCards.reverse()]
+    if (!cards.length) return
+    if (this.anchorCard !== undefined) {
+      for (const card of cards) {
+        card.classList.remove(this.swiperClass, this.stashClass)
+        this.grid.insertBefore(card, this.anchorCard)
+      }
+    } else {
+      for (const card of cards) {
+        card.classList.remove(this.swiperClass, this.stashClass)
+        this.grid.appendChild(card)
+      }
+    }
+  }
+  highlightLast() {
+    if (!this.lastActive) return
+    const distance = this.lastActive.getBoundingClientRect().top + window.scrollY
+    this.lastActive.classList.add(this.highlightClass)
+    this.grid.classList.add(this.highlightClass)
+    window.scrollTo({ top: distance - 200 })
+    setTimeout(() => {
+      this.lastActive.classList.remove(this.highlightClass)
+      this.grid.classList.remove(this.highlightClass)
+    }, getTransitionTime(this.lastActive) * 4.9);
+  }
+  checkCardsAvailability() {
+    const hasMoreCards = this.nextCards.length > 0
+    if (!hasMoreCards) {
+      this.modal.classList.add(this.emptyClass)
+    } else {
+      this.modal.classList.remove(this.emptyClass)
+    }
+    return hasMoreCards
+  }
+  loadMore() {
+    if (!this.anchorCard) return
+    this.initialCard = this.anchorCard
+    this.setAnchor(this.findCardIndexInGrid(this.initialCard) + this.settings.maxNextCards + 1)
+    let next = this.initialCard.nextElementSibling
+
+    while (next && this.nextCards.length < this.settings.maxNextCards) {
+      this.nextCards = [...this.nextCards, next]
+    }
+    this.nextCards = [this.initialCard, ...this.nextCards]
+    try {
+      this.addCardsToSwiper(this.nextCards.reverse())
+    } catch (err) {
+      throw new Error(`JS Load More Swiper Setup Error: ${err.message}`)
+    }
+  }
+
+  /**
+   * Attach events
+   * 
+   * @start {mousedown, touchstart, click}
+   * @end {mouseup, touchend}
+   * @move {mousedown, touchstart, click}
+   * @click {data-evt="nextCard"}
+   * @keydown {ArrowRight}
+   * @keydown {ArrowLeft}
+   * @keydown {Escape}
+   */
+  attachEvents() {
+    for (const element of this.evtNextArr) {
+      element.onclick = () => {
+        this.next()
+      }
+    }
+    for (const element of this.evtPrevArr) {
+      element.onclick = () => {
+        this.prev()
+      }
+    }
+    for (const element of this.evtClose) {
+      element.onclick = () => {
+        this.close()
+      }
+    }
+    for (const element of this.evtLoadMore) {
+      element.onclick = () => {
+        this.loadMore()
+      }
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        this.evtNextArr[0].click()
+      }
+      if (e.key === 'ArrowLeft') {
+        this.evtPrevArr[0].click()
+      }
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        this.close()
+      }
+    })
+  }
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
 
   const body = document.querySelector('body'),
     pageBackdrop = document.querySelector('.am-backdrop'),
     amHeader = document.querySelector('.am-header')
-
-  const
-    IS_VISIBLE = 'is-visible',
-    IS_ACTIVE = 'is-active',
-    IS_HIDDEN = 'is-hidden',
-    __BACK = '--back',
-    __MOVING = '--moving',
-    __STASH = '--stash'
-
-  HTMLElement.prototype.isVisible = function () {
-    return window.getComputedStyle(this).getPropertyValue('display') !== 'none'
-  }
-
-  const getTransitionTime = (target) => {
-    let el = target instanceof jQuery ? target[0] : target;
-    return parseFloat(window.getComputedStyle(el).transitionDuration) * 1000;
-  }
 
   function pageBackdropOn() {
     pageBackdrop.style.display = 'block'
@@ -394,6 +695,18 @@ document.addEventListener('DOMContentLoaded', () => {
             dropButtons.forEach((btn) => { btn.classList.remove(IS_ACTIVE) })
           }
         })
+      },
+      attachCRM: () => {
+        const evtGoCrm = [
+          ...document.querySelectorAll('[data-evt="goCRM"]'),
+          ...document.querySelectorAll('[data-evt="cardGoCRM"]')
+        ]
+        for (const element of evtGoCrm) {
+          element.onclick = () => {
+            const card = element.parentNode.closest('.whale-card') || null
+            const swiperInstance = new crmSwiper({}, card).init()
+          }
+        }
       }
     }
   }
@@ -574,7 +887,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  const toolba = {
+  const toolbar = {
     menuOpened: false,
     sortOpened: false,
     filterOpened: false,
@@ -616,7 +929,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.menu.style.height = 0
       }
     },
-    adjustMenuHeight: function() {
+    adjustMenuHeight: function () {
       const wrapper = document.querySelector('.toolbar-menu__wrapper')
       if (wrapper) {
         let height = wrapper.clientHeight
@@ -722,159 +1035,6 @@ document.addEventListener('DOMContentLoaded', () => {
             renderer: 'svg',
             loop: true
           })
-        })
-      }
-    }
-  }
-
-  const toolbar = {
-    opened: false,
-    sortOpened: false,
-    filterOpened: false,
-    elem: document.querySelector('.toolbar'),
-    sortMenu: document.querySelector('#toolbarSort'),
-    filterMenu: document.querySelector('#toolbarFilter'),
-    sortToggleArr: document.querySelectorAll('[data-evt="toggleSortMenu"]'),
-    filterToggleArr: document.querySelectorAll('[data-evt="toggleFilterMenu"]'),
-    init: function () {
-      if (this.elem) {
-        Object.values(this.initFn).forEach((fn) => {
-          if (typeof fn === 'function') {
-            try {
-              fn()
-            } catch (err) {
-              console.log(`toolbar init fn err : ${err.message}`)
-            }
-          }
-        })
-      }
-    },
-    open: () => {
-      toolbar.opened = true
-      const menu = document.querySelector('.toolbar-menu')
-      if (menu) {
-        toolbar.elem.classList.add(IS_ACTIVE)
-        setTimeout(() => {
-          menu.style.height = menu.clientHeight ? 0 : menu.scrollHeight + 'px'
-        }, 100);
-      }
-    },
-    close: () => {
-      toolbar.opened = false
-      const menu = document.querySelector('.toolbar-menu')
-      if (menu) {
-        menu.style.height = menu.clientHeight ? 0 : menu.scrollHeight + 'px'
-        setTimeout(() => {
-          toolbar.elem.classList.remove(IS_ACTIVE)
-        }, 100);
-      }
-    },
-    toggle: () => {
-      return toolbar.elem.classList.contains(IS_ACTIVE) ? toolbar.close() : toolbar.open()
-    },
-    openSort: () => {
-      if (toolbar.sortMenu) {
-        toolbar.sortMenu.style.display = 'block'
-        toolbar.filterMenu.style.display = 'none'
-      }
-    },
-    openFilter: () => {
-      if (toolbar.sortMenu) {
-        toolbar.sortMenu.style.display = 'none'
-        toolbar.filterMenu.style.display = 'block'
-      }
-    },
-    toggleSort: () => {
-      if (toolbar.sortMenu) {
-        toolbar.checkSortState()
-        toolbar.checkFilterState()
-        if (toolbar.opened) {
-          toolbar.close()
-          toolbar.sortOpened = false
-        } else {
-          toolbar.open()
-          toolbar.sortOpened = true
-          toolbar.sortMenu.style.display = 'block'
-          if (toolbar.filterMenu) {
-            toolbar.filterMenu.style.display = 'none'
-          }
-        }
-      }
-    },
-    toggleFilter: () => {
-      if (toolbar.filterMenu) {
-        toolbar.checkFilterState()
-        toolbar.checkSortState()
-        if (toolbar.opened) {
-          toolbar.close()
-          toolbar.filterOpened = false
-        } else {
-          toolbar.open()
-          toolbar.filterOpened = true
-          toolbar.filterMenu.style.display = 'block'
-          if (toolbar.sortMenu) {
-            toolbar.sortMenu.style.display = 'none'
-          }
-        }
-      }
-    },
-    checkSortState: () => {
-      const inputs = document.querySelectorAll('#toolbarSort input:checked')
-      const evtToggle = document.querySelectorAll('[data-evt="toggleSortMenu"]')
-      if (inputs.length) {
-        evtToggle.forEach((btn) => btn.classList.add(IS_ACTIVE))
-      } else {
-        evtToggle.forEach((btn) => btn.classList.remove(IS_ACTIVE))
-      }
-    },
-    checkFilterState: () => {
-      const inputs = document.querySelectorAll('#toolbarFilter input:checked')
-      const evtToggle = document.querySelectorAll('[data-evt="toggleFilterMenu"]')
-      if (inputs.length) {
-        evtToggle.forEach((btn) => btn.classList.add(IS_ACTIVE))
-      } else {
-        evtToggle.forEach((btn) => btn.classList.remove(IS_ACTIVE))
-      }
-    },
-    initFn: {
-      renderPTSLottie: () => {
-        const lottieContainers = [...document.querySelectorAll('[data-lottie="diamondSpin"]')]
-        lottieContainers.forEach((container) => {
-          const animation = bodymovin.loadAnimation({
-            container: container,
-            path: 'https://gist.githubusercontent.com/steinway1/4de3da6a3a8364ede5c3e5fff52c5113/raw/94ab2c03988700c56cffeb4f5fc06ce2e605120f/spin-diamond.json',
-            autoplay: true,
-            renderer: 'svg',
-            loop: true
-          })
-        })
-      },
-      bindEvents: () => {
-        toolbar.sortToggleArr.forEach((btn) => {
-          btn.onclick = () => {
-            if (toolbar.opened && toolbar.filterOpened) {
-              toolbar.openSort()
-            } else {
-              toolbar.toggleSort()
-            }
-          }
-        })
-
-        toolbar.filterToggleArr.forEach((btn) => {
-          btn.onclick = () => {
-            toolbar.toggleFilter()
-          }
-        })
-
-        const resetButtons = [...document.querySelectorAll('[data-evt="resetToolbarForm"]')]
-        resetButtons.forEach((btn) => {
-          btn.onclick = () => {
-            const form = btn.closest('.toolbar-form')
-            if (form) {
-              let inputs = form.querySelectorAll('input')
-              inputs.forEach((input) => input.checked = false)
-            }
-          }
         })
       }
     }
@@ -997,7 +1157,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   pageBackdrop.onclick = () => { pageSearch.close(); pageMenu.close(); pageSidebar.close() }
 
-
   const pageObjects = [
     orderZoom,
     orderNotes,
@@ -1007,97 +1166,18 @@ document.addEventListener('DOMContentLoaded', () => {
     whalesPage,
     whaleCards,
     editModal,
-    toolba,
+    toolbar,
     gTip
   ]
 
-  pageObjects.forEach((obj) => {
-    if (obj.init !== undefined && typeof obj.init === 'function') {
+  for (const obj of pageObjects) {
+    if (obj && typeof obj.init === 'function') {
       try {
-        obj.init()
+        obj.init();
       } catch (err) {
-        console.error(err.message)
+        throw new Error(`Error executing obj.init: ${err.message}`);
       }
     }
-  })
-
-  // SWIPER
-
-  // const
-  //   swiper = document.querySelector('.swiper'),
-  //   stash = document.querySelector('.swiper__stash'),
-  //   holder = document.querySelector('.swiper__cards')
-
-  // if (swiper && stash && holder) {
-
-  //   let
-  //     card,
-  //     drag,
-  //     deg,
-  //     degOffset = 25,
-  //     maxDrag = 350,
-  //     minDrag = 100,
-  //     maxPrevCards = 20,
-  //     maxNextCards = 20,
-  //     downEvents = ['mousedown', 'touchstart', 'click'],
-  //     moveEvents = ['mousemove', 'touchmove'],
-  //     upEvents = ['mouseup', 'touchend'],
-  //     memoryCards = {},
-  //     initCard
-
-  //   swiper.open = function () {
-  //     lockScroll()
-  //     swiper.style.display = 'block'
-  //     setTimeout(() => {
-  //       swiper.classList.add(IS_VISIBLE)
-  //     }, 1);
-  //   }
-  //   swiper.close = function () {
-  //     unlockScroll()
-  //     swiper.classList.remove(IS_VISIBLE)
-  //     setTimeout(() => {
-  //       swiper.style.display = 'none'
-  //       destroy()
-  //     }, getTransitionTime(swiper));
-  //   }
-
-  //   const createSwiper = () => {
-  //     memoryCards = {}
-  //     let fromCard = initCard !== null && initCard !== undefined ? initCard : [...document.querySelectorAll('.whale-card')][0]
-
-  //     let
-  //       nextCards = [],
-  //       prevCards = [],
-  //       next = fromCard.nextElementSibling,
-  //       prev = fromCard.previousElementSibling
-
-  //     if (fromCard) {
-  //       while (next && nextCards.length < maxNextCards) {
-  //         nextCards = [...nextCards, next]
-  //         next = next.nextElementSibling
-  //       }
-  //       while (prev && prevCards.length < maxPrevCards) {
-  //         prevCards = [...prevCards, prev]
-  //         prev = prev.previousElementSibling
-  //       }
-  //       nextCards = [fromCard, ...nextCards]
-
-  //       memoryCards.prev = prevCards
-  //       memoryCards.next = nextCards
-  //     } else { return }
-
-  //     console.log(memoryCards)
-  //   }
-
-
-
-  //   document.querySelectorAll('[data-evt="cardGoCRM"]').forEach((btn) => {
-  //     btn.onclick = () => {
-  //       initCard = btn.closest('.whale-card')
-  //       createSwiper()
-  //       swiper.open()
-  //     }
-  //   })
-  // }
+  }
 
 })
