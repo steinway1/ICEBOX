@@ -699,13 +699,21 @@ document.addEventListener('DOMContentLoaded', () => {
       attachCRM: () => {
         if (window.innerWidth < 1024) return
         const evtGoCrm = [
-          ...document.querySelectorAll('[data-evt="goCRM"]'),
-          ...document.querySelectorAll('[data-evt="cardGoCRM"]')
+          ...document.querySelectorAll('[data-evt="goCRM"]')
         ]
         for (const element of evtGoCrm) {
           element.onclick = () => {
             const card = element.parentNode.closest('.whale-card') || null
             const swiperInstance = new crmSwiper({}, card).init()
+          }
+        }
+        document.onclick = (e) => {
+          const target = e.target
+          if (target.closest('[data-evt="cardGoCRM"]')) {
+            const card = target.closest('.whale-card')
+            if (card) {
+              const swiperInstance = new crmSwiper({}, card).init()
+            }
           }
         }
       }
