@@ -358,84 +358,83 @@ class crmSwiper {
 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
 
 
-  const body = document.querySelector('body'),
-    pageBackdrop = document.querySelector('.am-backdrop'),
-    amHeader = document.querySelector('.am-header')
+const body = document.querySelector('body'),
+  pageBackdrop = document.querySelector('.am-backdrop'),
+  amHeader = document.querySelector('.am-header')
 
-  function pageBackdropOn() {
-    pageBackdrop.style.display = 'block'
-    setTimeout(() => {
-      pageBackdrop.style.opacity = '1'
-    }, 1);
-  }
-  function pageBackdropOff() {
-    pageBackdrop.style.opacity = '0'
-    setTimeout(() => {
-      pageBackdrop.style.display = 'none'
-    }, getTransitionTime(pageBackdrop));
-  }
+function pageBackdropOn() {
+  pageBackdrop.style.display = 'block'
+  setTimeout(() => {
+    pageBackdrop.style.opacity = '1'
+  }, 1);
+}
+function pageBackdropOff() {
+  pageBackdrop.style.opacity = '0'
+  setTimeout(() => {
+    pageBackdrop.style.display = 'none'
+  }, getTransitionTime(pageBackdrop));
+}
 
-  const orderZoom = {
-    init: function () {
-      try {
-        this.attachEvents()
-      } catch {
-        console.log('admin zoom err')
-      }
-    },
-    renderHTML: function (imgSrc) {
-      return `
+const orderZoom = {
+  init: function () {
+    try {
+      this.attachEvents()
+    } catch {
+      console.log('admin zoom err')
+    }
+  },
+  renderHTML: function (imgSrc) {
+    return `
       <div class="am-zoom-modal">
         <div><img src="${imgSrc}" alt=""><button data-am-evt="closeZoom">CLOSE</button></div>
       </div>
       `
-    },
-    createZoom: function (src) {
-      body.insertAdjacentHTML('beforeend', orderZoom.renderHTML(src))
-    },
-    removeZoom: function () {
-      const modal = document.querySelector('.am-zoom-modal')
-      if (modal !== null) {
-        modal.remove()
-      }
-    },
-    attachEvents: function () {
-      const zoomBtn = [...document.querySelectorAll('.am-zoom-btn')]
-
-      document.addEventListener('click', (e) => {
-        let target = e.target
-        if (target.hasAttribute('data-am-evt') && target.getAttribute('data-am-evt') == 'closeZoom') {
-          orderZoom.removeZoom()
-        }
-      })
-
-      document.addEventListener('click', (e) => {
-        let target = e.target
-        if (target.classList.contains('am-zoom-modal')) {
-          orderZoom.removeZoom()
-        }
-      })
-
-      zoomBtn.forEach((btn) => {
-        btn.onclick = () => {
-          let src = btn.parentNode.closest('.am-item__pic-wrap').querySelector('img').src
-          orderZoom.createZoom(src)
-        }
-      })
-
+  },
+  createZoom: function (src) {
+    body.insertAdjacentHTML('beforeend', orderZoom.renderHTML(src))
+  },
+  removeZoom: function () {
+    const modal = document.querySelector('.am-zoom-modal')
+    if (modal !== null) {
+      modal.remove()
     }
-  }
+  },
+  attachEvents: function () {
+    const zoomBtn = [...document.querySelectorAll('.am-zoom-btn')]
 
-  const orderNotes = {
-    init: function () {
-      this.attachEvents()
-    },
-    appendNote: function (parent, author, text) {
-      let date = new Date(Date.now()).toLocaleString()
-      const html = `
+    document.addEventListener('click', (e) => {
+      let target = e.target
+      if (target.hasAttribute('data-am-evt') && target.getAttribute('data-am-evt') == 'closeZoom') {
+        orderZoom.removeZoom()
+      }
+    })
+
+    document.addEventListener('click', (e) => {
+      let target = e.target
+      if (target.classList.contains('am-zoom-modal')) {
+        orderZoom.removeZoom()
+      }
+    })
+
+    zoomBtn.forEach((btn) => {
+      btn.onclick = () => {
+        let src = btn.parentNode.closest('.am-item__pic-wrap').querySelector('img').src
+        orderZoom.createZoom(src)
+      }
+    })
+
+  }
+}
+
+const orderNotes = {
+  init: function () {
+    this.attachEvents()
+  },
+  appendNote: function (parent, author, text) {
+    let date = new Date(Date.now()).toLocaleString()
+    const html = `
       <div class="am-item-note">
         <div>
         <span>${author}</span>:
@@ -444,325 +443,325 @@ document.addEventListener('DOMContentLoaded', () => {
         <div>${date}</div>
       </div>
      `
-      parent.insertAdjacentHTML('beforeend', html)
-    },
-    attachEvents: function () {
-      const submitButtons = [...document.querySelectorAll('[data-am-evt="submitNote"]')],
-        inputs = [...document.querySelectorAll('.am-note-input')]
+    parent.insertAdjacentHTML('beforeend', html)
+  },
+  attachEvents: function () {
+    const submitButtons = [...document.querySelectorAll('[data-am-evt="submitNote"]')],
+      inputs = [...document.querySelectorAll('.am-note-input')]
 
-      submitButtons.forEach((btn) => {
-        btn.onclick = (e) => {
+    submitButtons.forEach((btn) => {
+      btn.onclick = (e) => {
+        e.preventDefault()
+        const parent = btn.parentNode.closest('.am-item__note-wrap')
+        if (parent !== null) {
+          const input = parent.querySelector('.am-note-input'),
+            val = input.value
+          if (val.length !== 0) {
+            input.value = ''
+            orderNotes.appendNote(parent, 'Steinway', val)
+          } else {
+            input.focus()
+          }
+        }
+      }
+    })
+
+    inputs.forEach((input) => {
+      input.onkeydown = (e) => {
+        if (e.key == 'Enter') {
           e.preventDefault()
-          const parent = btn.parentNode.closest('.am-item__note-wrap')
-          if (parent !== null) {
-            const input = parent.querySelector('.am-note-input'),
-              val = input.value
-            if (val.length !== 0) {
-              input.value = ''
-              orderNotes.appendNote(parent, 'Steinway', val)
+          const val = input.value
+          if (val.length !== 0) {
+            const parent = input.parentNode.closest('.am-item__note-wrap')
+            input.value = ''
+            orderNotes.appendNote(parent, 'Steinway', val)
+          }
+        }
+      }
+    })
+  }
+}
+
+const pageSearch = {
+  init: function () {
+    this.renderDOM()
+    if (this.el !== null) {
+      this.attachEvents()
+    }
+  },
+  renderDOM: function () {
+    this.el = document.querySelector('.am-header__mob-search')
+    this.evtToggle = [...document.querySelectorAll('[data-am-evt="toggleSearch"]')]
+  },
+  hide: function () {
+    this.el.classList.remove(IS_VISIBLE)
+  },
+  show: function () {
+    this.el.classList.add(IS_VISIBLE)
+  },
+  open: function () {
+    lockScroll()
+    this.show()
+    pageMenu.hide()
+    pageBackdropOn()
+  },
+  close: function () {
+    unlockScroll()
+    this.hide()
+    pageBackdropOff()
+  },
+  attachEvents: function () {
+    this.evtToggle.forEach((el) => {
+      el.onclick = () => {
+        if (pageSearch.el.classList.contains(IS_VISIBLE)) {
+          pageSearch.close()
+        } else {
+          pageSearch.open()
+        }
+      }
+    })
+  }
+}
+
+const pageMenu = {
+  init: function () {
+    this.renderDOM()
+    if (this.el !== null) {
+      this.attachEvents()
+    }
+  },
+  renderDOM: function () {
+    this.el = document.querySelector('.am-header__page-nav')
+    this.evtToggle = [...document.querySelectorAll('[data-am-evt="togglePageNav"]')]
+  },
+  hide: function () {
+    this.el.classList.remove(IS_VISIBLE)
+  },
+  show: function () {
+    this.el.classList.add(IS_VISIBLE)
+  },
+  open: function () {
+    lockScroll()
+    this.show()
+    pageSearch.hide()
+    pageBackdropOn()
+  },
+  close: function () {
+    unlockScroll()
+    this.hide()
+    pageBackdropOff()
+  },
+  attachEvents: function () {
+    this.evtToggle.forEach((el) => {
+      el.onclick = () => {
+        if (pageMenu.el.classList.contains(IS_VISIBLE)) {
+          pageMenu.close()
+        } else {
+          pageMenu.open()
+        }
+      }
+    })
+  }
+}
+
+const pageSidebar = {
+  init: function () {
+    this.renderDOM()
+    if (this.el !== null) {
+      this.attachEvents()
+    }
+  },
+  renderDOM: function () {
+    this.el = document.querySelector('.am-sidebar')
+    this.evtToggle = [...document.querySelectorAll('[data-am-evt="toggleSidebar"]')]
+  },
+  hide: function () {
+    this.el.classList.remove(IS_VISIBLE)
+  },
+  show: function () {
+    this.el.classList.add(IS_VISIBLE)
+  },
+  open: function () {
+    lockScroll()
+    this.show()
+    pageSearch.hide()
+    pageMenu.hide()
+    amHeader.style.transform = 'translateY(-100%)'
+    pageBackdropOn()
+  },
+  close: function () {
+    unlockScroll()
+    this.hide()
+    amHeader.style.transform = 'translateY(0%)'
+    pageBackdropOff()
+  },
+  attachEvents: function () {
+    this.evtToggle.forEach((el) => {
+      el.onclick = () => {
+        if (pageSidebar.el.classList.contains(IS_VISIBLE)) {
+          pageSidebar.close()
+        } else {
+          pageSidebar.open()
+        }
+      }
+    })
+  }
+}
+
+const whalesPage = {
+  init: function () {
+    Object.values(this.initFn).forEach((fn) => {
+      if (typeof fn === 'function') {
+        try {
+          fn()
+        } catch (err) {
+          console.log(`whales init fn err : ${err.message}`)
+        }
+      }
+    })
+  },
+  toggleView: function (viewType = 'list') {
+    const grid = document.querySelector('.tb-grid-container')
+    const list = document.querySelector('.tb-table-container')
+    if (list !== undefined && grid !== undefined) {
+      switch (viewType) {
+        case 'grid':
+          list.style.opacity = 0
+          setTimeout(() => {
+            list.style.display = 'none'
+            grid.style.display = 'block'
+            setTimeout(() => {
+              grid.style.opacity = 1
+            }, 3);
+          }, getTransitionTime(list));
+          break;
+        case 'list':
+          grid.style.opacity = 0
+          setTimeout(() => {
+            grid.style.display = 'none'
+            list.style.display = 'block'
+            setTimeout(() => {
+              list.style.opacity = 1
+            }, 3);
+          }, getTransitionTime(list));
+          break;
+        default:
+          break;
+      }
+    }
+  },
+  initFn: {
+    attachDropdownBtnClick: () => {
+      const btnArr = [...document.querySelectorAll('[data-tb-dropdown]')]
+      btnArr.forEach((btn) => {
+        btn.onclick = () => {
+          const dropdown = btn.parentNode.querySelector('.tb-dropdown')
+          if (dropdown !== null) {
+            if (dropdown.isVisible()) {
+              btn.classList.remove(IS_ACTIVE)
+              dropdown.classList.remove(IS_VISIBLE)
+              setTimeout(() => {
+                dropdown.style.display = 'none'
+              }, getTransitionTime(dropdown));
             } else {
-              input.focus()
+              dropdown.style.display = 'block'
+              btn.classList.add(IS_ACTIVE)
+              setTimeout(() => {
+                dropdown.classList.add(IS_VISIBLE)
+              }, 1);
             }
           }
         }
       })
-
-      inputs.forEach((input) => {
-        input.onkeydown = (e) => {
-          if (e.key == 'Enter') {
-            e.preventDefault()
-            const val = input.value
-            if (val.length !== 0) {
-              const parent = input.parentNode.closest('.am-item__note-wrap')
-              input.value = ''
-              orderNotes.appendNote(parent, 'Steinway', val)
-            }
-          }
-        }
-      })
-    }
-  }
-
-  const pageSearch = {
-    init: function () {
-      this.renderDOM()
-      if (this.el !== null) {
-        this.attachEvents()
+    },
+    attachViewSwitch: () => {
+      const btnArr = [...document.querySelectorAll('[data-switch-view]')]
+      cosnt = removeCls = () => {
+        btnArr.forEach((btn) => { btn.classList.remove(IS_ACTIVE) })
       }
-    },
-    renderDOM: function () {
-      this.el = document.querySelector('.am-header__mob-search')
-      this.evtToggle = [...document.querySelectorAll('[data-am-evt="toggleSearch"]')]
-    },
-    hide: function () {
-      this.el.classList.remove(IS_VISIBLE)
-    },
-    show: function () {
-      this.el.classList.add(IS_VISIBLE)
-    },
-    open: function () {
-      lockScroll()
-      this.show()
-      pageMenu.hide()
-      pageBackdropOn()
-    },
-    close: function () {
-      unlockScroll()
-      this.hide()
-      pageBackdropOff()
-    },
-    attachEvents: function () {
-      this.evtToggle.forEach((el) => {
-        el.onclick = () => {
-          if (pageSearch.el.classList.contains(IS_VISIBLE)) {
-            pageSearch.close()
-          } else {
-            pageSearch.open()
+      btnArr.forEach((btn) => {
+        btn.onclick = () => {
+          const attr = btn.getAttribute('data-switch-view')
+          if (attr !== null && !btn.classList.contains(IS_ACTIVE)) {
+            removeCls()
+            btn.classList.add(IS_ACTIVE)
+            whalesPage.toggleView(attr)
           }
         }
       })
-    }
-  }
+    },
+    attachDocClick: () => {
+      const dropdowns = [...document.querySelectorAll('.tb-dropdown')]
+      const dropButtons = [...document.querySelectorAll('[data-tb-dropdown]')]
 
-  const pageMenu = {
-    init: function () {
-      this.renderDOM()
-      if (this.el !== null) {
-        this.attachEvents()
+      document.addEventListener('click', function (e) {
+        const target = e.target
+        if (!target.closest('.tb-btn')) {
+          dropdowns.forEach((drop) => {
+            drop.classList.remove(IS_VISIBLE)
+            setTimeout(() => {
+              drop.style.display = 'none'
+            }, getTransitionTime(drop));
+          })
+          dropButtons.forEach((btn) => { btn.classList.remove(IS_ACTIVE) })
+        }
+      })
+    },
+    attachCRM: () => {
+      if (window.innerWidth < 1024) return
+      const evtGoCrm = [
+        ...document.querySelectorAll('[data-evt="goCRM"]')
+      ]
+      for (const element of evtGoCrm) {
+        element.onclick = () => {
+          const card = element.parentNode.closest('.whale-card') || null
+          const swiperInstance = new crmSwiper({}, card).init()
+        }
       }
-    },
-    renderDOM: function () {
-      this.el = document.querySelector('.am-header__page-nav')
-      this.evtToggle = [...document.querySelectorAll('[data-am-evt="togglePageNav"]')]
-    },
-    hide: function () {
-      this.el.classList.remove(IS_VISIBLE)
-    },
-    show: function () {
-      this.el.classList.add(IS_VISIBLE)
-    },
-    open: function () {
-      lockScroll()
-      this.show()
-      pageSearch.hide()
-      pageBackdropOn()
-    },
-    close: function () {
-      unlockScroll()
-      this.hide()
-      pageBackdropOff()
-    },
-    attachEvents: function () {
-      this.evtToggle.forEach((el) => {
-        el.onclick = () => {
-          if (pageMenu.el.classList.contains(IS_VISIBLE)) {
-            pageMenu.close()
-          } else {
-            pageMenu.open()
+      document.onclick = (e) => {
+        const target = e.target
+        if (target.closest('[data-evt="cardGoCRM"]')) {
+          const card = target.closest('.whale-card')
+          if (card) {
+            const swiperInstance = new crmSwiper({}, card).init()
           }
         }
-      })
-    }
-  }
-
-  const pageSidebar = {
-    init: function () {
-      this.renderDOM()
-      if (this.el !== null) {
-        this.attachEvents()
       }
-    },
-    renderDOM: function () {
-      this.el = document.querySelector('.am-sidebar')
-      this.evtToggle = [...document.querySelectorAll('[data-am-evt="toggleSidebar"]')]
-    },
-    hide: function () {
-      this.el.classList.remove(IS_VISIBLE)
-    },
-    show: function () {
-      this.el.classList.add(IS_VISIBLE)
-    },
-    open: function () {
-      lockScroll()
-      this.show()
-      pageSearch.hide()
-      pageMenu.hide()
-      amHeader.style.transform = 'translateY(-100%)'
-      pageBackdropOn()
-    },
-    close: function () {
-      unlockScroll()
-      this.hide()
-      amHeader.style.transform = 'translateY(0%)'
-      pageBackdropOff()
-    },
-    attachEvents: function () {
-      this.evtToggle.forEach((el) => {
-        el.onclick = () => {
-          if (pageSidebar.el.classList.contains(IS_VISIBLE)) {
-            pageSidebar.close()
-          } else {
-            pageSidebar.open()
-          }
-        }
-      })
     }
   }
+}
 
-  const whalesPage = {
-    init: function () {
+const whaleCardsArr = [...document.querySelectorAll('.whale-card')]
+const whaleCards = {
+  init: function () {
+    const main = document.querySelector('.main_whales')
+    if (main) {
       Object.values(this.initFn).forEach((fn) => {
         if (typeof fn === 'function') {
           try {
             fn()
           } catch (err) {
-            console.log(`whales init fn err : ${err.message}`)
+            console.log(`whales cards init fn err : ${err.message}`)
           }
         }
       })
-    },
-    toggleView: function (viewType = 'list') {
-      const grid = document.querySelector('.tb-grid-container')
-      const list = document.querySelector('.tb-table-container')
-      if (list !== undefined && grid !== undefined) {
-        switch (viewType) {
-          case 'grid':
-            list.style.opacity = 0
-            setTimeout(() => {
-              list.style.display = 'none'
-              grid.style.display = 'block'
-              setTimeout(() => {
-                grid.style.opacity = 1
-              }, 3);
-            }, getTransitionTime(list));
-            break;
-          case 'list':
-            grid.style.opacity = 0
-            setTimeout(() => {
-              grid.style.display = 'none'
-              list.style.display = 'block'
-              setTimeout(() => {
-                list.style.opacity = 1
-              }, 3);
-            }, getTransitionTime(list));
-            break;
-          default:
-            break;
-        }
-      }
-    },
-    initFn: {
-      attachDropdownBtnClick: () => {
-        const btnArr = [...document.querySelectorAll('[data-tb-dropdown]')]
-        btnArr.forEach((btn) => {
-          btn.onclick = () => {
-            const dropdown = btn.parentNode.querySelector('.tb-dropdown')
-            if (dropdown !== null) {
-              if (dropdown.isVisible()) {
-                btn.classList.remove(IS_ACTIVE)
-                dropdown.classList.remove(IS_VISIBLE)
-                setTimeout(() => {
-                  dropdown.style.display = 'none'
-                }, getTransitionTime(dropdown));
-              } else {
-                dropdown.style.display = 'block'
-                btn.classList.add(IS_ACTIVE)
-                setTimeout(() => {
-                  dropdown.classList.add(IS_VISIBLE)
-                }, 1);
-              }
-            }
-          }
-        })
-      },
-      attachViewSwitch: () => {
-        const btnArr = [...document.querySelectorAll('[data-switch-view]')]
-        cosnt = removeCls = () => {
-          btnArr.forEach((btn) => { btn.classList.remove(IS_ACTIVE) })
-        }
-        btnArr.forEach((btn) => {
-          btn.onclick = () => {
-            const attr = btn.getAttribute('data-switch-view')
-            if (attr !== null && !btn.classList.contains(IS_ACTIVE)) {
-              removeCls()
-              btn.classList.add(IS_ACTIVE)
-              whalesPage.toggleView(attr)
-            }
-          }
-        })
-      },
-      attachDocClick: () => {
-        const dropdowns = [...document.querySelectorAll('.tb-dropdown')]
-        const dropButtons = [...document.querySelectorAll('[data-tb-dropdown]')]
-
-        document.addEventListener('click', function (e) {
-          const target = e.target
-          if (!target.closest('.tb-btn')) {
-            dropdowns.forEach((drop) => {
-              drop.classList.remove(IS_VISIBLE)
-              setTimeout(() => {
-                drop.style.display = 'none'
-              }, getTransitionTime(drop));
-            })
-            dropButtons.forEach((btn) => { btn.classList.remove(IS_ACTIVE) })
-          }
-        })
-      },
-      attachCRM: () => {
-        if (window.innerWidth < 1024) return
-        const evtGoCrm = [
-          ...document.querySelectorAll('[data-evt="goCRM"]')
-        ]
-        for (const element of evtGoCrm) {
-          element.onclick = () => {
-            const card = element.parentNode.closest('.whale-card') || null
-            const swiperInstance = new crmSwiper({}, card).init()
-          }
-        }
-        document.onclick = (e) => {
-          const target = e.target
-          if (target.closest('[data-evt="cardGoCRM"]')) {
-            const card = target.closest('.whale-card')
-            if (card) {
-              const swiperInstance = new crmSwiper({}, card).init()
-            }
-          }
-        }
-      }
     }
-  }
-
-  const whaleCardsArr = [...document.querySelectorAll('.whale-card')]
-  const whaleCards = {
-    init: function () {
-      const main = document.querySelector('.main_whales')
-      if (main) {
-        Object.values(this.initFn).forEach((fn) => {
-          if (typeof fn === 'function') {
-            try {
-              fn()
-            } catch (err) {
-              console.log(`whales cards init fn err : ${err.message}`)
-            }
-          }
-        })
+  },
+  updateNotesCount: (cards = whaleCardsArr) => {
+    cards = Array.isArray(cards) ? cards : [cards]
+    cards.forEach((card) => {
+      const
+        noteCount = card.querySelector('.whale-notes-count'),
+        notes = card.querySelectorAll('.whale-card__note')
+      if (noteCount) {
+        let count = notes.length || 0
+        noteCount.innerHTML = count
       }
-    },
-    updateNotesCount: (cards = whaleCardsArr) => {
-      cards = Array.isArray(cards) ? cards : [cards]
-      cards.forEach((card) => {
-        const
-          noteCount = card.querySelector('.whale-notes-count'),
-          notes = card.querySelectorAll('.whale-card__note')
-        if (noteCount) {
-          let count = notes.length || 0
-          noteCount.innerHTML = count
-        }
-      })
-    },
-    appendNote: function (parent, author, text) {
-      let date = new Date(Date.now()).toLocaleString()
-      const html = `
+    })
+  },
+  appendNote: function (parent, author, text) {
+    let date = new Date(Date.now()).toLocaleString()
+    const html = `
       <div class="whale-card__note">
         <div class="whale-card__note-date">${date}</div>
         <div class="whale-card__note-text">
@@ -771,388 +770,376 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
      `
-      parent.insertAdjacentHTML('beforeend', html)
+    parent.insertAdjacentHTML('beforeend', html)
+  },
+  initFn: {
+    setInitialStats: () => {
+      whaleCards.updateNotesCount()
     },
-    initFn: {
-      setInitialStats: () => {
-        whaleCards.updateNotesCount()
-      },
-      attachNoteButtonClick: () => {
-        const arr = [...document.querySelectorAll('[data-evt="toggleWhaleNotes"]')]
-        arr.forEach((btn) => {
-          btn.onclick = () => {
-            const
-              card = btn.closest('.whale-card'),
-              noteContainer = card.querySelector('.whale-card__notes'),
-              cells = card.querySelector('.whale-card__cells')
-            if (noteContainer && cells) {
-              if (noteContainer.isVisible()) {
-                btn.classList.remove(IS_ACTIVE)
-                noteContainer.classList.remove(IS_VISIBLE)
-                cells.classList.remove(IS_HIDDEN)
-                setTimeout(() => {
-                  noteContainer.style.display = 'none'
-                }, getTransitionTime(noteContainer));
-              } else {
-                btn.classList.add(IS_ACTIVE)
-                noteContainer.style.display = 'block'
-                cells.classList.add(IS_HIDDEN)
-                setTimeout(() => {
-                  noteContainer.classList.add(IS_VISIBLE)
-                }, 1);
-              }
+    attachNoteButtonClick: () => {
+      const arr = [...document.querySelectorAll('[data-evt="toggleWhaleNotes"]')]
+      arr.forEach((btn) => {
+        btn.onclick = () => {
+          const
+            card = btn.closest('.whale-card'),
+            noteContainer = card.querySelector('.whale-card__notes'),
+            cells = card.querySelector('.whale-card__cells')
+          if (noteContainer && cells) {
+            if (noteContainer.isVisible()) {
+              btn.classList.remove(IS_ACTIVE)
+              noteContainer.classList.remove(IS_VISIBLE)
+              cells.classList.remove(IS_HIDDEN)
+              setTimeout(() => {
+                noteContainer.style.display = 'none'
+              }, getTransitionTime(noteContainer));
+            } else {
+              btn.classList.add(IS_ACTIVE)
+              noteContainer.style.display = 'block'
+              cells.classList.add(IS_HIDDEN)
+              setTimeout(() => {
+                noteContainer.classList.add(IS_VISIBLE)
+              }, 1);
             }
           }
-        })
-      },
-      attachNoteSubmit: () => {
-        const inputs = [...document.querySelectorAll('.am-note-input')]
-        const buttons = [...document.querySelectorAll('[data-whale-evt="submitNote"]')]
-        inputs.forEach((input) => {
-          input.submit = () => {
-            const val = input.value
-            if (val) {
-              const holder = input.parentNode.closest('.whale-card__notes').querySelector('.whale-card__notes-scroll')
-              if (holder) {
-                input.value = ''
-                whaleCards.appendNote(holder, 'Zahir', val)
-                holder.scrollTop = holder.scrollHeight
-              }
+        }
+      })
+    },
+    attachNoteSubmit: () => {
+      const inputs = [...document.querySelectorAll('.am-note-input')]
+      const buttons = [...document.querySelectorAll('[data-whale-evt="submitNote"]')]
+      inputs.forEach((input) => {
+        input.submit = () => {
+          const val = input.value
+          if (val) {
+            const holder = input.parentNode.closest('.whale-card__notes').querySelector('.whale-card__notes-scroll')
+            if (holder) {
+              input.value = ''
+              whaleCards.appendNote(holder, 'Zahir', val)
+              holder.scrollTop = holder.scrollHeight
             }
           }
-          input.onkeydown = (e) => {
-            if (e.key == 'Enter' || e.keyCode == 13) {
-              e.preventDefault()
-              input.submit()
-            }
-          }
-        })
-        buttons.forEach((btn) => {
-          btn.onclick = () => {
-            const input = btn.parentNode.querySelector('.am-note-input')
+        }
+        input.onkeydown = (e) => {
+          if (e.key == 'Enter' || e.keyCode == 13) {
+            e.preventDefault()
             input.submit()
           }
-        })
-      },
-      attachContractSearch: () => {
-        return
-        const evtArr = [...document.querySelectorAll('[data-evt="contractGoogleSearch"]')]
-        const googleContract = (name) => {
-          const query = `${name} contract`
-          const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-          window.open(url, '_blank');
-        }
-        evtArr.forEach((btn) => {
-          btn.onclick = () => {
-            const card = btn.parentNode.closest('.whale-card')
-            if (card) {
-              const name = card.querySelector('.whale-card__name').textContent
-              googleContract(name)
-            }
-          }
-        })
-      }
-    }
-  }
-
-  const editModal = {
-    init: function () {
-      if (document.querySelector('.edit-modal')) {
-        Object.values(this.initFn).forEach((fn) => {
-          if (typeof fn === 'function') {
-            try {
-              fn()
-            } catch (err) {
-              console.log(`edit modal init fn err : ${err.message}`)
-            }
-          }
-        })
-      }
-    },
-    open: function () {
-      lockScroll()
-      const modal = document.querySelector('.edit-modal')
-      if (modal) {
-        modal.style.display = 'block'
-        setTimeout(() => {
-          modal.classList.add(IS_VISIBLE)
-        }, 1);
-      }
-    },
-    close: function () {
-      unlockScroll()
-      const modal = document.querySelector('.edit-modal')
-      if (modal) {
-        modal.classList.remove(IS_VISIBLE)
-        setTimeout(() => {
-          modal.style.display = 'none'
-        }, getTransitionTime(modal));
-      }
-    },
-    initFn: {
-      bindToggle: function () {
-        const closeEvt = document.querySelectorAll('[data-evt="closeEditModal"]')
-        const openEvt = document.querySelectorAll('[data-evt="openEditModal"]')
-        closeEvt.forEach((btn) => {
-          btn.onclick = () => {
-            editModal.close()
-          }
-        })
-        openEvt.forEach((btn) => {
-          btn.onclick = () => {
-            editModal.open()
-          }
-        })
-      }
-    }
-  }
-
-
-  const toolbar = {
-    menuOpened: false,
-    sortOpened: false,
-    filterOpened: false,
-    elem: document.querySelector('.toolbar'),
-    menu: document.querySelector('.toolbar-menu'),
-    sortMenu: document.querySelector('#toolbarSort'),
-    filterMenu: document.querySelector('#toolbarFilter'),
-    sortToggleArr: document.querySelectorAll('[data-evt="toggleSortMenu"]'),
-    filterToggleArr: document.querySelectorAll('[data-evt="toggleFilterMenu"]'),
-    resetFormArr: document.querySelectorAll('[data-evt="resetToolbarForm"]'),
-
-    init: function () {
-      if (this.elem) {
-        this.attachEvents()
-        Object.values(this.initFn).forEach((fn) => {
-          if (typeof fn === 'function') {
-            try {
-              fn()
-            } catch (err) {
-              console.log(`toolbar init fn err : ${err.message}`)
-            }
-          }
-        })
-      }
-    },
-    openMenu: function () {
-      if (this.menu) {
-        this.menuOpened = true
-        this.elem.classList.add(IS_ACTIVE)
-        setTimeout(() => {
-          this.menu.style.height = `${this.menu.scrollHeight}px`
-        }, 10)
-      }
-    },
-    closeMenu: function () {
-      if (this.menu) {
-        this.menuOpened = false
-        this.elem.classList.remove(IS_ACTIVE)
-        this.menu.style.height = 0
-      }
-    },
-    adjustMenuHeight: function () {
-      const wrapper = document.querySelector('.toolbar-menu__wrapper')
-      if (wrapper) {
-        let height = wrapper.clientHeight
-        this.menu.style.height = `${height}px`
-      }
-    },
-    toggleMenu: function () {
-      if (this.menuOpened) {
-        this.closeMenu()
-      } else {
-        this.openMenu()
-      }
-    },
-    openSort: function () {
-      if (this.menu && this.sortMenu) {
-        this.checkSortState()
-        this.checkFilterState()
-        if (!this.menuOpened) {
-          this.openMenu()
-          this.sortOpened = true
-          this.sortMenu.style.display = 'block'
-          this.filterMenu.style.display = 'none'
-        } else {
-          if (!this.filterOpened) {
-            this.closeMenu()
-            this.sortOpened = false
-          } else {
-            this.sortOpened = true
-            this.filterOpened = false
-            this.sortMenu.style.display = 'block'
-            this.filterMenu.style.display = 'none'
-            this.adjustMenuHeight()
-          }
-        }
-      }
-    },
-    openFilter: function () {
-      if (this.menu && this.filterMenu) {
-        this.checkSortState()
-        this.checkFilterState()
-        if (!this.menuOpened) {
-          this.openMenu()
-          this.filterOpened = true
-          this.filterMenu.style.display = 'block'
-          this.sortMenu.style.display = 'none'
-        } else {
-          if (!this.sortOpened) {
-            this.closeMenu()
-            this.filterOpened = false
-          } else {
-            this.filterOpened = true
-            this.sortOpened = false
-            this.filterMenu.style.display = 'block'
-            this.sortMenu.style.display = 'none'
-            this.adjustMenuHeight()
-          }
-        }
-      }
-    },
-    checkSortState: function () {
-      if (this.sortMenu && this.sortToggleArr.length) {
-        const inputs = this.sortMenu.querySelectorAll('input:checked')
-        inputs.length ? this.sortToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.sortToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
-      }
-    },
-    checkFilterState: function () {
-      if (this.filterMenu && this.filterToggleArr.length) {
-        const inputs = this.filterMenu.querySelectorAll('input:checked')
-        inputs.length ? this.filterToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.filterToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
-      }
-    },
-
-    attachEvents: function () {
-      this.sortToggleArr.forEach((btn) => {
-        btn.onclick = () => {
-          this.openSort()
         }
       })
-      this.filterToggleArr.forEach((btn) => {
+      buttons.forEach((btn) => {
         btn.onclick = () => {
-          this.openFilter()
-        }
-      })
-      this.resetFormArr.forEach((btn) => {
-        btn.onclick = () => {
-          const form = btn.parentNode.closest('.toolbar-form')
-          if (form) {
-            let inputs = form.querySelectorAll('input:checked')
-            inputs.forEach((input) => { input.checked = false })
-          }
+          const input = btn.parentNode.querySelector('.am-note-input')
+          input.submit()
         }
       })
     },
-
-    initFn: {
-      renderPTSLottie: () => {
-        const lottieContainers = [...document.querySelectorAll('[data-lottie="diamondSpin"]')]
-        lottieContainers.forEach((container) => {
-          const animation = bodymovin.loadAnimation({
-            container: container,
-            path: 'https://gist.githubusercontent.com/steinway1/4de3da6a3a8364ede5c3e5fff52c5113/raw/94ab2c03988700c56cffeb4f5fc06ce2e605120f/spin-diamond.json',
-            autoplay: true,
-            renderer: 'svg',
-            loop: true
-          })
-        })
-      }
-    }
-  }
-
-  const gTip = {
-    card: null,
-    query: undefined,
-    elem: document.querySelector('.g-tip'),
-    input: document.querySelector('.g-tip__input'),
-    init: function () {
-      if (this.elem && this.input) {
-        this.extendElem()
-        this.bindEvents()
-      }
-    },
-    extendElem: function () {
-      this.elem.open = () => {
-        if (gTip.card) {
-          const anchor = gTip.card.querySelector('.ext-search')
-          if (anchor) {
-            const rect = anchor.getBoundingClientRect(), box = gTip.elem
-            box.style.display = 'block'
-
-            let left = rect.left > (box.offsetWidth / 2) ?
-              rect.left - (box.offsetWidth / 2) + (anchor.offsetWidth / 2) :
-              rect.left
-
-            let top = (window.innerHeight - rect.bottom) < (box.offsetHeight + 20) ?
-              window.scrollY + rect.top - box.offsetHeight - 10 :
-              window.scrollY + rect.top + anchor.offsetHeight + 10
-
-            if (left < 0) {
-              left = 0;
-            } else if (left + box.offsetWidth > window.innerWidth) {
-              left = window.innerWidth - box.offsetWidth;
-            }
-
-            box.style.left = `${left}px`
-            box.style.top = `${top}px`
-          }
-        }
-      }
-      this.elem.reset = () => {
-        const box = gTip.elem
-        box.style.display = 'none'
-        if (gTip.card) {
-          gTip.card = null
-          gTip.query = undefined
-        }
-      }
-      this.elem.submit = () => {
+    attachContractSearch: () => {
+      return
+      const evtArr = [...document.querySelectorAll('[data-evt="contractGoogleSearch"]')]
+      const googleContract = (name) => {
         const query = `${name} contract`
-        const url = `https://www.google.com/search?q=${encodeURIComponent(gTip.query)}`;
+        const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
         window.open(url, '_blank');
       }
-    },
-    bindEvents: () => {
-      const btnArr = [...document.querySelectorAll('[data-evt="openGoogleTip"]')]
-      btnArr.forEach((btn) => {
-        btn.onclick = (e) => {
-          gTip.card = e.target.closest('.whale-card')
-          gTip.elem.open()
-        }
-      })
-
-      const queries = [...document.querySelectorAll('.g-tip__queries a')]
-      queries.forEach((query) => {
-        query.onclick = (e) => {
-          if (gTip.card) {
-            let name = gTip.card.querySelector('.whale-card__name')
-            if (name) {
-              gTip.query = `${name.textContent} ${query.textContent}`
-              gTip.elem.submit()
-            }
+      evtArr.forEach((btn) => {
+        btn.onclick = () => {
+          const card = btn.parentNode.closest('.whale-card')
+          if (card) {
+            const name = card.querySelector('.whale-card__name').textContent
+            googleContract(name)
           }
         }
       })
+    }
+  }
+}
 
-      const input = gTip.elem.querySelector('input')
-      const submitInputArr = [...document.querySelectorAll('[data-evt="submitGoogleTip"]')]
-      if (input) {
-        input.onkeydown = (e) => {
-          if (e.key == 'Enter') {
-            e.preventDefault()
-            if (gTip.card) {
-              let name = gTip.card.querySelector('.whale-card__name')
-              if (name) {
-                gTip.query = `${name.textContent} ${input.value}`
-                gTip.elem.submit()
-              }
-            }
+const editModal = {
+  init: function () {
+    if (document.querySelector('.edit-modal')) {
+      Object.values(this.initFn).forEach((fn) => {
+        if (typeof fn === 'function') {
+          try {
+            fn()
+          } catch (err) {
+            console.log(`edit modal init fn err : ${err.message}`)
+          }
+        }
+      })
+    }
+  },
+  open: function () {
+    lockScroll()
+    const modal = document.querySelector('.edit-modal')
+    if (modal) {
+      modal.style.display = 'block'
+      setTimeout(() => {
+        modal.classList.add(IS_VISIBLE)
+      }, 1);
+    }
+  },
+  close: function () {
+    unlockScroll()
+    const modal = document.querySelector('.edit-modal')
+    if (modal) {
+      modal.classList.remove(IS_VISIBLE)
+      setTimeout(() => {
+        modal.style.display = 'none'
+      }, getTransitionTime(modal));
+    }
+  },
+  initFn: {
+    bindToggle: function () {
+      const closeEvt = document.querySelectorAll('[data-evt="closeEditModal"]')
+      const openEvt = document.querySelectorAll('[data-evt="openEditModal"]')
+      closeEvt.forEach((btn) => {
+        btn.onclick = () => {
+          editModal.close()
+        }
+      })
+      openEvt.forEach((btn) => {
+        btn.onclick = () => {
+          editModal.open()
+        }
+      })
+    }
+  }
+}
+
+
+const toolbar = {
+  menuOpened: false,
+  sortOpened: false,
+  filterOpened: false,
+  elem: document.querySelector('.toolbar'),
+  menu: document.querySelector('.toolbar-menu'),
+  sortMenu: document.querySelector('#toolbarSort'),
+  filterMenu: document.querySelector('#toolbarFilter'),
+  sortToggleArr: document.querySelectorAll('[data-evt="toggleSortMenu"]'),
+  filterToggleArr: document.querySelectorAll('[data-evt="toggleFilterMenu"]'),
+  resetFormArr: document.querySelectorAll('[data-evt="resetToolbarForm"]'),
+
+  init: function () {
+    if (this.elem) {
+      this.attachEvents()
+      Object.values(this.initFn).forEach((fn) => {
+        if (typeof fn === 'function') {
+          try {
+            fn()
+          } catch (err) {
+            console.log(`toolbar init fn err : ${err.message}`)
+          }
+        }
+      })
+    }
+  },
+  openMenu: function () {
+    if (this.menu) {
+      this.menuOpened = true
+      this.elem.classList.add(IS_ACTIVE)
+      setTimeout(() => {
+        this.menu.style.height = `${this.menu.scrollHeight}px`
+      }, 10)
+    }
+  },
+  closeMenu: function () {
+    if (this.menu) {
+      this.menuOpened = false
+      this.elem.classList.remove(IS_ACTIVE)
+      this.menu.style.height = 0
+    }
+  },
+  adjustMenuHeight: function () {
+    const wrapper = document.querySelector('.toolbar-menu__wrapper')
+    if (wrapper) {
+      let height = wrapper.clientHeight
+      this.menu.style.height = `${height}px`
+    }
+  },
+  toggleMenu: function () {
+    if (this.menuOpened) {
+      this.closeMenu()
+    } else {
+      this.openMenu()
+    }
+  },
+  openSort: function () {
+    if (this.menu && this.sortMenu) {
+      this.checkSortState()
+      this.checkFilterState()
+      if (!this.menuOpened) {
+        this.openMenu()
+        this.sortOpened = true
+        this.sortMenu.style.display = 'block'
+        this.filterMenu.style.display = 'none'
+      } else {
+        if (!this.filterOpened) {
+          this.closeMenu()
+          this.sortOpened = false
+        } else {
+          this.sortOpened = true
+          this.filterOpened = false
+          this.sortMenu.style.display = 'block'
+          this.filterMenu.style.display = 'none'
+          this.adjustMenuHeight()
+        }
+      }
+    }
+  },
+  openFilter: function () {
+    if (this.menu && this.filterMenu) {
+      this.checkSortState()
+      this.checkFilterState()
+      if (!this.menuOpened) {
+        this.openMenu()
+        this.filterOpened = true
+        this.filterMenu.style.display = 'block'
+        this.sortMenu.style.display = 'none'
+      } else {
+        if (!this.sortOpened) {
+          this.closeMenu()
+          this.filterOpened = false
+        } else {
+          this.filterOpened = true
+          this.sortOpened = false
+          this.filterMenu.style.display = 'block'
+          this.sortMenu.style.display = 'none'
+          this.adjustMenuHeight()
+        }
+      }
+    }
+  },
+  checkSortState: function () {
+    if (this.sortMenu && this.sortToggleArr.length) {
+      const inputs = this.sortMenu.querySelectorAll('input:checked')
+      inputs.length ? this.sortToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.sortToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
+    }
+  },
+  checkFilterState: function () {
+    if (this.filterMenu && this.filterToggleArr.length) {
+      const inputs = this.filterMenu.querySelectorAll('input:checked')
+      inputs.length ? this.filterToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.filterToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
+    }
+  },
+
+  attachEvents: function () {
+    this.sortToggleArr.forEach((btn) => {
+      btn.onclick = () => {
+        this.openSort()
+      }
+    })
+    this.filterToggleArr.forEach((btn) => {
+      btn.onclick = () => {
+        this.openFilter()
+      }
+    })
+    this.resetFormArr.forEach((btn) => {
+      btn.onclick = () => {
+        const form = btn.parentNode.closest('.toolbar-form')
+        if (form) {
+          let inputs = form.querySelectorAll('input:checked')
+          inputs.forEach((input) => { input.checked = false })
+        }
+      }
+    })
+  },
+
+  initFn: {
+    renderPTSLottie: () => {
+      const lottieContainers = [...document.querySelectorAll('[data-lottie="diamondSpin"]')]
+      lottieContainers.forEach((container) => {
+        const animation = bodymovin.loadAnimation({
+          container: container,
+          path: 'https://gist.githubusercontent.com/steinway1/4de3da6a3a8364ede5c3e5fff52c5113/raw/94ab2c03988700c56cffeb4f5fc06ce2e605120f/spin-diamond.json',
+          autoplay: true,
+          renderer: 'svg',
+          loop: true
+        })
+      })
+    }
+  }
+}
+
+const gTip = {
+  card: null,
+  query: undefined,
+  elem: document.querySelector('.g-tip'),
+  input: document.querySelector('.g-tip__input'),
+  init: function () {
+    if (this.elem && this.input) {
+      this.extendElem()
+      this.bindEvents()
+    }
+  },
+  extendElem: function () {
+    this.elem.open = () => {
+      if (gTip.card) {
+        const anchor = gTip.card.querySelector('.ext-search')
+        if (anchor) {
+          const rect = anchor.getBoundingClientRect(), box = gTip.elem
+          box.style.display = 'block'
+
+          let left = rect.left > (box.offsetWidth / 2) ?
+            rect.left - (box.offsetWidth / 2) + (anchor.offsetWidth / 2) :
+            rect.left
+
+          let top = (window.innerHeight - rect.bottom) < (box.offsetHeight + 20) ?
+            window.scrollY + rect.top - box.offsetHeight - 10 :
+            window.scrollY + rect.top + anchor.offsetHeight + 10
+
+          if (left < 0) {
+            left = 0;
+          } else if (left + box.offsetWidth > window.innerWidth) {
+            left = window.innerWidth - box.offsetWidth;
+          }
+
+          box.style.left = `${left}px`
+          box.style.top = `${top}px`
+        }
+      }
+    }
+    this.elem.reset = () => {
+      const box = gTip.elem
+      box.style.display = 'none'
+      if (gTip.card) {
+        gTip.card = null
+        gTip.query = undefined
+      }
+    }
+    this.elem.submit = () => {
+      const query = `${name} contract`
+      const url = `https://www.google.com/search?q=${encodeURIComponent(gTip.query)}`;
+      window.open(url, '_blank');
+    }
+  },
+  bindEvents: () => {
+    const btnArr = [...document.querySelectorAll('[data-evt="openGoogleTip"]')]
+    btnArr.forEach((btn) => {
+      btn.onclick = (e) => {
+        gTip.card = e.target.closest('.whale-card')
+        gTip.elem.open()
+      }
+    })
+
+    const queries = [...document.querySelectorAll('.g-tip__queries a')]
+    queries.forEach((query) => {
+      query.onclick = (e) => {
+        if (gTip.card) {
+          let name = gTip.card.querySelector('.whale-card__name')
+          if (name) {
+            gTip.query = `${name.textContent} ${query.textContent}`
+            gTip.elem.submit()
           }
         }
       }
-      submitInputArr.forEach((btn) => {
-        btn.onclick = () => {
+    })
+
+    const input = gTip.elem.querySelector('input')
+    const submitInputArr = [...document.querySelectorAll('[data-evt="submitGoogleTip"]')]
+    if (input) {
+      input.onkeydown = (e) => {
+        if (e.key == 'Enter') {
+          e.preventDefault()
           if (gTip.card) {
             let name = gTip.card.querySelector('.whale-card__name')
             if (name) {
@@ -1161,44 +1148,57 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
         }
-      })
+      }
+    }
+    submitInputArr.forEach((btn) => {
+      btn.onclick = () => {
+        if (gTip.card) {
+          let name = gTip.card.querySelector('.whale-card__name')
+          if (name) {
+            gTip.query = `${name.textContent} ${input.value}`
+            gTip.elem.submit()
+          }
+        }
+      }
+    })
 
-      window.onscroll = () => {
+    window.onscroll = () => {
+      gTip.elem.reset()
+    }
+
+    document.addEventListener('click', (e) => {
+      const target = e.target
+      if (!target.classList.contains('ext-search') && !target.closest('.g-tip')) {
         gTip.elem.reset()
       }
-
-      document.addEventListener('click', (e) => {
-        const target = e.target
-        if (!target.classList.contains('ext-search') && !target.closest('.g-tip')) {
-          gTip.elem.reset()
-        }
-      })
-    }
+    })
   }
+}
 
+if (pageBackdrop) {
   pageBackdrop.onclick = () => { pageSearch.close(); pageMenu.close(); pageSidebar.close() }
+}
 
-  const pageObjects = [
-    orderZoom,
-    orderNotes,
-    pageSearch,
-    pageMenu,
-    pageSidebar,
-    whalesPage,
-    whaleCards,
-    editModal,
-    toolbar,
-    gTip
-  ]
+const pageObjects = [
+  orderZoom,
+  orderNotes,
+  pageSearch,
+  pageMenu,
+  pageSidebar,
+  whalesPage,
+  whaleCards,
+  editModal,
+  toolbar,
+  gTip
+]
 
-  for (const obj of pageObjects) {
-    if (obj && typeof obj.init === 'function') {
-      try {
-        obj.init();
-      } catch (err) {
-        throw new Error(`Error executing obj.init: ${err.message}`);
-      }
+for (const obj of pageObjects) {
+  if (obj && typeof obj.init === 'function') {
+    try {
+      obj.init();
+    } catch (err) {
+      throw new Error(`Error executing obj.init: ${err.message}`);
     }
   }
+}
 
-})
