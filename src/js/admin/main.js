@@ -1,5 +1,3 @@
-let LOADING
-
 const
   IS_VISIBLE = 'is-visible',
   IS_ACTIVE = 'is-active',
