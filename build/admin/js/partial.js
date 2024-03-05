@@ -276,18 +276,15 @@ class crmSwiper {
     }, getTransitionTime(this.lastActive) * 4.9);
   }
   checkCardsAvailability() {
-    $('.dt-paging-button.next').click()
-    return new Promise(resolve => {
-      const interval = setInterval(() => {
-        if (!LOADING) {
-          clearInterval(interval)
-          resolve(this.cardsAvailabilityResolve())
-          console.log('loaded')
-        }
-      }, 100)
-    })
+    const cards = [...this.holder.querySelectorAll('.whale-card')]
+    if (cards.length == 1) {
+      setTimeout(() => {
+        this.close()
+      }, 500);
+    }
   }
   cardsAvailabilityResolve() {
+    return
     const hasMoreCards = this.nextCards.length > 0
     if (!hasMoreCards) {
       this.modal.classList.add(this.emptyClass)
