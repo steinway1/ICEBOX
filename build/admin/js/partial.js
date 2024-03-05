@@ -278,6 +278,7 @@ class crmSwiper {
     }, getTransitionTime(this.lastActive) * 4.9);
   }
   checkCardsAvailability() {
+    $('.dt-paging-button.next').click()
     return new Promise(resolve => {
       const interval = setInterval(() => {
         if (!LOADING) {
