@@ -1,3 +1,5 @@
+let LOADING
+
 const
   IS_VISIBLE = 'is-visible',
   IS_ACTIVE = 'is-active',
@@ -273,6 +275,17 @@ class crmSwiper {
     }, getTransitionTime(this.lastActive) * 4.9);
   }
   checkCardsAvailability() {
+    return new Promise(resolve => {
+      const interval = setInterval(() => {
+        if (!LOADING) {
+          clearInterval(interval)
+          resolve(this.cardsAvailabilityResolve())
+          console.log('loaded')
+        }
+      }, 100)
+    })
+  }
+  cardsAvailabilityResolve() {
     const hasMoreCards = this.nextCards.length > 0
     if (!hasMoreCards) {
       this.modal.classList.add(this.emptyClass)
