@@ -1,4 +1,4 @@
-<div class="whale-card">
+<div class="whale-card{% if whale.spender %} --spender{% endif %}">
 
 	<div class="whale-card__saleperson" data-cell="saleperson">
 		{{ whale.saleperson_xedit | raw }}
@@ -11,9 +11,13 @@
 			<img src="{{whale.photo}}" alt="">
 		</div>
 		<div class="whale-card__sum">
-			<h3 class="whale-card__name">{{whale.full_name}} <span data-evt="openGoogleTip" class="ext-search"></span></h3>
-      <span class="spend-typo">{{whale.total_spend ?: '$0.00'}}</span>
-      <span class="xs-typo">Last updated {{whale.last_updated}} days ago</span>
+			<h3 class="whale-card__name">{{whale.full_name}}
+				<span data-evt="openGoogleTip" class="ext-search"></span>
+			</h3>
+			<span class="spend-typo">{{whale.total_spend ?: '$0.00'}}</span>
+			<span class="xs-typo">Last updated
+				{{whale.last_updated}}
+				days ago</span>
 			<span class="spot-typo">{{whale.tab}}</span>
 			{{ whale.action_bar | raw }}
 		</div>
@@ -82,7 +86,9 @@
 				<span class="cell-title">Links</span>
 				<span class="cell-value">
 					<a href="{{wiki_link}}">Wiki</a>
-					{% if whale.sportrac_link %}<a href="{{whale.sportrac_link}}">Sportrac</a>{% endif %}
+					{% if whale.sportrac_link %}
+						<a href="{{whale.sportrac_link}}">Sportrac</a>
+					{% endif %}
 				</span>
 			</div>
 			{% if whale.socials %}

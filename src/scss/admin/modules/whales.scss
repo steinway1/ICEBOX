@@ -80,7 +80,25 @@
     }
   }
 
-  &.--highlight {
+  &.--spender {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none;
+      border: 1.5px solid #4ec394;
+    }
+
+    &:hover {
+      border-color: #4ec394;
+    }
+  }
+
+  &.--highlight:not(.--spender) {
     border-color: #87ace0;
     transition: all 250ms ease;
 

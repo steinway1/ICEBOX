@@ -22,6 +22,7 @@ const webpack = require('webpack-stream')
 const babel = require('gulp-babel')
 const concat = require('gulp-concat')
 const minify = require('gulp-minify')
+const ts = require('gulp-typescript')
 // Other
 const plumber = require('gulp-plumber')
 const notify = require('gulp-notify')
@@ -59,6 +60,7 @@ const root = {
       bundle: {
         main: './src/js/admin/main.js'
       },
+      ts: './src/js/admin/ts/*.ts',
       modules: './src/js/admin/modules/*.mjs'
     },
     js: {
@@ -186,6 +188,18 @@ gulp.task('js-admin-modules:dev',
       .pipe(gulp.dest(root.dev.adminJSModules))
   }
 )
+
+gulp.task('ts-admin:dev', () => {
+  return gulp
+    .src(root.src.adminJS.ts)
+    .pipe(changed(root.dev.adminJS))
+    .pipe(plumber(setPlumberNotify('ADMIN TYPESCRIPT')))
+    .pipe(ts({
+      noImplicitAny: true,
+      outFile: 'typescript.js',
+    }))
+    .pipe(gulp.dest(root.dev.adminJS))
+})
 
 gulp.task('fonts-admin:dev',
   () => {
@@ -381,7 +395,8 @@ gulp.task('watch:dev',
       gulp.watch('./src/templates/admin/svg/**', gulp.parallel('twig-admin:dev')),
       gulp.watch('./src/templates/admin/assets/**/*', gulp.parallel('assets-admin:dev')),
       gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev', 'css-admin:dev')),
-      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-vday:dev', 'js-admin:dev', 'js-admin-modules:dev')),
+      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-vday:dev', 'js-admin:dev')),
+      gulp.watch('./src/js/**/*.ts', gulp.parallel('ts-admin:dev')),
       gulp.watch('./src/assets/**/*', gulp.parallel('assets:dev'))
   }
 )
