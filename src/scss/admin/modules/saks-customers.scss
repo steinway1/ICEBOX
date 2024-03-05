@@ -1,0 +1,80 @@
+.am-content_saks {
+  .am-main__flow {
+    padding: 42px;
+  }
+
+  --tb-padding: 16px;
+
+  .dt-buttons {
+    padding: var(--tb-padding);
+    border-bottom: 1px solid var(--tb-border);
+  }
+}
+
+.tb-box#box_saks_customers {
+  margin-top: 24px;
+
+  .tb-box__title {
+    padding-bottom: 20px;
+
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 26px;
+    }
+
+    &>span {
+      opacity: .7;
+      margin-top: 2px;
+      font-size: 13px;
+    }
+  }
+
+  .am-btn {
+    border: 1px solid var(--blue_gold);
+    padding: 14px 16px;
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 26px rgba(64, 140, 241, .42);
+
+    &:not(.is-active) {
+      background-color: transparent;
+      color: #2676e2;
+      box-shadow: none;
+    }
+  }
+
+  .tb-table {
+    th[data-sort-evt] {
+      background-image: none;
+    }
+
+    th {
+      background-color: #f2f4f7 !important;
+    }
+
+    tbody {
+      td {
+        background-color: white !important;
+      }
+
+      td {
+        border-right: none !important;
+
+        &[data-td="added_by"] {
+          font-size: 12px;
+          font-weight: 600;
+          color: #757981;
+        }
+        &[data-td="name"] {
+          font-weight: 600;
+        }
+        &[data-td="visit_date"] {
+          font-style: italic;
+          color: #757981;
+        }
+      }
+    }
+  }
+}

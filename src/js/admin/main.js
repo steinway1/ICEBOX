@@ -65,7 +65,7 @@ class crmSwiper {
     }
     this.initialized = false
     this.opened = false
-    this.initialCard = initialCard || document.querySelector('.whale-card')
+    this.initialCard = initialCard || document.querySelectorAll('#grid_view .whale-card')[0]
     this.anchorCard = null
     this.anchorCardIndex = undefined
     this.activeCard = null
@@ -1180,6 +1180,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-
 
 })
