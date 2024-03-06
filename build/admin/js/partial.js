@@ -35,11 +35,27 @@ function unlockScroll() {
       window.scroll(0, o);
   }
 }
+
+function getAdminUserName() {
+  return 'Zahir'
+}
+
 Number.prototype.between = function (min, max) {
   return this >= min && this <= max
 }
 HTMLElement.prototype.isVisible = function () {
   return window.getComputedStyle(this).getPropertyValue('display') !== 'none'
+}
+Array.prototype.handleToggleActiveState = function () {
+  for (const elem of this) {
+    elem.onclick = () => {
+      const siblings = [...elem.parentElement.children].filter(e => e.tagName === 'BUTTON' && e !== elem)
+      elem.classList.add(IS_ACTIVE)
+      for (const sibling of siblings) {
+        sibling.classList.remove(IS_ACTIVE)
+      }
+    }
+  }
 }
 
 const getTransitionTime = (target) => {
@@ -906,160 +922,6 @@ const editModal = {
   }
 }
 
-
-const toolbar = {
-  menuOpened: false,
-  sortOpened: false,
-  filterOpened: false,
-  elem: document.querySelector('.toolbar'),
-  menu: document.querySelector('.toolbar-menu'),
-  sortMenu: document.querySelector('#toolbarSort'),
-  filterMenu: document.querySelector('#toolbarFilter'),
-  sortToggleArr: document.querySelectorAll('[data-evt="toggleSortMenu"]'),
-  filterToggleArr: document.querySelectorAll('[data-evt="toggleFilterMenu"]'),
-  resetFormArr: document.querySelectorAll('[data-evt="resetToolbarForm"]'),
-
-  init: function () {
-    if (this.elem) {
-      this.attachEvents()
-      Object.values(this.initFn).forEach((fn) => {
-        if (typeof fn === 'function') {
-          try {
-            fn()
-          } catch (err) {
-            console.log(`toolbar init fn err : ${err.message}`)
-          }
-        }
-      })
-    }
-  },
-  openMenu: function () {
-    if (this.menu) {
-      this.menuOpened = true
-      this.elem.classList.add(IS_ACTIVE)
-      setTimeout(() => {
-        this.menu.style.height = `${this.menu.scrollHeight}px`
-      }, 10)
-    }
-  },
-  closeMenu: function () {
-    if (this.menu) {
-      this.menuOpened = false
-      this.elem.classList.remove(IS_ACTIVE)
-      this.menu.style.height = 0
-    }
-  },
-  adjustMenuHeight: function () {
-    const wrapper = document.querySelector('.toolbar-menu__wrapper')
-    if (wrapper) {
-      let height = wrapper.clientHeight
-      this.menu.style.height = `${height}px`
-    }
-  },
-  toggleMenu: function () {
-    if (this.menuOpened) {
-      this.closeMenu()
-    } else {
-      this.openMenu()
-    }
-  },
-  openSort: function () {
-    if (this.menu && this.sortMenu) {
-      this.checkSortState()
-      this.checkFilterState()
-      if (!this.menuOpened) {
-        this.openMenu()
-        this.sortOpened = true
-        this.sortMenu.style.display = 'block'
-        this.filterMenu.style.display = 'none'
-      } else {
-        if (!this.filterOpened) {
-          this.closeMenu()
-          this.sortOpened = false
-        } else {
-          this.sortOpened = true
-          this.filterOpened = false
-          this.sortMenu.style.display = 'block'
-          this.filterMenu.style.display = 'none'
-          this.adjustMenuHeight()
-        }
-      }
-    }
-  },
-  openFilter: function () {
-    if (this.menu && this.filterMenu) {
-      this.checkSortState()
-      this.checkFilterState()
-      if (!this.menuOpened) {
-        this.openMenu()
-        this.filterOpened = true
-        this.filterMenu.style.display = 'block'
-        this.sortMenu.style.display = 'none'
-      } else {
-        if (!this.sortOpened) {
-          this.closeMenu()
-          this.filterOpened = false
-        } else {
-          this.filterOpened = true
-          this.sortOpened = false
-          this.filterMenu.style.display = 'block'
-          this.sortMenu.style.display = 'none'
-          this.adjustMenuHeight()
-        }
-      }
-    }
-  },
-  checkSortState: function () {
-    if (this.sortMenu && this.sortToggleArr.length) {
-      const inputs = this.sortMenu.querySelectorAll('input:checked')
-      inputs.length ? this.sortToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.sortToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
-    }
-  },
-  checkFilterState: function () {
-    if (this.filterMenu && this.filterToggleArr.length) {
-      const inputs = this.filterMenu.querySelectorAll('input:checked')
-      inputs.length ? this.filterToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.filterToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
-    }
-  },
-
-  attachEvents: function () {
-    this.sortToggleArr.forEach((btn) => {
-      btn.onclick = () => {
-        this.openSort()
-      }
-    })
-    this.filterToggleArr.forEach((btn) => {
-      btn.onclick = () => {
-        this.openFilter()
-      }
-    })
-    this.resetFormArr.forEach((btn) => {
-      btn.onclick = () => {
-        const form = btn.parentNode.closest('.toolbar-form')
-        if (form) {
-          let inputs = form.querySelectorAll('input:checked')
-          inputs.forEach((input) => { input.checked = false })
-        }
-      }
-    })
-  },
-
-  initFn: {
-    renderPTSLottie: () => {
-      const lottieContainers = [...document.querySelectorAll('[data-lottie="diamondSpin"]')]
-      lottieContainers.forEach((container) => {
-        const animation = bodymovin.loadAnimation({
-          container: container,
-          path: 'https://gist.githubusercontent.com/steinway1/4de3da6a3a8364ede5c3e5fff52c5113/raw/94ab2c03988700c56cffeb4f5fc06ce2e605120f/spin-diamond.json',
-          autoplay: true,
-          renderer: 'svg',
-          loop: true
-        })
-      })
-    }
-  }
-}
-
 const gTip = {
   card: null,
   query: undefined,
@@ -1175,6 +1037,177 @@ const gTip = {
   }
 }
 
+const appendNewCustomer = (storeElement, html) => {
+  const newCustomer = document.createElement('tr')
+  newCustomer.classList.add(IS_ACTIVE)
+  try {
+    newCustomer.innerHTML = `<tr>${html}</tr>`
+    storeElement.appendChild(newCustomer)
+  } catch (err) {
+    throw new Error(`appendNewCustomer error: ${err.message}`)
+  } finally {
+    console.log('appendNewCustomer success')
+  }
+}
+
+const swapModal = {
+  newYorkMask: /new\s*york|nyc|yor/i,
+  miamiMask: /miami|mia|iam/i,
+  atlantaMask: /atlanta|atl|atlant(?!.*?(flag|flagship|ship))/i,
+  flagshipMask: /flagship|flag/i,
+  initialized: false,
+  activeStore: undefined,
+  init: function () {
+    this.renderDOM()
+    if (!this.elem) return
+    try {
+      this.initFn.bindEvents()
+      this.initFn.initialState()
+    } catch (err) {
+      throw new Error(`swapModal initialization error: ${err.message}`)
+    } finally {
+      this.initialized = true
+    }
+  },
+  renderDOM: function () {
+    this.elem = document.querySelector('.swap-modal')
+  },
+  open: function () {
+    const input = this.elem.querySelectorAll('input')[0]
+    lockScroll()
+    this.elem.style.display = 'block'
+    if (input) input.focus()
+    setTimeout(() => {
+      this.elem.classList.remove(IS_HIDDEN)
+    }, 1);
+  },
+  close: function () {
+    unlockScroll()
+    this.elem.classList.add(IS_HIDDEN)
+    setTimeout(() => {
+      this.elem.style.display = 'none'
+    }, getTransitionTime(this.elem));
+  },
+  toggle: function () {
+    if (this.elem.style.display === 'none') {
+      this.open()
+    } else {
+      this.close()
+    }
+  },
+  renderCustomerHTML: (name, number, instagram, email) => {
+    return `
+    <tr>
+      <td data-td="added_by">${getAdminUserName()}</td>
+      <td data-td="name">${name}</td>
+      <td data-td="number">${number}</td>
+      <td>
+        <a class="tb-social-btn instagram">
+          <div>${instagram}</div>
+        </a>
+      </td>
+      <td data-td="email">${email}</td>
+      <td data-td="visit_date">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}</td>
+    </tr>
+    `
+  },
+  clear: () => {
+    [...swapModal.elem.querySelectorAll('input')].forEach(input => input.value = '')
+  },
+  getCustomerFromInputs: () => {
+    const customer = {}
+    const inputs = [...swapModal.elem.querySelectorAll('input')]
+    for (const input of inputs) {
+      const
+        id = input.id,
+        val = input.value
+      customer[id] = val || 'Empty'
+    }
+    return customer
+  },
+  appendNewCustomer: () => {
+    const customer = swapModal.getCustomerFromInputs()
+    if (!customer.full_name) throw new Error('Full name is required')
+    const html = swapModal.renderCustomerHTML(
+      customer.full_name,
+      customer.number,
+      customer.instagram,
+      customer.email
+    )
+
+    const store = swapModal.activeStore
+    if (!store) throw new Error('No store selected')
+    try {
+      appendNewCustomer(store.querySelector('tbody'), html)
+    } catch (err) {
+      throw new Error(`appendNewCustomer error: ${err.message}`)
+    } finally {
+      swapModal.clear()
+      swapModal.close()
+    }
+  },
+  initFn: {
+    initialState: () => {
+      document.querySelectorAll('[data-store-nav]')[0].click()
+      swapModal.close()
+    },
+    bindEvents: () => {
+      const close = [...document.querySelectorAll('[data-evt="closeSwapModal"]')]
+      const open = [...document.querySelectorAll('[data-evt="addSaksCustomer"]')]
+      const storeNavBtnArr = [...document.querySelectorAll('[data-store-nav]')]
+      const stores = [...document.querySelectorAll('[data-store-id]')]
+      const addBtnArr = [...document.querySelectorAll('[data-evt="addStoreCustomer"]')]
+      const inputs = [...swapModal.elem.querySelectorAll('input')]
+
+      for (const elem of close) {
+        elem.onclick = () => {
+          swapModal.close()
+        }
+      }
+
+      for (const elem of open) {
+        elem.onclick = () => {
+          swapModal.open()
+        }
+      }
+
+      // Store switch
+      for (const btn of storeNavBtnArr) {
+        btn.onclick = () => {
+          const storeId = btn.getAttribute('data-store-nav')
+          if (!storeId) throw new Error('No store id found')
+          const matchStore = stores.find(store => store.getAttribute('data-store-id') == storeId)
+          if (!matchStore) throw new Error('No store found')
+
+          swapModal.activeStore = matchStore
+          const matching = storeNavBtnArr.filter((btn) => btn.getAttribute('data-store-nav') == storeId)
+          storeNavBtnArr.forEach(btn => btn.classList.remove(IS_ACTIVE))
+          matching.forEach(btn => btn.classList.add(IS_ACTIVE))
+
+          for (const store of stores) {
+            store.style.display = 'none'
+            if (store == matchStore) store.style.display = 'block'
+          }
+        }
+      }
+
+      // Add customer
+      for (const btn of addBtnArr) {
+        btn.onclick = () => {
+          swapModal.appendNewCustomer()
+        }
+      }
+      for (const input of inputs) {
+        input.onkeydown = (e) => {
+          if (e.key == 'Enter') {
+            swapModal.appendNewCustomer()
+          }
+        }
+      }
+    }
+  }
+}
+
 if (pageBackdrop) {
   pageBackdrop.onclick = () => { pageSearch.close(); pageMenu.close(); pageSidebar.close() }
 }
@@ -1188,7 +1221,6 @@ const pageObjects = [
   whalesPage,
   whaleCards,
   editModal,
-  toolbar,
   gTip
 ]
 
@@ -1202,3 +1234,161 @@ for (const obj of pageObjects) {
   }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+
+  const pageToolbar = {
+    menuOpened: false,
+    sortOpened: false,
+    filterOpened: false,
+    elem: document.querySelector('.toolbar'),
+    menu: document.querySelector('.toolbar-menu'),
+    sortMenu: document.querySelector('#toolbarSort'),
+    filterMenu: document.querySelector('#toolbarFilter'),
+    sortToggleArr: document.querySelectorAll('[data-evt="toggleSortMenu"]'),
+    filterToggleArr: document.querySelectorAll('[data-evt="toggleFilterMenu"]'),
+    resetFormArr: document.querySelectorAll('[data-evt="resetToolbarForm"]'),
+
+    init: function () {
+      if (this.elem) {
+        this.attachEvents()
+        Object.values(this.initFn).forEach((fn) => {
+          if (typeof fn === 'function') {
+            try {
+              fn()
+            } catch (err) {
+              console.log(`toolbar init fn err : ${err.message}`)
+            }
+          }
+        })
+      }
+    },
+    openMenu: function () {
+      if (this.menu) {
+        this.menuOpened = true
+        this.elem.classList.add(IS_ACTIVE)
+        setTimeout(() => {
+          this.menu.style.height = `${this.menu.scrollHeight}px`
+        }, 10)
+      }
+    },
+    closeMenu: function () {
+      if (this.menu) {
+        this.menuOpened = false
+        this.elem.classList.remove(IS_ACTIVE)
+        this.menu.style.height = 0
+      }
+    },
+    adjustMenuHeight: function () {
+      const wrapper = document.querySelector('.toolbar-menu__wrapper')
+      if (wrapper) {
+        let height = wrapper.clientHeight
+        this.menu.style.height = `${height}px`
+      }
+    },
+    toggleMenu: function () {
+      if (this.menuOpened) {
+        this.closeMenu()
+      } else {
+        this.openMenu()
+      }
+    },
+    openSort: function () {
+      if (this.menu && this.sortMenu) {
+        this.checkSortState()
+        this.checkFilterState()
+        if (!this.menuOpened) {
+          this.openMenu()
+          this.sortOpened = true
+          this.sortMenu.style.display = 'block'
+          this.filterMenu.style.display = 'none'
+        } else {
+          if (!this.filterOpened) {
+            this.closeMenu()
+            this.sortOpened = false
+          } else {
+            this.sortOpened = true
+            this.filterOpened = false
+            this.sortMenu.style.display = 'block'
+            this.filterMenu.style.display = 'none'
+            this.adjustMenuHeight()
+          }
+        }
+      }
+    },
+    openFilter: function () {
+      if (this.menu && this.filterMenu) {
+        this.checkSortState()
+        this.checkFilterState()
+        if (!this.menuOpened) {
+          this.openMenu()
+          this.filterOpened = true
+          this.filterMenu.style.display = 'block'
+          this.sortMenu.style.display = 'none'
+        } else {
+          if (!this.sortOpened) {
+            this.closeMenu()
+            this.filterOpened = false
+          } else {
+            this.filterOpened = true
+            this.sortOpened = false
+            this.filterMenu.style.display = 'block'
+            this.sortMenu.style.display = 'none'
+            this.adjustMenuHeight()
+          }
+        }
+      }
+    },
+    checkSortState: function () {
+      if (this.sortMenu && this.sortToggleArr.length) {
+        const inputs = this.sortMenu.querySelectorAll('input:checked')
+        inputs.length ? this.sortToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.sortToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
+      }
+    },
+    checkFilterState: function () {
+      if (this.filterMenu && this.filterToggleArr.length) {
+        const inputs = this.filterMenu.querySelectorAll('input:checked')
+        inputs.length ? this.filterToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.filterToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
+      }
+    },
+
+    attachEvents: function () {
+      this.sortToggleArr.forEach((btn) => {
+        btn.onclick = () => {
+          this.openSort()
+        }
+      })
+      this.filterToggleArr.forEach((btn) => {
+        btn.onclick = () => {
+          this.openFilter()
+        }
+      })
+      this.resetFormArr.forEach((btn) => {
+        btn.onclick = () => {
+          const form = btn.parentNode.closest('.toolbar-form')
+          if (form) {
+            let inputs = form.querySelectorAll('input:checked')
+            inputs.forEach((input) => { input.checked = false })
+          }
+        }
+      })
+    },
+
+    initFn: {
+      renderPTSLottie: () => {
+        const lottieContainers = [...document.querySelectorAll('[data-lottie="diamondSpin"]')]
+        lottieContainers.forEach((container) => {
+          const animation = bodymovin.loadAnimation({
+            container: container,
+            path: 'https://gist.githubusercontent.com/steinway1/4de3da6a3a8364ede5c3e5fff52c5113/raw/94ab2c03988700c56cffeb4f5fc06ce2e605120f/spin-diamond.json',
+            autoplay: true,
+            renderer: 'svg',
+            loop: true
+          })
+        })
+      }
+    }
+  }
+
+  pageToolbar.init()
+  swapModal.init()
+})

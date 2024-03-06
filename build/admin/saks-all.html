@@ -209,18 +209,21 @@
                         </div>
 
                         <div id="box_saks_customers" class="tb-box">
-                            <div class="dt-buttons">
-                                <button class="am-btn --blue is-active">New York SAKS</button>
-                                <button class="am-btn --blue">Miami SAKS</button>
-                                <button class="am-btn --blue">Atlanta SAKS</button>
-                                <button class="am-btn --blue">Flagship Atlanta</button>
-                            </div>
-                            <div class="tb-box__title">
-                                <h4>New York Customers</h4>
-                                <span>372 total customers</span>
+                            <div id="saks_customers_nav" class="dt-buttons">
+                                <button data-store-nav="new_york" class="am-btn --blue">New York</button>
+                                <button data-store-nav="miami" class="am-btn --blue">Miami</button>
+                                <button data-store-nav="atlanta_saks" class="am-btn --blue">Atlanta SAKS</button>
+                                <button data-store-nav="atlanta_flagship" class="am-btn --blue">Atlanta Flagship</button>
                             </div>
 
-                            <div class="tb-main-content">
+                            <div data-store-id="new_york" class="tb-main-content">
+                                <div class="tb-box__title">
+                                    <h4>New York
+                                        Customers</h4>
+                                    <span>2
+									total customers</span>
+                                    <button data-evt="addSaksCustomer" class="tb-box__add-btn">+ Add New</button>
+                                </div>
                                 <div class="tb-table-container">
                                     <table class="tb-table">
                                         <thead>
@@ -258,6 +261,31 @@
                                                 <td data-td="email">bIqgD@example.com</td>
                                                 <td data-td="visit_date">03/04/2024</td>
                                             </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div data-store-id="miami" class="tb-main-content">
+                                <div class="tb-box__title">
+                                    <h4>Miami
+                                        Customers</h4>
+                                    <span>2
+									total customers</span>
+                                    <button data-evt="addSaksCustomer" class="tb-box__add-btn">+ Add New</button>
+                                </div>
+                                <div class="tb-table-container">
+                                    <table class="tb-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Added By</th>
+                                                <th>Name</th>
+                                                <th>Number</th>
+                                                <th>Instagram</th>
+                                                <th>Email</th>
+                                                <th>Visit Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             <tr>
                                                 <td data-td="added_by">Zahir</td>
                                                 <td data-td="name">Anna Steinway</td>
@@ -282,6 +310,31 @@
                                                 <td data-td="email">bIqgD@example.com</td>
                                                 <td data-td="visit_date">03/04/2024</td>
                                             </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div data-store-id="atlanta_saks" class="tb-main-content">
+                                <div class="tb-box__title">
+                                    <h4>Atlanta SAKS
+                                        Customers</h4>
+                                    <span>2
+									total customers</span>
+                                    <button data-evt="addSaksCustomer" class="tb-box__add-btn">+ Add New</button>
+                                </div>
+                                <div class="tb-table-container">
+                                    <table class="tb-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Added By</th>
+                                                <th>Name</th>
+                                                <th>Number</th>
+                                                <th>Instagram</th>
+                                                <th>Email</th>
+                                                <th>Visit Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             <tr>
                                                 <td data-td="added_by">Zahir</td>
                                                 <td data-td="name">Anna Steinway</td>
@@ -306,162 +359,31 @@
                                                 <td data-td="email">bIqgD@example.com</td>
                                                 <td data-td="visit_date">03/04/2024</td>
                                             </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div data-store-id="atlanta_flagship" class="tb-main-content">
+                                <div class="tb-box__title">
+                                    <h4>Atlanta Flagship
+                                        Customers</h4>
+                                    <span>2
+									total customers</span>
+                                    <button data-evt="addSaksCustomer" class="tb-box__add-btn">+ Add New</button>
+                                </div>
+                                <div class="tb-table-container">
+                                    <table class="tb-table">
+                                        <thead>
                                             <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
+                                                <th>Added By</th>
+                                                <th>Name</th>
+                                                <th>Number</th>
+                                                <th>Instagram</th>
+                                                <th>Email</th>
+                                                <th>Visit Date</th>
                                             </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
-                                            <tr>
-                                                <td data-td="added_by">Zahir</td>
-                                                <td data-td="name">Anna Steinway</td>
-                                                <td data-td="number">+1 700 320 03 03</td>
-                                                <td>
-                                                    <a class="tb-social-btn instagram">
-                                                        <div>@dtheis10</div>
-                                                    </a>
-                                                </td>
-                                                <td data-td="email">bIqgD@example.com</td>
-                                                <td data-td="visit_date">03/04/2024</td>
-                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             <tr>
                                                 <td data-td="added_by">Zahir</td>
                                                 <td data-td="name">Anna Steinway</td>
@@ -567,6 +489,89 @@
 
 
     <div class="am-backdrop"></div>
+    <div class="toolbar">
+        <div class="toolbar__wrapper">
+            <div class="toolbar__container">
+                <div class="toolbar-menu">
+
+                    <div class="toolbar-menu__wrapper">
+
+                        <div id="toolbarSaksCustomer" class="toolbar-content">
+                            <div class="toolbar-form">
+                                <button data-evt="resetSaksCustomer" class="toolbar-form-reset">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="toolbar__btn-group">
+                    <button data-evt="addSaksCustomer" class="toolbar-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 12H21" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                            <path d="M12 3L12 21" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                        </svg>
+                        <span>Customer</span>
+                    </button>
+                    <button data-evt="togglePoints" class="toolbar-btn">
+                        <div data-lottie="diamondSpin"></div>
+                        <span>
+						<span data-id="pts">286</span>
+                        POINTS</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swap-modal">
+        <div data-evt="closeSwapModal" class="swap-modal__backdrop"></div>
+        <div class="swap-modal__container">
+            <div class="swap-modal__scroll">
+                <div class="swap-modal__header">
+                    <div class="swap-modal__header-wrapper">
+                        <h3 class="swap-modal__heading">Add New Customer</h3>
+                        <div data-evt="closeSwapModal" class="swap-modal__close-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L23 23" stroke="currentColor" stroke-width="2"></path>
+                                <path d="M23 1L1 23" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="swap-modal__nav">
+                    <div class="swap-modal__nav-wrap">
+                        <button data-store-nav="new_york" class="swap-modal__nav-btn">New York</button>
+                        <button data-store-nav="miami" class="swap-modal__nav-btn">Miami</button>
+                        <button data-store-nav="atlanta_saks" class="swap-modal__nav-btn">Atlanta SAKS</button>
+                        <button data-store-nav="atlanta_flagship" class="swap-modal__nav-btn">Atlanta Flagship</button>
+                    </div>
+                </div>
+                <div class="swap-modal__content">
+                    <div class="swap-modal__input-grid">
+                        <div class="wh-input-box">
+                            <label for="full_name">Full Name</label>
+                            <input type="text" id="full_name" class="wh-input" placeholder="Full Name" autocomplete="off">
+                        </div>
+                        <div class="wh-input-box">
+                            <label for="number">Number</label>
+                            <input type="text" id="number" class="wh-input" placeholder="Number" autocomplete="off">
+                        </div>
+                        <div class="wh-input-box">
+                            <label for="instagram">Instagram</label>
+                            <input type="text" id="instagram" class="wh-input" placeholder="Instagram" autocomplete="off">
+                        </div>
+                        <div class="wh-input-box">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" class="wh-input" placeholder="Email" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="swap-modal__footer">
+                    <button data-evt="closeSwapModal" class="swap-modal__btn is-sub">Cancel</button>
+                    <button data-evt="addStoreCustomer" class="swap-modal__btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

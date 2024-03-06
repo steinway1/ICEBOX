@@ -1,6 +1,10 @@
 .am-content_saks {
   .am-main__flow {
     padding: 42px;
+
+    @include maxWidthXs {
+      padding: 42px 20px
+    }
   }
 
   --tb-padding: 16px;
@@ -9,72 +13,132 @@
     padding: var(--tb-padding);
     border-bottom: 1px solid var(--tb-border);
   }
+
+  .tb-table-container {
+    overflow: auto !important;
+
+    th,
+    td {
+      position: relative !important;
+    }
+  }
+
+  .tb-box {
+    margin-top: 24px;
+
+    .tb-box__title {
+      padding-bottom: 20px;
+
+      h4 {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 26px;
+      }
+
+      &>span {
+        opacity: .7;
+        margin-top: 2px;
+        font-size: 13px;
+      }
+    }
+
+    .am-btn {
+      border: 1px solid var(--blue_gold);
+      padding: 14px 16px;
+      font-size: 12px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 26px rgba(64, 140, 241, .42);
+
+      &:not(.is-active) {
+        background-color: transparent;
+        color: #2676e2;
+        box-shadow: none;
+      }
+
+      &:active {
+        opacity: .5;
+      }
+
+      @include maxWidthMd {
+        flex: 1 0 auto
+      }
+    }
+
+    .tb-table {
+      th[data-sort-evt] {
+        background-image: none;
+      }
+
+      th {
+        background-color: #f2f4f7 !important;
+      }
+
+      tbody {
+        tr {
+          &.is-active {
+            position: relative;
+
+            td {
+              background-color: rgb(246, 249, 255) !important;
+            }
+
+            // &::after {
+            //   content: '';
+            //   position: absolute;
+            //   z-index: 5;
+            //   top: 0;
+            //   right: 0;
+            //   bottom: 0;
+            //   left: 0;
+            //   border: 1px solid var(--bright_blue);
+            // }
+          }
+        }
+
+        td {
+          background-color: white !important;
+        }
+
+        td {
+          border-right: none !important;
+
+          &[data-td="added_by"] {
+            font-size: 12px;
+            font-weight: 600;
+            color: #757981;
+          }
+
+          &[data-td="name"] {
+            font-weight: 600;
+          }
+
+          &[data-td="visit_date"] {
+            font-style: italic;
+            color: #757981;
+          }
+        }
+      }
+    }
+  }
 }
 
-.tb-box#box_saks_customers {
-  margin-top: 24px;
+.tb-box__add-btn {
+  display: block;
+  border: 1.5px solid var(--bright_blue);
+  border-radius: 50px;
+  margin-top: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all .2s;
 
-  .tb-box__title {
-    padding-bottom: 20px;
-
-    h4 {
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 26px;
-    }
-
-    &>span {
-      opacity: .7;
-      margin-top: 2px;
-      font-size: 13px;
-    }
+  &:hover {
+    background-color: var(--bright_blue);
+    color: white
   }
 
-  .am-btn {
-    border: 1px solid var(--blue_gold);
-    padding: 14px 16px;
-    font-size: 12px;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 26px rgba(64, 140, 241, .42);
-
-    &:not(.is-active) {
-      background-color: transparent;
-      color: #2676e2;
-      box-shadow: none;
-    }
-  }
-
-  .tb-table {
-    th[data-sort-evt] {
-      background-image: none;
-    }
-
-    th {
-      background-color: #f2f4f7 !important;
-    }
-
-    tbody {
-      td {
-        background-color: white !important;
-      }
-
-      td {
-        border-right: none !important;
-
-        &[data-td="added_by"] {
-          font-size: 12px;
-          font-weight: 600;
-          color: #757981;
-        }
-        &[data-td="name"] {
-          font-weight: 600;
-        }
-        &[data-td="visit_date"] {
-          font-style: italic;
-          color: #757981;
-        }
-      }
-    }
+  &:active {
+    background-color: var(--bright_blue_hover);
   }
 }

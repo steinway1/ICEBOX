@@ -1,0 +1,33 @@
+<div class="toolbar">
+	<div class="toolbar__wrapper">
+		<div class="toolbar__container">
+			<div class="toolbar-menu">
+
+				<div
+					class="toolbar-menu__wrapper">
+					{# SORT #}
+					{% if page_sort %}
+						<div id="toolbarSaksCustomer" class="toolbar-content">
+							<div class="toolbar-form">
+								<button data-evt="resetSaksCustomer" class="toolbar-form-reset">Reset</button>
+							</div>
+						</div>
+					{% endif %}
+				</div>
+
+			</div>
+			<div class="toolbar__btn-group">
+				<button data-evt="addSaksCustomer" class="toolbar-btn">
+					{% include "admin/svg/icon_plus.svg" %}
+					<span>Customer</span>
+				</button>
+				<button data-evt="togglePoints" class="toolbar-btn">
+					<div data-lottie="diamondSpin"></div>
+					<span>
+						<span data-id="pts">{{user.pts}}</span>
+						POINTS</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

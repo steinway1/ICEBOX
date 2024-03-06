@@ -1,0 +1,250 @@
+.swap-modal {
+  display: none;
+  z-index: 9999;
+  background-color: rgba(73, 93, 131, .8);
+  transition: var(--transition);
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  --transition: all .3s cubic-bezier(.39, .575, .565, 1);
+
+  @include maxWidthXs {
+    background-color: rgba(42, 55, 82, .8);
+  }
+
+  &.is-hidden {
+    background-color: rgba(73, 93, 131, 0);
+
+    .swap-modal__container {
+      opacity: 0;
+      transform: translate(0, 20vh)translate(-50%, -50%);
+
+      @include maxWidthXs {
+        opacity: 1;
+        transform: translate(0, 100%)translate(0%);
+      }
+    }
+  }
+}
+
+.swap-modal__backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.swap-modal__container {
+  width: 100%;
+  max-width: 560px;
+  border-radius: 0;
+  z-index: 2;
+  transition: var(--transition);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 24px 58px rgba(23, 28, 41, .18);
+
+  @include maxWidthXs {
+    max-width: 100vw;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    transform: translate(0%);
+  }
+}
+
+.swap-modal__nav {
+  padding: 0;
+}
+
+.swap-modal__content {
+  background-color: white;
+  padding: 28px 20px;
+}
+
+.swap-modal__scroll {
+  max-height: 520px;
+  flex-flow: column;
+  display: flex;
+  position: relative;
+  overflow: auto;
+
+  @include maxWidthXs {
+    max-height: 76vh;
+  }
+}
+
+.swap-modal__heading {
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-top: 1px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  display: flex;
+
+  span {
+    opacity: .6;
+    margin-top: 2px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    display: block;
+  }
+}
+
+.swap-modal__header {
+  z-index: 2;
+  color: #fff;
+  background-color: #408cf1;
+  padding: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.swap-modal__header-wrapper {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  background-color: #22497e;
+  justify-content: space-between;
+  align-items: stretch;
+  padding-left: 20px;
+  display: flex;
+}
+
+.swap-modal__nav-btn {
+  text-align: center;
+  cursor: pointer;
+  background-color: #547aac;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: var(--transition);
+  display: flex;
+
+  &:hover {
+    background-color: #22497e;
+  }
+
+  &.is-active {
+    color: #fff;
+    background-color: #22497e;
+  }
+
+  &:active {
+    background-color: #386098;
+  }
+
+  @include maxWidthXs {
+    min-width: 40%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.swap-modal__close-btn {
+  cursor: pointer;
+  background-color: #22497e;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  display: flex;
+  transition: var(--transition);
+}
+
+.swap-modal__close-btn:hover {
+  background-color: #3b6297;
+}
+
+.swap-modal__btn {
+  text-align: center;
+  background-color: var(--bright_blue);
+  color: white;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 12px;
+  font-weight: 600;
+  transition: var(--transition);
+  display: flex;
+
+  &:not(.is-sub):hover {
+    background-color: var(--bright_blue);
+    color: white;
+
+    &:active {
+      background-color: var(--bright_blue_hover);
+    }
+  }
+}
+
+.swap-modal__btn.is-sub {
+  color: var(--black);
+  background-color: transparent;
+}
+
+.swap-modal__footer {
+  z-index: 2;
+  width: 100%;
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  background-color: #fff;
+  padding: 6px;
+  display: flex;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+}
+
+.swap-modal__nav-wrap {
+  box-shadow: none;
+  color: #fff;
+  background-color: #31598f;
+  flex-flow: wrap;
+  padding: 0;
+  display: flex;
+}
+
+.swap-modal__input-grid {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  align-items: stretch;
+  display: grid;
+
+  @include maxWidthXs {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-row-gap: 16px;
+  }
+
+  input {
+    border-radius: 0px;
+    padding: 6px 12px;
+  }
+
+  .wh-input-box {
+    gap: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}

@@ -1,0 +1,46 @@
+<div class="swap-modal">
+	<div data-evt="closeSwapModal" class="swap-modal__backdrop"></div>
+	<div class="swap-modal__container">
+		<div class="swap-modal__scroll">
+			<div class="swap-modal__header">
+				<div class="swap-modal__header-wrapper">
+					<h3 class="swap-modal__heading">Add New Customer</h3>
+					<div data-evt="closeSwapModal" class="swap-modal__close-btn">
+						{% include "admin/svg/icon_cross.svg" %}
+					</div>
+				</div>
+			</div>
+			<div class="swap-modal__nav">
+				<div class="swap-modal__nav-wrap">
+					{% for store in stores %}
+						<button data-store-nav="{{store.id}}" class="swap-modal__nav-btn">{{store.name}}</button>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="swap-modal__content">
+				<div class="swap-modal__input-grid">
+					<div class="wh-input-box">
+						<label for="full_name">Full Name</label>
+						<input type="text" id="full_name" class="wh-input" placeholder="Full Name" autocomplete="off">
+					</div>
+					<div class="wh-input-box">
+						<label for="number">Number</label>
+						<input type="text" id="number" class="wh-input" placeholder="Number" autocomplete="off">
+					</div>
+					<div class="wh-input-box">
+						<label for="instagram">Instagram</label>
+						<input type="text" id="instagram" class="wh-input" placeholder="Instagram" autocomplete="off">
+					</div>
+					<div class="wh-input-box">
+						<label for="email">Email</label>
+						<input type="text" id="email" class="wh-input" placeholder="Email" autocomplete="off">
+					</div>
+				</div>
+			</div>
+			<div class="swap-modal__footer">
+				<button data-evt="closeSwapModal" class="swap-modal__btn is-sub">Cancel</button>
+				<button data-evt="addStoreCustomer" class="swap-modal__btn">Save</button>
+			</div>
+		</div>
+	</div>
+</div>

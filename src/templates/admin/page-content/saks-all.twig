@@ -13,32 +13,34 @@
 				</div>
 
 				<div id="box_saks_customers" class="tb-box">
-					<div class="dt-buttons">
-						<button class="am-btn --blue is-active">New York SAKS</button>
-						<button class="am-btn --blue">Miami SAKS</button>
-						<button class="am-btn --blue">Atlanta SAKS</button>
-						<button class="am-btn --blue">Flagship Atlanta</button>
-					</div>
-					<div class="tb-box__title">
-						<h4>New York Customers</h4>
-						<span>372 total customers</span>
+					<div id="saks_customers_nav" class="dt-buttons">
+          {% for store in stores %}
+            <button data-store-nav="{{store.id}}" class="am-btn --blue">{{store.name}}</button>
+          {% endfor %}
 					</div>
 
-					<div class="tb-main-content">
-						<div class="tb-table-container">
-							<table class="tb-table">
-								<thead>
-									<tr>
-										<th>Added By</th>
-										<th>Name</th>
-										<th>Number</th>
-										<th>Instagram</th>
-										<th>Email</th>
-										<th>Visit Date</th>
-									</tr>
-								</thead>
-								<tbody>
-									{% for store in stores %}
+					{% for store in stores %}
+						<div data-store-id="{{store.id}}" class="tb-main-content">
+							<div class="tb-box__title">
+								<h4>{{store.name}}
+									Customers</h4>
+								<span>{{store.customers|length}}
+									total customers</span>
+                  <button data-evt="addSaksCustomer" class="tb-box__add-btn">+ Add New</button>
+							</div>
+							<div class="tb-table-container">
+								<table class="tb-table">
+									<thead>
+										<tr>
+											<th>Added By</th>
+											<th>Name</th>
+											<th>Number</th>
+											<th>Instagram</th>
+											<th>Email</th>
+											<th>Visit Date</th>
+										</tr>
+									</thead>
+									<tbody>
 										{% for customer in store.customers %}
 											<tr>
 												{% for key, value in customer %}
@@ -54,11 +56,11 @@
 												{% endfor %}
 											</tr>
 										{% endfor %}
-									{% endfor %}
-								</tbody>
-							</table>
+									</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
+					{% endfor %}
 
 				</div>
 
