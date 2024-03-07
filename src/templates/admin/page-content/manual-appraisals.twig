@@ -1,0 +1,77 @@
+<div class="am-content am-content_appraisals">
+	<div
+		class="am-content__wrapper">
+
+		{# VENDORS #}
+		<div class="am-main__header">
+			<div class="am-container">
+				<div class="am-row__header-wrapper">
+					<div class="am-row__header">
+						<div class="am_vertical-start">
+							<h2 class="am-main__header-title">Manual Appraisals</h2>
+							<span class="am-main__subtitle">{{appraisals|length}}
+								appraisals</span>
+							<div class="am_flex8">
+								<a href="/manual-appraisal" class="am-btn --blue">+ New Appraisal</a>
+								<div class="am-select-wrap">
+									<select class="am-select" onchange="exportList();" id="export_type">
+										<option value="">Select Customer</option>
+										<option value="processing">Processing</option>
+										<option value="open">Open</option>
+										<option value="closed">Closed</option>
+										<option value="all">All</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="am-upload-input">
+						{% include "admin/svg/icon_input.svg" %}
+						<div>
+							<span>Click To Upload New Photos</span>
+							<span>Upload New Photos</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- #region Content : Main -->
+		<div class="am-main__flow">
+			<div class="am-container">
+				<div class="am-main__content">
+
+					<div id="box_appraisals" class="tb-box">
+						<div data-store-id="{{store.id}}" class="tb-main-content">
+							<div class="tb-table-container">
+								<table class="tb-table" class="datatables" id="allTable">
+									<thead>
+										<tr>
+											<th>Image</th>
+											<th>Customer</th>
+											<th>Date</th>
+											<th>Item</th>
+											<th>Price</th>
+											<th>Color</th>
+											<th>Diamond Quality</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+
+
+	</div>
+</div>
