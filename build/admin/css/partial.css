@@ -3677,9 +3677,20 @@ button.dt-paging-button.current {
 
 .admin-linkbar {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   min-width: 100px;
   gap: 4px;
+}
+
+.admin-linkbar.--external a {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.admin-linkbar.--external a img {
+  width: 20px;
+  height: 20px;
 }
 
 .admin-linkbar .admin-link {
