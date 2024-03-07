@@ -1234,6 +1234,38 @@ for (const obj of pageObjects) {
   }
 }
 
+const whaleCardAttachAvatarUpload = () => {
+  document.onclick = (e) => {
+    const target = e.target
+    if (target.classList.contains('.avatar-upload-btn') || target.closest('.avatar-upload-btn')) {
+      try {
+        const input = target.querySelector('input')
+        if (input) input.click()
+      } catch (e) {
+        throw new Error(`Upload avatar error: ${e.message}`)
+      }
+    }
+  }
+
+  document.addEventListener('change', (e) => {
+    const target = e.target
+    if (target.matches('input[data-input="avatar_upload"][type="file"]')) {
+      const reader = new FileReader()
+      try {
+        reader.onload = (e) => {
+          const img = target.closest('.whale-card .whale-card__avatar').querySelector('img')
+          if (img) {
+            img.src = e.target.result
+          }
+        }
+        reader.readAsDataURL(target.files[0])
+      } catch (err) {
+        throw new Error(`Upload avatar error: ${err.message}`)
+      }
+    }
+  })
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   const pageToolbar = {
@@ -1391,4 +1423,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   pageToolbar.init()
   swapModal.init()
+  whaleCardAttachAvatarUpload()
 })

@@ -598,3 +598,46 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
     color: white;
   }
 }
+
+.avatar-upload-btn {
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  cursor: pointer;
+  background-color: var(--blue_gold);
+  border: 2px solid #fff;
+  border-radius: 500px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 0;
+  transition: all .2s;
+  display: flex;
+  position: absolute;
+  bottom: 14%;
+  right: 8px;
+  transform: translate(0, 50%);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &::after {
+    content: '+';
+  }
+
+  &:hover {
+    background-color: var(--blue_gold_hover);
+  }
+
+  &:active {
+    background-color: var(--bright_blue);
+  }
+
+  input {
+    display: none;
+  }
+}
