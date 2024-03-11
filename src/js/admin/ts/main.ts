@@ -147,4 +147,49 @@ const getArrayOfNumber = (...num: number[]) => {
   return num
 }
 
-console.log(getArrayOfNumber(1, 2, 3, 4, 5))
+let numOrNull: number | null = 50
+
+const repeat = (str: string, multiply: number = 2): string => {
+  return str.repeat(multiply)
+}
+
+let cardNumber: string = '2200582799210129'
+
+const getHiddenCard = (cardString: string, numOfStars: number = 4): string => {
+  return `*`.repeat(numOfStars) + `${cardString.slice(-4)}`
+}
+
+const strArr: string[] = ['Sandy', 'Kate', 'Alice']
+const numArr: number[] = [1, 7, 8, 2, 5, 4, 24, 58, 14, 9, 11]
+
+const toUpper = (text: string): string => { return text.toUpperCase() }
+const getEvenNumbers = (arr: number[]): number[] => {
+  return arr.filter(num => num % 2 === 0)
+}
+
+
+const findAverage = (acc: number, item: number, index: number, arr: any[]): number => {
+  const sum: number = acc + item
+  if (index === arr.length - 1) return sum / arr.length
+  return sum
+}
+
+console.log(numArr.reduce(findAverage, 0))
+
+
+numArr.reduce((acc, item, index, arr) => {
+  const sum: number = acc + item
+  if (index === arr.length - 1) return sum / arr.length
+  return sum
+}, 0)
+
+const bankAccounts = [
+  { id: "123", amount: 19 },
+  { id: "345", amount: 33 },
+  { id: "567", amount: 4 },
+  { id: "789", amount: 20 },
+]
+
+const totalAmout = bankAccounts.reduce(function(sum, currentAmount) {
+  return sum + currentAmount.amount
+}, 0)
