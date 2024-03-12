@@ -1425,3 +1425,30 @@ document.addEventListener('DOMContentLoaded', () => {
   swapModal.init()
   whaleCardAttachAvatarUpload()
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+  return
+  let y = 0
+  let fullHeight = document.body.offsetHeight - window.innerHeight
+  const calculatePercentage = (number, total) => {
+    return (number / total) * 100
+  }
+  const setElementWidthPercent = (el, percent) => {
+    el.style.width = `${percent}%`
+  }
+
+  const progressBar = document.createElement('div')
+  const progressBarLine = document.createElement('div')
+  progressBar.className = 'progress-bar'
+  progressBarLine.className = 'progress-bar__line'
+
+  progressBar.appendChild(progressBarLine)
+  document.body.appendChild(progressBar)
+
+  setElementWidthPercent(progressBarLine, y)
+
+  window.onscroll = () => {
+    y = window.scrollY    
+    setElementWidthPercent(progressBarLine, calculatePercentage(y, fullHeight))
+  }
+})

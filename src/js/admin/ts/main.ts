@@ -174,8 +174,6 @@ const findAverage = (acc: number, item: number, index: number, arr: any[]): numb
   return sum
 }
 
-console.log(numArr.reduce(findAverage, 0))
-
 
 numArr.reduce((acc, item, index, arr) => {
   const sum: number = acc + item
