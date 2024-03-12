@@ -5,36 +5,17 @@
 			class="mob-menu__wrapper">
 			<!-- Menu main content -->
 			<div class="mob-menu__main-content">
-				<div
-					class="mob-menu__scroll-content">
-
-					{# Header #}
+				<div class="mob-menu__scroll-content">
 					<div class="mob-menu__header">
-						<a href="/">
-							<h4 class="mob-menu__heading">Explore Icebox</h4>
+						<a href="/" aria-current="page" class="mob-menu__logo">
+							<img src="{{ THEME_ASSETS_FOLDER }}/logo.svg" loading="eager" alt="Icebox logo">
 						</a>
 						<button onclick="menu.toggle();" class="mob-menu__close-btn">
-							<svg width="12" height="12" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M1 1L23 23" stroke="currentColor" stroke-width="2"></path>
-								<path d="M23 1L1 23" stroke="currentColor" stroke-width="2"></path>
-							</svg>
-							<span>Close</span>
+            {% include "components/svg/close.svg" %}
 						</button>
 					</div>
-
-
 					<!-- Menu main navigation -->
-					<div class="mob-menu__cart-item">
-						<a href="/cart">
-							{{ cart_items }}
-							items in cart
-						</a>
-					</div>
-
-					<nav
-						role="navigation" aria-label="Main" class="mob-menu__nav-list">
-
-						<!-- #region Promo -->
+					<nav role="navigation" aria-label="Main" class="mob-menu__nav-list">
 						{% if black_friday == true and cyber_monday == false and xmas == false and new_year == false and vday == false%}
 							<div class="mob-menu__nav-item is_bfs">
 								<a href="/black-friday">
@@ -42,6 +23,7 @@
 								</a>
 							</div>
 						{% endif %}
+
 						{% if cyber_monday == true and black_friday == true and xmas == false %}
 							<div class="mob-menu__nav-item is_bfs">
 								<a href="/cyber-monday">
@@ -49,141 +31,123 @@
 								</a>
 							</div>
 						{% endif %}
+
 						{% if cyber_monday == false and black_friday == false and xmas == false%}
 							<div class="mob-menu__nav-item is-sale">
 								<a href="/sale">
-									<span>SALE</span>
+									<span >SALE</span>
 								</a>
 							</div>
 						{% endif %}
 						{% if xmas == true and black_friday == true and cyber_monday == false %}
-							<a href="/xmas" class="xmas-nav-link">
-								<img src="{{ THEME_ASSETS_FOLDER }}assets/xmas/poster-desktop-title.webp" loading="eager" alt="">
-							</a>
+						<a href="/xmas" class="xmas-nav-link">
+							<img src="{{ THEME_ASSETS_FOLDER }}/xmas/poster-desktop-title.webp" loading="eager" alt="">
+						</a>
 						{% endif %}
 						{% if new_year == true and black_friday == true and cyber_monday == false and xmas == false%}
 							<div class="mob-menu__nav-item is_ny">
 								<a href="/new-year">
-									<img src="{{ THEME_ASSETS_FOLDER }}assets/new-year/menu-title.webp" loading="eager" alt="">
+									<img src="{{ THEME_ASSETS_FOLDER }}/new-year/menu-title.webp" loading="eager" alt="">
 								</a>
 							</div>
 						{% endif %}
+
 						{% if new_year == false and black_friday == true and cyber_monday == false and xmas == false and vday == true%}
 							<div class="mob-menu__nav-item --vday">
 								<a href="/valentines-day" class="vday-nav-link is-valentine">
-									<img src="{{constant('THEME_ASSETS_FOLDER')}}/assets/vday/link-ring.webp" loading="eager" alt="">
+									<img src="{{THEME_ASSETS_FOLDER}}/assets/vday/link-ring.webp" loading="eager" alt="">
 									<span>Valentine's Sale</span>
 								</a>
 							</div>
 						{% endif %}
-						<!-- #endregion -->
-
 
 						{% for item in navbar %}
+							{% if item.id != 15 %}
+							<div class="mob-menu__nav-item">
+								<a href="{{ item.href }}">
+								<span>{{ item.caption }} {% if user.admin %}({{ item.count }})</span>{% endif %}
+
+								</a>
+								{% if item.id != 19 and item.id != 26 %}
+								<button data-menu-nav="{{ item.caption }}" class="mob-menu__nav-step"></button>
+								{% endif %}
+							</div>
+							{% endif %}
 							{% if item.id == 23 %}
 								<div class="mob-menu__nav-item">
 									<a href="/gia-products">Engagement Rings</a>
 								</div>
-							{% else %}
-								<div class="mob-menu__nav-item">
-									<a href="{{ item.href }}">
-										<span>{{ item.caption }}
-											{% if user.admin %}
-												<span class="mob-menu__item-count">{{ item.count }}</span>
-											{% endif %}
-										</span>
-									</a>
-									{% if item.id != 19 and item.id != 26 %}
-										<button data-menu-nav="{{ item.caption }}" class="mob-menu__nav-step"></button>
-									{% endif %}
-								</div>
 							{% endif %}
-						{% endfor %}
 
-						<div class="mob-menu__nav-item">
+						{% endfor %}
+						<div class="mob-menu__nav-item ">
 							<a href="/made-to-order">
-								<span>Made To Order
-									{% if user.admin %}
-										<span class="mob-menu__item-count">{{ made_to_order_count }}</span>
-									{% endif %}
+								<span >Made To Order
+								{% if user.admin %}({{ made_to_order_count }}){% endif %}
 								</span>
 							</a>
 						</div>
 
 					</nav>
-
 					<!-- Menu sub navigation -->
 					<nav role="navigation" aria-label="Sub" class="mob-menu__sub-nav">
+						<a href="/cart" class="mob-menu__spot-link">
+							<span>My Cart<span class="mob-menu__cart-count ">(<span class="bag-counter">{{ cart_items }}</span>)</span>
+							</span>
+							<svg class="mob-menu__icon" width="12" height="12" viewbox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 1L12 11L1 21" stroke="currentColor" stroke-width="2.5"></path>
+							</svg>
+						</a>
 						<div class="mob-menu__sub-nav-list">
-							<a {% if user %} href="/account" {% else %} onclick="signModal.open('login')" href="javascript:void(0)" {% endif %} class="mob-menu__sub-nav-item">
-								<svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path stroke-width="1" d="M2.76923 6.46153L12 0.923065L21.2308 6.46153V17.5384L12 23.0769L2.76923 17.5384V6.46153Z" stroke="currentColor"></path>
-									<path stroke-width="1" d="M12 12C13.5294 12 14.7692 10.7602 14.7692 9.23078C14.7692 7.70137 13.5294 6.46155 12 6.46155C10.4706 6.46155 9.23077 7.70137 9.23077 9.23078C9.23077 10.7602 10.4706 12 12 12Z" stroke="currentColor"></path>
-									<path stroke-width="1" d="M7.38461 18.4615C7.55556 17.2308 8.71794 14.7692 12 14.7692C15.2821 14.7692 16.4444 17.2308 16.6154 18.4615" stroke="currentColor"></path>
-								</svg>
+							<a {% if user %} href="/account" {% else %} onclick="signModal.open('login')" href="javascript:void(0)"  {% endif %} class="mob-menu__sub-nav-item">
+								<img src="{{ THEME_ASSETS_FOLDER }}/menu/menu-icon_account.svg" loading="eager" alt="account icon">
 								<span>My Account</span>
 							</a>
 							{% if user == false %}
-								<a onclick="signModal.open('register')" href="javascript:void(0);" class="mob-menu__sub-nav-item js-login-btn">
-									<svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path stroke-width="1" d="M2.76923 6.46153L12 0.923065L21.2308 6.46153V17.5384L12 23.0769L2.76923 17.5384V6.46153Z" stroke="currentColor"></path>
-										<path stroke-width="1" d="M12 12C13.5294 12 14.7692 10.7602 14.7692 9.23078C14.7692 7.70137 13.5294 6.46155 12 6.46155C10.4706 6.46155 9.23077 7.70137 9.23077 9.23078C9.23077 10.7602 10.4706 12 12 12Z" stroke="currentColor"></path>
-										<path stroke-width="1" d="M7.38461 18.4615C7.55556 17.2308 8.71794 14.7692 12 14.7692C15.2821 14.7692 16.4444 17.2308 16.6154 18.4615" stroke="currentColor"></path>
-									</svg>
-									<span>Create Account</span>
-								</a>
+							<a onclick="signModal.open('register')" href="javascript:void(0);" class="mob-menu__sub-nav-item js-login-btn">
+								<img src="{{ THEME_ASSETS_FOLDER }}/menu/menu-icon_account.svg" loading="eager" alt="account icon">
+								<span>Create Account</span>
+							</a>
 							{% endif %}
 							<a href="/track-order" class="mob-menu__sub-nav-item">
-								<svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M8.5 16C12.6422 16 16 12.6422 16 8.5C16 4.35786 12.6422 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6422 4.35786 16 8.5 16Z" stroke="currentColor" stroke-width="1"></path>
-									<path d="M18.3335 18.3334L14 13.9999" stroke="currentColor" stroke-width="1"></path>
-								</svg>
+								<img src="{{ THEME_ASSETS_FOLDER }}/menu/menu-icon_track.svg" loading="eager" alt="track order icon">
 								<span>Track Your Order</span>
 							</a>
 							{% if user %}
-								<a href="/account/wishlist" class="mob-menu__sub-nav-item">
-									<svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path fill-rule="evenodd" clip-rule="evenodd" d="M2.7899 3.82249C5.17644 1.3925 9.04578 1.3925 11.4323 3.82249L12 4.4005L12.5677 3.82249C14.9542 1.3925 18.8236 1.3925 21.2101 3.82249C23.5966 6.25247 23.5966 10.1923 21.2101 12.6222L12 22L2.7899 12.6222C0.403366 10.1923 0.403366 6.25247 2.7899 3.82249Z" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path>
-									</svg>
-									<span>Wishlist</span>
-								</a>
+							<a href="/account/wishlist" class="mob-menu__sub-nav-item">
+								<img src="{{ THEME_ASSETS_FOLDER }}/menu/menu-icon_wishlist.svg" loading="eager" alt="wishlist icon">
+								<span>Wishlist</span>
+							</a>
 							{% endif %}
 							{% if user %}
-								<a href="/logout" class="mob-menu__sub-nav-item">
-									<svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M7 4V2H21V22H7V20" stroke="currentColor" stroke-width="1"></path>
-										<path d="M4 12H17" stroke="currentColor" stroke-width="1"></path>
-										<path d="M9.67273 6.32727L4 12L9.67273 17.6727" stroke="currentColor" stroke-width="1"></path>
-									</svg>
-									<span>Sign Out</span>
-								</a>
+							<a href="/logout" class="mob-menu__sub-nav-item">
+								<img src="{{ THEME_ASSETS_FOLDER }}/menu/menu-icon_logout.svg" loading="eager" alt="sign out icon">
+								<span>Sign Out</span>
+							</a>
 							{% endif %}
 						</div>
 						<div data-modal="currency" data-toggle="modal" data-target="#countryModal" class="mob-menu__mega-link">
 							<span class="mob-menu__mega-link-heading">Change Currency</span>
 							<span>USD</span>
 						</div>
-						<a href="/contact" class="mob-menu__mega-link">
-							<div
-								class="mob-menu__mega-link-heading">
-								{# <span class="mob-menu__mega-link-subheading">Got any question?</span> #}
-								<span>Talk To Us Now</span>
-							</div>
-							<svg class="mob-menu__icon" width="9" height="9" viewbox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M1 1L12 11L1 21" stroke="currentColor" stroke-width="2"></path>
-							</svg>
-						</a>
-						<a href="/chat-whatsapp" class="mob-menu__mega-link">
-							<div
-								class="mob-menu__mega-link-heading">
-								{# <span class="mob-menu__mega-link-subheading">Do you need our help?</span> #}
-								<span>
-									<span class="menu__wa-dot"></span>Chat on WhatsApp Now</span>
-							</div>
-							<svg class="mob-menu__icon" width="9" height="9" viewbox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M1 1L12 11L1 21" stroke="currentColor" stroke-width="2"></path>
-							</svg>
-						</a>
+							<a href="/contact" class="mob-menu__mega-link">
+								<div class="mob-menu__mega-link-heading">
+									{# <span class="mob-menu__mega-link-subheading">Got any question?</span> #}
+									<span>Talk To Us Now</span>
+								</div>
+								<svg class="mob-menu__icon" width="12" height="12" viewbox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M1 1L12 11L1 21" stroke="currentColor" stroke-width="2.5"></path>
+								</svg>
+							</a>
+							<a href="/chat-whatsapp" class="mob-menu__mega-link">
+								<div class="mob-menu__mega-link-heading">
+									{# <span class="mob-menu__mega-link-subheading">Do you need our help?</span> #}
+									<span><span class="menu__wa-dot"></span>Chat on WhatsApp Now</span>
+								</div>
+								<svg class="mob-menu__icon" width="12" height="12" viewbox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M1 1L12 11L1 21" stroke="currentColor" stroke-width="2.5"></path>
+								</svg>
+							</a>
 					</nav>
 				</div>
 			</div>
@@ -192,104 +156,87 @@
 				<div class="mob-menu__scroll-content">
 					<div class="mob-menu__header">
 						<button data-evt="hideOver" class="mob-menu__step-back">
-							<svg width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M12.9375 1L1.9375 12L12.9375 23" stroke="currentColor" stroke-width="2"></path>
-								<path d="M1.9375 12H22.5625" stroke="currentColor" stroke-width="2"></path>
+							<svg width="25" height="25" viewbox="0 0 38 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M12.5 1L1.5 11L12.5 21" stroke="currentColor" stroke-width="2"></path>
+								<path d="M1.5 11H38" stroke="currentColor" stroke-width="2"></path>
 							</svg>
-              <span class="mob-menu__over-heading">Pendants Collection</span>
 						</button>
+						<span class="mob-menu__over-heading">Pendants Collection</span>
 					</div>
-					<div class="mob-menu__step-block">
+					<div
+						class="mob-menu__step-block">
 						{% for item in navbar %}
-							<div data-menu-over="{{ item.caption }}" class="mob-menu__step-content">
-								<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
-									<div class="mob-menu__nav-item mob-menu__nav-item_bold">
-										<a href="{{ item.href }}">Shop All</a>
+						<div data-menu-over="{{ item.caption }}" class="mob-menu__step-content">
+							<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
+								<div class="mob-menu__nav-item mob-menu__nav-item_bold">
+									<a href="{{ item.href }}">Shop All</a>
+								</div>
+								{% if item.id != 25 %}
+								<div class="mob-menu__nav-item is_bfs">
+									<!--<a href="{{ item.href }}?discounted">
+										<span data-text-glitch="SHOP SALE">SHOP SALE</span>
+										{% if user.admin %}
+											<span class="mob-menu__nav-item-count">({{ item.count_discounted }})</span>
+										{% endif %}
+									</a>-->
+								</div>
+								<div class="mob-menu__nav-item ">
+									<a href="{{ item.href }}?gender[]=Male">Men's {{ item.caption }}
+										{% if user.admin %}
+											<span class="mob-menu__nav-item-count">({{ item.count_men }})</span>
+										{% endif %}
+									</a>
+								</div>
+								<div class="mob-menu__nav-item ">
+									<a href="{{ item.href }}?gender[]=Female">Women's {{ item.caption }}
+										{% if user.admin %}
+											<span class="mob-menu__nav-item-count">({{ item.count_women }})</span>
+										{% endif %}
+									</a>
+								</div>
+								{% endif %}
+								{% if item.id == 25 %}
+									<div class="mob-menu__nav-item">
+										<a href="/results/watch-market?brand[]=Rolex"><span>Rolex</span></a>
 									</div>
-									{% if item.id != 25 %}
-										<div class="mob-menu__nav-item is_bfs">
-											<a href="{{ item.href }}?discounted">
-												<span data-text-glitch="SHOP SALE">SHOP SALE</span>
-												{% if user.admin %}
-													<span class="mob-menu__nav-item-count">({{ item.count_discounted }})</span>
-												{% endif %}
-											</a>
-										</div>
-										<div class="mob-menu__nav-item ">
-											<a href="{{ item.href }}?gender[]=Male">Men's
-												{{ item.caption }}
-												{% if user.admin %}
-													<span class="mob-menu__nav-item-count">({{ item.count_men }})</span>
-												{% endif %}
-											</a>
-										</div>
-										<div class="mob-menu__nav-item ">
-											<a href="{{ item.href }}?gender[]=Female">Women's
-												{{ item.caption }}
-												{% if user.admin %}
-													<span class="mob-menu__nav-item-count">({{ item.count_women }})</span>
-												{% endif %}
-											</a>
-										</div>
-									{% endif %}
-									{% if item.id == 25 %}
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Rolex">
-												<span>Rolex</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Audemars Piguet ">
-												<span>Audemars Piguet</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Patek Philippe">
-												<span>Patek Philippe</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Vacheron Constantin">
-												<span>Vacheron Constantin</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Richard Mille">
-												<span>Richard Mille</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Cartier">
-												<span>Cartier</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Hublot">
-												<span>Hublot</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Other">
-												<span>Other Brands</span>
-											</a>
-										</div>
+									<div class="mob-menu__nav-item">
+										<a href="/results/watch-market?brand[]=Audemars Piguet " ><span>Audemars Piguet</span></a>
+									</div>
+									<div class="mob-menu__nav-item">
+										<a href="/results/watch-market?brand[]=Patek Philippe" ><span>Patek Philippe</span></a>
+									</div>
+								    <div class="mob-menu__nav-item">
+										<a href="/results/watch-market?brand[]=Vacheron Constantin"  ><span>Vacheron Constantin</span></a>
+									</div>
+									<div class="mob-menu__nav-item">	
+										<a href="/results/watch-market?brand[]=Richard Mille" ><span>Richard Mille</span></a>
+									</div>
+									<div class="mob-menu__nav-item">
+										<a href="/results/watch-market?brand[]=Cartier" ><span>Cartier</span></a>
+									</div>
+									<div class="mob-menu__nav-item">
+										<a href="/results/watch-market?brand[]=Hublot" ><span>Hublot</span></a>
+									</div>
+									<div class="mob-menu__nav-item">
+										<a href="/results/watch-market?brand[]=Other" ><span>Other Brands</span></a>
+									</div>
 									{% else %}
-										{% for sub in item.subs %}
-											<div class="mob-menu__nav-item">
-												<a href="{{ sub.href }}">
-													<span>{{ sub.caption }}
-														{% if user.admin %}
-															<span class="mob-menu__nav-item-count">({{ sub.count }})</span>
-														{% endif %}
-													</span>
-												</a>
-											</div>
-										{% endfor %}
-									{% endif %}
+									{% for sub in item.subs %}
+										<div class="mob-menu__nav-item">
+											<a href="{{ sub.href }}">
+										<span>{{ sub.caption }}
+											{% if user.admin %}
+												<span class="mob-menu__nav-item-count">({{ sub.count }})</span>
+											{% endif %}
+										</span>
+											</a>
+										</div>
+									{% endfor %}
+								{% endif %}
+								
 
-
-								</nav>
-							</div>
+							</nav>
+						</div>
 						{% endfor %}
 					</div>
 				</div>
@@ -297,3 +244,5 @@
 		</div>
 	</div>
 </div>
+
+

@@ -3017,6 +3017,7 @@ const blogPage = {
       }
     },
     attachScroll: () => {
+      return
       const img = document.querySelector('.article-top-cover img')
       if (img !== null) {
         let max = img.offsetHeight + 100

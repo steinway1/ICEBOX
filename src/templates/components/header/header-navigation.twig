@@ -1,44 +1,57 @@
-<a href="https://www.icebox.com" class="header-logo">
-	{% if vday == true %}
-		<img src="./assets/vday/logo-vday.webp" loading="eager" alt="Icebox Logotype">
+<a href="/" class="header-logo">
+	{% if main_logo is defined %}
+		<img src="{{ main_logo }}" loading="eager" alt="Icebox ">
 	{% else %}
-		<img src="{% if christmas == true %}assets/logo-xmas.webp{% else %}assets/logo.svg{% endif %}" loading="eager" alt="Icebox Logotype">
+		<img src="{{THEME_ASSETS_FOLDER}}/assets/logo.svg" loading="eager" alt="Icebox ">
 	{% endif %}
 </a>
 
 <div class="header-nav__group">
-	<div href="https://www.icebox.com/locations" data-evt="toggleMenu">
+	<a href="javascript:void(0);" data-evt="toggleMenu">
 		<div>
 			{% include "components/svg/menu.svg" %}
-			<span>Menu</span>
 		</div>
-	</div>
+	</a>
 	<a href="javascript:void(0);" data-evt="toggleSearch">
 		<div>
 			{% include "components/svg/search.svg" %}
-			<span>Search</span>
+		</div>
+	</a>
+	<a href="/locations" data-evt="locations">
+		<div>
+			{% include "components/svg/location.svg" %}
+			<span>Our Locations</span>
 		</div>
 	</a>
 	{% if vday == true %}
-		<a href="#" class="vday-nav-link is-valentine">
-			<img src="./assets/vday/link-ring.webp" loading="eager" alt="">
+		<a href="/valentines-day" class="vday-nav-link is-valentine">
+			<img src="{{THEME_ASSETS_FOLDER}}/assets/vday/link-ring.webp" loading="eager" alt="">
 			<span>Valentine&#x27;s Sale</span>
 		</a>
 	{% endif %}
 </div>
 
 <div class="header-nav__group">
-	<div data-evt="toggleAccountDropdown" data-sign-switch="login" class="js-login-dropdown js-toggle-sign">
+	<div data-evt="toggleAccountDropdown" data-sign-switch="login" class="{% if user %}js-login-dropdown{% else %}js-toggle-sign{% endif %}">
 		<div>
-			{% include "../svg/account.svg" %}
-			<span>My Account</span>
+			{% include "components/svg/account.svg" %}
+			<!-- <span>My Account</span> -->
 		</div>
-		{% include "./login-dropdown.twig" %}
+		{% if user %}
+			{% include "components/header/login-dropdown.twig" %}
+		{% endif %}
 	</div>
-	<a href="javascript:void(0);" data-evt="toggleCart">
+	{% if user %}
+		<a href="/account/wishlist" data-evt="toggleWishlist">
+			<div>
+				{% include "components/svg/wishlist.svg" %}
+			</div>
+		</a>
+	{% endif %}
+	<a href="javascript:void(0);" class="cart_trigger" data-evt="toggleCart">
 		<div>
-			{% include "../svg/cart.svg" %}
-			<span class="cart-count">3</span>
+			{% include "components/svg/cart.svg" %}
+			<span class="cart-count cart-counter">{{ cart_items }}</span>
 		</div>
 	</a>
 </div>

@@ -6,11 +6,6 @@
   position: sticky;
   top: 0;
   font-family: 'Figtree', sans-serif !important;
-
-  .wrapper {
-    padding-left: 14px !important;
-    padding-right: 14px !important;
-  }
 }
 
 .header-nav {
@@ -40,6 +35,20 @@
     position: relative;
     cursor: pointer;
     transition: var(--transition-m);
+
+    &[data-evt="toggleMenu"] {
+      display: none;
+    }
+
+    @include maxWidthMd {
+      &[data-evt="toggleMenu"] {
+        display: flex;
+      }
+
+      &[data-evt="locations"] {
+        display: none;
+      }
+    }
 
     @include maxWidthSm {
       &[data-evt="toggleAccountDropdown"] {
@@ -122,7 +131,6 @@
 }
 
 .header__sub-nav {
-  display: none !important;
   background-color: #fff;
 
   @include maxWidthMd {

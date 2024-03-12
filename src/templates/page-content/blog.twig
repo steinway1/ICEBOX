@@ -1,101 +1,105 @@
 <div class="main_article">
-	<div class="article-top-cover"><img src="{{article.cover}}" alt=""></div>
-	<div class="article-wrapper">
-		<div
-			class="article-container">
-			{# <div class="article__controls">
-																									<a href="/articles">Back To Blogs</a>
-																									<a href="/article/{{ next.slug }}">Next Blog</a>
-																								</div> #}
-			<div class="article__welcome">
-				<div class="article__inner-wrap">
-					<div class="article__main-details">
-						<span class="post-date">{{article.date}}</span>
-						<div class="blog-post__tags">
-							{% for tag in article.tags %}
-								<span class="post-tag">{{tag}}</span>
-							{% endfor %}
-						</div>
+
+	<div class="article__wrapper">
+		<div class="article-body">
+			<div class="article-container">
+
+				<div class="article-welcome">
+					<div class="article__title-wrap">
 						<h3 class="article-title">{{article.title}}</h3>
 						<p class="article-summary">{{article.excerpt}}</p>
 					</div>
+					<span class="read-time">{{article.min_reading ?: '5'}}
+						min reading</span>
 				</div>
-			</div>
-			<div class="article__inner-wrap">
-				<img src="{{article.cover}}" loading="lazy" alt="" class="article__main-img">
-			</div>
-			<div class="article__content">
-				<div class="article__inner-wrap">
+
+				<div class="article-cover">
+					<img src="{{article.cover}}" loading="lazy" alt="">
+				</div>
+
+				<div class="article-spot">
+					<span class="post-author">
+						<span>{{article.author ?: 'Icebox Author'}}</span>
+						<span>Posted on
+							{{article.date}}</span>
+					</span>
+					<a href="#" class="article__share-btn w-button">Share Article</a>
+				</div>
+
+				<div class="article__content">
 					{{article.content | raw}}
-					<div
-						class="article__social-block">
-						{# <h3>👇 Want More Content?! 👇<span>Subscribe Now For Our Weekly Videos!</span>
-																																				</h3> #}
-						<div class="big-social-grid">
-							<a href="https://www.youtube.com/channel/UCv8gFyATae1x0VmDHmNbIhg?sub_confirmation=1" class="big-social-box">
-								<div>YouTube<span>2,000,000+ subscribers</span>
-								</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_youtube.svg" loading="lazy" alt="">
-							</a>
-							<a href="https://www.tiktok.com/@icebox" class="big-social-box">
-								<div>TikTok<span>7,400,000+ followers</span>
-								</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_tiktok.svg" loading="lazy" alt="">
-							</a>
-							<a href="https://www.instagram.com/icebox/" class="big-social-box">
-								<div>Instagram<span>4,400,000+ followers</span>
-								</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_instagram.svg" loading="lazy" alt="">
-							</a>
-							<a href="https://www.twitter.com/icebox" class="big-social-box">
-								<div>Twitter<span>33,000+ followers</span>
-								</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_twitter.svg" loading="lazy" alt="">
-							</a>
-							<a href="https://www.snapchat.com/p/76d86003-980f-4fa7-ae24-85adc580de82/1442749846900736?timestamp=1&chapterid=206898777550848%3Fshare_id%3DQTlEREI4&locale=en_GB" class="big-social-box">
-								<div>Snapchat<span>1,000,000+ followers</span>
-								</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_snapchat.svg" loading="lazy" alt="">
-							</a>
-							<a href="https://www.facebook.com/Icebox" class="big-social-box">
-								<div>Facebook<span>900,000+ followers</span>
-								</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_facebook.svg" loading="lazy" alt="">
-							</a>
-						</div>
-					</div>
-					<div class="article__share-block">
-						<div class="article__share-heading">Written By
-							{{ article.author }}</div>
-						<div class="article__share-grid">
-							<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.icebox.com/article/{{ article.slug }}" class="to_facebook"></a>
-							<a href="https://twitter.com/intent/tweet?url=https://www.icebox.com/article/{{ article.slug }}&text={{ article.title }}" class="to_twitter"></a>
-							<a href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.icebox.com/article/{{ article.slug }}&title={{ article.title }}" class="to_linkedin"></a>
-						</div>
-					</div>
-
-					{# Comments #}
-					<div class="article__comments">
-						<h3 class="article-title">Leave A Comment</h3>
-						<div class="article__comments-wrap">
-							{% for comment in article.comments %}
-								<div class="article-comment">
-									<span>
-										{% if comment.user is defined %}
-											{{comment.user}}
-										{% else %}
-											Guest
-										{% endif %}
-									</span>
-									<span>{{comment.text}}</span>
-									<span>{{comment.date}}</span>
-								</div>
-							{% endfor %}
-						</div>
-						<textarea data-article="commentArea" rows="4" cols="45" name="text" placeholder="Share your thoughts..."></textarea>
-						<button data-article="commentSubmit">Send</button>
-					</div>
-
 				</div>
+
+				<div class="article__share-block">
+					<div class="article__share-heading">Written By
+						{{ article.author }}</div>
+					<div class="article__share-grid">
+						<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.icebox.com/article/{{ article.slug }}" class="to_facebook"></a>
+						<a href="https://twitter.com/intent/tweet?url=https://www.icebox.com/article/{{ article.slug }}&text={{ article.title }}" class="to_twitter"></a>
+						<a href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.icebox.com/article/{{ article.slug }}&title={{ article.title }}" class="to_linkedin"></a>
+					</div>
+				</div>
+
+				<div class="article__social-block">
+					<div class="big-social-grid">
+						<a href="https://www.youtube.com/channel/UCv8gFyATae1x0VmDHmNbIhg?sub_confirmation=1" class="big-social-box">
+							<div>YouTube<span>2,000,000+ subscribers</span>
+							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_youtube.svg" loading="lazy" alt="">
+						</a>
+						<a href="https://www.tiktok.com/@icebox" class="big-social-box">
+							<div>TikTok<span>7,400,000+ followers</span>
+							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_tiktok.svg" loading="lazy" alt="">
+						</a>
+						<a href="https://www.instagram.com/icebox/" class="big-social-box">
+							<div>Instagram<span>4,400,000+ followers</span>
+							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_instagram.svg" loading="lazy" alt="">
+						</a>
+						<a href="https://www.twitter.com/icebox" class="big-social-box">
+							<div>Twitter<span>33,000+ followers</span>
+							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_twitter.svg" loading="lazy" alt="">
+						</a>
+						<a href="https://www.snapchat.com/p/76d86003-980f-4fa7-ae24-85adc580de82/1442749846900736?timestamp=1&chapterid=206898777550848%3Fshare_id%3DQTlEREI4&locale=en_GB" class="big-social-box">
+							<div>Snapchat<span>1,000,000+ followers</span>
+							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_snapchat.svg" loading="lazy" alt="">
+						</a>
+						<a href="https://www.facebook.com/Icebox" class="big-social-box">
+							<div>Facebook<span>900,000+ followers</span>
+							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_facebook.svg" loading="lazy" alt="">
+						</a>
+					</div>
+				</div>
+
+				<div class="article__comments">
+					<h3 class="article-title">Leave A Comment</h3>
+					<div class="article__comments-wrap">
+						{% for comment in article.comments %}
+							<div class="article-comment">
+								<span>
+									{% if comment.user is defined %}
+										{{comment.user}}
+									{% else %}
+										Guest
+									{% endif %}
+								</span>
+								<span>{{comment.text}}</span>
+								<span>{{comment.date}}</span>
+							</div>
+						{% endfor %}
+					</div>
+					<textarea data-article="commentArea" rows="4" cols="45" name="text" placeholder="Share your thoughts..."></textarea>
+					<button data-article="commentSubmit">Send</button>
+				</div>
+
+				<div class="blog__posts-grid">
+					{% for blog in blogs %}
+						{% include "elements/blog-post.twig" with {
+            article: blog
+            } %}
+					{% endfor %}
+				</div>
+
 			</div>
-			{# <div class="article__controls">
-																			<a href="/articles">Back To Blogs</a>
-																			<a href="/article/{{ next.slug }}">Next Article</a>
-																		</div> #}
 		</div>
 	</div>
+
 </div>

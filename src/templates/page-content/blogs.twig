@@ -3,14 +3,17 @@
 <div class="main_blog">
 	<div class="blog__posts">
 		<div class="blog__wrapper">
-			<div class="blog__posts-grid">
+
+			<div class="blog__main-post">
 				{% include "elements/blog-post.twig" with {
             article: featured
         } %}
+			</div>
+			<div class="blog__posts-grid">
 				{% for blog in blogs %}
 					{% include "elements/blog-post.twig" with {
-                        article: blog
-                    } %}
+            article: blog
+            } %}
 				{% endfor %}
 			</div>
 		</div>

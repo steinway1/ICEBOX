@@ -5,19 +5,18 @@
 	<div class="blog-post__main">
 		<div class="blog-post__details">
 			<div class="blog-post__tags">
-				{% for tag in article.tags %}
-					<span class="post-tag">{{tag}}</span>
-				{% endfor %}
-				<span class="post-date">{{article.date}}</span>
+				<span class="read-time">{{article.min_reading ?: '5'}}
+					min reading</span>
+				<span class="post-date">Posted on
+					{{article.date}}</span>
 			</div>
-			<h3 class="blog-post__title">
-				<a href="/article/{{article.slug}}">{{article.title}}</a>
-			</h3>
+			<div class="blog-post__title-wrap">
+				<h3 class="blog-post__title">
+					<a href="/article/{{article.slug}}">{{article.title}}</a>
+				</h3>
+			</div>
 			<p class="blog-post__excerpt">{{article.excerpt}}</p>
-			<span class="post-author">{{article.author}}</span>
-		</div>
-		<div class="blog-post__footer">
-			<a href="/article/{{article.slug}}" class="blog-post__btn">Read More</a>
+			<span class="post-author">{{article.author ?: 'Icebox Author'}}</span>
 		</div>
 	</div>
 </div>
