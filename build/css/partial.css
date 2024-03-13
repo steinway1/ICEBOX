@@ -3621,7 +3621,6 @@ body.compensate-for-scrollbar {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  font-family: "Figtree", sans-serif !important;
 }
 
 .header-nav {
@@ -4126,7 +4125,6 @@ body.compensate-for-scrollbar {
   bottom: 0%;
   left: 0%;
   right: 0%;
-  font-family: "Figtree", sans-serif;
   font-weight: 450;
   --menu-mob-padding: 20px;
 }
@@ -21766,7 +21764,6 @@ width: calc(50% - 8px)
   flex-flow: column;
   flex: 1;
   justify-content: flex-start;
-  align-items: flex-start;
   display: flex;
 }
 
@@ -21797,6 +21794,68 @@ width: calc(50% - 8px)
   background-color: #05aadf;
   border-color: #05aadf;
 }
+
+.blog-progress {
+  height: 2.5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background-color: #cfd9e8;
+}
+
+.blog-progress > div {
+  height: 100%;
+  width: 0%;
+  background-color: #07ade4;
+  transition: all 100ms ease;
+}
+
+.article__read-content {
+  width: 100%;
+  grid-column-gap: 32px;
+  grid-row-gap: 32px;
+  flex-flow: column;
+  display: flex;
+  position: relative;
+}
+
+/* #region  Edit / Add Article */
+
+.blog-edit-box {
+  position: relative;
+  min-height: 40px;
+  min-width: 40px;
+  color: #047da5;
+  background-color: rgba(22, 194, 250, 0.06);
+  border: 1px dashed #16c2fa;
+  font-weight: 600;
+}
+
+.blog-edit-box__input {
+  height: 100%;
+  width: 100%;
+  min-height: 40px;
+  padding: 10px 14px;
+  transition: all 200ms ease;
+}
+
+.blog-edit-box__input::placeholder {
+  color: #047da5;
+  transition: all 200ms ease;
+}
+
+.blog-edit-box__input:focus::placeholder {
+  color: rgba(4, 125, 165, 0.5);
+}
+
+.blog-edit-box__input[data-blog-edit=heading] {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* #endregion */
 
 .main_formpage {
   background-color: #f5f7fa;
@@ -30959,6 +31018,11 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     padding-right: 18px;
   }
 
+  .article-container {
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
+  }
+
   .article-cover img {
     aspect-ratio: 3/2.4;
   }
@@ -30966,11 +31030,6 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   .article-spot {
     margin-left: 18px;
     margin-right: 18px;
-  }
-
-  .article-container {
-    grid-column-gap: 24px;
-    grid-row-gap: 24px;
   }
 
   .article-cover {
@@ -30996,6 +31055,11 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
+  }
+
+  .article__read-content {
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
   }
 
   .formpage__header {
