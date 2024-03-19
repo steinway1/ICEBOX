@@ -368,51 +368,111 @@
 
 
     <main>
-        <div class="main_article">
-
+        <div class="main_article edit_article">
             <div class="article__wrapper">
                 <div class="article-body">
-                    <div class="article-container">
+                    <div class="article__read-content">
 
-                        <div class="article__read-content">
-                            <div class="article-welcome">
-                                <div class="article__title-wrap">
-                                    <div class="blog-edit-box">
-                                        <input data-blog-edit="heading" placeholder="Add Heading" type="text" class="blog-edit-box__input">
-                                    </div>
-                                    <p class="article-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+                        <div class="article-welcome">
+                            <div class="article__title-wrap">
+                                <div data-edit-box="heading" class="blog-edit-box">
+                                    <input data-blog-edit="heading" placeholder="Add Title" type="text" class="blog-edit-box__input">
                                 </div>
-                                <span class="read-time">7
-							min reading</span>
+                                <div data-edit-box="summary" class="blog-edit-box">
+                                    <input data-blog-edit="summary" placeholder="Add Excerpt" type="text" class="blog-edit-box__input">
+                                </div>
                             </div>
-
-                            <div class="article-cover">
-                                <img src="" loading="lazy" alt="">
-                            </div>
-
-                            <div class="article-spot">
-                                <span class="post-author">
-							<span>Icebox Author</span>
-                                <span>Posted on
-								</span>
-                                </span>
-                                <a href="#" class="article__share-btn w-button">Share Article</a>
-                            </div>
-
-                            <div class="article__content">
-
+                            <div data-edit-box="minutes" class="blog-edit-box">
+                                <input data-blog-edit="minutes" placeholder="Minutes to read" type="text" class="blog-edit-box__input">
                             </div>
                         </div>
 
-                        <div class="article__share-block">
-                            <div class="article__share-heading">Written By
-                            </div>
-                            <div class="article__share-grid">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.icebox.com/article/" class="to_facebook"></a>
-                                <a href="https://twitter.com/intent/tweet?url=https://www.icebox.com/article/&text=" class="to_twitter"></a>
-                                <a href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.icebox.com/article/&title=" class="to_linkedin"></a>
+                        <div class="article-cover">
+                            <div data-edit-box="cover" class="blog-edit-box">
+                                <input type="file" name="files[]" data-blog-edit="cover" id="cover_upload" accept="image/jpeg, image/png, image/webp, image/gif,">
                             </div>
                         </div>
+
+                        <div class="article-spot">
+                            <span class="post-author">
+						<div data-edit-box="author" class="blog-edit-box">
+							<input data-blog-edit="author" placeholder="Author Name" type="text" class="blog-edit-box__input">
+						</div>
+					</span>
+                            <button data-evt="shareArticle" class="article__share-btn">Share Article</button>
+                        </div>
+
+                        <div class="article__content editable__content">
+                        </div>
+
+                        <div class="edit-box-grid">
+                            <button data-add-section="largeTitle" data-edit-box="addLargeTitle" class="blog-edit-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.99023 5.92995V4.41995C1.99023 3.39995 2.82023 2.56995 3.84023 2.56995H16.7602C17.7802 2.56995 18.6102 3.39995 18.6102 4.41995V5.92995" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M10.2998 18.0999V3.31995" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M6.8999 18.1H12.4799" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path opacity="0.5" d="M13.6802 10.34H20.6902C21.4202 10.34 22.0102 10.93 22.0102 11.66V12.46" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path opacity="0.5" d="M16.0801 21.43V10.87" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path opacity="0.5" d="M13.9399 21.4301H18.2199" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <span>Large Heading</span>
+                            </button>
+                            <button data-add-section="tinyTitle" data-edit-box="addTinyTitle" class="blog-edit-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" d="M1.99023 5.92995V4.41995C1.99023 3.39995 2.82023 2.56995 3.84023 2.56995H16.7602C17.7802 2.56995 18.6102 3.39995 18.6102 4.41995V5.92995" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path opacity="0.4" d="M10.2998 18.0999V3.31995" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path opacity="0.4" d="M6.8999 18.1H12.4799" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M13.6802 10.34H20.6902C21.4202 10.34 22.0102 10.93 22.0102 11.66V12.46" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M16.0801 21.43V10.87" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M13.9399 21.4301H18.2199" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <span>Tiny Heading</span>
+                            </button>
+                            <button data-add-section="textBlock" data-edit-box="addTextBlock" class="blog-edit-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.67139 7.17003V5.35003C2.67139 4.20003 3.60139 3.28003 4.74139 3.28003H19.2614C20.4114 3.28003 21.3314 4.21003 21.3314 5.35003V7.17003" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M12.0015 20.72V4.10999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M8.06152 20.72H15.9415" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg> <span>Text Block</span>
+                            </button>
+                            <button data-add-section="spacer" data-edit-box="addSpacer" class="blog-edit-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M8.47021 10.52L12.0002 7L15.5302 10.52" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M8.47021 13L12.0002 16.52L15.5302 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <span>Spacer</span>
+                            </button>
+                            <button data-add-section="productBlock" data-edit-box="addProduct" class="blog-edit-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 23V7H3V23H21Z" stroke="currentColor" stroke-width="1"></path>
+                                    <path d="M8 9.5V5.16871C8 2.86638 9.86641 1.00001 12.1687 1.00001C14.4711 1.00001 16.3375 2.86638 16.3375 5.16871V9.5" stroke="currentColor" stroke-width="1"></path>
+                                </svg> <span>Product</span>
+                            </button>
+                            <button data-add-section="sliderBlock" data-edit-box="addSlider" class="blog-edit-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 7V17C18 17.62 17.98 18.17 17.91 18.66C17.62 21.29 16.38 22 13 22H11C7.62 22 6.38 21.29 6.09 18.66C6.02 18.17 6 17.62 6 17V7C6 6.38 6.02 5.83 6.09 5.34C6.38 2.71 7.62 2 11 2H13C16.38 2 17.62 2.71 17.91 5.34C17.98 5.83 18 6.38 18 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M6 17.0001C6 17.6201 6.02 18.1701 6.09 18.6601C5.95 18.6701 5.82 18.6701 5.67 18.6701H5.33C2.67 18.6701 2 18.0001 2 15.3301V8.67008C2 6.00008 2.67 5.33008 5.33 5.33008H5.67C5.82 5.33008 5.95 5.33008 6.09 5.34008C6.02 5.83008 6 6.38008 6 7.00008V17.0001Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M22.0002 8.67008V15.3301C22.0002 18.0001 21.3302 18.6701 18.6702 18.6701H18.3302C18.1802 18.6701 18.0502 18.6701 17.9102 18.6601C17.9802 18.1701 18.0002 17.6201 18.0002 17.0001V7.00008C18.0002 6.38008 17.9802 5.83008 17.9102 5.34008C18.0502 5.33008 18.1802 5.33008 18.3302 5.33008H18.6702C21.3302 5.33008 22.0002 6.00008 22.0002 8.67008Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg> <span>Slider</span>
+                            </button>
+                            <button data-add-section="list" data-edit-box="addList" class="blog-edit-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.0015 4.5H21.0015" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M14.0015 9.5H21.0015" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M3.00146 14.5H21.0015" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M3.00146 19.5H21.0015" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M9.50146 8.43V5.57C9.50146 4.45 9.05146 4 7.92146 4H5.07147C3.95147 4 3.50146 4.45 3.50146 5.57V8.42C3.50146 9.55 3.95147 10 5.07147 10H7.92146C9.05146 10 9.50146 9.55 9.50146 8.43Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg> <span>List</span>
+                            </button>
+                            <button data-add-section="ytEmbed" data-edit-box="addYoutube" class="blog-edit-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M9.1001 12V10.52C9.1001 8.61001 10.4501 7.84001 12.1001 8.79001L13.3801 9.53001L14.6601 10.27C16.3101 11.22 16.3101 12.78 14.6601 13.73L13.3801 14.47L12.1001 15.21C10.4501 16.16 9.1001 15.38 9.1001 13.48V12Z" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg> <span>Youtube Embed</span>
+                            </button>
+                        </div>
+                        <button class="article__save-btn" data-evt="saveArticle">Save Article</button>
 
                         <div class="article__social-block">
                             <div class="big-social-grid">
@@ -443,23 +503,136 @@
                             </div>
                         </div>
 
-                        <div class="article__comments">
-                            <h3 class="article-title">Leave A Comment</h3>
-                            <div class="article__comments-wrap">
-                            </div>
-                            <textarea data-article="commentArea" rows="4" cols="45" name="text" placeholder="Share your thoughts..."></textarea>
-                            <button data-article="commentSubmit">Send</button>
-                        </div>
-
                         <div class="blog__posts-grid">
+                            <div class="blog-post">
+                                <a href="/article/cleaner-jewelry" class="blog-post__pic-link">
+                                    <img src="./assets/blog_cover2.webp" loading="lazy" alt="" class="blog-post__pic">
+                                </a>
+                                <div class="blog-post__main">
+                                    <div class="blog-post__details">
+                                        <div class="blog-post__tags">
+                                            <span class="read-time">5
+					min reading</span>
+                                            <span class="post-date">Posted on
+					13 November, 2023</span>
+                                        </div>
+                                        <div class="blog-post__title-wrap">
+                                            <h3 class="blog-post__title">
+                                                <a href="/article/cleaner-jewelry">42 Dugg Doubles His Jewelry Collection at Icebox!</a>
+                                            </h3>
+                                        </div>
+                                        <p class="blog-post__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+                                        <span class="post-author">Icebox Author</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blog-post">
+                                <a href="/article/cleaner-jewelry" class="blog-post__pic-link">
+                                    <img src="./assets/article-cover.webp" loading="lazy" alt="" class="blog-post__pic">
+                                </a>
+                                <div class="blog-post__main">
+                                    <div class="blog-post__details">
+                                        <div class="blog-post__tags">
+                                            <span class="read-time">5
+					min reading</span>
+                                            <span class="post-date">Posted on
+					13 November, 2023</span>
+                                        </div>
+                                        <div class="blog-post__title-wrap">
+                                            <h3 class="blog-post__title">
+                                                <a href="/article/cleaner-jewelry">42 Dugg Doubles His Jewelry Collection at Icebox!</a>
+                                            </h3>
+                                        </div>
+                                        <p class="blog-post__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+                                        <span class="post-author">Elissa Rossen</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blog-post">
+                                <a href="/article/cleaner-jewelry" class="blog-post__pic-link">
+                                    <img src="./assets/article-cover.webp" loading="lazy" alt="" class="blog-post__pic">
+                                </a>
+                                <div class="blog-post__main">
+                                    <div class="blog-post__details">
+                                        <div class="blog-post__tags">
+                                            <span class="read-time">5
+					min reading</span>
+                                            <span class="post-date">Posted on
+					13 November, 2023</span>
+                                        </div>
+                                        <div class="blog-post__title-wrap">
+                                            <h3 class="blog-post__title">
+                                                <a href="/article/cleaner-jewelry">42 Dugg Doubles His Jewelry Collection at Icebox!</a>
+                                            </h3>
+                                        </div>
+                                        <p class="blog-post__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+                                        <span class="post-author">Elissa Rossen</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
                 </div>
             </div>
-
         </div>
 
+        <div class="edit-tip">
+            <div class="edit-tip__wrapper">
+                <button data-edit-tip="bold" class="edit-tip__btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.87988 4.5C4.87988 3.4 5.77988 2.5 6.87988 2.5H11.9999C14.6199 2.5 16.7499 4.63 16.7499 7.25C16.7499 9.87 14.6199 12 11.9999 12H4.87988V4.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M4.87988 12H14.3799C16.9999 12 19.1299 14.13 19.1299 16.75C19.1299 19.37 16.9999 21.5 14.3799 21.5H6.87988C5.77988 21.5 4.87988 20.6 4.87988 19.5V12V12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg> </button>
+                <button data-edit-tip="italic" class="edit-tip__btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.62012 3H18.8701" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M5.12012 21H14.3701" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M14.25 3L9.75 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button data-edit-tip="list" class="edit-tip__btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 4.5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M14 9.5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M3 14.5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M3 19.5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9.5 8.43V5.57C9.5 4.45 9.05 4 7.92 4H5.07C3.95 4 3.5 4.45 3.5 5.57V8.42C3.5 9.55 3.95 10 5.07 10H7.92C9.05 10 9.5 9.55 9.5 8.43Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button data-edit-tip="highlight" class="edit-tip__btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.3" x="1" y="1" width="22" height="22" rx="4" fill="currentColor" />
+                        <path d="M5 8V6.5964C5 5.70951 5.69775 5 6.55305 5H17.4469C18.3098 5 19 5.71722 19 6.5964V8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M12 19V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9 19H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button data-edit-tip="highlightFull" class="edit-tip__btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 1C2.79086 1 1 2.79086 1 5V19C1 21.2091 2.79086 23 5 23H19C21.2091 23 23 21.2091 23 19V5C23 2.79086 21.2091 1 19 1H5ZM6 6.5964C6 6.23886 6.2727 6 6.55305 6H11V18H9C8.44772 18 8 18.4477 8 19C8 19.5523 8.44772 20 9 20H12H15C15.5523 20 16 19.5523 16 19C16 18.4477 15.5523 18 15 18H13V6H17.4469C17.7286 6 18 6.24019 18 6.5964V8C18 8.55228 18.4477 9 19 9C19.5523 9 20 8.55228 20 8V6.5964C20 5.19426 18.8909 4 17.4469 4H6.55305C5.1228 4 4 5.18017 4 6.5964V8C4 8.55228 4.44772 9 5 9C5.55228 9 6 8.55228 6 8V6.5964Z" fill="currentColor" />
+                    </svg>
+                </button>
+                <button data-edit-tip="link" class="edit-tip__btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.9902 17.5H16.5002C19.5202 17.5 22.0002 15.03 22.0002 12C22.0002 8.98 19.5302 6.5 16.5002 6.5H14.9902" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9 6.5H7.5C4.47 6.5 2 8.97 2 12C2 15.02 4.47 17.5 7.5 17.5H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button data-edit-tip="clear" class="edit-tip__btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g opacity="0.45">
+                            <path d="M2.66992 7.17003V5.35003C2.66992 4.20003 3.59992 3.28003 4.73992 3.28003H19.2599C20.4099 3.28003 21.3299 4.21003 21.3299 5.35003V7.17003" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M12 20.72V4.10999" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M8.06006 20.72H15.9401" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                        <path d="M6.5 7L17 17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <path d="M17 7L6.5 17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
 
         <footer class="footer">
             <div class="footer__wrapper">
