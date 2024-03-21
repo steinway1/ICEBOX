@@ -1,6 +1,6 @@
 {% set banner = true %}
 {% set nav = true %}
-{% set category = results.necklaces %}
+{% set category = results.bracelets %}
 {% set searchQuery = "angels" %}
 {% set stickySidebar = true %}
 {% set collection = 'men' %}
@@ -28,7 +28,9 @@
 				{% include "elements/results/watches-notice.twig" %}
 			{% endif %}
 
-			{% include "elements/results/results-sub.twig" with { collection: 'std' } %}
+			{% if user_admin == true %}
+				{% include "elements/results/results-sub.twig" with { collection: 'std' } %}
+			{% endif %}
 			{% include "elements/results/page-filters.twig" %}
 			{% include "elements/results/filter-modal.twig" %}
 			{% include "../elements/results/results-bar.twig" %}

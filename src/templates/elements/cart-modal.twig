@@ -3,12 +3,12 @@
 	<div class="cart-modal__container">
 		<div class="cart-modal__wrapper">
 			<div class="cart-modal__header">
-				<div data-evt="toggleCart" class="cart-modal__close-btn">
-					{% include "../components/svg/back-arrow.svg" with {width: 22, height: 22} %}
-				</div>
 				<h5 class="cart-modal__heading">Shopping Cart
 					<span>({{cartItems.length}})</span>
 				</h5>
+				<div data-evt="toggleCart" class="cart-modal__close-btn">
+					{% include "../components/svg/close.svg" with {width: 12, height: 12} %}
+				</div>
 			</div>
 			<div class="cart-modal__scrollable">
 				<div class="cart-modal__rows-wrap">
@@ -30,8 +30,7 @@
 								{% endfor %}
 							{% else %}
 								<div class="cart-modal__empty-wrap">
-									<span>Your Cart Is Empty<span>Add more diamonds to your life!</span>
-									</span>
+									<span>Your Cart Is Empty</span>
 									<a href="/" class="home-welcome__link">
 										<span>Start Shopping</span>
 										{% include "components/svg/arrow-next.svg" %}

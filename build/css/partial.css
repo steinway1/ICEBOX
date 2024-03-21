@@ -4663,6 +4663,18 @@ body.compensate-for-scrollbar {
   display: none;
 }
 
+.cart-modal .product-card__media {
+  filter: brightness(100%);
+}
+
+.cart-modal .stock-dash-box {
+  display: none !important;
+}
+
+.cart-modal .product-card__details {
+  padding: 12px;
+}
+
 .cart-modal__btn {
   color: #fff;
   letter-spacing: 1px;
@@ -4717,6 +4729,7 @@ body.compensate-for-scrollbar {
   align-items: center;
   padding: 26px 22px;
   display: flex;
+  cursor: pointer;
 }
 
 .cart-modal__summary-price {
@@ -4903,7 +4916,9 @@ body.compensate-for-scrollbar {
   border-bottom: 1px solid #eaeff3;
   flex: none;
   align-items: center;
+  justify-content: space-between;
   padding: 0 36px;
+  padding-right: 0px;
   display: flex;
 }
 
@@ -6480,15 +6495,15 @@ body.compensate-for-scrollbar {
 
 .product-card__sale-badge {
   z-index: 2;
-  width: 44px;
+  width: 34px;
   height: 52px;
   background-image: url('data:image/svg+xml,<svg width="44" height="37" viewBox="0 0 44 37" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" width="34" height="37" fill="%230095C6"/><path d="M0 5L5 0V5H0Z" fill="%230F7597"/><path d="M44 5L39 0V5H44Z" fill="%230F7597"/><path d="M31.5486 21.6326V25.1743H34.2912V26.9905H31.5486V30.7138H34.9995V32.53H29.5508V19.8164H34.9995V21.6326H31.5486Z" fill="white"/><path d="M23.3965 32.53V19.8164H25.3943V30.7138H28.6817V32.53H23.3965Z" fill="white"/><path d="M20.431 19.8164L22.4652 32.53H20.4491L20.1041 30.2234H17.6521L17.3071 32.53H15.4727L17.5068 19.8164H20.431ZM18.869 22.0685L17.9064 28.498H19.8316L18.869 22.0685Z" fill="white"/><path d="M8.95292 22.8675C8.95292 20.8333 9.95185 19.6709 11.8952 19.6709C13.8386 19.6709 14.8375 20.8333 14.8375 22.8675V23.267H12.9486V22.7403C12.9486 21.8322 12.5854 21.4871 11.9497 21.4871C11.314 21.4871 10.9508 21.8322 10.9508 22.7403C10.9508 25.3557 14.8557 25.8461 14.8557 29.4786C14.8557 31.5127 13.8386 32.6751 11.8771 32.6751C9.91553 32.6751 8.89844 31.5127 8.89844 29.4786V28.6976H10.7873V29.6057C10.7873 30.5138 11.1869 30.8407 11.8226 30.8407C12.4583 30.8407 12.8578 30.5138 12.8578 29.6057C12.8578 26.9903 8.95292 26.4999 8.95292 22.8675Z" fill="white"/><path d="M26.716 16.1839L24.2278 6.97555V16.1839H22.4297V3.47021H24.9361L26.9884 11.0802V3.47021H28.7683V16.1839H26.716Z" fill="white"/><path d="M17.0818 6.39414V13.2595C17.0818 14.1676 17.4814 14.5127 18.1171 14.5127C18.7528 14.5127 19.1523 14.1676 19.1523 13.2595V6.39414C19.1523 5.48602 18.7528 5.14094 18.1171 5.14094C17.4814 5.14094 17.0818 5.48602 17.0818 6.39414ZM15.084 13.1324V6.52128C15.084 4.4871 16.1556 3.32471 18.1171 3.32471C20.0786 3.32471 21.1502 4.4871 21.1502 6.52128V13.1324C21.1502 15.1665 20.0786 16.3289 18.1171 16.3289C16.1556 16.3289 15.084 15.1665 15.084 13.1324Z" fill="white"/></svg>');
   background-position: 50% 0;
   background-repeat: no-repeat;
   background-size: 100%;
   position: absolute;
-  top: -4px;
-  left: 10px;
+  top: 4px;
+  left: 4px;
 }
 
 .product-card__sale-badge.discount_10 {
@@ -9914,6 +9929,14 @@ body .pace .pace-progress {
   padding-top: 4.2vw;
 }
 
+.side-body > .side-row:nth-child(1) {
+  padding-bottom: 0px !important;
+}
+
+.side-body > .side-row:nth-child(2) {
+  padding-bottom: 0px !important;
+}
+
 .side-body__breadcrumbs {
   padding-left: 4.4vw;
   padding-right: 4.4vw;
@@ -10809,7 +10832,7 @@ body .pace .pace-progress {
 .side-row__line_price {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  align-items: flex-start;
+  align-items: center;
   margin-top: 8px;
   display: flex;
 }
@@ -11347,6 +11370,7 @@ body .pace .pace-progress {
   transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   display: flex;
   border: 1px solid #e3e9ec;
+  position: relative;
 }
 
 .product-promise a {
@@ -12982,7 +13006,7 @@ body .pace .pace-progress {
 }
 
 .results__main {
-  padding: 28px 0px 86px;
+  padding: 20px 0px 86px;
 }
 
 .results__main-wrapper {
@@ -13032,7 +13056,7 @@ body .pace .pace-progress {
   position: relative;
   overflow: hidden;
   display: flex;
-  background-color: #000;
+  background-color: transparent;
 }
 
 .res-banner img {
@@ -29781,6 +29805,11 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     grid-row-gap: 6px;
   }
 
+  .cart-modal__close-btn {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
   .cart-modal__summary-price.mybag-summary-price_total {
     padding-bottom: 0;
   }
@@ -29802,7 +29831,7 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   }
 
   .cart-modal__container {
-    width: 100%;
+    width: calc(100% - 20px);
     max-width: none;
   }
 
@@ -29811,7 +29840,7 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   }
 
   .cart-modal__header {
-    padding-left: 0;
+    padding-left: 20px;
     padding-right: 0;
   }
 
@@ -30485,6 +30514,46 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     gap: 4px;
   }
 
+  .product__promises {
+    gap: 8px;
+  }
+
+  .product-promise {
+    padding: 18px;
+    padding-left: 64px;
+    grid-column-gap: 6px;
+    grid-row-gap: 6px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .product-promise .product-promise__heading {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .product-promise .product-promise__heading span {
+    font-size: 12px;
+    margin-top: 3px;
+  }
+
+  .product-promise .product-promise__icon-wrap {
+    position: absolute;
+    left: 18px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .product-promise .product-promise__icon-wrap path {
+    fill: var(--black);
+  }
+
+  .product-promise a {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+  }
+
   .product-promise__icon-wrap svg {
     height: 32px;
     width: 32px;
@@ -30493,11 +30562,6 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   .product__more {
     padding-top: 46px;
     padding-bottom: 46px;
-  }
-
-  .product-promise {
-    grid-column-gap: 12px;
-    grid-row-gap: 12px;
   }
 
   .product__promises {

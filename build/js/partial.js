@@ -5752,9 +5752,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const saveArticleArr = [...document.querySelectorAll('[data-evt="saveArticle"]')]
     for (const btn of saveArticleArr) {
-      btn.onclick = () => {
-        Article.export.do()
-      }
+      btn.onclick = Article.export.do
     }
 
   }
