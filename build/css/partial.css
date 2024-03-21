@@ -13006,6 +13006,13 @@ body .pace .pace-progress {
   display: flex;
 }
 
+.desktop-only {
+  display: none;
+  /* Hide the element by default */
+}
+
+/* Media query for desktop screens (min-width: 1024px) */
+
 .results-content {
   /* #region  Overall */
   width: 100vw;
@@ -27308,6 +27315,13 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
 
   .hero-card__media:hover::after {
     opacity: 0.13;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .desktop-only {
+    display: block;
+    /* Show the element on desktop screens */
   }
 }
 
