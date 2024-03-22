@@ -310,6 +310,8 @@ const IS_VISIBLE = "is-visible",
   IS_ERROR = 'is-error',
   IS_EMPTY = 'is-empty'
 
+let $body = $('body')
+
 const __VALID = '--valid',
   __INVALID = '--invalid',
   __PENDING = '--pending'
@@ -921,9 +923,11 @@ const menu = {
   },
   init: function () {
     this.renderDOM();
-    this.bindEvents();
-    this.initialState();
-    this.attachHoverEffect()
+    if (document.querySelector('.mob-menu')) {
+      this.bindEvents();
+      this.initialState();
+      this.attachHoverEffect()
+    }
   },
   renderDOM: function () {
     // modal
@@ -4116,10 +4120,11 @@ const salesModal = {
 const formPage = new Object({
   uploadedImages: [],
   init: function () {
-    if ($('.main_formpage').length) {
+    if (document.querySelector('.main_formpage')) {
       this.bindEvents()
       // this.imgUpload()
       this.attachImagesUploader()
+      this.attachWatchesUpload()
     }
   },
   bindEvents: function () {
@@ -4249,6 +4254,72 @@ const formPage = new Object({
       unlockScroll()
       $('.formpage-zoom').remove()
     })
+  },
+  attachWatchesUpload: () => {
+    const form = document.querySelector('.form__add-watches')
+    if (!form) return
+    const uploadLabel = document.querySelector('.formpage__watches-label'),
+      uploadInput = document.querySelector('#watches_upload'),
+      imagesWrap = $('.formpage__watches-thumb')
+
+    if (uploadInput && uploadLabel && imagesWrap) {
+      function processFile(files) {
+        if (!files.length) throw new Error('No file selected')
+        files = [...files]
+        files.forEach((file, i) => {
+          if (!file.type.match('image.*')) { return }
+
+          let getIndex = () => {
+            return [...document.querySelectorAll('.formpage__upload')].length + 1
+          }
+
+          let reader = new FileReader()
+          reader.onload = function (e) {
+            let html =
+              `
+               <div class="formpage__upload" data-img-id="${getIndex()}">
+                 <div class="formpage__input-boxes">
+                   <div>
+                     <input value="1" name="visible_image_${getIndex()}" id="image_${getIndex()}" type="checkbox" checked>
+                     <label for="image_${getIndex()}"></label>
+                   </div>
+                 </div>
+                   <div data-name="${file.name}" style="background-image: url(${e.target.result})" class="formpage__upload-bg">
+                 </div>
+                 <select class="formpage__input" id="box_dropdown">
+                   <option value="yellow">Yellow</option>
+                   <option value="white">White</option>
+                   <option value="rose">Rose</option>
+                   <option value="steel">Steel</option>
+                   <option value="black">Black</option>
+                   <option value="two_tone">Two Tone</option>
+                   <option value="tri_tone">Tri Tone</option>
+                 </select>
+               </div>
+             `
+            imagesWrap.append(html)
+          }
+          reader.readAsDataURL(file)
+        })
+      }
+
+      uploadLabel.ondragover = (evt) => {
+        evt.preventDefault()
+        uploadLabel.classList.add(IS_ACTIVE)
+      }
+      uploadLabel.ondragleave = (evt) => {
+        evt.preventDefault()
+        uploadLabel.classList.remove(IS_ACTIVE)
+      }
+      uploadLabel.ondrop = (evt) => {
+        evt.preventDefault()
+        uploadLabel.classList.remove(IS_ACTIVE)
+        processFile(evt.dataTransfer.files)
+      }
+      uploadInput.onchange = (evt) => {
+        processFile(evt.target.files)
+      }
+    }
   }
 })
 

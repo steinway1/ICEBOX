@@ -22953,6 +22953,7 @@ width: calc(50% - 8px)
 
 .main_formpage {
   background-color: #f5f7fa;
+  min-height: 100vh;
 }
 
 .formpage__header {
@@ -22997,6 +22998,26 @@ width: calc(50% - 8px)
   flex-flow: wrap;
   align-items: flex-start;
   display: flex;
+}
+
+.formpage__form.form__add-watches .formpage__upload-label {
+  min-height: 320px;
+  border-width: 1px !important;
+  border-radius: 0px !important;
+}
+
+.formpage__form.form__add-watches .formpage__submit-wrap button {
+  border-radius: 0px;
+}
+
+.formpage__form.form__add-watches .formpage__upload {
+  flex-direction: column;
+}
+
+.formpage__form.form__add-watches .formpage__upload-bg {
+  width: 112px;
+  height: 112px;
+  background-size: cover;
 }
 
 .formpage__upload-disclaimer div {
@@ -23252,6 +23273,7 @@ width: calc(50% - 8px)
   margin-bottom: 0;
   transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   padding: 8px 12px;
+  cursor: pointer;
 }
 
 .formpage__input.--textarea {
