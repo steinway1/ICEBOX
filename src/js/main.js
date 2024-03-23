@@ -3837,8 +3837,6 @@ const formPage = new Object({
     });
   },
   submitAjax: function () {
-    var color = $('#metal_type').val();
-    if (color != '') {
       var form = $("#formpage_form");
       var formData = new FormData(form[0]);
       $.ajax({
@@ -3853,17 +3851,14 @@ const formPage = new Object({
           var r = $.parseJSON(data);
           if (!r.error) {
             showMessage('success', 'Great', r.msg);
-            window.open(r.link, r.product_id);
-            $("#formpage_form")[0].reset();
-            $('.formpage__images-thumbnails').empty();
+            setTimeout(function() {
+              window.location.reload();
+            }, 2000);
           } else {
             showMessage('error', 'Error', r.msg);
           }
         }
       });
-    } else {
-      showMessage('error', 'Error', 'Please select a metal type first !');
-    }
   },
   attachImagesUploader: () => {
     const uploadLabel = document.querySelector('#formpage_img-uploader'),
@@ -3986,14 +3981,22 @@ const formPage = new Object({
                  </div>
                    <div data-name="${file.name}" style="background-image: url(${e.target.result})" class="formpage__upload-bg">
                  </div>
-                 <select class="formpage__input" id="box_dropdown">
-                   <option value="yellow">Yellow</option>
-                   <option value="white">White</option>
-                   <option value="rose">Rose</option>
-                   <option value="steel">Steel</option>
-                   <option value="black">Black</option>
-                   <option value="two_tone">Two Tone</option>
-                   <option value="tri_tone">Tri Tone</option>
+                 <select class="formpage__input" id="box_dropdown_${getIndex()}" name="colors[]" required>
+                   <option value="">Select</option>
+                   <option value="Yellow">Yellow</option>
+                   <option value="White">White</option>
+                   <option value="Rose">Rose</option>
+                   <option value="Red">Red</option>
+                   <option value="Steel">Steel</option>
+                   <option value="Blue">Blue</option>
+                   <option value="Black">Black</option>
+                   <option value="Two-Tone">Two-Tone</option>
+                   <option value="Two-Tone-Rose">Two-Tone-Rose</option>
+                   <option value="Tri-Tone">Tri-Tone</option>
+                   <option value="Blue-Gold">Blue-Gold</option>
+                   <option value="Navy-Blue">Navy-Blue</option>
+                   <option value="Tri-Tone-Rose">Tri-Tone-Rose</option>
+                   <option value="Platinum">Platinum</option>
                  </select>
                </div>
              `
