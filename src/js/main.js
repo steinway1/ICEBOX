@@ -22,6 +22,8 @@ const paceOptions = {
   }
 };
 
+var UPLOADED_BLOG_IMG;
+
 const shortLoremText = 'The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.'
 const mediumLoremText = 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.'
 
@@ -4485,6 +4487,7 @@ var EditArticle = function (articleContent, options) {
       box.style.display = 'flex'
     }
     bind(img, 'click', toggle)
+    UPLOADED_BLOG_IMG = imgUrl;
   }
 
   /**
@@ -5442,12 +5445,7 @@ var EditArticle = function (articleContent, options) {
     return parseInt(minutes.innerHTML)
   }
   _export.getCover = () => {
-    const img = document.querySelector('#article_cover')
-    if (!img || !img.style) {
-      error('Export Error: Cover is not provided', 'ECA-E5')
-      return null
-    }
-    return img
+    return UPLOADED_BLOG_IMG;
   }
   _export.getContent = () => {
     let sections = {}
@@ -5464,7 +5462,7 @@ var EditArticle = function (articleContent, options) {
         const index = sectionsArr.indexOf(section)
         let targetSection = sections[index] = {}
         targetSection.type = type
-        targetSection.element = section
+        //targetSection.element = section
 
         const textTypes = ['large_title', 'tiny_title', 'text', 'spacer']
         const productTypes = ['product', 'slider']
@@ -5495,8 +5493,7 @@ var EditArticle = function (articleContent, options) {
     _export.obj.read_time = _export.getReadTime()
     _export.obj.summary = _export.getSummary()
     _export.obj.title = _export.getTitle()
-
-    console.log(_export.obj.content)
+    SaveAdminBlog(_export.obj);
   }
 
   Article.add = AddSection
