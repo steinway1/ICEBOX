@@ -738,6 +738,8 @@ form button {
   position: fixed;
   bottom: 10px;
   right: 10px;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .wa-float__wrapper {
@@ -752,6 +754,69 @@ form button {
   padding-right: 12px;
   transition: all .2s;
   display: flex;
+
+  &::after {
+    content: '';
+    width: 90px;
+    height: 400px;
+    opacity: .7;
+    background-image: linear-gradient(90deg, rgba(30, 199, 92, 0), rgba(255, 255, 255, .45) 50%, rgba(30, 199, 92, 0));
+    transition: all .95s cubic-bezier(.39, .575, .565, 1);
+    position: absolute;
+    left: -80%;
+    transform: rotate(-45deg);
+    animation: waSlide 3s infinite cubic-bezier(.39, .575, .565, 1);
+  }
+}
+
+@keyframes waSlide {
+  0% {
+    left: -80%;
+  }
+
+  25% {
+    left: 180%;
+  }
+
+  45% {
+    left: -80%;
+  }
+
+  100% {
+    left: -80%;
+  }
+}
+
+.wa-float__live {
+  z-index: 2;
+  grid-column-gap: 3px;
+  grid-row-gap: 3px;
+  color: #0e8f3d;
+  background-color: #d2f1de;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 6px;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 11px;
+  display: flex;
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  right: 0;
+  overflow: scroll;
+  transform: translate(0);
+
+  &>span {
+    &:nth-child(1) {
+      width: 6px;
+    height: 6px;
+    background-color: #1ec75c;
+    border-radius: 50px;
+    }
+  }
 }
 
 .wa-float__wrapper:hover {

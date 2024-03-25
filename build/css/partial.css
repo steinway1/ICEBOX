@@ -9178,6 +9178,8 @@ form button.is-failed {
   position: fixed;
   bottom: 10px;
   right: 10px;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .wa-float__wrapper {
@@ -9192,6 +9194,67 @@ form button.is-failed {
   padding-right: 12px;
   transition: all 0.2s;
   display: flex;
+}
+
+.wa-float__wrapper::after {
+  content: "";
+  width: 90px;
+  height: 400px;
+  opacity: 0.7;
+  background-image: linear-gradient(90deg, rgba(30, 199, 92, 0), rgba(255, 255, 255, 0.45) 50%, rgba(30, 199, 92, 0));
+  transition: all 0.95s cubic-bezier(0.39, 0.575, 0.565, 1);
+  position: absolute;
+  left: -80%;
+  transform: rotate(-45deg);
+  animation: waSlide 3s infinite cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+@keyframes waSlide {
+  0% {
+    left: -80%;
+  }
+
+  25% {
+    left: 180%;
+  }
+
+  45% {
+    left: -80%;
+  }
+
+  100% {
+    left: -80%;
+  }
+}
+
+.wa-float__live {
+  z-index: 2;
+  grid-column-gap: 3px;
+  grid-row-gap: 3px;
+  color: #0e8f3d;
+  background-color: #d2f1de;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 6px;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 11px;
+  display: flex;
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  right: 0;
+  overflow: scroll;
+  transform: translate(0);
+}
+
+.wa-float__live > span:nth-child(1) {
+  width: 6px;
+  height: 6px;
+  background-color: #1ec75c;
+  border-radius: 50px;
 }
 
 .wa-float__wrapper:hover {
@@ -13253,6 +13316,23 @@ body .pace .pace-progress {
 }
 
 /* Media query for desktop screens (min-width: 1024px) */
+
+.product__wa-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.product__wa-link:hover {
+  text-decoration: underline;
+}
+
+.product__wa-link img {
+  width: 24px;
+  height: 24px;
+}
 
 .results-content {
   /* #region  Overall */
@@ -24770,9 +24850,30 @@ body.promo_vday .mob-menu__spot-link {
   position: relative;
 }
 
-.vday-nav-link:hover {
+.vday-nav-link:not(.--sale):hover {
   background-color: rgba(204, 68, 108, 0.2);
   box-shadow: 0 6px 12px rgba(204, 68, 108, 0.08);
+}
+
+.vday-nav-link.--sale {
+  border-color: var(--blue-gold) !important;
+  color: var(--blue-gold) !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  background-image: linear-gradient(230deg, rgba(68, 172, 204, 0.1), #fff 80%);
+}
+
+.vday-nav-link.--sale:hover {
+  border-color: #0eace1;
+  color: #0eace1;
+  background-image: none;
+}
+
+.vday-nav-link.--sale img {
+  width: auto !important;
+  height: auto !important;
+  top: -20px;
+  left: -32px;
 }
 
 .vday-shape {

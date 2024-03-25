@@ -1941,7 +1941,7 @@ const productPage = new Object({
   init: function () {
     // NEW UPDATE -- DELETE LATER
     const new_page_exist = document.querySelector('.main_product_upd') !== null
-    if (new_page_exist) {
+    if (!new_page_exist) {
       this.renderDOM();
       this.bindEvents();
       Object.values(this.initFn).forEach((target) => {
@@ -4599,7 +4599,7 @@ document.addEventListener("DOMContentLoaded", function () {
 var EditArticle = function (articleContent, options) {
   articleContent = document.querySelector(`.${articleContent}`)
   if (!articleContent) {
-    error('Article content not found', 'ECA-1')
+    showMessage('error', 'Article content not found, ECA-1')
     throw new Error(`EditArticle ERROR : articleContent is required : ${articleContent}`)
   }
   this.articleContent = articleContent
@@ -4831,7 +4831,7 @@ var EditArticle = function (articleContent, options) {
   function processEmbed(section) {
     const iframe = section.querySelector('iframe')
     if (!iframe) {
-      error('Export Error: No iframe found in Embed Section', 'ECA-E9')
+      showMessage('Export Error: No iframe found in Embed Section , ECA-E9')
       return null
     }
     let cleared = clearSection(section)
@@ -5543,12 +5543,12 @@ var EditArticle = function (articleContent, options) {
   Editable.wrapIntoSpan = (cls) => {
     const selection = window.getSelection()
     if (String(selection).length < 1) {
-      error('Expected to have selection', 'ECA-2')
+      showMessage('Expected to have selectiom, ECA-2')
       throw new Error(`Expected to have selection`)
     }
     const anchor = selection.anchorNode
     if (anchor === null) {
-      error('Expected selection to have anchor', 'ECA-3')
+      showMessage('Expected selection to have anchor, ECA-3')
       throw new Error(`Expected selection to have anchor`)
     }
     const parent = anchor.parentElement
@@ -5557,11 +5557,11 @@ var EditArticle = function (articleContent, options) {
 
     // If no editable paragraph
     if (!paragraphParent) {
-      error('Expected to find closest Editable Paragraph', 'ECA-4')
+      showMessage('Expected to find closest Editable Paragraph, ECA-4')
       throw new Error(`Expected to find closest Editable Paragraph`)
     }
     if (!range) {
-      error('Expected to have range', 'ECA-5')
+      showMessage('Expected to have range, ECA-5')
       throw new Error(`Expected to have range`)
     }
 
@@ -5720,7 +5720,7 @@ var EditArticle = function (articleContent, options) {
   _export.getTitle = () => {
     const title = document.querySelector('#article_title')
     if (!title || !title.innerHTML) {
-      error('Export Error: Title is not provided', 'ECA-E1')
+      showMessage('Export Error: Title is not provided, ECA-E1')
       return null
     }
     return title.innerHTML
@@ -5728,7 +5728,7 @@ var EditArticle = function (articleContent, options) {
   _export.getSummary = () => {
     const summary = document.querySelector('#article_summary')
     if (!summary || !summary.innerHTML) {
-      error('Export Error: Provide excerpt or type "lorem"', 'ECA-E2')
+      showMessage('Export Error: Provide excerpt or type "lorem", ECA-E2')
       return null
     }
     return summary.innerHTML
@@ -5736,7 +5736,7 @@ var EditArticle = function (articleContent, options) {
   _export.getAuthor = () => {
     const author = document.querySelector('#article_author')
     if (!author || !author.innerHTML) {
-      error('Export Error: Author is not provided', 'ECA-E3')
+      showMessage('Export Error: Author is not provided, ECA-E3')
       return null
     }
     return author.innerHTML
@@ -5744,7 +5744,7 @@ var EditArticle = function (articleContent, options) {
   _export.getReadTime = () => {
     const minutes = document.querySelector('#article_read_time')
     if (!minutes || !minutes.innerHTML) {
-      error('Export Error: Read time is not provided', 'ECA-E4')
+      showMessage('Export Error: Read time is not provided, ECA-E4')
       return null
     }
     return parseInt(minutes.innerHTML)
@@ -5756,7 +5756,7 @@ var EditArticle = function (articleContent, options) {
     let sections = {}
     const sectionsArr = [...articleContent.querySelectorAll('.article-content-section')]
     if (!sectionsArr.length) {
-      error('Export Error: No content found', 'ECA-E6')
+      showMessage('Export Error: No content found, ECA-E6')
       return null
     }
     for (const section of sectionsArr) {

@@ -431,7 +431,7 @@ body.promo_vday {
     position: relative;
   }
 
-  &:hover {
+  &:not(.--sale):hover {
     background-color: rgba(204, 68, 108, .2);
     // transform: translate(0, -1.5px);
     box-shadow: 0 6px 12px rgba(204, 68, 108, .08);
@@ -439,6 +439,27 @@ body.promo_vday {
 
   @include maxWidthMd {
     display: none !important;
+  }
+
+  &.--sale {
+    border-color: var(--blue-gold) !important;
+    color: var(--blue-gold) !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    background-image: linear-gradient(230deg, rgba(68, 172, 204, 0.1), #fff 80%);
+
+    &:hover {
+      border-color: #0eace1;
+      color: #0eace1;
+      background-image: none;
+    }
+
+    img {
+      width: auto !important;
+      height: auto !important;
+      top: -20px;
+      left: -32px;
+    }
   }
 }
 

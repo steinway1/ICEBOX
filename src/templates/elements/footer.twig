@@ -4,7 +4,27 @@
 			<div class="footer__main">
 				<div class="footer-col">
 					<div class="footer-col__header">
-						<h5>About Icebox</h5>
+						<h5>Call Now</h5>
+						<div>
+							{% include "../components/svg/dropdown.svg" %}
+						</div>
+					</div>
+					<div class="footer-col__body">
+						<div class="footer-col__body-scroll">
+							<div class="footer-col__content-wrap">
+								{% for item in footer.linksContact %}
+									<a href="{{item.href}}" class="footer-contact-link">
+										<span class="footer-contact-link__heading">{{item.heading}}</span>
+										<span class="footer-contact-link__typo">{{item.caption}}</span>
+									</a>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-col">
+					<div class="footer-col__header">
+						<h5>More Changes</h5>
 						<div>
 							{% include "../components/svg/dropdown.svg" %}
 						</div>
@@ -31,26 +51,6 @@
 							<div class="footer-col__content-wrap">
 								{% for item in footer.linksProduct %}
 									<a href="{{item.href}}" class="footer-link">{{item.caption}}</a>
-								{% endfor %}
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="footer-col">
-					<div class="footer-col__header">
-						<h5>Customer Care</h5>
-						<div>
-							{% include "../components/svg/dropdown.svg" %}
-						</div>
-					</div>
-					<div class="footer-col__body">
-						<div class="footer-col__body-scroll">
-							<div class="footer-col__content-wrap">
-								{% for item in footer.linksContact %}
-									<a href="{{item.href}}" class="footer-contact-link">
-										<span class="footer-contact-link__heading">{{item.heading}}</span>
-										<span class="footer-contact-link__typo">{{item.caption}}</span>
-									</a>
 								{% endfor %}
 							</div>
 						</div>
