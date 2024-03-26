@@ -61,6 +61,24 @@
 						</div>
 					{% endif %}
 
+					{% if salespersons is defined %}
+						<h4 class="am-sidebar__group-title">Per Salesperson</h4>
+						<div class="am-sidebar__nav-list">
+							<div class="salespersons-grid">
+								{% for person in salespersons %}
+									<div class="saleperson-box{% if person.is_active == true %} is-active{% endif %}">
+										<div class="saleperson-box__img-wrap">
+                    <img src="{{person.img_src}}" alt="">
+                    </div>
+										<span>{{person.name}}
+											<span>{{person.amount}}</span>
+										</span>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					{% endif %}
+
 				</div>
 			</div>
 

@@ -18,7 +18,7 @@
 				class="loan-scroller">
 
 				{# First & last name #}
-				<div data-loan-section="name" class="loan-case-section">
+				<div data-loan-section="name" data-loan-section="name" class="loan-case-section">
 					<h6 class="loan-case-section__title">First &amp; Last Name</h6>
 					<div class="loan-input-wrap">
 						<input class="loan-case__input" placeholder="First Name" type="text" id="loan_first_name" required>
@@ -29,7 +29,7 @@
 				</div>
 
 				{# Phone Number #}
-				<div class="loan-case-section">
+				<div data-loan-section="phone" class="loan-case-section">
 					<h6 class="loan-case-section__title">Phone Number</h6>
 					<div class="loan-input-wrap">
 						<input class="loan-case__input --icon" pattern="[0-9]*" placeholder="Phone Number" type="text" id="loan_number" required>
@@ -38,7 +38,7 @@
 				</div>
 
 				{# Email Address #}
-				<div class="loan-case-section">
+				<div data-loan-section="email" class="loan-case-section">
 					<h6 class="loan-case-section__title">Email Address</h6>
 					<div class="loan-input-wrap">
 						<input class="loan-case__input" placeholder="Email Address" type="email" id="loan_email" required>
@@ -46,7 +46,7 @@
 				</div>
 
 				{# Address #}
-				<div class="loan-case-section">
+				<div data-loan-section="address" class="loan-case-section">
 					<h6 class="loan-case-section__title">Address</h6>
 					<div class="loan-input-wrap">
 						<div class="loan-case__select-wrap">
@@ -60,7 +60,7 @@
 						<input class="loan-case__input" placeholder="City" type="text" id="loan_city" required>
 					</div>
 					<div class="loan-input-wrap">
-						<input class="loan-case__input" placeholder="Zip Code" type="text" id="zip_code" required>
+						<input class="loan-case__input" placeholder="Zip Code" type="text" id="loan_zip_code" required>
 					</div>
 					<div class="loan-input-wrap">
 						<input class="loan-case__input" placeholder="Address" type="text" id="loan_address_1" required>
@@ -71,28 +71,28 @@
 				</div>
 
 				{# Employer #}
-				<div class="loan-case-section">
-					<div class="loan-case-section__title">Employer</div>
+				<div data-loan-section="employer" class="loan-case-section">
+					<h6 class="loan-case-section__title">Employer</h6>
 					<div class="loan-input-wrap">
-						<input class="loan-case__input" maxlength="256" name="field-3" data-name="Field 3" placeholder="Employer" type="text" id="field-3" required="">
+						<input class="loan-case__input" placeholder="Employer" type="text" id="loan_employer" required>
 					</div>
 					<div class="loan-input-wrap">
-						<input class="loan-case__input" maxlength="256" name="field-3" data-name="Field 3" placeholder="Employer Website" type="text" id="field-3" required="">
+						<input class="loan-case__input" placeholder="Employer Website" type="text" id="loan_employer_website">
 					</div>
 					<div class="loan-input-wrap">
 						<label class="custom-checkbox">
-							<input type="checkbox" value="no_website">
+							<input id="loan_no_website" type="checkbox" value="no_website">
 							<span>My employer has no website.</span>
 						</label>
 					</div>
 				</div>
 
 				{# Salary & Credit Score #}
-				<div class="loan-case-section">
-					<div class="loan-case-section__title">Salary &amp; Credit Score</div>
+				<div data-loan-section="salary" class="loan-case-section">
+					<h6 class="loan-case-section__title">Salary &amp; Credit Score</h6>
 					<div class="loan-input-wrap">
 						<div class="loan-case__select-wrap">
-							<select id="field-4" name="field-4" data-name="Field 4" class="loan-case__input">
+							<select id="loan_salary" class="loan-case__input">
 								<option value="">Average Monthly Salary</option>
 								<option value="First">$0 - $1,500</option>
 								<option value="Second">$1,500 - $2,500</option>
@@ -104,94 +104,101 @@
 						</div>
 					</div>
 					<div class="loan-input-wrap">
-						<div class="loan-case__select-wrap">
-							<select id="Credi" name="Credi" data-name="Credi" class="loan-case__input">
-								<option value="">Credit Score</option>
-								<option value="First">0 - 369</option>
-								<option value="Second">370 - 655</option>
-								<option value="Third">656 - 900</option>
-								<option value="Another option">901 &amp; Above</option>
-							</select>
+						<div class="loan-input-range">
+							<label for="loan_credit_score">Credit Score</label>
+							<input id="loan_credit_score" class="custom-range" type="range" min="500" max="999" onchange="loan_score_output.value=value" oninput="loan_score_output.value=value" value="500"/>
+							<output class="custom-range__output" id="loan_score_output">500</output>
 						</div>
 					</div>
 				</div>
-				<div class="loan-case-section">
-					<div class="loan-case-section__title">Social Security Number</div>
-					<div class="loan-input-wrap"><input class="loan-case__input" maxlength="256" name="field-3" data-name="Field 3" pattern="[0-9]*" placeholder="Social Security Number" type="text" id="field-3" required=""></div>
-				</div>
-				<div class="loan-case-section">
-					<div class="loan-case-section__title">Do you currently use any financing companies?<span class="temp4">It is not a bad thing, just let us know so we don&#x27;t look into those for you.  Affirm, Klarna, Afterpay, Synchrony, Wells Fargo, Acima?</span>
+
+				{# Social Security Number #}
+				<div data-loan-section="social" class="loan-case-section">
+					<h6 class="loan-case-section__title">Social Security Number</h6>
+					<div class="loan-input-wrap">
+						<input class="loan-case__input" pattern="[0-9]*" placeholder="Social Security Number" type="text" id="loan_social_number" required>
 					</div>
+				</div>
+
+				{# Other Companies #}
+				<div data-loan-section="companies" class="loan-case-section">
+					<h6 class="loan-case-section__title">Do you currently use any financing companies?<span>It is not a bad thing, just let us know so we don&#x27;t look into those for you.  Affirm, Klarna, Afterpay, Synchrony, Wells Fargo, Acima?</span>
+					</h6>
 					<div class="loan-case__input-group">
-						<div class="loan-case__input">Yes</div>
-						<div class="loan-case__input">No</div>
+						<label class="loan-radio">
+							<input type="radio" name="loan_finance" value="loan_finance_yes">
+							<span>Yes</span>
+						</label>
+						<label class="loan-radio">
+							<input type="radio" name="loan_finance" value="loan_finance_no">
+							<span>No</span>
+						</label>
 					</div>
 				</div>
-				<div class="loan-case-section">
-					<div class="loan-case-section__title">Who are you intending to use this funancing on?<span class="temp4">Yourself, your spouse or other?</span>
+
+				{# Loan Is For #}
+				<div data-loan-section="for" class="loan-case-section">
+					<h6 class="loan-case-section__title">Who are you intending to use this funancing on?<span>Yourself, your spouse or other?</span>
+					</h6>
+					<div class="loan-input-wrap">
+						<input class="loan-case__input" placeholder="" type="text" id="loan_for" required>
 					</div>
-					<div class="loan-input-wrap"><input class="loan-case__input" maxlength="256" name="field-3" data-name="Field 3" placeholder="" type="text" id="field-3" required=""></div>
 				</div>
-				<div class="loan-case-section">
-					<div class="loan-case-section__title">ID &amp; Debit Card<span class="temp4">Please upload your id and a picture of your debit card front and back of both please - if you don&#x27;t do it now we will have to do it later.</span>
-					</div>
-				</div>
-				<div class="loan-case-section">
-					<div class="loan-case-section__title">what item would you like to buy with your financing approval?</div>
-					<div class="loan-input-wrap"><input class="loan-case__input" maxlength="256" name="field-3" data-name="Field 3" placeholder="" type="text" id="field-3" required=""></div>
-				</div>
-				<div class="loan-case-section">
-					<div class="loan-case-section__title">do you have an idea of how much you would like to get approved for?</div>
-					<div class="loan-input-wrap"><input class="loan-case__input --icon" maxlength="256" name="field-3" data-name="Field 3" placeholder="Amount" type="text" id="field-3" required="">
-						<div class="loan-case__input-icon">
-							<svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M6 16C6 18.2146 7.78111 20 9.994 20H14.5097C16.4348 20 18 18.4378 18 16.515C18 14.4206 17.0465 13.6824 15.6252 13.2017L8.37481 10.7983C6.95352 10.3176 6 9.5794 6 7.48498C6 5.56223 7.56522 4 9.49025 4H14.006C16.2189 4 18 5.78541 18 8" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-								<path d="M12 1V23" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-							</svg>
+
+				{# ID & Debit Card #}
+				<div data-loan-section="id" class="loan-case-section">
+					<h6 class="loan-case-section__title">ID &amp; Debit Card<span>Please upload your id and a picture of your debit card front and back of both please - if you don&#x27;t do it now we will have to do it later.</span>
+					</h6>
+					<div class="loan-input-wrap">
+						<div data-loan="files_upload" class="loan-file-input">
+							<input type="file" id="loan_id" required>
 						</div>
 					</div>
+					<div class="loan-input-files"></div>
 				</div>
-			</div>
-			<div class="loan-case-loader">
-				<div class="temp6">
-					<div class="loader loader--style1" title="0">
-						<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewbox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-							<path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
-																																																																																																																																																																																																																																								    s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
-																																																																																																																																																																																																																																								    c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
-							<path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
-																																																																																																																																																																																																																																								    C22.32,8.481,24.301,9.057,26.013,10.047z"></path>
-							<animatetransform attributetype="xml" attributename="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatcount="indefinite"></animatetransform>
-						</svg>
+
+				{# Items #}
+				<div data-loan-section="items" class="loan-case-section">
+					<h6 class="loan-case-section__title">what item would you like to buy with your financing approval?</h6>
+					<div class="loan-input-wrap">
+						<input class="loan-case__input" placeholder="" type="text" id="loan_items" required>
+					</div>
+				</div>
+
+				{# Amount #}
+				<div data-loan-section="amount" class="loan-case-section">
+					<h6 class="loan-case-section__title">do you have an idea of how much you would like to get approved for?</h6>
+					<div class="loan-input-wrap">
+						<input class="loan-case__input --icon" placeholder="Amount" type="text" id="loan_amount" required>
+						<div class="loan-case__input-icon">
+							{% include "components/svg/dollar.svg" %}
+						</div>
 					</div>
 				</div>
 			</div>
 		</form>
+    
+		<div class="loan-case-loader">
+			<div>
+				<div class="loader loader--style1">
+					{% include "components/svg/loan-loader.svg" %}
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="loan-case__footer">
 		<div class="loan-case__btn-group">
-			<a data-evt="back" href="#" class="loan-case__btn is-sub">Back</a>
-			<a data-evt="next" href="#" class="loan-case__btn">Continue</a>
+			<button data-loan-evt="back" class="loan-case__btn is-sub">Back</button>
+			<button data-loan-evt="go" class="loan-case__btn">Continue</button>
 		</div>
 		<div class="loan-case__features">
 			<div class="loan-case__feature">
-				<svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M11.9999 22.7599C10.9099 22.7599 9.8299 22.4399 8.9799 21.8099L4.6799 18.5999C3.5399 17.7499 2.6499 15.9799 2.6499 14.5599V7.11994C2.6499 5.57994 3.7799 3.93994 5.2299 3.39994L10.2199 1.52994C11.2099 1.15994 12.7699 1.15994 13.7599 1.52994L18.7599 3.39994C20.2099 3.93994 21.3399 5.57994 21.3399 7.11994V14.5499C21.3399 15.9699 20.4499 17.7399 19.3099 18.5899L15.0099 21.7999C14.1699 22.4399 13.0899 22.7599 11.9999 22.7599ZM10.7499 2.93994L5.7599 4.80994C4.8999 5.12994 4.1499 6.20994 4.1499 7.12994V14.5599C4.1499 15.5099 4.8199 16.8399 5.5699 17.3999L9.8699 20.6099C11.0199 21.4699 12.9699 21.4699 14.1199 20.6099L18.4199 17.3999C19.1799 16.8299 19.8399 15.4999 19.8399 14.5599V7.11994C19.8399 6.20994 19.0899 5.12994 18.2299 4.79994L13.2399 2.92994C12.5799 2.68994 11.4199 2.68994 10.7499 2.93994Z" fill="#292D32"></path>
-					<path d="M12 13.25C10.48 13.25 9.25 12.02 9.25 10.5C9.25 8.98 10.48 7.75 12 7.75C13.52 7.75 14.75 8.98 14.75 10.5C14.75 12.02 13.52 13.25 12 13.25ZM12 9.25C11.31 9.25 10.75 9.81 10.75 10.5C10.75 11.19 11.31 11.75 12 11.75C12.69 11.75 13.25 11.19 13.25 10.5C13.25 9.81 12.69 9.25 12 9.25Z" fill="#292D32"></path>
-					<path d="M12 16.25C11.59 16.25 11.25 15.91 11.25 15.5V12.5C11.25 12.09 11.59 11.75 12 11.75C12.41 11.75 12.75 12.09 12.75 12.5V15.5C12.75 15.91 12.41 16.25 12 16.25Z" fill="#292D32"></path>
-				</svg>
+				{% include "components/svg/secure.svg" %}
 				<span>Your information is securely encrypted</span>
 			</div>
 			<div class="loan-case__feature">
-				<svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M2 9.75C1.59 9.75 1.25 9.41 1.25 9V6.5C1.25 3.6 3.61 1.25 6.5 1.25H9C9.41 1.25 9.75 1.59 9.75 2C9.75 2.41 9.41 2.75 9 2.75H6.5C4.43 2.75 2.75 4.43 2.75 6.5V9C2.75 9.41 2.41 9.75 2 9.75Z" fill="#292D32"></path>
-					<path d="M22 9.75C21.59 9.75 21.25 9.41 21.25 9V6.5C21.25 4.43 19.57 2.75 17.5 2.75H15C14.59 2.75 14.25 2.41 14.25 2C14.25 1.59 14.59 1.25 15 1.25H17.5C20.39 1.25 22.75 3.6 22.75 6.5V9C22.75 9.41 22.41 9.75 22 9.75Z" fill="#292D32"></path>
-					<path d="M17.5 22.75H16C15.59 22.75 15.25 22.41 15.25 22C15.25 21.59 15.59 21.25 16 21.25H17.5C19.57 21.25 21.25 19.57 21.25 17.5V16C21.25 15.59 21.59 15.25 22 15.25C22.41 15.25 22.75 15.59 22.75 16V17.5C22.75 20.4 20.39 22.75 17.5 22.75Z" fill="#292D32"></path>
-					<path d="M9 22.75H6.5C3.61 22.75 1.25 20.4 1.25 17.5V15C1.25 14.59 1.59 14.25 2 14.25C2.41 14.25 2.75 14.59 2.75 15V17.5C2.75 19.57 4.43 21.25 6.5 21.25H9C9.41 21.25 9.75 21.59 9.75 22C9.75 22.41 9.41 22.75 9 22.75Z" fill="#292D32"></path>
-					<path d="M14 18.25H10C7.58 18.25 6.25 16.92 6.25 14.5V9.5C6.25 7.08 7.58 5.75 10 5.75H14C16.42 5.75 17.75 7.08 17.75 9.5V14.5C17.75 16.92 16.42 18.25 14 18.25ZM10 7.25C8.42 7.25 7.75 7.92 7.75 9.5V14.5C7.75 16.08 8.42 16.75 10 16.75H14C15.58 16.75 16.25 16.08 16.25 14.5V9.5C16.25 7.92 15.58 7.25 14 7.25H10Z" fill="#292D32"></path>
-					<path d="M19 12.75H5C4.59 12.75 4.25 12.41 4.25 12C4.25 11.59 4.59 11.25 5 11.25H19C19.41 11.25 19.75 11.59 19.75 12C19.75 12.41 19.41 12.75 19 12.75Z" fill="#292D32"></path>
-				</svg>
+				{% include "components/svg/credit-score.svg" %}
 				<span>No impact to your credit score</span>
 			</div>
 		</div>

@@ -524,3 +524,84 @@
     }
   }
 }
+
+.whale-card__quiz {
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.whale-card__quiz-row {
+  background-color: rgba(231, 233, 241, .21);
+  border: 1px solid rgba(231, 233, 241, .21);
+  display: flex;
+
+  &>span {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    width: 50%;
+    flex: none;
+  }
+}
+
+.whale-card__quiz-form {
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+
+  label {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+
+
+    &:hover {
+      &>span {
+        background-color: rgba(231, 235, 241, .75);
+      }
+    }
+
+    &>span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4px 6px;
+      width: 100%;
+      height: 100%;
+    }
+
+    input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+
+      &:checked {
+        +span {
+          background-color: #408cf1;
+          color: white;
+        }
+      }
+    }
+  }
+}

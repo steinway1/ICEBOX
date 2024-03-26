@@ -372,6 +372,7 @@ button.dt-paging-button.current {
     a {
       background-color: transparent !important;
       border: none !important;
+
       img {
         width: 20px;
         height: 20px;
@@ -605,6 +606,7 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
       object-position: center center;
     }
   }
+
   thead th {
     background-color: #30598f;
     color: white;
@@ -651,5 +653,76 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 
   input {
     display: none;
+  }
+}
+
+.salespersons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.saleperson-box {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  text-align: center;
+  background-color: rgba(59, 98, 151, .49);
+  border: 1px solid #486c9e;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all .2s;
+  display: flex;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(59, 98, 151, 0);
+    border-color: #66a5fa;
+  }
+
+  &.is-active {
+    background-color: rgba(58, 120, 204, .5);
+    border-color: #3a78cc;
+  }
+
+  span {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    span {
+      font-size: 10px;
+      opacity: .65;
+    }
+  }
+}
+
+.saleperson-box__img-wrap {
+  border-radius: 500px;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  max-width: 80%;
+
+  img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 500px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    opacity: .06;
   }
 }
