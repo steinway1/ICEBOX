@@ -5085,7 +5085,7 @@ var EditArticle = function (articleContent, options) {
     }
   }
   HandleWelcome.summary = (input) => {
-    const value = input.value ? /lorem/i.test(input.value) ? shortLoremText : input.value : shortLoremText
+    const value = input.value ? /lorem/i.test(input.value) ? 'Add Summary' : input.value : 'Add Summary'
     const holder = document.querySelector('.article__title-wrap')
     const box = input.closest('.blog-edit-box')
     if (!holder) throw new Error('JS : Append Welcome Summary : Title Holder not found')
@@ -5694,6 +5694,26 @@ var EditArticle = function (articleContent, options) {
     tinyTitle()
     textBlock()
   }
+  Article.initSplide = function() {
+    const splides = [...document.querySelectorAll('.splide_blog')]
+    for (const splide of splides) {
+      new Splide(splide, {
+        type: 'loop',
+        perPage: 3,
+        pagination: 0,
+        gap: 8,
+        perMove: 1,
+        breakpoints: {
+          768: {
+            perPage: 2
+          },
+          479: {
+            perPage: 1
+          }
+        }
+      }).mount()
+    }
+  }
   Article.init = function () {
     const funcArr = [
       this.setInitialLayout,
@@ -5701,7 +5721,8 @@ var EditArticle = function (articleContent, options) {
       this.bindAddSections,
       this.bindWelcomeSection,
       this.bindDocumentEvents,
-      this.bindTip
+      this.bindTip,
+      this.initSplide
     ]
     for (const func of funcArr) {
       try { func() }
