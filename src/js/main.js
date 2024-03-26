@@ -55,6 +55,35 @@ $.fn.extend({
 
 
 /* #region  Utils */
+function createElem(tagName, options) {
+  const { className, id, innerHTML, style, attributes, toAppend } = options
+  const elem = document.createElement(tagName)
+  if (className) elem.className = className;
+  if (id) elem.id = id;
+  if (innerHTML) elem.innerHTML = innerHTML;
+  if (style) {
+    for (const key in options.style) { elem.style[key] = options.style[key] }
+  }
+  if (attributes) {
+    for (const key in options.attributes) { elem.setAttribute(key, options.attributes[key]) }
+  }
+  if (toAppend) {
+    for (const child of toArray(toAppend)) { elem.appendChild(child) }
+  }
+  return elem
+}
+function removeClasses(target, ...classes) {
+  for (const cls of classes) {
+    target.classList.remove(cls)
+  }
+}
+
+function addClasses(target, ...classes) {
+  for (const cls of classes) {
+    target.classList.add(cls)
+  }
+}
+
 const getEvtDOM = (att) => {
   return $(`[data-evt="${att}"]`);
 },
