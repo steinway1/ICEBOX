@@ -55,60 +55,60 @@
 				</div>
 				<!-- #endregion ITEM : TOP -->
 
+				<div class="am-item__space-row">
 
-				<div class="am-item__details">
-
-					{% if item.stockTags is defined %}
+					<div class="am-item__details">
+						{% if item.stockTags is defined %}
+							<div class="am-item__details-row">
+								{% for tag in item.stockTags %}
+									<span class="am-item__color-tag{% if tag.stock == false %} tag_blue{% endif %}">{{tag.value}}</span>
+								{% endfor %}
+							</div>
+						{% endif %}
+						{% if item.links is defined %}
+							<div class="am-item__details-row">
+								{% for link in item.links %}
+									<a href="{{link.url}}" class="am-item__link">{{link.title}}</a>
+								{% endfor %}
+							</div>
+						{% endif %}
+						<div class="am-item__details-row to_space">
+							<div class="flex-row_8">
+								{% for tag in item.tags %}
+									<span class="am-item__tag">{{tag.value}}</span>
+								{% endfor %}
+							</div>
+						</div>
 						<div class="am-item__details-row">
-							{% for tag in item.stockTags %}
-								<span class="am-item__color-tag{% if tag.stock == false %} tag_blue{% endif %}">{{tag.value}}</span>
-							{% endfor %}
-						</div>
-					{% endif %}
-
-					{% if item.links is defined %}
-						<div class="am-item__details-row">
-							{% for link in item.links %}
-								<a href="{{link.url}}" class="am-item__link">{{link.title}}</a>
-							{% endfor %}
-						</div>
-					{% endif %}
-
-					<div class="am-item__details-row to_space">
-						<div class="flex-row_8">
-							{% for tag in item.tags %}
-								<span class="am-item__tag">{{tag.value}}</span>
-							{% endfor %}
-						</div>
-						<div class="am-item__price-wrap">
-							<div class="am-item__price">
-								{% if item.price.sale is defined %}
-									<span class="off-price">{{item.price.sale}}% OFF</span>
-								{% endif %}
-								${{item.price.value}}
+							<div class="am-item__note-wrap">
+								<div class="am-item__note-form">
+									<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_{{itemID}}">
+									<button data-am-evt="submitNote" onclick="addNotes({{itemID}})">Add</button>
+								</div>
+								{% for note in item.notes %}
+									<div class="am-item-note">
+										<div>
+											<span>{{note.author}}</span>:
+											{{note.text}}
+										</div>
+										<div>{{note.date}}</div>
+									</div>
+								{% endfor %}
 							</div>
 						</div>
 					</div>
 
-					<div class="am-item__details-row">
-						<div class="am-item__note-wrap">
-							<div class="am-item__note-form">
-								<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_{{itemID}}">
-								<button data-am-evt="submitNote" onclick="addNotes({{itemID}})">Add</button>
-							</div>
-							{% for note in item.notes %}
-								<div class="am-item-note">
-									<div>
-										<span>{{note.author}}</span>:
-										{{note.text}}
-									</div>
-									<div>{{note.date}}</div>
-								</div>
-							{% endfor %}
+					<div class="am-item__price-wrap">
+						<div class="am-item__price">
+							{% if item.price.sale is defined %}
+								<span class="off-price">{{item.price.sale}}% OFF</span>
+							{% endif %}
+							${{item.price.value}}
 						</div>
 					</div>
 
 				</div>
+
 			</div>
 		{% endfor %}
 	</div>

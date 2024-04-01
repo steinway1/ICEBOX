@@ -529,6 +529,10 @@
   grid-column-gap: 18px;
   flex-wrap: nowrap;
   justify-content: space-between;
+
+  @include maxWidthXs {
+    align-items: flex-start;
+  }
 }
 
 .am-item__details-row.to_end {
@@ -763,5 +767,22 @@
   .am-item-note {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+.am-item__space-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: nowrap;
+
+  .am-item__details-row {
+    padding-right: 0px;
+  }
+
+  &>.am-item__price-wrap {
+    padding-top: 20px;
+    padding-right: 20px;
   }
 }

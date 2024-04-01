@@ -19275,7 +19275,9 @@ width: calc(50% - 8px)
 }
 
 .store-block {
-  height: 100%;
+  flex: 1 auto;
+  max-width: 360px;
+  min-width: 260px;
   background-color: #fff;
   border: 1px solid #f3f3f3;
   flex-direction: column;
@@ -19329,8 +19331,10 @@ width: calc(50% - 8px)
   grid-template-rows: auto;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-columns: 1fr;
-  align-items: start;
-  display: grid;
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   position: relative;
 }
 
@@ -30132,6 +30136,18 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     padding-left: 0px;
   }
 
+  .store-block {
+    display: flex;
+    width: 100%;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-left: auto;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+  }
+
   .locations__book-benefits-group {
     width: 100%;
     margin-top: 34px;
@@ -32348,21 +32364,6 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
 
   .locations__map-embed {
     height: 400px;
-  }
-
-  .store-block {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    width: 100%;
-    margin-right: auto;
-    margin-bottom: 20px;
-    margin-left: auto;
-    -webkit-box-align: stretch;
-    -webkit-align-items: stretch;
-    -ms-flex-align: stretch;
-    align-items: stretch;
   }
 
   .locations__stores-head {

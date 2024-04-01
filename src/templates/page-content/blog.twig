@@ -30,6 +30,49 @@
 					<div class="article__content">
 						{{article.content | raw}}
 					</div>
+
+					<div class="article__content editable__content">
+						<div class="blog__cards-grid">
+							{% for i in 0..2 %}
+								<div class="blog-card">
+									<a href="#" target="_blank" class="blog-card__media">
+										<img src="./assets/product-sample1.webp" alt="">
+									</a>
+									<div class="blog-card__details">
+										<h5 class="blog-card__name">
+											<a href="" target="_blank">Prong Set Diamond Tennis Bracelet 14K Solid Gold 1.50ctw</a>
+										</h5>
+										<span class="blog-card__price">$11,190</span>
+										<a href="#" target="_blank" class="blog-card__link">Shop Now</a>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+
+						{# Product Section -- Items in SLIDER -- Result HTML #}
+						<div class="article-content-section --slider" data-content-type="product">
+							<div class="splide splide_blog">
+								<div class="splide__track">
+									<div class="splide__list">
+										{% for i in 0..10 %}
+											<div class="blog-card splide__slide">
+												<a href="#" target="_blank" class="blog-card__media">
+													<img src="./assets/product-sample1.webp" alt="">
+												</a>
+												<div class="blog-card__details">
+													<h5 class="blog-card__name">
+														<a href="" target="_blank">Prong Set Diamond Tennis Bracelet 14K Solid Gold 1.50ctw</a>
+													</h5>
+													<span class="blog-card__price">$11,190</span>
+													<a href="#" target="_blank" class="blog-card__link">Shop Now</a>
+												</div>
+											</div>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<div class="article__share-block">
