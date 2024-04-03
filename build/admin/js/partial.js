@@ -790,20 +790,13 @@ const whaleCards = {
     parent.insertAdjacentHTML('beforeend', html)
   },
   updateRadioQuiz: function () {
-    const cards = [...document.querySelectorAll('#grid_view .whale-card')]
-    for (const card of cards) {
-      const labels = [...card.querySelectorAll('.whale-card__quiz label')]
-      for (const label of labels) {
-        const input = label.querySelector('input[type="radio"]')
-        if (input) {
-          if (input.checked) {
-            console.log([card, label, input])
-            input.checked = !input.checked
-            setTimeout(() => {
-              input.checked = !input.checked
-            }, 1);
-          }
-        }
+    const inputs = [...document.querySelectorAll('#grid_view input[type="radio"]')]
+    for (const input of inputs) {
+      if (input.checked) {
+        input.checked = !input.checked
+        setTimeout(() => {
+          input.checked = !input.checked
+        }, 1);
       }
     }
   },
