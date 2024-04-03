@@ -752,6 +752,7 @@ const whaleCards = {
   init: function () {
     const main = document.querySelector('.main_whales')
     if (main) {
+      this.updateRadioQuiz()
       Object.values(this.initFn).forEach((fn) => {
         if (typeof fn === 'function') {
           try {
@@ -787,6 +788,16 @@ const whaleCards = {
       </div>
      `
     parent.insertAdjacentHTML('beforeend', html)
+  },
+  updateRadioQuiz: function() {
+    const labels = [...document.querySelectorAll('.whale-card .whale-card__quiz label')]
+    for (const label of labels) {
+      const input = label.querySelector('input')
+      if (input && input.type === 'radio' && input.checked) {
+        input.checked = false
+        input.checked = true
+      }
+    }
   },
   initFn: {
     setInitialStats: () => {

@@ -964,12 +964,45 @@
   margin-bottom: 0;
   padding-left: 0;
   font-weight: 400;
-  // -webkit-touch-callout: none;
-  // -webkit-user-select: none;
-  // -khtml-user-select: none;
-  // -moz-user-select: none;
-  // -ms-user-select: none;
-  // user-select: none;
+
+  &.--disabled {
+    display: block;
+    margin-bottom: 14px;
+    pointer-events: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &::after {
+      content: 'We do not accept this for plain watches.';
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 6px 12px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 6px;
+      background-color: #f5f8fa;
+    }
+
+    .pseudo-radio {
+      cursor: not-allowed !important;
+      filter: grayscale(100%);
+      opacity: 0.5;
+    }
+
+    .checkout-form__radio-details {
+      display: none !important;
+    }
+
+    .pseudo-radio__input {
+      border-color: #cfd6df !important;
+    }
+  }
 }
 
 .checkout__sub-form {

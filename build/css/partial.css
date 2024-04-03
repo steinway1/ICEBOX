@@ -11140,6 +11140,12 @@ input.custom-range[type=range]::-webkit-slider-thumb:active {
   border-color: #0095c6;
 }
 
+#optionGoldColor .option-btn {
+  font-size: 13px;
+  flex: auto;
+  line-height: 18px;
+}
+
 .color-gradient {
   width: 18px;
   height: 18px;
@@ -16777,6 +16783,45 @@ input.custom-range[type=range]::-webkit-slider-thumb:active {
   margin-bottom: 0;
   padding-left: 0;
   font-weight: 400;
+}
+
+.checkout-form__radio-row.--disabled {
+  display: block;
+  margin-bottom: 14px;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkout-form__radio-row.--disabled::after {
+  content: "We do not accept this for plain watches.";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 6px;
+  background-color: #f5f8fa;
+}
+
+.checkout-form__radio-row.--disabled .pseudo-radio {
+  cursor: not-allowed !important;
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+.checkout-form__radio-row.--disabled .checkout-form__radio-details {
+  display: none !important;
+}
+
+.checkout-form__radio-row.--disabled .pseudo-radio__input {
+  border-color: #cfd6df !important;
 }
 
 .checkout__sub-form {
