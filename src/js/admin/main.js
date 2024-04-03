@@ -786,13 +786,16 @@ const whaleCards = {
      `
     parent.insertAdjacentHTML('beforeend', html)
   },
-  updateRadioQuiz: function() {
-    const labels = [...document.querySelectorAll('.whale-card .whale-card__quiz label')]
-    for (const label of labels) {
-      const input = label.querySelector('input')
-      if (input && input.type === 'radio' && input.checked) {
-        input.checked = false
-        input.checked = true
+  updateRadioQuiz: function () {
+    const cards = [...document.querySelectorAll('#grid_view .whale-card')]
+    console.log('Update radio called')
+    for (const card of cards) {
+      const label = card.querySelector('.whale-card__quiz label')
+      if (label) {
+        const input = label.querySelector('input[type="radio"]')
+        if (input) {
+          console.log([card, label, input, input.checked])
+        }
       }
     }
   },
@@ -1456,7 +1459,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setElementWidthPercent(progressBarLine, y)
 
   window.onscroll = () => {
-    y = window.scrollY    
+    y = window.scrollY
     setElementWidthPercent(progressBarLine, calculatePercentage(y, fullHeight))
   }
 })
