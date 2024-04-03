@@ -789,12 +789,12 @@ const whaleCards = {
   updateRadioQuiz: function () {
     const cards = [...document.querySelectorAll('#grid_view .whale-card')]
     for (const card of cards) {
-      const label = card.querySelector('.whale-card__quiz label')
-      if (label) {
+      const labels = [...card.querySelectorAll('.whale-card__quiz label')]
+      for (const label of labels) {
         const input = label.querySelector('input[type="radio"]')
         if (input) {
           if (input.checked) {
-            console.log(input)
+            console.log([card, label, input])
             input.checked = !input.checked
             setTimeout(() => {
               input.checked = !input.checked
