@@ -1,0 +1,117 @@
+{% set tracking = order.tracking %}
+<div
+	class="tracking__boxes-wrap">
+
+	{# Order Information #}
+	<div class="track-box --info">
+		<div class="wrapper">
+			<div class="flex_between">
+				<div>
+					<h3 class="track-title">Order Information<span>{{tracking.current_status}}</span>
+					</h3>
+					<div class="track-price">$
+						{{order.value}}</div>
+					<p>Order
+						<span>#{{order.id}}</span>
+						was placed on
+						<span>{{order.date}}</span>
+						and is currently in
+						<span>{{tracking.current_status}}</span>.
+					</p>
+					<p>Estimate delivery time:
+						<span>{{tracking.estimated_delivery}}</span>
+					</p>
+					<div class="tracking-items">
+						{% for item in order.items %}
+							<div class="tracking-item">
+								<a href="{{item.url}}" target="_blank" class="tracking-item__media">
+									<img src="{{item.src}}" alt="">
+								</a>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<button class="track-btn">Track Another Order</button>
+			</div>
+		</div>
+	</div>
+
+	{# Order Status #}
+	<div class="track-box --status">
+		<div class="wrapper">
+			<div class="track-box__wrapper">
+				<div>
+					<h3 class="track-title">Order Status</h3>
+					<p>Last updated today at
+						<span data-track="updated_date">Calculating...</span>
+					</p>
+				</div>
+				<div class="track-line">
+					{% for step in tracking.steps %}
+						<div class="track-step {{step.class}}{% if step.active == true %} --active{% endif %}{% if step.done == true %} --done{% endif %}">
+							<div class="track-step__top">
+								<div class="track-step__icon"></div>
+							</div>
+							<div class="track-step__details">
+								<h6>{{step.title}}</h6>
+								{% for detail in step.details %}
+									<span>{{detail}}</span>
+								{% endfor %}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{# Order Details #}
+	<div class="track-box --details">
+		<div class="wrapper">
+			<div class="track-box__wrapper">
+				<div>
+					<h3 class="track-title">Order Details</h3>
+					<p>
+						<span>{{order.items|length}}</span>
+						items in order with total value:
+						<span>${{order.value}}
+							USD.</span>
+					</p>
+				</div>
+				<div class="tracking-items">
+					{% for item in order.items %}
+						<div class="tracking-item">
+							<a href="{{item.url}}" target="_blank" target="_blank" class="tracking-item__media">
+								<img src="{{item.src}}" alt="">
+							</a>
+							<div>
+								<a href="{{item.url}}" target="_blank" class="tracking-item__name">{{item.title}}</a>
+								<div class="tracking-item__price">${{item.price}}</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+				<div>
+					<div class="tracking-details__row">
+						<span>Shipping</span>
+						<span>{{order.shipping_method}}</span>
+					</div>
+					<div class="tracking-details__row">
+						<span>Payment Method</span>
+						<span>{{order.payment_method}}</span>
+					</div>
+					<div class="tracking-details__row">
+						<span>Status</span>
+						<span>{{order.tracking.current_status}}</span>
+					</div>
+					<div class="tracking-details__row">
+						<span>Total Value</span>
+						<span>${{order.value}}
+							USD</span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

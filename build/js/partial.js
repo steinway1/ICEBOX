@@ -2549,6 +2549,24 @@ const pageEls = new Object({
         })
       }
     },
+    trackingDateUpdate: () => {
+      const dates = [...document.querySelectorAll('[data-track="updated_date"]')]
+      const nowDate = new Date()
+
+      if (dates.length) {
+        const day = nowDate.getDate()
+        const month = nowDate.toLocaleDateString('en-US', { month: 'short' })
+        const year = nowDate.getFullYear()
+        let hours = nowDate.getHours()
+        const minutes = nowDate.getMinutes().toString().padStart(2, '0')
+        const ampm = hours >= 12 ? 'PM' : 'AM'
+        hours = hours % 12 || 12
+
+        for (const date of dates) {
+          date.innerHTML = `${day} ${month}, ${year}, ${hours}:${minutes} ${ampm}`
+        }
+      }
+    },
     pageFilters: () => {
       let filterRows = Array.from($('.filter-row'))
       for (let i = 0; i < filterRows.length; i++) {

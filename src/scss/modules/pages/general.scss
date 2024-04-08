@@ -1197,3 +1197,16 @@ input.custom-range[type="range"] {
     font-weight: 600;
   }
 }
+
+.flex_between {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 18px;
+
+  @include maxWidthSm {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
