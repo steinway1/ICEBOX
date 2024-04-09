@@ -1283,12 +1283,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const pageToolbar = {
     menuOpened: false,
     sortOpened: false,
+    pointsOpened: false,
     filterOpened: false,
     elem: document.querySelector('.toolbar'),
     menu: document.querySelector('.toolbar-menu'),
     sortMenu: document.querySelector('#toolbarSort'),
+    pointsMenu: document.querySelector('#toolbarPoints'),
     filterMenu: document.querySelector('#toolbarFilter'),
     sortToggleArr: document.querySelectorAll('[data-evt="toggleSortMenu"]'),
+    ptsToggleArr: document.querySelectorAll('[data-evt="togglePoints"]'),
     filterToggleArr: document.querySelectorAll('[data-evt="toggleFilterMenu"]'),
     resetFormArr: document.querySelectorAll('[data-evt="resetToolbarForm"]'),
 
@@ -1310,9 +1313,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (this.menu) {
         this.menuOpened = true
         this.elem.classList.add(IS_ACTIVE)
+        const heightElem = document.querySelector('.toolbar-menu__wrapper')
         setTimeout(() => {
-          this.menu.style.height = `${this.menu.scrollHeight}px`
-        }, 10)
+          this.menu.style.height = `${heightElem.scrollHeight}px`
+        }, 30)
       }
     },
     closeMenu: function () {
@@ -1344,16 +1348,38 @@ document.addEventListener('DOMContentLoaded', () => {
           this.openMenu()
           this.sortOpened = true
           this.sortMenu.style.display = 'block'
-          this.filterMenu.style.display = 'none'
+          this.pointsMenu.style.display = 'none'
         } else {
-          if (!this.filterOpened) {
+          if (!this.filterOpened && !this.pointsOpened) {
             this.closeMenu()
             this.sortOpened = false
           } else {
             this.sortOpened = true
             this.filterOpened = false
+            this.pointsOpened = false
             this.sortMenu.style.display = 'block'
-            this.filterMenu.style.display = 'none'
+            this.pointsMenu.style.display = 'none'
+            this.adjustMenuHeight()
+          }
+        }
+      }
+    },
+    openPoints: function() {
+      if (this.menu && this.pointsMenu) {
+        if (!this.menuOpened) {
+          this.pointsOpened = true
+          this.pointsMenu.style.display = 'block'
+          this.sortMenu.style.display = 'none'
+          this.openMenu()
+        } else {
+          if (!this.sortOpened) {
+            this.closeMenu()
+            this.pointsOpened = false
+          } else {
+            this.pointsOpened = true
+            this.sortOpened = false
+            this.pointsMenu.style.display = 'block'
+            this.sortMenu.style.display = 'none'
             this.adjustMenuHeight()
           }
         }
@@ -1404,6 +1430,11 @@ document.addEventListener('DOMContentLoaded', () => {
       this.filterToggleArr.forEach((btn) => {
         btn.onclick = () => {
           this.openFilter()
+        }
+      })
+      this.ptsToggleArr.forEach((btn) => {
+        btn.onclick = () => {
+          this.openPoints()
         }
       })
       this.resetFormArr.forEach((btn) => {

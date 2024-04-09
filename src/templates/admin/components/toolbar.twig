@@ -22,21 +22,24 @@
 							</div>
 						</div>
 					{% endif %}
-					{# FILTERS #}
-					{# <div id="toolbarFilter" class="toolbar-content">
+					<div id="toolbarPoints" class="toolbar-content">
 						<div class="toolbar-form">
-							<button data-evt="resetToolbarForm" class="toolbar-form-reset">Reset</button>
-							{% for Filter in page_filters %}
-								<label>
-									<input type="checkbox" id="{{Filter.id}}" name="{{Filter.name}}"/>
-									<div>
-										<span>{{Filter.caption}}</span>
-										<span></span>
+							{% for user in users %}
+								<div class="pts-menu__user">
+									<div class="pts-menu__info-group">
+										<div class="pts-menu__user-emblem">
+											<span>{{loop.index}}</span>
+										</div>
+										<span class="pts-menu__user-name">{{user.full_name}}</span>
 									</div>
-								</label>
+									<div class="pts-menu__score-group">
+										<span>{{user.pts}}
+											PTS</span>
+									</div>
+								</div>
 							{% endfor %}
 						</div>
-					</div> #}
+					</div>
 				</div>
 
 			</div>
@@ -47,12 +50,6 @@
 						<span>Sort</span>
 					</button>
 				{% endif %}
-				{# {% if page_filters %}
-					<button data-evt="toggleFilterMenu" class="toolbar-btn">
-						{% include "admin/svg/icon_filter.svg" %}
-						<span>Filter</span>
-					</button>
-				{% endif %} #}
 				<button data-evt="togglePoints" class="toolbar-btn">
 					<div data-lottie="diamondSpin"></div>
 					<span>
