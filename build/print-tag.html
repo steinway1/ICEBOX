@@ -53,7 +53,7 @@
                     <h2>Print Tag
                         <span>Fill up the fields to create a new tag.</span>
                     </h2>
-                    <button>Print Tag</button>
+                    <button data-print="tag">Print Tag</button>
                 </div>
                 <form id="formpage_form" method="get" class="formpage__form">
                     <div class="formpage__dbl">
@@ -145,8 +145,13 @@
 
                         <div class="formpage__tag-preview">
                             <h4>Tag Preview</h4>
-                            <div class="tag-preview__output"></div>
-                            <div class="tag-preview__pic"></div>
+                            <div class="printable-tag">
+                                <img class="printable-tag__logo" src="./assets/logo.svg" alt="">
+                                <div class="tag-preview__pic-wrap">
+                                    <div class="tag-preview__pic"></div>
+                                </div>
+                                <div class="tag-preview__output"></div>
+                            </div>
                         </div>
 
                     </div>
@@ -161,8 +166,7 @@
         <div class="tag-preview-modal">
             <div class="tag-preview-modal__backdrop"></div>
             <div class="tag-preview-modal__container">
-                <div class="tag-preview-modal__wrapper">
-                </div>
+                <div class="tag-preview-modal__wrapper"></div>
                 <div class="tag-preview-modal__controls">
                     <button>Print Tag</button>
                     <button data-evt="togglePrintTagPreview">Close</button>

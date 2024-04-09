@@ -24286,12 +24286,10 @@ width: calc(50% - 8px)
 
 .main_print-tag .tag-preview__pic {
   width: 100%;
-  aspect-ratio: 1/1;
-  border-radius: 14px;
+  height: 100%;
   justify-content: center;
   align-items: center;
   display: flex;
-  border: 1px solid #9dc2dd;
   background-color: white;
   background-size: contain;
   background-repeat: no-repeat;
@@ -24305,17 +24303,9 @@ width: calc(50% - 8px)
 
 .main_print-tag .tag-preview__pic.is-empty::after {
   content: "Fill P# or Upload Image";
+  font-size: 12px;
+  font-weight: 600;
   color: #748190;
-}
-
-.main_print-tag .tag-preview__output > div:last-child {
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
-
-.main_print-tag .tag-preview__output > div:first-child {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
 }
 
 .main_print-tag .tag-preview__output.is-empty {
@@ -24325,18 +24315,31 @@ width: calc(50% - 8px)
   display: flex;
   text-align: center;
   background-color: #f7f9fc;
-  border-radius: 14px;
 }
 
 .main_print-tag .tag-preview__output.is-empty::after {
+  font-size: 12px;
+  font-weight: 600;
   content: "Fill in the fields to show tag preview";
   color: #748190;
 }
 
-.main_print-tag .tag-output-row {
-  border: 1px solid #9dc2dd;
-  margin-bottom: -1px;
+.main_print-tag .tag-preview__output:not(.is-empty) {
   display: flex;
+  flex-flow: wrap;
+}
+
+.main_print-tag .tag-output-row {
+  border: 1px solid #dfe5ec;
+  flex-flow: column;
+  flex: 40%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-width: 30%;
+  margin-bottom: -1px;
+  margin-right: -1px;
+  padding: 4px 10px;
+  display: block;
   overflow: hidden;
 }
 
@@ -24347,17 +24350,26 @@ width: calc(50% - 8px)
 }
 
 .main_print-tag .tag-output-row > span:first-child {
-  color: #748190;
-  background-color: rgba(157, 194, 221, 0.09);
-  border-right: 1px solid #9dc2dd;
+  color: #868d96;
   flex: none;
-  padding: 10px 14px;
+  align-items: center;
+  width: 100%;
+  margin-bottom: -1px;
+  padding: 0;
+  font-size: 10px;
   font-weight: 600;
+  line-height: 18px;
+  display: flex;
 }
 
 .main_print-tag .tag-output-row > span:last-child {
-  padding: 10px 14px;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  font-size: 12px;
   font-weight: 600;
+  line-height: 22px;
+  display: flex;
 }
 
 .print-tag__controls {
@@ -24491,6 +24503,47 @@ width: calc(50% - 8px)
 .tag-preview-modal__controls > button:last-child {
   background-color: #f5f7fa;
   color: black;
+}
+
+.printable-tag {
+  display: flex;
+  flex-direction: column;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  aspect-ratio: 1/1.58;
+  border: 1px dashed #dfe5ec;
+  padding: 20px 10px 10px;
+  overflow: hidden;
+}
+
+.tag-preview__pic-wrap {
+  position: relative;
+  aspect-ratio: 16/9;
+  flex: none;
+}
+
+.tag-preview__pic-wrap::after {
+  content: "";
+  opacity: 0.05;
+  z-index: 2;
+  background-image: linear-gradient(326deg, #03244d 13%, #e4f2ff 56%, #1c2c3c);
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  overflow: hidden;
+}
+
+.printable-tag__logo {
+  width: 120px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  flex: none;
 }
 
 .main_tracking {
