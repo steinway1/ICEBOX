@@ -1,0 +1,87 @@
+<div
+	class="am-item --finance">
+
+	{# Card Overlay #}
+	<div class="am-item__over">
+		<div>
+			<span>Submit #{{submit.number}}</span>
+			<span>${{submit.amount}}
+				USD</span>
+		</div>
+	</div>
+
+	<div class="am-item__body">
+		<div
+			class="am-item__row">
+
+			<!-- #region ITEM : TOP -->
+			<div class="am-item__main">
+				<div class="am-item__main-details">
+					<h4 class="am-item__title">{{submit.first_name}}
+						{{submit.last_name}}</h4>
+					<div class="am-item__subtitle">{{submit.amount}}</div>
+				</div>
+			</div>
+			<!-- #endregion ITEM : TOP -->
+
+			<div class="am-item__space-row">
+				<div class="am-item__details">
+
+					<div class="am-item__fin-details">
+						{% for detail in submit.details %}
+							<div>
+								<span>{{detail.label}}</span>
+								<span>
+									{% if detail.is_link == true %}
+										<a href="{{detail.value}}">{{detail.value}}</a>
+									{% else %}
+										{{detail.value}}
+									{% endif %}
+								</span>
+							</div>
+						{% endfor %}
+					</div>
+
+					<div class="am-item__fin-quiz">
+						{% for answer in submit.quiz %}
+							<div>
+								<span>{{answer.label}}</span>
+								<span>{{answer.value}}</span>
+							</div>
+						{% endfor %}
+					</div>
+
+					{% if submit.uploads.length > 0 %}
+						<div class="am-item__fin-uploads">
+							<h5>Uploaded Images</h5>
+							<div class="fin-uploads-wrap">
+								{% for upload in submit.uploads %}
+                  <img src="{{upload.img_src}}" alt="">
+                {% endfor %}
+							</div>
+						</div>
+					{% endif %}
+
+					<div class="am-item__details-row --form">
+						<div class="am-item__note-wrap">
+							<div class="am-item__note-form">
+								<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_{{itemID}}">
+								<button data-am-evt="submitNote" onclick="addNotes({{itemID}})">Add</button>
+							</div>
+							{% for note in item.notes %}
+								<div class="am-item-note">
+									<div>
+										<span>{{note.author}}</span>:
+										{{note.text}}
+									</div>
+									<div>{{note.date}}</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

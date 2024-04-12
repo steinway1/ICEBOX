@@ -2723,6 +2723,23 @@ body.blue_head .am-select:hover {
   background-color: #d64c57;
 }
 
+.am-item.--finance .am-item__details {
+  width: 100%;
+  padding: 26px;
+  padding-bottom: 0;
+  gap: 18px;
+}
+
+.am-item.--finance .am-item__details-row {
+  padding: 0;
+}
+
+.am-item h5,
+.am-item h6 {
+  font-weight: 600;
+  line-height: 28px;
+}
+
 .am-item__over {
   pointer-events: none;
   border: 2px solid #408cf1;
@@ -3180,6 +3197,10 @@ body.blue_head .am-select:hover {
   flex-wrap: wrap !important;
 }
 
+.am-item__details-row.--form {
+  width: 100%;
+}
+
 .am-item__details-row.to_space {
   grid-column-gap: 18px;
   flex-wrap: nowrap;
@@ -3327,6 +3348,119 @@ body.blue_head .am-select:hover {
 .am-item__space-row > .am-item__price-wrap {
   padding-top: 20px;
   padding-right: 20px;
+}
+
+.am-item__subtitle {
+  color: var(--navy_blue);
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.am-item__fin-details {
+  flex-flow: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  display: flex;
+}
+
+.am-item__fin-details > div {
+  border: 1px solid #dbe1eb;
+  width: 25%;
+  margin-bottom: -1px;
+  margin-right: -1px;
+  padding: 8px;
+}
+
+.am-item__fin-details > div a {
+  color: var(--navy_blue);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.am-item__fin-details > div a:hover {
+  text-decoration: none;
+  color: var(--bright_blue);
+}
+
+.am-item__fin-details > div > span {
+  display: block;
+}
+
+.am-item__fin-details > div > span:first-child {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.am-item__fin-details > div > span:last-child {
+  font-size: 13px;
+  line-height: 22px;
+}
+
+.am-item__fin-quiz {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  flex-flow: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+}
+
+.am-item__fin-quiz > div {
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+  white-space: nowrap;
+  flex-flow: column;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+}
+
+.am-item__fin-quiz > div > span {
+  display: block;
+}
+
+.am-item__fin-quiz > div > span:last-child {
+  background-color: var(--bright_blue);
+  color: #fff;
+  padding-left: 8px;
+  max-width: 200px;
+  padding-right: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 22px;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.am-item__fin-uploads {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fin-uploads-wrap {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  flex-flow: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 8px;
+  display: flex;
+}
+
+.fin-uploads-wrap > img {
+  object-fit: cover;
+  width: 48px;
+  height: 48px;
 }
 
 table.dataTable thead th {
@@ -7171,6 +7305,10 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
     display: flex;
   }
 
+  .am-item__fin-details > div {
+    width: 33%;
+  }
+
   .tb-box__controls {
     gap: 6px;
   }
@@ -7255,6 +7393,10 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   .am-item__main-spot {
     width: 100%;
     margin-left: 0;
+  }
+
+  .am-item__fin-details > div {
+    width: 50%;
   }
 
   .tb-controls-group {
@@ -7587,6 +7729,10 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
     min-width: 100px;
   }
 
+  .am-item.--finance .am-item__details {
+    padding: 20px;
+  }
+
   .am-item__body > div.am-item__row:not(:first-child) {
     padding-top: 20px;
   }
@@ -7664,6 +7810,24 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   .am-item-note {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .am-item__fin-details > div > span:last-child {
+    text-align: right;
+  }
+
+  .am-item__fin-details > div {
+    grid-column-gap: 14px;
+    grid-row-gap: 14px;
+    justify-content: space-between;
+    width: 100%;
+    margin-right: 0;
+    display: flex;
+  }
+
+  .am-item__fin-quiz > div {
+    flex: none;
+    width: 100%;
   }
 
   .tb-btn {

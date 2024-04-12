@@ -6118,8 +6118,12 @@ class LoanApp {
       input.addEventListener('keydown', (e) => {
         this.clearErrors()
         const isEnter = e.key === 'Enter'
+        const isTab = e.key === 'Tab'
         if (isEnter) {
           this.evtGo[0].click()
+        }
+        if (isTab) {
+          e.preventDefault()
         }
       })
     })
