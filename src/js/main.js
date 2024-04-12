@@ -5614,6 +5614,7 @@ class LoanApp {
     this.content = this.holder.querySelector('.loan-case__content')
     this.scroller = this.holder.querySelector('.loan-scroller')
     this.footer = this.holder.querySelector('.loan-case__footer')
+    this.btnGroup = this.holder.querySelector('.loan-case__btn-group')
     this.evtGo = [...this.holder.querySelectorAll('[data-loan-evt="go"]')]
     this.evtBack = [...this.holder.querySelectorAll('[data-loan-evt="back"]')]
     this.bar = this.holder.querySelector('.loan-bar')
@@ -5623,6 +5624,7 @@ class LoanApp {
     this.stepsLeft = undefined
     this.endReached = undefined
     this.atStart = undefined
+    this.data = {}
     this.settings = {
       scrollSpeed: settings.scrollSpeed || 600,
       easing: settings.easing || 'cubic-bezier(.39, .575, .565, 1)',
@@ -5650,6 +5652,23 @@ class LoanApp {
                                 </div>
                             </div>
     `
+  }
+  createElem(tagName, options) {
+    const { className, id, innerHTML, style, attributes, toAppend } = options
+    const elem = document.createElement(tagName)
+    if (className) elem.className = className;
+    if (id) elem.id = id;
+    if (innerHTML) elem.innerHTML = innerHTML;
+    if (style) {
+      for (const key in options.style) { elem.style[key] = options.style[key] }
+    }
+    if (attributes) {
+      for (const key in options.attributes) { elem.setAttribute(key, options.attributes[key]) }
+    }
+    if (toAppend) {
+      for (const child of toArray(toAppend)) { elem.appendChild(child) }
+    }
+    return elem
   }
   toArray(target) {
     return Array.isArray(target) ? target : [target]
@@ -5706,6 +5725,60 @@ class LoanApp {
   /**
    * Main
    */
+  save() {
+    this.data = {}
+    for (const section of this.sections) {
+      const inputs = [...section.querySelectorAll('input[type="text"], input[type="email"]')]
+      const sectionID = section.dataset.loanSection
+
+      switch (sectionID) {
+        case 'id':
+          const images = this.filesHolder.querySelectorAll('img')
+          this.data.uploads = {}
+          images.forEach((img, index) => {
+            const name = `upload_${index}`
+            this.data.uploads[name] = img.outerHTML
+          })
+          break;
+        case 'companies':
+          const radios = [...section.querySelectorAll('input[type="radio"]')]
+          if (radios.length) {
+            const active = radios.find(el => el.checked)
+            if (active) {
+              const key = active.getAttribute('name')
+              this.data[key] = active.value
+            } else {
+              this.data['loan_finance'] = 'No'
+            }
+          }
+          break;
+        default:
+          for (const input of inputs) {
+            const key = input.id
+            if (!key) {
+              console.error(`No ID found in input ${input}`)
+            } else {
+              this.data[key] = input.value
+            }
+          }
+          break
+      }
+    }
+    console.log(this.data)
+  }
+  finishMessage() {
+    const time = 2000
+    this.loadingOn(time)
+    const successMessage = createElem('div', {
+      className: 'loan-case-success',
+      innerHTML: `Financing request was saved, we will contact you as soon as possible`
+    })
+    setTimeout(() => {
+      this.content.style.height = '0px'
+      this.btnGroup.style.display = 'none'
+      this.footer.prepend(successMessage)
+    }, time);
+  }
   slide(section) {
     const height = section.scrollHeight
     const pxToTransform = this.sections.slice(0, this.currentStep).reduce((acc, el) => acc + el.scrollHeight, 0)
@@ -5716,10 +5789,17 @@ class LoanApp {
   }
   go(toStep) {
     if (this.holder.classList.contains(__LOCKED)) return
-    const inputs = [...this.holder.querySelectorAll('input')]
+    const inputs = [...this.holder.querySelectorAll('input'), ...this.holder.querySelectorAll('select')]
     const step = toStep || this.currentStep || 0
     const nextStep = step + 1
     const nextSection = this.sections[nextStep]
+
+    if (!this.sections[nextStep + 1]) {
+      this.evtGo.forEach((btn) => {
+        btn.innerHTML = 'Submit'
+      })
+    }
+
     if (nextSection) {
       inputs.forEach(input => input.blur())
       this.loadingOn()
@@ -5729,6 +5809,9 @@ class LoanApp {
         this.loadingOff()
         this.observeBar()
       }, 1200);
+    } else {
+      this.save()
+      this.finishMessage()
     }
   }
   back(toStep) {
@@ -5738,6 +5821,9 @@ class LoanApp {
     const prevStep = step - 1
     const prevSection = this.sections[prevStep]
     if (prevSection) {
+      this.evtGo.forEach((btn) => {
+        btn.innerHTML = 'Continue'
+      })
       this.currentStep = prevStep
       this.slide(prevSection)
     }
@@ -5873,55 +5959,57 @@ class LoanApp {
     const input = document.querySelector('#loan_id')
     const box = document.querySelector('[data-loan="files_upload"]')
     const holder = this.filesHolder
-    if (!input || !box || !holder) throw new Error('JS : Bind ID Upload : Input or Box or Holder not found')
+    // if (!input || !box || !holder) throw new Error('JS : Bind ID Upload : Input or Box or Holder not found')
 
-    function processFiles(files) {
-      if (!files) throw new Error('No files selected')
-      files = [...files]
-      if (!files.length) return
-      for (const file of files) {
-        if (!file.type.match('image.*')) continue
-        const images = holder.querySelectorAll('img')
-        for (const image of images) {
-          image.remove()
+    if (input && box && holder) {
+      function processFiles(files) {
+        if (!files) throw new Error('No files selected')
+        files = [...files]
+        if (!files.length) return
+        for (const file of files) {
+          if (!file.type.match('image.*')) continue
+          const images = holder.querySelectorAll('img')
+          for (const image of images) {
+            image.remove()
+          }
+          let reader = new FileReader()
+          reader.onload = (e) => {
+            appendImage(e.target.result)
+          }
+          reader.readAsDataURL(file)
         }
-        let reader = new FileReader()
-        reader.onload = (e) => {
-          appendImage(e.target.result)
-        }
-        reader.readAsDataURL(file)
       }
-    }
 
-    function appendImage(imgURL) {
-      const img = createElem('img', {
-        style: {
-          'background-image': `url(${imgURL})`
-        },
-      })
-      holder.append(img)
-    }
+      function appendImage(imgURL) {
+        const img = createElem('img', {
+          style: {
+            'background-image': `url(${imgURL})`
+          },
+        })
+        holder.append(img)
+      }
 
-    box.onclick = () => { input.click() }
-    input.onchange = (e) => {
-      processFiles(e.target.files)
-      input.value = ''
-      setTimeout(() => {
-        this.adjustActiveSectionHeight()
-      }, 10);
-    }
-    box.ondragover = (e) => {
-      e.preventDefault()
-      box.classList.add(IS_ACTIVE)
-    }
-    box.ondragleave = (e) => {
-      e.preventDefault()
-      box.classList.remove(IS_ACTIVE)
-    }
-    box.ondrop = (e) => {
-      e.preventDefault()
-      box.classList.remove(IS_ACTIVE)
-      processFiles(e.dataTransfer.files)
+      box.onclick = () => { input.click() }
+      input.onchange = (e) => {
+        processFiles(e.target.files)
+        input.value = ''
+        setTimeout(() => {
+          this.adjustActiveSectionHeight()
+        }, 10);
+      }
+      box.ondragover = (e) => {
+        e.preventDefault()
+        box.classList.add(IS_ACTIVE)
+      }
+      box.ondragleave = (e) => {
+        e.preventDefault()
+        box.classList.remove(IS_ACTIVE)
+      }
+      box.ondrop = (e) => {
+        e.preventDefault()
+        box.classList.remove(IS_ACTIVE)
+        processFiles(e.dataTransfer.files)
+      }
     }
   }
 
