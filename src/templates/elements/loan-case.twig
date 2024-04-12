@@ -17,6 +17,18 @@
 			<div
 				class="loan-scroller">
 
+        				{# ID & Debit Card #}
+				<div data-loan-section="id" class="loan-case-section">
+					<h6 class="loan-case-section__title">ID &amp; Debit Card<span>Please upload your id and a picture of your debit card front and back of both please - if you don&#x27;t do it now we will have to do it later.</span>
+					</h6>
+					<div class="loan-input-wrap">
+						<div data-loan="files_upload" class="loan-file-input">
+							<input type="file" id="loan_id" accept="image/*" multiple required>
+						</div>
+					</div>
+					<div id="loan_files_upload" class="loan-input-files"></div>
+				</div>
+
 				{# First & last name #}
 				<div data-loan-section="name" data-loan-section="name" class="loan-case-section">
 					<h6 class="loan-case-section__title">First &amp; Last Name</h6>
@@ -118,18 +130,6 @@
 					<div class="loan-input-wrap">
 						<input class="loan-case__input" pattern="[0-9]*" placeholder="Social Security Number" type="text" id="loan_social_number" required>
 					</div>
-				</div>
-
-				{# ID & Debit Card #}
-				<div data-loan-section="id" class="loan-case-section">
-					<h6 class="loan-case-section__title">ID &amp; Debit Card<span>Please upload your id and a picture of your debit card front and back of both please - if you don&#x27;t do it now we will have to do it later.</span>
-					</h6>
-					<div class="loan-input-wrap">
-						<div data-loan="files_upload" class="loan-file-input">
-							<input type="file" id="loan_id" accept="image/*" multiple required>
-						</div>
-					</div>
-					<div id="loan_files_upload" class="loan-input-files"></div>
 				</div>
 
 				{# Other Companies #}

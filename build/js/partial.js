@@ -6183,6 +6183,10 @@ class LoanApp {
       if (!files.length) return
       for (const file of files) {
         if (!file.type.match('image.*')) continue
+        const images = holder.querySelectorAll('img')
+        for (const image of images) {
+          image.remove()
+        }
         let reader = new FileReader()
         reader.onload = (e) => {
           appendImage(e.target.result)
