@@ -1094,12 +1094,9 @@ body {
       border-color: #b3d7ff;
     }
 
-    &:focus+span::before {
-      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    }
-
     &:focus:not(:checked)+span::before {
-      border-color: #80bdff;
+      border-color: #0095c6;
+      background-color: transparent;
     }
 
     &:checked+span::before {
@@ -1208,5 +1205,118 @@ input.custom-range[type="range"] {
   @include maxWidthSm {
     flex-direction: column;
     align-items: stretch;
+  }
+}
+
+.select-wrap {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    margin-top: -2px;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    transform: translateY(-50%) rotate(45deg);
+  }
+}
+
+.ask-modal {
+  z-index: 99999;
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+
+  &>div {
+    &:first-child {
+      background-color: rgba(13, 17, 26, .6);
+      position: absolute;
+      top: 0%;
+      bottom: 0%;
+      left: 0%;
+      right: 0%;
+    }
+
+    &:last-child {
+      z-index: 2;
+      grid-column-gap: 8px;
+      grid-row-gap: 8px;
+      background-color: #fff;
+      flex-flow: wrap;
+      width: 100%;
+      max-width: 480px;
+      min-height: 90px;
+      padding: 42px;
+      display: flex;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 12px 30px rgba(10, 13, 20, .19);
+
+      @include maxWidthXs {
+        max-width: 90%;
+        padding: 24px;
+      }
+
+      h3,
+      h4,
+      h5 {
+        text-transform: uppercase;
+        width: 100%;
+        padding-right: 20%;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 30px;
+
+        @include maxWidthXs {
+          padding-right: 0%;
+        }
+      }
+
+      p {
+        line-height: 24px;
+      }
+
+      &>div {
+        grid-column-gap: 8px;
+        grid-row-gap: 8px;
+        width: 100%;
+        margin-top: 12px;
+        display: flex;
+
+        button {
+          color: #fff;
+          text-align: center;
+          background-color: #171c29;
+          flex: 1;
+          justify-content: center;
+          align-items: center;
+          padding: 12px;
+          font-weight: 600;
+          display: flex;
+          transition: all 250ms ease;
+
+          &:not(:first-child) {
+            &:hover {
+              background-color: var(--blue-gold_hover);
+              color: white;
+            }
+          }
+
+          &:first-child {
+            color: #4b5058;
+            background-color: #edeff3;
+            font-weight: 400;
+          }
+        }
+      }
+    }
   }
 }

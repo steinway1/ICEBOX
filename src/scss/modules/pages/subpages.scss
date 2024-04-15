@@ -360,16 +360,47 @@ ul.faq-list {
 }
 
 main.main_finance {
-  min-height: 100vh;
-  background-color: #f5f7f8;
+  background-color: #f5f6f8;
+
+  .subpage__finance-content {
+    & > .wrapper {
+      @include maxWidthXs {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+    }    
+  }
+
+  .subpage__finance-content {
+    @include maxWidthXs {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  .subpage__welcome {
+    @include maxWidthXs {
+      border-width: 10px;
+    }
+  }
 }
 
 .subpage__welcome {
   box-shadow: none;
   background-color: #fff;
-  border-top: 1px solid #f5f7f8;
+  border-top: 1px solid #f5f6f8;
   padding-top: 45px;
   padding-bottom: 45px;
+
+  &.--loan_case {
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    .wrapper {
+      padding-top: 42px;
+      padding-bottom: 42px;
+    }
+  }
 }
 
 .subpage__welcome-title {
@@ -395,4 +426,8 @@ main.main_finance {
 .subpage__finance-content {
   padding-top: 88px;
     padding-bottom: 68px;
+
+    @include maxWidthXs {
+      padding-bottom: 32px;
+    }
 }

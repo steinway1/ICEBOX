@@ -135,6 +135,62 @@ const getOrdinalTxt = (n) => {
 }
 /* #endregion */
 
+/* #region  Page Ask Modal */
+class AskModal {
+  constructor(settings = {}) {
+    this.heading = settings.heading || 'Are You Sure You Want To Exit?'
+    this.subheading = settings.subheading || 'You will lose all unsaved progress.'
+    this.exitText = settings.exitText || 'Exit'
+    this.keepText = settings.keepText || 'Keep'
+    this.exitCallback = settings.exitCallback
+    this.keepCallback = this.destroy
+  }
+
+  get renderHTML() {
+    return `
+      <div data-evt="closeAskModal"></div>
+      <div>
+        <h4>${this.heading}</h4>
+        <p>${this.subheading}</p>
+        <div>
+          <button>${this.exitText}</button>
+          <button>${this.keepText}</button>
+        </div>
+      </div>
+    `
+  }
+
+  create() {
+    const modal = createElem('div', {
+      className: 'ask-modal',
+      innerHTML: this.renderHTML
+    })
+    const buttons = [...modal.querySelectorAll('button')]
+    const closeEvt = [...modal.querySelectorAll('[data-evt="closeAskModal"]')]
+    buttons[0].onclick = () => { this.destroy(); this.exitCallback() }
+    buttons[1].onclick = () => { this.keepCallback() }
+    for (const evt of closeEvt) {
+      evt.onclick = () => { this.destroy() }
+    }
+    return modal
+  }
+
+  destroy() {
+    unlockScroll()
+    const modal = document.querySelector('.ask-modal')
+    if (modal) {
+      modal.remove()
+    }
+  }
+
+  show() {
+    lockScroll()
+    const elem = this.create()
+    document.body.appendChild(elem)
+  }
+}
+/* #endregion */
+
 
 /* #region  Ripple Click Effect */
 class rippleClickEffect {
@@ -5610,12 +5666,14 @@ class LoanApp {
   constructor(holder, settings = {}) {
     this.holder = holder
     this.filesHolder = this.holder.querySelector('#loan_files_upload')
-    this.sections = [...this.holder.querySelectorAll('.loan-case-section')]
+    this.sections = [...this.holder.querySelectorAll('[data-loan-section]')]
     this.content = this.holder.querySelector('.loan-case__content')
     this.scroller = this.holder.querySelector('.loan-scroller')
     this.footer = this.holder.querySelector('.loan-case__footer')
     this.btnGroup = this.holder.querySelector('.loan-case__btn-group')
     this.evtGo = [...this.holder.querySelectorAll('[data-loan-evt="go"]')]
+    this.evtToggle = [...this.holder.querySelectorAll('[data-loan-evt="toggle"]')]
+    this.evtSubmit = [...this.holder.querySelectorAll('[data-loan-evt="submit"]')]
     this.evtBack = [...this.holder.querySelectorAll('[data-loan-evt="back"]')]
     this.bar = this.holder.querySelector('.loan-bar')
     this.bar_progress = this.holder.querySelector('.loan-bar__progress')
@@ -5711,7 +5769,7 @@ class LoanApp {
   }
   clearErrors() {
     const activeSection = this.getActiveSection
-    const inputs = [...activeSection.querySelectorAll('input')]
+    const inputs = [...activeSection.querySelectorAll('input'), ...activeSection.querySelectorAll('select')]
     inputs.forEach(input => input.classList.remove(__INVALID))
     const err = this.holder.querySelector('.loan-input-error')
     if (err) err.remove()
@@ -5728,7 +5786,7 @@ class LoanApp {
   save() {
     this.data = {}
     for (const section of this.sections) {
-      const inputs = [...section.querySelectorAll('input[type="text"], input[type="email"]')]
+      const inputs = [...section.querySelectorAll('input[type="text"]:not(.--disabled), input[type="email"]:not(.--disabled), select')]
       const sectionID = section.dataset.loanSection
 
       switch (sectionID) {
@@ -5829,9 +5887,10 @@ class LoanApp {
     }
   }
   validate(section) {
-    const requiredTextInputs = [...section.querySelectorAll('input[type="text"][required]'), ...section.querySelectorAll('input[type="email"][required]')]
+    const requiredTextInputs = [...section.querySelectorAll('input[type="text"][required]:not(.--disabled'), ...section.querySelectorAll('input[type="email"][required]')]
     const emptyInputs = requiredTextInputs.filter(input => !input.value)
     const numberInputs = section.querySelectorAll('input[data-validate="number"]')
+    const selectInputs = section.querySelectorAll('select[required]')
     const emailInputs = section.querySelectorAll('input[data-validate="email"]')
     const zipInputs = section.querySelectorAll('input[data-validate="zip_code"]')
     const sectionID = section.dataset.loanSection
@@ -5865,6 +5924,14 @@ class LoanApp {
       this.showInputError(emptyInputs[0], 'This field is required')
       return false
     }
+    if (selectInputs.length) {
+      for (const select of selectInputs) {
+        if (!select.value) {
+          this.showInputError(select, 'Please select an option')
+          return false
+        }
+      }
+    }
     return true
   }
   adjustActiveSectionHeight() {
@@ -5874,13 +5941,96 @@ class LoanApp {
       this.content.style.height = `${height}px`
     }
   }
+  toggle() {
+    const body = document.querySelector('body')
+    const headerNav = document.querySelector('.header__sub-nav')
+    const welcome = document.querySelector('.subpage__welcome')
+    const footerMain = document.querySelector('.footer__wrapper > .wrapper')
+    const loanWelcome = document.querySelector('.loan-welcome')
+    const heading = document.querySelector('.loan-case__heading')
+    const backGroup = document.querySelector('.loan-case__back-group')
+    const CASE_CLASS = 'loan_case'
+    const elements = [headerNav, welcome, footerMain, loanWelcome]
+
+    const hideElement = (el) => {
+      const curHeight = el.scrollHeight
+      el.style.height = `${curHeight}px`
+      setTimeout(() => {
+        el.style.overflow = 'hidden'
+        el.style.height = '0px'
+      }, 1);
+    }
+    const showElement = (el) => {
+      const curHeight = window.getComputedStyle(el).getPropertyValue('height')
+      const scrollHeight = el.scrollHeight
+      el.style.height = `${curHeight}`
+      setTimeout(() => {
+        el.style.overflow = 'visible'
+        el.style.height = `${scrollHeight}px`
+      }, 1)
+    }
+
+    const hideLoan = () => {
+      body.classList.remove(CASE_CLASS)
+      for (const element of elements) {
+        if (element) showElement(element)
+      }
+
+      this.scroller.style.display = 'none'
+      this.content.style.height = `0px`
+
+      if (backGroup) {
+        backGroup.style.height = `0px`
+      }
+
+      if (heading) {
+        heading.innerHTML = 'Welcome To the Icebox Max Approval Financing Form'
+        heading.classList.remove('--big')
+      }
+
+      this.clearErrors()
+      this.back(1)
+    }
+    const showLoan = () => {
+      body.classList.add('loan_case')
+      for (const element of elements) {
+        if (element) hideElement(element)
+      }
+
+      this.scroller.style.display = 'flex'
+      this.content.style.height = `${this.sections[0].scrollHeight}px`
+
+      if (backGroup) {
+        backGroup.style.height = `${backGroup.scrollHeight}px`
+      }
+
+      if (heading) {
+        heading.innerHTML = 'Financing Application'
+        heading.classList.add('--big')
+      }
+    }
+
+    if (body.classList.contains(CASE_CLASS)) {
+      const askModal = new AskModal({
+        heading: 'Are You Sure You Want To Exit Financing App?',
+        subheading: 'You will lose all the progress. Keep filling out the form and get approved as soon as possible!',
+        exitText: 'Exit',
+        keepText: 'Keep Filling',
+        exitCallback: hideLoan,
+      })
+      askModal.show()
+    } else {
+      showLoan()
+    }
+  }
 
   /**
    * Bind Events
    */
   bindStepEvt() {
     this.evtGo.forEach((btn) => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
         const section = this.getActiveSection
         if (this.validate(section)) this.go()
       })
@@ -5890,9 +6040,22 @@ class LoanApp {
         this.back()
       })
     })
+    this.evtSubmit.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        this.evtGo[0].click()
+      })
+    })
+    this.evtToggle.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        this.toggle()
+      })
+    })
+
   }
   bindInputEvents() {
     const inputs = [...this.holder.querySelectorAll('input')]
+    const selects = [...this.holder.querySelectorAll('select')]
     const noWebsiteCheckbox = this.holder.querySelector('#loan_employer_website')
     const inputWebsiteEmployer = this.holder.querySelector('#loan_employer_website')
     inputs.forEach((input) => {
@@ -5909,6 +6072,11 @@ class LoanApp {
         if (isTab) {
           e.preventDefault()
         }
+      })
+    })
+    selects.forEach((select) => {
+      select.addEventListener('change', () => {
+        this.clearErrors()
       })
     })
   }
@@ -6012,6 +6180,24 @@ class LoanApp {
       }
     }
   }
+  bindDualSelect() {
+    const dualArr = this.holder.querySelectorAll('[data-loan-evt="dual_select"]')
+    for (const dual of dualArr) {
+      const input = dual.querySelector('input:not([type="checkbox"])')
+      const checkbox = dual.querySelector('input[type="checkbox"]')
+      if (input && checkbox) {
+        checkbox.onchange = () => {
+          let isChecked = checkbox.checked
+          if (isChecked) {
+            input.classList.add('--disabled')
+            input.value = ''
+          } else {
+            input.classList.remove('--disabled')
+          }
+        }
+      }
+    }
+  }
 
   /**
    * Initial
@@ -6039,6 +6225,7 @@ class LoanApp {
     this.bindInputEvents()
     this.bindNumberInput()
     this.bindIDUpload()
+    this.bindDualSelect()
   }
 }
 
