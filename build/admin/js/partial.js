@@ -1469,29 +1469,53 @@ document.addEventListener('DOMContentLoaded', () => {
   whaleCardAttachAvatarUpload()
 })
 
-document.addEventListener('DOMContentLoaded', () => {
-  return
-  let y = 0
-  let fullHeight = document.body.offsetHeight - window.innerHeight
-  const calculatePercentage = (number, total) => {
-    return (number / total) * 100
-  }
-  const setElementWidthPercent = (el, percent) => {
-    el.style.width = `${percent}%`
+class PrintTag {
+  constructor() {
+    this.previewInputsHolder = document.querySelector('#tagPreviewInputs')
+    this.previewOutputObj = {}
   }
 
-  const progressBar = document.createElement('div')
-  const progressBarLine = document.createElement('div')
-  progressBar.className = 'progress-bar'
-  progressBarLine.className = 'progress-bar__line'
+  /**
+   * 
+   * Bind Events
+   */
+  bindPreviewInputs() {}
 
-  progressBar.appendChild(progressBarLine)
-  document.body.appendChild(progressBar)
-
-  setElementWidthPercent(progressBarLine, y)
-
-  window.onscroll = () => {
-    y = window.scrollY
-    setElementWidthPercent(progressBarLine, calculatePercentage(y, fullHeight))
+  /**
+   * 
+   * Init
+   */
+  init() {
+    const eventsToCall = [this.bindPreviewInputs]
+    for (const fn of eventsToCall) {
+      fn()
+    }
   }
-})
+}
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   return
+//   let y = 0
+//   let fullHeight = document.body.offsetHeight - window.innerHeight
+//   const calculatePercentage = (number, total) => {
+//     return (number / total) * 100
+//   }
+//   const setElementWidthPercent = (el, percent) => {
+//     el.style.width = `${percent}%`
+//   }
+
+//   const progressBar = document.createElement('div')
+//   const progressBarLine = document.createElement('div')
+//   progressBar.className = 'progress-bar'
+//   progressBarLine.className = 'progress-bar__line'
+
+//   progressBar.appendChild(progressBarLine)
+//   document.body.appendChild(progressBar)
+
+//   setElementWidthPercent(progressBarLine, y)
+
+//   window.onscroll = () => {
+//     y = window.scrollY
+//     setElementWidthPercent(progressBarLine, calculatePercentage(y, fullHeight))
+//   }
+// })

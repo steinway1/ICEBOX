@@ -57,6 +57,11 @@ body {
   color: white;
   font-weight: 600;
 
+  &>svg {
+    width: 16px;
+    height: 16px;
+  }
+
   &:hover {
     background-color: var(--bright_blue_hover);
     border-color: var(--bright_blue_hover);
@@ -75,6 +80,22 @@ body {
   &.--blue {
     background-color: var(--blue_gold);
     border-color: var(--blue_gold);
+  }
+
+  &.--border {
+    background-color: transparent;
+    border: 1.5px solid var(--bright_blue);
+    color: var(--bright_blue);
+    
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: var(--bright_blue);
+      color: white;
+    }
   }
 }
 
@@ -672,7 +693,6 @@ body {
 
 .am-main__subtitle {
   text-transform: uppercase;
-  justify-content: center;
   align-items: center;
   font-size: 12px;
   letter-spacing: 0.6px;
@@ -738,6 +758,12 @@ body {
   font-size: 24px;
   font-weight: 600;
   line-height: 30px;
+
+  &.--min {
+    font-size: 18px !important;
+    font-weight: 600;
+    line-height: 24px;
+  }
 }
 
 .am-container {
@@ -1528,4 +1554,13 @@ body {
 .xs-typo {
   font-size: 12px;
   opacity: .7;
+}
+
+.am_flex-col {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  border-top: 1px solid #eef4f8;
+  flex-flow: column;
+  padding: 42px;
+  display: flex;
 }

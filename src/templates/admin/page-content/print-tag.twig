@@ -1,0 +1,154 @@
+<div class="am-content">
+	<div class="print-tag__wrapper">
+		<div class="print-tag__area">
+			<div class="print-tag__box">
+
+				<div class="print-tag__row">
+					<div class="am-row__header">
+						<div class="am_vertical-start">
+							<h2 class="am-main__header-title">Print Tag</h2>
+							<p>Fill up the fields to create a new tag or find by SKU.</p>
+						</div>
+						<div class="am_flex8">
+							<button class="am-btn">
+								{% include "admin/svg/icon_print.svg" %}
+								<span>Print All</span>
+							</button>
+							<button class="am-btn --bright">
+								{% include "admin/svg/icon_csv.svg" %}
+								<span>Upload CSV</span>
+							</button>
+						</div>
+					</div>
+					<div class="blank-search">
+						<div class="blank-search__input-wrap">
+							{% include "admin/svg/icon_search.svg" %}
+							<input type="text" placeholder="Search by SKU">
+						</div>
+					</div>
+				</div>
+
+				<div class="print-tag__row">
+					<div class="am-main__subtitle">Print List:</div>
+					<div class="empty-placeholder">Add or find tags to show selected tags...</div>
+					<button class="am-btn --border" disabled>Print Selected</button>
+				</div>
+
+				<div class="print-tag__row --dual">
+
+					<div class="print-tag__dual-box">
+						<div class="print-tag__dual-wrapper">
+							<div class="am_vertical-start">
+								<h2 class="am-main__header-title --min">Add/Edit Tag</h2>
+								<p>Add new tag or find by SKU and edit it..</p>
+							</div>
+							<div class="am_flex8">
+								<button class="am-btn">
+									{% include "admin/svg/icon_plus.svg" %}
+									<span>Add Tag To List</span>
+								</button>
+								<button class="am-btn --bright">
+									<span>Clear Fields</span>
+								</button>
+							</div>
+
+							<div id="tagPreviewInputs" class="blank-fields">
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="item_type" placeholder="Item Type">
+										<label for="item_type">Item Type</label>
+									</div>
+								</div>
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="notes" placeholder="Notes">
+										<label for="notes">Notes</label>
+									</div>
+								</div>
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="style_n" placeholder="Style #">
+										<label for="style_n">Style #</label>
+									</div>
+								</div>
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="invoice_n" placeholder="Invoice #">
+										<label for="invoice_n">Invoice #</label>
+									</div>
+								</div>
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="p_n" placeholder="P#">
+										<label for="p_n">P#</label>
+									</div>
+								</div>
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="karat_gold" placeholder="Karat Gold">
+										<label for="karat_gold">Karat Gold</label>
+									</div>
+								</div>
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="gold_color" placeholder="Gold Color">
+										<label for="gold_color">Gold Color</label>
+									</div>
+								</div>
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="gram_weight" placeholder="Gram Weight">
+										<label for="gram_weight">Gram Weight</label>
+									</div>
+								</div>
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="dia_weight" placeholder="Dia Weight">
+										<label for="dia_weight">Dia Weight</label>
+									</div>
+								</div>
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="dia_quality" placeholder="Dia Quality">
+										<label for="dia_quality">Dia Quality</label>
+									</div>
+								</div>
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="ring_size" placeholder="Ring Size">
+										<label for="ring_size">Ring Size</label>
+									</div>
+								</div>
+								<div class="blank-fields__input-row">
+									<div>
+										<input type="text" id="length" placeholder="Length">
+										<label for="length">Length</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="print-tag__dual-box">
+						<div class="print-tag__dual-wrapper">
+							<div class="am-main__subtitle">Tag Preview:</div>
+							<div class="tag-preview">
+								<img class="tag-preview__logo" src="{{THEME_ASSETS_FOLDER}}/blue-logo.svg" alt="Icebox logo">
+								<div class="tag-preview__item-img"></div>
+								<div class="tag-preview__details">
+									<div class="empty-placeholder">Start filling the fields to display tag preview.</div>
+								</div>
+							</div>
+							<div class="am_flex8">
+								<button class="am-btn">
+									<span>Show Isolated Preview</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
