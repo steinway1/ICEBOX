@@ -4278,6 +4278,24 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   position: relative;
 }
 
+.blank-fields__input-row > div.--filled::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #0779cb;
+  width: 16px;
+  height: 16px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" stroke="white" fill="white"/></svg>');
+  background-size: 7px 7px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.blank-fields__input-row > div.--filled > input {
+  border-color: #0779cb;
+}
+
 .blank-fields__input-row > div > label {
   display: flex;
   justify-content: center;
@@ -4315,7 +4333,6 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 .blank-fields__input-row > div > input:focus {
   background-color: rgba(7, 121, 203, 0.03);
   border-color: #0779cb;
-  box-shadow: 0 0 0 2px rgba(7, 121, 203, 0.18);
 }
 
 .blank-fields__input-row > div > input:focus ~ label {
@@ -4336,6 +4353,108 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   font-weight: 400;
   font-size: 13px;
   transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.blank-fields__input-row input[type=file] {
+  display: none;
+}
+
+.blank-upload {
+  display: flex !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  flex-direction: column;
+  gap: 12px !important;
+  min-height: 80px !important;
+  justify-content: center;
+  align-items: center;
+  padding: 34px 20px !important;
+  border: 1px dashed #0779cb !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  background-color: rgba(7, 121, 203, 0.03) !important;
+  position: relative !important;
+  transform: none !important;
+  left: 0 !important;
+  top: 0 !important;
+}
+
+.blank-upload::before {
+  content: "";
+  width: 30px;
+  height: 30px;
+  background-image: url('data:image/svg+xml,<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_399_87" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="34" height="34"><rect width="34" height="34" fill="%23D9D9D9"/></mask><g mask="url(%23mask0_399_87)"><rect width="34" height="34" fill="%23CAE9FF"/><path d="M19.8875 11.775C19.1217 11.775 18.3872 11.4708 17.8457 10.9293C17.3042 10.3878 17 9.65331 17 8.8875C17 8.12169 17.3042 7.38724 17.8457 6.84573C18.3872 6.30422 19.1217 6 19.8875 6C20.6533 6 21.3878 6.30422 21.9293 6.84573C22.4708 7.38724 22.775 8.12169 22.775 8.8875C22.775 9.65331 22.4708 10.3878 21.9293 10.9293C21.3878 11.4708 20.6533 11.775 19.8875 11.775Z" fill="%230779CB"/><path d="M13.381 13.6615C12.2805 12.614 10.8193 12.0298 9.3 12.0298C7.78068 12.0298 6.31952 12.614 5.219 13.6615L-2.25 21.1305V31.025C-2.24543 32.5552 -1.63553 34.0214 -0.553493 35.1034C0.528541 36.1855 1.99478 36.7954 3.525 36.8H30.475C32.0439 36.8 33.5454 36.1589 34.633 35.029L13.381 13.6615Z" fill="%230779CB"/><path d="M36.25 24.9766L28.783 17.5096C27.698 16.4307 26.2301 15.8251 24.7 15.8251C23.17 15.8251 21.7021 16.4307 20.6171 17.5096L18.9077 19.219L34.6253 35.0213C35.6687 33.9529 36.252 32.5188 36.25 31.025V24.9766Z" fill="%236ABFFB"/></g></svg>');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.blank-upload::after {
+  content: "Click or Drag & Drop To Upload Image";
+  font-size: 13px;
+  font-weight: 600;
+  color: #0779cb;
+}
+
+.blank-upload:hover,
+.blank-upload.is-active {
+  background-color: transparent !important;
+  box-shadow: 0 0 0 2px rgba(7, 121, 203, 0.18);
+}
+
+.page-msg {
+  z-index: 50;
+  background-color: #fff;
+  border: 1px solid #d4d9e2;
+  width: 380px;
+  min-height: 40px;
+  padding: 22px 52px 20px 72px;
+  transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  position: fixed;
+  bottom: 14px;
+  left: 14px;
+  box-shadow: 0 0 42px rgba(96, 105, 117, 0.3);
+}
+
+.page-msg::after {
+  content: "";
+  position: absolute;
+  top: 22px;
+  left: 36px;
+  width: 24px;
+  height: 24px;
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="%233a78cc"/><path d="M13.0324 5.48999L12.7984 14.22H11.0884L10.8544 5.48999H13.0324ZM12.0064 18.126C11.6344 18.126 11.3224 18 11.0704 17.748C10.8184 17.496 10.6924 17.184 10.6924 16.812C10.6924 16.44 10.8184 16.128 11.0704 15.876C11.3224 15.624 11.6344 15.498 12.0064 15.498C12.3664 15.498 12.6724 15.624 12.9244 15.876C13.1764 16.128 13.3024 16.44 13.3024 16.812C13.3024 17.184 13.1764 17.496 12.9244 17.748C12.6724 18 12.3664 18.126 12.0064 18.126Z" fill="white"/></svg>');
+  background-size: 24px 24px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.page-msg > button {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  background-image: url('data:image/svg+xml,<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 1L1 11" stroke="%23171C29" stroke-width="1.5"/><path d="M1 1L11 11" stroke="%23171C29" stroke-width="1.5"/></svg>');
+  background-size: 10px 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.page-msg h3,
+.page-msg h4,
+.page-msg h5 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: capitalize;
+}
+
+.page-msg p {
+  font-size: 13px;
 }
 
 :root {
@@ -7282,6 +7401,15 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   border: 1px dashed var(--bright_blue);
   padding: 20px 10px 10px;
   overflow: hidden;
+  background-color: white;
+  position: relative;
+  z-index: 3;
+  transition: all 250ms ease;
+}
+
+.tag-preview.--hovered {
+  box-shadow: 0 0 112px rgba(97, 118, 171, 0.4);
+  border-color: transparent;
 }
 
 .tag-preview__logo {
@@ -7292,7 +7420,9 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 .tag-preview__item-img {
   position: relative;
   aspect-ratio: 16/9;
-  object-fit: contain;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .tag-preview__item-img::after {
@@ -7329,6 +7459,25 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 
 .tag-preview__details.--filled .empty-placeholder {
   display: none;
+}
+
+.tag-preview__details:not(.--filled)::after {
+  content: "Start filling the fields to display tag preview.";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f6f7f9;
+  color: #748190;
+  padding: 20px;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .tag-preview__details > div:not(.empty-placeholder) {
@@ -7368,8 +7517,148 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   padding: 0;
   font-size: 12px;
   font-weight: 600;
-  line-height: 22px;
+  line-height: 18px;
   display: flex;
+}
+
+.print-tag__print-list {
+  min-height: 48px;
+  flex: 1;
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  background-color: #f6f7f9;
+  flex-flow: wrap;
+  padding: 20px;
+  display: flex;
+  position: relative;
+}
+
+.print-tag__print-list:not(.--filled)::before {
+  content: "Add or find tags to show selected tags...";
+}
+
+.print-tag-label {
+  position: relative;
+  user-select: none;
+}
+
+.print-tag-label > input[type=checkbox] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.print-tag-label > input[type=checkbox]:checked ~ div::after {
+  border-color: var(--blue_gold);
+}
+
+.print-tag-label > input[type=checkbox]:checked ~ div::before {
+  opacity: 1;
+}
+
+.print-tag-label > input[type=checkbox]:not(:checked) ~ div {
+  opacity: 0.75;
+  filter: grayscale(100%);
+  transform: scale(0.985);
+}
+
+.print-tag-label > input[type=checkbox]:not(:checked) ~ div > div {
+  box-shadow: 0 6px 18px rgba(23, 28, 41, 0);
+}
+
+.print-tag-label > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 180ms ease;
+}
+
+.print-tag-label > div::after,
+.print-tag-label > div::before {
+  transition: all 180ms ease;
+}
+
+.print-tag-label > div::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid transparent;
+}
+
+.print-tag-label > div::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  bottom: 4px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50px;
+  background-color: var(--blue_gold);
+  background-image: url('data:image/svg+xml,<svg width="8" height="8" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3L6.5 7.5L12.5 1.5" stroke="%23ffffff" stroke-width="3.5"/></svg>');
+  background-size: 8px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0;
+}
+
+.print-tag-label > div > div {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  background-color: #fff;
+  flex-flow: column;
+  width: 110px;
+  padding: 8px;
+  display: flex;
+  position: relative;
+  box-shadow: 0 6px 18px rgba(23, 28, 41, 0.05);
+  min-height: 60px;
+}
+
+.print-tag-label > div > div > div:first-child {
+  position: relative;
+}
+
+.print-tag-label > div > div > div:first-child > div {
+  aspect-ratio: 1.4;
+  display: block;
+  background-size: cover;
+}
+
+.print-tag-label > div > div > div:first-child::after {
+  content: "";
+  opacity: 0.05;
+  cursor: pointer;
+  background-image: linear-gradient(326deg, #03244d 13%, #e4f2ff 56%, #1c2c3c);
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  overflow: hidden;
+}
+
+.print-tag-label > div > div > div:nth-child(2) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.print-tag-label > div > div > div:nth-child(2) span {
+  display: block;
+  font-size: 11px;
+  line-height: 18px;
 }
 
 @font-face {
@@ -8197,6 +8486,18 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   .am-item__fin-quiz > div {
     flex: none;
     width: 100%;
+  }
+
+  .page-msg {
+    width: auto;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    padding: 22px 38px 20px 58px;
+  }
+
+  .page-msg::after {
+    left: 22px !important;
   }
 
   .tb-btn {

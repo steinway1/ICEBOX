@@ -4317,6 +4317,7 @@ const tagPreview = {
         uploadInput.onchange = (evt) => {
           const file = [...evt.target.files][0]
           processImage(file)
+          uploadInput.value = ''
         }
       }
 

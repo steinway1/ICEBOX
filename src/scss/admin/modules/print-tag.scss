@@ -155,6 +155,15 @@
   border: 1px dashed var(--bright_blue);
   padding: 20px 10px 10px;
   overflow: hidden;
+  background-color: white;
+  position: relative;
+  z-index: 3;
+  transition: all 250ms ease;
+
+  &.--hovered {
+    box-shadow: 0 0 112px rgba(97, 118, 171, 0.4);
+    border-color: transparent;
+  }
 }
 
 .tag-preview__logo {
@@ -165,7 +174,9 @@
 .tag-preview__item-img {
   position: relative;
   aspect-ratio: 16 / 9;
-  object-fit: contain;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   &::after {
     content: 'Input P# or Upload Image';
@@ -207,6 +218,27 @@
     }
   }
 
+  &:not(.--filled) {
+    &::after {
+      content: 'Start filling the fields to display tag preview.';
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: #f6f7f9;
+      color: #748190;
+      padding: 20px;
+      position: absolute;
+      top: 0%;
+      bottom: 0%;
+      left: 0%;
+      right: 0%;
+      overflow: hidden;
+      font-size: 13px;
+      font-weight: 600;
+    }
+  }
+
   &>div {
     &:not(.empty-placeholder) {
       border: 1px solid #dfe5ec;
@@ -243,8 +275,155 @@
           padding: 0;
           font-size: 12px;
           font-weight: 600;
-          line-height: 22px;
+          line-height: 18px;
           display: flex;
+        }
+      }
+    }
+  }
+}
+
+.print-tag__print-list {
+  min-height: 48px;
+  flex: 1;
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  background-color: #f6f7f9;
+  flex-flow: wrap;
+  padding: 20px;
+  display: flex;
+  position: relative;
+
+  &:not(.--filled) {
+    &::before {
+      content: 'Add or find tags to show selected tags...';
+    }
+  }
+}
+
+.print-tag-label {
+  position: relative;
+  user-select: none;
+
+  &>input[type="checkbox"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+
+    &:checked {
+      &~div {
+        &::after {
+          border-color: var(--blue_gold);
+        }
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+
+    &:not(:checked) {
+      &~div {
+        opacity: .75;
+        filter: grayscale(100%);
+        transform: scale(.985);
+
+        &>div {
+          box-shadow: 0 6px 18px rgba(23, 28, 41, 0);
+        }
+      }
+    }
+  }
+
+  &>div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 180ms ease;
+
+    &::after,
+    &::before {
+      transition: all 180ms ease;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border: 1px solid transparent;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 4;
+      bottom: 4px;
+      right: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50px;
+      background-color: var(--blue_gold);
+      background-image: url('data:image/svg+xml,<svg width="8" height="8" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3L6.5 7.5L12.5 1.5" stroke="%23ffffff" stroke-width="3.5"/></svg>');
+      background-size: 8px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: 0;
+    }
+
+    &>div {
+      grid-column-gap: 8px;
+      grid-row-gap: 8px;
+      background-color: #fff;
+      flex-flow: column;
+      width: 110px;
+      padding: 8px;
+      display: flex;
+      position: relative;
+      box-shadow: 0 6px 18px rgba(23, 28, 41, .05);
+      min-height: 60px;
+
+      &>div:first-child {
+        position: relative;
+
+        &>div {
+          aspect-ratio: 1.4;
+          display: block;
+          background-size: cover;
+        }
+
+        &::after {
+          content: '';
+          opacity: .05;
+          cursor: pointer;
+          background-image: linear-gradient(326deg, #03244d 13%, #e4f2ff 56%, #1c2c3c);
+          justify-content: center;
+          align-items: center;
+          padding: 0;
+          display: flex;
+          position: absolute;
+          top: 0%;
+          bottom: 0%;
+          left: 0%;
+          right: 0%;
+          overflow: hidden;
+        }
+      }
+
+      &>div:nth-child(2) {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        span {
+          display: block;
+          font-size: 11px;
+          line-height: 18px;
         }
       }
     }

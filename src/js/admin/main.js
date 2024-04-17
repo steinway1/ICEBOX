@@ -4,7 +4,10 @@ const
   IS_HIDDEN = 'is-hidden',
   __BACK = '--back',
   __MOVING = '--moving',
-  __STASH = '--stash'
+  __STASH = '--stash',
+  __FILLED = '--filled',
+  __FOCUSED = '--focused',
+  __HOVERED = '--hovered'
 
 function lockScroll() {
   setTimeout(function () {
@@ -35,6 +38,90 @@ function unlockScroll() {
 
 function getAdminUserName() {
   return 'Zahir'
+}
+
+function pageMsg(settings = {}) {
+  this.heading = settings.heading || 'Something went wrong'
+  this.msg = settings.msg || 'Undefined message'
+  this.timeout = settings.timeout || 5000
+  this.keep = settings.keep || false
+  this.callback = settings.callback || null
+  this.hideCallback = settings.hideCallback || null
+  this.type = settings.type || ''
+  /**
+   * Types:
+   * 'error'
+   * 'success'
+   * 'warning'
+   */
+
+  const hide = () => {
+    msgElem.style.transform = 'translateY(calc(100% + 20px))'
+    msgElem.style.opacity = 0
+    setTimeout(() => {
+      msgElem.remove()
+    }, getTransitionTime(msgElem));
+    if (this.hideCallback) {
+      this.hideCallback()
+    }
+  }
+
+  const html = `
+  <h4>${this.heading}</h4>
+  <p>${this.msg}</p>
+  `
+  const msgElem = createElem('div', {
+    className: `page-msg ${this.type}`,
+    innerHTML: html,
+    style: {
+      'transform': 'translateY(calc(100% + 20px))',
+      'opacity': 0
+    }
+  })
+
+  const closeBtn = createElem('button', {})
+
+  closeBtn.onclick = () => {
+    hide()
+  }
+
+  msgElem.prepend(closeBtn)
+  document.body.appendChild(msgElem)
+
+  setTimeout(() => {
+    msgElem.style.transform = 'translateY(0)'
+    msgElem.style.opacity = 1
+  }, 10)
+
+  if (!this.keep) {
+    setTimeout(() => {
+      if (document.body.contains(msgElem)) {
+        hide()
+      }
+    }, this.timeout);
+  }
+
+  if (this.callback) {
+    callback()
+  }
+}
+
+function createElem(tagName, options) {
+  const { className, id, innerHTML, style, attributes, toAppend } = options
+  const elem = document.createElement(tagName)
+  if (className) elem.className = className;
+  if (id) elem.id = id;
+  if (innerHTML) elem.innerHTML = innerHTML;
+  if (style) {
+    for (const key in options.style) { elem.style[key] = options.style[key] }
+  }
+  if (attributes) {
+    for (const key in options.attributes) { elem.setAttribute(key, options.attributes[key]) }
+  }
+  if (toAppend) {
+    for (const child of toArray(toAppend)) { elem.appendChild(child) }
+  }
+  return elem
 }
 
 Number.prototype.between = function (min, max) {
@@ -1361,7 +1448,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     },
-    openPoints: function() {
+    openPoints: function () {
       if (this.menu && this.pointsMenu) {
         if (!this.menuOpened) {
           this.pointsOpened = true
@@ -1468,27 +1555,249 @@ document.addEventListener('DOMContentLoaded', () => {
 
 class PrintTag {
   constructor() {
+    this.main = document.querySelector('.main_print-tag')
     this.previewInputsHolder = document.querySelector('#tagPreviewInputs')
+    this.previewDetails = document.querySelector('#tagPreviewDetails')
+    this.previewImage = document.querySelector('#tagPreviewImage')
+    this.previewImageInput = document.querySelector('#tag_image')
+    this.tagElem = document.querySelector('#tagPreview')
+    this.previewInputs = []
     this.previewOutputObj = {}
+  }
+
+  get getPreviewObj() {
+    return this.previewOutputObj
+  }
+
+  /**
+   * 
+   * Utils
+   */
+  bindInput(input, callback) {
+    if (input) {
+      input.addEventListener('input', callback)
+    }
+  }
+
+  /**
+   * 
+   * Methods
+   */
+  updatePreviewObjFromInputs() {
+    this.previewOutputObj = {}
+    if (this.previewInputs.length) {
+      this.previewInputs.forEach((input, index) => {
+        this.previewOutputObj[index] = {
+          id: input.id,
+          title: input.closest('div').querySelector('label').innerHTML,
+          value: input.value
+        }
+      })
+    }
+  }
+  updateOutputPreviewDetails() {
+    let filled = 0, html = ``
+    const obj = this.previewOutputObj
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const keyObj = obj[key]
+        if ('value' in keyObj && keyObj.value.length !== 0) {
+          ++filled
+          html += `
+          <div id="${keyObj.id}">
+            <span>${keyObj.title}</span>
+            <span>${keyObj.value}</span>
+          </div>
+          `
+        }
+      }
+    }
+    if (filled) {
+      this.previewDetails.innerHTML = html
+      this.previewDetails.classList.add(__FILLED)
+    } else {
+      this.previewDetails.innerHTML = ''
+      this.previewDetails.classList.remove(__FILLED)
+    }
+  }
+  clearPreviewInputs() {
+    if (this.previewInputs.length) {
+      for (const input of this.previewInputs) {
+        input.value = ''
+        input.dispatchEvent(new Event('change'))
+      }
+    }
+    if (this.previewImage && this.previewImageInput) {
+      this.previewImage.style.backgroundImage = ''
+      this.previewImage.classList.remove(__FILLED)
+      this.previewImageInput.value = ''
+    }
+  }
+  /** Printing */
+  observePrintList() {
+    
   }
 
   /**
    * 
    * Bind Events
    */
-  bindPreviewInputs() {}
+  bindPreviewInputs() {
+    if (this.previewInputsHolder) {
+      const textInputsArr = [...this.previewInputsHolder.querySelectorAll('input[type="text"]')]
+      textInputsArr.forEach((input, index, inputs) => {
+        this.previewInputs.push(input)
+        this.previewOutputObj[index] = {
+          id: input.id,
+          value: '',
+          title: input.closest('div').querySelector('label').innerHTML
+        }
+
+        input.oninput = () => {
+          const value = input.value
+          this.previewOutputObj[index].value = value
+          this.updateOutputPreviewDetails()
+        }
+
+        input.addEventListener('change', () => {
+          const value = input.value
+          const divParent = input.closest('div')
+          if (value.length) {
+            divParent.classList.add(__FILLED)
+          } else {
+            divParent.classList.remove(__FILLED)
+          }
+        })
+
+        input.onblur = () => {
+          const value = input.value
+          const divParent = input.closest('div')
+          if (value.length) {
+            divParent.classList.add(__FILLED)
+          } else {
+            divParent.classList.remove(__FILLED)
+          }
+        }
+
+        input.onkeydown = (e) => {
+          const
+            isEnter = e.key === 'Enter' || e.keyCode === 13,
+            isBackscape = e.key === 'Backspace' || e.key === 'Delete',
+            isEsc = e.key === 'Escape' || e.key === 'Esc',
+            isUp = e.key === 'ArrowUp',
+            isDown = e.key === 'ArrowDown',
+            next = inputs[index + 1],
+            prev = inputs[index - 1]
+
+          if (isEnter || isDown) {
+            if (next !== undefined) { next.focus() }
+          }
+          if (isBackscape) {
+            if (input.value.length == 0 && prev !== undefined) { prev.focus() }
+          }
+          if (isEsc) {
+            e.preventDefault(); input.blur()
+          }
+          if (isUp) {
+            if (prev !== undefined) { prev.focus() }
+          }
+        }
+      })
+    }
+  }
+  bindPreviewImageUpload() {
+    const
+      input = document.querySelector('#tag_image'),
+      label = document.querySelector('#upload_tag-image'),
+      imageElem = this.previewImage
+
+    if (input) {
+
+      function processImage(file) {
+        if (file) {
+          let reader = new FileReader()
+          reader.onload = (e) => {
+            imageElem.classList.add(__FILLED)
+            imageElem.style.backgroundImage = `url(${e.target.result})`
+          }
+          reader.readAsDataURL(file)
+        }
+      }
+
+      if (label) {
+        label.ondragover = (e) => {
+          e.preventDefault()
+          label.classList.add(IS_ACTIVE)
+        }
+        label.ondragleave = (e) => {
+          e.preventDefault()
+          label.classList.remove(IS_ACTIVE)
+        }
+        label.ondrop = (e) => {
+          e.preventDefault()
+          label.classList.remove(IS_ACTIVE)
+          const
+            files = [...e.dataTransfer.items],
+            file = files.find((item) => { if (item.kind === 'file') { return item } })
+          processImage(file.getAsFile())
+        }
+      }
+
+      input.onchange = (e) => {
+        const file = [...e.target.files][0]
+        processImage(file)
+      }
+
+    }
+  }
+  bindTagHover() {
+    const tag = this.tagElem
+    if (tag) {
+      const row = tag.closest('.print-tag__row')
+      const elementInRow = [...row.querySelectorAll('*')]
+      window.previewTagHoverTimeout = undefined
+
+      tag.addEventListener('mouseover', () => {
+        window.previewTagHoverTimeout = setTimeout(() => {
+          tag.classList.add(__HOVERED)
+        }, 800)
+      })
+
+      tag.addEventListener('mouseleave', () => {
+        clearTimeout(window.previewTagHoverTimeout)
+        tag.classList.remove(__HOVERED)
+      })
+    }
+  }
+  bindClear() {
+    const elemArr = [...document.querySelectorAll('[data-tag-evt="clearInputs"]')]
+    for (const elem of elemArr) {
+      elem.addEventListener('click', () => {
+        this.clearPreviewInputs()
+        this.updatePreviewObjFromInputs()
+        this.updateOutputPreviewDetails()
+      })
+    }
+  }
 
   /**
    * 
    * Init
    */
   init() {
-    const eventsToCall = [this.bindPreviewInputs]
-    for (const fn of eventsToCall) {
-      fn()
-    }
+    this.bindPreviewInputs()
+    this.bindPreviewImageUpload()
+    this.bindClear()
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const printTagMain = document.querySelector('.main_print-tag')
+  if (printTagMain) {
+    const printTag = new PrintTag()
+    printTag.init()
+  }
+})
 
 // document.addEventListener('DOMContentLoaded', () => {
 //   return

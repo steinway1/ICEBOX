@@ -234,7 +234,68 @@
 
                         <div class="print-tag__row">
                             <div class="am-main__subtitle">Print List:</div>
-                            <div class="empty-placeholder">Add or find tags to show selected tags...</div>
+                            <div class="print-tag__print-list --filled">
+                                <label class="print-tag-label">
+                                    <input type="checkbox" checked>
+                                    <div>
+                                        <div>
+                                            <div class="print-tag-label__img-wrap">
+                                                <div data-tag-id="2"></div>
+                                            </div>
+                                            <div class="print-tag-label__details">
+                                                <span>Ring</span>
+                                                <span>For Ryan</span>
+                                                <span>DJK-15002</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="print-tag-label">
+                                    <input type="checkbox" checked>
+                                    <div>
+                                        <div>
+                                            <div class="print-tag-label__img-wrap">
+                                                <div data-tag-id="2"></div>
+                                            </div>
+                                            <div class="print-tag-label__details">
+                                                <span>Ring</span>
+                                                <span>For Ryan</span>
+                                                <span>DJK-15002</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="print-tag-label">
+                                    <input type="checkbox" checked>
+                                    <div>
+                                        <div>
+                                            <div class="print-tag-label__img-wrap">
+                                                <div data-tag-id="2"></div>
+                                            </div>
+                                            <div class="print-tag-label__details">
+                                                <span>Ring</span>
+                                                <span>For Ryan</span>
+                                                <span>DJK-15002</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="print-tag-label">
+                                    <input type="checkbox" checked>
+                                    <div>
+                                        <div>
+                                            <div class="print-tag-label__img-wrap">
+                                                <div data-tag-id="2"></div>
+                                            </div>
+                                            <div class="print-tag-label__details">
+                                                <span>Ring</span>
+                                                <span>For Ryan</span>
+                                                <span>DJK-15002</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
                             <button class="am-btn --border" disabled>Print Selected</button>
                         </div>
 
@@ -254,7 +315,7 @@
                                             </svg>
                                             <span>Add Tag To List</span>
                                         </button>
-                                        <button class="am-btn --bright">
+                                        <button data-tag-evt="clearInputs" class="am-btn --bright">
                                             <span>Clear Fields</span>
                                         </button>
                                     </div>
@@ -332,6 +393,12 @@
                                                 <label for="length">Length</label>
                                             </div>
                                         </div>
+                                        <div class="blank-fields__input-row">
+                                            <div>
+                                                <label for="tag_image" id="upload_tag-image" class="blank-upload"></label>
+                                                <input type="file" id="tag_image">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -339,12 +406,10 @@
                             <div class="print-tag__dual-box">
                                 <div class="print-tag__dual-wrapper">
                                     <div class="am-main__subtitle">Tag Preview:</div>
-                                    <div class="tag-preview">
+                                    <div id="tagPreview" class="tag-preview">
                                         <img class="tag-preview__logo" src="./assets/blue-logo.svg" alt="Icebox logo">
-                                        <div class="tag-preview__item-img"></div>
-                                        <div class="tag-preview__details">
-                                            <div class="empty-placeholder">Start filling the fields to display tag preview.</div>
-                                        </div>
+                                        <div id="tagPreviewImage" class="tag-preview__item-img"></div>
+                                        <div id="tagPreviewDetails" class="tag-preview__details"></div>
                                     </div>
                                     <div class="am_flex8">
                                         <button class="am-btn">
