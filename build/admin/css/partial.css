@@ -7590,6 +7590,7 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   right: -4px;
   bottom: -4px;
   border: 1px solid transparent;
+  pointer-events: none;
 }
 
 .print-tag-label > div::before {
@@ -7607,6 +7608,7 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   background-position: center center;
   background-repeat: no-repeat;
   opacity: 0;
+  pointer-events: none;
 }
 
 .print-tag-label > div > div {
@@ -7647,15 +7649,18 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   left: 0%;
   right: 0%;
   overflow: hidden;
+  pointer-events: none;
 }
 
-.print-tag-label > div > div > div:nth-child(2) {
+.print-tag-label > div > div > div:nth-child(2).print-tag-label__details {
   position: relative;
   display: flex;
   flex-direction: column;
+  height: 54px;
+  overflow: hidden;
 }
 
-.print-tag-label > div > div > div:nth-child(2) span {
+.print-tag-label > div > div > div:nth-child(2).print-tag-label__details span {
   display: block;
   font-size: 11px;
   line-height: 18px;

@@ -357,6 +357,7 @@
       right: -4px;
       bottom: -4px;
       border: 1px solid transparent;
+      pointer-events: none;
     }
 
     &::before {
@@ -374,6 +375,7 @@
       background-position: center center;
       background-repeat: no-repeat;
       opacity: 0;
+      pointer-events: none;
     }
 
     &>div {
@@ -412,13 +414,16 @@
           left: 0%;
           right: 0%;
           overflow: hidden;
+          pointer-events: none;
         }
       }
 
-      &>div:nth-child(2) {
+      &>div:nth-child(2).print-tag-label__details {
         position: relative;
         display: flex;
         flex-direction: column;
+        height: 54px;
+        overflow: hidden;
 
         span {
           display: block;
