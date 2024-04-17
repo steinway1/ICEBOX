@@ -5785,45 +5785,7 @@ class LoanApp {
    * Main
    */
   save() {
-    this.data = {}
-    for (const section of this.sections) {
-      const inputs = [...section.querySelectorAll('input[type="text"]:not(.--disabled), input[type="email"]:not(.--disabled), select')]
-      const sectionID = section.dataset.loanSection
-
-      switch (sectionID) {
-        case 'id':
-          const images = this.filesHolder.querySelectorAll('img')
-          this.data.uploads = {}
-          images.forEach((img, index) => {
-            const name = `upload_${index}`
-            this.data.uploads[name] = img.outerHTML
-          })
-          break;
-        case 'companies':
-          const radios = [...section.querySelectorAll('input[type="radio"]')]
-          if (radios.length) {
-            const active = radios.find(el => el.checked)
-            if (active) {
-              const key = active.getAttribute('name')
-              this.data[key] = active.value
-            } else {
-              this.data['loan_finance'] = 'No'
-            }
-          }
-          break;
-        default:
-          for (const input of inputs) {
-            const key = input.id
-            if (!key) {
-              console.error(`No ID found in input ${input}`)
-            } else {
-              this.data[key] = input.value
-            }
-          }
-          break
-      }
-    }
-    console.log(this.data)
+    $('#loan_form').submit();
   }
   finishMessage() {
     const time = 2000
