@@ -26,6 +26,34 @@
 			<div
 				class="loan-scroller">
 
+				{# Employer #}
+				<div data-loan-section="employer" class="loan-case-section">
+					<h6 class="loan-case-section__title">Employer</h6>
+					<div data-loan-evt="dual_select" class="dual-select">
+						<div class="loan-input-wrap">
+							<input class="loan-case__input" placeholder="Employer" type="text" id="loan_employer" required>
+						</div>
+						<div class="loan-input-wrap">
+							<label class="custom-checkbox">
+								<input id="loan_self_employer" type="checkbox" value="self_employer">
+								<span>I am self employed</span>
+							</label>
+						</div>
+					</div>
+					<div data-loan-evt="dual_select" class="dual-select">
+						<div class="loan-input-wrap">
+							<input class="loan-case__input" placeholder="Employer Website" type="text" id="loan_employer_website" required>
+						</div>
+						<div class="loan-input-wrap">
+							<label class="custom-checkbox">
+								<input id="loan_no_website" type="checkbox" value="no_website">
+								<span>My employer has no website.</span>
+							</label>
+						</div>
+					</div>
+				</div>
+
+        
 				{# First & last name #}
 				<div data-loan-section="name" data-loan-section="name" class="loan-case-section">
 					<h6 class="loan-case-section__title">First &amp; Last Name</h6>
@@ -103,32 +131,7 @@
 					</div>
 				</div>
 
-				{# Employer #}
-				<div data-loan-section="employer" class="loan-case-section">
-					<h6 class="loan-case-section__title">Employer</h6>
-					<div data-loan-evt="dual_select" class="dual-select">
-						<div class="loan-input-wrap">
-							<input class="loan-case__input" placeholder="Employer" type="text" id="loan_employer" required>
-						</div>
-						<div class="loan-input-wrap">
-							<label class="custom-checkbox">
-								<input id="loan_self_employer" type="checkbox" value="self_employer">
-								<span>I am self employed</span>
-							</label>
-						</div>
-					</div>
-					<div data-loan-evt="dual_select" class="dual-select">
-						<div class="loan-input-wrap">
-							<input class="loan-case__input" placeholder="Employer Website" type="text" id="loan_employer_website" required>
-						</div>
-						<div class="loan-input-wrap">
-							<label class="custom-checkbox">
-								<input id="loan_no_website" type="checkbox" value="no_website">
-								<span>My employer has no website.</span>
-							</label>
-						</div>
-					</div>
-				</div>
+
 
 				{# Salary & Credit Score #}
 				<div data-loan-section="salary" class="loan-case-section">

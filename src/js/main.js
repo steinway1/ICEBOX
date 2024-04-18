@@ -5791,6 +5791,17 @@ class LoanApp {
     const progress = (prevSections + 1) / this.steps * 100
     this.bar_progress.style.width = `${progress}%`
   }
+  clearAllFields() {
+    const inputs = [...this.holder.querySelectorAll('input:not([type="checkbox"])')]
+    const selects = [...this.holder.querySelectorAll('select')]
+    const checkboxes = [...this.holder.querySelectorAll('input[type="checkbox"]')]
+    const fullArr = [...inputs, ...selects, ...checkboxes]
+
+    inputs.forEach(input => input.value = '')
+    selects.forEach(select => select.selectedIndex = 0)
+    checkboxes.forEach((checkbox) => { checkbox.checked = false })
+    fullArr.forEach(elem => elem.dispatchEvent(new Event('change')))
+  }
 
   /**
    * Main
@@ -5969,6 +5980,7 @@ class LoanApp {
 
       this.clearErrors()
       this.back(1)
+      this.clearAllFields()
     }
     const showLoan = () => {
       body.classList.add('loan_case')
