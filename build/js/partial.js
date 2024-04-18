@@ -6531,7 +6531,9 @@ class LoanApp {
           if (isChecked) {
             input.classList.add('--disabled')
             input.setAttribute('disabled', 'disabled')
-            input.value = ''
+            if (input.type !== 'range') {
+              input.value = ''
+            }
           } else {
             input.removeAttribute('disabled')
             input.classList.remove('--disabled')

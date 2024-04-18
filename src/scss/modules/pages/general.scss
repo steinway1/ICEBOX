@@ -1079,6 +1079,7 @@ body {
 .custom-checkbox {
   font-size: 13px;
   font-weight: 600;
+  display: flex;
 
   &>input {
     position: absolute;
@@ -1163,6 +1164,23 @@ input.custom-range[type="range"] {
     &:active {
       background-color: #0c97c5;
       border-color: #0c97c5;
+    }
+  }
+
+  &.--disabled {
+    pointer-events: none;
+    opacity: .7;
+    background-color: #eaedf0;
+    border: 1px solid #eaedf0;
+
+    &::-webkit-slider-thumb {
+      background-color: #959ba3;
+      border: 1px solid #959ba3;
+    }
+
+    &~ .custom-range__output {
+      background-color: #959ba3;
+      pointer-events: none;
     }
   }
 }

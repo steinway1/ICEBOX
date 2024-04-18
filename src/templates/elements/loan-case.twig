@@ -135,8 +135,8 @@
 					<h6 class="loan-case-section__title">Salary &amp; Credit Score</h6>
 					<div class="loan-input-wrap">
 						<div class="loan-case__select-wrap">
-							<select id="loan_salary" class="loan-case__input">
-								<option value="">Average Monthly Salary</option>
+							<select id="loan_salary" class="loan-case__input" required>
+								<option value="">Monthly Salary</option>
 								<option value="First">$0 - $1,500</option>
 								<option value="Second">$1,500 - $2,500</option>
 								<option value="Third">$2,500 - $3,500</option>
@@ -147,10 +147,16 @@
 						</div>
 					</div>
 					<div class="loan-input-wrap">
-						<div class="loan-input-range">
-							<label for="loan_credit_score">Credit Score</label>
-							<input id="loan_credit_score" class="custom-range" type="range" min="500" max="999" onchange="loan_score_output.value=value" oninput="loan_score_output.value=value" value="500"/>
-							<output class="custom-range__output" id="loan_score_output">500</output>
+						<div data-loan-evt="dual_select" class="dual-select">
+							<div class="loan-input-range">
+								<label for="loan_credit_score">Credit Score</label>
+								<input id="loan_credit_score" class="custom-range" type="range" min="500" max="999" onchange="loan_score_output.value=value" oninput="loan_score_output.value=value" value="500"/>
+								<output class="custom-range__output" id="loan_score_output">500</output>
+							</div>
+							<label class="custom-checkbox">
+								<input id="loan_no_score" type="checkbox" value="no_credit_score">
+								<span>I don't know my credit score.</span>
+							</label>
 						</div>
 					</div>
 				</div>
