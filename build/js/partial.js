@@ -6099,7 +6099,6 @@ class LoanApp {
     const checkboxes = [...this.holder.querySelectorAll('input[type="checkbox"]')]
     const fullArr = [...inputs, ...selects, ...checkboxes]
 
-
     inputs.forEach(input => input.value = '')
     selects.forEach(select => select.selectedIndex = 0)
     checkboxes.forEach((checkbox) => { checkbox.checked = false })
