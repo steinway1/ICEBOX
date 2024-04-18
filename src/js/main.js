@@ -5683,6 +5683,7 @@ class LoanApp {
     this.stepsLeft = undefined
     this.endReached = undefined
     this.atStart = undefined
+    this.sliding = false
     this.data = {}
     this.settings = {
       scrollSpeed: settings.scrollSpeed || 600,
@@ -5698,6 +5699,16 @@ class LoanApp {
   }
   get getActiveSection() {
     return this.sections[this.currentStep]
+  }
+  get getActiveInput() {
+    const section = this.getActiveSection
+    if (section && section.contains(document.activeElement)) {
+      if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT') {
+        return document.activeElement
+      }
+    } else {
+      return undefined
+    }
   }
   get getLoaderHTML() {
     return `
@@ -5801,12 +5812,16 @@ class LoanApp {
     }, time);
   }
   slide(section) {
+    section.style.display = 'flex'
     const height = section.scrollHeight
     const pxToTransform = this.sections.slice(0, this.currentStep).reduce((acc, el) => acc + el.scrollHeight, 0)
     this.content.style.height = `${height}px`
     this.scroller.style.transform = `translateY(-${pxToTransform}px)`
     this.sections.forEach(e => e.classList.remove(IS_ACTIVE))
     section.classList.add(IS_ACTIVE)
+    setTimeout(() => {
+      this.sliding = false
+    }, getTransitionTime(this.scroller));
   }
   go(toStep) {
     if (this.holder.classList.contains(__LOCKED)) return
@@ -5822,6 +5837,7 @@ class LoanApp {
     }
 
     if (nextSection) {
+      this.sliding = true
       inputs.forEach(input => input.blur())
       this.loadingOn()
       setTimeout(() => {
@@ -5986,6 +6002,45 @@ class LoanApp {
       showLoan()
     }
   }
+  tabPress() {
+    if (!this.sliding) {
+      const activeInput = this.getActiveInput
+      if (!activeInput) {
+        const section = this.getActiveSection
+        const inputArray = [...section.querySelectorAll('input:not(.--disabled), select:not(.--disabled)')]
+        if (inputArray.length) {
+          let inputToFocus
+          const invalidInputs = inputArray.filter(input => input.classList.contains('--invalid'))
+          if (invalidInputs.length) {
+            inputToFocus = invalidInputs[0]
+          } else {
+            const emptyInputs = inputArray.filter(input => !input.value && input.value !== 0)
+            if (emptyInputs.length) {
+              inputToFocus = emptyInputs[0]
+            } else {
+              inputToFocus = inputArray[0]
+            }
+          }
+          inputToFocus.focus()
+        }
+      } else {
+        const activeInputWrap = activeInput.parentNode.closest('.loan-input-wrap')
+        const nextInputWrap = activeInputWrap.nextElementSibling
+        if (nextInputWrap) {
+          const nextInput = nextInputWrap.querySelector('input, select')
+          if (nextInput) {
+            nextInput.focus()
+          }
+        } else {
+          const firstInputWrap = this.getActiveSection.querySelector('.loan-input-wrap')
+          const firstInput = firstInputWrap.querySelector('input, select')
+          if (firstInput) {
+            firstInput.focus()
+          }
+        }
+      }
+    }
+  }
 
   /**
    * Bind Events
@@ -6022,12 +6077,15 @@ class LoanApp {
     const noWebsiteCheckbox = this.holder.querySelector('#loan_employer_website')
     const inputWebsiteEmployer = this.holder.querySelector('#loan_employer_website')
 
-    // document.addEventListener('keydown', (e) => {
-    //   const isTab = e.key === 'Tab'
-    //   if (isTab) {
-    //     e.preventDefault()
-    //   }
-    // })
+    document.addEventListener('keydown', (e) => {
+      const isTab = e.key === 'Tab'
+      if (isTab) {
+        if (document.body.classList.contains('loan_case')) {
+          e.preventDefault()
+          this.tabPress()
+        }
+      }
+    })
 
     inputs.forEach((input) => {
       input.addEventListener('focus', () => {
@@ -6039,19 +6097,6 @@ class LoanApp {
         const isTab = e.key === 'Tab'
         if (isEnter) {
           this.evtGo[0].click()
-        }
-        if (isTab) {
-          e.preventDefault()
-          if (this.holder.classList.contains('--locked')) return
-          const inputWrap = input.closest('.loan-input-wrap')
-          const inputWrapArr = [...this.getActiveSection.querySelectorAll('.loan-input-wrap')]
-          if (inputWrap && inputWrapArr.length) {
-            const index = inputWrapArr.indexOf(inputWrap)
-            const nextWrap = inputWrapArr[index + 1]
-            if (nextWrap) {
-              nextWrap.querySelector('input[type="text"]').focus()
-            }
-          }
         }
       })
     })
@@ -6171,8 +6216,10 @@ class LoanApp {
           let isChecked = checkbox.checked
           if (isChecked) {
             input.classList.add('--disabled')
+            input.setAttribute('disabled', 'disabled')
             input.value = ''
           } else {
+            input.removeAttribute('disabled')
             input.classList.remove('--disabled')
           }
         }
@@ -6197,7 +6244,7 @@ class LoanApp {
     this.content.style.height = `${height}px`
     this.content.style.transition = `all ${this.settings.scrollSpeed}ms ${this.settings.easing}`
     this.scroller.style.transition = `all ${this.settings.scrollSpeed}ms ${this.settings.easing}`
-    this.sections.forEach(section => section.style.display = 'flex')
+    // this.sections.forEach(section => section.style.display = 'flex')
   }
   init() {
     this.setInitialLayout()
