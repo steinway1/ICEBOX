@@ -6021,6 +6021,14 @@ class LoanApp {
     const selects = [...this.holder.querySelectorAll('select')]
     const noWebsiteCheckbox = this.holder.querySelector('#loan_employer_website')
     const inputWebsiteEmployer = this.holder.querySelector('#loan_employer_website')
+
+    // document.addEventListener('keydown', (e) => {
+    //   const isTab = e.key === 'Tab'
+    //   if (isTab) {
+    //     e.preventDefault()
+    //   }
+    // })
+
     inputs.forEach((input) => {
       input.addEventListener('focus', () => {
         this.clearErrors()
@@ -6034,6 +6042,16 @@ class LoanApp {
         }
         if (isTab) {
           e.preventDefault()
+          if (this.holder.classList.contains('--locked')) return
+          const inputWrap = input.closest('.loan-input-wrap')
+          const inputWrapArr = [...this.getActiveSection.querySelectorAll('.loan-input-wrap')]
+          if (inputWrap && inputWrapArr.length) {
+            const index = inputWrapArr.indexOf(inputWrap)
+            const nextWrap = inputWrapArr[index + 1]
+            if (nextWrap) {
+              nextWrap.querySelector('input[type="text"]').focus()
+            }
+          }
         }
       })
     })
