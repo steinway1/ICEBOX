@@ -529,7 +529,7 @@ class rippleClickEffect {
 }
 let rippleTriggerArr = [
   ...$(
-    ".product-option__head, .option-btn, .home-welcome__link, .sign-modal__main-btn, .item-protect__plans button"
+    ".product-option__head, .option-btn, .home-welcome__link, .sign-modal__main-btn, .item-protect__plans button, .listing-btn"
   ),
 ];
 $.each(rippleTriggerArr, function (i) {
@@ -2675,7 +2675,21 @@ const pageEls = new Object({
           })
         }
       }
-    }
+    },
+    listings: () => {
+      const listings = [...document.querySelectorAll('.listing-set')]
+      for (const listing of listings) {
+        const buttonArray = [...listing.querySelectorAll('.listing-btn:not(.--disabled)')]
+        buttonArray.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            btn.classList.add(IS_ACTIVE)
+            buttonArray.forEach((arrBtn) => {
+              if (arrBtn != btn) arrBtn.classList.remove(IS_ACTIVE)
+            })
+          })
+        })
+      }
+    },
     // togglePayModal: () => {
     //   let evt = [...$('[data-evt="togglePayModal"]')]
     //   evt.forEach((el) => {

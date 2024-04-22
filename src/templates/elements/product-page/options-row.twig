@@ -4,6 +4,24 @@
 
 			{% for option in product.options %}
 
+				{% if option.type == "watchModels" %}
+					<div class="product__item-option --watches">
+						<h4 class="md-title">Other listings of the same model</h4>
+						<div class="listing-set">
+							{% for optionBtn in option.set %}
+								<div class="listing-btn{% if optionBtn.active == true %} is-active{% endif %}{% if optionBtn.sold == true %} --disabled{% endif %}">
+									<div class="listing-btn__wrapper">
+										<span>{{optionBtn.year ?? 'Unknown'}}
+											—
+											{{optionBtn.price ?? 'Call For Price'}}</span>
+										<span>{{optionBtn.kit ?? 'Unknown'}}</span>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				{% endif %}
+
 				{# Gold Color #}
 				{% if option.type == "goldColor" %}
 					<div class="product__item-option{% if option.extraClass %} {{option.extraClass}}{% endif %}">
@@ -300,9 +318,9 @@
 			</div>
 			{% if item.category == 'watches_factory' %}
 				<a class="product__wa-link" href="/chat-whatsapp" target="_blank">
-        <img src="{{THEME_ASSETS_FOLDER}}wa_fill-icon.svg" alt="Whatsapp Icon Picture" loading="eager">
-        <span>Contact Us on WhatsApp</span>
-        </a>
+					<img src="{{THEME_ASSETS_FOLDER}}wa_fill-icon.svg" alt="Whatsapp Icon Picture" loading="eager">
+					<span>Contact Us on WhatsApp</span>
+				</a>
 			{% else %}
 				{% include "../paylater-box_short.twig" %}
 			{% endif %}

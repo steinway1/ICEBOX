@@ -10420,6 +10420,71 @@ input.custom-range[type=range].--disabled ~ .custom-range__output {
   font-weight: 400;
 }
 
+.md-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.listing-set {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.listing-btn {
+  cursor: pointer;
+  border: 1.5px solid #dfe3e9;
+  padding: 14px;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  user-select: none;
+  font-weight: 600;
+}
+
+.listing-btn:hover {
+  border-color: #079fd1;
+}
+
+.listing-btn.is-active {
+  color: #0086b3;
+  border-color: #079fd1;
+  box-shadow: 0 2px 5px rgba(7, 159, 209, 0.08);
+}
+
+.listing-btn:not(.--dsiabled):active {
+  opacity: 0.6;
+}
+
+.listing-btn.--disabled {
+  color: #787c86;
+  cursor: not-allowed;
+  background-color: #f0f2f5;
+  border-color: #f0f2f5;
+  pointer-events: none;
+}
+
+.listing-btn.--disabled .listing-btn__wrapper > span:first-child {
+  text-decoration: line-through;
+}
+
+.listing-btn__wrapper {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.listing-btn__wrapper > span:first-child {
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.listing-btn__wrapper > span:last-child {
+  opacity: 0.6;
+  color: #202124;
+}
+
 /* #region  Welcome Section */
 
 .home-welcome-details h1,
@@ -11336,6 +11401,13 @@ input.custom-range[type=range].--disabled ~ .custom-range__output {
   user-select: none;
 }
 
+.product__item-option.--watches {
+  padding: 12px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .product-option-name {
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -11624,7 +11696,7 @@ input.custom-range[type=range].--disabled ~ .custom-range__output {
 
 .product__item-summary p,
 .product__item-summary span {
-  font-size: 15px;
+  font-size: 13px !important;
   line-height: 24px;
 }
 
@@ -12072,7 +12144,7 @@ input.custom-range[type=range].--disabled ~ .custom-range__output {
 
 .product__item-title {
   letter-spacing: 0px;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
   line-height: 32px;
 }
