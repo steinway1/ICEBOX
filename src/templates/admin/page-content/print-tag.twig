@@ -10,7 +10,7 @@
 							<p>Fill up the fields to create a new tag or find by SKU.</p>
 						</div>
 						<div class="am_flex8">
-							<button class="am-btn">
+							<button data-tag-evt="print_all" class="am-btn">
 								{% include "admin/svg/icon_print.svg" %}
 								<span>Print All</span>
 							</button>
@@ -30,24 +30,8 @@
 
 				<div class="print-tag__row">
 					<div class="am-main__subtitle">Print List:</div>
-					<div class="print-tag__print-list --filled">
-						<label class="print-tag-label">
-							<input type="checkbox" checked>
-							<div>
-								<div>
-									<div class="print-tag-label__img-wrap">
-										<div data-tag-id="2"></div>
-									</div>
-									<div class="print-tag-label__details">
-										<span>Ring</span>
-										<span>For Ryan</span>
-										<span>DJK-15002</span>
-									</div>
-								</div>
-							</div>
-						</label>
-					</div>
-					<button class="am-btn --border" disabled>Print Selected</button>
+					<div id="print_list" class="print-tag__print-list"></div>
+					<button data-tag-evt="print_selected" class="am-btn --border" disabled>Print Selected</button>
 				</div>
 
 				<div class="print-tag__row --dual">
@@ -59,7 +43,7 @@
 								<p>Add new tag or find by SKU and edit it..</p>
 							</div>
 							<div class="am_flex8">
-								<button class="am-btn">
+								<button data-tag-evt="save" class="am-btn">
 									{% include "admin/svg/icon_plus.svg" %}
 									<span>Add Tag To List</span>
 								</button>
@@ -159,11 +143,11 @@
 								<div id="tagPreviewImage" class="tag-preview__item-img"></div>
 								<div id="tagPreviewDetails" class="tag-preview__details"></div>
 							</div>
-							<div class="am_flex8">
-								<button class="am-btn">
-									<span>Show Isolated Preview</span>
-								</button>
-							</div>
+							{# <div class="am_flex8">
+															<button class="am-btn">
+																<span>Show Isolated Preview</span>
+															</button>
+														</div> #}
 						</div>
 					</div>
 				</div>

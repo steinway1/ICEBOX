@@ -5884,7 +5884,7 @@ class LoanApp {
     const prevSection = this.sections[prevStep]
     if (prevSection) {
       this.evtGo.forEach((btn) => {
-        btn.innerHTML = 'Continue'
+        btn.innerHTML = 'Next'
       })
       this.currentStep = prevStep
       this.slide(prevSection)

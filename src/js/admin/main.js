@@ -1603,21 +1603,84 @@ class PrintTag {
     this.previewImage = document.querySelector('#tagPreviewImage')
     this.previewImageInput = document.querySelector('#tag_image')
     this.tagElem = document.querySelector('#tagPreview')
+    this.printList = document.querySelector('#print_list')
     this.previewInputs = []
     this.previewOutputObj = {}
+    this.tagsToPrint = {}
+    this.renderedHTMLToPrint = ''
   }
 
   get getPreviewObj() {
     return this.previewOutputObj
   }
 
+  get getPreviewImageBackgroundURL() {
+    const style = window.getComputedStyle(this.previewImage)
+    const url = style.getPropertyValue('background-image')
+    const regex = /^url\((['"]?)(.*)\1\)$/
+    const matches = url.match(regex)
+    let backgroundImageUrl = ''
+    if (matches && matches[2]) {
+      backgroundImageUrl = matches[2]
+    }
+    return backgroundImageUrl
+  }
+
   /**
    * 
    * Utils
    */
+  renderDetailsHTML() {
+    let html = ''
+    for (const [key, value] of Object.entries(this.previewOutputObj)) {
+      if ('value' in value) {
+        html += `
+        <span data-title="${value.title}">${value.value}</span>
+        `
+      }
+    }
+    return html
+  }
   bindInput(input, callback) {
     if (input) {
       input.addEventListener('input', callback)
+    }
+  }
+  createLabelFromOutputObj() {
+    const currentLabels = [...this.printList.querySelectorAll('label')]
+    const label = createElem('label', {
+      className: 'print-tag-label',
+      attributes: {
+        'data-tag-id': currentLabels.length + 1
+      },
+      innerHTML: `
+      <input type="checkbox" checked>
+      <div>
+        <div class="print-tag-label__main">
+          <div class="print-tag-label__img-wrap">
+            <div class="print-tag-label__img" style="background-image: url(${this.getPreviewImageBackgroundURL})"></div>
+          </div>
+          <div class="print-tag-label__details">
+            ${this.renderDetailsHTML()}
+          </div>
+        </div>
+      </div>
+      `
+    })
+    return label
+  }
+
+  /**
+   * 
+   * Extenders
+   */
+  extendPrintListItemToggle(label) {
+    let labelArr = label ? toArray(label) : [...document.querySelectorAll('.print-tag-label')]
+    for (const elem of labelArr) {
+      const input = elem.querySelector('input')
+      input.addEventListener('change', () => {
+        this.observePrintList()
+      })
     }
   }
 
@@ -1674,10 +1737,133 @@ class PrintTag {
       this.previewImage.classList.remove(__FILLED)
       this.previewImageInput.value = ''
     }
+    this.previewOutputObj = {}
   }
-  /** Printing */
-  observePrintList() {
 
+  /** 
+   * 
+   * Printing
+   */
+  observePrintList() {
+    if (!this.printList) throw new Error('No print list found')
+    const labels = [...this.printList.querySelectorAll('.print-tag-label')]
+    const inputs = labels.map((label) => {
+      return label.querySelector('input')
+    })
+    const printBtnArr = [...document.querySelectorAll('[data-tag-evt="print_selected"]')]
+    if (labels.length) {
+      this.printList.classList.add(__FILLED)
+    } else {
+      this.printList.classList.remove(__FILLED)
+    }
+
+    if (inputs.some(input => input.checked)) {
+      printBtnArr.forEach(btn => btn.removeAttribute('disabled'))
+    } else {
+      printBtnArr.forEach(btn => btn.setAttribute('disabled', 'disabled'))
+    }
+  }
+  saveTag() {
+    const elem = this.createLabelFromOutputObj()
+    this.printList.appendChild(elem)
+    this.observePrintList()
+    this.clearPreviewInputs()
+    this.updatePreviewObjFromInputs()
+    this.updateOutputPreviewDetails()
+  }
+  printSelected() {
+    this.tagsToPrint = {}
+    const labels = [...this.printList.querySelectorAll('label')].reduce((acc, label) => {
+      const inputCheckbox = label.querySelector('input[type="checkbox"]')
+      if (inputCheckbox.checked) {
+        acc.push(label)
+      }
+      return acc
+    }, [])
+    if (!labels.length) {
+      new pageMsg({
+        type: 'error',
+        heading: 'No labels selected',
+        msg: 'Select at least one label'
+      })
+    } else {
+      labels.forEach((label, index) => {
+        const img_url = label.querySelector('.print-tag-label__img').style.backgroundImage
+        const spans = [...label.querySelectorAll('span')]
+
+        this.tagsToPrint[index] = {}
+        this.tagsToPrint[index].details = []
+        this.tagsToPrint[index].img_url = img_url
+
+        spans.forEach((span) => {
+          if (!span.textContent.trim().length) return
+          this.tagsToPrint[index].details.push({
+            title: span.getAttribute('data-title'),
+            value: span.textContent
+          })
+        })
+      })
+    }
+    this.renderPrintHTML()
+  }
+  printAll() {
+    const labels = [...this.printList.querySelectorAll('label')]
+    if (!labels.length) {
+      new pageMsg({
+        type: 'error',
+        heading: 'No Tags Found',
+        msg: 'Add at least one tag to print list'
+      })
+      return
+    }
+    this.tagsToPrint = {}
+    labels.forEach((label, index) => {
+      const img_url = label.querySelector('.print-tag-label__img').style.backgroundImage
+      const spans = [...label.querySelectorAll('span')]
+      this.tagsToPrint[index] = {}
+      this.tagsToPrint[index].details = []
+      this.tagsToPrint[index].img_url = img_url
+      spans.forEach((span) => {
+        if (!span.textContent.trim().length) return
+        this.tagsToPrint[index].details.push({
+          title: span.getAttribute('data-title'),
+          value: span.textContent
+        })
+      })
+    })
+    this.renderPrintHTML()
+  }
+  renderPrintHTML() {
+    this.renderedHTMLToPrint = ''
+    for (const key in this.tagsToPrint) {
+      const obj = this.tagsToPrint[key]
+      let renderDetailsHTML = () => {
+        let html = ''
+        if (obj.details.length) {
+          for (const details in obj.details) {
+            if (obj.details[details].title && obj.details[details].value) {
+              html += `
+              <div>
+                <span>${obj.details[details].title}</span>
+                <span>${obj.details[details].value}</span>
+              </div>
+              `
+            }
+          }
+        }
+        return html
+      }
+      this.renderedHTMLToPrint += `
+	      <div id="tagPreview" class="tag-preview">
+		      <img class="tag-preview__logo" src="./assets/blue-logo.svg" alt="Icebox logo">
+		      <div id="tagPreviewImage" class="tag-preview__item-img --filled" style="background-image:${obj.img_url}"></div>
+		      <div id="tagPreviewDetails" class="tag-preview__details --filled">
+            ${renderDetailsHTML()}
+          </div>
+	      </div>
+      `
+    }
+    console.log(this.renderedHTMLToPrint)
   }
 
   /**
@@ -1821,6 +2007,31 @@ class PrintTag {
       })
     }
   }
+  bindPrintListItemToggle() {
+    this.extendPrintListItemToggle()
+  }
+  bindSave() {
+    document.querySelectorAll('[data-tag-evt="save"]').forEach((btn) => {
+      btn.onclick = () => { this.saveTag() }
+    })
+  }
+  bindPrintListClick() {
+    if (this.printList) {
+      this.printList.addEventListener('click', () => {
+        this.observePrintList()
+      })
+    }
+  }
+  bindPrint() {
+    const selectedArr = [...document.querySelectorAll('[data-tag-evt="print_selected"]')]
+    selectedArr.forEach((btn) => {
+      btn.onclick = () => { this.printSelected() }
+    })
+    const allArr = [...document.querySelectorAll('[data-tag-evt="print_all"]')]
+    allArr.forEach((btn) => {
+      btn.onclick = () => { this.printAll() }
+    })
+  }
 
   /**
    * 
@@ -1830,6 +2041,11 @@ class PrintTag {
     this.bindPreviewInputs()
     this.bindPreviewImageUpload()
     this.bindClear()
+    this.observePrintList()
+    this.bindPrintListItemToggle()
+    this.bindPrintListClick()
+    this.bindPrint()
+    this.bindSave()
   }
 }
 

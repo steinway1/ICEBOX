@@ -5348,6 +5348,13 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   border-radius: 50px;
 }
 
+.flex_column-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
 :root {
   --tb-border: #e6e8ee;
   --tb-border_light: rgba(230, 232, 238, 0.6);
@@ -8426,6 +8433,10 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 
 .print-tag__print-list:not(.--filled)::before {
   content: "Add or find tags to show selected tags...";
+  font-size: 13px;
+  font-weight: 600;
+  margin: auto;
+  color: #748190;
 }
 
 .print-tag-label {
@@ -8555,6 +8566,14 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   display: block;
   font-size: 11px;
   line-height: 18px;
+}
+
+.printable_tags {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: 10px;
 }
 
 :root {
