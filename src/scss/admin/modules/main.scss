@@ -57,6 +57,10 @@ body {
   color: white;
   font-weight: 600;
 
+  &:active {
+    opacity: .88;
+  }
+
   &>svg {
     width: 16px;
     height: 16px;
@@ -86,7 +90,7 @@ body {
     background-color: transparent;
     border: 1.5px solid var(--bright_blue);
     color: var(--bright_blue);
-    
+
     &:disabled {
       opacity: 0.4;
       cursor: not-allowed;
@@ -95,6 +99,22 @@ body {
     &:hover:not(:disabled) {
       background-color: var(--bright_blue);
       color: white;
+    }
+  }
+
+  &.--border_light {
+    border: 1px solid var(--blue_gold);
+    color: #1e65c4;
+    background-color: transparent;
+    padding: 12px 18px;
+
+    &:hover {
+      background-color: var(--blue_gold);
+      color: white;
+    }
+
+    &:active {
+      opacity: .65;
     }
   }
 }
@@ -1515,6 +1535,7 @@ body {
 
         &:hover {
           color: #a6e3ff;
+
           &>div {
             background-color: rgba(64, 140, 241, 0.15);
             border-color: var(--blue_gold);
@@ -1563,4 +1584,12 @@ body {
   flex-flow: column;
   padding: 42px;
   display: flex;
+}
+
+.am-select-label {
+  display: block;
+  opacity: .65;
+  margin-bottom: 2px;
+  font-size: 11px;
+  font-weight: 600;
 }

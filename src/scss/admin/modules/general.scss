@@ -1,3 +1,7 @@
+*.--order_last {
+  order: 1 !important;
+}
+
 table.dataTable thead th {
   padding: 10px 14px !important;
   background-color: #ebeef1;
@@ -981,7 +985,9 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
     cursor: pointer;
   }
 
-  h3,h4,h5 {
+  h3,
+  h4,
+  h5 {
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;
@@ -995,4 +1001,24 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 
 .datepicker.dropdown-menu {
   z-index: 1000 !important;
+}
+
+.remove-btn {
+  position: absolute;
+  z-index: 30;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('data:image/svg+xml,<svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L23 23" stroke="black" stroke-width="4"></path><path d="M23 1L1 23" stroke="black" stroke-width="4"></path></svg>');
+  background-size: 8px 8px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: rgb(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+  border-radius: 50px;
 }
