@@ -12641,7 +12641,13 @@ input.custom-range[type=range].--disabled ~ .custom-range__output {
   grid-template-rows: auto;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-columns: 1fr;
-  display: grid;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.product__promises > div {
+  width: calc(33.3333333333% - 20px);
 }
 
 .product-promise {
@@ -30889,6 +30895,14 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     grid-column-gap: 14px;
     grid-row-gap: 14px;
     display: flex;
+  }
+
+  .product__promises {
+    flex-direction: column;
+  }
+
+  .product__promises > div {
+    width: auto;
   }
 
   .more-row__header {
