@@ -2990,12 +2990,12 @@ body.blue_head .am-select:hover {
   grid-row-gap: 12px;
   flex-direction: column;
   flex: 1;
-  padding-top: 60px;
+  padding-top: 40px;
   padding-bottom: 40px;
   display: flex;
   position: -webkit-sticky;
   position: sticky;
-  top: 36px;
+  top: 90px;
 }
 
 .am-side-box__typo {
@@ -3638,6 +3638,12 @@ body.blue_head .am-select:hover {
   line-height: 28px;
 }
 
+.am-item.am-item_abandoned .am-item__over > div {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .am-item__over {
   pointer-events: none;
   border: 2px solid #408cf1;
@@ -4099,6 +4105,11 @@ body.blue_head .am-select:hover {
   width: 100%;
 }
 
+.am-item__details-row.--abandoned {
+  display: block;
+  padding-bottom: 28px;
+}
+
 .am-item__details-row.to_space {
   grid-column-gap: 18px;
   flex-wrap: nowrap;
@@ -4359,6 +4370,29 @@ body.blue_head .am-select:hover {
   object-fit: cover;
   width: 48px;
   height: 48px;
+}
+
+.am-item__abandoned-footer {
+  padding-top: 18px;
+  border-top: 1px solid #e2e7ee;
+}
+
+.am-item__abandoned-footer .am-item__btn {
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+.am-item__abandoned-footer .am-select-wrap {
+  min-width: 94px;
+  height: 32px;
+}
+
+.am-item__abandoned-footer .am-select-wrap select {
+  font-size: 11px !important;
+  padding: 0 10px !important;
 }
 
 *.--order_last {

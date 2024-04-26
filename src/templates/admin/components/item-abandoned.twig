@@ -1,0 +1,128 @@
+<div
+	class="am-item am-item_abandoned">
+
+	{# Card Overlay #}
+	<div class="am-item__over">
+		<div>
+			<span>Cart #{{cart.number}}</span>
+			{% if cart.email %}
+				<span>{{cart.email}}</span>
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="am-item__body">
+		{% for item in cart.items %}
+			<div
+				class="am-item__row">
+
+				<!-- #region ITEM : TOP -->
+				<div class="am-item__main">
+
+					<div class="am-item__pic-wrap">
+						<img src="{{item.imgURL}}" loading="eager" alt="">
+						<button class="am-zoom-btn"></button>
+					</div>
+
+					<div class="am-item__main-details">
+						<h4 class="am-item__title">
+							<a href="{{item.url}}" target="_blank">{{item.title}}</a>
+						</h4>
+						{% for option in item.options %}
+							<div class="am-item__options">
+								<div>{{option.name}}:
+									<span>{{option.value}}</span>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<!-- #endregion ITEM : TOP -->
+
+				<div class="am-item__space-row">
+
+					<div class="am-item__details">
+						{% if item.stockTags is defined %}
+							<div class="am-item__details-row">
+								{% for tag in item.stockTags %}
+									<span class="am-item__color-tag{% if tag.stock == false %} tag_blue{% endif %}">{{tag.value}}</span>
+								{% endfor %}
+							</div>
+						{% endif %}
+						<div class="am-item__details-row to_space">
+							<div class="flex-row_8">
+								{% for tag in item.tags %}
+									<span class="am-item__tag">{{tag.value}}</span>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<div class="am-item__price-wrap">
+						<div class="am-item__price">
+							{% if item.price.sale is defined %}
+								<span class="off-price">{{item.price.sale}}% OFF</span>
+							{% endif %}
+							${{item.price.value}}
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+
+		<div class="am-item__details-row --abandoned">
+
+			<div class="am-item__abandoned-footer">
+				<div class="am-item__space-row">
+					<div class="am_flex8">
+						<div class="am-select-wrap">
+							<select class="am-select" id="cart_status_{{cart.number}}" onchange="updateAbandonedCartStatus({{cart.number}})">
+								<option value="">Status</option>
+								<option value="9">Pendants</option>
+								<option value="23">Gold Chains</option>
+								<option value="8">Earrings</option>
+								<option value="4">Necklaces</option>
+								<option value="5">Rings</option>
+								<option value="7">Bracelets</option>
+								<option value="10">Watches</option>
+								<option value="15">Accessories</option>
+								<option value="19">Custom</option>
+								<option value="25">Watch Market</option>
+								<option value="26">Travel Cases</option>
+							</select>
+						</div>
+						<div class="am-select-wrap">
+							<select class="am-select" id="cart_tmp_discount{{cart.number}}" onchange="updateAbandonedCartDiscoun({{cart.number}})">
+								<option value="">Discount %</option>
+								<option selected="" value="0">0%</option>
+								<option value="10">10%</option>
+								<option value="20">20%</option>
+								<option value="30">30%</option>
+								<option value="40">40%</option>
+								<option value="50">50%</option>
+							</select>
+						</div>
+						<button class="am-item__btn is-green" onclick="sendKlaviyoEmail({{cart.number}})" id="send_klaviyo_btn_{{cart.number}}">Send Email</button>
+					</div>
+					<div class="am-item__price">{{cart.total_value}}</div>
+				</div>
+			</div>
+
+			<div class="am-item__note-wrap">
+				<div class="am-item__note-form">
+					<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_{{itemID}}">
+					<button data-am-evt="submitNote" onclick="addNotes({{itemID}})">Add</button>
+				</div>
+				{% for note in item.notes %}
+					<div class="am-item-note">
+						<div>
+							<span>{{note.author}}</span>:
+							{{note.text}}
+						</div>
+						<div>{{note.date}}</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+	</div>
+</div>

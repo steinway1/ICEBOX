@@ -1,0 +1,26 @@
+<div class="am-today__side">
+	<div class="am-side-box">
+		<div class="am-side-box__row">
+			<div class="am-side-box__stat">
+				<div class="am-side-box__icon">
+					{% include "admin/svg/icon_wallet.svg" %}
+				</div>
+				<div class="stat-content">
+					<span class="am-side-box__title">Total Value</span>
+					<span class="am-side-box__typo is-green">$ {{abandoned.total}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="am-side-box__row">
+			<div class="am-side-box__stat">
+				<div class="am-side-box__icon">
+					{% include "admin/svg/icon_bag.svg" %}
+				</div>
+				<div class="stat-content">
+					<span class="am-side-box__title">Total Carts</span>
+					<span class="am-side-box__typo">{{abandoned.carts|length}} Abandoned Carts</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

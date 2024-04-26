@@ -76,6 +76,16 @@
     font-weight: 600;
     line-height: 28px;
   }
+
+  &.am-item_abandoned {
+    .am-item__over {
+      &>div {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
 }
 
 .am-item__over {
@@ -552,6 +562,11 @@
   &.--form {
     width: 100%;
   }
+
+  &.--abandoned {
+    display: block;
+    padding-bottom: 28px;
+  }
 }
 
 .am-item__details-row.to_space {
@@ -952,5 +967,28 @@
     object-fit: cover;
     width: 48px;
     height: 48px;
+  }
+}
+
+.am-item__abandoned-footer {
+  padding-top: 18px;
+  border-top: 1px solid #e2e7ee;
+
+  .am-item__btn {
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .am-select-wrap {
+    min-width: 94px;
+    height: 32px;
+    
+    select {
+      font-size: 11px !important;
+      padding: 0 10px !important;
+    }
   }
 }
