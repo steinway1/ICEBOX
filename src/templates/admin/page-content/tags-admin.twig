@@ -1,0 +1,106 @@
+<div class="am-content w_max_1080">
+	<div
+		class="am-content__wrapper">
+
+		<!-- #region Content : Header -->
+		<div class="am-main__header for_today">
+			<div class="am-container">
+				<div class="am-row__header-wrapper">
+					<div class="am-row__header">
+						<div class="am_vertical-start">
+							<h2 class="am-main__header-title">Admin Tags
+							</h2>
+							<div class="am-main__subtitle">
+								<span>All Tags</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+
+
+		<!-- #region Content : Main -->
+		<div class="am-main__flow">
+			<div class="am-container">
+				<div class="am-main__content --tags">
+					<div class="am-main__orders">
+						<div class="am-content-divider">{{tags_total}}
+							Tags total<span></span>
+						</div>
+						<div class="printable_tags">
+
+							{% for tag in 0..5 %}
+								<div id="tagPreview" class="tag-preview">
+
+									<label class="custom-checkbox">
+										<input type="checkbox" value="add_print">
+										<span></span>
+									</label>
+
+									<img class="tag-preview__logo" src="./assets/blue-logo.svg" alt="Icebox logo">
+
+									<div id="tagPreviewImage" class="tag-preview__item-img"></div>
+
+									<div class="tag-preview__bar">
+										<button>
+											{% include "admin/svg/icon_edit.svg" %}
+                      <span>Edit</span>
+										</button>
+										<button>
+											{% include "admin/svg/icon_print.svg" %}
+                      <span>Print</span>
+										</button>
+										<button class="--remove">
+											{% include "admin/svg/icon_remove.svg" %}
+										</button>
+									</div>
+
+
+									<div id="tagPreviewDetails" class="tag-preview__details --filled">
+										<div id="item_type">
+											<span>Item Type</span>
+											<span>RIng</span>
+										</div>
+										<div id="notes">
+											<span>Notes</span>
+											<span>For Ryan</span>
+										</div>
+										<div id="style_n">
+											<span>Style #</span>
+											<span>NJK-3255</span>
+										</div>
+										<div id="invoice_n">
+											<span>Invoice #</span>
+											<span>55602</span>
+										</div>
+										<div id="p_n">
+											<span>P#</span>
+											<span>ISJ-20502</span>
+										</div>
+										<div id="karat_gold">
+											<span>Karat Gold</span>
+											<span>14K</span>
+										</div>
+										<div id="gold_color">
+											<span>Gold Color</span>
+											<span>Yellow</span>
+										</div>
+										<div id="gram_weight">
+											<span>Gram Weight</span>
+											<span>14g</span>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+
+	</div>
+</div>
