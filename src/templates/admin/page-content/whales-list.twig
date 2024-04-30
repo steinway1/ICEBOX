@@ -121,6 +121,16 @@
 			<div class="am-main__flow">
 				<div class="am-container">
 					<div class="am-main__content">
+
+						{% if salesperson is defined %}
+							<div class="am-main__salesperson-row">
+								<img src="{{ salesperson.img_src }}" alt="">
+								<span>These clients works with
+									<span>{{ salesperson.name }}</span></span>
+							</div>
+						{% endif %}
+
+
 						<div class="am-content-divider">
 							{{total_whales}}
 							Whales total<span></span>
@@ -146,6 +156,7 @@
 							</thead>
 							<tbody></tbody>
 						</table>
+
 						<div id="grid_view" class="tb-grid">
 							{% for whale in whales %}
 								{% include "admin/components/whale-card.twig" %}
