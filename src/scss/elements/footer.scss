@@ -25,6 +25,56 @@
   @include maxWidthXs {
     padding-top: 0px;
   }
+
+  &.footer_min {
+    .sell-footer-call {
+      background-color: transparent;
+      color: inherit;
+      padding-top: 20px;
+      padding-bottom: 20px;
+
+      &>a {
+        margin-bottom: 10px;
+
+        @include maxWidthXs {
+          font-size: 36px;
+          line-height: 46px;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .sell__controls {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0px;
+
+      .wa-float {
+        position: relative;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border-radius: 0px;
+        margin-bottom: 4px;
+
+        .wa-float__live {
+          border-radius: 0px;
+        }
+        
+        .wa-float__wrapper {
+          border-radius: 0px;
+          padding-left: 36px;
+          padding-right: 36px;
+        }
+      }
+    }
+  }
 }
 
 .footer-contact-link__typo {

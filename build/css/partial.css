@@ -21203,7 +21203,7 @@ width: calc(50% - 8px)
   display: flex;
 }
 
-.sell-footer-call a {
+.sell-footer-call a:not(.wa-float) {
   margin-bottom: 24px;
   font-size: 48px;
   font-weight: 600;
@@ -28921,6 +28921,49 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   font-weight: 700;
 }
 
+.footer.footer_min .sell-footer-call {
+  background-color: transparent;
+  color: inherit;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.footer.footer_min .sell-footer-call > a {
+  margin-bottom: 10px;
+}
+
+.footer.footer_min .sell-footer-call > a:hover {
+  text-decoration: underline;
+}
+
+.footer.footer_min .sell__controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+}
+
+.footer.footer_min .sell__controls .wa-float {
+  position: relative;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 0px;
+  margin-bottom: 4px;
+}
+
+.footer.footer_min .sell__controls .wa-float .wa-float__live {
+  border-radius: 0px;
+}
+
+.footer.footer_min .sell__controls .wa-float .wa-float__wrapper {
+  border-radius: 0px;
+  padding-left: 36px;
+  padding-right: 36px;
+}
+
 .footer-contact-link__typo {
   font-size: 13px;
 }
@@ -34836,6 +34879,11 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
 
   .footer {
     padding-top: 0px;
+  }
+
+  .footer.footer_min .sell-footer-call > a {
+    font-size: 36px;
+    line-height: 46px;
   }
 
   .footer-link,
