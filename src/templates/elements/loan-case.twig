@@ -1,248 +1,255 @@
 <div class="loan-case">
 
-	<div class="loan-case__header">
-		<img src="{{THEME_ASSETS_FOLDER}}circle-logo_text.svg" loading="eager" alt="" class="loan-case__avatar">
-		<h4 class="loan-case__heading">Welcome To the Icebox Max Approval Financing Form</h4>
-		{# <span class="loan-case__spot">Apply Now</span> #}
-	</div>
-
-	<div class="loan-case__bar-wrap">
-		<div class="loan-bar">
-			<span class="loan-bar__progress"></span>
+	<div class="loan-finish">
+		<div class="loan-finish__decor"></div>
+		<div class="loan-finish__info">
+			<h4>Congratulations!</h4>
+			<p>Your funding request has been accepted.<br>We will contact you as soon as possible.</p>
+			<a href="/">Back To Homepage</a>
 		</div>
 	</div>
 
-	<div class="loan-welcome">
-		<div class="loan-case-section">
-			<div data-loan-evt="toggle" class="loan-case__btn">
-				Apply For Financing
+	<div class="loan-flow">
+		<div class="loan-case__header">
+			<img src="{{THEME_ASSETS_FOLDER}}circle-logo_text.svg" loading="eager" alt="" class="loan-case__avatar">
+			<h4 class="loan-case__heading">Welcome To the Icebox Max Approval Financing Form</h4>
+			{# <span class="loan-case__spot">Apply Now</span> #}
+		</div>
+		<div class="loan-case__bar-wrap">
+			<div class="loan-bar">
+				<span class="loan-bar__progress"></span>
 			</div>
 		</div>
-	</div>
-
-	<div class="loan-case__content">
-		<form id="loan_form" name="loan_form" method="get" class="loan-case__form">
-
-			<div
-				class="loan-scroller">
-
-				{# First & last name #}
-				<div data-loan-section="name" data-loan-section="name" class="loan-case-section">
-					<h6 class="loan-case-section__title">First &amp; Last Name</h6>
-					<div class="loan-input-wrap">
-						<input class="loan-case__input" placeholder="First Name" type="text" id="loan_first_name" required>
-					</div>
-					<div class="loan-input-wrap">
-						<input class="loan-case__input" placeholder="Last Name" type="text" id="loan_last_name" required>
-					</div>
+		<div class="loan-welcome">
+			<div class="loan-case-section">
+				<div data-loan-evt="toggle" class="loan-case__btn">
+					Apply For Financing
 				</div>
+			</div>
+		</div>
+		<div class="loan-case__content">
+			<form id="loan_form" name="loan_form" method="get" class="loan-case__form">
+				<div
+					class="loan-scroller">
 
-				{# Phone Number #}
-				<div data-loan-section="phone" class="loan-case-section">
-					<h6 class="loan-case-section__title">Phone Number</h6>
-					<div class="loan-input-wrap">
-						<input data-validate="number" class="loan-case__input --icon" pattern="[0-9]*" placeholder="Phone Number" type="text" id="loan_number" required>
-						<div class="loan-case__input-icon">{% include "components/svg/loan-mobile.svg" %}</div>
-					</div>
-				</div>
-
-				{# Email Address #}
-				<div data-loan-section="email" class="loan-case-section">
-					<h6 class="loan-case-section__title">Email Address</h6>
-					<div class="loan-input-wrap">
-						<input data-validate="email" class="loan-case__input" placeholder="Email Address" type="email" id="loan_email" required>
-					</div>
-				</div>
-
-				{# Address #}
-				<div data-loan-section="address" class="loan-case-section">
-					<h6 class="loan-case-section__title">Address</h6>
-					<div class="loan-input-wrap">
-						<input data-validate="zip_code" class="loan-case__input" placeholder="Zip Code" type="text" id="loan_zip_code" pattern="[0-9]*" maxlength="6" required>
-						<p>Input ZIP Code and we will fill out the rest</p>
-					</div>
-					<div class="loan-input-wrap">
-						<div class="loan-case__select-wrap">
-							<select id="loan_state" class="loan-case__input" required>
-								<option value="">State...</option>
-								<option value="georgia">Georgia</option>
-							</select>
-						</div>
-					</div>
-					<div class="loan-input-wrap">
-						<input class="loan-case__input" placeholder="City" type="text" id="loan_city" required>
-					</div>
-					<div class="loan-input-wrap">
-						<input class="loan-case__input" placeholder="Address" type="text" id="loan_address_1" required>
-					</div>
-					<div class="loan-input-wrap">
-						<div class="loan-case__select-wrap">
-							<select id="loan_appartment" class="loan-case__input" required>
-								<option value="">House / Condo / Appartments...</option>
-								<option value="house">House</option>
-								<option value="condo">Condo</option>
-								<option value="appartment">Appartment</option>
-								<option value="other">Other</option>
-							</select>
-						</div>
-					</div>
-				</div>
-
-				{# ID & Debit Card #}
-				<div data-loan-section="id" class="loan-case-section">
-					<h6 class="loan-case-section__title">ID &amp; Debit Card<span>Please upload your id and a picture of your debit card front and back of both please - if you don&#x27;t do it now we will have to do it later.</span>
-					</h6>
-					<div class="loan-input-wrap">
-						<div data-loan="files_upload" class="loan-file-input">
-							<input type="file" id="loan_id" accept="image/*" multiple required>
-						</div>
-					</div>
-					<div id="loan_files_upload" class="loan-input-files"></div>
-					<div class="loan-input-wrap">
-						<button data-loan-evt="submit" class="loan-case__btn">Provide Later</button>
-					</div>
-				</div>
-
-				{# Employer #}
-				<div data-loan-section="employer" class="loan-case-section">
-					<h6 class="loan-case-section__title">Employer</h6>
-					<div data-loan-evt="dual_select" class="dual-select">
+					{# First & last name #}
+					<div data-loan-section="name" data-loan-section="name" class="loan-case-section">
+						<h6 class="loan-case-section__title">First &amp; Last Name</h6>
 						<div class="loan-input-wrap">
-							<input class="loan-case__input" placeholder="Employer" type="text" id="loan_employer" required>
+							<input class="loan-case__input" placeholder="First Name" type="text" id="loan_first_name" required>
 						</div>
 						<div class="loan-input-wrap">
-							<label class="custom-checkbox">
-								<input id="loan_self_employer" type="checkbox" value="self_employer">
-								<span>I am self employed</span>
-							</label>
+							<input class="loan-case__input" placeholder="Last Name" type="text" id="loan_last_name" required>
 						</div>
 					</div>
-					<div data-loan-evt="dual_select" class="dual-select">
-						<div class="loan-input-wrap">
-							<input class="loan-case__input" placeholder="Employer Website" type="text" id="loan_employer_website" required>
-						</div>
-						<div class="loan-input-wrap">
-							<label class="custom-checkbox">
-								<input id="loan_no_website" type="checkbox" value="no_website">
-								<span>My employer has no website.</span>
-							</label>
-						</div>
-					</div>
-				</div>
 
-				{# Salary & Credit Score #}
-				<div data-loan-section="salary" class="loan-case-section">
-					<h6 class="loan-case-section__title">Salary &amp; Credit Score</h6>
-					<div class="loan-input-wrap">
-						<div class="loan-case__select-wrap">
-							<select id="loan_salary" class="loan-case__input" required>
-								<option value="">Monthly Salary</option>
-								<option value="First">$0 - $1,500</option>
-								<option value="Second">$1,500 - $2,500</option>
-								<option value="Third">$2,500 - $3,500</option>
-								<option value="Another option">$3,500 - $4,500</option>
-								<option value="Another option">$4,500 - $5,500</option>
-								<option value="Another option">$5,500 &amp; Above</option>
-							</select>
+					{# Phone Number #}
+					<div data-loan-section="phone" class="loan-case-section">
+						<h6 class="loan-case-section__title">Phone Number</h6>
+						<div class="loan-input-wrap">
+							<input data-validate="number" class="loan-case__input --icon" pattern="[0-9]*" placeholder="Phone Number" type="text" id="loan_number" required>
+							<div class="loan-case__input-icon">{% include "components/svg/loan-mobile.svg" %}</div>
 						</div>
 					</div>
-					<div class="loan-input-wrap">
-						<div data-loan-evt="dual_select" class="dual-select">
-							<div class="loan-input-range">
-								<label for="loan_credit_score">Credit Score</label>
-								<input id="loan_credit_score" class="custom-range" type="range" min="500" max="999" onchange="loan_score_output.value=value" oninput="loan_score_output.value=value" value="500"/>
-								<output class="custom-range__output" id="loan_score_output">500</output>
+
+					{# Email Address #}
+					<div data-loan-section="email" class="loan-case-section">
+						<h6 class="loan-case-section__title">Email Address</h6>
+						<div class="loan-input-wrap">
+							<input data-validate="email" class="loan-case__input" placeholder="Email Address" type="email" id="loan_email" required>
+						</div>
+					</div>
+
+					{# Address #}
+					<div data-loan-section="address" class="loan-case-section">
+						<h6 class="loan-case-section__title">Address</h6>
+						<div class="loan-input-wrap">
+							<input data-validate="zip_code" class="loan-case__input" placeholder="Zip Code" type="text" id="loan_zip_code" pattern="[0-9]*" maxlength="6" required>
+							<p>Input ZIP Code and we will fill out the rest</p>
+						</div>
+						<div class="loan-input-wrap">
+							<div class="loan-case__select-wrap">
+								<select id="loan_state" class="loan-case__input" required>
+									<option value="">State...</option>
+									<option value="georgia">Georgia</option>
+								</select>
 							</div>
-							<label class="custom-checkbox">
-								<input id="loan_no_score" type="checkbox" value="no_credit_score">
-								<span>I don't know my credit score.</span>
+						</div>
+						<div class="loan-input-wrap">
+							<input class="loan-case__input" placeholder="City" type="text" id="loan_city" required>
+						</div>
+						<div class="loan-input-wrap">
+							<input class="loan-case__input" placeholder="Address" type="text" id="loan_address_1" required>
+						</div>
+						<div class="loan-input-wrap">
+							<div class="loan-case__select-wrap">
+								<select id="loan_appartment" class="loan-case__input" required>
+									<option value="">House / Condo / Appartments...</option>
+									<option value="house">House</option>
+									<option value="condo">Condo</option>
+									<option value="appartment">Appartment</option>
+									<option value="other">Other</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					{# ID & Debit Card #}
+					<div data-loan-section="id" class="loan-case-section">
+						<h6 class="loan-case-section__title">ID &amp; Debit Card<span>Please upload your id and a picture of your debit card front and back of both please - if you don&#x27;t do it now we will have to do it later.</span>
+						</h6>
+						<div class="loan-input-wrap">
+							<div data-loan="files_upload" class="loan-file-input">
+								<input type="file" id="loan_id" accept="image/*" multiple required>
+							</div>
+						</div>
+						<div id="loan_files_upload" class="loan-input-files"></div>
+						<div class="loan-input-wrap">
+							<button data-loan-evt="submit" class="loan-case__btn">Provide Later</button>
+						</div>
+					</div>
+
+					{# Employer #}
+					<div data-loan-section="employer" class="loan-case-section">
+						<h6 class="loan-case-section__title">Employer</h6>
+						<div data-loan-evt="dual_select" class="dual-select">
+							<div class="loan-input-wrap">
+								<input class="loan-case__input" placeholder="Employer" type="text" id="loan_employer" required>
+							</div>
+							<div class="loan-input-wrap">
+								<label class="custom-checkbox">
+									<input id="loan_self_employer" type="checkbox" value="self_employer">
+									<span>I am self employed</span>
+								</label>
+							</div>
+						</div>
+						<div data-loan-evt="dual_select" class="dual-select">
+							<div class="loan-input-wrap">
+								<input class="loan-case__input" placeholder="Employer Website" type="text" id="loan_employer_website" required>
+							</div>
+							<div class="loan-input-wrap">
+								<label class="custom-checkbox">
+									<input id="loan_no_website" type="checkbox" value="no_website">
+									<span>My employer has no website.</span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					{# Salary & Credit Score #}
+					<div data-loan-section="salary" class="loan-case-section">
+						<h6 class="loan-case-section__title">Salary &amp; Credit Score</h6>
+						<div class="loan-input-wrap">
+							<div class="loan-case__select-wrap">
+								<select id="loan_salary" class="loan-case__input" required>
+									<option value="">Monthly Salary</option>
+									<option value="First">$0 - $1,500</option>
+									<option value="Second">$1,500 - $2,500</option>
+									<option value="Third">$2,500 - $3,500</option>
+									<option value="Another option">$3,500 - $4,500</option>
+									<option value="Another option">$4,500 - $5,500</option>
+									<option value="Another option">$5,500 &amp; Above</option>
+								</select>
+							</div>
+						</div>
+						<div class="loan-input-wrap">
+							<div data-loan-evt="dual_select" class="dual-select">
+								<div class="loan-input-range">
+									<label for="loan_credit_score">Credit Score</label>
+									<input id="loan_credit_score" class="custom-range" type="range" min="500" max="999" onchange="loan_score_output.value=value" oninput="loan_score_output.value=value" value="500"/>
+									<output class="custom-range__output" id="loan_score_output">500</output>
+								</div>
+								<label class="custom-checkbox">
+									<input id="loan_no_score" type="checkbox" value="no_credit_score">
+									<span>I don't know my credit score.</span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					{# Social Security Number #}
+					<div data-loan-section="social" class="loan-case-section">
+						<h6 class="loan-case-section__title">Social Security Number</h6>
+						<div class="loan-input-wrap">
+							<input class="loan-case__input" pattern="[0-9]*" maxlength="9" placeholder="Social Security Number" type="text" id="loan_social_number" required>
+						</div>
+					</div>
+
+					{# Other Companies #}
+					<div data-loan-section="companies" class="loan-case-section">
+						<h6 class="loan-case-section__title">Do you currently use any financing companies?<span>It is not a bad thing, just let us know so we don&#x27;t look into those for you.  Affirm, Klarna, Afterpay, Synchrony, Wells Fargo, Acima?</span>
+						</h6>
+						<div class="loan-case__input-group">
+							<label class="loan-radio">
+								<input type="radio" name="loan_finance" value="loan_finance_yes">
+								<span>Yes</span>
+							</label>
+							<label class="loan-radio">
+								<input type="radio" name="loan_finance" value="loan_finance_no">
+								<span>No</span>
 							</label>
 						</div>
 					</div>
-				</div>
 
-				{# Social Security Number #}
-				<div data-loan-section="social" class="loan-case-section">
-					<h6 class="loan-case-section__title">Social Security Number</h6>
-					<div class="loan-input-wrap">
-						<input class="loan-case__input" pattern="[0-9]*" placeholder="Social Security Number" type="text" id="loan_social_number" required>
-					</div>
-				</div>
-
-				{# Other Companies #}
-				<div data-loan-section="companies" class="loan-case-section">
-					<h6 class="loan-case-section__title">Do you currently use any financing companies?<span>It is not a bad thing, just let us know so we don&#x27;t look into those for you.  Affirm, Klarna, Afterpay, Synchrony, Wells Fargo, Acima?</span>
-					</h6>
-					<div class="loan-case__input-group">
-						<label class="loan-radio">
-							<input type="radio" name="loan_finance" value="loan_finance_yes">
-							<span>Yes</span>
-						</label>
-						<label class="loan-radio">
-							<input type="radio" name="loan_finance" value="loan_finance_no">
-							<span>No</span>
-						</label>
-					</div>
-				</div>
-
-				{# Items #}
-				<div data-loan-section="items" class="loan-case-section">
-					<h6 class="loan-case-section__title">What item would you like to buy with your financing approval?</h6>
-					<div class="loan-input-wrap">
-						<input class="loan-case__input" placeholder="" type="text" id="loan_items" required>
-					</div>
-				</div>
-
-				{# Loan Is For #}
-				<div data-loan-section="for" class="loan-case-section">
-					<h6 class="loan-case-section__title">Who are you intending to use this financing on?<span>Yourself, your spouse or other?</span>
-					</h6>
-					<div class="loan-input-wrap">
-						<div class="select-wrap">
-							<select id="loan_for" class="loan-case__input" required>
-								<option value="">Select...</option>
-								<option value="Spouse">Spouse</option>
-								<option value="Self">Self</option>
-								<option value="Other">Other</option>
-							</select>
+					{# Items #}
+					<div data-loan-section="items" class="loan-case-section">
+						<h6 class="loan-case-section__title">What item would you like to buy with your financing approval?</h6>
+						<div class="loan-input-wrap">
+							<input class="loan-case__input" placeholder="" type="text" id="loan_items" required>
 						</div>
 					</div>
-				</div>
 
-				{# Amount #}
-				<div data-loan-section="amount" class="loan-case-section">
-					<h6 class="loan-case-section__title">Do you have an idea of how much you would like to get approved for?</h6>
-					<div class="loan-input-wrap">
-						<input class="loan-case__input --icon" placeholder="Amount" type="text" pattern="[0-9]*" id="loan_amount" required>
-						<div class="loan-case__input-icon">
-							{% include "components/svg/dollar.svg" %}
+					{# Loan Is For #}
+					<div data-loan-section="for" class="loan-case-section">
+						<h6 class="loan-case-section__title">Who are you intending to use this financing on?<span>Yourself, your spouse or other?</span>
+						</h6>
+						<div class="loan-input-wrap">
+							<div class="select-wrap">
+								<select id="loan_for" class="loan-case__input" required>
+									<option value="">Select...</option>
+									<option value="Spouse">Spouse</option>
+									<option value="Self">Self</option>
+									<option value="Other">Other</option>
+								</select>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</form>
-	</div>
 
-	<div class="loan-case__footer">
-		<div class="loan-case__btn-group">
-			<button data-loan-evt="back" class="loan-case__btn is-sub">Back</button>
-			<button data-loan-evt="go" class="loan-case__btn">Next</button>
+					{# Amount #}
+					<div data-loan-section="amount" class="loan-case-section">
+						<h6 class="loan-case-section__title">Do you have an idea of how much you would like to get approved for?</h6>
+						<div class="loan-input-wrap">
+							<input class="loan-case__input --icon" placeholder="Amount" type="text" pattern="[0-9]*" id="loan_amount" required>
+							<div class="loan-case__input-icon">
+								{% include "components/svg/dollar.svg" %}
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>
 		</div>
-		<div class="loan-case__features">
-			<div class="loan-case__feature">
-				{% include "components/svg/secure.svg" %}
-				<span>Your information is securely encrypted</span>
+		<div class="loan-case__footer">
+			<div class="loan-case__btn-group">
+				<button data-loan-evt="back" class="loan-case__btn is-sub">Back</button>
+				<button data-loan-evt="go" class="loan-case__btn">Next</button>
 			</div>
-			<div class="loan-case__feature">
-				{% include "components/svg/credit-score.svg" %}
-				<span>No impact to your credit score</span>
+			<div class="loan-case__features">
+				<div class="loan-case__feature">
+					{% include "components/svg/secure.svg" %}
+					<span>Your information is securely encrypted</span>
+				</div>
+				<div class="loan-case__feature">
+					{% include "components/svg/credit-score.svg" %}
+					<span>No impact to your credit score</span>
+				</div>
 			</div>
+		</div>
+		<div class="loan-case__back-group">
+			<button data-loan-evt="toggle" class="loan-case__btn">
+				Exit Financing Application
+			</button>
 		</div>
 	</div>
 
-	<div class="loan-case__back-group">
-		<button data-loan-evt="toggle" class="loan-case__btn">
-			Exit Financing Application
-		</button>
-	</div>
 </div>

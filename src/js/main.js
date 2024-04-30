@@ -133,6 +133,77 @@ const initTelInput = () => {
 const getOrdinalTxt = (n) => {
   return n % 10 == 1 && n % 100 != 11 ? 'st' : n % 10 == 2 && n % 100 != 12 ? 'nd' : n % 10 == 3 && n % 100 != 13 ? 'rd' : 'th'
 }
+
+class PageConfetti {
+  constructor() {
+    this.el = null
+    this.containerEl = null
+    this.confettiFrequency = 3
+    this.confettiInterval = 50
+    this.timeToDestroy = 8000
+    this.confettiColors = ['#0095c6', '#1ab8ec', '#8cdffa', '#d8f3fc']
+    this.confettiAnimations = ['slow', 'medium', 'fast']
+  }
+
+  createHolder() {
+    this.el = createElem('div', {
+      className: 'confetti-holder'
+    })
+    document.body.appendChild(this.el)
+  }
+
+  setup() {
+    const containerEl = createElem('div', {
+      className: 'confetti-container'
+    })
+    this.el.appendChild(containerEl)
+    this.containerEl = containerEl
+  }
+
+  render() {
+    this.confettiInterval = setInterval(() => {
+      const confettiEl = document.createElement('div')
+      const confettiSize = Math.floor(Math.random() * 3) + 7 + 'px'
+      const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors.length)]
+      const confettiLeft = Math.floor(Math.random() * this.el.offsetWidth) + 'px'
+      const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this.confettiAnimations.length)]
+
+      confettiEl.classList.add('confetti', 'confetti--animation-' + confettiAnimation)
+      confettiEl.style.left = confettiLeft
+      confettiEl.style.width = confettiSize
+      confettiEl.style.height = confettiSize
+      confettiEl.style.backgroundColor = confettiBackground
+
+      confettiEl.removeTimeout = setTimeout(function () {
+        confettiEl.parentNode.removeChild(confettiEl)
+      }, 3000)
+
+      this.containerEl.appendChild(confettiEl)
+    }, this.confettiInterval)
+  }
+
+  destroy() {
+    const el = this.el
+    if (el) {
+      el.style.opacity = '0'
+      setTimeout(() => {
+        document.body.removeChild(el)
+      }, getTransitionTime(el));
+    }
+  }
+
+  push(infinity = false) {
+    this.createHolder()
+    this.setup()
+    this.render()
+    if (!infinity) {
+      setTimeout(() => {
+        this.destroy()
+      }, this.timeToDestroy);
+    }
+  }
+}
+
 /* #endregion */
 
 /* #region  Page Ask Modal */
@@ -5692,6 +5763,8 @@ class LoanApp {
     this.evtBack = [...this.holder.querySelectorAll('[data-loan-evt="back"]')]
     this.bar = this.holder.querySelector('.loan-bar')
     this.bar_progress = this.holder.querySelector('.loan-bar__progress')
+    this.flow = this.holder.querySelector('.loan-flow')
+    this.finish = this.holder.querySelector('.loan-finish')
     this.maxSteps = undefined
     this.currentStep = undefined
     this.stepsLeft = undefined
@@ -5763,7 +5836,7 @@ class LoanApp {
       className: 'loan-case-loader',
       innerHTML: this.getLoaderHTML
     })
-    this.content.appendChild(loader)
+    this.holder.appendChild(loader)
     setTimeout(() => {
       this.holder.classList.add(__LOCKED)
       if (timeToRemove) {
@@ -5824,17 +5897,23 @@ class LoanApp {
     $('#loan_form').submit();
   }
   finishMessage() {
-    const time = 2000
-    this.loadingOn(time)
-    const successMessage = createElem('div', {
-      className: 'loan-case-success',
-      innerHTML: `Financing request was saved, we will contact you as soon as possible`
-    })
+    this.loadingOn(1000)
     setTimeout(() => {
-      this.content.style.height = '0px'
-      this.btnGroup.style.display = 'none'
-      this.footer.prepend(successMessage)
-    }, time);
+      this.flow.style.opacity = 0
+      let currentHeight = this.holder.offsetHeight
+      this.holder.style.height = `${currentHeight}px`
+      setTimeout(() => {
+        this.finish.style.display = 'block'
+        let scrollH = this.finish.scrollHeight
+        this.holder.style.height = `${scrollH}px`
+        setTimeout(() => {
+          this.finish.style.opacity = 1
+          window.scrollTo(0, 0)
+          const confetti = new PageConfetti()
+          confetti.push(false)
+        }, 10);
+      }, getTransitionTime(this.flow) + 10)
+    }, 800);
   }
   slide(section) {
     section.style.display = 'flex'
@@ -5870,9 +5949,9 @@ class LoanApp {
         this.slide(nextSection)
         this.loadingOff()
         this.observeBar()
-      }, 1200);
+      }, 600);
     } else {
-      this.save()
+      // this.save()
       this.finishMessage()
     }
   }
