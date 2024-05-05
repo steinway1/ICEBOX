@@ -1,0 +1,52 @@
+{% set records = gold_price.records %}
+
+<div class="am-content">
+	<div class="pos__wrapper">
+		<div class="pos__area">
+
+			<div class="am_vertical-start">
+				<h2 class="am-main__header-title">Gold Price</h2>
+				<p>Track the history of gold price changes.</p>
+
+				<div class="am_flex24">
+					<div class="am-mark">
+						<span>Last Price</span>
+						<span>{{records[records|length - 1].price}}</span>
+					</div>
+					<div class="am-mark">
+						<span>Date</span>
+						<span>{{records[records|length - 1].date}}</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="pos__row-divider"></div>
+
+			<div class="price-tb-wrap">
+				<h4>{{records|length}}
+					total recordings</h4>
+
+				<div class="price-tb-head">
+					<div>Date</div>
+					<div>Time</div>
+					<div>Price</div>
+				</div>
+
+				<div data-tb="gold_prices" class="price-tb-body">
+					{% for record in records %}
+						<div data-row>
+							<div>{{record.date}}</div>
+							<div>{{record.time}}</div>
+							<div>
+								<span data-price>{{record.price}}</span>
+								<span data-change class="--change">N/A</span>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>

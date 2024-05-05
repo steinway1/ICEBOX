@@ -729,6 +729,14 @@ body {
   display: flex;
 }
 
+.am_flex24 {
+  margin-top: 12px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  display: flex;
+  gap: 24px;
+}
+
 .am_vertical-start {
   grid-column-gap: 6px;
   grid-row-gap: 6px;
@@ -775,9 +783,9 @@ body {
 .am-main__header-title {
   // color: var(--navy_blue);
   // text-transform: uppercase;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 600;
-  line-height: 30px;
+  line-height: 32px;
 
   &.--min {
     font-size: 18px !important;
@@ -1649,4 +1657,27 @@ body {
       }
     }
   }
+}
+
+.am-mark {
+  grid-column-gap: 4px;
+    grid-row-gap: 4px;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+
+    span {
+      &:first-child {
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      &:last-child {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px;
+        color: var(--bright_blue)
+      }
+    }
 }
