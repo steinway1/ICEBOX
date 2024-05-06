@@ -1,0 +1,165 @@
+{% set whale = whales[0] %}
+{% set submit = submits[0] %}
+<div class="edit-modal --fin">
+	<div data-evt="closeEditModal" class="edit-modal__backdrop"></div>
+	<div class="edit-modal__container">
+		<div class="edit-modal__main">
+			<div
+				class="edit-modal__scroll">
+
+				<!-- #region Header -->
+				<div class="edit-modal__header">
+					<div class="wrapper">
+						<div class="am-row__header">
+							<div class="flex-row">
+								<h3 class="whale-card__name">Application #{{submit.number}}</h3>
+							</div>
+							<div class="flex-row">
+								<a href="javascript:;" data-evt="closeEditModal" class="am-close-btn">
+									{% include "admin/svg/icon_cross.svg" %}
+									<span>Close</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- #endregion -->
+
+				<!-- #region Main Content -->
+				<div class="edit-modal__content">
+					<div
+						class="wrapper">
+
+						<!-- #region Personal Information -->
+						<div class="wh-box">
+							<div class="wh-box__wrapper">
+								<div class="wh-box__header">
+									<div class="flex-row">
+										<div class="wh-icon">
+											{% include "admin/svg/icon_person.svg" %}
+										</div>
+										<h4 class="wh-box__heading">Personal Information</h4>
+									</div>
+								</div>
+								<div class="wh-box__body">
+									<div
+										class="wh-inputs-grid">
+										{# Active Client #}
+										<div class="wh-input-box">
+											<label>Active Client</label>
+											<div class="wh-input-wrap --select">
+												<select class="wh-input" name="active">
+													<option value="0">No</option>
+													<option value="1" selected="">Yes</option>
+												</select>
+											</div>
+										</div>
+
+										{# First Name #}
+										<div class="wh-input-box">
+											<label>First Name</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="first_name" class="wh-input" placeholder="First Name" autocomplete="off" {% if whale.first_name %} value="{{ whale.first_name }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Last Name #}
+										<div class="wh-input-box">
+											<label>Last Name</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="last_name" class="wh-input" placeholder="Last Name" autocomplete="off" {% if whale.last_name %} value="{{ whale.last_name }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Birthday #}
+										<div class="wh-input-box">
+											<label>Birthday</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="birthday" class="wh-input" placeholder="Birthday" autocomplete="off" {% if whale.birthday %} value="{{ whale.birthday }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Email #}
+										<div class="wh-input-box">
+											<label>Email</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="birthday" class="wh-input" placeholder="Email" autocomplete="off" {% if whale.email %} value="{{ whale.email }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Phone 1 #}
+										<div class="wh-input-box">
+											<label>Phone 1</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="phone1" class="wh-input" placeholder="Phone 1" autocomplete="off" {% if whale.phone1 %} value="{{ whale.phone1 }}" {% endif %}>
+											</div>
+
+											<label class="wh-checkbox">
+												<input type="checkbox" name="need_phone">
+												<div class="checkbox-toggle"></div>
+												<span>Need To Add</span>
+											</label>
+										</div>
+
+										{# Phone 2 #}
+										<div class="wh-input-box">
+											<label>Phone 2</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="phone2" class="wh-input" placeholder="Phone 2" autocomplete="off" {% if whale.phone2 %} value="{{ whale.phone2 }}" {% endif %}>
+											</div>
+										</div>
+
+										{# Zip Code #}
+										<div class="wh-input-box">
+											<label>ZIP Code</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="zipCode" class="wh-input" placeholder="ZIP Code" autocomplete="off" {% if whale.zipCode %} value="{{ whale.zipCode }}" {% endif %}>
+											</div>
+										</div>
+
+										{# City #}
+										<div class="wh-input-box">
+											<label>City</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="city" class="wh-input" placeholder="City" autocomplete="off" {% if whale.city %} value="{{ whale.city }}" {% endif %}>
+											</div>
+										</div>
+
+										{# State #}
+										<div class="wh-input-box">
+											<label>State</label>
+											<div class="wh-input-wrap">
+												<input type="text" name="state" class="wh-input" placeholder="State" autocomplete="off" {% if whale.state %} value="{{ whale.state }}" {% endif %}>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- #endregion -->
+            
+					</div>
+				</div>
+				<!-- #endregion -->
+
+				<div class="edit-modal__footer">
+					<div class="wrapper">
+						<div class="flex-row_8">
+								<a class="am-item__btn is-green-border" onclick="Submit();">
+									<span>Save</span>
+								</a>
+								<a class="am-item__btn is-border" onclick="SubmitPrevious();">
+									<span>Save & Back</span>
+								</a>
+								<a class="am-item__btn" onclick="SubmitNext();">
+									<span>Save & Next</span>
+								</a>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>

@@ -73,6 +73,70 @@ function allowInputSum(input) {
   })
 }
 
+class AskModal {
+  constructor(settings = {}) {
+    this.heading = settings.heading || 'Are You Sure You Want To Exit?'
+    this.subheading = settings.subheading || 'You will lose all unsaved progress.'
+    this.exitText = settings.exitText || 'Exit'
+    this.submitText = settings.submitText || 'Keep'
+    this.cancelCallback = this.destroy
+    this.submitCallback = settings.submitCallback
+    this.msg = settings.msg
+  }
+
+  get renderHTML() {
+    return `
+      <div data-evt="closeAskModal"></div>
+      <div>
+        <h4>${this.heading}</h4>
+        <p>${this.subheading}</p>
+        <div>
+          <button>${this.exitText}</button>
+          <button>${this.submitText}</button>
+        </div>
+      </div>
+    `
+  }
+
+  create() {
+    const modal = createElem('div', {
+      className: 'ask-modal',
+      innerHTML: this.renderHTML
+    })
+    const buttons = [...modal.querySelectorAll('button')]
+    const closeEvt = [...modal.querySelectorAll('[data-evt="closeAskModal"]')]
+    buttons[0].onclick = () => { this.cancelCallback() }
+    buttons[1].onclick = () => {
+      const submitArr = toArray(this.submitCallback)
+      for (const fn of submitArr) {
+        if (typeof fn === 'function') {
+          fn()
+        }
+      }
+      this.destroy()
+    }
+    for (const evt of closeEvt) {
+      evt.onclick = () => { this.destroy() }
+    }
+    return modal
+  }
+
+  destroy() {
+    unlockScroll()
+    const modal = document.querySelector('.ask-modal')
+    if (modal) {
+      modal.remove()
+    }
+  }
+
+  show() {
+    lockScroll()
+    const elem = this.create()
+    document.body.appendChild(elem)
+  }
+}
+/* #endregion */
+
 function pageMsg(settings = {}) {
   this.heading = settings.heading || 'Something went wrong'
   this.msg = settings.msg || 'Undefined message'
@@ -2911,4 +2975,78 @@ document.addEventListener('DOMContentLoaded', () => {
     const goldPricePage = new GoldPrice()
     goldPricePage.init()
   }
+})
+
+/**
+ * Finance List Page
+ */
+
+const FinanceList = {
+  submitToRemove: null,
+  init: function () {
+    if (document.querySelector('.main_fin_list') !== null) {
+      for (const elem of Object.values(FinanceList.bindEvents)) {
+        if (elem !== undefined && typeof elem == 'function') elem();
+      }
+    }
+  },
+  bindEvents: {
+    documentEvents: function () {
+      document.addEventListener('click', (e) => {
+        // Remove Submit
+        if (e.target.closest('[data-evt="remove_fin_item"]')) {
+          const submit = e.target.closest('.fin-item')
+          if (submit !== null) {
+            const remove = () => {
+              FinanceList.deleteSubmit(submit)
+            }
+            const removeMessage = () => {
+              new pageMsg({
+                heading: 'Submit Removed',
+                msg: 'Application has been removed successfully',
+              })
+            }
+            const ask = new AskModal({
+              heading: 'Delete This Submit?',
+              subheading: 'This application will be permanently deleted with no undo.',
+              exitText: 'Back',
+              submitText: 'Delete',
+              submitCallback: [remove, removeMessage]
+            })
+            ask.show()
+          }
+        }
+      })
+    },
+    temp: function() {
+      return
+      const modal = document.querySelector('.edit-modal')
+      const backdrop = document.querySelector('.edit-modal__backdrop')
+      const container = document.querySelector('.edit-modal__container')
+      if (modal) {
+        modal.style.display = 'block'
+        backdrop.style.opacity = 1
+        container.style.transform = 'translateX(0)'
+      }
+    }
+  },
+  deleteSubmit(submit) {
+    if (submit) {
+      const currentHeight = submit.offsetHeight
+      submit.style.height = `${currentHeight}px`
+      submit.style.pointerEvents = 'none'
+      setTimeout(() => {
+        submit.style.opacity = 0
+        submit.style.transform = 'translateY(-12px)'
+        submit.style.height = `0px`
+        setTimeout(() => {
+          submit.remove()
+        }, getTransitionTime(submit));
+      }, 5);
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  FinanceList.init()
 })

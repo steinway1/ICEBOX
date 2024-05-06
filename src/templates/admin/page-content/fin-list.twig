@@ -30,6 +30,9 @@
 							<div class="am-content-divider">{{submits|length}}
 								Orders total<span></span>
 							</div>
+
+              {% include "admin/components/page-pagination.twig" %}
+
 							{# ORDERS #}
 							{% for submit in submits %}
 								{% include "admin/components/item-finance.twig" %}
@@ -44,3 +47,5 @@
 
 	</div>
 </div>
+
+{# {% include "admin/components/edit-modal_fin.twig" %} #}
