@@ -678,7 +678,6 @@ const orderNotes = {
           if (val.length !== 0) {
             const parent = input.parentNode.closest('.am-item__note-wrap')
             input.value = ''
-            orderNotes.appendNote(parent, 'Steinway', val)
           }
         }
       }
