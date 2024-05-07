@@ -3027,6 +3027,11 @@ const FinanceList = {
             ask.show()
           }
         }
+
+        // Edit modal
+        if (e.target.closest('[data-evt="edit_fin_item"]')) {
+          editModal.open()
+        }
       })
     },
     temp: function () {

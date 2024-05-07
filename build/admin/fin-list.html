@@ -287,7 +287,7 @@
                                                                 <option value="C">C</option>
                                                             </select>
                                                         </div>
-                                                        <button class="pg-btn">Edit</button>
+                                                        <button data-evt="edit_fin_item" class="pg-btn">Edit</button>
                                                         <button data-evt="remove_fin_item" class="pg-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M1 1L23 23" stroke="currentColor" stroke-width="2"></path>
                                                                 <path d="M23 1L1 23" stroke="currentColor" stroke-width="2"></path>
@@ -434,7 +434,7 @@
                                                                 <option value="C">C</option>
                                                             </select>
                                                         </div>
-                                                        <button class="pg-btn">Edit</button>
+                                                        <button data-evt="edit_fin_item" class="pg-btn">Edit</button>
                                                         <button data-evt="remove_fin_item" class="pg-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M1 1L23 23" stroke="currentColor" stroke-width="2"></path>
                                                                 <path d="M23 1L1 23" stroke="currentColor" stroke-width="2"></path>
@@ -581,7 +581,7 @@
                                                                 <option value="C">C</option>
                                                             </select>
                                                         </div>
-                                                        <button class="pg-btn">Edit</button>
+                                                        <button data-evt="edit_fin_item" class="pg-btn">Edit</button>
                                                         <button data-evt="remove_fin_item" class="pg-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M1 1L23 23" stroke="currentColor" stroke-width="2"></path>
                                                                 <path d="M23 1L1 23" stroke="currentColor" stroke-width="2"></path>
@@ -728,7 +728,7 @@
                                                                 <option value="C">C</option>
                                                             </select>
                                                         </div>
-                                                        <button class="pg-btn">Edit</button>
+                                                        <button data-evt="edit_fin_item" class="pg-btn">Edit</button>
                                                         <button data-evt="remove_fin_item" class="pg-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M1 1L23 23" stroke="currentColor" stroke-width="2"></path>
                                                                 <path d="M23 1L1 23" stroke="currentColor" stroke-width="2"></path>
@@ -875,7 +875,7 @@
                                                                 <option value="C">C</option>
                                                             </select>
                                                         </div>
-                                                        <button class="pg-btn">Edit</button>
+                                                        <button data-evt="edit_fin_item" class="pg-btn">Edit</button>
                                                         <button data-evt="remove_fin_item" class="pg-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M1 1L23 23" stroke="currentColor" stroke-width="2"></path>
                                                                 <path d="M23 1L1 23" stroke="currentColor" stroke-width="2"></path>
@@ -997,6 +997,189 @@
             </div>
         </div>
 
+        <div class="edit-modal --fin">
+            <div data-evt="closeEditModal" class="edit-modal__backdrop"></div>
+            <div class="edit-modal__container">
+                <div class="edit-modal__main">
+                    <div class="edit-modal__scroll">
+
+                        <!-- #region Header -->
+                        <div class="edit-modal__header">
+                            <div class="wrapper">
+                                <div class="am-row__header">
+                                    <div class="flex-row">
+                                        <h3 class="whale-card__name">Application #1</h3>
+                                    </div>
+                                    <div class="flex-row">
+                                        <a href="javascript:;" data-evt="closeEditModal" class="am-close-btn">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 1L23 23" stroke="currentColor" stroke-width="2"></path>
+                                                <path d="M23 1L1 23" stroke="currentColor" stroke-width="2"></path>
+                                            </svg> <span>Close</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- #endregion -->
+
+                        <!-- #region Main Content -->
+                        <div class="edit-modal__content">
+                            <div class="wrapper">
+
+                                <!-- #region Personal Information -->
+                                <div class="wh-box">
+                                    <div class="wh-box__wrapper">
+                                        <div class="wh-box__body">
+                                            <div class="wh-inputs-grid">
+
+
+                                                <div class="wh-input-box">
+                                                    <label>Status</label>
+                                                    <div class="wh-input-wrap --select">
+                                                        <select class="wh-input" name="active">
+                                                            <option value="inactive">Inactive</option>
+                                                            <option value="true" selected>True</option>
+                                                            <option value="inactive">Inactive</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="wh-input-box">
+                                                    <label>Salesperson</label>
+                                                    <div class="wh-input-wrap --select">
+                                                        <select class="wh-input" name="active">
+                                                            <option value="jenee">Jenee</option>
+                                                            <option value="ryan" selected>Ryan</option>
+                                                            <option value="anna">Anna</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="wh-input-box">
+                                                    <label>Grades</label>
+                                                    <div class="wh-input-wrap --select">
+                                                        <select class="wh-input" name="active">
+                                                            <option value="a" selected>A</option>
+                                                            <option value="b">B</option>
+                                                            <option value="c">C</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="wh-input-box">
+                                                    <label>First Name</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="Andrew">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Last Name</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="Harfield">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Phone Number</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="555-555-5555">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Email Address</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="zHv0i@example.com">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Full Address</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="123 Main St, Anytown, USA 12345">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Employer</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="Icebox">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Employer Wesbite</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="https://www.icebox.com">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Avg. Monthly Salary</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="$300.00">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Credit Score</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="856">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>SSN</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="123-45-6789">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Use Fin. Companies</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="Yes">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Finance For</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="Personal">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Item To Buy</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="Flower Diamond Ring 14k Solid Gold 0.50ctw">
+                                                    </div>
+                                                </div>
+                                                <div class="wh-input-box">
+                                                    <label>Amount</label>
+                                                    <div class="wh-input-wrap">
+                                                        <input type="text" name="" class="wh-input" placeholder="" autocomplete="off" value="1,650.00">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- #endregion -->
+
+                            </div>
+                        </div>
+                        <!-- #endregion -->
+
+                        <div class="edit-modal__footer">
+                            <div class="wrapper">
+                                <div class="flex-row_8">
+                                    <a class="am-item__btn --dim" onclick="editModal.close();">
+                                        <span>Cancel</span>
+                                    </a>
+                                    <a class="am-item__btn" onclick="Submit();">
+                                        <span>Save &amp; Exit</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <aside class="am-sidebar">
