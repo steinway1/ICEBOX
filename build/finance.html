@@ -471,11 +471,11 @@
                                         </div>
                                         <div class="loan-input-wrap">
                                             <div class="loan-case__select-wrap">
-                                                <select id="loan_appartment" class="loan-case__input" required>
-                                                    <option value="">House / Condo / Appartments...</option>
+                                                <select id="loan_apartment" class="loan-case__input" required>
+                                                    <option value="">House / Condo / Apartment...</option>
                                                     <option value="house">House</option>
                                                     <option value="condo">Condo</option>
-                                                    <option value="appartment">Appartment</option>
+                                                    <option value="apartment">Apartment</option>
                                                     <option value="other">Other</option>
                                                 </select>
                                             </div>
@@ -530,13 +530,15 @@
                                         <div class="loan-input-wrap">
                                             <div class="loan-case__select-wrap">
                                                 <select id="loan_salary" class="loan-case__input" required>
-                                                    <option value="">Monthly Salary</option>
-                                                    <option value="First">$0 - $1,500</option>
-                                                    <option value="Second">$1,500 - $2,500</option>
-                                                    <option value="Third">$2,500 - $3,500</option>
-                                                    <option value="Another option">$3,500 - $4,500</option>
-                                                    <option value="Another option">$4,500 - $5,500</option>
-                                                    <option value="Another option">$5,500 &amp; Above</option>
+                                                    <option value="" disabled>Monthly Salary</option>
+                                                    <option value="under_1500">Under $1,500</option>
+                                                    <option value="1500_2500">$1,500 - $2,500</option>
+                                                    <option value="2500_3500">$2,500 - $3,500</option>
+                                                    <option value="3500_4500">$3,500 - $4,500</option>
+                                                    <option value="4500_5500">$4,500 - $5,500</option>
+                                                    <option value="5500_7500">$5,500 - $7,500</option>
+                                                    <option value="7500_10000">$7,500 - $10,000</option>
+                                                    <option value="over_10000">$10,000 &amp; Up</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -544,7 +546,7 @@
                                             <div data-loan-evt="dual_select" class="dual-select">
                                                 <div class="loan-input-range">
                                                     <label for="loan_credit_score">Credit Score</label>
-                                                    <input id="loan_credit_score" class="custom-range" type="range" min="500" max="999" onchange="loan_score_output.value=value" oninput="loan_score_output.value=value" value="500" />
+                                                    <input id="loan_credit_score" class="custom-range" type="range" min="300" max="850" onchange="loan_score_output.value=value" oninput="loan_score_output.value=value" value="500" />
                                                     <output class="custom-range__output" id="loan_score_output">500</output>
                                                 </div>
                                                 <label class="custom-checkbox">
@@ -607,7 +609,7 @@
                                     <div data-loan-section="amount" class="loan-case-section">
                                         <h6 class="loan-case-section__title">Do you have an idea of how much you would like to get approved for?</h6>
                                         <div class="loan-input-wrap">
-                                            <input class="loan-case__input --icon" placeholder="Amount" type="text" pattern="[0-9]*" id="loan_amount" required>
+                                            <input data-format="currency" class="loan-case__input --icon" placeholder="Amount" type="text" pattern="[0-9]*" id="loan_amount" required autocomplete="off">
                                             <div class="loan-case__input-icon">
                                                 <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M6 16C6 18.2146 7.78111 20 9.994 20H14.5097C16.4348 20 18 18.4378 18 16.515C18 14.4206 17.0465 13.6824 15.6252 13.2017L8.37481 10.7983C6.95352 10.3176 6 9.5794 6 7.48498C6 5.56223 7.56522 4 9.49025 4H14.006C16.2189 4 18 5.78541 18 8" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -664,7 +666,7 @@
 
             <div class="sell-footer-call">
                 <h5 class="sell-contacts__heading">
-                    Call Us or Contact Via WhatsAppf
+                    Call Us or Contact Via WhatsApp
                 </h5>
                 <a href="tel:404-842-0266">404-991-9721</a>
                 <div class="sell__controls">

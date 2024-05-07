@@ -211,7 +211,7 @@ body.loan_case {
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
-  transition: all .2s;
+  transition: all .2s ease;
   display: flex;
 
   &.--icon {
@@ -245,11 +245,21 @@ body.loan_case {
 
 .loan-case__input:not(.--invalid):hover {
   border-color: #1aaddd;
+
+  &~.loan-case__input-icon {
+    background-color: transparent;
+    border-color: #1aaddd;
+  }
 }
 
 .loan-case__input:focus {
   border-color: #1aaddd;
   box-shadow: 0 0 0 2px rgba(26, 173, 221, .09);
+
+  &~.loan-case__input-icon {
+    background-color: transparent;
+    border-color: #1aaddd;
+  }
 }
 
 .loan-case__input::-ms-input-placeholder {
@@ -436,6 +446,7 @@ body.loan_case {
   bottom: 0%;
   left: 0%;
   right: auto;
+  transition: all .2s ease;
 }
 
 .loan-case-section__title {

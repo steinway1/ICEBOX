@@ -85,6 +85,16 @@ function addClasses(target, ...classes) {
   }
 }
 
+function formatAsCurrency(string) {
+  string = typeof string === 'string' ? string : string.toString()
+  const number = parseFloat(string.replace(/,/g, ''))
+  const parts = number.toFixed(2).split('.')
+  const digits = parts[0]
+  const decimal = parts[1]
+  const integer = digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return `${integer}.${decimal}`
+}
+
 const getEvtDOM = (att) => {
   return $(`[data-evt="${att}"]`);
 },
@@ -6195,6 +6205,16 @@ class LoanApp {
     inputs.forEach((input) => {
       input.addEventListener('focus', () => {
         this.clearErrors()
+        const parent = input.parentNode.closest('.loan-input-wrap')
+        if (parent) {
+          parent.classList.add('--focused')
+        }
+      })
+      input.addEventListener('blur', () => {
+        const parent = input.parentNode.closest('.loan-input-wrap')
+        if (parent) {
+          parent.classList.remove('--focused')
+        }
       })
       input.addEventListener('keydown', (e) => {
         this.clearErrors()
@@ -6333,6 +6353,17 @@ class LoanApp {
       }
     }
   }
+  bindCurrencyFormat() {
+    const arr = document.querySelectorAll('[data-format="currency"]')
+    for (const input of arr) {
+      input.addEventListener('blur', () => {
+        const val = input.value
+        if (val.length) {
+          input.value = formatAsCurrency(val)
+        }
+      })
+    }
+  }
 
   /**
    * Initial
@@ -6361,6 +6392,7 @@ class LoanApp {
     this.bindNumberInput()
     this.bindIDUpload()
     this.bindDualSelect()
+    this.bindCurrencyFormat()
   }
 }
 

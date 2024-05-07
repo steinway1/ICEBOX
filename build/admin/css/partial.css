@@ -9816,6 +9816,10 @@ textarea.pos-input {
   border: none;
 }
 
+.fin-item__row.--blank {
+  padding: 0;
+}
+
 .fin-item__title-group {
   grid-column-gap: 22px;
   grid-row-gap: 4px;
@@ -9834,10 +9838,8 @@ textarea.pos-input {
 }
 
 .fin-item__details {
-  grid-row-gap: 18px;
   flex-flow: wrap;
   justify-content: flex-start;
-  align-items: flex-start;
   display: flex;
   width: 100%;
 }
@@ -9845,16 +9847,22 @@ textarea.pos-input {
 .fin-item__details > div {
   flex-flow: column;
   width: 25%;
-  padding-right: 18px;
+  padding: 12px 26px;
   display: flex;
   font-size: 13px;
   line-height: 22px;
+  border-right: 1px solid #e5e9f1;
+  border-bottom: 1px solid #e5e9f1;
+  margin-bottom: -1px;
+  transition: all 150ms ease;
+  position: relative;
 }
 
 .fin-item__details > div > div:first-child,
 .fin-item__details > div > span:first-child {
   opacity: 0.5;
   font-size: 10px;
+  line-height: 18px;
   font-weight: 600;
 }
 
@@ -10095,6 +10103,12 @@ textarea.pos-input {
   .whale-card:hover {
     border-color: var(--bright_blue);
     box-shadow: 0 10px 62px rgba(16, 82, 168, 0.1);
+  }
+
+  .fin-item__details > div:hover {
+    background-color: #fff;
+    z-index: 2;
+    box-shadow: 0 0 36px 0 rgba(21, 38, 51, 0.07);
   }
 }
 
@@ -11289,10 +11303,6 @@ textarea.pos-input {
     width: 100%;
   }
 
-  .fin-item__details {
-    gap: 8px;
-  }
-
   .price-tb-body > div {
     flex-flow: wrap;
     justify-content: flex-start;
@@ -11332,6 +11342,31 @@ textarea.pos-input {
     background-color: transparent !important;
     border-radius: 0;
     width: 50%;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 2800px) {
+  .fin-item__details > div:nth-child(4n) {
+    border-right: none;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .fin-item__details > div:nth-child(3n) {
+    border-right: none;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .fin-item__details > div:nth-child(2n) {
+    border-right: none;
+  }
+}
+
+@media screen and (min-width: 280px) and (max-width: 479px) {
+  .fin-item__details > div {
+    border-right: none;
+    padding: 8px 18px;
   }
 }
 
