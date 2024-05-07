@@ -660,7 +660,6 @@ const orderNotes = {
             val = input.value
           if (val.length !== 0) {
             input.value = ''
-            orderNotes.appendNote(parent, 'Steinway', val)
           } else {
             input.focus()
           }

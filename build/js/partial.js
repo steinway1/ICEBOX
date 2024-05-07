@@ -6263,7 +6263,7 @@ class LoanApp {
         this.observeBar()
       }, 600);
     } else {
-      // this.save()
+      this.save()
       this.finishMessage()
     }
   }
