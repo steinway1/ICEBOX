@@ -3006,6 +3006,7 @@ const FinanceList = {
   bindEvents: {
     documentEvents: function () {
       document.addEventListener('click', (e) => {
+        var application_id = $(e.target).attr('data-id');
         // Remove Submit
         if (e.target.closest('[data-evt="remove_fin_item"]')) {
           const submit = e.target.closest('.fin-item')
@@ -3014,14 +3015,15 @@ const FinanceList = {
               FinanceList.deleteSubmit(submit)
             }
             const removeMessage = () => {
+              deleteFinance(application_id);
               new pageMsg({
-                heading: 'Submit Removed',
+                heading: 'Application was Removed',
                 msg: 'Application has been removed successfully',
-              })
+              });
             }
             const ask = new AskModal({
-              heading: 'Delete This Submit?',
-              subheading: 'This application will be permanently deleted with no undo.',
+              heading: 'Delete This Application?',
+              subheading: 'This application will be permanently deleted',
               exitText: 'Back',
               submitText: 'Delete',
               submitCallback: [remove, removeMessage]
