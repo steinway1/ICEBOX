@@ -4014,7 +4014,7 @@ body.blue_head .am-select:hover {
   border-radius: 0;
   justify-content: center;
   align-items: center;
-  padding: 8px 16px;
+  padding: 10px 16px;
   font-weight: 600;
   transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   display: flex;
@@ -4032,6 +4032,13 @@ body.blue_head .am-select:hover {
   justify-content: center;
   align-items: center;
   display: flex;
+}
+
+.am-item__btn.--dim {
+  background-color: #f0f3f7;
+  border-color: #f0f3f7;
+  box-shadow: none;
+  color: var(--black);
 }
 
 .am-item__btn.is-dark {
@@ -6893,7 +6900,7 @@ div.dt-container .dt-paging {
   left: 0%;
   right: 0%;
   transition: all 400ms ease;
-  --max-width: 780px;
+  --max-width: 640px;
   --wrapper-padding: 24px 48px;
 }
 
@@ -6915,11 +6922,15 @@ div.dt-container .dt-paging {
 }
 
 .edit-modal .wrapper {
-  padding: var(--wrapper-padding);
+  padding: 18px;
 }
 
 .edit-modal .am-row__header {
   align-items: center;
+}
+
+.edit-modal .am-row__header .whale-card__avatar {
+  display: none;
 }
 
 .edit-modal.is-visible {
@@ -7080,7 +7091,7 @@ div.dt-container .dt-paging {
 }
 
 .edit-modal__content .whale-card__name {
-  font-size: 20px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -7104,17 +7115,17 @@ div.dt-container .dt-paging {
   box-shadow: none;
   background-color: #fff;
   border: 1px solid #eaedf3;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 0;
+  margin-bottom: 12px;
 }
 
 .wh-box .whale-card__avatar {
-  width: 98px;
-  height: 98px;
+  width: 70px;
+  height: 70px;
 }
 
 .wh-box__wrapper {
-  padding: 38px;
+  padding: 30px;
 }
 
 .wh-flex-row {
@@ -7141,6 +7152,10 @@ div.dt-container .dt-paging {
   flex-wrap: wrap;
   align-items: flex-start;
   display: flex;
+}
+
+.wh-spot-row > div:nth-child(n+4) {
+  display: none;
 }
 
 .wh-spot-box {
@@ -7180,16 +7195,15 @@ div.dt-container .dt-paging {
   cursor: pointer;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   display: flex;
 }
 
 .wh-icon {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   background-color: var(--wh_blue);
   color: #fff;
-  border-radius: 5px;
   justify-content: center;
   align-items: center;
   padding: 6px;
@@ -7205,7 +7219,7 @@ div.dt-container .dt-paging {
 }
 
 .wh-box__heading {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -7221,7 +7235,7 @@ div.dt-container .dt-paging {
 }
 
 .wh-input-box {
-  min-width: 45%;
+  min-width: 30%;
   grid-column-gap: 6px;
   grid-row-gap: 6px;
   flex-direction: column;
@@ -7235,10 +7249,10 @@ div.dt-container .dt-paging {
 }
 
 .wh-input-box label {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 400;
   line-height: 14px;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
 }
 
 .wh-input-box .wh-checkbox {
@@ -7269,15 +7283,16 @@ div.dt-container .dt-paging {
 }
 
 .wh-input {
-  height: 40px;
+  height: 38px;
   min-width: 100px;
   color: #202124;
   background-color: #fff;
   border: 1px solid #dbe0e9;
-  border-radius: 6px;
+  border-radius: 0;
   margin-bottom: 0;
-  padding: 6px 18px;
+  padding: 4px 14px;
   font-weight: 600;
+  font-size: 13px;
   transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   box-shadow: 0 2px 3px rgba(23, 28, 41, 0.03);
 }

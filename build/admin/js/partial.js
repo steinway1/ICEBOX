@@ -1119,6 +1119,17 @@ const editModal = {
           editModal.open()
         }
       })
+      document.addEventListener('keydown', (e) => {
+        if (e.key == 'Escape' || e.keyCode == 27) {
+          const modal = document.querySelector('.edit-modal')
+          if (modal) {
+            modal.classList.remove(IS_VISIBLE)
+            setTimeout(() => {
+              modal.style.display = 'none'
+            }, getTransitionTime(modal));
+          }
+        }
+      })
     }
   }
 }
@@ -3021,7 +3032,7 @@ const FinanceList = {
         }
       })
     },
-    temp: function() {
+    temp: function () {
       return
       const modal = document.querySelector('.edit-modal')
       const backdrop = document.querySelector('.edit-modal__backdrop')

@@ -120,25 +120,15 @@
 							<div class="wh-box__wrapper">
 								<div class="wh-box__header">
 									<div class="flex-row">
-										<div class="wh-icon">
+										{# <div class="wh-icon">
 											{% include "admin/svg/icon_person.svg" %}
-										</div>
+										</div> #}
 										<h4 class="wh-box__heading">Personal Information</h4>
 									</div>
 								</div>
 								<div class="wh-box__body">
 									<div
 										class="wh-inputs-grid">
-										{# Active Client #}
-										<div class="wh-input-box">
-											<label>Active Client</label>
-											<div class="wh-input-wrap --select">
-												<select class="wh-input" name="active">
-													<option value="0">No</option>
-													<option value="1" selected="">Yes</option>
-												</select>
-											</div>
-										</div>
 
 										{# First Name #}
 										<div class="wh-input-box">
@@ -228,9 +218,9 @@
 							<div class="wh-box__wrapper">
 								<div class="wh-box__header">
 									<div class="flex-row">
-										<div class="wh-icon">
+										{# <div class="wh-icon">
 											{% include "admin/svg/icon_job.svg" %}
-										</div>
+										</div> #}
 										<h4 class="wh-box__heading">Professional Information</h4>
 									</div>
 								</div>
@@ -388,9 +378,9 @@
 							<div class="wh-box__wrapper">
 								<div class="wh-box__header">
 									<div class="flex-row">
-										<div class="wh-icon">
+										{# <div class="wh-icon">
 											{% include "admin/svg/icon_fire.svg" %}
-										</div>
+										</div> #}
 										<h4 class="wh-box__heading">Social Media</h4>
 									</div>
 								</div>
@@ -492,15 +482,12 @@
 				<div class="edit-modal__footer">
 					<div class="wrapper">
 						<div class="flex-row_8">
-								<a class="am-item__btn is-green-border" onclick="Submit();">
-									<span>Save</span>
-								</a>
-								<a class="am-item__btn is-border" onclick="SubmitPrevious();">
-									<span>Save & Back</span>
-								</a>
-								<a class="am-item__btn" onclick="SubmitNext();">
-									<span>Save & Next</span>
-								</a>
+							<a class="am-item__btn --dim" onclick="editModal.close()">
+								<span>Cancel</span>
+							</a>
+							<a class="am-item__btn" onclick="Submit();">
+								<span>Save &amp; Exit</span>
+							</a>
 						</div>
 					</div>
 				</div>

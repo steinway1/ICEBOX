@@ -8,7 +8,7 @@
   left: 0%;
   right: 0%;
   transition: all 400ms ease;
-  --max-width: 780px;
+  --max-width: 640px;
   --wrapper-padding: 24px 48px;
 
   // DELETE LATER
@@ -34,11 +34,15 @@
   }
 
   .wrapper {
-    padding: var(--wrapper-padding);
+    padding: 18px
   }
 
   .am-row__header {
     align-items: center;
+
+    .whale-card__avatar {
+      display: none;
+    }
 
     @include maxWidthSm {
       flex-direction: row;
@@ -257,7 +261,7 @@
   position: relative;
 
   .whale-card__name {
-    font-size: 20px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -282,17 +286,17 @@
   box-shadow: none;
   background-color: #fff;
   border: 1px solid #eaedf3;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 0;
+  margin-bottom: 12px;
 
   .whale-card__avatar {
-    width: 98px;
-    height: 98px;
+    width: 70px;
+    height: 70px;
   }
 }
 
 .wh-box__wrapper {
-  padding: 38px;
+  padding: 30px;
 
   @include maxWidthXs {
     padding: var(--wrapper-padding);
@@ -328,6 +332,12 @@
   flex-wrap: wrap;
   align-items: flex-start;
   display: flex;
+
+  &>div {
+    &:nth-child(n+4) {
+      display: none;
+    }
+  }
 }
 
 .wh-spot-box {
@@ -367,16 +377,15 @@
   cursor: pointer;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   display: flex;
 }
 
 .wh-icon {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   background-color: var(--wh_blue);
   color: #fff;
-  border-radius: 5px;
   justify-content: center;
   align-items: center;
   padding: 6px;
@@ -392,7 +401,7 @@
 }
 
 .wh-box__heading {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -408,7 +417,7 @@
 }
 
 .wh-input-box {
-  min-width: 45%;
+  min-width: 30%;
   grid-column-gap: 6px;
   grid-row-gap: 6px;
   flex-direction: column;
@@ -431,10 +440,10 @@
   }
 
   label {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 400;
     line-height: 14px;
-    margin-bottom: 3px;
+    margin-bottom: 1px;
   }
 
   .wh-checkbox {
@@ -468,15 +477,16 @@
 }
 
 .wh-input {
-  height: 40px;
+  height: 38px;
   min-width: 100px;
   color: #202124;
   background-color: #fff;
   border: 1px solid #dbe0e9;
-  border-radius: 6px;
+  border-radius: 0;
   margin-bottom: 0;
-  padding: 6px 18px;
+  padding: 4px 14px;
   font-weight: 600;
+  font-size: 13px;
   transition: all .2s cubic-bezier(.39, .575, .565, 1);
   box-shadow: 0 2px 3px rgba(23, 28, 41, 0.03);
 
