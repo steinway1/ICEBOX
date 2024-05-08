@@ -2955,7 +2955,7 @@ class PosPage {
 document.addEventListener('DOMContentLoaded', () => {
   const posMain = document.querySelector('.main_pos')
   if (posMain) {
-    const POS = new PosPage()
+    window.POS = new PosPage()
     POS.init()
   }
 })
