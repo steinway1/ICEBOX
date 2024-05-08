@@ -143,6 +143,33 @@
       padding: 8px 18px;
     }
 
+    &.--empty {
+      &[data-cell="ssn"] {
+        background-color: rgba(213, 41, 64, 0.025);
+        position: relative;
+        z-index: 3;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 4;
+          border: 1px solid rgb(245, 156, 168);
+        }
+
+        &>div,
+        &>span {
+          &:last-child {
+            color: rgb(213, 41, 64);
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
     &>div,
     &>span {
 

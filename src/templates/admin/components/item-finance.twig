@@ -8,13 +8,13 @@
 					<div class="am-spot-row">
 						<span>{{submit.date}}</span>
 						<span>{{submit.time}}</span>
-						<span>$
-							{{submit.amount ?: 'N/A'}}</span>
+						<span>${{submit.amount ?: 'N/A'}}</span>
 					</div>
 				</div>
 				<div class="am_flex8">
 					<div class="fin-item__status-select pg-btn --select">
 						<select id="change_status{{submit.id}}">
+							<option value="" selected disabled>Status</option>
 							<option value="Success">Success</option>
 							<option value="Processing">Processing</option>
 							<option value="Inactive">Inactive</option>
@@ -22,6 +22,7 @@
 					</div>
 					<div class="fin-item__status-select pg-btn --select">
 						<select id="change_salesperson{{submit.id}}">
+							<option value="" selected disabled>Salesperson</option>
 							<option value="Jenee">Jenee</option>
 							<option value="Ryan">Ryan</option>
 						</select>
@@ -43,13 +44,14 @@
 		<div class="fin-item__row --blank">
 			<div class="fin-item__details">
 				{% for detail in submit.details %}
-					<div>
+					{% set cell_label = detail.label|replace({' ':'_',' ':'_','&':'and'})|lower|replace({' ':'_',' ':'_','&':'and'})|raw %}
+					<div data-cell="{{cell_label}}" {% if detail.value|length == 0 %} class="--empty" {% endif %}>
 						<span>{{detail.label}}</span>
 						<span>
 							{% if detail.is_link == true %}
 								<a href="{{detail.value}}" target="_blank">{{detail.value}}</a>
 							{% else %}
-								{{detail.value}}
+								{{detail.value | default('N/A')}}
 							{% endif %}
 						</span>
 					</div>
@@ -67,8 +69,10 @@
 			{% if submit.system_details is defined %}
 				<div class="am-spot-row">
 					{% for detail in submit.system_details %}
-						<span>{{detail.label}}:
-							<span>{{detail.value}}</span>
+						<span>{{detail.label}}
+							:
+							<span>
+								{{detail.value}}</span>
 						</span>
 					{% endfor %}
 				</div>

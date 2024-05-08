@@ -5535,6 +5535,7 @@ div.dt-container .dt-paging {
 
 .pg-btn.--select select {
   padding-right: 38px !important;
+  border: none !important;
 }
 
 .pg-btn svg {
@@ -9864,6 +9865,29 @@ textarea.pos-input {
   margin-bottom: -1px;
   transition: all 150ms ease;
   position: relative;
+}
+
+.fin-item__details > div.--empty[data-cell=ssn] {
+  background-color: rgba(213, 41, 64, 0.025);
+  position: relative;
+  z-index: 3;
+}
+
+.fin-item__details > div.--empty[data-cell=ssn]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  border: 1px solid rgb(245, 156, 168);
+}
+
+.fin-item__details > div.--empty[data-cell=ssn] > div:last-child,
+.fin-item__details > div.--empty[data-cell=ssn] > span:last-child {
+  color: rgb(213, 41, 64);
+  font-weight: 600;
 }
 
 .fin-item__details > div > div:first-child,

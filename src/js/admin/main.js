@@ -133,6 +133,18 @@ class AskModal {
     lockScroll()
     const elem = this.create()
     document.body.appendChild(elem)
+    document.addEventListener('keydown', (e) => {
+      const isEnter = e.key === 'Enter' || e.keyCode === 13
+      const modal = document.querySelector('.ask-modal')
+      if (isEnter && modal) {
+        const modalIsVisible = window.getComputedStyle(modal).getPropertyValue('display') !== 'none'
+        if (modalIsVisible) {
+          e.preventDefault()
+          const buttons = [...modal.querySelectorAll('button')]
+          buttons[1].click()
+        }
+      }
+    })
   }
 }
 /* #endregion */
@@ -3011,11 +3023,15 @@ const FinanceList = {
               FinanceList.deleteSubmit(submit)
             }
             const removeMessage = () => {
-              deleteFinance(application_id);
-              new pageMsg({
-                heading: 'Application was Removed',
-                msg: 'Application has been removed successfully',
-              });
+              try {
+                deleteFinance(application_id);
+                new pageMsg({
+                  heading: 'Application was Removed',
+                  msg: 'Application has been removed successfully',
+                });
+              } catch (error) {
+                console.log(error)
+              }
             }
             const ask = new AskModal({
               heading: 'Delete This Application?',
