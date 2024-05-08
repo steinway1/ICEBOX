@@ -2902,13 +2902,32 @@ class PosPage {
     data.shipping = this.getShippingValue || 0
     data.discount = this.getDiscountValue || 0
     data.balanceDue = this.getDueValue
-    console.log(this.data)
-    new pageMsg({
-      type: 'success',
-      heading: 'Invoice Saved',
-      msg: 'Invoice saved successfully',
-      timeout: 1400
-    })
+    data.store = $('#store_select').val()
+    data.salesperson = $('#salesperson_select').val()
+
+    $.ajax({
+      url:'/admin/json/save-pos',
+      type:'POST',
+      data: {"object":JSON.stringify(data)},
+      success:function(data){
+        var r = $.parseJSON(data);
+        if(!r.error){
+          new pageMsg({
+            type: 'success',
+            heading: 'Invoice Saved',
+            msg: 'Invoice saved successfully',
+            timeout: 1400
+          })
+        }else{
+          new pageMsg({
+            type: 'error',
+            heading: 'Error',
+            msg: r.msg,
+            timeout: 1400
+          });
+        }
+      }
+    });
   }
 
   /**
