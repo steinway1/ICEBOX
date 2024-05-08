@@ -2176,7 +2176,7 @@ class PosPage {
 
   get getItemsAsObj() {
     const items = [...this.main.querySelectorAll('[data-pos-item]')]
-    const obj = {}
+    const obj = Object.create(null)
     items.forEach((item, index) => {
       const nameInput = item.querySelector('[data-pos-input="item_name"]')
       const qtyInput = item.querySelector('[data-pos-input="item_qty"]')
@@ -2225,7 +2225,15 @@ class PosPage {
   }
 
   get getActiveCurrencyValue() {
-    this.main.querySelector('[data-pos-select="currency"]').value
+    const select = this.main.querySelector('[data-pos-select="currency"]')
+    return select.options[select.selectedIndex].value
+  }
+
+  get getCurrency() {
+    let obj = Object.create(null)
+    obj.text = this.getActiveCurrencyText
+    obj.value = this.getActiveCurrencyValue
+    return obj
   }
 
   get getTaxValue() {
@@ -2288,26 +2296,21 @@ class PosPage {
 
   get getBillTo() {
     if (!this.billTo) return undefined
-    let obj = {}
-    obj.lines = {}
+    let obj = Object.create(null)
     const inputs = [...this.billTo.querySelectorAll('input:not([data-title])')]
-    const inputTitle = this.billTo.querySelector('[data-title]')
-    obj.title = inputTitle ? inputTitle.value : ''
-    inputs.forEach((input, index) => {
-      if (index == 0) {
-        obj.name = input.value
-      } else {
-        obj.lines[index] = {
-          name: input.value
-        }
+    for (const input of inputs) {
+      const val = input.value
+      if (val.length) {
+        const inputName = input.getAttribute('name')
+        obj[inputName] = val
       }
-    })
+    }
     return obj
   }
 
   get getDetails() {
     if (!this.details) return undefined
-    let obj = {}
+    let obj = Object.create(null)
     const detailsArr = [...this.details.querySelectorAll('.pos-doc__details-box:not([data-prevent])')]
     detailsArr.forEach((details, index) => {
       const inputs = [...details.querySelectorAll('input:not([data-title])')]
@@ -2322,22 +2325,19 @@ class PosPage {
   }
 
   get getBillFrom() {
-    if (!this.billFrom) return undefined
-    let obj = {}
-    obj.lines = {}
-    const inputs = [...this.billFrom.querySelectorAll('input:not([data-title])')]
-    const inputTitle = this.billFrom.querySelector('[data-title]')
-    obj.title = inputTitle ? inputTitle.value : ''
-    inputs.forEach((input, index) => {
-      if (index == 0) {
-        obj.name = input.value
-      } else {
-        obj.lines[index] = {
-          name: input.value
-        }
-      }
-    })
-    return obj
+    const select = document.querySelector('[data-pos-select="bill_from"]')
+    if (!select) console.warn('No data-pos-select="bill_from"')
+    let store
+    const value = select.options[select.selectedIndex].value
+    switch (value) {
+      case 'icebox':
+        store = 'Icebox'
+        break;
+      case 'swisswatches':
+        store = 'Swisswatches'
+        break
+    }
+    return store
   }
 
   get getInvoiceNumber() {
@@ -2830,11 +2830,11 @@ class PosPage {
       new AirDatepicker(input, {
         autoClose: false,
         dateFormat(date) {
-          return date.toLocaleString('us', {
+          return date.toLocaleString('en', {
             year: 'numeric',
             day: '2-digit',
             month: 'long'
-          });
+          })
         }
       })
     }
@@ -2885,14 +2885,11 @@ class PosPage {
    * Save event
    */
   save() {
-    this.data = {}
+    this.data = Object.create(null)
     let data = this.data
     data.billTo = this.getBillTo
     data.billFrom = this.getBillFrom
-    data.currency = {
-      text: this.getActiveCurrencyText,
-      value: this.getActiveCurrencyValue
-    }
+    data.currency = this.getCurrency
     data.details = this.getDetails
     data.number = this.getInvoiceNumber
     data.items = this.getItemsAsObj
