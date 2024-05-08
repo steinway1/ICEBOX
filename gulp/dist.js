@@ -52,7 +52,8 @@ const root = {
       _: './src/js/admin/*.js',
       lib: {
         jquery: './src/js/admin/lib/jquery.js',
-        lottie: './src/js/admin/lib/lottie.js'
+        lottie: './src/js/admin/lib/lottie.js',
+        air_datepicker: './src/js/admin/lib/air-datepicker.js',
       },
       bundle: {
         main: './src/js/admin/main.js'
@@ -173,6 +174,7 @@ gulp.task('js-admin:build',
       .src([
         root.src.adminJS.lib.jquery,
         root.src.adminJS.lib.lottie,
+        root.src.adminJS.lib.air_datepicker,
         root.src.adminJS.bundle.main
       ])
       .pipe(changed(root.build.adminJS))
