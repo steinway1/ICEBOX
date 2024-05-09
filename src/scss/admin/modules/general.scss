@@ -772,6 +772,20 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
       }
     }
   }
+
+  &.--dim {
+    input {
+      background-color: transparent;
+
+      &:not(:hover) {
+        border-bottom-color: #dfe4f0;
+      }
+
+      &:not(:hover)::placeholder {
+        color: #576371;
+      }
+    }
+  }
 }
 
 .empty-placeholder {
@@ -1376,4 +1390,8 @@ div.dt-container .dt-paging {
       padding-bottom: 10px;
     }
   }
+}
+
+.blank-search__input-wrap {
+  position: relative;
 }

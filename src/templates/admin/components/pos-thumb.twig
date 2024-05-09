@@ -1,0 +1,43 @@
+<div class="pos-thumb">
+	<div class="pos-thumb__container">
+		<div class="pos-thumb__box">
+			<div class="pos-thumb__info-group">
+				<div class="pos-thumb__lg-line">
+					<span>Invoice #:</span>
+					#{{invoice.invoice_number}}</div>
+				<div class="pos-thumb__lg-line">
+					<span>To:</span>
+					{{invoice.bill_to.bill_company}}</div>
+				<div class="pos-thumb__details-wrap">
+					{% for detail in invoice.details %}
+						<div class="pos-thumb__xs-line">{{detail.title}}<span>{{detail.value}}</span>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<div class="pos-thumb__box">
+			<div class="pos-thumb__info-group">
+				<div class="pos-thumb__lg-line is-sub">{{invoice.items|length}}
+					Items In Total:</div>
+				<div class="pos-thumb__summary-wrap">
+					{% for item in invoice.items %}
+						<div class="pos-thumb__item-wrap">
+							<div class="pos-thumb__item-name">{{item.name}}</div>
+						</div>
+					{% endfor %}
+					<div class="pos-thumb__sum-line">Total:<span>${{invoice.total}}</span>
+					</div>
+					<div class="pos-thumb__sum-line sub">Paid:<span>${{invoice.amount_paid ?: '0.00'}}</span>
+					</div>
+					<div class="pos-thumb__sum-line sub">Balance Due:<span>${{invoice.balance_due}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="pos-thumb__controls">
+				<a href="{{invoice.print_url}}" class="pos-thumb__btn is-blank">Print</a>
+				<a href="{{invoice.page_url}}" class="pos-thumb__btn">Edit</a>
+			</div>
+		</div>
+	</div>
+</div>
