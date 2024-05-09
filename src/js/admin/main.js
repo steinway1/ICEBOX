@@ -2592,7 +2592,7 @@ class PosPage {
       className: 'pos-input-group',
       innerHTML: `
       <div class="pos-input-spot">%</div>
-      <input data-tax type="text" class="pos-input" value="" placeholder="">
+      <input data-tax type="text" class="pos-input" value="8.9" placeholder="">
       `
     })
     const allowEls = [...inputGroup.querySelectorAll('[data-allow]')]
@@ -2830,11 +2830,7 @@ class PosPage {
       new AirDatepicker(input, {
         autoClose: false,
         dateFormat(date) {
-          return date.toLocaleString('en', {
-            year: 'numeric',
-            day: '2-digit',
-            month: 'long'
-          })
+          return date.toLocaleString('en', { month: 'numeric', day: 'numeric', year: 'numeric' })
         }
       })
     }
