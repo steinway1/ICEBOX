@@ -6,9 +6,19 @@
   position: relative;
 }
 
+[data-locked] {
+  input,
+  textarea {
+    pointer-events: none !important;
+    &::placeholder {
+      color: transparent !important;
+    }
+  }
+}
+
 body.body_pos {
   .am-content {
-    padding:  0;
+    padding: 0;
   }
 }
 
@@ -71,11 +81,7 @@ body.body_pos {
     }
   }
 
-  [data-locked] {
-    input {
-      pointer-events: none;
-    }
-  }
+
 
   &.--swisswatches {
     .pos-doc__logo {
@@ -884,4 +890,14 @@ textarea.pos-input {
 .due-typo {
   font-size: 13px;
   font-weight: 600;
+}
+
+.pos-docs-grid {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+  .pos-doc {
+    max-width: 900px;
+  }
 }
