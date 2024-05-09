@@ -2901,7 +2901,7 @@ class PosPage {
     data.billFrom = this.getBillFrom
     data.currency = this.getCurrency
     data.details = this.getDetails
-    data.number = this.getInvoiceNumber
+    data.invoice_number = this.getInvoiceNumber
     data.items = this.getItemsAsObj
     data.notes = this.getNotesValue
     data.terms = this.getTermsValue
