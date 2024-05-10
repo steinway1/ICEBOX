@@ -308,7 +308,10 @@ const IS_VISIBLE = "is-visible",
   IS_MINIMIZED = 'is-minimized',
   IS_COPIED = 'is-copied',
   IS_ERROR = 'is-error',
-  IS_EMPTY = 'is-empty'
+  IS_EMPTY = 'is-empty',
+  __TRUE = '--true',
+  __FALSE = '--false',
+  __FADE = '--fade'
 
 let $body = $('body')
 
@@ -513,6 +516,189 @@ class PageConfetti {
         this.destroy()
       }, this.timeToDestroy);
     }
+  }
+}
+
+/**
+ * Lock Screen / PIN Screen
+ */
+class LockPin {
+  constructor(settings = {}) {
+    this.code = settings.code || 1234
+    this.maxLength = this.code.toString().length
+    this.unlockTime = settings.unlockTime || 600
+    this.currentPin = []
+    this.isLocked = false
+  }
+
+  /**
+   * Utils
+   */
+  renderHTML() {
+    let html = `
+    <div class="pin-lock">
+	<div class="pin-lock__wrapper">
+		<div class="pin-lock__holder">
+			<div class="pin-lock__title-group">
+				<h3>Enter PIN Code</h3>
+				<span>This page is locked with pin.</span>
+			</div>
+			<div data-pin-output class="pin-lock__output">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="pin-lock__btn-grid">
+				<button>1</button>
+				<button>2</button>
+				<button>3</button>
+				<button>4</button>
+				<button>5</button>
+				<button>6</button>
+				<button>7</button>
+				<button>8</button>
+				<button>9</button>
+				<button data-pin-evt="clear">Clear</button>
+				<button>0</button>
+				<button data-pin-evt="submit">Enter</button>
+			</div>
+		</div>
+	</div>
+</div>
+    `
+    return html
+  }
+  appendScreen() {
+    document.body.insertAdjacentHTML('beforeend', this.renderHTML())
+  }
+  setElements() {
+    this.holder = document.querySelector('.pin-lock')
+    this.btnArr = [...this.holder.querySelectorAll('button')]
+    this.output = this.holder.querySelector('[data-pin-output]')
+    this.outputSpanArr = [...this.output.querySelectorAll('span')]
+    this.evtClear = this.holder.querySelector('[data-pin-evt="clear"]')
+    this.evtSubmit = this.holder.querySelector('[data-pin-evt="submit"]')
+    this.btnArrFiltered = this.btnArr.filter((btn) => {
+      if (!btn.dataset.pinEvt) { return btn }
+    })
+  }
+
+  /**
+   * Methods
+   */
+  unlock() {
+    unlockScroll()
+    this.output.classList.remove(__FALSE)
+    this.output.classList.add(__TRUE)
+    setTimeout(() => {
+      this.holder.classList.add(__FADE)
+      setTimeout(() => {
+        this.destroy()
+      }, getTransitionTime(this.holder));
+    }, this.unlockTime);
+  }
+  reset() {
+    this.currentPin = []
+    this.update()
+    this.isLocked = false
+    removeClasses(this.output, __FALSE, __TRUE)
+  }
+  update() {
+    const pin = this.currentPin
+    const length = pin.length
+    if (length == 0) {
+      this.outputSpanArr.forEach((span) => {
+        span.innerHTML = ''
+      })
+    } else if ((length - 1) < this.maxLength) {
+      this.outputSpanArr.forEach((span, i) => {
+        if (i < length) {
+          span.innerHTML = pin[i]
+        } else {
+          span.innerHTML = ''
+        }
+      })
+    }
+    if (length === this.maxLength) {
+      this.submit()
+    }
+  }
+  submit() {
+    if (this.currentPin.length > 0) {
+      this.isLocked = true
+      if (this.currentPin.join('') == this.code) {
+        this.unlock()
+      } else {
+        this.output.classList.add(__FALSE)
+        setTimeout(() => {
+          this.reset()
+        }, 700);
+      }
+    }
+  }
+  destroy() {
+    this.holder.remove()
+  }
+
+  /**
+   * Attach Events
+   */
+  attachButtonClick() {
+    for (const btn of this.btnArrFiltered) {
+      btn.addEventListener('click', (e) => {
+        if (!this.isLocked) {
+          const num = Number(e.target.innerHTML)
+          this.currentPin.push(num)
+          this.update()
+        }
+      })
+    }
+    this.evtClear.addEventListener('click', () => {
+      if (!this.isLocked) {
+        this.reset()
+      }
+    })
+    this.evtSubmit.addEventListener('click', () => {
+      if (!this.isLocked) {
+        this.submit()
+      }
+    })
+  }
+  attachDocEvents() {
+    document.addEventListener('keydown', (e) => {
+      if (this.holder) {
+        if (!this.isLocked) {
+          e.preventDefault()
+          const key = e.key
+          if (key === 'Backspace') {
+            if (this.currentPin.length > 0) {
+              this.currentPin.pop()
+              this.update()
+            }
+          } else if (key === 'Enter') {
+            this.submit()
+          } else if (key === 'Escape') {
+            this.reset()
+          } else if (key >= 0 && key <= 9) {
+            for (const btn of this.btnArrFiltered) {
+              if (btn.innerHTML === key && this.currentPin.length < this.maxLength) {
+                btn.click()
+                break
+              }
+            }
+          }
+        }
+      }
+    })
+  }
+
+  push() {
+    lockScroll()
+    this.appendScreen()
+    this.setElements()
+    this.attachButtonClick()
+    this.attachDocEvents()
   }
 }
 
@@ -6703,6 +6889,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (loanCaseHolder) {
     const loanApp = new LoanApp(loanCaseHolder)
     loanApp.init()
+
+    const lockPIN = new LockPin({
+      code: 3256
+    })
+    lockPIN.push()
   }
 })
 /* #endregion */

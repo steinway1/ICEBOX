@@ -25852,6 +25852,159 @@ width: calc(50% - 8px)
   background-image: radial-gradient(circle farthest-side at 100%, rgba(13, 161, 209, 0.25), rgba(5, 171, 226, 0));
 }
 
+.pin-lock {
+  z-index: 99999;
+  color: #21283d;
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  transition: all 950ms ease;
+}
+
+.pin-lock.--fade {
+  opacity: 0;
+  transform: scale(1.1);
+  filter: blur(8px);
+}
+
+.pin-lock h2,
+.pin-lock h3,
+.pin-lock h4,
+.pin-lock h5 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.pin-lock button {
+  aspect-ratio: 1.1;
+  cursor: pointer;
+  background-color: #fff;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.18s cubic-bezier(0.39, 0.575, 0.565, 1);
+  display: flex;
+  position: relative;
+  box-shadow: 0 16px 48px rgba(45, 53, 73, 0.09);
+}
+
+.pin-lock button:not([data-pin-evt]):hover {
+  color: #fff;
+  background-color: #0ab2e9;
+  border-color: #0ab2e9;
+  box-shadow: 0 16px 48px rgba(45, 53, 73, 0);
+}
+
+.pin-lock button:not([data-pin-evt]):active {
+  background-color: #0bade2;
+  border-color: #0bade2;
+  transform: scale(0.95);
+}
+
+.pin-lock button.is-active {
+  color: #0895c4;
+  background-color: rgba(255, 255, 255, 0);
+  border-color: #0ab2e9;
+}
+
+.pin-lock button:nth-child(10),
+.pin-lock button:nth-child(12) {
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(213, 219, 229, 0);
+  font-size: 15px;
+}
+
+.pin-lock button:nth-child(10):hover,
+.pin-lock button:nth-child(12):hover {
+  color: #21283d;
+  border-color: #cdd2db;
+}
+
+.pin-lock__btn-grid {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  display: grid;
+}
+
+.pin-lock__title-group {
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.pin-lock__holder {
+  grid-column-gap: 38px;
+  grid-row-gap: 38px;
+  text-align: center;
+  flex-flow: column;
+  width: 100%;
+  max-width: 290px;
+  min-height: 120px;
+  display: flex;
+}
+
+.pin-lock__wrapper {
+  z-index: 2;
+  background-color: #f5f8fc;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.pin-lock__output {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  transition: all 250ms ease;
+}
+
+.pin-lock__output > span {
+  pointer-events: none;
+  border: 1px solid #cfd6e7;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  transition: all 250ms ease;
+}
+
+.pin-lock__output.--false > span {
+  border-color: #e23958;
+  color: #e23958;
+}
+
+.pin-lock__output.--true > span {
+  border-color: #0ebe66;
+  color: #028b47;
+  background-color: rgba(28, 202, 115, 0.04);
+}
+
 body.update_layout {
   font-family: "Figtree", sans-serif !important;
 }
