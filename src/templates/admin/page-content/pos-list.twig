@@ -16,12 +16,24 @@
 						</div>
 					</div>
 
-					<div class="blank-search --dim">
+					<div data-content-search class="blank-search --dim">
 						<div class="blank-search__input-wrap">
 							{% include "admin/svg/icon_search.svg" %}
-							<input type="text" placeholder="Search invoice...">
+							<input data-search="pos-list" type="text" placeholder="Search invoice...">
+						</div>
+						<div class="search-drop">
+							<div class="search-drop__container">
+								<div class="search-drop__offset-box">
+									<div class="search-drop__list">
+									</div>
+									<div class="content-loader">
+										{% include "admin/svg/svg_loader.svg" %}
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>

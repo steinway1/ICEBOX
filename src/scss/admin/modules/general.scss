@@ -733,19 +733,8 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 
 .blank-search {
   position: relative;
-
-  svg {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    position: absolute;
-    top: 0%;
-    bottom: 0%;
-    left: 0%;
-    right: auto;
-    height: 100%;
-    width: 16px;
-  }
+  width: 100%;
+  z-index: 15;
 
   input {
     width: 100%;
@@ -764,11 +753,12 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
       transition: all .2s cubic-bezier(.39, .575, .565, 1);
     }
 
-    &:focus {
-      border-bottom-color: var(--bright_blue);
+    &:focus,
+    &:active {
+      border-bottom-color: var(--bright_blue) !important;
 
       &::placeholder {
-        color: transparent
+        color: transparent !important
       }
     }
   }
@@ -1394,4 +1384,223 @@ div.dt-container .dt-paging {
 
 .blank-search__input-wrap {
   position: relative;
+
+  &>svg {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: auto;
+    height: 100%;
+    width: 16px;
+  }
+}
+
+.search-drop__container {
+  background-color: #fff;
+  box-shadow: 0 24px 92px rgba(44, 54, 68, 0.2);
+  transition: all 180ms ease;
+}
+
+.search-item__wrapper {
+  grid-column-gap: 20px;
+  grid-row-gap: 6px;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.search-item__row {
+  grid-column-gap: 10px;
+  grid-row-gap: 6px;
+  flex-flow: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.search-drop__offset-box {
+  padding: 6px;
+  position: relative;
+}
+
+.search-drop {
+  z-index: 3;
+  padding-top: 8px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+
+  .content-loader {
+    display: none;
+  }
+
+  &:not(.--filled) {
+    .search-drop__list {
+      min-height: 0;
+
+      &>* {
+        display: none;
+      }
+    }
+  }
+
+  &.--empty {
+    .search-drop__list {
+      &::before {
+        content: 'No results found';
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-weight: 600;
+        font-size: 13px;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &.--filled {
+    .search-drop__list {
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+
+    .content-loader {
+      display: none;
+    }
+  }
+
+  &.--loading {
+    .content-loader {
+      display: flex;
+    }
+
+    .search-drop__list {
+      &::after,
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
+
+.typo_bold {
+  color: #202124;
+  font-size: 13px;
+  font-weight: 600;
+
+  &>span {
+    color: #3b6297;
+  }
+}
+
+.search-drop__list {
+  flex-flow: column;
+  min-height: 50px;
+  max-height: 380px;
+  display: flex;
+  overflow: auto;
+  position: relative;
+
+  &::after {
+    content: 'Start typing to search...';
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 13px;
+    font-style: italic;
+  }
+}
+
+.search-item {
+  cursor: pointer;
+  border: 1px solid rgba(64, 140, 241, 0);
+  border-bottom-color: #edf0f6;
+  padding: 16px 20px;
+  transition: all .25s;
+
+  &:last-child {
+    border-bottom-color: transparent;
+  }
+}
+
+.search-item:hover {
+  z-index: 3;
+  color: #3b6297;
+  background-color: rgba(64, 140, 241, .05);
+  border: 1px solid #408cf1;
+  position: relative;
+}
+
+.search-item:active {
+  opacity: .65;
+}
+
+.typo_up {
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.typo_xs {
+  color: #202124;
+  font-size: 12px;
+  line-height: 16px;
+
+  &>span {
+    opacity: .65;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .search-item__wrapper {
+    grid-row-gap: 10px;
+  }
+}
+
+.content-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 112px;
+}
+
+svg.svg_loader {
+  height: 64px;
+  width: 64px;
+  transform: rotate(-90deg);
+  stroke: #408cf1;
+  --time: 1.4s;
+
+  circle {
+    stroke-dasharray: 156;
+    stroke-dashoffset: 156;
+    animation: svg_content_loader var(--time) infinite;
+  }
+}
+
+@keyframes svg_content_loader {
+  50% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -156;
+  }
 }

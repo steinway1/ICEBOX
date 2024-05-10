@@ -19,7 +19,9 @@ const
   __FOCUSED = '--focused',
   __HOVERED = '--hovered',
   __BLANK = '--blank',
-  __ADDED = '--added'
+  __ADDED = '--added',
+  __LOADING = '--loading',
+  __EMPTY = '--empty'
 
 function lockScroll() {
   setTimeout(function () {
@@ -45,6 +47,18 @@ function unlockScroll() {
       (document.body.style.left = ""),
       (document.body.style.width = ""),
       window.scroll(0, o);
+  }
+}
+
+function removeClasses(target, ...classes) {
+  for (const cls of classes) {
+    target.classList.remove(cls)
+  }
+}
+
+function addClasses(target, ...classes) {
+  for (const cls of classes) {
+    target.classList.add(cls)
   }
 }
 
@@ -2912,19 +2926,19 @@ class PosPage {
     data.salesperson = $('#salesperson_select').val()
 
     $.ajax({
-      url:'/admin/json/save-pos',
-      type:'POST',
-      data: {"object":JSON.stringify(data)},
-      success:function(data){
+      url: '/admin/json/save-pos',
+      type: 'POST',
+      data: { "object": JSON.stringify(data) },
+      success: function (data) {
         var r = $.parseJSON(data);
-        if(!r.error){
+        if (!r.error) {
           new pageMsg({
             type: 'success',
             heading: 'Invoice Saved',
             msg: 'Invoice saved successfully',
             timeout: 1400
           })
-        }else{
+        } else {
           new pageMsg({
             type: 'error',
             heading: 'Error',
@@ -3103,4 +3117,282 @@ const FinanceList = {
 
 document.addEventListener('DOMContentLoaded', () => {
   FinanceList.init()
+})
+
+/**
+ * Content search
+ */
+class ContentSearch {
+  constructor(input, settings = {}) {
+    this.input = input
+    this.holder = input.parentNode.closest('[data-content-search]')
+    this.drop = this.holder.querySelector('.search-drop')
+    this.container = this.holder.querySelector('.search-drop__container')
+    this.list = this.holder.querySelector('.search-drop__list')
+    this.ajaxCall = settings.ajaxCall || null
+    this.renderMethod = settings.renderMethod || null
+    this.timeout = null
+  }
+
+  /**
+   * Methods
+   */
+  showDrop() {
+    this.drop.style.display = 'block'
+    setTimeout(() => {
+      this.container.style.opacity = 1
+      this.container.style.transform = 'translateY(0)'
+    }, 5);
+  }
+  hideDrop() {
+    this.container.style.opacity = 0
+    this.container.style.transform = 'translateY(12px)'
+    removeClasses(this.drop, __EMPTY, __FILLED, __LOADING)
+    if (this.timeout) {
+      clearTimeout(this.timeout)
+    }
+    setTimeout(() => {
+      this.drop.style.display = 'none'
+    }, getTransitionTime(this.container));
+  }
+  emptyResolve() {
+    removeClasses(this.drop, __FILLED, __LOADING)
+    addClasses(this.drop, __EMPTY)
+    this.clearResults()
+  }
+  filledResolve() {
+    removeClasses(this.drop, __EMPTY, __LOADING)
+    addClasses(this.drop, __FILLED)
+  }
+  appendResultsHTML(html) {
+    this.list.innerHTML = html
+  }
+  clearResults() {
+    this.list.innerHTML = ''
+  }
+
+  /**
+   * Fetch
+   */
+  fetchData() {
+    const data = this.ajaxCall()
+    if (data) {
+      const resultHTML = this.renderMethod(data)
+      if (resultHTML) {
+        this.timeout = setTimeout(() => {
+          this.appendResultsHTML(resultHTML)
+          this.filledResolve()
+        }, 1500);
+      }
+    } else {
+      this.timeout = setTimeout(() => {
+        this.emptyResolve()
+      }, 1000)
+    }
+  }
+
+  /**
+   * Attach Events
+   */
+  attachToggleDropVisibility() {
+    this.input.addEventListener('focus', () => {
+      this.showDrop()
+    })
+    this.input.addEventListener('blur', () => {
+      this.hideDrop()
+    })
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('[data-content-search]')) {
+        this.hideDrop()
+      }
+    })
+  }
+  attachInputEvents() {
+    this.input.addEventListener('input', () => {
+      this.clearResults()
+      const val = this.input.value
+      if (!val.length) {
+        removeClasses(this.drop, __EMPTY, __FILLED, __LOADING)
+        clearTimeout(this.timeout)
+      } else {
+        addClasses(this.drop, __LOADING)
+        removeClasses(this.drop, __EMPTY, __FILLED)
+        if (this.timeout) {
+          clearTimeout(this.timeout)
+        }
+
+        this.fetchData()
+      }
+    })
+  }
+
+
+  _initial_state() {
+    this.drop.style.display = 'none'
+    this.container.style.opacity = 0
+    this.container.style.transform = 'translateY(12px)'
+  }
+  init() {
+    this._initial_state()
+    this.attachToggleDropVisibility()
+    this.attachInputEvents()
+  }
+}
+
+// POS List - Point of sale LIST - Search
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.querySelector('[data-search="pos-list"]')
+  if (input) {
+
+    const fakeObj = {
+      0: {
+        invoice_number: '54025',
+        billTo: {
+          company: "Swisswatches.com"
+        },
+        date: '8 May, 2024',
+        dueDate: '24 May, 2024',
+        totalItems: '3',
+        balanceDue: '$24,250.00'
+      },
+      1: {
+        invoice_number: '54025',
+        billTo: {
+          company: "Swisswatches.com"
+        },
+        date: '8 May, 2024',
+        dueDate: '24 May, 2024',
+        totalItems: '3',
+        balanceDue: '$24,250.00'
+      }
+    }
+    const fakeAjax = () => {
+      return fakeObj
+    }
+    const renderMethod = (data) => {
+      let obj = data, html = ''
+      if (obj) {
+        for (const key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            const item = obj[key]
+            html += `
+            <div class="search-item">
+              <div class="search-item__wrapper">
+                <div class="search-item__row">
+                  <div class="typo_up">#${item.invoice_number}</div>
+                  <div class="typo_up">To: ${item.billTo.company}</div>
+                </div>
+                <div class="search-item__row">
+                  <div class="typo_xs">
+                    <span>Date</span>: ${item.date}
+                  </div>
+                  <div class="typo_xs">
+                    <span>Due Date:</span>
+                    ${item.dueDate}
+                  </div>
+                  <div class="typo_xs">${item.totalItems} Items Total</div>
+                </div>
+                <div class="typo_bold">Balance Due:
+                  <span>${item.balanceDue}</span>
+                </div>
+             </div>
+           </div>
+            `
+          }
+        }
+      }
+      return html
+    }
+
+
+    const POSListSearch = new ContentSearch(input, {
+      ajaxCall: fakeAjax,
+      renderMethod: renderMethod
+    })
+    POSListSearch.init()
+  }
+})
+
+// POS - Point of sale - Customer Search
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.querySelector('[data-search="pos-customer"]')
+  if (input) {
+
+    const fakeObj = {
+      0: {
+        full_name: "Andrew Brownie",
+        address: {
+          address_1: {
+            label: "Address 1",
+            value: "123 Main Street"
+          },
+          address_2: {
+            label: "Address 2",
+            value: "Suite 100"
+          },
+          city: {
+            label: "City",
+            value: "San Diego"
+          },
+          zip_code: {
+            label: "Zip Code",
+            value: "92101"
+          },
+          country: {
+            label: "Country",
+            value: "USA"
+          }
+        }
+      }
+    }
+    const fakeAjax = () => {
+      return fakeObj
+    }
+    const renderMethod = (data) => {
+      let obj = data, html = ''
+
+      const renderDetails = (customer_address_obj) => {
+        let html = ``
+        for (const key in customer_address_obj) {
+          if (customer_address_obj.hasOwnProperty(key)) {
+            const address = customer_address_obj[key]
+            html += `
+              <div class="typo_xs">
+                <span>${address.label}</span>: ${address.value}
+              </div>
+            `
+          }
+        }
+        return html
+      }
+
+      if (obj) {
+        for (const key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            const customer = obj[key]
+            html += `
+            <div class="search-item">
+              <div class="search-item__wrapper">
+                <div class="search-item__row">
+                  <div class="typo_up">${customer.full_name}</div>
+                </div>
+                <div class="search-item__row">
+                  ${renderDetails(customer.address)}
+                </div>
+             </div>
+           </div>
+            `
+          }
+        }
+      }
+      return html
+    }
+
+
+    const POSCustomerSearch = new ContentSearch(input, {
+      ajaxCall: fakeAjax,
+      renderMethod: renderMethod
+    })
+    POSCustomerSearch.init()
+  }
 })

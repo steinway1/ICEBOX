@@ -18,6 +18,24 @@
 						<span>Find Order</span>
 					</button>
 				</div>
+
+				<div data-content-search class="blank-search --dim">
+					<div class="blank-search__input-wrap">
+						{% include "admin/svg/icon_search.svg" %}
+						<input data-search="pos-customer" type="text" placeholder="Search customer...">
+					</div>
+					<div class="search-drop">
+						<div class="search-drop__container">
+							<div class="search-drop__offset-box">
+								<div class="search-drop__list"></div>
+								<div class="content-loader">
+									{% include "admin/svg/svg_loader.svg" %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 			<div class="pos__row-divider"></div>
 			<div
@@ -131,8 +149,8 @@
 											<input data-input-toggle type="text" name="phone_number" class="pos-input --sm" value="" placeholder="Phone Number">
 										</div>
 										{# <div class="am_flex8 --order_last">
-																															<button data-pos-add="bill_line_sm" class="pos-add-btn">+ Add Line</button>
-																														</div> #}
+																																																			<button data-pos-add="bill_line_sm" class="pos-add-btn">+ Add Line</button>
+																																																		</div> #}
 									</div>
 								</div>
 							</div>
