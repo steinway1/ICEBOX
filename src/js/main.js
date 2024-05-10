@@ -6587,11 +6587,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (loanCaseHolder) {
     const loanApp = new LoanApp(loanCaseHolder)
     loanApp.init()
-
-    const lockPIN = new LockPin({
-      code: 3256
-    })
-    lockPIN.push()
   }
 })
 /* #endregion */
