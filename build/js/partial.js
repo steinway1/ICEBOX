@@ -6719,6 +6719,33 @@ class LoanApp {
       })
     })
   }
+  bindSSNInput() {
+    const inputs = this.holder.querySelectorAll('input[data-format="ssn"]')
+    for (const input of inputs) {
+      input.addEventListener('input', (e) => {
+        const value = e.target.value
+        let newValue = ''
+        for (let i = 0; i < value.length; i++) {
+          const char = value.charAt(i)
+          if (char.match(/^[0-9]$/) && newValue.length < 9) {
+            newValue += char
+          }
+        }
+        e.target.value = newValue
+      })
+      input.addEventListener('blur', (e) => {
+        const value = e.target.value
+        if (value) {
+          let newValue = value.replace(/([^0-9])/g, '')
+          newValue = newValue.slice(0, 3) + '-' + newValue.slice(3, 5) + '-' + newValue.slice(5)
+          e.target.value = newValue
+        }
+      })
+      input.addEventListener('focus', (e) => {
+        e.target.value = e.target.value.replace(/([^0-9])/g, '')
+      })
+    }
+  }
   bindNumberInput() {
     const inputs = this.holder.querySelectorAll('input[data-validate="number"]')
     for (const input of inputs) {
@@ -6840,10 +6867,32 @@ class LoanApp {
         }
       }
     }
+
+    const rangeOutputArr = [...this.holder.querySelectorAll('.custom-range__output')]
+    for (const input of rangeOutputArr) {
+      const parent = input.closest('[data-loan-evt="dual_select"]')
+      if (parent) {
+        const rangeInput = parent.querySelector('input[type="range"]')
+        if (rangeInput) {
+          const maxValue = rangeInput.max
+          const minValue = rangeInput.min
+
+          input.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '')
+          })
+
+          input.addEventListener('blur', (e) => {
+            e.target.value = Math.max(Math.min(e.target.value, maxValue), minValue)
+            rangeInput.value = e.target.value
+            rangeInput.dispatchEvent(new Event('input'))
+          })
+        }
+      }
+    }
   }
-  bindCurrencyFormat() {
-    const arr = document.querySelectorAll('[data-format="currency"]')
-    for (const input of arr) {
+  bindFormatting() {
+    const currencyArr = document.querySelectorAll('[data-format="currency"]')
+    for (const input of currencyArr) {
       input.addEventListener('blur', () => {
         const val = input.value
         if (val.length) {
@@ -6878,9 +6927,10 @@ class LoanApp {
     this.bindStepEvt()
     this.bindInputEvents()
     this.bindNumberInput()
+    this.bindSSNInput()
     this.bindIDUpload()
     this.bindDualSelect()
-    this.bindCurrencyFormat()
+    this.bindFormatting()
   }
 }
 

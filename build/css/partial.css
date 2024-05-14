@@ -8684,6 +8684,17 @@ body.loan_case .loan-case__avatar {
   display: flex;
 }
 
+.loan-case__input-group.--wrap {
+  flex-wrap: wrap;
+  margin-top: 18px;
+  grid-row-gap: 24px;
+}
+
+.loan-case__input-group.--wrap .loan-input-wrap {
+  width: auto;
+  flex: 1;
+}
+
 .loan-bar__progress {
   width: 1%;
   height: 100%;
@@ -9014,6 +9025,7 @@ body.loan_case .loan-case__avatar {
   align-items: flex-start;
   margin-bottom: 4px;
   font-weight: 600;
+  font-size: 15px;
   line-height: 20px;
   display: flex;
 }
@@ -9199,7 +9211,7 @@ body.loan_case .loan-case__avatar {
 .dual-select {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 
 .loan-welcome .loan-case-section {
@@ -10276,6 +10288,68 @@ body .pace .pace-progress {
   display: flex;
 }
 
+.custom-checkbox.--col {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.custom-checkbox.--col > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  position: absolute;
+  bottom: -9px;
+}
+
+.custom-checkbox.--col > span::before {
+  content: "";
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  min-width: 18px;
+  min-height: 18px;
+  padding: 4px 8px;
+  line-height: 10px;
+  border-radius: 50px;
+  margin: 0;
+  background-color: #e4e7ee;
+  border-color: #e4e7ee;
+  color: #707887;
+}
+
+.custom-checkbox.--col img {
+  order: -1;
+}
+
+.custom-checkbox.--col > input:checked + span::before {
+  content: "";
+  display: flex;
+  border-color: #0bade3;
+  background-color: #0bade3;
+  color: white;
+}
+
+.custom-checkbox.--col > input:checked ~ img {
+  border-color: #0bade3 !important;
+}
+
+.custom-checkbox.--col > img {
+  width: 98px;
+  padding: 12px;
+  border: 1px solid rgb(207, 217, 224);
+  transition: all 200ms ease;
+}
+
+.custom-checkbox.--col > img:hover {
+  border-color: #0bade3;
+}
+
 .custom-checkbox > input {
   position: absolute;
   z-index: -1;
@@ -10284,6 +10358,7 @@ body .pace .pace-progress {
 
 .custom-checkbox > input:not(:disabled):not(:checked) + span:hover::before {
   border-color: #b3d7ff;
+  background-color: white;
 }
 
 .custom-checkbox > input:not(:disabled):active + span::before {
@@ -10374,7 +10449,7 @@ input.custom-range[type=range].--disabled::-webkit-slider-thumb {
   border: 1px solid #959ba3;
 }
 
-input.custom-range[type=range].--disabled ~ .custom-range__output {
+input.custom-range[type=range].--disabled ~ .flex_8 .custom-range__output {
   background-color: #959ba3;
   pointer-events: none;
 }
@@ -10386,10 +10461,17 @@ input.custom-range[type=range].--disabled ~ .custom-range__output {
   background-color: #19adde;
   color: white;
   font-size: 12px;
-  padding: 8px;
+  padding: 4px 7px;
+  border-radius: 50px;
   line-height: 16px;
   width: 40px;
   font-weight: 700;
+}
+
+input.custom-range__output {
+  width: 44px;
+  text-align: center;
+  padding: 5px 0;
 }
 
 .loan-input-range {
@@ -10405,6 +10487,11 @@ input.custom-range[type=range].--disabled ~ .custom-range__output {
   display: block;
   width: 100%;
   font-weight: 600;
+}
+
+.loan-input-range .flex_8 {
+  margin-bottom: 12px;
+  order: -1;
 }
 
 .flex_between {
@@ -10647,6 +10734,18 @@ input.custom-range[type=range].--disabled ~ .custom-range__output {
   100% {
     transform: translate3d(-50px, 105vh, 0) rotateX(30deg) rotateY(290deg);
   }
+}
+
+.flex_8 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.flex_8 label {
+  width: auto;
 }
 
 /* #region  Welcome Section */
@@ -31136,6 +31235,10 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
 
   .quiz-container__background > div:first-child {
     padding-top: 18px;
+  }
+
+  .loan-case__input-group.--wrap .loan-input-wrap {
+    min-width: 25%;
   }
 
   .categories-tabs a {

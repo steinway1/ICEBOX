@@ -1081,6 +1081,74 @@ body {
   font-weight: 600;
   display: flex;
 
+  &.--col {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    &>span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      position: absolute;
+      bottom: -9px;
+
+      &::before {
+        content: '';
+        display: none;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        height: auto;
+        min-width: 18px;
+        min-height: 18px;
+        padding: 4px 8px;
+        line-height: 10px;
+        border-radius: 50px;
+        margin: 0;
+        background-color: #e4e7ee;
+        border-color: #e4e7ee;
+        color: #707887;
+      }
+    }
+
+    img {
+      order: -1;
+    }
+
+    &>input {
+      &:checked+span {
+        &::before {
+          content: '';
+          display: flex;
+          border-color: #0bade3;
+          background-color: #0bade3;
+          color: white;
+        }
+      }
+
+      &:checked {
+        &~img {
+          border-color: #0bade3 !important;
+        }
+      }
+    }
+
+    &>img {
+      width: 98px;
+      padding: 12px;
+      border: 1px solid rgb(207, 217, 224);
+      transition: all 200ms ease;
+
+      &:hover {
+        border-color: #0bade3;
+      }
+    }
+  }
+
   &>input {
     position: absolute;
     z-index: -1;
@@ -1088,6 +1156,7 @@ body {
 
     &:not(:disabled):not(:checked)+span:hover::before {
       border-color: #b3d7ff;
+      background-color: white;
     }
 
     &:not(:disabled):active+span::before {
@@ -1178,7 +1247,7 @@ input.custom-range[type="range"] {
       border: 1px solid #959ba3;
     }
 
-    &~.custom-range__output {
+    &~.flex_8 .custom-range__output {
       background-color: #959ba3;
       pointer-events: none;
     }
@@ -1192,10 +1261,17 @@ input.custom-range[type="range"] {
   background-color: #19adde;
   color: white;
   font-size: 12px;
-  padding: 8px;
+  padding: 4px 7px;
+  border-radius: 50px;
   line-height: 16px;
   width: 40px;
   font-weight: 700;
+}
+
+input.custom-range__output {
+  width: 44px;
+  text-align: center;
+  padding: 5px 0;
 }
 
 .loan-input-range {
@@ -1210,6 +1286,11 @@ input.custom-range[type="range"] {
     display: block;
     width: 100%;
     font-weight: 600;
+  }
+
+  .flex_8 {
+    margin-bottom: 12px;
+    order: -1;
   }
 }
 
@@ -1476,5 +1557,17 @@ input.custom-range[type="range"] {
 
   100% {
     transform: translate3d(-50px, 105vh, 0) rotateX(30deg) rotateY(290deg);
+  }
+}
+
+.flex_8 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  label {
+    width: auto;
   }
 }

@@ -109,6 +109,21 @@ body.loan_case {
   grid-column-gap: 8px;
   grid-row-gap: 8px;
   display: flex;
+
+  &.--wrap {
+    flex-wrap: wrap;
+    margin-top: 18px;
+    grid-row-gap: 24px;
+
+    .loan-input-wrap {
+      width: auto;
+      flex: 1;
+
+      @include maxWidthSm {
+        min-width: calc(100% / 4);
+      }
+    }
+  }
 }
 
 .loan-bar__progress {
@@ -456,6 +471,7 @@ body.loan_case {
   align-items: flex-start;
   margin-bottom: 4px;
   font-weight: 600;
+  font-size: 15px;
   line-height: 20px;
   display: flex;
 
@@ -668,7 +684,7 @@ body.loan_case {
 .dual-select {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 
 .loan-welcome {

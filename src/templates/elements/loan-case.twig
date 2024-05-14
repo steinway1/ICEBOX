@@ -84,7 +84,7 @@
 						<div class="loan-input-wrap">
 							<div class="loan-case__select-wrap">
 								<select id="loan_apartment" class="loan-case__input" required>
-									<option value="">House / Condo / Apartment...</option>
+									<option value="" disabled>Address type</option>
 									<option value="house">House</option>
 									<option value="condo">Condo</option>
 									<option value="apartment">Apartment</option>
@@ -157,9 +157,11 @@
 						<div class="loan-input-wrap">
 							<div data-loan-evt="dual_select" class="dual-select">
 								<div class="loan-input-range">
-									<label for="loan_credit_score">Credit Score</label>
 									<input id="loan_credit_score" class="custom-range" type="range" min="300" max="850" onchange="loan_score_output.value=value" oninput="loan_score_output.value=value" value="500"/>
-									<output class="custom-range__output" id="loan_score_output">500</output>
+									<div class="flex_8">
+										<label for="loan_credit_score">Credit Score:</label>
+										<input class="custom-range__output" id="loan_score_output" value="500" pattern="[0-9]*" maxlength="3"/>
+									</div>
 								</div>
 								<label class="custom-checkbox">
 									<input id="loan_no_score" type="checkbox" value="no_credit_score">
@@ -173,7 +175,7 @@
 					<div data-loan-section="social" class="loan-case-section">
 						<h6 class="loan-case-section__title">Social Security Number</h6>
 						<div class="loan-input-wrap">
-							<input class="loan-case__input" pattern="[0-9]*" maxlength="9" placeholder="Social Security Number" type="text" id="loan_social_number" required>
+							<input class="loan-case__input" pattern="[0-9]*" data-format="ssn" placeholder="Social Security Number" type="text" id="loan_social_number" required>
 						</div>
 					</div>
 
@@ -181,15 +183,51 @@
 					<div data-loan-section="companies" class="loan-case-section">
 						<h6 class="loan-case-section__title">Do you currently use any financing companies?<span>It is not a bad thing, just let us know so we don&#x27;t look into those for you.  Affirm, Klarna, Afterpay, Synchrony, Wells Fargo, Acima?</span>
 						</h6>
-						<div class="loan-case__input-group">
-							<label class="loan-radio">
-								<input type="radio" name="loan_finance" value="loan_finance_yes">
-								<span>Yes</span>
-							</label>
-							<label class="loan-radio">
-								<input type="radio" name="loan_finance" value="loan_finance_no">
-								<span>No</span>
-							</label>
+						<div class="loan-case__input-group --wrap">
+
+							<div class="loan-input-wrap">
+								<label class="custom-checkbox --col">
+									<input id="loan_other_affirm" type="checkbox" value="other_affirm">
+									<span></span>
+									<img src="{{THEME_ASSETS_FOLDER}}/logos/logo-box_affirm.svg" alt="">
+								</label>
+							</div>
+							<div class="loan-input-wrap">
+								<label class="custom-checkbox --col">
+									<input id="loan_other_klarna" type="checkbox" value="other_klarna">
+									<span></span>
+									<img src="{{THEME_ASSETS_FOLDER}}/logos/logo-box_klarna.svg" alt="">
+								</label>
+							</div>
+							<div class="loan-input-wrap">
+								<label class="custom-checkbox --col">
+									<input id="loan_other_afterpay" type="checkbox" value="other_afterpay">
+									<span></span>
+									<img src="{{THEME_ASSETS_FOLDER}}/logos/logo-box_afterpay.svg" alt="">
+								</label>
+							</div>
+							<div class="loan-input-wrap">
+								<label class="custom-checkbox --col">
+									<input id="loan_other_fargo" type="checkbox" value="other_fargo">
+									<span></span>
+									<img src="{{THEME_ASSETS_FOLDER}}/logos/logo-box_fargo.svg" alt="">
+								</label>
+							</div>
+							<div class="loan-input-wrap">
+								<label class="custom-checkbox --col">
+									<input id="loan_other_acima" type="checkbox" value="other_acima">
+									<span></span>
+									<img src="{{THEME_ASSETS_FOLDER}}/logos/logo-box_acima.png" alt="">
+								</label>
+							</div>
+							<div class="loan-input-wrap">
+								<label class="custom-checkbox --col">
+									<input id="loan_other_synchrony" type="checkbox" value="other_synchrony">
+									<span></span>
+									<img src="{{THEME_ASSETS_FOLDER}}/logos/logo-box_synchrony.svg" alt="">
+								</label>
+							</div>
+
 						</div>
 					</div>
 
@@ -219,7 +257,7 @@
 
 					{# Amount #}
 					<div data-loan-section="amount" class="loan-case-section">
-						<h6 class="loan-case-section__title">Do you have an idea of how much you would like to get approved for?</h6>
+						<h6 class="loan-case-section__title">How Much You Would Like To Get Approved For?</h6>
 						<div class="loan-input-wrap">
 							<input data-format="currency" class="loan-case__input --icon" placeholder="Amount" type="text" pattern="[0-9]*" id="loan_amount" required autocomplete="off">
 							<div class="loan-case__input-icon">
