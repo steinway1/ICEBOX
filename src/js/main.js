@@ -6435,7 +6435,7 @@ class LoanApp {
         const value = e.target.value
         if (value) {
           let newValue = value.replace(/([^0-9])/g, '')
-          newValue = newValue.slice(0, 3) + '-' + newValue.slice(3, 5) + '-' + newValue.slice(5)
+          newValue = newValue.slice(0, 3) + '—' + newValue.slice(3, 5) + '—' + newValue.slice(5)
           e.target.value = newValue
         }
       })
