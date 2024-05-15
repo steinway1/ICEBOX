@@ -206,6 +206,54 @@
     width: 40vw;
     height: 40vw;
   }
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 500px;
+    border: 2px solid transparent;
+  }
+
+  &.--light_blue {
+    &::before {
+      border-color: #20dcdc;
+    }
+  }
+
+  &.--dark_blue {
+    &::before {
+      border-color: #00B3F6;
+    }
+  }
+
+  &.--yellow {
+    &::before {
+      border-color: rgb(255, 239, 21);
+    }
+  }
+
+  &.--orange {
+    &::before {
+      border-color: #FEBD00;
+    }
+  }
+
+  &.--green {
+    &::before {
+      border-color: #00B242;
+    }
+  }
+
+  &.--purple {
+    &::before {
+      border-color: #CB9DE5;
+    }
+  }
 }
 
 .whale-card__sum {

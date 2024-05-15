@@ -4197,7 +4197,6 @@ body.compensate-for-scrollbar {
 }
 
 .mob-menu__over-content .mob-menu__nav-item a {
-  font-size: 16px;
   line-height: 18px;
   background-image: none;
 }
@@ -4358,9 +4357,8 @@ body.compensate-for-scrollbar {
   cursor: pointer;
   justify-content: flex-start;
   align-items: stretch;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 20px;
-  font-weight: 500;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -4396,7 +4394,6 @@ body.compensate-for-scrollbar {
   padding: 10px 70px 10px 46px;
   display: flex;
   position: relative;
-  font-size: 20px;
   line-height: 26px;
   background-image: url('data:image/svg+xml,<svg width="auto" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 2L17 12L7 22" stroke="currentColor" stroke-width="2"></path></svg>');
   background-position: center right 46px;
@@ -29545,6 +29542,17 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   display: flex;
 }
 
+.footer-col__content-wrap.--m_grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.footer-col__content-wrap.--m_grid a {
+  min-width: 40%;
+  padding: 8px 20px;
+  flex: 1;
+}
+
 .footer-sub-col__details {
   grid-column-gap: 14px;
   grid-row-gap: 14px;
@@ -31166,6 +31174,11 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     display: none;
   }
 
+  .header-nav__group a svg {
+    width: 22px;
+    height: 22px;
+  }
+
   .header-search {
     padding-right: 28px;
     padding-left: 28px;
@@ -32303,7 +32316,6 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     padding-left: var(--menu-mob-padding);
     padding-right: 40px;
     background-position: center right var(--menu-mob-padding);
-    font-size: 18px;
     line-height: 22px;
   }
 

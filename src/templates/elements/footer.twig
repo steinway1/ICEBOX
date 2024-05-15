@@ -48,7 +48,7 @@
 					</div>
 					<div class="footer-col__body">
 						<div class="footer-col__body-scroll">
-							<div class="footer-col__content-wrap">
+							<div class="footer-col__content-wrap --m_grid">
 								{% for item in footer.linksProduct %}
 									<a href="{{item.href}}" class="footer-link">{{item.caption}}</a>
 								{% endfor %}
@@ -57,22 +57,9 @@
 					</div>
 				</div>
 				<div class="footer-col footer-col_hide">
-					<div class="footer-col__header">
-						<h5>Our Locations</h5>
-						<div>
-							{% include "../components/svg/dropdown.svg" %}
-						</div>
-					</div>
-					<div class="footer-col__body">
-						<div class="footer-col__body-scroll">
-							<div class="footer-col__content-wrap"></div>
-						</div>
-					</div>
-				</div>
-				<div class="footer-col footer-col_hide">
 					<div data-evt="toggleCurrency" class="footer-col__header">
 						<h5>Change Currency</h5>
-						<div data-evt="toggleCurrency" class="page-currency">
+						<div class="page-currency">
 							<div class="page-currency-current">
 								<img src="./assets/flags/usd.svg" loading="lazy" alt="">
 								<span>$ USD</span>

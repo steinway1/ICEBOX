@@ -20,7 +20,7 @@
 														{% if option.extraClass is defined %}
 															<span class="color-gradient {{option.extraClass}}"></span>
 														{% endif %}
-														{{option.caption}}</span>
+														{{option.caption}}{% if user_admin == true %} ({{option.count}}){% endif %}</span>
 												</div>
 											</label>
 										{% endfor %}

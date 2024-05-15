@@ -6862,6 +6862,42 @@ svg.svg_loader circle {
   opacity: 0.05;
 }
 
+.whale-card__avatar::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 500px;
+  border: 2px solid transparent;
+}
+
+.whale-card__avatar.--light_blue::before {
+  border-color: #20dcdc;
+}
+
+.whale-card__avatar.--dark_blue::before {
+  border-color: #00B3F6;
+}
+
+.whale-card__avatar.--yellow::before {
+  border-color: rgb(255, 239, 21);
+}
+
+.whale-card__avatar.--orange::before {
+  border-color: #FEBD00;
+}
+
+.whale-card__avatar.--green::before {
+  border-color: #00B242;
+}
+
+.whale-card__avatar.--purple::before {
+  border-color: #CB9DE5;
+}
+
 .whale-card__sum {
   flex-direction: column;
   align-items: center;
