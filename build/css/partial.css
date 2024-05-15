@@ -15795,10 +15795,6 @@ input.custom-range__output {
   border: 2px solid #53AE94;
 }
 
-.pay-card.--crypto .pay-card__wrapper {
-  box-shadow: inset 0 2px 48px rgba(83, 174, 148, 0.1);
-}
-
 .pay-card.--crypto .pay-card__pics {
   display: flex;
   flex-direction: column;
@@ -15841,6 +15837,27 @@ input.custom-range__output {
   width: 90%;
 }
 
+.pay-card.--financing {
+  background-image: linear-gradient(to right, #17b7ec, #17b7ec);
+}
+
+.pay-card.--financing .pay-card__btn {
+  border-color: #b8e9fa;
+}
+
+.pay-card.--financing .pay-card__heading span {
+  color: #0ca8dc;
+  padding: 0 !important;
+}
+
+.pay-modal__container#payModalFinancing {
+  background-image: linear-gradient(to right, #17b7ec, #17b7ec);
+}
+
+.pay-modal__container#payModalFinancing .pay-modal__close-btn {
+  border-color: #17b7ec;
+}
+
 .load-more__btn-wrap {
   justify-content: center;
   align-items: center;
@@ -15875,7 +15892,6 @@ input.custom-range__output {
   width: 100%;
   height: 100%;
   background-color: #fff;
-  background-image: linear-gradient(157deg, rgba(254, 179, 199, 0.1), #fff 50%, rgba(171, 233, 214, 0.08));
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
@@ -33362,7 +33378,6 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   .pay-card.--crypto .pay-card__wrapper {
     gap: 10px;
     padding: 10px;
-    box-shadow: inset 0 2px 28px rgba(83, 174, 148, 0.1);
   }
 
   .pay-card.--crypto .pay-card__pics {
@@ -33380,13 +33395,17 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     width: 96%;
   }
 
+  .pay-card.--financing {
+    max-height: 260px;
+  }
+
   .pay-card__typo {
     font-size: 13px;
     line-height: 16px;
   }
 
   .pay-card__details {
-    padding: 10px;
+    padding: 14px;
   }
 
   .pay-card__btn {

@@ -1723,12 +1723,12 @@
     }
 
     .pay-card__wrapper {
-      box-shadow: inset 0 2px 48px rgba(83, 174, 148, .1);
+      // box-shadow: inset 0 2px 48px rgba(83, 174, 148, .1);
 
       @include maxWidthXs {
         gap: 10px;
         padding: 10px;
-        box-shadow: inset 0 2px 28px rgba(83, 174, 148, .1);
+        // box-shadow: inset 0 2px 28px rgba(83, 174, 148, .1);
       }
     }
 
@@ -1793,6 +1793,35 @@
       }
     }
   }
+
+  &.--financing {
+    background-image: linear-gradient(to right, #17b7ec, #17b7ec);
+
+    .pay-card__btn {
+      border-color: #b8e9fa;
+    }
+
+    .pay-card__heading {
+      span {
+        color: #0ca8dc;
+        padding: 0 !important;
+      }
+    }
+
+    @include maxWidthXs {
+      max-height: 260px;
+    }
+  }
+}
+
+.pay-modal__container {
+  &#payModalFinancing {
+    background-image: linear-gradient(to right, #17b7ec, #17b7ec);
+
+    .pay-modal__close-btn {
+      border-color: #17b7ec;
+    }
+  }
 }
 
 .load-more__btn-wrap {
@@ -1829,7 +1858,7 @@
   width: 100%;
   height: 100%;
   background-color: #fff;
-  background-image: linear-gradient(157deg, rgba(254, 179, 199, .1), #fff 50%, rgba(171, 233, 214, .08));
+  // background-image: linear-gradient(157deg, rgba(254, 179, 199, .1), #fff 50%, rgba(171, 233, 214, .08));
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
@@ -1870,7 +1899,7 @@
   display: flex;
 
   @include maxWidthXs {
-    padding: 10px;
+    padding: 14px;
   }
 }
 
