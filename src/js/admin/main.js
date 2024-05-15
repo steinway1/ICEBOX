@@ -1686,192 +1686,6 @@ const whaleCardAttachAvatarUpload = () => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  const pageToolbar = {
-    menuOpened: false,
-    sortOpened: false,
-    pointsOpened: false,
-    filterOpened: false,
-    elem: document.querySelector('.toolbar'),
-    menu: document.querySelector('.toolbar-menu'),
-    sortMenu: document.querySelector('#toolbarSort'),
-    pointsMenu: document.querySelector('#toolbarPoints'),
-    filterMenu: document.querySelector('#toolbarFilter'),
-    sortToggleArr: document.querySelectorAll('[data-evt="toggleSortMenu"]'),
-    ptsToggleArr: document.querySelectorAll('[data-evt="togglePoints"]'),
-    filterToggleArr: document.querySelectorAll('[data-evt="toggleFilterMenu"]'),
-    resetFormArr: document.querySelectorAll('[data-evt="resetToolbarForm"]'),
-
-    init: function () {
-      if (this.elem) {
-        this.attachEvents()
-        Object.values(this.initFn).forEach((fn) => {
-          if (typeof fn === 'function') {
-            try {
-              fn()
-            } catch (err) {
-              console.log(`toolbar init fn err : ${err.message}`)
-            }
-          }
-        })
-      }
-    },
-    openMenu: function () {
-      if (this.menu) {
-        this.menuOpened = true
-        this.elem.classList.add(IS_ACTIVE)
-        const heightElem = document.querySelector('.toolbar-menu__wrapper')
-        setTimeout(() => {
-          this.menu.style.height = `${heightElem.scrollHeight}px`
-        }, 30)
-      }
-    },
-    closeMenu: function () {
-      if (this.menu) {
-        this.menuOpened = false
-        this.elem.classList.remove(IS_ACTIVE)
-        this.menu.style.height = 0
-      }
-    },
-    adjustMenuHeight: function () {
-      const wrapper = document.querySelector('.toolbar-menu__wrapper')
-      if (wrapper) {
-        let height = wrapper.clientHeight
-        this.menu.style.height = `${height}px`
-      }
-    },
-    toggleMenu: function () {
-      if (this.menuOpened) {
-        this.closeMenu()
-      } else {
-        this.openMenu()
-      }
-    },
-    openSort: function () {
-      if (this.menu && this.sortMenu) {
-        this.checkSortState()
-        this.checkFilterState()
-        if (!this.menuOpened) {
-          this.openMenu()
-          this.sortOpened = true
-          this.sortMenu.style.display = 'block'
-          this.pointsMenu.style.display = 'none'
-        } else {
-          if (!this.filterOpened && !this.pointsOpened) {
-            this.closeMenu()
-            this.sortOpened = false
-          } else {
-            this.sortOpened = true
-            this.filterOpened = false
-            this.pointsOpened = false
-            this.sortMenu.style.display = 'block'
-            this.pointsMenu.style.display = 'none'
-            this.adjustMenuHeight()
-          }
-        }
-      }
-    },
-    openPoints: function () {
-      if (this.menu && this.pointsMenu) {
-        if (!this.menuOpened) {
-          this.pointsOpened = true
-          this.pointsMenu.style.display = 'block'
-          this.sortMenu.style.display = 'none'
-          this.openMenu()
-        } else {
-          if (!this.sortOpened) {
-            this.closeMenu()
-            this.pointsOpened = false
-          } else {
-            this.pointsOpened = true
-            this.sortOpened = false
-            this.pointsMenu.style.display = 'block'
-            this.sortMenu.style.display = 'none'
-            this.adjustMenuHeight()
-          }
-        }
-      }
-    },
-    openFilter: function () {
-      if (this.menu && this.filterMenu) {
-        this.checkSortState()
-        this.checkFilterState()
-        if (!this.menuOpened) {
-          this.openMenu()
-          this.filterOpened = true
-          this.filterMenu.style.display = 'block'
-          this.sortMenu.style.display = 'none'
-        } else {
-          if (!this.sortOpened) {
-            this.closeMenu()
-            this.filterOpened = false
-          } else {
-            this.filterOpened = true
-            this.sortOpened = false
-            this.filterMenu.style.display = 'block'
-            this.sortMenu.style.display = 'none'
-            this.adjustMenuHeight()
-          }
-        }
-      }
-    },
-    checkSortState: function () {
-      if (this.sortMenu && this.sortToggleArr.length) {
-        const inputs = this.sortMenu.querySelectorAll('input:checked')
-        inputs.length ? this.sortToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.sortToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
-      }
-    },
-    checkFilterState: function () {
-      if (this.filterMenu && this.filterToggleArr.length) {
-        const inputs = this.filterMenu.querySelectorAll('input:checked')
-        inputs.length ? this.filterToggleArr.forEach((btn) => btn.classList.add(IS_ACTIVE)) : this.filterToggleArr.forEach((btn) => btn.classList.remove(IS_ACTIVE))
-      }
-    },
-
-    attachEvents: function () {
-      this.sortToggleArr.forEach((btn) => {
-        btn.onclick = () => {
-          this.openSort()
-        }
-      })
-      this.filterToggleArr.forEach((btn) => {
-        btn.onclick = () => {
-          this.openFilter()
-        }
-      })
-      this.ptsToggleArr.forEach((btn) => {
-        btn.onclick = () => {
-          this.openPoints()
-        }
-      })
-      this.resetFormArr.forEach((btn) => {
-        btn.onclick = () => {
-          const form = btn.parentNode.closest('.toolbar-form')
-          if (form) {
-            let inputs = form.querySelectorAll('input:checked')
-            inputs.forEach((input) => { input.checked = false })
-          }
-        }
-      })
-    },
-
-    initFn: {
-      renderPTSLottie: () => {
-        const lottieContainers = [...document.querySelectorAll('[data-lottie="diamondSpin"]')]
-        lottieContainers.forEach((container) => {
-          const animation = bodymovin.loadAnimation({
-            container: container,
-            path: 'https://gist.githubusercontent.com/steinway1/4de3da6a3a8364ede5c3e5fff52c5113/raw/94ab2c03988700c56cffeb4f5fc06ce2e605120f/spin-diamond.json',
-            autoplay: true,
-            renderer: 'svg',
-            loop: true
-          })
-        })
-      }
-    }
-  }
-
-  pageToolbar.init()
   swapModal.init()
   whaleCardAttachAvatarUpload()
 })
@@ -3224,7 +3038,7 @@ const FinanceList = {
       this.lockPIN()
     }
   },
-  lockPIN: function() {
+  lockPIN: function () {
     const lockPIN = new LockPin({
       code: 3256
     })
@@ -3578,4 +3392,206 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     POSCustomerSearch.init()
   }
+})
+
+/**
+ * 
+ * Page Toolbar / Sort / Filters / Scores
+ */
+class ToolBar {
+  constructor() {
+    this.opened = false
+    this.locked = false
+    this.rootEl = document.querySelector('.toolbar')
+    this.wrapper = document.querySelector('.toolbar__wrapper')
+    this.container = document.querySelector('.toolbar__container')
+    this.menu = document.querySelector('.toolbar-menu')
+    this.menuWrapper = document.querySelector('.toolbar-menu__wrapper')
+    this.menuArr = [...document.querySelectorAll('.toolbar-content')]
+    this.menuSort = document.querySelector('#toolbarSort')
+    this.menuFilter = document.querySelector('#toolbarFilter')
+    this.menuPoints = document.querySelector('#toolbarPoints')
+    this.inputArr = this.rootEl.querySelectorAll('input')
+    this.evtToggleSort = [...document.querySelectorAll('[data-evt="toggleSortMenu"]')]
+    this.evtToggleFilter = [...document.querySelectorAll('[data-evt="toggleFilterMenu"]')]
+    this.evtTogglePoints = [...document.querySelectorAll('[data-evt="togglePoints"]')]
+    this.evtReset = [...document.querySelectorAll('[data-evt="resetToolbarForm"]')]
+  }
+
+  /**
+   * Methods
+   */
+  observeSortState() {
+    if (this.menuSort && this.evtToggleSort.length) {
+      const inputs = this.menuSort.querySelectorAll('input:checked')
+      if (inputs.length) {
+        this.evtToggleSort.forEach((btn) => btn.classList.add(IS_ACTIVE))
+      } else {
+        this.evtToggleSort.forEach((btn) => btn.classList.remove(IS_ACTIVE))
+      }
+    }
+  }
+  observeFilterState() {
+    if (this.menuFilter && this.evtToggleFilter.length) {
+      const inputs = this.menuFilter.querySelectorAll('input:checked')
+      if (inputs.length) {
+        this.evtToggleFilter.forEach((btn) => btn.classList.add(IS_ACTIVE))
+      } else {
+        this.evtToggleFilter.forEach((btn) => btn.classList.remove(IS_ACTIVE))
+      }
+    }
+  }
+  observeInputsCheckedState() {
+    this.observeSortState()
+    this.observeFilterState()
+  }
+  toggleLocked(condition, elem) {
+    if (condition && elem) {
+      this.locked = condition
+      setTimeout(() => {
+        this.locked = !condition
+      }, getTransitionTime(elem));
+    }
+  }
+  hideMenuArr(timeout = 0) {
+    setTimeout(() => {
+      this.menuArr.forEach((el) => { el.style.display = 'none' })
+    }, timeout);
+  }
+  show(menu = this.menuArr[0]) {
+    if (!this.locked) {
+      if (!this.opened && menu) {
+        this.hideMenuArr(0)
+        setTimeout(() => {
+          this.opened = true
+          menu.style.display = 'block'
+          const height = menu.scrollHeight
+          this.menu.style.height = `${height + 4}px`
+          this.rootEl.classList.add(IS_ACTIVE)
+          this.toggleLocked(true, this.menu)
+        }, 1);
+      }
+      if (this.opened) {
+        const visibleMenu = this.menuArr.find((el) => { return el.style.display === 'block' })
+        if (visibleMenu) {
+          if (visibleMenu !== menu) {
+            this.hideMenuArr()
+            setTimeout(() => {
+              this.observeInputsCheckedState()
+              menu.style.display = 'block'
+              const height = menu.scrollHeight
+              this.menu.style.height = `${height + 4}px`
+              this.toggleLocked(true, this.menu)
+            }, 2);
+          } else {
+            this.hide()
+          }
+        }
+      }
+    }
+  }
+  hide() {
+    if (!this.locked) {
+      if (this.opened) {
+        this.observeInputsCheckedState()
+        this.opened = false
+        this.menu.style.height = '0px'
+        this.rootEl.classList.remove(IS_ACTIVE)
+        this.toggleLocked(false, this.menu)
+        this.hideMenuArr(getTransitionTime(this.menu))
+      }
+    }
+  }
+
+  /**
+   * Bind Events
+   */
+  bindEvents() {
+    // Sorting
+    for (const btn of this.evtToggleSort) {
+      if (this.menuSort) {
+        btn.addEventListener('click', () => {
+          this.show(this.menuSort)
+          this.observeInputsCheckedState()
+        })
+      }
+    }
+
+    // Filters
+    for (const btn of this.evtToggleFilter) {
+      if (this.menuFilter) {
+        btn.addEventListener('click', () => {
+          this.show(this.menuFilter)
+          this.observeInputsCheckedState()
+        })
+      }
+    }
+
+    // Points
+    for (const btn of this.evtTogglePoints) {
+      if (this.menuPoints) {
+        btn.addEventListener('click', () => {
+          this.show(this.menuPoints)
+          this.observeInputsCheckedState()
+        })
+      }
+    }
+
+    // Reset
+    for (const btn of this.evtReset) {
+      btn.addEventListener('click', () => {
+        const parent = btn.parentNode.closest('.toolbar-form')
+        if (parent) {
+          const inputArr = parent.querySelectorAll('input')
+          for (const input of inputArr) {
+            input.checked = false
+            input.dispatchEvent(new Event('change'))
+          }
+        }
+      })
+    }
+
+    // Input changes
+    for (const input of this.inputArr) {
+      input.addEventListener('change', (e) => {
+        this.observeInputsCheckedState()
+      })
+    }
+
+    // Document Events
+    document.addEventListener('click', (e) => {
+      const target = e.target
+      if (!target.closest('.toolbar')) {
+        this.hide()
+      }
+    })
+  }
+
+
+  /**
+   * Initialize
+   */
+  renderPTSLottie() {
+    const lottieContainers = [...document.querySelectorAll('[data-lottie="diamondSpin"]')]
+    lottieContainers.forEach((container) => {
+      const animation = bodymovin.loadAnimation({
+        container: container,
+        path: 'https://gist.githubusercontent.com/steinway1/4de3da6a3a8364ede5c3e5fff52c5113/raw/94ab2c03988700c56cffeb4f5fc06ce2e605120f/spin-diamond.json',
+        autoplay: true,
+        renderer: 'svg',
+        loop: true
+      })
+    })
+  }
+  init() {
+    if (this.rootEl) {
+      this.bindEvents()
+      this.renderPTSLottie()
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toolBar = new ToolBar()
+  toolBar.init()
 })

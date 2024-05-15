@@ -22,6 +22,22 @@
 							</div>
 						</div>
 					{% endif %}
+					{% if page_filters %}
+						<div id="toolbarFilter" class="toolbar-content">
+							<div class="toolbar-form">
+								<button data-evt="resetToolbarForm" class="toolbar-form-reset">Reset</button>
+								{% for sort in page_filters %}
+									<label>
+										<input type="radio" id="{{sort.id}}" name="{{sort.name}}"/>
+										<div>
+											<span>{{sort.caption}}</span>
+											<span></span>
+										</div>
+									</label>
+								{% endfor %}
+							</div>
+						</div>
+					{% endif %}
 					<div id="toolbarPoints" class="toolbar-content">
 						<div class="toolbar-form">
 							{% for user in users %}
@@ -48,6 +64,12 @@
 					<button data-evt="toggleSortMenu" class="toolbar-btn">
 						{% include "admin/svg/icon_sort.svg" %}
 						<span>Sort</span>
+					</button>
+				{% endif %}
+				{% if page_filters %}
+					<button data-evt="toggleFilterMenu" class="toolbar-btn">
+						{% include "admin/svg/icon_filter.svg" %}
+						<span>Filter</span>
 					</button>
 				{% endif %}
 				<button data-evt="togglePoints" class="toolbar-btn">
