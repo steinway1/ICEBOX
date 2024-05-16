@@ -1,0 +1,282 @@
+<div data-id="job-apply" class="loan-case --job">
+
+	<div class="loan-finish">
+		<div class="loan-finish__decor"></div>
+		<div class="loan-finish__info">
+			<h4>Congratulations!</h4>
+			<p>Your job apply has been accepted.<br>We will contact you as soon as possible.</p>
+			<a href="/">Back To Homepage</a>
+		</div>
+	</div>
+
+	<div class="loan-flow">
+		<div class="loan-case__header">
+			<img src="{{THEME_ASSETS_FOLDER}}circle-logo_text.svg" loading="eager" alt="" class="loan-case__avatar">
+			<h4 class="loan-case__heading">Welcome To the Icebox Apply For Job Form</h4>
+			{# <span class="loan-case__spot">Apply Now</span> #}
+		</div>
+		<div class="loan-case__bar-wrap">
+			<div class="loan-bar">
+				<span class="loan-bar__progress"></span>
+			</div>
+		</div>
+		<div class="loan-welcome">
+			<div class="loan-case-section">
+				<div data-loan-evt="toggle" class="loan-case__btn">
+					Fill The Form
+				</div>
+			</div>
+		</div>
+		<div class="loan-case__content">
+			<form id="job_form" name="job_form" method="get" class="loan-case__form">
+				<div
+					class="loan-scroller">
+
+					{# First / last name / Resume #}
+					<div data-loan-section="name" data-loan-section="name" class="loan-case-section">
+						<div class="loan-input-wrap">
+							<input class="loan-case__input" type="text" id="job_first_name" placeholder="First Name" required>
+							<label for="job_first_name">First Name</label>
+						</div>
+						<div class="loan-input-wrap">
+							<input class="loan-case__input" type="text" id="job_last_name" placeholder="Last Name" required>
+							<label for="job_last_name">Last Name</label>
+						</div>
+						<div class="loan-input-wrap">
+							<input data-validate="number" class="loan-case__input" pattern="[0-9]*" placeholder="Phone Number" type="text" id="job_phone" required>
+							<label for="job_phone">Phone Number</label>
+						</div>
+
+						<h6 class="loan-case-section__title --big">Upload Resume<span>Please upload your resume so we can get to know your qualifications and find a suitable position.</span>
+						</h6>
+						<div class="loan-input-wrap">
+							<div data-loan="files_upload" class="loan-file-input">
+								<input type="file" id="job_resume" accept="pdf/doc/docx" multiple required>
+							</div>
+						</div>
+						<div id="job_files_upload" class="loan-input-files"></div>
+					</div>
+
+					{# Location / Working Status #}
+					<div data-loan-section="location" class="loan-case-section">
+						<h6 class="loan-case-section__title --big">Location &amp; Working Status<span>Let us know more about your location and your working status.</span>
+						</h6>
+						<div class="loan-input-wrap --static">
+							<div class="loan-case__select-wrap">
+								<select id="job_state" class="loan-case__input" required>
+									<option value="" disabled selected>Choose State...</option>
+									{% include "components/option-states.twig" %}
+								</select>
+							</div>
+							<label for="job_state">State</label>
+						</div>
+						<div class="loan-input-wrap --static">
+							<input class="loan-case__input" placeholder="Your city and state" type="text" id="job_city_state" required>
+							<label for="job_city">City</label>
+						</div>
+						<div class="loan-input-wrap --static">
+							<div class="loan-case__select-wrap">
+								<select id="job_working" class="loan-case__input" required>
+									<option value="full_time">Full Time</option>
+									<option value="part_time">Part Time</option>
+									<option value="not_working">Not Working</option>
+								</select>
+							</div>
+							<label for="job_working">Are you currently working?</label>
+						</div>
+						<div class="loan-input-wrap --static">
+							<div class="loan-radio-group">
+								<label class="loan-radio">
+									<input type="radio" value="1" name="job_relocate">
+									<span>Yes</span>
+								</label>
+								<label class="loan-radio">
+									<input type="radio" value="0" name="job_relocate">
+									<span>No</span>
+								</label>
+							</div>
+							<label for="job_relocate">Are you ready to relocate?</label>
+						</div>
+					</div>
+
+					{# Driver's License #}
+					<div data-loan-section="driver" class="loan-case-section">
+						<div class="loan-input-wrap --static">
+							<div class="loan-case__select-wrap">
+								<select id="job_driver_license" class="loan-case__input" required>
+									<option value="yes" selected>Yes</option>
+									<option value="no">No</option>
+								</select>
+							</div>
+							<label for="job_driver_license">Do you have a driver's license?</label>
+						</div>
+
+						<div class="loan-input-wrap --static">
+							<div class="loan-case__select-wrap">
+								<select id="job_license_from" class="loan-case__input">
+									<option value="" disabled selected>Choose State...</option>
+									{% include "components/option-states.twig" %}
+								</select>
+							</div>
+							<label for="job_location">What state is your drivers license from?</label>
+						</div>
+
+						<div class="loan-input-wrap --static">
+							<div class="loan-case__select-wrap">
+								<select id="job_transportation" class="loan-case__input" required>
+									<option value="yes" selected>Yes</option>
+									<option value="no">No</option>
+								</select>
+							</div>
+							<label for="job_transportation">Do you have reliable transportation to work?</label>
+						</div>
+
+						<div class="loan-input-wrap --static">
+							<input class="loan-case__input" placeholder="Your city and state" type="text" id="job_criminal" required>
+							<label for="job_criminal">Do you have anything in your criminal record we should know about?</label>
+						</div>
+					</div>
+
+					{# Experience #}
+					<div data-loan-section="experience" class="loan-case-section">
+						<div class="loan-input-wrap --static">
+							<div class="loan-case__select-wrap">
+								<select id="job_jewelry_experience" class="loan-case__input" required>
+									<option value="" disabled selected>Choose...</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="10+">10+</option>
+								</select>
+							</div>
+							<label for="job_jewelry_experience">How many years of jewelry related experience do you have</label>
+						</div>
+
+						<div class="loan-input-wrap --static">
+							<input class="loan-case__input" type="text" id="job_skills" placeholder="Your skills" required>
+							<label for="job_skills">What skills can you bring to Icebox?</label>
+						</div>
+
+						<div class="loan-input-wrap --static">
+							<input class="loan-case__input" type="text" id="job_sales_before" placeholder="What type of sales" required>
+							<label for="job_sales_before">Have you worked in sales before?  What type of sales?</label>
+						</div>
+
+						<div class="loan-input-wrap --static">
+							<input class="loan-case__input" type="text" id="job_gia_education" placeholder="GIA Education" required>
+							<label for="job_gia_education">Do you have any formal education from GIA?</label>
+						</div>
+
+						<div class="loan-input-wrap --static">
+							<div class="loan-radio-group">
+								<label class="loan-radio">
+									<input type="radio" value="1" name="job_diamond_sales">
+									<span>Yes</span>
+								</label>
+								<label class="loan-radio">
+									<input type="radio" value="0" name="job_diamond_sales">
+									<span>No</span>
+								</label>
+							</div>
+							<label for="job_sales_before">Have you sold diamond jewelry before?</label>
+						</div>
+					</div>
+
+					{# Position & Salary #}
+					<div data-loan-section="position" data-loan-section="name" class="loan-case-section">
+						<h6 class="loan-case-section__title --big">What position are you interested in?<span>We are always looking for people who can add  to the company's team!</span>
+						</h6>
+
+						<div class="loan-input-wrap --static">
+							<div class="loan-radio-group --grid">
+								<label class="loan-radio">
+									<input type="checkbox" value="Showroom Jewelry Sales" name="job_position">
+									<span>Showroom Jewelry Sales</span>
+								</label>
+								<label class="loan-radio">
+									<input type="checkbox" value="E-commerce Jewelry Sales" name="job_position">
+									<span>E-commerce Jewelry Sales</span>
+								</label>
+								<label class="loan-radio">
+									<input type="checkbox" value="Jewelry Financing Specialist" name="job_position">
+									<span>Jewelry Financing Specialist</span>
+								</label>
+								<label class="loan-radio">
+									<input type="checkbox" value="Jewelry Appraiser" name="job_position">
+									<span>Jewelry Appraiser</span>
+								</label>
+								<label class="loan-radio">
+									<input type="checkbox" value="Jeweler / Goldsmith" name="job_position">
+									<span>Jeweler / Goldsmith</span>
+								</label>
+								<label class="loan-radio">
+									<input type="checkbox" value="Watchmaker / Watch Technician" name="job_position">
+									<span>Watchmaker / Watch Technician</span>
+								</label>
+								<label class="loan-radio">
+									<input type="checkbox" value="Janitor" name="job_position">
+									<span>Janitor</span>
+								</label>
+								<label class="loan-radio">
+									<input type="checkbox" value="Jewelry CAD Designer" name="job_position">
+									<span>Jewelry CAD Designer</span>
+								</label>
+								<label class="loan-radio">
+									<input type="checkbox" value="Shipping Specialist" name="job_position">
+									<span>Shipping Specialist</span>
+								</label>
+								<label class="loan-radio">
+									<input type="checkbox" value="Inventory Department" name="job_position">
+									<span>Inventory Department</span>
+								</label>
+								<label class="loan-radio">
+									<input type="checkbox" value="Jewelry Photographer" name="job_position">
+									<span>Jewelry Photographer</span>
+								</label>
+							</div>
+						</div>
+
+						<div class="loan-input-wrap --static">
+							<div class="loan-case__select-wrap">
+								<select id="job_salary" class="loan-case__input" required>
+									<option value="40000-50000">$40,000 - $50,000</option>
+									<option value="50000-60000">$50,000 - $60,000</option>
+									<option value="60000-80000">$60,000 - $80,000</option>
+									<option value="80000-100000">$80,000 - $100,000</option>
+									<option value="100000+">$100,000 +</option>
+								</select>
+							</div>
+							<label for="job_salary">What is your yearly salary requirement?</label>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+		<div class="loan-case__footer">
+			<div class="loan-case__btn-group">
+				<button data-loan-evt="back" class="loan-case__btn is-sub">Back</button>
+				<button data-loan-evt="go" class="loan-case__btn">Next</button>
+			</div>
+			<div class="loan-case__features">
+				<div class="loan-case__feature">
+					{% include "components/svg/secure.svg" %}
+					<span>Your information is securely encrypted</span>
+				</div>
+			</div>
+		</div>
+		<div class="loan-case__back-group">
+			<button data-loan-evt="toggle" class="loan-case__btn">
+				Exit Application
+			</button>
+		</div>
+	</div>
+
+</div>

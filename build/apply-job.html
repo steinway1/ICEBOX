@@ -371,25 +371,25 @@
     </header>
 
 
-    <main class="main_finance">
+    <main class="main_finance main_apply">
         <div class="subpage__welcome --loan_case">
             <div class="wrapper">
                 <div class="subpage__welcome-title">
-                    <h3>Icebox Financing Application</h3>
-                    <p>Just a few steps and you get personalized rate quotes with no hard credit pull.</p>
+                    <h3>Apply For Job</h3>
+                    <p>Just a few steps to get the job you deserve!</p>
                 </div>
             </div>
         </div>
 
         <div class="subpage__finance-content">
             <div class="wrapper">
-                <div data-id="loan-apply" class="loan-case">
+                <div data-id="job-apply" class="loan-case --job">
 
                     <div class="loan-finish">
                         <div class="loan-finish__decor"></div>
                         <div class="loan-finish__info">
                             <h4>Congratulations!</h4>
-                            <p>Your funding request has been accepted.<br>We will contact you as soon as possible.</p>
+                            <p>Your job apply has been accepted.<br>We will contact you as soon as possible.</p>
                             <a href="/">Back To Homepage</a>
                         </div>
                     </div>
@@ -397,7 +397,7 @@
                     <div class="loan-flow">
                         <div class="loan-case__header">
                             <img src="./assets/circle-logo_text.svg" loading="eager" alt="" class="loan-case__avatar">
-                            <h4 class="loan-case__heading">Welcome To the Icebox Max Approval Financing Form</h4>
+                            <h4 class="loan-case__heading">Welcome To the Icebox Apply For Job Form</h4>
 
                         </div>
                         <div class="loan-case__bar-wrap">
@@ -408,252 +408,334 @@
                         <div class="loan-welcome">
                             <div class="loan-case-section">
                                 <div data-loan-evt="toggle" class="loan-case__btn">
-                                    Apply For Financing
+                                    Fill The Form
                                 </div>
                             </div>
                         </div>
                         <div class="loan-case__content">
-                            <form id="loan_form" name="loan_form" method="get" class="loan-case__form">
+                            <form id="job_form" name="job_form" method="get" class="loan-case__form">
                                 <div class="loan-scroller">
 
 
                                     <div data-loan-section="name" data-loan-section="name" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">First &amp; Last Name</h6>
                                         <div class="loan-input-wrap">
-                                            <input class="loan-case__input" placeholder="First Name" type="text" id="loan_first_name" required>
+                                            <input class="loan-case__input" type="text" id="job_first_name" placeholder="First Name" required>
+                                            <label for="job_first_name">First Name</label>
                                         </div>
                                         <div class="loan-input-wrap">
-                                            <input class="loan-case__input" placeholder="Last Name" type="text" id="loan_last_name" required>
+                                            <input class="loan-case__input" type="text" id="job_last_name" placeholder="Last Name" required>
+                                            <label for="job_last_name">Last Name</label>
                                         </div>
-                                    </div>
+                                        <div class="loan-input-wrap">
+                                            <input data-validate="number" class="loan-case__input" pattern="[0-9]*" placeholder="Phone Number" type="text" id="job_phone" required>
+                                            <label for="job_phone">Phone Number</label>
+                                        </div>
 
-
-                                    <div data-loan-section="phone" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">Phone Number</h6>
-                                        <div class="loan-input-wrap">
-                                            <input data-validate="number" class="loan-case__input --icon" pattern="[0-9]*" placeholder="Phone Number" type="text" id="loan_number" required>
-                                            <div class="loan-case__input-icon"><svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M15 22.75H9C4.59 22.75 3.25 21.41 3.25 17V7C3.25 2.59 4.59 1.25 9 1.25H15C19.41 1.25 20.75 2.59 20.75 7V17C20.75 21.41 19.41 22.75 15 22.75ZM9 2.75C5.42 2.75 4.75 3.43 4.75 7V17C4.75 20.57 5.42 21.25 9 21.25H15C18.58 21.25 19.25 20.57 19.25 17V7C19.25 3.43 18.58 2.75 15 2.75H9Z" fill="#292D32"></path>
-                                                    <path d="M14 6.25H10C9.59 6.25 9.25 5.91 9.25 5.5C9.25 5.09 9.59 4.75 10 4.75H14C14.41 4.75 14.75 5.09 14.75 5.5C14.75 5.91 14.41 6.25 14 6.25Z" fill="#292D32"></path>
-                                                    <path d="M12 19.86C10.73 19.86 9.69995 18.83 9.69995 17.56C9.69995 16.29 10.73 15.26 12 15.26C13.27 15.26 14.3 16.29 14.3 17.56C14.3 18.83 13.27 19.86 12 19.86ZM12 16.75C11.56 16.75 11.2 17.11 11.2 17.55C11.2 17.99 11.56 18.35 12 18.35C12.44 18.35 12.8 17.99 12.8 17.55C12.8 17.11 12.44 16.75 12 16.75Z" fill="#292D32"></path>
-                                                </svg></div>
-                                        </div>
-                                    </div>
-
-
-                                    <div data-loan-section="email" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">Email Address</h6>
-                                        <div class="loan-input-wrap">
-                                            <input data-validate="email" class="loan-case__input" placeholder="Email Address" type="email" id="loan_email" required>
-                                        </div>
-                                    </div>
-
-
-                                    <div data-loan-section="address" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">Address</h6>
-                                        <div class="loan-input-wrap">
-                                            <input data-validate="zip_code" class="loan-case__input" placeholder="Zip Code" type="text" id="loan_zip_code" pattern="[0-9]*" maxlength="6" required>
-                                            <p>Input ZIP Code and we will fill out the rest</p>
-                                        </div>
-                                        <div class="loan-input-wrap">
-                                            <div class="loan-case__select-wrap">
-                                                <select id="loan_state" class="loan-case__input" required>
-                                                    <option value="">State...</option>
-                                                    <option value="georgia">Georgia</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="loan-input-wrap">
-                                            <input class="loan-case__input" placeholder="City" type="text" id="loan_city" required>
-                                        </div>
-                                        <div class="loan-input-wrap">
-                                            <input class="loan-case__input" placeholder="Address" type="text" id="loan_address_1" required>
-                                        </div>
-                                        <div class="loan-input-wrap">
-                                            <div class="loan-case__select-wrap">
-                                                <select id="loan_apartment" class="loan-case__input" required>
-                                                    <option value="" disabled>Address type</option>
-                                                    <option value="house">House</option>
-                                                    <option value="condo">Condo</option>
-                                                    <option value="apartment">Apartment</option>
-                                                    <option value="other">Other</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div data-loan-section="id" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">ID &amp; Debit Card<span>Please upload your id and a picture of your debit card front and back of both please - if you don&#x27;t do it now we will have to do it later.</span>
+                                        <h6 class="loan-case-section__title --big">Upload Resume<span>Please upload your resume so we can get to know your qualifications and find a suitable position.</span>
                                         </h6>
                                         <div class="loan-input-wrap">
                                             <div data-loan="files_upload" class="loan-file-input">
-                                                <input type="file" id="loan_id" accept="image/*" multiple required>
+                                                <input type="file" id="job_resume" accept="pdf/doc/docx" multiple required>
                                             </div>
                                         </div>
-                                        <div id="loan_files_upload" class="loan-input-files"></div>
-                                        <div class="loan-input-wrap">
-                                            <button data-loan-evt="submit" class="loan-case__btn">Provide Later</button>
-                                        </div>
+                                        <div id="job_files_upload" class="loan-input-files"></div>
                                     </div>
 
 
-                                    <div data-loan-section="employer" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">Employer</h6>
-                                        <div data-loan-evt="dual_select" class="dual-select">
-                                            <div class="loan-input-wrap">
-                                                <input class="loan-case__input" placeholder="Employer" type="text" id="loan_employer" required>
-                                            </div>
-                                            <div class="loan-input-wrap">
-                                                <label class="custom-checkbox">
-                                                    <input id="loan_self_employer" type="checkbox" value="self_employer">
-                                                    <span>I am self employed</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div data-loan-evt="dual_select" class="dual-select">
-                                            <div class="loan-input-wrap">
-                                                <input class="loan-case__input" placeholder="Employer Website" type="text" id="loan_employer_website" required>
-                                            </div>
-                                            <div class="loan-input-wrap">
-                                                <label class="custom-checkbox">
-                                                    <input id="loan_no_website" type="checkbox" value="no_website">
-                                                    <span>My employer has no website.</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div data-loan-section="salary" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">Salary &amp; Credit Score</h6>
-                                        <div class="loan-input-wrap">
+                                    <div data-loan-section="location" class="loan-case-section">
+                                        <h6 class="loan-case-section__title --big">Location &amp; Working Status<span>Let us know more about your location and your working status.</span>
+                                        </h6>
+                                        <div class="loan-input-wrap --static">
                                             <div class="loan-case__select-wrap">
-                                                <select id="loan_salary" class="loan-case__input" required>
-                                                    <option value="" disabled>Monthly Salary</option>
-                                                    <option value="under_1500">Under $1,500</option>
-                                                    <option value="1500_2500">$1,500 - $2,500</option>
-                                                    <option value="2500_3500">$2,500 - $3,500</option>
-                                                    <option value="3500_4500">$3,500 - $4,500</option>
-                                                    <option value="4500_5500">$4,500 - $5,500</option>
-                                                    <option value="5500_7500">$5,500 - $7,500</option>
-                                                    <option value="7500_10000">$7,500 - $10,000</option>
-                                                    <option value="over_10000">$10,000 &amp; Up</option>
+                                                <select id="job_state" class="loan-case__input" required>
+                                                    <option value="" disabled selected>Choose State...</option>
+                                                    <option value="alabama">Alabama</option>
+                                                    <option value="alaska">Alaska</option>
+                                                    <option value="arizona">Arizona</option>
+                                                    <option value="arkansas">Arkansas</option>
+                                                    <option value="california">California</option>
+                                                    <option value="colorado">Colorado</option>
+                                                    <option value="connecticut">Connecticut</option>
+                                                    <option value="delaware">Delaware</option>
+                                                    <option value="florida">Florida</option>
+                                                    <option value="georgia">Georgia</option>
+                                                    <option value="hawaii">Hawaii</option>
+                                                    <option value="idaho">Idaho</option>
+                                                    <option value="illinois">Illinois</option>
+                                                    <option value="indiana">Indiana</option>
+                                                    <option value="iowa">Iowa</option>
+                                                    <option value="kansas">Kansas</option>
+                                                    <option value="kentucky">Kentucky</option>
+                                                    <option value="louisiana">Louisiana</option>
+                                                    <option value="maine">Maine</option>
+                                                    <option value="maryland">Maryland</option>
+                                                    <option value="massachusetts">Massachusetts</option>
+                                                    <option value="michigan">Michigan</option>
+                                                    <option value="minnesota">Minnesota</option>
+                                                    <option value="mississippi">Mississippi</option>
+                                                    <option value="missouri">Missouri</option>
+                                                    <option value="montana">Montana</option>
+                                                    <option value="nebraska">Nebraska</option>
+                                                    <option value="nevada">Nevada</option>
+                                                    <option value="newhampshire">New Hampshire</option>
+                                                    <option value="newjersey">New Jersey</option>
+                                                    <option value="newmexico">New Mexico</option>
+                                                    <option value="newyork">New York</option>
+                                                    <option value="northcarolina">North Carolina</option>
+                                                    <option value="northdakota">North Dakota</option>
+                                                    <option value="ohio">Ohio</option>
+                                                    <option value="oklahoma">Oklahoma</option>
+                                                    <option value="oregon">Oregon</option>
+                                                    <option value="pennsylvania">Pennsylvania</option>
+                                                    <option value="rhodeisland">Rhode Island</option>
+                                                    <option value="southcarolina">South Carolina</option>
+                                                    <option value="southdakota">South Dakota</option>
+                                                    <option value="tennessee">Tennessee</option>
+                                                    <option value="texas">Texas</option>
+                                                    <option value="utah">Utah</option>
+                                                    <option value="vermont">Vermont</option>
+                                                    <option value="virginia">Virginia</option>
+                                                    <option value="washington">Washington</option>
+                                                    <option value="westvirginia">West Virginia</option>
+                                                    <option value="wisconsin">Wisconsin</option>
+                                                    <option value="wyoming">Wyoming</option>
                                                 </select>
                                             </div>
+                                            <label for="job_state">State</label>
                                         </div>
-                                        <div class="loan-input-wrap">
-                                            <div data-loan-evt="dual_select" class="dual-select">
-                                                <div class="loan-input-range">
-                                                    <input id="loan_credit_score" class="custom-range" type="range" min="300" max="850" onchange="loan_score_output.value=value" oninput="loan_score_output.value=value" value="500" />
-                                                    <div class="flex_8">
-                                                        <label for="loan_credit_score">Credit Score:</label>
-                                                        <input class="custom-range__output" id="loan_score_output" value="500" pattern="[0-9]*" maxlength="3" />
-                                                    </div>
-                                                </div>
-                                                <label class="custom-checkbox">
-                                                    <input id="loan_no_score" type="checkbox" value="no_credit_score">
-                                                    <span>I don't know my credit score.</span>
-                                                </label>
-                                            </div>
+                                        <div class="loan-input-wrap --static">
+                                            <input class="loan-case__input" placeholder="Your city and state" type="text" id="job_city_state" required>
+                                            <label for="job_city">City</label>
                                         </div>
-                                    </div>
-
-
-                                    <div data-loan-section="social" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">Social Security Number</h6>
-                                        <div class="loan-input-wrap">
-                                            <input class="loan-case__input" pattern="[0-9]*" data-format="ssn" placeholder="Social Security Number" type="text" id="loan_social_number" required>
-                                        </div>
-                                    </div>
-
-
-                                    <div data-loan-section="companies" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">Do you currently use any financing companies?<span>It is not a bad thing, just let us know so we don&#x27;t look into those for you.  Affirm, Klarna, Afterpay, Synchrony, Wells Fargo, Acima?</span>
-                                        </h6>
-                                        <div class="loan-case__input-group --wrap">
-
-                                            <div class="loan-input-wrap">
-                                                <label class="custom-checkbox --col">
-                                                    <input id="loan_other_affirm" type="checkbox" value="other_affirm">
-                                                    <span></span>
-                                                    <img src="./assets//logos/logo-box_affirm.svg" alt="">
-                                                </label>
-                                            </div>
-                                            <div class="loan-input-wrap">
-                                                <label class="custom-checkbox --col">
-                                                    <input id="loan_other_klarna" type="checkbox" value="other_klarna">
-                                                    <span></span>
-                                                    <img src="./assets//logos/logo-box_klarna.svg" alt="">
-                                                </label>
-                                            </div>
-                                            <div class="loan-input-wrap">
-                                                <label class="custom-checkbox --col">
-                                                    <input id="loan_other_afterpay" type="checkbox" value="other_afterpay">
-                                                    <span></span>
-                                                    <img src="./assets//logos/logo-box_afterpay.svg" alt="">
-                                                </label>
-                                            </div>
-                                            <div class="loan-input-wrap">
-                                                <label class="custom-checkbox --col">
-                                                    <input id="loan_other_fargo" type="checkbox" value="other_fargo">
-                                                    <span></span>
-                                                    <img src="./assets//logos/logo-box_fargo.svg" alt="">
-                                                </label>
-                                            </div>
-                                            <div class="loan-input-wrap">
-                                                <label class="custom-checkbox --col">
-                                                    <input id="loan_other_acima" type="checkbox" value="other_acima">
-                                                    <span></span>
-                                                    <img src="./assets//logos/logo-box_acima.png" alt="">
-                                                </label>
-                                            </div>
-                                            <div class="loan-input-wrap">
-                                                <label class="custom-checkbox --col">
-                                                    <input id="loan_other_synchrony" type="checkbox" value="other_synchrony">
-                                                    <span></span>
-                                                    <img src="./assets//logos/logo-box_synchrony.svg" alt="">
-                                                </label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-
-                                    <div data-loan-section="items" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">What item would you like to buy with your financing approval?</h6>
-                                        <div class="loan-input-wrap">
-                                            <input class="loan-case__input" placeholder="" type="text" id="loan_items" required>
-                                        </div>
-                                    </div>
-
-
-                                    <div data-loan-section="for" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">Who are you intending to use this financing on?<span>Yourself, your spouse or other?</span>
-                                        </h6>
-                                        <div class="loan-input-wrap">
-                                            <div class="select-wrap">
-                                                <select id="loan_for" class="loan-case__input" required>
-                                                    <option value="">Select...</option>
-                                                    <option value="Spouse">Spouse</option>
-                                                    <option value="Self">Self</option>
-                                                    <option value="Other">Other</option>
+                                        <div class="loan-input-wrap --static">
+                                            <div class="loan-case__select-wrap">
+                                                <select id="job_working" class="loan-case__input" required>
+                                                    <option value="full_time">Full Time</option>
+                                                    <option value="part_time">Part Time</option>
+                                                    <option value="not_working">Not Working</option>
                                                 </select>
                                             </div>
+                                            <label for="job_working">Are you currently working?</label>
+                                        </div>
+                                        <div class="loan-input-wrap --static">
+                                            <div class="loan-radio-group">
+                                                <label class="loan-radio">
+                                                    <input type="radio" value="1" name="job_relocate">
+                                                    <span>Yes</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="radio" value="0" name="job_relocate">
+                                                    <span>No</span>
+                                                </label>
+                                            </div>
+                                            <label for="job_relocate">Are you ready to relocate?</label>
                                         </div>
                                     </div>
 
 
-                                    <div data-loan-section="amount" class="loan-case-section">
-                                        <h6 class="loan-case-section__title">How Much You Would Like To Get Approved For?</h6>
-                                        <div class="loan-input-wrap">
-                                            <input data-format="currency" class="loan-case__input --icon" placeholder="Amount" type="text" pattern="[0-9]*" id="loan_amount" required autocomplete="off">
-                                            <div class="loan-case__input-icon">
-                                                <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M6 16C6 18.2146 7.78111 20 9.994 20H14.5097C16.4348 20 18 18.4378 18 16.515C18 14.4206 17.0465 13.6824 15.6252 13.2017L8.37481 10.7983C6.95352 10.3176 6 9.5794 6 7.48498C6 5.56223 7.56522 4 9.49025 4H14.006C16.2189 4 18 5.78541 18 8" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M12 1V23" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg>
+                                    <div data-loan-section="driver" class="loan-case-section">
+                                        <div class="loan-input-wrap --static">
+                                            <div class="loan-case__select-wrap">
+                                                <select id="job_driver_license" class="loan-case__input" required>
+                                                    <option value="yes" selected>Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
                                             </div>
+                                            <label for="job_driver_license">Do you have a driver's license?</label>
+                                        </div>
+
+                                        <div class="loan-input-wrap --static">
+                                            <div class="loan-case__select-wrap">
+                                                <select id="job_license_from" class="loan-case__input">
+                                                    <option value="" disabled selected>Choose State...</option>
+                                                    <option value="alabama">Alabama</option>
+                                                    <option value="alaska">Alaska</option>
+                                                    <option value="arizona">Arizona</option>
+                                                    <option value="arkansas">Arkansas</option>
+                                                    <option value="california">California</option>
+                                                    <option value="colorado">Colorado</option>
+                                                    <option value="connecticut">Connecticut</option>
+                                                    <option value="delaware">Delaware</option>
+                                                    <option value="florida">Florida</option>
+                                                    <option value="georgia">Georgia</option>
+                                                    <option value="hawaii">Hawaii</option>
+                                                    <option value="idaho">Idaho</option>
+                                                    <option value="illinois">Illinois</option>
+                                                    <option value="indiana">Indiana</option>
+                                                    <option value="iowa">Iowa</option>
+                                                    <option value="kansas">Kansas</option>
+                                                    <option value="kentucky">Kentucky</option>
+                                                    <option value="louisiana">Louisiana</option>
+                                                    <option value="maine">Maine</option>
+                                                    <option value="maryland">Maryland</option>
+                                                    <option value="massachusetts">Massachusetts</option>
+                                                    <option value="michigan">Michigan</option>
+                                                    <option value="minnesota">Minnesota</option>
+                                                    <option value="mississippi">Mississippi</option>
+                                                    <option value="missouri">Missouri</option>
+                                                    <option value="montana">Montana</option>
+                                                    <option value="nebraska">Nebraska</option>
+                                                    <option value="nevada">Nevada</option>
+                                                    <option value="newhampshire">New Hampshire</option>
+                                                    <option value="newjersey">New Jersey</option>
+                                                    <option value="newmexico">New Mexico</option>
+                                                    <option value="newyork">New York</option>
+                                                    <option value="northcarolina">North Carolina</option>
+                                                    <option value="northdakota">North Dakota</option>
+                                                    <option value="ohio">Ohio</option>
+                                                    <option value="oklahoma">Oklahoma</option>
+                                                    <option value="oregon">Oregon</option>
+                                                    <option value="pennsylvania">Pennsylvania</option>
+                                                    <option value="rhodeisland">Rhode Island</option>
+                                                    <option value="southcarolina">South Carolina</option>
+                                                    <option value="southdakota">South Dakota</option>
+                                                    <option value="tennessee">Tennessee</option>
+                                                    <option value="texas">Texas</option>
+                                                    <option value="utah">Utah</option>
+                                                    <option value="vermont">Vermont</option>
+                                                    <option value="virginia">Virginia</option>
+                                                    <option value="washington">Washington</option>
+                                                    <option value="westvirginia">West Virginia</option>
+                                                    <option value="wisconsin">Wisconsin</option>
+                                                    <option value="wyoming">Wyoming</option>
+                                                </select>
+                                            </div>
+                                            <label for="job_location">What state is your drivers license from?</label>
+                                        </div>
+
+                                        <div class="loan-input-wrap --static">
+                                            <div class="loan-case__select-wrap">
+                                                <select id="job_transportation" class="loan-case__input" required>
+                                                    <option value="yes" selected>Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                            </div>
+                                            <label for="job_transportation">Do you have reliable transportation to work?</label>
+                                        </div>
+
+                                        <div class="loan-input-wrap --static">
+                                            <input class="loan-case__input" placeholder="Your city and state" type="text" id="job_criminal" required>
+                                            <label for="job_criminal">Do you have anything in your criminal record we should know about?</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div data-loan-section="experience" class="loan-case-section">
+                                        <div class="loan-input-wrap --static">
+                                            <div class="loan-case__select-wrap">
+                                                <select id="job_jewelry_experience" class="loan-case__input" required>
+                                                    <option value="" disabled selected>Choose...</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="10+">10+</option>
+                                                </select>
+                                            </div>
+                                            <label for="job_jewelry_experience">How many years of jewelry related experience do you have</label>
+                                        </div>
+
+                                        <div class="loan-input-wrap --static">
+                                            <input class="loan-case__input" type="text" id="job_skills" placeholder="Your skills" required>
+                                            <label for="job_skills">What skills can you bring to Icebox?</label>
+                                        </div>
+
+                                        <div class="loan-input-wrap --static">
+                                            <input class="loan-case__input" type="text" id="job_sales_before" placeholder="What type of sales" required>
+                                            <label for="job_sales_before">Have you worked in sales before? What type of sales?</label>
+                                        </div>
+
+                                        <div class="loan-input-wrap --static">
+                                            <input class="loan-case__input" type="text" id="job_gia_education" placeholder="GIA Education" required>
+                                            <label for="job_gia_education">Do you have any formal education from GIA?</label>
+                                        </div>
+
+                                        <div class="loan-input-wrap --static">
+                                            <div class="loan-radio-group">
+                                                <label class="loan-radio">
+                                                    <input type="radio" value="1" name="job_diamond_sales">
+                                                    <span>Yes</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="radio" value="0" name="job_diamond_sales">
+                                                    <span>No</span>
+                                                </label>
+                                            </div>
+                                            <label for="job_sales_before">Have you sold diamond jewelry before?</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div data-loan-section="position" data-loan-section="name" class="loan-case-section">
+                                        <h6 class="loan-case-section__title --big">What position are you interested in?<span>We are always looking for people who can add  to the company's team!</span>
+                                        </h6>
+
+                                        <div class="loan-input-wrap --static">
+                                            <div class="loan-radio-group --grid">
+                                                <label class="loan-radio">
+                                                    <input type="checkbox" value="Showroom Jewelry Sales" name="job_position">
+                                                    <span>Showroom Jewelry Sales</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="checkbox" value="E-commerce Jewelry Sales" name="job_position">
+                                                    <span>E-commerce Jewelry Sales</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="checkbox" value="Jewelry Financing Specialist" name="job_position">
+                                                    <span>Jewelry Financing Specialist</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="checkbox" value="Jewelry Appraiser" name="job_position">
+                                                    <span>Jewelry Appraiser</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="checkbox" value="Jeweler / Goldsmith" name="job_position">
+                                                    <span>Jeweler / Goldsmith</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="checkbox" value="Watchmaker / Watch Technician" name="job_position">
+                                                    <span>Watchmaker / Watch Technician</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="checkbox" value="Janitor" name="job_position">
+                                                    <span>Janitor</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="checkbox" value="Jewelry CAD Designer" name="job_position">
+                                                    <span>Jewelry CAD Designer</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="checkbox" value="Shipping Specialist" name="job_position">
+                                                    <span>Shipping Specialist</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="checkbox" value="Inventory Department" name="job_position">
+                                                    <span>Inventory Department</span>
+                                                </label>
+                                                <label class="loan-radio">
+                                                    <input type="checkbox" value="Jewelry Photographer" name="job_position">
+                                                    <span>Jewelry Photographer</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="loan-input-wrap --static">
+                                            <div class="loan-case__select-wrap">
+                                                <select id="job_salary" class="loan-case__input" required>
+                                                    <option value="40000-50000">$40,000 - $50,000</option>
+                                                    <option value="50000-60000">$50,000 - $60,000</option>
+                                                    <option value="60000-80000">$60,000 - $80,000</option>
+                                                    <option value="80000-100000">$80,000 - $100,000</option>
+                                                    <option value="100000+">$100,000 +</option>
+                                                </select>
+                                            </div>
+                                            <label for="job_salary">What is your yearly salary requirement?</label>
                                         </div>
                                     </div>
 
@@ -673,21 +755,11 @@
                                         <path d="M12 16.25C11.59 16.25 11.25 15.91 11.25 15.5V12.5C11.25 12.09 11.59 11.75 12 11.75C12.41 11.75 12.75 12.09 12.75 12.5V15.5C12.75 15.91 12.41 16.25 12 16.25Z" fill="#292D32"></path>
                                     </svg> <span>Your information is securely encrypted</span>
                                 </div>
-                                <div class="loan-case__feature">
-                                    <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 9.75C1.59 9.75 1.25 9.41 1.25 9V6.5C1.25 3.6 3.61 1.25 6.5 1.25H9C9.41 1.25 9.75 1.59 9.75 2C9.75 2.41 9.41 2.75 9 2.75H6.5C4.43 2.75 2.75 4.43 2.75 6.5V9C2.75 9.41 2.41 9.75 2 9.75Z" fill="#292D32"></path>
-                                        <path d="M22 9.75C21.59 9.75 21.25 9.41 21.25 9V6.5C21.25 4.43 19.57 2.75 17.5 2.75H15C14.59 2.75 14.25 2.41 14.25 2C14.25 1.59 14.59 1.25 15 1.25H17.5C20.39 1.25 22.75 3.6 22.75 6.5V9C22.75 9.41 22.41 9.75 22 9.75Z" fill="#292D32"></path>
-                                        <path d="M17.5 22.75H16C15.59 22.75 15.25 22.41 15.25 22C15.25 21.59 15.59 21.25 16 21.25H17.5C19.57 21.25 21.25 19.57 21.25 17.5V16C21.25 15.59 21.59 15.25 22 15.25C22.41 15.25 22.75 15.59 22.75 16V17.5C22.75 20.4 20.39 22.75 17.5 22.75Z" fill="#292D32"></path>
-                                        <path d="M9 22.75H6.5C3.61 22.75 1.25 20.4 1.25 17.5V15C1.25 14.59 1.59 14.25 2 14.25C2.41 14.25 2.75 14.59 2.75 15V17.5C2.75 19.57 4.43 21.25 6.5 21.25H9C9.41 21.25 9.75 21.59 9.75 22C9.75 22.41 9.41 22.75 9 22.75Z" fill="#292D32"></path>
-                                        <path d="M14 18.25H10C7.58 18.25 6.25 16.92 6.25 14.5V9.5C6.25 7.08 7.58 5.75 10 5.75H14C16.42 5.75 17.75 7.08 17.75 9.5V14.5C17.75 16.92 16.42 18.25 14 18.25ZM10 7.25C8.42 7.25 7.75 7.92 7.75 9.5V14.5C7.75 16.08 8.42 16.75 10 16.75H14C15.58 16.75 16.25 16.08 16.25 14.5V9.5C16.25 7.92 15.58 7.25 14 7.25H10Z" fill="#292D32"></path>
-                                        <path d="M19 12.75H5C4.59 12.75 4.25 12.41 4.25 12C4.25 11.59 4.59 11.25 5 11.25H19C19.41 11.25 19.75 11.59 19.75 12C19.75 12.41 19.41 12.75 19 12.75Z" fill="#292D32"></path>
-                                    </svg> <span>No impact to your credit score</span>
-                                </div>
                             </div>
                         </div>
                         <div class="loan-case__back-group">
                             <button data-loan-evt="toggle" class="loan-case__btn">
-                                Exit Financing Application
+                                Exit Application
                             </button>
                         </div>
                     </div>
