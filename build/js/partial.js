@@ -318,7 +318,8 @@ let $body = $('body')
 const __VALID = '--valid',
   __INVALID = '--invalid',
   __PENDING = '--pending',
-  __LOCKED = '--locked'
+  __LOCKED = '--locked',
+  __ACTIVE = '--active'
 
 const paceOptions = {
   ajax: true,
@@ -357,6 +358,326 @@ $.fn.extend({
     }, time);
   },
 });
+/* #endregion */
+
+/* #region  Zenscroll */
+(function (root, factory) {
+  if (typeof define === "function" && define.amd) {
+    define([], factory())
+  } else if (typeof module === "object" && module.exports) {
+    module.exports = factory()
+  } else {
+    (function install() {
+      // To make sure Zenscroll can be referenced from the header, before `body` is available
+      if (document && document.body) {
+        root.zenscroll = factory()
+      } else {
+        // retry 9ms later
+        setTimeout(install, 9)
+      }
+    })()
+  }
+}(this, function () {
+  "use strict"
+
+
+  // Detect if the browser already supports native smooth scrolling (e.g., Firefox 36+ and Chrome 49+) and it is enabled:
+  var isNativeSmoothScrollEnabledOn = function (elem) {
+    return elem && "getComputedStyle" in window &&
+      window.getComputedStyle(elem)["scroll-behavior"] === "smooth"
+  }
+
+
+  // Exit if it’s not a browser environment:
+  if (typeof window === "undefined" || !("document" in window)) {
+    return {}
+  }
+
+
+  var makeScroller = function (container, defaultDuration, edgeOffset) {
+
+    // Use defaults if not provided
+    defaultDuration = defaultDuration || 999 //ms
+    if (!edgeOffset && edgeOffset !== 0) {
+      // When scrolling, this amount of distance is kept from the edges of the container:
+      edgeOffset = 9 //px
+    }
+
+    // Handling the life-cycle of the scroller
+    var scrollTimeoutId
+    var setScrollTimeoutId = function (newValue) {
+      scrollTimeoutId = newValue
+    }
+
+    /**
+     * Stop the current smooth scroll operation immediately
+     */
+    var stopScroll = function () {
+      clearTimeout(scrollTimeoutId)
+      setScrollTimeoutId(0)
+    }
+
+    var getTopWithEdgeOffset = function (elem) {
+      return Math.max(0, container.getTopOf(elem) - edgeOffset)
+    }
+
+    /**
+     * Scrolls to a specific vertical position in the document.
+     *
+     * @param {targetY} The vertical position within the document.
+     * @param {duration} Optionally the duration of the scroll operation.
+     *        If not provided the default duration is used.
+     * @param {onDone} An optional callback function to be invoked once the scroll finished.
+     */
+    var scrollToY = function (targetY, duration, onDone) {
+      stopScroll()
+      if (duration === 0 || (duration && duration < 0) || isNativeSmoothScrollEnabledOn(container.body)) {
+        container.toY(targetY)
+        if (onDone) {
+          onDone()
+        }
+      } else {
+        var startY = container.getY()
+        var distance = Math.max(0, targetY) - startY
+        var startTime = new Date().getTime()
+        duration = duration || Math.min(Math.abs(distance), defaultDuration);
+        (function loopScroll() {
+          setScrollTimeoutId(setTimeout(function () {
+            // Calculate percentage:
+            var p = Math.min(1, (new Date().getTime() - startTime) / duration)
+            // Calculate the absolute vertical position:
+            var y = Math.max(0, Math.floor(startY + distance * (p < 0.5 ? 2 * p * p : p * (4 - p * 2) - 1)))
+            container.toY(y)
+            if (p < 1 && (container.getHeight() + y) < container.body.scrollHeight) {
+              loopScroll()
+            } else {
+              setTimeout(stopScroll, 99) // with cooldown time
+              if (onDone) {
+                onDone()
+              }
+            }
+          }, 9))
+        })()
+      }
+    }
+
+    /**
+     * Scrolls to the top of a specific element.
+     *
+     * @param {elem} The element to scroll to.
+     * @param {duration} Optionally the duration of the scroll operation.
+     * @param {onDone} An optional callback function to be invoked once the scroll finished.
+     */
+    var scrollToElem = function (elem, duration, onDone) {
+      scrollToY(getTopWithEdgeOffset(elem), duration, onDone)
+    }
+
+    /**
+     * Scrolls an element into view if necessary.
+     *
+     * @param {elem} The element.
+     * @param {duration} Optionally the duration of the scroll operation.
+     * @param {onDone} An optional callback function to be invoked once the scroll finished.
+     */
+    var scrollIntoView = function (elem, duration, onDone) {
+      var elemHeight = elem.getBoundingClientRect().height
+      var elemBottom = container.getTopOf(elem) + elemHeight
+      var containerHeight = container.getHeight()
+      var y = container.getY()
+      var containerBottom = y + containerHeight
+      if (getTopWithEdgeOffset(elem) < y || (elemHeight + edgeOffset) > containerHeight) {
+        // Element is clipped at top or is higher than screen.
+        scrollToElem(elem, duration, onDone)
+      } else if ((elemBottom + edgeOffset) > containerBottom) {
+        // Element is clipped at the bottom.
+        scrollToY(elemBottom - containerHeight + edgeOffset, duration, onDone)
+      } else if (onDone) {
+        onDone()
+      }
+    }
+
+    /**
+     * Scrolls to the center of an element.
+     *
+     * @param {elem} The element.
+     * @param {duration} Optionally the duration of the scroll operation.
+     * @param {offset} Optionally the offset of the top of the element from the center of the screen.
+     *        A value of 0 is ignored.
+     * @param {onDone} An optional callback function to be invoked once the scroll finished.
+     */
+    var scrollToCenterOf = function (elem, duration, offset, onDone) {
+      scrollToY(Math.max(0, container.getTopOf(elem) - container.getHeight() / 2 + (offset || elem.getBoundingClientRect().height / 2)), duration, onDone)
+    }
+
+    /**
+     * Changes default settings for this scroller.
+     *
+     * @param {newDefaultDuration} Optionally a new value for default duration, used for each scroll method by default.
+     *        Ignored if null or undefined.
+     * @param {newEdgeOffset} Optionally a new value for the edge offset, used by each scroll method by default. Ignored if null or undefined.
+     * @returns An object with the current values.
+     */
+    var setup = function (newDefaultDuration, newEdgeOffset) {
+      if (newDefaultDuration === 0 || newDefaultDuration) {
+        defaultDuration = newDefaultDuration
+      }
+      if (newEdgeOffset === 0 || newEdgeOffset) {
+        edgeOffset = newEdgeOffset
+      }
+      return {
+        defaultDuration: defaultDuration,
+        edgeOffset: edgeOffset
+      }
+    }
+
+    return {
+      setup: setup,
+      to: scrollToElem,
+      toY: scrollToY,
+      intoView: scrollIntoView,
+      center: scrollToCenterOf,
+      stop: stopScroll,
+      moving: function () { return !!scrollTimeoutId },
+      getY: container.getY,
+      getTopOf: container.getTopOf
+    }
+
+  }
+
+
+  var docElem = document.documentElement
+  var getDocY = function () { return window.scrollY || docElem.scrollTop }
+
+  // Create a scroller for the document:
+  var zenscroll = makeScroller({
+    body: document.scrollingElement || document.body,
+    toY: function (y) { window.scrollTo(0, y) },
+    getY: getDocY,
+    getHeight: function () { return window.innerHeight || docElem.clientHeight },
+    getTopOf: function (elem) { return elem.getBoundingClientRect().top + getDocY() - docElem.offsetTop }
+  })
+
+
+  /**
+   * Creates a scroller from the provided container element (e.g., a DIV)
+   *
+   * @param {scrollContainer} The vertical position within the document.
+   * @param {defaultDuration} Optionally a value for default duration, used for each scroll method by default.
+   *        Ignored if 0 or null or undefined.
+   * @param {edgeOffset} Optionally a value for the edge offset, used by each scroll method by default. 
+   *        Ignored if null or undefined.
+   * @returns A scroller object, similar to `zenscroll` but controlling the provided element.
+   */
+  zenscroll.createScroller = function (scrollContainer, defaultDuration, edgeOffset) {
+    return makeScroller({
+      body: scrollContainer,
+      toY: function (y) { scrollContainer.scrollTop = y },
+      getY: function () { return scrollContainer.scrollTop },
+      getHeight: function () { return Math.min(scrollContainer.clientHeight, window.innerHeight || docElem.clientHeight) },
+      getTopOf: function (elem) { return elem.offsetTop }
+    }, defaultDuration, edgeOffset)
+  }
+
+
+  // Automatic link-smoothing on achors
+  // Exclude IE8- or when native is enabled or Zenscroll auto- is disabled
+  if ("addEventListener" in window && !window.noZensmooth && !isNativeSmoothScrollEnabledOn(document.body)) {
+
+    var isHistorySupported = "history" in window && "pushState" in history
+    var isScrollRestorationSupported = isHistorySupported && "scrollRestoration" in history
+
+    // On first load & refresh make sure the browser restores the position first
+    if (isScrollRestorationSupported) {
+      history.scrollRestoration = "auto"
+    }
+
+    window.addEventListener("load", function () {
+
+      if (isScrollRestorationSupported) {
+        // Set it to manual
+        setTimeout(function () { history.scrollRestoration = "manual" }, 9)
+        window.addEventListener("popstate", function (event) {
+          if (event.state && "zenscrollY" in event.state) {
+            zenscroll.toY(event.state.zenscrollY)
+          }
+        }, false)
+      }
+
+      // Add edge offset on first load if necessary
+      // This may not work on IE (or older computer?) as it requires more timeout, around 100 ms
+      if (window.location.hash) {
+        setTimeout(function () {
+          // Adjustment is only needed if there is an edge offset:
+          var edgeOffset = zenscroll.setup().edgeOffset
+          if (edgeOffset) {
+            var targetElem = document.getElementById(window.location.href.split("#")[1])
+            if (targetElem) {
+              var targetY = Math.max(0, zenscroll.getTopOf(targetElem) - edgeOffset)
+              var diff = zenscroll.getY() - targetY
+              // Only do the adjustment if the browser is very close to the element:
+              if (0 <= diff && diff < 9) {
+                window.scrollTo(0, targetY)
+              }
+            }
+          }
+        }, 9)
+      }
+
+    }, false)
+
+    // Handling clicks on anchors
+    var RE_noZensmooth = new RegExp("(^|\\s)noZensmooth(\\s|$)")
+    window.addEventListener("click", function (event) {
+      var anchor = event.target
+      while (anchor && anchor.tagName !== "A") {
+        anchor = anchor.parentNode
+      }
+      // Let the browser handle the click if it wasn't with the primary button, or with some modifier keys:
+      if (!anchor || event.which !== 1 || event.shiftKey || event.metaKey || event.ctrlKey || event.altKey) {
+        return
+      }
+      // Save the current scrolling position so it can be used for scroll restoration:
+      if (isScrollRestorationSupported) {
+        var historyState = history.state && typeof history.state === "object" ? history.state : {}
+        historyState.zenscrollY = zenscroll.getY()
+        try {
+          history.replaceState(historyState, "")
+        } catch (e) {
+          // Avoid the Chrome Security exception on file protocol, e.g., file://index.html
+        }
+      }
+      // Find the referenced ID:
+      var href = anchor.getAttribute("href") || ""
+      if (href.indexOf("#") === 0 && !RE_noZensmooth.test(anchor.className)) {
+        var targetY = 0
+        var targetElem = document.getElementById(href.substring(1))
+        if (href !== "#") {
+          if (!targetElem) {
+            // Let the browser handle the click if the target ID is not found.
+            return
+          }
+          targetY = zenscroll.getTopOf(targetElem)
+        }
+        event.preventDefault()
+        // By default trigger the browser's `hashchange` event...
+        var onDone = function () { window.location = href }
+        // ...unless there is an edge offset specified
+        var edgeOffset = zenscroll.setup().edgeOffset
+        if (edgeOffset) {
+          targetY = Math.max(0, targetY - edgeOffset)
+          if (isHistorySupported) {
+            onDone = function () { history.pushState({}, "", href) }
+          }
+        }
+        zenscroll.toY(targetY, null, onDone)
+      }
+    }, false)
+
+  }
+
+
+  return zenscroll
+}));
 /* #endregion */
 
 
@@ -758,6 +1079,126 @@ class AskModal {
     document.body.appendChild(elem)
   }
 }
+/* #endregion */
+
+/* #region  Custom Upload */
+function initCustomUploads() {
+  this.arr = [...document.querySelectorAll('[data-custom-upload]')]
+
+  const renderOutputFile = (file, imgSrc = '') => {
+    let imgElem = imgSrc ? `<div class="--filled" style="background-image: url(${imgSrc})"></div>` : `<div></div>`
+    return `
+    <div class="custom-upload__file">
+      <div>
+        ${imgElem}
+        <span data-custom-name>${file.name}</span>
+      </div>
+      <div>
+        <div data-evt="custom_upload_remove" class="--remove"></div>
+      </div>
+    </div>
+    `
+  }
+  const bindBoxEvents = (box, input) => {
+    box.ondragover = (e) => {
+      e.preventDefault(); box.classList.add(__ACTIVE)
+    }
+    box.ondragleave = (e) => {
+      e.preventDefault(); box.classList.remove(__ACTIVE)
+    }
+    box.addEventListener('drop', (e) => {
+      e.preventDefault()
+      box.classList.remove(__ACTIVE)
+      const files = e.dataTransfer.files
+      const newDataTransfer = new DataTransfer()
+
+      for (const file of files) {
+        newDataTransfer.items.add(file)
+      }
+      input.files = newDataTransfer.files
+      input.dispatchEvent(new Event('change', { 'bubbles': true }))
+    })
+    box.addEventListener('click', (e) => {
+      input.click()
+    })
+  }
+  const setIndexes = (upload) => {
+    const files = [...upload.querySelectorAll('.custom-upload__file')]
+    for (let i = 0; i < files.length; i++) {
+      files[i].dataset.customIndex = i
+    }
+  }
+  const processFiles = (files, upload) => {
+    const output = upload.querySelector('.custom-upload__files')
+    const currentFiles = [...upload.querySelectorAll('.custom-upload__file')]
+
+    for (const file of currentFiles) {
+      file.remove()
+    }
+
+    for (const file of files) {
+      const fileIsImage = file.type.match('image.*')
+      if (fileIsImage) {
+        let reader = new FileReader()
+        reader.onload = (e) => {
+          output.insertAdjacentHTML('beforeend', renderOutputFile(file, e.target.result))
+        }
+        reader.readAsDataURL(file)
+      } else {
+        output.insertAdjacentHTML('beforeend', renderOutputFile(file))
+      }
+    }
+    setIndexes(upload)
+  }
+
+  for (const upload of this.arr) {
+    const box = upload.querySelector('.custom-upload__box')
+    const input = upload.querySelector('input')
+
+    if (box) {
+      bindBoxEvents(box, input)
+    }
+
+    input.addEventListener('change', (e) => {
+      const files = e.target.files
+      processFiles(files, upload)
+    })
+  }
+
+  document.addEventListener('click', (e) => {
+    const target = e.target
+    if (e.target.closest('[data-evt="custom_upload_remove"]')) {
+      const upload = target.closest('[data-custom-upload]')
+      if (!upload) throw new Error('data-custom-upload not found')
+      const input = upload.querySelector('input[type="file"]')
+      if (!input) throw new Error('input[type="file"] not found')
+      const nameEl = e.target.closest('.custom-upload__file').querySelector('*[data-custom-name]')
+      if (!nameEl) throw new Error('data-custom-name not found')
+
+      const name = nameEl.innerHTML
+      const newDataTransfer = new DataTransfer()
+      const { files } = input
+
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].name !== name) {
+          newDataTransfer.items.add(files[i])
+        }
+      }
+
+      if (newDataTransfer.items.length === 0) {
+        input.value = ''
+      } else {
+        input.files = newDataTransfer.files
+      }
+
+      input.dispatchEvent(new Event('change', { 'bubbles': true }))
+    }
+  })
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initCustomUploads()
+})
 /* #endregion */
 
 
@@ -7647,6 +8088,445 @@ document.addEventListener('DOMContentLoaded', () => {
     const jobApp = new JobApp(jobCaseHolder)
     jobApp.init()
   }
+})
+/* #endregion */
+
+
+/* #region  Sell My Watch */
+/**
+ * Sell My Watch Class
+ * @class
+ */
+class SellWatch {
+  constructor() {
+    this.form = document.querySelector('form#sell_my_watch')
+    this.sectionsArr = [...document.querySelectorAll('[data-ask-section]')]
+    this.progressBar = document.querySelector('.ask-page__progress-bar')
+    this.currentStepElem = document.querySelector('[data-step-current]')
+    this.countStepElem = document.querySelector('[data-step-count]')
+    this.contentContainer = document.querySelector('.ask-page__quiz-content')
+    this.adjustContainer = document.querySelector('.ask-page__quiz-adjust')
+
+    this.watchBrand = {
+      name: undefined
+    }
+    this.uploadInput = this.form.querySelector('input[type="file"]')
+    this.regExp = {
+      rolex: /\brolex\b/i,
+      audemars: /\baudemars\b/i,
+      richard: /\brichard\b/i,
+      patek: /\bpatek\b/i,
+      cartier: /\bcartier\b/i,
+      breitling: /\bbreitling\b/i
+    }
+
+    this.locked = false
+    this.steps = this.sectionsArr.length
+    this.currentStep = 1
+    this.activeSection = this.sectionsArr[0]
+    this.endReached = false
+    this.atTheStart = true
+  }
+
+  /**
+   * Getters
+   */
+  get getActiveSection() {
+    return this.activeSection
+  }
+
+  get getCurrentStep() {
+    return this.currentStep
+  }
+
+  /**
+   * Methods
+   */
+  toggleSectionStatus(section, condition) {
+    if (condition === false) {
+      section.classList.remove(__VALID)
+    } else {
+      section.classList.add(__VALID)
+    }
+    const btn = [...section.querySelectorAll('[data-sell-evt="next"]')]
+    btn.forEach(btn => btn.disabled = !condition)
+  }
+  validateSection(section) {
+    const
+      requiredArr = [...section.querySelectorAll('[required]:not([disabled])')],
+      radioArr = [...section.querySelectorAll('input[type="checkbox"]:not([disabled]), input[type="radio"]:not([disabled])')],
+      inputArr = [...section.querySelectorAll('input:not([type="checkbox"]):not([type="radio"])')],
+      selectArr = [...section.querySelectorAll('select[required]')],
+      phoneArr = [...section.querySelectorAll('[data-validate="phone"]')],
+      fileArr = [...section.querySelectorAll('input[type="file"]')]
+
+    const radioArrByName = Array.from(
+      new Set(radioArr.map(radio => radio.name)),
+      name => radioArr.filter(radio => radio.name === name)
+    )
+
+    if (requiredArr.some(input => !input.value)) {
+      this.toggleSectionStatus(section, false)
+      return false
+    }
+
+    for (const radioGroup of radioArrByName) {
+      if (radioGroup.every(radio => !radio.checked)) {
+        this.toggleSectionStatus(section, false)
+        return false
+      }
+    }
+
+    if (phoneArr.length) {
+      for (const input of phoneArr) {
+        const value = input.value
+        const valueDigits = value.replace(/\D/g, '').length
+        const regex = /^\+\d{1}\s\(\d{3}\)\s\d{3}\-\d{4}$/
+        if (!regex.test(value) && valueDigits < 11) {
+          this.toggleSectionStatus(section, false)
+          return false
+        }
+      }
+    }
+
+    for (const fileInput of fileArr) {
+      const files = fileInput.files
+      if (!files.length) {
+        this.toggleSectionStatus(section, false)
+        return false
+      }
+    }
+
+    this.toggleSectionStatus(section, true)
+    return true
+  }
+  arrangeModels(string) {
+    const
+      inputArr = [...this.form.querySelectorAll('input[type="radio"][name="model"]')],
+      groupInputArr = inputArr.filter(input => input.dataset.group),
+      filteredArr = groupInputArr.filter(input => { return string.toLowerCase().includes(input.dataset.group) }),
+      modelGrid = this.form.querySelector('[data-sell-grid="model"]'),
+      modelInput = this.form.querySelector('input#watch_model'),
+      modelInputParent = modelInput.closest('.survey-box__named-grid')
+
+    inputArr.forEach(input => input.checked = false)
+    inputArr.forEach(input => input.dispatchEvent(new Event('change')))
+    modelInput.value = ''
+    modelInput.dispatchEvent(new Event('input'))
+
+    if (!filteredArr.length) {
+      modelGrid.style.display = 'none'
+      modelInputParent.style.display = 'flex'
+      modelInput.disabled = false
+      inputArr.forEach(input => {
+        input.disabled = true
+        input.checked = false
+        // input.dispatchEvent(new Event('change'))
+      })
+    } else {
+      modelGrid.style.display = 'flex'
+      modelInputParent.style.display = 'none'
+      modelInput.disabled = true
+      inputArr.forEach(input => {
+        const label = input.closest('label')
+        input.disabled = false
+        input.checked = false
+        if (!filteredArr.includes(input) && input.value !== 'Other') {
+          if (input.value) {
+            label.style.display = 'none'
+          }
+        } else {
+          label.style.display = 'block'
+        }
+        // input.dispatchEvent(new Event('change'))
+      })
+    }
+  }
+
+  /**
+   * Utils
+   */
+  observeStepsElements() {
+    this.currentStepElem.innerHTML = this.currentStep
+  }
+  observeBarElements() {
+    const elements = this.progressBar.querySelectorAll('span')
+    elements.forEach((element, index) => {
+      if (index < this.currentStep) {
+        element.classList.add(__ACTIVE)
+      } else {
+        element.classList.remove(__ACTIVE)
+      }
+    })
+  }
+  scrollToForm() {
+    if (this.form) {
+      const headerHeight = parseInt(window.getComputedStyle(document.querySelector('header')).getPropertyValue('height'))
+      const boundTop = this.form.getBoundingClientRect().top
+      if ((boundTop - headerHeight) < -30) {
+        const distance = (window.scrollY + this.form.getBoundingClientRect().top) - (headerHeight + 70)
+        zenscroll.toY(distance)
+      }
+    }
+  }
+
+  /**
+   * Events
+   */
+  slide(section, activeSection, number) {
+    const sectionIndex = this.sectionsArr.indexOf(section)
+    const activeSectionIndex = this.sectionsArr.indexOf(activeSection)
+
+    let fromTranslate = 'translateY(24px)'
+    let toTranslate = 'translateY(-24px)'
+
+    if (activeSectionIndex > sectionIndex) {
+      fromTranslate = 'translateY(-24px)'
+      toTranslate = 'translateY(24px)'
+
+      const inputs = [...activeSection.querySelectorAll('input')]
+    }
+
+    this.locked = true
+    activeSection.style.opacity = 0
+    activeSection.style.pointerEvents = 'none'
+    activeSection.style.transform = toTranslate
+    section.style.opacity = 0
+    section.style.pointerEvents = 'none'
+    section.style.transform = fromTranslate
+    setTimeout(() => {
+      activeSection.style.display = 'none'
+      activeSection.classList.remove(__ACTIVE)
+      section.style.display = 'flex'
+      section.classList.add(__ACTIVE)
+      setTimeout(() => {
+        section.style.opacity = 1
+        section.style.transform = 'translateY(0px)'
+        section.style.pointerEvents = 'auto'
+
+        this.locked = false
+        this.activeSection = section
+        this.currentStep = number
+        this.observeStepsElements()
+        this.observeBarElements()
+
+        if (section === this.sectionsArr[this.sectionsArr.length - 1]) {
+          this.finish()
+        }
+      }, 30)
+    }, getTransitionTime(activeSection))
+  }
+  finish() {
+    const confetti = new PageConfetti()
+    confetti.push()
+  }
+  go(number) {
+    if (!this.locked) {
+      const section = this.sectionsArr[number - 1]
+      const activeSection = this.getActiveSection
+
+      if (!section) {
+        const error = number < 1 ? 'Section number cannot be less than 1' : 'Section number cannot be greater than ' + this.sectionsArr.length
+        throw new Error(error)
+      }
+      if (!activeSection) {
+        throw new Error('No active section')
+      }
+
+      if (section !== activeSection) {
+        this.slide(section, activeSection, number)
+        this.scrollToForm()
+      }
+    }
+  }
+
+
+  /**
+   * Bind Events
+   */
+  bindToggleStepsControls() {
+    for (const section of this.sectionsArr) {
+      const inputs = [...section.querySelectorAll('input, select')]
+      inputs.forEach((input) => {
+        const isCheckboxOrRadio = input.type === 'checkbox' || input.type === 'radio' || input.type === 'file'
+        if (isCheckboxOrRadio) {
+          input.addEventListener('change', (e) => {
+            this.validateSection(section)
+          })
+        } else {
+          input.addEventListener('input', (e) => {
+            this.validateSection(section)
+          })
+        }
+      })
+    }
+  }
+  bindDualSelect() {
+    const dualArr = [...this.form.querySelectorAll('input[data-dual]')]
+    for (const input of dualArr) {
+      const
+        name = input.name,
+        dualName = input.dataset.dual,
+        nameInputArr = [...this.form.querySelectorAll(`input[name="${name}"]`)],
+        holder = this.form.querySelector(`div[data-dual="${dualName}"]`)
+
+      if (holder) {
+        const select = holder.querySelector('select, input')
+        if (select) {
+          nameInputArr.forEach((nameInput) => {
+            nameInput.addEventListener('change', () => {
+              if (input.checked) {
+                select.disabled = false
+                holder.style.display = 'flex'
+              } else {
+                select.disabled = true
+                holder.style.display = 'none'
+              }
+            })
+          })
+        }
+      }
+    }
+  }
+  bindBrandSelect() {
+    const brandSelectArr = [...this.form.querySelectorAll('*[name="brand"]')]
+    const elsToName = [...this.form.querySelectorAll('[data-sell-brand]')]
+    for (const input of brandSelectArr) {
+      input.addEventListener('change', (e) => {
+        if (input.disabled) return
+        const value = input.value
+        if (value && value.toLowerCase() !== 'other') {
+          this.watchBrand.name = value
+          elsToName.forEach(el => el.innerHTML = this.watchBrand.name)
+        } else {
+          this.watchBrand.name = undefined
+          elsToName.forEach(el => el.innerHTML = 'your brand')
+        }
+
+        // Setup models
+        this.arrangeModels(value)
+      })
+    }
+  }
+  bindPhoneInput() {
+    const inputs = [...this.form.querySelectorAll('input[data-validate="phone"]')]
+    for (const input of inputs) {
+      let keyCode;
+      function mask(event) {
+        event.keyCode && (keyCode = event.keyCode);
+        let pos = this.selectionStart;
+        if (pos < 3) event.preventDefault()
+        let matrix = "+1 (___) ___-____",
+          i = 0,
+          def = matrix.replace(/\D/g, ""),
+          val = this.value.replace(/\D/g, ""),
+          newValue = matrix.replace(/[_\d]/g, function (a) {
+            return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
+          });
+        i = newValue.indexOf("_");
+        if (i != -1) {
+          i < 5 && (i = 3);
+          newValue = newValue.slice(0, i);
+        }
+        let reg = matrix.substr(0, this.value.length).replace(/_+/g,
+          function (a) {
+            return "\\d{1," + a.length + "}";
+          }).replace(/[+()]/g, "\\$&");
+        reg = new RegExp("^" + reg + "$");
+        if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = newValue;
+        if (event.type == "blur" && this.value.length < 5) this.value = "";
+      }
+
+      input.addEventListener("input", mask, false);
+      input.addEventListener("focus", mask, false);
+      input.addEventListener("blur", mask, false);
+      input.addEventListener("keydown", mask, false);
+      input.addEventListener('mouseup', event => {
+        event.preventDefault()
+        if (input.value.length < 4) {
+          input.setSelectionRange(4, 4)
+        } else {
+          input.setSelectionRange(input.value.length, input.value.length)
+        }
+      })
+    }
+  }
+  bindCurrencyInput() {
+    const inputArr = [...this.form.querySelectorAll('input[data-format="currency"]')]
+    for (const input of inputArr) {
+      input.addEventListener('blur', () => {
+        if (input.value) {
+          input.value = formatAsCurrency(input.value)
+        }
+      })
+    }
+  }
+  bindHandlers() {
+    const nextArr = [...this.form.querySelectorAll('[data-sell-evt="next"]')]
+    const backArr = [...this.form.querySelectorAll('[data-sell-evt="back"]')]
+
+    for (const btn of nextArr) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        if (!btn.disabled) {
+          this.go(this.getCurrentStep + 1)
+        }
+      })
+    }
+
+    for (const btn of backArr) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        if (!btn.disabled) {
+          this.go(this.getCurrentStep - 1)
+        }
+      })
+    }
+  }
+
+  /**
+   * Setup
+   */
+  setupBar() {
+    if (this.progressBar) {
+      let html = ''
+      this.sectionsArr.forEach((section, index) => {
+        html += `<span data-bar-id="${index}"></span>`
+      })
+      this.progressBar.innerHTML = html
+    }
+    if (this.currentStepElem && this.countStepElem) {
+      this.currentStepElem.innerHTML = 1
+      this.countStepElem.innerHTML = this.sectionsArr.length
+    }
+  }
+  setup() {
+    this.setupBar()
+    this.go(1)
+    this.observeStepsElements()
+    this.observeBarElements()
+    this.bindHandlers()
+  }
+
+
+  /**
+   * Initialize
+   */
+  init() {
+    if (this.form) {
+      this.bindDualSelect()
+      this.bindToggleStepsControls()
+      this.bindBrandSelect()
+      this.bindPhoneInput()
+      this.bindCurrencyInput()
+      this.setup()
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.sellMyWatch = new SellWatch()
+  window.sellMyWatch.init()
 })
 /* #endregion */
 function initValidators() {

@@ -1,0 +1,456 @@
+<div class="ask-page__container">
+	<div class="ask-page__dbl-wrapper">
+
+		<div class="ask-page__side">
+			<img class="ask-page__side-avatar" src="{{THEME_ASSETS_FOLDER}}person_ivan.webp" alt="">
+			<div class="ask-page__side-title-wrap">
+				<h2 class="ask-page__side-title">Hello! I'm Ivan, lead watch buyer at Icebox!</h2>
+				<p>Answer a few questions below and I’ll get you the best offer possible!</p>
+			</div>
+		</div>
+
+		<div class="ask-page__main-content">
+			<div class="ask-page__main-wrapper">
+
+				<form id="sell_my_watch">
+					<div class="ask-page__progress-group">
+						<span class="typo_up">Question
+							<span data-step-current>1</span>
+							out of
+							<span data-step-count>8</span>
+						</span>
+						<div class="ask-page__progress-bar"></div>
+					</div>
+
+					<div class="ask-page__quiz-content">
+						<div
+							class="ask-page__quiz-adjust">
+
+							<!-- #region Brand Select -->
+							<div data-ask-section="brand" class="survey-box --watches">
+								<div class="survey-box__header">
+									<h5>What is your watch brand?</h5>
+									<p>Let us know the brand you would like to sell.</p>
+								</div>
+								<div class="survey-box__body">
+									<div class="survey-box__grid">
+										<label class="survey-select">
+											<input type="radio" name="brand" value="Rolex">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<img src="{{THEME_ASSETS_FOLDER}}watch-thumb_rolex.webp" alt="">
+													<span>Rolex</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input type="radio" name="brand" value="Audemars Piguet">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<img src="{{THEME_ASSETS_FOLDER}}watch-thumb_ap.webp" alt="">
+													<span>Audemars Piguet</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input type="radio" name="brand" value="Richard Mille">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<img src="{{THEME_ASSETS_FOLDER}}watch-thumb_rm.webp" alt="">
+													<span>Richard Mille</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input type="radio" name="brand" value="Patek Philippe">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<img src="{{THEME_ASSETS_FOLDER}}watch-thumb_patek.webp" alt="">
+													<span>Patek Philippe</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input type="radio" name="brand" value="Cartier">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<img src="{{THEME_ASSETS_FOLDER}}watch-thumb_cartier.webp" alt="">
+													<span>Cartier</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input type="radio" name="brand" value="Breitling">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<img src="{{THEME_ASSETS_FOLDER}}watch-thumb_breitling.webp" alt="">
+													<span>Breitling</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input data-dual="brand" type="radio" name="brand" value="">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<img src="{{THEME_ASSETS_FOLDER}}watch-thumb_other.webp" alt="">
+													<span>Other</span>
+												</div>
+											</div>
+										</label>
+									</div>
+									<div data-dual="brand" class="survey-box__named-grid">
+										<h6 class="survey-box__group-name">Select one of these brands</h6>
+										<div class="ask-page__input-group">
+											<div class="ask-page__input-box --select">
+												<select name="brand" class="ask-page__input" required disabled>
+													{% include "components/select/watch-options.twig" %}
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="survey-box__footer">
+									<div class="survey-box__btn-group">
+										<button data-sell-evt="next" class="survey-box__btn" disabled>Next</button>
+									</div>
+								</div>
+							</div>
+							<!-- #endregion -->
+
+							<!-- #region Model Select -->
+							<div data-ask-section="model" class="survey-box --model">
+								<div class="survey-box__header">
+									<h5>Which model
+										<span data-sell-brand>your watch</span>
+										you want to sell?</h5>
+									<p>Let us know the model.</p>
+								</div>
+								<div class="survey-box__body">
+									<div data-sell-grid="model" class="survey-box__grid">
+										{% include "components/sell-my-watch/rolex-models.twig" %}
+										{% include "components/sell-my-watch/audemars-models.twig" %}
+										{% include "components/sell-my-watch/richard-models.twig" %}
+										{% include "components/sell-my-watch/patek-models.twig" %}
+										{% include "components/sell-my-watch/cartier-models.twig" %}
+										{% include "components/sell-my-watch/breitling-models.twig" %}
+										<label class="survey-select">
+											<input data-dual="model" type="radio" name="model" value="Other">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<span>Other</span>
+												</div>
+											</div>
+										</label>
+									</div>
+									<div data-dual="model" class="survey-box__named-grid">
+										<h6 class="survey-box__group-name">Type your model</h6>
+										<div class="ask-page__input-group">
+											<div class="ask-page__input-box">
+												<input id="watch_model" class="ask-page__input" placeholder="Model" required disabled>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="survey-box__footer">
+									<div class="survey-box__btn-group">
+										<button data-sell-evt="back" class="survey-box__btn --back">Back</button>
+										<button data-sell-evt="next" class="survey-box__btn" disabled>Next</button>
+									</div>
+								</div>
+							</div>
+							<!-- #endregion -->
+
+							<!-- #region More Details -->
+							<div data-ask-section="more" class="survey-box --more">
+								<div class="survey-box__header">
+									<h5>Great! There is a
+										<span>few steps</span>
+										left.</h5>
+									<p>Let us know your name, phone number &amp; reference number.</p>
+								</div>
+								<div class="survey-box__body">
+									<div class="survey-box__named-grid">
+										<h6 class="survey-box__group-name">First &amp; Last name</h6>
+										<div class="ask-page__input-group">
+											<div class="ask-page__input-box">
+												<input id="full_name" class="ask-page__input" placeholder="Full name" required>
+											</div>
+										</div>
+									</div>
+									<div class="survey-box__named-grid">
+										<h6 class="survey-box__group-name">Phone Number</h6>
+										<div class="ask-page__input-group">
+											<div class="ask-page__input-box">
+												<input data-validate="phone" id="phone_number" class="ask-page__input" placeholder="Your phone number" required>
+											</div>
+										</div>
+									</div>
+									<div class="survey-box__named-grid">
+										<h6 class="survey-box__group-name">Reference Number</h6>
+										<div class="ask-page__input-group">
+											<div class="ask-page__input-box">
+												<input id="reference_number" class="ask-page__input" placeholder="">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="survey-box__footer">
+									<div class="survey-box__btn-group">
+										<button data-sell-evt="back" class="survey-box__btn --back">Back</button>
+										<button data-sell-evt="next" class="survey-box__btn" disabled>Next</button>
+									</div>
+								</div>
+							</div>
+							<!-- #endregion -->
+
+							<!-- #region Bundle -->
+							<div data-ask-section="bundle" class="survey-box --bundle">
+								<div class="survey-box__header">
+									<h5>Got it. Does your watch come with any of the
+										<span>following</span>?</h5>
+									<p>What's in the box?</p>
+								</div>
+								<div class="survey-box__body">
+									<div class="survey-box__grid">
+										<label class="survey-select">
+											<input type="checkbox" name="bundle" value="Box">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<span>Box</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input type="checkbox" name="bundle" value="Warranty Card">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<span>Warranty Card</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input type="checkbox" name="bundle" value="Papers">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<span>Papers</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input data-dual="bundle" type="checkbox" name="bundle" value="Other">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<span>Other</span>
+												</div>
+											</div>
+										</label>
+									</div>
+									<div data-dual="bundle" class="survey-box__named-grid">
+										<h6 class="survey-box__group-name">What else you have?</h6>
+										<div class="ask-page__input-group">
+											<div class="ask-page__input-box">
+												<input id="bundle_more" class="ask-page__input" placeholder="" required>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="survey-box__footer">
+									<div class="survey-box__btn-group">
+										<button data-sell-evt="back" class="survey-box__btn --back">Back</button>
+										<button data-sell-evt="next" class="survey-box__btn" disabled>Next</button>
+									</div>
+								</div>
+							</div>
+							<!-- #endregion -->
+
+							<!-- #region Condition -->
+							<div data-ask-section="condition" class="survey-box --condition">
+								<div class="survey-box__header">
+									<h5>Perfect! What is the
+										<span>condition</span>
+										of your watch?</h5>
+									<p>Please select the condition that best applies to your watch.</p>
+								</div>
+								<div class="survey-box__body">
+									<div class="survey-box__grid">
+										<label class="survey-select">
+											<input data-dual="condition_horrible" type="radio" name="condition" value="Horrible">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<span>Horrible</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input type="radio" name="condition" value="Pretty Bad">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<span>Pretty Bad</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input type="radio" name="condition" value="Good">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<span>Good</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input type="radio" name="condition" value="Like New">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<span>Like New</span>
+												</div>
+											</div>
+										</label>
+										<label class="survey-select">
+											<input type="radio" name="condition" value="Brand New">
+											<div class="survey-select__box">
+												<div class="survey-select__wrapper">
+													<span>Brand New</span>
+												</div>
+											</div>
+										</label>
+									</div>
+									<div data-dual="condition_horrible" class="survey-box__named-grid">
+										<h6 class="survey-box__group-name">Why is it horrible?</h6>
+										<div class="ask-page__input-group">
+											<div class="ask-page__input-box">
+												<input id="horrible_condition" class="ask-page__input" placeholder="" required>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="survey-box__footer">
+									<div class="survey-box__btn-group">
+										<button data-sell-evt="back" class="survey-box__btn --back">Back</button>
+										<button data-sell-evt="next" class="survey-box__btn" disabled>Next</button>
+									</div>
+								</div>
+							</div>
+							<!-- #endregion -->
+
+							<!-- #region Upload Images -->
+							<div data-ask-section="upload" class="survey-box --upload">
+								<div class="survey-box__header">
+									<h5>Almost done. Now upload some
+										<span>pictures</span>.</h5>
+									<p>Please upload a pictures of front and back of your watch and of any papers if you have them.</p>
+								</div>
+								<div class="survey-box__body">
+									<div class="ask-page__input-group">
+										<div data-custom-upload class="custom-upload">
+											<input type="file" accept="image/jpeg, image/png, image/webp" multiple>
+											<div class="custom-upload__box">
+												{% include "components/svg/upload-doc.svg" %}
+												<span>Drag &amp; Drop file(s) or click to upload</span>
+											</div>
+											<div class="custom-upload__info">
+												<span class="typo_dim">Supported formats: JPG, PNG, WEBP</span>
+												<span class="typo_dim">Max size: 5MB</span>
+											</div>
+											<div class="custom-upload__files"></div>
+										</div>
+									</div>
+								</div>
+								<div class="survey-box__footer">
+									<div class="survey-box__btn-group">
+										<button data-sell-evt="back" class="survey-box__btn --back">Back</button>
+										<button data-sell-evt="next" class="survey-box__btn" disabled>Next</button>
+									</div>
+								</div>
+							</div>
+							<!-- #endregion -->
+
+							<!-- #region Last Questions -->
+							<div data-ask-section="last" class="survey-box --last">
+								<div class="survey-box__header">
+									<h5>A few last questions.</h5>
+								</div>
+								<div class="survey-box__body">
+									<div class="survey-box__named-grid">
+										<h6 class="survey-box__group-name">Are you interested in trading your watch for something else?</h6>
+										<div class="survey-box__grid">
+											<label class="survey-select">
+												<input data-dual="trading" type="radio" name="watch_trading" value="Yes">
+												<div class="survey-select__box">
+													<div class="survey-select__wrapper">
+														<span>Yes</span>
+													</div>
+												</div>
+											</label>
+											<label class="survey-select">
+												<input type="radio" name="watch_trading" value="No">
+												<div class="survey-select__box">
+													<div class="survey-select__wrapper">
+														<span>No</span>
+													</div>
+												</div>
+											</label>
+										</div>
+										<div data-dual="trading" class="ask-page__input-box">
+											<input id="trading_for" class="ask-page__input" placeholder="What is your trading for?" required>
+										</div>
+									</div>
+									<div class="survey-box__named-grid">
+										<h6 class="survey-box__group-name">Where is watch located?</h6>
+										<div class="ask-page__input-group">
+											<div class="ask-page__input-box --select">
+												<select name="watch_location" class="ask-page__input">
+													{% include "components/select/countries-options.twig" %}
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="survey-box__named-grid">
+										<h6 class="survey-box__group-name">What is the fair value of your watch?</h6>
+										<div class="ask-page__input-group">
+											<div class="ask-page__input-box">
+												<input data-format="currency" id="price" class="ask-page__input" placeholder="i.e. $15,000.00">
+											</div>
+										</div>
+									</div>
+									<div class="survey-box__named-grid">
+										<h6 class="survey-box__group-name">Is there any additional information you would like to share?</h6>
+										<div class="ask-page__input-group">
+											<div class="ask-page__input-box">
+												<textarea id="more_details" class="ask-page__input" rows="5" placeholder="i.e. I need a polish to be in a perfect condition"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="survey-box__footer">
+									<div class="survey-box__btn-group">
+										<button data-sell-evt="back" class="survey-box__btn --back">Back</button>
+										<button data-sell-evt="next" class="survey-box__btn" disabled>Submit</button>
+									</div>
+								</div>
+							</div>
+							<!-- #endregion -->
+
+							<!-- #region Finish -->
+							<div data-ask-section="finish" class="survey-box --finish">
+								<div class="survey-box__header">
+									<h5>We've got it!
+										<span>Congratulations!</span>
+									</h5>
+									<p>We've received your request. We'll get back to you shortly.</p>
+								</div>
+								<div class="survey-box__footer">
+									<div class="survey-box__btn-group">
+										<a href="/" class="survey-box__btn">Back To Homepage</a>
+									</div>
+								</div>
+							</div>
+							<!-- #endregion -->
+
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
