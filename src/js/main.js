@@ -7805,6 +7805,7 @@ class SellWatch {
     this.contentContainer = document.querySelector('.ask-page__quiz-content')
     this.adjustContainer = document.querySelector('.ask-page__quiz-adjust')
 
+    this.focusedEl = undefined
     this.watchBrand = {
       name: undefined
     }
@@ -7832,9 +7833,11 @@ class SellWatch {
   get getActiveSection() {
     return this.activeSection
   }
-
   get getCurrentStep() {
     return this.currentStep
+  }
+  get getFocusedEl() {
+    return this.focusedEl
   }
 
   /**
@@ -7908,7 +7911,7 @@ class SellWatch {
       modelInputParent = modelInput.closest('.survey-box__named-grid')
 
     inputArr.forEach(input => input.checked = false)
-    inputArr.forEach(input => input.dispatchEvent(new Event('change')))
+    // inputArr.forEach(input => input.dispatchEvent(new Event('change')))
     modelInput.value = ''
     modelInput.dispatchEvent(new Event('input'))
 
@@ -7964,6 +7967,31 @@ class SellWatch {
       if ((boundTop - headerHeight) < -30) {
         const distance = (window.scrollY + this.form.getBoundingClientRect().top) - (headerHeight + 70)
         zenscroll.toY(distance)
+      }
+    }
+  }
+  dispatchFocusEvent(elem) {
+    if (elem) {
+      const tag = elem.tagName
+      switch (tag) {
+        case 'INPUT' || 'TEXTAREA':
+          const type = elem.type
+          if (type === 'radio' || type === 'checkbox') {
+            elem.click()
+          } else {
+            if (type === 'file') {
+              elem.click()
+            } else {
+              elem.focus()
+            }
+          }
+          break;
+        case 'SELECT':
+          elem.focus()
+          break;
+        default:
+          elem.dispatchEvent(new Event('focus'))
+          break;
       }
     }
   }
@@ -8034,6 +8062,7 @@ class SellWatch {
       if (section !== activeSection) {
         this.slide(section, activeSection, number)
         this.scrollToForm()
+        this.focusedEl = undefined
       }
     }
   }
@@ -8181,6 +8210,79 @@ class SellWatch {
       })
     }
   }
+  bindSetFocusedElement() {
+    const inputs = [...this.form.querySelectorAll('input, select, textarea')]
+    for (const input of inputs) {
+      input.addEventListener('change', () => { this.focusedEl = input })
+      input.addEventListener('focus', () => { this.focusedEl = input })
+    }
+  }
+  bindKeyEvents() {
+    document.addEventListener('keydown', (e) => {
+      if (this.locked) return
+      if (!this.getActiveSection) return
+
+      const section = this.getActiveSection
+      const key = e.key
+      const keyIsTab = key === 'Tab'
+      const keyIsEnter = key === 'Enter'
+      const isBackspace = key === 'Backspace'
+
+      if (isBackspace) {
+        const btn = section.querySelector('[data-sell-evt="back"]')
+        if (btn && !btn.disabled) {
+          e.preventDefault()
+          btn.click()
+        }
+      }
+
+      if (keyIsEnter) {
+        const btn = section.querySelector('[data-sell-evt="next"]')
+        if (btn) {
+          e.preventDefault()
+          if (!btn.disabled) {
+            btn.click()
+          }
+        }
+      }
+
+      if (keyIsTab) {
+        e.preventDefault()
+        const focusedEl = this.getFocusedEl
+        const inputs = [...section.querySelectorAll('input, select, textarea')].filter((input) => {
+          if (!input.disabled) {
+            const selectBox = input.parentNode.closest('.survey-select')
+            if (selectBox) {
+              if (selectBox.style.display !== 'none') {
+                return input
+              }
+            } else {
+              return input
+            }
+          }
+        }).sort((a, b) => a.compareDocumentPosition(b) - 2)
+        let elem
+
+        if (!focusedEl) {
+          elem = inputs[0]
+        } else {
+          const elemWithinSection = inputs.includes(focusedEl)
+          if (elemWithinSection) {
+            const nextElem = inputs[inputs.indexOf(focusedEl) + 1]
+            if (nextElem) {
+              elem = nextElem
+            } else {
+              elem = inputs[0]
+            }
+          } else {
+            elem = inputs[0]
+          }
+        }
+
+        this.dispatchFocusEvent(elem)
+      }
+    })
+  }
 
   /**
    * Setup
@@ -8217,6 +8319,8 @@ class SellWatch {
       this.bindBrandSelect()
       this.bindPhoneInput()
       this.bindCurrencyInput()
+      this.bindSetFocusedElement()
+      this.bindKeyEvents()
       this.setup()
     }
   }

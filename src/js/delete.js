@@ -1,58 +1,83 @@
-slide(section) {
-  section.style.display = 'flex'
-  const height = section.scrollHeight
-  const pxToTransform = this.sections.slice(0, this.currentStep).reduce((acc, el) => acc + el.scrollHeight, 0)
-  this.content.style.height = `${height}px`
-  this.scroller.style.transform = `translateY(-${pxToTransform}px)`
-  this.sections.forEach(e => e.classList.remove(IS_ACTIVE))
-  section.classList.add(IS_ACTIVE)
-  setTimeout(() => {
-    this.sliding = false
-  }, getTransitionTime(this.scroller));
+bindKeyEvents() {
+  document.addEventListener('keydown', (e) => {
+    if (this.locked) return
+    if (!this.getActiveSection) return
+
+    const section = this.getActiveSection
+    const key = e.key
+    const keyIsTab = key === 'Tab'
+    const keyIsEnter = key === 'Enter'
+    const isBackspace = key === 'Backspace'
+
+    if (isBackspace) {
+      const btn = section.querySelector('[data-sell-evt="back"]')
+      if (btn && !btn.disabled) {
+        e.preventDefault()
+        btn.click()
+      }
+    }
+
+    if (keyIsEnter) {
+      const btn = section.querySelector('[data-sell-evt="next"]')
+      if (btn && !btn.disabled) {
+        e.preventDefault()
+        btn.click()
+      }
+    }
+
+    if (keyIsTab) {
+      e.preventDefault()
+      const focusedEl = this.getFocusedEl
+      const inputs = [...section.querySelectorAll('input, select, textarea')].filter(input => !input.disabled).sort((a, b) => a.compareDocumentPosition(b) - 2)
+      let elem
+
+      if (!focusedEl) {
+        elem = inputs[0]
+      } else {
+        const elemWithinSection = inputs.includes(focusedEl)
+        if (elemWithinSection) {
+          const nextElem = inputs[inputs.indexOf(focusedEl) + 1]
+          if (nextElem) {
+            elem = nextElem
+          } else {
+            elem = inputs[0]
+          }
+        }
+      }
+
+      this.dispatchFocusEvent(elem)
+    }
+  })
 }
 
-go(toStep) {
-  if (this.holder.classList.contains(__LOCKED)) return
-  const inputs = [...this.holder.querySelectorAll('input'), ...this.holder.querySelectorAll('select')]
-  const step = toStep || this.currentStep || 0
-  const nextStep = step + 1
-  const nextSection = this.sections[nextStep]
 
-  if (!this.sections[nextStep + 1]) {
-    this.evtGo.forEach((btn) => {
-      btn.innerHTML = 'Submit'
-    })
-  }
-
-  if (nextSection) {
-    this.sliding = true
-    inputs.forEach(input => input.blur())
-    this.loadingOn()
-    setTimeout(() => {
-      this.currentStep = nextStep
-      this.slide(nextSection)
-      this.loadingOff()
-      this.observeBar()
-    }, 600);
-  } else {
-    this.save()
-    this.finishMessage()
+dispatchFocusEvent(elem) {
+  if (elem) {
+    const tag = elem.tagName
+    switch (tag) {
+      case 'INPUT' || 'TEXTAREA':
+        const type = elem.type
+        if (type === 'radio' || type === 'checkbox') {
+          elem.click()
+        } else {
+          elem.dispatchEvent(new Event('focus'))
+        }
+        break;
+      case 'SELECT':
+        elem.focus()
+        break;
+      default:
+        elem.dispatchEvent(new Event('focus'))
+        break;
+    }
   }
 }
 
-back(toStep) {
-  if (this.holder.classList.contains(__LOCKED)) return
-  this.clearErrors()
-  const step = toStep || this.currentStep || 0
-  const prevStep = step - 1
-  const prevSection = this.sections[prevStep]
-  if (prevSection) {
-    this.evtGo.forEach((btn) => {
-      btn.innerHTML = 'Next'
-    })
-    this.currentStep = prevStep
-    this.slide(prevSection)
-  } else {
-    this.toggle()
+
+bindSetFocusedElement() {
+  const inputs = [...this.form.querySelectorAll('input, select, textarea')]
+  for (const input of inputs) {
+    input.addEventListener('change', () => { this.focusedEl = input })
+    input.addEventListener('focus', () => { this.focusedEl = input })
   }
 }
