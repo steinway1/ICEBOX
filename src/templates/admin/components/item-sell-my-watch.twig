@@ -1,0 +1,146 @@
+<div class="fin-item --watch">
+	<div class="fin-item__wrapper">
+
+		<div class="fin-item__row">
+			<div class="fin-item__header">
+				<div class="fin-item__title-group">
+					<h4>Submit #{{submit.number}}</h4>
+					<div class="am-spot-row">
+						<span>{{submit.date}}</span>
+						<span>{{submit.time}}</span>
+					</div>
+				</div>
+				<div class="am_flex8">
+					<div class="fin-item__status-select pg-btn --select">
+						<select id="change_status{{submit.id}}">
+							<option value="" selected disabled>Status</option>
+							<option value="Success">Success</option>
+							<option value="Processing">Processing</option>
+							<option value="Inactive">Inactive</option>
+						</select>
+					</div>
+					<button data-evt="edit_fin_item" class="pg-btn">Edit</button>
+					<button data-evt="remove_fin_item" class="pg-btn">{% include "admin/svg/icon_cross.svg" %}</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="fin-item__row">
+			<div class="am-spot-row">
+				<span class="--spot --green">{{submit.brand}}</span>
+				<span class="--spot --green">{{submit.model}}</span>
+			</div>
+		</div>
+
+		<div class="fin-item__row --blank">
+			<div class="fin-item__details">
+				<div data-cell="brand" {% if not submit.brand %} class="--empty" {% endif %}>
+					<span>Brand</span>
+					<span>{{submit.brand ?: 'N/A'}}</span>
+				</div>
+				<div data-cell="model" {% if not submit.model %} class="--empty" {% endif %}>
+					<span>Model</span>
+					<span>{{submit.model ?: 'N/A'}}</span>
+				</div>
+				<div data-cell="full_name" {% if not submit.full_name %} class="--empty" {% endif %}>
+					<span>Full Name</span>
+					<span>{{submit.full_name ?: 'N/A'}}</span>
+				</div>
+				<div data-cell="phone_number" {% if not submit.phone_number %} class="--empty" {% endif %}>
+					<span>Phone Number</span>
+					<span>{{submit.phone_number ?: 'N/A'}}</span>
+				</div>
+				<div data-cell="reference_number" {% if not submit.reference_number %} class="--empty" {% endif %}>
+					<span>Reference Number</span>
+					<span>{{submit.reference_number ?: 'N/A'}}</span>
+				</div>
+				<div data-cell="bundle" {% if not submit.bundle %} class="--empty" {% endif %}>
+					<span>Bundle</span>
+					{% if not submit.bundle %}
+						<span>N/A</span>
+					{% else %}
+						<span>
+							{% for item in submit.bundle %}
+								{% if not loop.last %}
+									{{item}},
+								{% else %}
+									{{item}}
+								{% endif %}
+							{% endfor %}
+						</span>
+					{% endif %}
+				</div>
+				<div data-cell="condition" {% if not submit.condition %} class="--empty" {% endif %}>
+					<span>Condition</span>
+					<span>
+						{% if submit.condition == 'Horrible' %}
+							Horrible:
+							<span class="--warn">{{submit.horrible_condition}}</span>
+						{% else %}
+							{{submit.condition}}
+						{% endif %}
+					</span>
+				</div>
+				<div data-cell="trading" {% if not submit.trading %} class="--empty" {% endif %}>
+					<span>Trading</span>
+					<span>
+						{% if submit.trading == 'Yes' %}
+							Yes:
+							<span class="--warn">{{submit.trading_for}}</span>
+						{% else %}
+							{{submit.trading}}
+						{% endif %}
+					</span>
+				</div>
+				<div data-cell="watch_location" {% if not submit.watch_location %} class="--empty" {% endif %}>
+					<span>Watch Location</span>
+					<span>{{submit.watch_location ?: 'N/A'}}</span>
+				</div>
+				<div data-cell="value" {% if not submit.value %} class="--empty" {% endif %}>
+					<span>Watch Value</span>
+					<span>{{submit.value ?: 'N/A'}}</span>
+				</div>
+				<div data-cell="more_details" {% if not submit.more_details %} class="--empty" {% endif %}>
+					<span>More Details</span>
+					<span>{{submit.more_details ?: 'N/A'}}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="fin-item__row">
+			{% if submit.system_details is defined %}
+				<div class="am-spot-row">
+					{% for detail in submit.system_details %}
+						<span>{{detail.label}}
+							:
+							<span>
+								{{detail.value}}</span>
+						</span>
+					{% endfor %}
+				</div>
+			{% endif %}
+			{% if submit.links is defined %}
+				<div class="am_flex8">
+					{% for link in submit.links %}
+						<a class="am-item__link" href="{{link.url}}" target="_blank">{{link.label}}</a>
+					{% endfor %}
+				</div>
+			{% endif %}
+			<div class="am-item__note-wrap">
+				<div class="am-item__note-form">
+					<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_{{submitID}}">
+					<button data-am-evt="submitNote" onclick="addNotes({{submitID}})">Add</button>
+				</div>
+				{% for note in submit.notes %}
+					<div class="am-item-note">
+						<div>
+							<span>{{note.author}}</span>:
+							{{note.text}}
+						</div>
+						<div>{{note.date}}</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>

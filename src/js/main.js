@@ -1768,20 +1768,18 @@ const homepageCategoriesSlider = new Object({
     if (el && el !== null) {
       let slider = new Splide(el, {
         type: "loop",
-        perPage: 6,
+        perPage: 4,
         perMove: 2,
         autoplay: 0,
-        gap: "12px",
+        gap: "6px",
         arrows: 1,
         pagination: 0,
         speed: 750,
         breakpoints: {
-          1680: { perPage: 7, },
-          1440: { perPage: 6, },
-          1200: { perPage: 5, },
-          991: { perPage: 4, },
-          767: { perPage: 3, perMove: 1 },
-          478: { perPage: 2, perMove: 1, gap: 6, pagination: 1 }
+          1680: { perPage: 5, },
+          1120: { perPage: 4, },
+          767: { perPage: 3, perMove: 2 },
+          600: { perPage: 2, gap: 6, pagination: 1 }
         }
       })
       slider.mount()
@@ -8327,7 +8325,10 @@ class SellWatch {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.sellMyWatch = new SellWatch()
-  window.sellMyWatch.init()
+  const form = document.querySelector('form#sell_my_watch')
+  if (form) {
+    window.sellMyWatch = new SellWatch()
+    window.sellMyWatch.init()
+  }
 })
 /* #endregion */

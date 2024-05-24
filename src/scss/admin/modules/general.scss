@@ -1132,6 +1132,27 @@ div.dt-container .dt-paging {
     &>span {
       color: #577daf;
     }
+
+    &.--spot {
+      padding: 2px 10px;
+      background-color: var(--blue_gold);
+      color: white;
+      border-radius: 50px;
+      margin-right: 14px;
+
+      &::after {
+        position: absolute;
+        right: -16px;
+      }
+
+      &:last-child {
+        margin-right: 0 !important;
+      }
+
+      &.--green {
+        background-color: #2a9d8f;
+      }
+    }
   }
 }
 
@@ -1749,5 +1770,16 @@ svg.svg_loader {
       color: #028b47;
       background-color: rgba(28, 202, 115, 0.04);
     }
+  }
+}
+
+.mg-top_6 {
+  margin-top: 6px;
+}
+
+span {
+  &.--warn {
+    color: #d76624;
+    font-weight: 600;
   }
 }
