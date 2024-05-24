@@ -8153,9 +8153,12 @@ class SellWatch {
     btn.forEach(btn => btn.disabled = !condition)
   }
   validateSection(section) {
+    section = this.getActiveSection
+
     const
       requiredArr = [...section.querySelectorAll('[required]:not([disabled])')],
-      radioArr = [...section.querySelectorAll('input[type="checkbox"]:not([disabled]), input[type="radio"]:not([disabled])')],
+      radioArr = [...section.querySelectorAll('input[type="radio"]:not([disabled])')],
+      checkboxArr = [...section.querySelectorAll('input[type="checkbox"]:not([disabled])')],
       inputArr = [...section.querySelectorAll('input:not([type="checkbox"]):not([type="radio"])')],
       selectArr = [...section.querySelectorAll('select[required]')],
       phoneArr = [...section.querySelectorAll('[data-validate="phone"]')],
@@ -8176,6 +8179,11 @@ class SellWatch {
         this.toggleSectionStatus(section, false)
         return false
       }
+    }
+    
+    if (checkboxArr.length && checkboxArr.every(checkbox => !checkbox.checked)) {
+      this.toggleSectionStatus(section, false)
+      return false
     }
 
     if (phoneArr.length) {
@@ -8529,6 +8537,7 @@ class SellWatch {
       const isBackspace = key === 'Backspace'
 
       if (isBackspace) {
+        if (!document.activeElement || !document.activeElement.contains(section)) return
         const btn = section.querySelector('[data-sell-evt="back"]')
         if (btn && !btn.disabled) {
           e.preventDefault()
