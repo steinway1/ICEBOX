@@ -8337,7 +8337,7 @@ class SellWatch {
         this.observeBarElements()
 
         if (section === this.sectionsArr[this.sectionsArr.length - 1]) {
-          this.finish()
+          this.form.submit()
         }
       }, 30)
     }, getTransitionTime(activeSection))
@@ -8583,6 +8583,31 @@ class SellWatch {
       }
     })
   }
+  bindSubmit() {
+    $(this.form).on('submit', function (e) {
+      e.preventDefault();
+      var form = $(this);
+      var formData = new FormData(this);
+      var actionUrl = form.attr('action');
+      $.ajax({
+        url: actionUrl,
+        type: 'POST',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          var r = $.parseJSON(data);
+          if (!r.error) {
+            this.finish()
+          } else {
+            //show error message 
+            alert(r.msg);
+          }
+        }
+      })
+    });
+  }
 
   /**
    * Setup
@@ -8621,6 +8646,7 @@ class SellWatch {
       this.bindCurrencyInput()
       this.bindSetFocusedElement()
       this.bindKeyEvents()
+      this.bindSubmit()
       this.setup()
     }
   }
