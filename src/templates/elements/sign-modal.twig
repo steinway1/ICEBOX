@@ -1,108 +1,253 @@
 <div class="sign-modal">
-	<div data-evt="toggleSign" class="sign-modal__backdrop"></div>
-
+	<div data-evt="closeSignModal" class="sign-modal__backdrop"></div>
 	<div class="sign-modal__container">
-
-		<button data-evt="toggleSign" class="sign-modal-close">
-			{% include "../components/svg/close.svg" %}
-		</button>
-
-
 		<div
-			class="sign-modal__wrapper">
+			class="sign-modal__adjust">
 
-			<!-- Sign Modal : Login -->
-			<div class="sign-modal__body">
-				<div class="sign-modal__inner-wrapper">
-					<div id="loginSignIn" class="sign-modal-view">
-						<div class="sign-modal-view__header">
-							<h3 class="sign-modal__title">Login To Icebox</h3>
-							{# <p class="sign-modal__subtitle">Stay in touch with the bling world. Log in your Icebox account now.</p> #}
-						</div>
-						<div class="sign-modal-view__body">
-							<div class="sign-modal__form-wrap">
-								{% include "../components/sign/login-form.twig" %}
-							</div>
-						</div>
-					</div>
-
-					<!--Sign modal : Reset password-->
-					<div id="loginPass" class="sign-modal-view">
-						<div class="sign-modal__pass-view">
-							<div class="sign-modal-view__header">
-								<h3 class="sign-modal__title">Forgot Password?</h3>
-								<span class="sign-modal__subtitle">Enter your email address below, and if an account exists, we'll send you a link to reset your password.</span>
-							</div>
-							<div class="sign-modal-view__body">
-								<div class="sign-modal__form-wrap">
-									{% include "../components/sign/reset-password.twig" %}
+			{# OTP #}
+			<div data-sign-content="phone" class="sign-modal__content">
+				<div class="sign-modal__header">
+					<h4 class="sign-modal__heading">Login to Icebox with SMS
+						<span>Enter your phone number and we&#x27;ll send you a 5 digit code.</span>
+					</h4>
+					<button data-evt="closeSignModal" class="sign-modal__ct-btn">
+						{% include "components/svg/close.svg" %}
+					</button>
+				</div>
+				<div class="sign-modal__body">
+					<form id="frm_login_otp" method="post" action="/send-otp" class="sign-form">
+						<div class="sign-form__row">
+							<div class="sign-form__item">
+								<div class="sign-form__input-wrap">
+									<input type="tel" class="sign-form__input" data-input="tel" name="login_otp_phone" id="phone_input_Login" autocorrect="off" spellcheck="false" placeholder="Enter your phone number" pattern="\d*" required>
 								</div>
+								<label for="phone_input_Login">Phone Number</label>
 							</div>
 						</div>
-					</div>
-
-					<!--Sign modal : Sign In Phone-->
-					<div id="loginPhone" class="sign-modal-view">
-						<div class="sign-modal__phone-view">
-							<div class="sign-modal-view__header">
-								<h3 class="sign-modal__title">Login With Phone No</h3>
-								<span class="sign-modal__subtitle">Enter Your Phone Number</span>
-							</div>
-							<div class="sign-modal-view__body">
-								<div class="sign-modal__form-wrap">
-									{% include "../components/sign/login-phone.twig" %}
-								</div>
-							</div>
+						<div class="sign-form__btn-group">
+							<button data-sign-switch="otp" class="sign-modal__btn js-submit">Send Code</button>
+							<button data-sign-switch="email" class="sign-modal__btn --sub">Sign in with email</button>
 						</div>
-					</div>
-
-					<!--Sign modal : Verify-->
-					<div id="loginCode" class="sign-modal-view">
-						<div class="sign-modal__phone-view">
-							<div class="sign-modal-view__header">
-								<h3 class="sign-modal__title">Enter Verification Code</h3>
-								<span class="sign-modal__subtitle">We sent a code to
-									<span class="sign-modal__phone-span"></span>.<br>Please enter it below.</span>
-							</div>
-							<div class="sign-modal-view__body">
-								<div class="sign-modal__form-wrap">
-									{% include "../components/sign/verify.twig" %}
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<!--Sign modal : Sign Up-->
-					<div id="loginSignUp" class="sign-modal-view">
-						<div class="sign-modal-view__header">
-							<h3 class="sign-modal__title">Become an Icebox Member</h3>
-							<span class="sign-modal__subtitle">Create your Icebox profile and get first access to the very best of Icebox products.</span>
-						</div>
-						<div class="sign-modal-view__body">
-							<div class="sign-modal__form-wrap">
-								{% include "../components/sign/signup.twig" %}
-							</div>
-						</div>
-					</div>
+					</form>
+				</div>
+				<div class="sign-modal__footer">
+					<strong>Don&#x27;t have an Icebox account?</strong>
+					<button data-sign-switch="register" class="sign-modal__sub-btn">Create Account</button>
 				</div>
 			</div>
 
-			<!--Sign modal : footer-->
-			<div class="sign-modal__footer">
-				<div class="sign-modal__inner-wrapper">
-					<div class="sign-modal-view__header">
-						<h3 class="sign-modal__title">Don't Have An Account?</h3>
-						{# <span class="sign-modal__subtitle">Get first access to the very best of Icebox.</span> #}
-					</div>
-					<div class="sign-modal-view__body">
-						<div class="sign-modal__form-row">
-							<button data-sign-switch="register" class="sign-modal__sub-btn sign-modal__sub-btn_dim">Register Account</button>
+			{# Email #}
+			<div data-sign-content="email" class="sign-modal__content">
+				<div class="sign-modal__header">
+					<h4 class="sign-modal__heading">Login to Icebox with email
+						<span>Enter your email and password to sign in.</span>
+					</h4>
+					<button data-evt="closeSignModal" class="sign-modal__ct-btn">
+						{% include "components/svg/close.svg" %}
+					</button>
+				</div>
+				<div class="sign-modal__body">
+					<form id="pop_frm_login" action="/json-authenticate" class="sign-form needs-validation" novalidate data-gtm-form-interact-id="0">
+						<input type="hidden" name="csrf_token" value="a6e7d2ed8c444265a386b9bd4e40f59d59022e3fee5c6ab0e362cd870f75a3d6">
+						<div class="sign-form__row">
+							<div class="sign-form__item">
+								<div class="sign-form__input-wrap">
+									<input type="email" id="userEmail" name="email" autocorrect="off" spellcheck="false" data-parsley-id="5" data-gtm-form-interact-field-id="0" class="sign-form__input" placeholder="Enter your email" required>
+								</div>
+								<label for="email">Email Address</label>
+							</div>
 						</div>
-					</div>
+						<div class="sign-form__row">
+							<div class="sign-form__item">
+								<div class="sign-form__input-wrap">
+									<input type="password" id="userPassword" name="password" autocorrect="off" spellcheck="false" data-parsley-id="7" data-gtm-form-interact-field-id="1" placeholder="•••••••••" class="sign-form__input --password">
+									<button data-evt="togglePassword" class="sign-modal__toggle-btn">
+										{% include "components/svg/pass-toggle-show.svg" %}
+										{% include "components/svg/pass-toggle-hide.svg" %}
+									</button>
+								</div>
+								<label for="password">Password</label>
+							</div>
+						</div>
+						<div class="sign-form__row --options">
+							<div class="flex_space">
+								<label class="custom-checkbox">
+									<input id="subscribe" name="remember" type="checkbox" checked="" data-parsley-multiple="remember">
+									<span>Keep me signed in</span>
+								</label>
+								<button data-sign-switch="password">
+									<strong>Forgot Password?</strong>
+								</button>
+							</div>
+						</div>
+						<div class="sign-form__btn-group">
+							<button class="sign-modal__btn js-submit">Sign In</button>
+							<button data-sign-switch="phone" class="sign-modal__btn --sub">Login with SMS</button>
+						</div>
+					</form>
+				</div>
+				<div class="sign-modal__footer">
+					<strong>Don&#x27;t have an Icebox account?</strong>
+					<button data-sign-switch="register" class="sign-modal__sub-btn">Create Account</button>
 				</div>
 			</div>
 
+			{# Register #}
+			<div data-sign-content="register" class="sign-modal__content">
+				<div class="sign-modal__header">
+					<h4 class="sign-modal__heading">Become an Icebox member
+						<span>Create your Icebox profile and get first access to the very best of Icebox products.</span>
+					</h4>
+					<button data-evt="closeSignModal" class="sign-modal__ct-btn">
+						{% include "components/svg/close.svg" %}
+					</button>
+				</div>
+				<div class="sign-modal__body">
+					<form id="pop_frm_signup" action="/json-signup" class="sign-form needs-validation" novalidate data-gtm-form-interact-id="1">
+						<input type="hidden" name="csrf_token" value="a6e7d2ed8c444265a386b9bd4e40f59d59022e3fee5c6ab0e362cd870f75a3d6">
+						<div class="sign-form__row">
+							<div class="sign-form__item">
+								<div class="sign-form__input-wrap">
+									<input type="text" id="signupFn" name="first_name" class="sign-form__input" autocorrect="off" spellcheck="false" required>
+								</div>
+								<label for="first_name">First Name</label>
+							</div>
+							<div class="sign-form__item">
+								<div class="sign-form__input-wrap">
+									<input type="text" id="signupLn" name="last_name" autocorrect="off" spellcheck="false" class="sign-form__input" required>
+								</div>
+								<label for="last_name">Last Name</label>
+							</div>
+						</div>
+						<div class="sign-form__row">
+							<div class="sign-form__item">
+								<div class="sign-form__input-wrap">
+									<input type="email" id="signupEmailField" name="email" autocorrect="off" spellcheck="false" data-parsley-id="22" data-gtm-form-interact-field-id="2" class="sign-form__input" required>
+								</div>
+								<label>Email Address</label>
+							</div>
+						</div>
+						<div class="sign-form__row">
+							<div class="sign-form__item">
+								<div class="sign-form__input-wrap">
+									<input type="tel" class="sign-form__input" data-input="tel" name="phone" id="signup_phone" autocorrect="off" spellcheck="false" required="" autocomplete="off" data-intl-tel-input-id="1" pattern="\d*">
+								</div>
+								<label>Phone Number</label>
+							</div>
+						</div>
+						<div class="sign-form__row">
+							<div class="sign-form__item">
+								<div class="sign-form__input-wrap">
+									<input type="password" id="userPassword" name="password" autocorrect="off" spellcheck="false" required="" data-parsley-id="26" class="sign-form__input --password" data-gtm-form-interact-field-id="3">
+									<button data-evt="togglePassword" class="sign-modal__toggle-btn">
+										{% include "components/svg/pass-toggle-show.svg" %}
+										{% include "components/svg/pass-toggle-hide.svg" %}
+									</button>
+								</div>
+								<label for="password">Password</label>
+							</div>
+						</div>
+						<div class="sign-form__row --options">
+							<label class="custom-radio">
+								<input type="radio" name="register_gender" value="male">
+								<span>Male</span>
+							</label>
+							<label class="custom-radio">
+								<input type="radio" name="register_gender" value="female">
+								<span>Female</span>
+							</label>
+							<label class="custom-radio">
+								<input type="radio" name="register_gender" value="other">
+								<span>Other</span>
+							</label>
+						</div>
+						<div class="sign-form__row --gender"></div>
+						<div class="sign-form__btn-group">
+							<button class="sign-modal__btn js-submit">Create Account</button>
+						</div>
+						<div class="sign-form__row --options">
+							<div class="flex_space">
+								<label class="custom-checkbox">
+									<input id="signupSubscribe" name="subscribe" type="checkbox" checked="" data-parsley-multiple="subscribe">
+									<span>Sign up for emails to get updates from Icebox on products, offers, and your Member benefits</span>
+								</label>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="sign-modal__footer">
+					<strong>Already have an Icebox account?</strong>
+					<button data-sign-switch="phone" class="sign-modal__sub-btn">Sign In</button>
+				</div>
+			</div>
+
+			{# Code #}
+			<div data-sign-content="otp" class="sign-modal__content">
+				<div class="sign-modal__header to_code">
+					<button data-sign-switch="phone" class="sign-modal__sub-btn --mg">
+						{% include "components/svg/back-arrow.svg" %}
+						<span>Back To Login</span>
+					</button>
+					<h4 class="sign-modal__heading">Enter Verification Code
+						<span>We&#x27;ve sent the code to<strong class="sign-modal__phone-span">+1 900 340 33 00</strong>. Enter it below.</span>
+					</h4>
+				</div>
+				<div class="sign-modal__body">
+					<form method="get" class="sign-form">
+						<input id="otp_phone" type="hidden" value="">
+						<input id="otp_country" type="hidden" value="">
+						<div class="sign-form__row">
+							<input type="text" id="otp_1" pattern="\d*" class="sign-form__input --otp" autocomplete="off" maxlength="1">
+							<input type="text" id="otp_2" pattern="\d*" class="sign-form__input --otp" autocomplete="off" maxlength="1">
+							<input type="text" id="otp_3" pattern="\d*" class="sign-form__input --otp" autocomplete="off" maxlength="1">
+							<input type="text" id="otp_4" pattern="\d*" class="sign-form__input --otp" autocomplete="off" maxlength="1">
+						</div>
+						<div class="sign-form__btn-group">
+							<button id="btn_confirm_otp" class="sign-modal__btn">Submit</button>
+							<button id="resend-otp-btn" class="sign-modal__btn --sub">Resend Code</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			{# Password #}
+			<div data-sign-content="password" class="sign-modal__content">
+				<div class="sign-modal__header">
+					<h4 class="sign-modal__heading">Forgot Password?
+						<span>Enter your email address below, and if an account exists, we'll send you a link to reset your password.</span>
+					</h4>
+					<button data-evt="closeSignModal" class="sign-modal__ct-btn">
+						{% include "components/svg/close.svg" %}
+					</button>
+				</div>
+				<div class="sign-modal__body">
+					<form id="pop_frm_pwd" action="/json-send-reset-email" class="sign-form" novalidate>
+						<input type="hidden" name="csrf_token">
+						<div class="sign-form__row">
+							<div class="sign-form__item">
+								<div class="sign-form__input-wrap">
+									<input type="email" id="reset_pwd_email" name="reset_pwd_email" autocorrect="off" spellcheck="false" class="sign-form__input" placeholder="Enter your email" required>
+								</div>
+								<label for="reset_pwd_email">Email Address</label>
+							</div>
+						</div>
+						<div class="sign-form__btn-group">
+							<button class="sign-modal__btn js-submit">Reset Password</button>
+							<button data-sign-switch="email" class="sign-modal__btn --sub">Back to login</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
+
+		<div class="sign-modal__message">Something went wrong...</div>
+
+		{# Loader #}
+		<div class="sign-modal__loader">
+			<div>
+				{% include "components/svg/sign-loader.svg" %}
+			</div>
+		</div>
+
 	</div>
 </div>
