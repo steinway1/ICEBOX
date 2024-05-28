@@ -8300,16 +8300,34 @@ body.loan_case .loan-case__avatar {
   height: 52px;
 }
 
-.loan-case.--job .loan-input-wrap.--static {
+.loan-case.--job .loan-case-section {
+  gap: 20px;
+}
+
+.loan-case.--job .loan-file-input {
+  height: 94px;
+}
+
+.loan-case.--job .loan-file-input::after {
+  content: "Acceptable formats: .pdf, .doc, .docx";
+}
+
+.loan-input-wrap label.custom-checkbox {
+  position: static !important;
+  padding: 0 !important;
+}
+
+.loan-input-wrap.--static {
   display: flex;
   flex-direction: column;
 }
 
-.loan-case.--job .loan-input-wrap.--static input {
+.loan-input-wrap.--static input {
   flex: auto;
 }
 
-.loan-case.--job .loan-input-wrap.--static label:not(.loan-radio) {
+.loan-input-wrap.--static label:not(.loan-radio),
+.loan-input-wrap.--static label:not(.custom-checkbox) {
   order: -1;
   position: static;
   margin-bottom: 10px;
@@ -8319,7 +8337,8 @@ body.loan_case .loan-case__avatar {
   padding: 0;
 }
 
-.loan-case.--job .loan-input-wrap label:not(.loan-radio) {
+.loan-input-wrap label:not(.loan-radio),
+.loan-input-wrap label:not([for=loan_credit_score]) {
   font-size: 12px;
   font-weight: 600;
   line-height: 12px;
@@ -8332,29 +8351,17 @@ body.loan_case .loan-case__avatar {
   transition: all 250ms ease;
 }
 
-.loan-case.--job .loan-input-wrap > input.loan-case__input {
+.loan-input-wrap > input.loan-case__input {
   height: 52px;
 }
 
-.loan-case.--job .loan-input-wrap > input::placeholder {
+.loan-input-wrap > input::placeholder {
   color: transparent;
 }
 
-.loan-case.--job .loan-input-wrap > input:not(.--invalid):focus + label,
-.loan-case.--job .loan-input-wrap > input:not(.--invalid):hover + label {
+.loan-input-wrap > input:not(.--invalid):focus + label,
+.loan-input-wrap > input:not(.--invalid):hover + label {
   color: #0d94c1;
-}
-
-.loan-case.--job .loan-case-section {
-  gap: 20px;
-}
-
-.loan-case.--job .loan-file-input {
-  height: 94px;
-}
-
-.loan-case.--job .loan-file-input::after {
-  content: "Acceptable formats: .pdf, .doc, .docx";
 }
 
 .loan-case__avatar {
@@ -8400,7 +8407,7 @@ body.loan_case .loan-case__avatar {
   flex: 1;
   justify-content: center;
   align-items: center;
-  padding: 12px 20px;
+  padding: 16px 20px;
   font-weight: 600;
   transition: all 0.2s;
   display: flex;
@@ -8476,16 +8483,29 @@ body.loan_case .loan-case__avatar {
 }
 
 .loan-case__input {
-  height: 48px;
+  height: 54px;
   color: #202124;
   background-color: #fff;
-  border: 1px solid #d3dbe2;
-  flex: 1;
+  border: 1px solid #c5cedc;
+  flex: none;
+  width: 100%;
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
+  border-radius: 0.5rem;
+  font-weight: 600;
   transition: all 0.2s ease;
   display: flex;
+}
+
+.loan-case__input.--otp {
+  font-size: 18px !important;
+  letter-spacing: 2px !important;
+}
+
+.loan-case__input.--otp::placeholder {
+  font-size: 14px !important;
+  letter-spacing: 0px !important;
 }
 
 .loan-case__input.--icon {
@@ -8531,7 +8551,10 @@ body.loan_case .loan-case__avatar {
 
 .loan-case__input:focus {
   border-color: #1aaddd;
-  box-shadow: 0 0 0 2px rgba(26, 173, 221, 0.09);
+}
+
+.loan-case__input:focus::placeholder {
+  color: transparent;
 }
 
 .loan-case__input:focus ~ .loan-case__input-icon {
@@ -8541,10 +8564,12 @@ body.loan_case .loan-case__avatar {
 
 .loan-case__input::-ms-input-placeholder {
   color: #687175;
+  transition: all 200ms ease;
 }
 
 .loan-case__input::placeholder {
   color: #687175;
+  transition: all 200ms ease;
 }
 
 .loan-bar {
@@ -8631,8 +8656,8 @@ body.loan_case .loan-case__avatar {
 }
 
 .loan-case-section {
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
   text-align: left;
   flex-flow: column;
   flex: none;
@@ -8697,8 +8722,8 @@ body.loan_case .loan-case__avatar {
 }
 
 .loan-case__input-icon {
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 54px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -8711,13 +8736,14 @@ body.loan_case .loan-case__avatar {
 }
 
 .loan-case-section__title {
-  text-transform: capitalize;
   flex-flow: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   margin-bottom: 4px;
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 700;
+  color: #0a4966;
+  font-size: 18px;
   line-height: 20px;
   display: flex;
 }
@@ -8738,16 +8764,18 @@ body.loan_case .loan-case__avatar {
   max-width: 420px;
   letter-spacing: 0;
   text-transform: none;
-  margin-top: 8px;
+  margin-top: 6px;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
+  color: var(--black);
 }
 
 .loan-input-wrap {
   width: 100%;
   position: relative;
   display: flex;
+  flex-direction: column;
 }
 
 .loan-input-wrap .loan-case__btn {
@@ -8937,7 +8965,7 @@ body.loan_case .loan-case__avatar {
 .dual-select {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 .loan-welcome .loan-case-section {
@@ -9075,6 +9103,11 @@ body.loan_case .loan-case__avatar {
 .loan-finish__info a:hover,
 .loan-finish__info button:hover {
   background-color: #1dbaee;
+}
+
+#loan_credit_score ~ * label {
+  position: static !important;
+  padding: 0 !important;
 }
 
 .tabs-wrapper {
@@ -10515,6 +10548,18 @@ input.custom-range__output {
 
 .typo_dim {
   color: #8a949f;
+}
+
+.typo_xs {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.typo_link {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0685af;
+  cursor: pointer;
 }
 
 /* #region  Custom Upload */
@@ -18695,6 +18740,12 @@ ul.faq-list p a {
 
 main.main_finance {
   background-color: #f5f6f8;
+}
+
+main.main_finance:not(.main_apply) .loan-case-section__title {
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 0px;
 }
 
 .subpage__welcome {
@@ -33229,10 +33280,6 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     padding-top: 20px;
   }
 
-  .loan-case__input {
-    border-radius: 0;
-  }
-
   .loan-case__bar-wrap {
     padding-bottom: 32px;
     padding-left: 20px;
@@ -33240,8 +33287,7 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   }
 
   .loan-case-section {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 32px 20px;
   }
 
   .loan-finish {

@@ -33,10 +33,9 @@
 					class="loan-scroller">
 
 					{# First & last name #}
-					<div data-loan-section="name" data-loan-section="name" class="loan-case-section">
-						<h6 class="loan-case-section__title">First &amp; Last Name
-							<span>Enter your information to apply for Financing.</span>
-						</h6>
+					<div
+						data-loan-section="name" data-loan-section="name" class="loan-case-section">
+						{# <h6 class="loan-case-section__title">First &amp; Last Name</h6> #}
 						<div class="loan-input-wrap">
 							<input class="loan-case__input" placeholder="First Name" type="text" id="loan_first_name" required>
 							<label for="loan_first_name">First Name</label>
@@ -45,22 +44,50 @@
 							<input class="loan-case__input" placeholder="Last Name" type="text" id="loan_last_name" required>
 							<label for="loan_first_name">Last Name</label>
 						</div>
+					</div>
+
+					{# Email Address #}
+					<div data-loan-section="email" class="loan-case-section">
+						<h6 class="loan-case-section__title">Email Address</h6>
 						<div class="loan-input-wrap">
 							<input data-validate="email" class="loan-case__input" placeholder="Email Address" type="email" id="loan_email" required>
-							<label for="loan_email">Email Address</label>
+              <label for="loan_email">Email Address</label>
 						</div>
 					</div>
 
+					{# Phone Number #}
+					<div data-loan-section="phone" class="loan-case-section">
+						<h6 class="loan-case-section__title">Enter mobile number to finish.
+							<span>Click Send Code and we'll text you a verification code, standard SMS charges may apply.</span>
+						</h6>
+						<div class="loan-input-wrap">
+							<input data-validate="number" class="loan-case__input --icon" pattern="[0-9]*" placeholder="Phone Number" type="text" id="loan_number" required>
+							<div class="loan-case__input-icon">{% include "components/svg/loan-mobile.svg" %}</div>
+						</div>
+						<span class="typo_xs typo_dim">By providing your phone number, you consent to reciving autodialed text and calls from Icebox for non-telemarketing purposes regarding account information, such as transactions details or servicing information.</span>
+					</div>
+
+					{# OTP #}
+					<div data-loan-section="otp" class="loan-case-section">
+						<h6 class="loan-case-section__title">Verification.
+							<span>You will recieve a text to
+								<span data-phone>(900) 274-9663</span>
+								from Icebox.<br>Enter the code below to finish.</span>
+						</h6>
+						<div class="loan-input-wrap">
+							<input data-validate="otp" class="loan-case__input --otp" pattern="[0-9]*" placeholder="Enter 4 digits code" type="text" id="loan_otp" required>
+						</div>
+						<span class="typo_dim">Didn't get a code?
+							<span data-evt="send_code" class="typo_link">Re-send code</span>
+						</span>
+					</div>
 
 					{# Address #}
 					<div data-loan-section="address" class="loan-case-section">
-						<h6 class="loan-case-section__title">Address
-							<span>Enter your information to complete your Financing Application</span>
-						</h6>
+						<h6 class="loan-case-section__title">Address</h6>
 						<div class="loan-input-wrap">
 							<input data-validate="zip_code" class="loan-case__input" placeholder="Zip Code" type="text" id="loan_zip_code" pattern="[0-9]*" maxlength="6" required>
 							<p>Input ZIP Code and we will fill out the rest</p>
-							<label for="loan_zip_code">Zip Code</label>
 						</div>
 						<div class="loan-input-wrap">
 							<div class="loan-case__select-wrap">
@@ -68,16 +95,13 @@
 									<option value="">State...</option>
 									<option value="georgia">Georgia</option>
 								</select>
-								<label for="loan_state">State</label>
 							</div>
 						</div>
 						<div class="loan-input-wrap">
 							<input class="loan-case__input" placeholder="City" type="text" id="loan_city" required>
-							<label for="loan_city">City</label>
 						</div>
 						<div class="loan-input-wrap">
 							<input class="loan-case__input" placeholder="Address" type="text" id="loan_address_1" required>
-							<label for="loan_address_1">Address</label>
 						</div>
 						<div class="loan-input-wrap">
 							<div class="loan-case__select-wrap">
@@ -88,7 +112,6 @@
 									<option value="apartment">Apartment</option>
 									<option value="other">Other</option>
 								</select>
-								<label for="loan_apartment">Address type</label>
 							</div>
 						</div>
 					</div>
@@ -110,13 +133,10 @@
 
 					{# Employer #}
 					<div data-loan-section="employer" class="loan-case-section">
-						<h6 class="loan-case-section__title">Employer
-							<span>Enter your information to apply for Financing.</span>
-						</h6>
+						<h6 class="loan-case-section__title">Employer</h6>
 						<div data-loan-evt="dual_select" class="dual-select">
 							<div class="loan-input-wrap">
 								<input class="loan-case__input" placeholder="Employer" type="text" id="loan_employer" required>
-								<label for="loan_employer">Employer</label>
 							</div>
 							<div class="loan-input-wrap">
 								<label class="custom-checkbox">
@@ -128,7 +148,6 @@
 						<div data-loan-evt="dual_select" class="dual-select">
 							<div class="loan-input-wrap">
 								<input class="loan-case__input" placeholder="Employer Website" type="text" id="loan_employer_website" required>
-								<label for="loan_employer_website">Employer Website</label>
 							</div>
 							<div class="loan-input-wrap">
 								<label class="custom-checkbox">
@@ -141,9 +160,7 @@
 
 					{# Salary & Credit Score #}
 					<div data-loan-section="salary" class="loan-case-section">
-						<h6 class="loan-case-section__title">Salary &amp; Credit Score
-							<span>Enter your information to apply for Financing.</span>
-						</h6>
+						<h6 class="loan-case-section__title">Salary &amp; Credit Score</h6>
 						<div class="loan-input-wrap">
 							<div class="loan-case__select-wrap">
 								<select id="loan_salary" class="loan-case__input" required>
@@ -157,7 +174,6 @@
 									<option value="7500_10000">$7,500 - $10,000</option>
 									<option value="over_10000">$10,000 &amp; Up</option>
 								</select>
-								<label for="loan_salary">Salary</label>
 							</div>
 						</div>
 						<div class="loan-input-wrap">
@@ -179,12 +195,9 @@
 
 					{# Social Security Number #}
 					<div data-loan-section="social" class="loan-case-section">
-						<h6 class="loan-case-section__title">Social Security Number
-							<span>Enter your information to apply for Financing.</span>
-						</h6>
+						<h6 class="loan-case-section__title">Social Security Number</h6>
 						<div class="loan-input-wrap">
 							<input class="loan-case__input" pattern="[0-9]*" data-format="ssn" placeholder="Social Security Number" type="text" id="loan_social_number" required>
-							<label for="loan_social_number">Social Security Number</label>
 						</div>
 					</div>
 
@@ -242,9 +255,7 @@
 
 					{# Items #}
 					<div data-loan-section="items" class="loan-case-section">
-						<h6 class="loan-case-section__title">What item would you like to buy with your financing approval?
-							<span>Enter your information to apply for Financing.</span>
-						</h6>
+						<h6 class="loan-case-section__title">What item would you like to buy with your financing approval?</h6>
 						<div class="loan-input-wrap">
 							<input class="loan-case__input" placeholder="" type="text" id="loan_items" required>
 						</div>
@@ -268,43 +279,13 @@
 
 					{# Amount #}
 					<div data-loan-section="amount" class="loan-case-section">
-						<h6 class="loan-case-section__title">How Much You Would Like To Get Approved For?
-							<span>Enter your information to apply for Financing.</span>
-						</h6>
+						<h6 class="loan-case-section__title">How Much You Would Like To Get Approved For?</h6>
 						<div class="loan-input-wrap">
 							<input data-format="currency" class="loan-case__input --icon" placeholder="Amount" type="text" pattern="[0-9]*" id="loan_amount" required autocomplete="off">
 							<div class="loan-case__input-icon">
 								{% include "components/svg/dollar.svg" %}
 							</div>
 						</div>
-					</div>
-
-
-					{# Phone Number #}
-					<div data-loan-section="phone" class="loan-case-section">
-						<h6 class="loan-case-section__title">Enter mobile number to finish.
-							<span>Click Send Code and we'll text you a verification code, standard SMS charges may apply.</span>
-						</h6>
-						<div class="loan-input-wrap">
-							<input data-validate="number" class="loan-case__input --icon" pattern="[0-9]*" placeholder="Phone Number" type="text" id="loan_number" required>
-							<div class="loan-case__input-icon">{% include "components/svg/loan-mobile.svg" %}</div>
-						</div>
-						<span class="typo_xs typo_dim">By providing your phone number, you consent to reciving autodialed text and calls from Icebox for non-telemarketing purposes regarding account information, such as transactions details or servicing information.</span>
-					</div>
-
-					{# OTP #}
-					<div data-loan-section="otp" class="loan-case-section">
-						<h6 class="loan-case-section__title">Verification.
-							<span>You will recieve a text to
-								<span data-phone>(900) 274-9663</span>
-								from Icebox.<br>Enter the code below to finish.</span>
-						</h6>
-						<div class="loan-input-wrap">
-							<input data-validate="otp" class="loan-case__input --otp" pattern="[0-9]*" placeholder="Enter 4 digits code" type="text" id="loan_otp" required maxlength="4">
-						</div>
-						<span class="typo_dim">Didn't get a code?
-							<span data-evt="send_code" class="typo_link">Re-send code</span>
-						</span>
 					</div>
 
 				</div>

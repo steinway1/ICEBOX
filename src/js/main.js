@@ -440,6 +440,7 @@ const initTelInput = () => {
       initialCountry: "auto",
       preferredCountries: ["us", "gb", "br", "cn", "es", "it"],
       autoPlaceholder: "aggressive",
+      useFullscreenPopup: true,
       utilsScript:
         "/assets/public-2020/js/plugins/phone/utils.js",
       geoIpLookup: function (callback) {
@@ -6963,7 +6964,7 @@ class LoanApp {
       box.onclick = () => { input.click() }
       input.onchange = (e) => {
         processFiles(e.target.files)
-        input.value = ''
+        // input.value = ''
         setTimeout(() => {
           this.adjustActiveSectionHeight()
         }, 10);
