@@ -10596,6 +10596,29 @@ textarea.pos-input {
   font-weight: 600;
 }
 
+.fin-item__details > div.--green {
+  background-color: rgba(41, 213, 55, 0.02);
+  position: relative;
+  z-index: 3;
+}
+
+.fin-item__details > div.--green::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  border: 1px solid rgb(162, 245, 156);
+}
+
+.fin-item__details > div.--green > div:last-child,
+.fin-item__details > div.--green > span:last-child {
+  color: rgb(36, 183, 66);
+  font-weight: 600;
+}
+
 .fin-item__details > div > div:first-child,
 .fin-item__details > div > span:first-child {
   opacity: 0.5;

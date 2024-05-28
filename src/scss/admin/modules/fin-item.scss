@@ -169,6 +169,30 @@
         }
       }
     }
+    &.--green {
+        background-color: rgba(41, 213, 55, 0.02);
+        position: relative;
+        z-index: 3;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 4;
+          border: 1px solid rgb(162, 245, 156);
+        }
+
+        &>div,
+        &>span {
+          &:last-child {
+            color: rgb(36, 183, 66);
+            font-weight: 600;
+          }
+        }
+    }
 
     &>div,
     &>span {
