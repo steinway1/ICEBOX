@@ -36,12 +36,12 @@
 </div>
 
 <div class="header-nav__group">
-	<div data-evt="toggleAccountDropdown" data-sign-switch="login" class="{% if user %}js-login-dropdown{% else %}js-toggle-sign{% endif %}">
+	<div data-evt="toggleAccountDropdown" data-sign-switch="otp" class="{% if user_logged == true %}js-login-dropdown{% else %}js-toggle-sign{% endif %}">
 		<div>
 			{% include "components/svg/account.svg" %}
 			<!-- <span>My Account</span> -->
 		</div>
-		{% if user %}
+		{% if user_logged == true %}
 			{% include "components/header/login-dropdown.twig" %}
 		{% endif %}
 	</div>

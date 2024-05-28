@@ -440,6 +440,7 @@ const initTelInput = () => {
       initialCountry: "auto",
       preferredCountries: ["us", "gb", "br", "cn", "es", "it"],
       autoPlaceholder: "aggressive",
+      useFullscreenPopup: true,
       utilsScript:
         "/assets/public-2020/js/plugins/phone/utils.js",
       geoIpLookup: function (callback) {
@@ -6963,7 +6964,7 @@ class LoanApp {
       box.onclick = () => { input.click() }
       input.onchange = (e) => {
         processFiles(e.target.files)
-        //input.value = ''
+        // input.value = ''
         setTimeout(() => {
           this.adjustActiveSectionHeight()
         }, 10);
@@ -8043,7 +8044,7 @@ class SellWatch {
         this.observeBarElements()
 
         if (section === this.sectionsArr[this.sectionsArr.length - 1]) {
-          $('#submit_frm_watch').click();
+          this.form.submit()
         }
       }, 30)
     }, getTransitionTime(activeSection))
@@ -8291,7 +8292,29 @@ class SellWatch {
     })
   }
   bindSubmit() {
-
+    $(this.form).on('submit', function (e) {
+      e.preventDefault();
+      var form = $(this);
+      var formData = new FormData(this);
+      var actionUrl = form.attr('action');
+      $.ajax({
+        url: actionUrl,
+        type: 'POST',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          var r = $.parseJSON(data);
+          if (!r.error) {
+            this.finish()
+          } else {
+            //show error message 
+            alert(r.msg);
+          }
+        }
+      })
+    });
   }
 
   /**
@@ -8337,13 +8360,11 @@ class SellWatch {
   }
 }
 
-$(document).ready(function(){
+document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form#sell_my_watch')
   if (form) {
     window.sellMyWatch = new SellWatch()
     window.sellMyWatch.init()
   }
-});
-
-
+})
 /* #endregion */
