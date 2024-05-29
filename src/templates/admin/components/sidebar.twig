@@ -5,6 +5,33 @@
 				<div
 					class="am-sidebar__nav">
 
+					{# Per Color #}
+					{% if per_color is defined %}
+						<h4 class="am-sidebar__group-title">Per Color</h4>
+						<div class="am-sidebar__nav-list">
+							<div class="am_flex8 --pd_24">
+								<a href="/whales-color/light_blue" class="sq-box --active">
+									<div class="--light_blue"></div>
+								</a>
+								<a href="/whales-color/dark_blue" class="sq-box">
+									<div class="--dark_blue"></div>
+								</a>
+								<a href="/whales-color/yellow" class="sq-box">
+									<div class="--yellow"></div>
+								</a>
+								<a href="/whales-color/orange" class="sq-box">
+									<div class="--orange"></div>
+								</a>
+								<a href="/whales-color/green" class="sq-box">
+									<div class="--green"></div>
+								</a>
+								<a href="/whales-color/purple" class="sq-box">
+									<div class="--purple"></div>
+								</a>
+							</div>
+						</div>
+					{% endif %}
+
 					{# Main Navigation #}
 					{% for nav in navigation %}
 						<h4 class="am-sidebar__group-title">{{nav.title}}</h4>
@@ -61,15 +88,16 @@
 						</div>
 					{% endif %}
 
-					{% if salespersons == true %}
+					{# Salesperson #}
+					{% if salespersons is defined %}
 						<h4 class="am-sidebar__group-title">Per Salesperson</h4>
 						<div class="am-sidebar__nav-list">
 							<div class="salespersons-grid">
 								{% for person in salespersons %}
 									<div class="saleperson-box{% if person.is_active == true %} is-active{% endif %}">
 										<div class="saleperson-box__img-wrap">
-                    <img src="{{person.img_src}}" alt="">
-                    </div>
+											<img src="{{person.img_src}}" alt="">
+										</div>
 										<span>{{person.name}}
 											<span>{{person.amount}}</span>
 										</span>

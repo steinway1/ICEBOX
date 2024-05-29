@@ -4493,6 +4493,15 @@ body.blue_head .am-select:hover {
   display: flex;
 }
 
+:root {
+  --sub_light_blue: #20dcdc;
+  --sub_dark_blue: #00B3F6;
+  --sub_yellow: #ffef15;
+  --sub_orange: #FEBD00;
+  --sub_green: #00B242;
+  --sub_purple: #CB9DE5;
+}
+
 *.--order_last {
   order: 1 !important;
 }
@@ -6178,6 +6187,10 @@ span.--warn {
   font-weight: 600;
 }
 
+.--pd_24 {
+  padding: 0 24px;
+}
+
 :root {
   --tb-border: #e6e8ee;
   --tb-border_light: rgba(230, 232, 238, 0.6);
@@ -6916,7 +6929,7 @@ span.--warn {
 }
 
 .whale-card__avatar.--light_blue::before {
-  border-color: #20dcdc;
+  border-color: var(--sub_light_blue);
 }
 
 .whale-card__avatar.--dark_blue::before {
@@ -6937,6 +6950,55 @@ span.--warn {
 
 .whale-card__avatar.--purple::before {
   border-color: #CB9DE5;
+}
+
+.sq-box {
+  padding: 4px;
+  border: 1px solid #5680bb;
+  transition: all 200ms ease;
+}
+
+.sq-box:hover {
+  border-color: var(--blue_gold);
+}
+
+.sq-box:hover > div {
+  transform: scale(0.9);
+}
+
+.sq-box.--active {
+  background-color: #3a78cc;
+  border-color: #3a78cc;
+}
+
+.sq-box > div {
+  width: 20px;
+  height: 20px;
+  transition: all 200ms ease;
+}
+
+.sq-box > div.--light_blue {
+  background-color: var(--sub_light_blue);
+}
+
+.sq-box > div.--dark_blue {
+  background-color: #00B3F6;
+}
+
+.sq-box > div.--yellow {
+  background-color: rgb(255, 239, 21);
+}
+
+.sq-box > div.--orange {
+  background-color: #FEBD00;
+}
+
+.sq-box > div.--green {
+  background-color: #00B242;
+}
+
+.sq-box > div.--purple {
+  background-color: #CB9DE5;
 }
 
 .whale-card__sum {
@@ -7285,7 +7347,7 @@ span.--warn {
 }
 
 .whale-card__quiz-form label.--light_blue {
-  background-color: #20dcdc;
+  background-color: var(--sub_light_blue);
 }
 
 .whale-card__quiz-form label.--dark_blue {
@@ -7374,23 +7436,20 @@ span.--warn {
 }
 
 .am-main__salesperson-row {
-  display: flex;
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  border: 1px solid #498eec;
+  justify-content: flex-start;
   align-items: center;
-  gap: 12px;
-  font-size: 18px;
+  padding: 6px;
+  display: flex;
   font-weight: 600;
-  line-height: 24px;
 }
 
 .am-main__salesperson-row > img {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-}
-
-.am-main__salesperson-row span > span {
-  color: var(--bright_blue);
-  font-weight: 700;
+  width: 36px;
+  height: 36px;
+  background-color: white;
 }
 
 .edit-modal {
@@ -11911,8 +11970,8 @@ textarea.pos-input {
   }
 
   .am-main__salesperson-row {
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
   }
 
   .edit-modal {
