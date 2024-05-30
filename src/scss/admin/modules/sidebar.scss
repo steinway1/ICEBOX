@@ -5,20 +5,15 @@
 
 .am-sidebar {
   z-index: 8;
-  width: 270px;
+  width: 260px;
   color: var(--white);
-  background-color: #29558f;
+  background-color: #2d5b99;
   transition: all .45s cubic-bezier(.39, .575, .565, 1);
   position: fixed;
   top: 0%;
   bottom: 0%;
   left: 0%;
   right: auto;
-
-
-  @media screen and (min-width: 1440px) {
-    width: 290px;
-  }
 
   @include maxWidthMd {
     z-index: 15;
@@ -110,6 +105,7 @@
 }
 
 .am-profile-short {
+  display: none !important;
   width: 40px;
   height: 40px;
   color: var(--white);
@@ -121,7 +117,6 @@
   align-items: center;
   font-size: 13px;
   font-weight: 600;
-  display: flex;
 }
 
 .am-header__nav-btn {
@@ -138,21 +133,21 @@
   letter-spacing: 1.4px;
   text-transform: uppercase;
   margin-bottom: 12px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 18px;
+  padding-right: 18px;
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 900;
 }
 
 .am-sidebar__footer {
   z-index: 2;
   grid-column-gap: 12px;
   grid-row-gap: 12px;
-  background-color: var(--navy_blue);
+  background-color: #2d5b99;
   flex: none;
   align-items: center;
   padding: 16px 24px;
-  display: flex;
+  display: none;
   position: -webkit-sticky;
   position: sticky;
   bottom: 0;
@@ -168,9 +163,6 @@
 .link-count {
   min-width: 24px;
   height: 20px;
-  background-color: var(--navy_blue_light);
-  border-radius: 5px;
-  padding: 4px 6px;
   justify-content: center;
   align-items: center;
   font-size: 11px;
@@ -206,7 +198,7 @@
   border-top: 1px solid var(--navy_blue_light);
   border-bottom: 1px solid var(--navy_blue_light);
   margin-bottom: -1px;
-  padding: 0 24px;
+  padding: 0 18px;
   font-weight: 600;
   transition: all .2s cubic-bezier(.39, .575, .565, 1);
   position: relative;
@@ -223,12 +215,8 @@
   }
 
   &.is-active {
-    background-color: #3a78cc;
-
-    .link-count {
-      color: var(--white);
-      background-color: var(--blue_gold);
-    }
+    background-color: #366bb4 !important;
+    border-color: #366bb4 !important;
   }
 
   &>div {
@@ -266,10 +254,6 @@
 }
 
 @media screen and (max-width: 991px) {
-  .am-sidebar__footer {
-    background-color: rgba(64, 140, 241, .15);
-    backdrop-filter: blur(20px);
-  }
 
   .am-sidebar__wrapper {
     padding-top: 24px;

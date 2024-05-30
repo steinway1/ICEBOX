@@ -1,3 +1,11 @@
+.body_whales {
+  .am-header {
+    .am-search {
+      display: none;
+    }
+  }
+}
+
 .main_whales {
   .am-content__wrapper {
     padding: 24px;
@@ -63,15 +71,152 @@
   }
 }
 
+.whale-card__top-group {
+  display: flex;
+  flex-flow: wrap;
+  gap: 6px;
+  padding: 6px;
+}
+
+.whale-card__top-group button,
+.whale-card__top-group a {
+  border-radius: .5rem;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  color: #237fd5;
+  background-color: rgba(98, 179, 245, .08);
+  cursor: pointer;
+}
+
+.whale-card__saleperson {
+  a {
+    font-weight: 600;
+    border-bottom: 1px dashed var(--bright_blue);
+    color: var(--bright_blue);
+    font-style: italic;
+    font-size: 12px;
+    line-height: 16px;
+    cursor: pointer;
+    margin-left: 4px;
+    padding: 0 !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+  }
+}
+
+.whale-card__box {
+  padding: 24px;
+  position: relative;
+
+  &.--blank {
+    padding: 0;
+    border-top: 1px solid var(--whale-border);
+  }
+
+  &.--quiz {
+    padding: 0;
+    border-top: 1px solid var(--whale-border);
+  }
+}
+
+.whale-card__date {
+  border-bottom: 1px solid var(--whale-border);
+  color: #868b9b;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.whale-card__profile {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 12px 0;
+  display: flex;
+}
+
+.whale-card__avatar-group {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  border-radius: 500px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 90px;
+  display: flex;
+  position: relative;
+}
+
+.whale-card__profile-info {
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+  flex-flow: column;
+  flex: 1;
+  display: flex;
+
+  &>span {
+    font-size: 12px;
+    line-height: 22px;
+    font-weight: 600;
+  }
+
+  .admin-linkbar {
+    margin-top: 4px;
+  }
+}
+
+.avatar-upload-btn {
+  z-index: 3;
+  color: #fff;
+  background-color: #3786f1;
+  border-radius: .3rem;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  padding-top: 1px;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 0;
+  display: flex;
+  position: absolute;
+  bottom: -4px;
+  right: 8px;
+  box-shadow: 0 4px 12px rgba(73, 142, 236, .49);
+  transition: all 200ms ease;
+  cursor: pointer;
+
+  &::after {
+    content: '+';
+  }
+
+  &:hover {
+    background-color: var(--blue_gold_hover);
+  }
+
+  &:active {
+    background-color: var(--bright_blue);
+  }
+
+  input {
+    display: none;
+  }
+}
+
 .whale-card {
   background-color: #fff;
   border: 1px solid #fff;
-  border-radius: 0px;
+  border-radius: 0.8rem;
   flex-direction: column;
   position: relative;
   transition: all .15s cubic-bezier(.39, .575, .565, 1);
   display: flex;
-  box-shadow: 0 10px 24px 3px rgba(192, 196, 211, .3);
+  box-shadow: 0 8px 58px rgba(184, 196, 230, .3);
 
   @include minWidthMd {
     &:hover {
@@ -117,25 +262,18 @@
     }
   }
 
-  &>.am-btn {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    padding: 5px;
-    z-index: 2;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    border-radius: 0px;
-
-    &:active {
-      background-color: var(--bright_blue);
-      box-shadow: none;
-    }
-  }
-
   .tb-social-btn {
+    font-size: 12px;
+    background-size: 14px 14px !important;
+    padding-left: 20px !important;
+    flex-wrap: nowrap !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+
+    .tb-social-count {
+      font-size: 11px !important;
+    }
+
     a {
       padding: 0 !important;
       width: auto !important;
@@ -169,10 +307,6 @@
 }
 
 .whale-card__avatar {
-  width: 50%;
-  aspect-ratio: 1 / 1;
-  border-radius: 500px;
-  flex: none;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -198,25 +332,16 @@
     opacity: .05;
   }
 
-  @include maxWidthSm {
-    width: 70%;
-  }
-
-  @include maxWidthXs {
-    width: 40vw;
-    height: 40vw;
-  }
-
   &::before {
     content: '';
-    position: absolute;
-    z-index: 3;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    border: 1.5px solid transparent;
+    pointer-events: none;
     border-radius: 500px;
-    border: 2px solid transparent;
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
   }
 
   &.--light_blue {
@@ -352,14 +477,13 @@
 }
 
 .whale-card__name {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 22px;
-  text-align: center;
 }
 
 .spot-typo {
-  color: var(--navy_blue_pale);
+  color: var(--royal_blue);
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 11px;
@@ -387,12 +511,12 @@
 }
 
 .whale-card__cell {
-  min-width: 50%;
-  border-bottom: 1px solid #eef0f8;
+  width: calc(100% / 3);
+  border-bottom: 1px solid var(--whale-border);
   flex-direction: column;
   flex: auto;
   align-items: flex-start;
-  padding: 8px 16px;
+  padding: 8px 14px;
   display: flex;
 
   @include maxWidthXs {
@@ -403,6 +527,11 @@
 
   &[data-cell="socials"] {
     width: 100%;
+    flex-direction: row;
+    gap: 12px;
+    flex-flow: wrap;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
 
     a {
       width: 100%;
@@ -418,7 +547,6 @@
       width: auto;
       font-size: 12px;
       font-weight: 600;
-      opacity: .6;
     }
   }
 
@@ -443,13 +571,14 @@
   grid-row-gap: 8px;
   cursor: pointer;
   align-items: center;
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 600;
   display: flex;
-
-  @include maxWidthXs {
-    font-size: 14px;
-    line-height: 22px;
-  }
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 
   a {
     color: var(--navy_blue);
@@ -457,28 +586,6 @@
 
     &:hover {
       color: var(--navy_blue_pale)
-    }
-  }
-}
-
-.whale-card__saleperson {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  z-index: 2;
-
-  a {
-    font-weight: 600;
-    border-bottom: 1px dashed var(--navy_blue);
-    color: var(--navy_blue);
-    font-style: italic;
-    font-size: 12px;
-    line-height: 16px;
-    cursor: pointer;
-
-    &:hover {
-      color: var(--navy_blue_pale);
-      border-color: var(--navy_blue_pale)
     }
   }
 }
@@ -631,31 +738,31 @@
 }
 
 .whale-card__quiz-row {
-  background-color: rgba(231, 233, 241, .21);
-  border: 1px solid rgba(231, 233, 241, .21);
+  border-bottom: 1px solid var(--whale-border);
   display: flex;
+
+  &:last-child {
+    border: none;
+  }
 
   &>span {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     text-align: center;
-    padding: 4px 8px;
+    padding: 8px 14px;
     font-size: 12px;
-    font-weight: 600;
     width: 50%;
     flex: none;
   }
 }
 
 .whale-card__quiz-form {
-  letter-spacing: .6px;
-  text-transform: uppercase;
   flex: 1;
   justify-content: center;
-  align-items: center;
-  font-size: 10px;
-  font-weight: 700;
+  align-items: stretch;
+  font-size: 12px;
+  font-weight: 600;
   display: flex;
 
   &.--gap_4 {
@@ -768,8 +875,9 @@
 
       &:checked {
         ~span {
-          background-color: #408cf1;
-          color: white;
+          opacity: 1;
+          color: #408cf1;
+          background-color: rgba(102, 168, 255, .07);
         }
       }
     }
@@ -783,17 +891,13 @@
   justify-content: flex-start;
   align-items: center;
   padding: 6px;
+  padding-right: 10px;
   display: flex;
   font-weight: 600;
 
-  @include maxWidthXs {
-    margin-right: 20px;
-    margin-left: 20px;
-  }
-
   &>img {
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     background-color: white;
   }
 }

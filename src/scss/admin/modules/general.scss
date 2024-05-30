@@ -367,34 +367,41 @@ button.dt-paging-button.current {
 }
 
 .admin-linkbar {
-  display: flex;
-  justify-content: center;
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
   flex-wrap: wrap;
-  min-width: 100px;
-  gap: 4px;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
 
   &.--external {
     a {
-      background-color: transparent !important;
-      border: none !important;
+      padding: 3px;
 
       img {
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
       }
     }
   }
 }
 
 .admin-linkbar .admin-link {
-  background-color: rgb(237 241 248);
-  border: 1px solid rgb(237 241 248);
+  color: #285783;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: #f0f6ff;
+  border: 1px solid #f0f6ff;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 0;
   display: flex;
   gap: 4px;
-  padding: 6px;
-  border-radius: 50px;
-  line-height: 10px;
-  transition: all 250ms ease;
+  transition: all 200ms ease;
 
   &[data-evt="toggleWhaleNotes"] {
     &.is-active {
@@ -409,23 +416,24 @@ button.dt-paging-button.current {
 }
 
 .admin-linkbar .admin-link.--delete {
-  background-color: #fff7f7;
-  border-color: #fff7f7;
-}
+  background-color: #ffeef0;
+  border-color: #ffeef0;
 
-.admin-linkbar .admin-link.--delete:hover {
-  background-color: #f1e2e2;
-  border-color: #f1e2e2;
+  &:hover {
+    background-color: transparent;
+    border-color: #ff6161;
+  }
 }
 
 .admin-linkbar .admin-link:hover {
-  background-color: rgb(221 228 240);
+  background-color: transparent;
+  border-color: var(--royal_blue);
 }
 
 .admin-linkbar .admin-link i {
   display: block;
-  height: 16px;
-  width: 16px;
+  height: 14px;
+  width: 14px;
   background-position: center center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -576,14 +584,18 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   }
 }
 
+.typo_dim {
+  opacity: 0.65;
+}
+
 .spend-typo {
-  font-size: 11px;
+  color: #1d8873;
+  background-color: rgba(54, 211, 190, .08);
+  border-radius: .5rem;
+  padding: 4px 10px;
+  font-size: 12px;
   font-weight: 700;
-  border: 1.5px solid #42a87f;
-  border-radius: 50px;
-  padding: 2px 8px 1px 8px;
-  margin: 4px 0;
-  color: #259467;
+  line-height: 18px;
 }
 
 .am-content_appraisals {
@@ -615,49 +627,6 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   thead th {
     background-color: #30598f;
     color: white;
-  }
-}
-
-.avatar-upload-btn {
-  z-index: 2;
-  width: 30px;
-  height: 30px;
-  color: #fff;
-  cursor: pointer;
-  background-color: var(--blue_gold);
-  border: 2px solid #fff;
-  border-radius: 500px;
-  justify-content: center;
-  align-items: center;
-  padding-top: 2px;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 0;
-  transition: all .2s;
-  display: flex;
-  position: absolute;
-  bottom: 14%;
-  right: 8px;
-  transform: translate(0, 50%);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-  &::after {
-    content: '+';
-  }
-
-  &:hover {
-    background-color: var(--blue_gold_hover);
-  }
-
-  &:active {
-    background-color: var(--bright_blue);
-  }
-
-  input {
-    display: none;
   }
 }
 
@@ -1493,6 +1462,7 @@ div.dt-container .dt-paging {
 
   &.--filled {
     .search-drop__list {
+
       &::before,
       &::after {
         display: none;
@@ -1510,6 +1480,7 @@ div.dt-container .dt-paging {
     }
 
     .search-drop__list {
+
       &::after,
       &::before {
         display: none;
@@ -1666,33 +1637,33 @@ svg.svg_loader {
     display: flex;
     position: relative;
     box-shadow: 0 16px 48px rgba(45, 53, 73, .09);
-  
+
     &:not([data-pin-evt]):hover {
       color: #fff;
       background-color: #0ab2e9;
       border-color: #0ab2e9;
       box-shadow: 0 16px 48px rgba(45, 53, 73, 0);
     }
-  
+
     &:not([data-pin-evt]):active {
       background-color: #0bade2;
       border-color: #0bade2;
       transform: scale(.95);
     }
-  
+
     &.is-active {
       color: #0895c4;
       background-color: rgba(255, 255, 255, 0);
       border-color: #0ab2e9;
     }
-  
+
     &:nth-child(10),
     &:nth-child(12) {
       box-shadow: none;
       background-color: rgba(0, 0, 0, 0);
       border-color: rgba(213, 219, 229, 0);
       font-size: 15px;
-  
+
       &:hover {
         color: #21283d;
         border-color: #cdd2db;
@@ -1794,5 +1765,5 @@ span {
 }
 
 .--pd_24 {
-  padding: 0 24px;
+  padding: 0 18px;
 }

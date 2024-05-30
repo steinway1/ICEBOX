@@ -5016,6 +5016,11 @@ const formPage = new Object({
   },
   attachWatchesUpload: () => {
     const form = document.querySelector('.form__add-watches')
+    const btn = document.querySelector('[data-evt="testSubmit"]')
+    btn.onclick = () => {
+      const input = document.querySelector('#watches_upload')
+      console.log(input.files)
+    }
     if (!form) return
     const uploadLabel = document.querySelector('.formpage__watches-label'),
       uploadInput = document.querySelector('#watches_upload'),

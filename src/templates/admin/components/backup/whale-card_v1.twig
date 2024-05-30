@@ -1,0 +1,204 @@
+<div class="whale-card{% if whale.spender %} --spender{% endif %}">
+
+	<div class="whale-card__saleperson" data-cell="saleperson">
+		{{ whale.saleperson_xedit | raw }}
+	</div>
+
+	<button class="am-btn" data-evt="cardGoCRM">Go CRM</button>
+
+	<div class="whale-card__top">
+		<div class="whale-card__avatar --{{whale.spender_color}}">
+			{% if whale.photo %}
+				<img src="{{whale.photo}}" alt="">
+			{% else %}
+				<img src="{{THEME_ASSETS_FOLDER}}/user-profile.svg" alt="">
+				<div class="avatar-upload-btn">
+					<input data-input="avatar_upload" type="file" accept="image/*" id="avatar_img{{whale.id}}">
+				</div>
+			{% endif %}
+		</div>
+		<div class="whale-card__sum">
+			<h3 class="whale-card__name">{{whale.full_name}}
+				<span data-evt="openGoogleTip" class="ext-search"></span>
+			</h3>
+			<span class="spend-typo">{{whale.total_spend ?: '0000'}}</span>
+			<span class="xs-typo">Last updated
+				{{whale.last_updated}}
+				days ago</span>
+			<span class="spot-typo">{{whale.tab}}</span>
+			{{ whale.action_bar | raw }}
+			{% if whale.wiki_link or whale.sportrac_link %}
+				<div class="admin-linkbar --external">
+					{% if whale.wiki_link %}
+						<a href="{{ whale.wiki_link }}" target="_blank" class="admin-link">
+							<img src="{{THEME_ASSETS_FOLDER}}/link_wikipedia.svg" alt="">
+						</a>
+					{% endif %}
+					{% if whale.sportrac_link %}
+						<a href="{{ whale.sportrac_link }}" target="_blank" class="admin-link">
+							<img src="{{THEME_ASSETS_FOLDER}}/link_sportrac.svg" alt="">
+						</a>
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="whale-card__main">
+
+		<div class="whale-card__notes">
+			<div class="whale-card__notes-scroll">
+				{% for note in whale.notes %}
+					<div class="whale-card__note">
+						<div class="whale-card__note-date">{{note.date}}</div>
+						<div class="whale-card__note-text">
+							<span class="whale-card__note-author">{{note.author}}
+							</span>:
+							{{note.text}}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="whale-card__notes-footer">
+				<div class="am-item__note-form">
+					<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text">
+					<button data-whale-evt="submitNote">Add</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="whale-card__cells">
+			<div class="whale-card__cell" data-cell="phone">
+				<span class="cell-title">Phone</span>
+				<span class="cell-value">{{ whale.have_phone ?: 'N/A' }}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="email">
+				<span class="cell-title">Email</span>
+				<span class="cell-value">{{ whale.have_email ?: 'N/A' }}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="salary">
+				<span class="cell-title">Salary</span>
+				<span class="cell-value">{{ whale.salary ?: 'N/A' }}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="team">
+				<span class="cell-title">Team</span>
+				<span class="cell-value">{{ whale.team_html ? whale.team_html | raw : 'N/A'}}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="total_pay">
+				<span class="cell-title">Earnings</span>
+				<span class="cell-value">{{ whale.career_earnings ?: 'N/A' }}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="address">
+				<span class="cell-title">Address</span>
+				<span class="cell-value">
+					{{ whale.city ?: 'N/A' }},
+					{{ whale.state ?: 'N/A' }}
+				</span>
+			</div>
+			<div class="whale-card__cell" data-cell="birthday">
+				<span class="cell-title">Birthday</span>
+				<span class="cell-value">{{ whale.birthday ?: 'N/A' }}</span>
+			</div>
+			<div class="whale-card__cell" data-cell="at_atl">
+				<span class="cell-title">At ATL</span>
+				<span class="cell-value">{{ whale.at_atl ? whale.at_atl | raw : 'No Visits' }}</span>
+			</div>
+			{% if whale.socials %}
+				<div class="whale-card__cell" data-cell="socials">
+					{% for key, obj in whale.socials %}
+						{% if key == 'instagram' %}
+							<div class="tb-social-btn instagram">
+								<a href="{{ obj.link }}" target="_blank">{{ obj.username }}</a>
+								<span class="tb-social-count">{{ obj.followers }}</span>
+							</div>
+						{% endif %}
+						{% if key == 'twitter' %}
+							<div class="tb-social-btn x">
+								<a href="{{ obj.link }}" target="_blank">{{ obj.username }}</a>
+								<span class="tb-social-count">{{ obj.followers }}</span>
+							</div>
+						{% endif %}
+						{% if key == 'tiktok' %}
+							<div class="tb-social-btn tiktok">
+								<a href="{{ obj.link }}" target="_blank">{{ obj.username }}</a>
+								<span class="tb-social-count">{{ obj.followers }}</span>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+
+		<div class="whale-card__quiz">
+			<div class="whale-card__quiz-row">
+				<span>Possible Customer</span>
+				<div class="whale-card__quiz-form">
+					<label>
+						<input type="radio" name="whale_customer_{{whale.id}}" value="yes" checked>
+						<span>Yes</span>
+					</label>
+					<label>
+						<input type="radio" name="whale_customer_{{whale.id}}" value="no">
+						<span>No</span>
+					</label>
+				</div>
+			</div>
+			<div class="whale-card__quiz-row">
+				<span>Wears Jewelry?</span>
+				<div class="whale-card__quiz-form">
+					<label>
+						<input type="radio" name="whale_jewelry_{{whale.id}}" value="yes">
+						<span>Yes</span>
+					</label>
+					<label>
+						<input type="radio" name="whale_jewelry_{{whale.id}}" value="no">
+						<span>No</span>
+					</label>
+				</div>
+			</div>
+			<div class="whale-card__quiz-row">
+				<span>Try For Address?</span>
+				<div class="whale-card__quiz-form">
+					<label>
+						<input type="radio" name="whale_address_{{whale.id}}" value="yes">
+						<span>Yes</span>
+					</label>
+					<label>
+						<input type="radio" name="whale_address_{{whale.id}}" value="no">
+						<span>No</span>
+					</label>
+				</div>
+			</div>
+			<div class="whale-card__quiz-row">
+				<span>Color</span>
+				<div class="whale-card__quiz-form --gap_4">
+					<label class="--light_blue">
+						<input type="radio" name="whale_color_{{whale.id}}" value="5000-10000">
+            <span>&nbsp;</span>
+					</label>
+					<label class="--dark_blue">
+						<input type="radio" name="whale_color_{{whale.id}}" value="10000-15000">
+            <span>&nbsp;</span>
+					</label>
+					<label class="--yellow">
+						<input type="radio" name="whale_color_{{whale.id}}" value="15000-25000">
+            <span>&nbsp;</span>
+					</label>
+					<label class="--orange">
+						<input type="radio" name="whale_color_{{whale.id}}" value="25000-50000">
+            <span>&nbsp;</span>
+					</label>
+					<label class="--green">
+						<input type="radio" name="whale_color_{{whale.id}}" value="50000-150000">
+            <span>&nbsp;</span>
+					</label>
+					<label class="--purple">
+						<input type="radio" name="whale_color_{{whale.id}}" value="150000">
+            <span>&nbsp;</span>
+					</label>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
