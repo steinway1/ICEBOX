@@ -4593,10 +4593,10 @@ const formPage = new Object({
     $('.formpage__upload-btn').click(function () {
       if ($('#image_upload').length) { $('#image_upload').trigger('click') }
     })
-    $('#formpage_form').on('submit', function (e) {
-      e.preventDefault();
-      formPage.submitAjax();
-    });
+    // $('#formpage_form').on('submit', function (e) {
+    //   e.preventDefault();
+    //   formPage.submitAjax();
+    // });
   },
   submitAjax: function () {
     var form = $("#formpage_form");
@@ -4715,16 +4715,39 @@ const formPage = new Object({
   attachWatchesUpload: () => {
     const form = document.querySelector('.form__add-watches')
     const btn = document.querySelector('[data-evt="testSubmit"]')
-    btn.onclick = () => {
-      const input = document.querySelector('#watches_upload')
-      console.log(input.files)
-    }
+    
     if (!form) return
     const uploadLabel = document.querySelector('.formpage__watches-label'),
       uploadInput = document.querySelector('#watches_upload'),
       imagesWrap = $('.formpage__watches-thumb')
 
     if (uploadInput && uploadLabel && imagesWrap) {
+
+      form.onsubmit = (e) => {
+        e.preventDefault()
+        const formData = new FormData(form)
+        $.ajax({
+          type: "POST",
+          url: form.action,
+          data: formData,
+          contentType: false,
+          processData: false,
+          cache: false,
+
+          success: function (data) {
+            var r = $.parseJSON(data);
+            if (!r.error) {
+              showMessage('success', 'Great', r.msg);
+              setTimeout(function () {
+                window.location.reload();
+              }, 2000);
+            } else {
+              showMessage('error', 'Error', r.msg);
+            }
+          }
+        });
+      }
+
       function processFile(files) {
         if (!files.length) throw new Error('No file selected')
         files = [...files]
