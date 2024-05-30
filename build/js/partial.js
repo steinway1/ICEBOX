@@ -1714,153 +1714,88 @@ const pgFilter = {
 
 /* #region  Menu */
 const menu = {
-  states: {
-    isActive: false,
-    overIsActive: false,
-  },
+  isOpened: true,
   init: function () {
-    this.renderDOM();
-    if (document.querySelector('.mob-menu')) {
-      this.bindEvents();
-      this.initialState();
-      this.attachHoverEffect()
+    const el = document.querySelector('.menu2')
+    if (el) {
+      this.renderDOM()
+      this.close()
+      this.bindEvents()
     }
   },
   renderDOM: function () {
-    // modal
-    this.modal = $(".mob-menu");
-    this.backdrop = $(".mob-menu__backdrop");
-    this.container = $(".mob-menu__container");
-    // content
-    this.main = $(".mob-menu__main-content");
-    this.over = $(".mob-menu__over-content");
-    this.overHeading = $(".mob-menu__over-heading");
-    this.scrollContent = $(".mob-menu__scroll-content");
-    this.megaLink = $(".mob-menu__mega-link");
-    // events
-    this.evtToggle = $('[data-evt="toggleMenu"]');
-    this.evtToggleOver = [...$(".mob-menu__nav-step, .mob-menu__step-back")];
+    this.el = document.querySelector('.menu2')
+    this.toggleArr = [...document.querySelectorAll('[data-evt="toggleMenu"]')]
+    this.toggleDropdownArr = [...this.el.querySelectorAll('[data-menu-evt="toggleDropdown"]')]
+    this.wrapper = this.el.querySelector('.menu2__wrapper')
   },
   bindEvents: function () {
-    $.each(this.evtToggle, function (index) {
-      $(menu.evtToggle[index]).click(function () {
-        menu.toggle();
-      });
-    });
-    $.each(this.evtToggleOver, function (index) {
-      $(menu.evtToggleOver[index]).click(function () {
-        menu.toggleOver($(this));
-      });
-    });
-    this.megaLink.on("click", function () {
-      if (menu.states.isActive) {
-        menu.toggle();
-      }
-    });
-  },
-  toggleOver: function (target) {
-    let main = this.main[0],
-      over = this.over[0];
-    if (!menu.states.overIsActive) {
-      let attr = target.attr("data-menu-nav");
-      if (!attr) {
-        return false;
-      } else {
-        let content = $(".mob-menu__step-content"),
-          toShow = content.filter(`[data-menu-over="${attr}"]`),
-          title =
-            attr == "engagement"
-              ? "Engagement & Wedding"
-              : `${attr} Collection`;
-        if (toShow) {
-          let scrollable = $(over).find(menu.scrollContent);
-          scrollable[0].scrollTop = 0;
-          menu.states.overIsActive = true;
-          content.hide();
-          toShow.show();
-          over.style.display = 'block'
-          setTimeout(() => {
-            Object.assign(main.style, { transform: "translateX(-20%)" });
-            Object.assign(over.style, { transform: "translateX(0%)", opacity: 1 });
-          }, 1);
-          menu.overHeading.html(title);
-        }
-      }
-    } else {
-      menu.states.overIsActive = false;
-      Object.assign(main.style, { transform: "translateX(0%)" });
-      Object.assign(over.style, { transform: "translateX(30%)", opacity: 0 });
-      setTimeout(() => {
-        over.style.display = 'none'
-      }, getTransitionTime(over));
+    for (const el of this.toggleArr) {
+      el.addEventListener('click', this.toggle)
+    }
+
+    for (const el of this.toggleDropdownArr) {
+      el.addEventListener('click', this.toggleDropdown)
     }
   },
   toggle: function () {
-    if (!menu.states.isActive) {
-      menu.open();
+    const isVisible = window.getComputedStyle(menu.el).getPropertyValue('display') !== 'none'
+    if (isVisible) {
+      menu.close()
     } else {
-      menu.close();
+      menu.open()
     }
   },
-  open: function () {
-    lockScroll();
-    menu.states.isActive = true;
-    this.modal.show();
-    let scrollable = this.main.find(menu.scrollContent);
-    scrollable[0].scrollTop = 0;
-    setTimeout(() => {
-      Object.assign(this.backdrop[0].style, { opacity: 1 });
-      Object.assign(this.container[0].style, { transform: "translateX(0%)" });
-    }, 2);
+  toggleDropdown(e) {
+    const item = e.target.parentNode.closest('.menu2__nav-item')
+    const dropdown = e.target.parentNode.querySelector('[data-menu-dropdown]')
+    if (item && dropdown) {
+      const adjustEl = dropdown.querySelector('.menu2__dropdown-adjust')
+      if (!adjustEl) throw new Error('menu__dropdown-adjust element not found')
+
+      const height = dropdown.offsetHeight
+      if (height !== 0) {
+        dropdown.style.height = `${height}px`
+        setTimeout(() => {
+          item.classList.remove(__ACTIVE)
+          dropdown.style.height = '0px'
+          adjustEl.style.opacity = 0
+          adjustEl.style.transform = 'translateY(-32px)'
+        }, 5);
+      } else {
+        item.classList.add(__ACTIVE)
+        const scrollHeight = adjustEl.scrollHeight
+        dropdown.style.height = `${scrollHeight}px`
+        adjustEl.style.opacity = 1
+        adjustEl.style.transform = 'translateY(0px)'
+      }
+    }
   },
   close: function () {
-    unlockScroll();
-    menu.states.isActive = false;
-    Object.assign(this.backdrop[0].style, { opacity: 0 });
-    Object.assign(this.container[0].style, { transform: "translateX(-100%)" });
+    unlockScroll()
+    this.el.style.transform = 'scale(1.1)'
+    this.el.style.opacity = 0
     setTimeout(() => {
-      this.modal.hide();
-    }, getTransitionTime(menu.container));
-    if (menu.states.overIsActive) {
-      menu.states.overIsActive = false;
-      Object.assign(menu.main[0].style, { transform: "translateX(0%)" });
-      Object.assign(menu.over[0].style, { transform: "translateX(30%)", opacity: 0 });
-      setTimeout(() => {
-        menu.over[0].style.display = 'none'
-      }, getTransitionTime(menu.over[0]));
+      this.el.style.display = 'none'
+      this.isOpened = false
+    }, getTransitionTime(this.el));
+  },
+  open: function () {
+    lockScroll()
+    this.el.style.display = 'block'
+    this.resetScroll()
+    setTimeout(() => {
+      this.el.style.transform = 'scale(1)'
+      this.el.style.opacity = 1
+      this.isOpened = true
+    }, 5);
+  },
+  resetScroll: function () {
+    if (this.wrapper) {
+      this.wrapper.scrollTop = 0
     }
-  },
-  initialState: function () {
-    this.modal.hide();
-    Object.assign(this.backdrop[0].style, { opacity: 0 });
-    Object.assign(this.container[0].style, { transform: "translateX(-100%)" });
-    Object.assign(this.over[0].style, { transform: "translateX(30%)" });
-    this.states.isActive = false;
-    this.states.overIsActive = false;
-  },
-  attachHoverEffect: function () {
-    let isMobile = window.innerWidth < 479
-    if (isMobile) return
-    const rows = [...document.querySelectorAll('.mob-menu__nav-item')]
-    rows.forEach((row) => {
-      const sibs = row.parentNode.querySelectorAll('.mob-menu__nav-item')
-      row.onmouseenter = () => {
-        sibs.forEach((s) => {
-          if (s !== row) {
-            s.style.opacity = 0.5
-          }
-        })
-      }
-      row.onmouseleave = () => {
-        sibs.forEach((s) => {
-          if (s !== row) {
-            s.style.opacity = 1
-          }
-        })
-      }
-    })
   }
-};
+}
 /* #endregion */
 
 
@@ -8164,7 +8099,7 @@ class SellWatch {
         return false
       }
     }
-    
+
     if (checkboxArr.length && checkboxArr.every(checkbox => !checkbox.checked)) {
       this.toggleSectionStatus(section, false)
       return false
