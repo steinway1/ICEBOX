@@ -16576,12 +16576,13 @@ input.custom-range__output {
 
 .page-filter-drop a,
 .filter-modal a {
+  position: relative;
   cursor: pointer;
-  background-color: #f0f0f0;
-  border: 1px solid #f0f0f0;
-  border-radius: 8px;
+  background-color: transparent;
+  font-size: 13px;
   justify-content: space-between;
   align-items: center;
+  border-radius: 0.4rem;
   padding: 10px 12px;
   font-weight: 600;
   transition: all 0.15s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -16592,20 +16593,19 @@ input.custom-range__output {
 
 .page-filter-drop a:hover,
 .filter-modal a:hover {
-  background-color: #f5f5f5;
-  border-color: #0095c6;
+  background-color: rgba(0, 149, 198, 0.05);
 }
 
 .page-filter-drop a::after,
 .filter-modal a::after {
   content: "";
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 1px solid #b6b6b6;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #c7d0d7;
   border-radius: 500px;
   background-repeat: no-repeat;
-  background-position: center left 3px;
+  background-position: center left 2.5px;
   background-size: 64% 64%;
   transition: all 0.15s cubic-bezier(0.39, 0.575, 0.565, 1);
   flex: none;
@@ -16613,7 +16613,8 @@ input.custom-range__output {
 
 .page-filter-drop a.is-active,
 .filter-modal a.is-active {
-  background-color: rgba(0, 149, 198, 0.1) !important;
+  background-color: rgba(0, 149, 198, 0.1);
+  z-index: 3;
   font-weight: 600;
 }
 
