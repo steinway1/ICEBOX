@@ -4900,30 +4900,7 @@ const formPage = new Object({
     //   formPage.submitAjax();
     // });
   },
-  submitAjax: function () {
-    var form = $("#formpage_form");
-    var formData = new FormData(form[0]);
-    $.ajax({
-      type: "POST",
-      url: $(form).prop("action"),
-      data: formData,
-      contentType: false,
-      processData: false,
-      cache: false,
-
-      success: function (data) {
-        var r = $.parseJSON(data);
-        if (!r.error) {
-          showMessage('success', 'Great', r.msg);
-          setTimeout(function () {
-            window.location.reload();
-          }, 2000);
-        } else {
-          showMessage('error', 'Error', r.msg);
-        }
-      }
-    });
-  },
+  submitAjax: function () {},
   attachImagesUploader: () => {
     const uploadLabel = document.querySelector('#formpage_img-uploader'),
       uploadInput = document.querySelector('#image_upload'),
@@ -5017,62 +4994,37 @@ const formPage = new Object({
   attachWatchesUpload: () => {
     const form = document.querySelector('.form__add-watches')
     const btn = document.querySelector('[data-evt="testSubmit"]')
-
     if (!form) return
     const uploadLabel = document.querySelector('.formpage__watches-label'),
       uploadInput = document.querySelector('#watches_upload'),
       imagesWrap = $('.formpage__watches-thumb')
 
     if (uploadInput && uploadLabel && imagesWrap) {
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault()
-        const formData = new FormData(form)
-        const files = [...uploadInput.files]
-        files.forEach((file, i) => {
-          formData.append(`watches_upload[${i}]`, file)
-        })
-        $.ajax({
-          type: "POST",
-          url: form.action,
-          data: formData,
-          contentType: false,
-          processData: false,
-          cache: false,
-
-          success: function (data) {
-            const r = JSON.parse(data);
-            if (!r.error) {
-              showMessage('success', 'Great', r.msg);
-              setTimeout(function () {
-                window.location.reload();
-              }, 2000);
-            } else {
-              showMessage('error', 'Error', r.msg);
-            }
-          }
-        });
-      })
-
       function processFile(files) {
         if (!files.length) throw new Error('No file selected')
-
+        files = [...files]
         files.forEach((file, i) => {
           if (!file.type.match('image.*')) { return }
 
-          const reader = new FileReader()
+          let getIndex = () => {
+            return [...document.querySelectorAll('.formpage__upload')].length + 1
+          }
+
+          let reader = new FileReader()
           reader.onload = function (e) {
-            const html =
-              `<div class="formpage__upload" data-img-id="${i}">
-               <div class="formpage__input-boxes">
-                 <div>
-                   <input value="1" name="visible_image_${i}" id="image_${i}" type="checkbox" checked>
-                   <label for="image_${i}"></label>
+            let html =
+              `
+               <div class="formpage__upload" data-img-id="${getIndex()}">
+                 <div class="formpage__input-boxes">
+                   <div>
+                     <input value="1" name="visible_image_${getIndex()}" id="image_${getIndex()}" type="checkbox" checked>
+                     <label for="image_${getIndex()}"></label>
+                   </div>
+                 </div>
+                   <div data-name="${file.name}" style="background-image: url(${e.target.result})" class="formpage__upload-bg">
                  </div>
                </div>
-                 <div data-name="${file.name}" style="background-image: url(${e.target.result})" class="formpage__upload-bg">
-               </div>
-             </div>`
+             `
             imagesWrap.append(html)
           }
           reader.readAsDataURL(file)
