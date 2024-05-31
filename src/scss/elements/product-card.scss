@@ -67,13 +67,17 @@
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   transition: all 0.2s ease;
   font-size: 13px;
 
   &:hover {
     color: #048cb9;
     text-decoration: underline;
+  }
+
+  @include maxWidthXs {
+    -webkit-line-clamp: 2 !important;
   }
 }
 
@@ -173,13 +177,37 @@
 
 .product-card__media {
   width: 100%;
-  filter: brightness(98.5%);
+  // filter: brightness(98.5%);
   aspect-ratio: 1/1.2;
   position: relative;
   overflow: hidden;
   display: flex;
   padding: 18px 0px;
   background-color: white;
+
+  &::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(310deg, rgba(3, 36, 77, 0.5) 13%, #dbe9f6 56%, rgba(28, 44, 60, 0.7));
+    opacity: .06;
+    transition: all 200ms ease;
+    z-index: 2;
+  }
+
+  @media screen and (min-width: 991px) {
+    &:hover {
+      &::after {
+        opacity: .1;
+      }
+    }
+  }
 
   a {
     display: flex;
@@ -215,7 +243,7 @@
   grid-row-gap: 6px;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 5px;
   display: flex;
 
   &.is-sale {
@@ -248,7 +276,7 @@
   color: var(--black);
   order: -1;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 22px;
 }
 
