@@ -11,6 +11,16 @@
   order: 1 !important;
 }
 
+body.admin_plain {
+  .am-content {
+    padding-left: 0px;
+  }
+}
+
+table.dataTable {
+  width: 100%;
+}
+
 table.dataTable thead th {
   padding: 10px 14px !important;
   background-color: #ebeef1;
@@ -387,21 +397,21 @@ button.dt-paging-button.current {
 }
 
 .admin-linkbar .admin-link {
-  color: #285783;
-  text-transform: uppercase;
-  cursor: pointer;
-  background-color: #f0f6ff;
-  border: 1px solid #f0f6ff;
-  border-radius: 6px;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 0;
-  display: flex;
-  gap: 4px;
-  transition: all 200ms ease;
+  color: #285783 !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  background-color: #f0f6ff !important;
+  border: 1px solid #f0f6ff !important;
+  border-radius: 6px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 5px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  line-height: 0 !important;
+  display: flex !important;
+  gap: 4px !important;
+  transition: all 200ms ease !important;
 
   &[data-evt="toggleWhaleNotes"] {
     &.is-active {
@@ -431,16 +441,24 @@ button.dt-paging-button.current {
 }
 
 .admin-linkbar .admin-link i {
-  display: block;
-  height: 14px;
-  width: 14px;
-  background-position: center center;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+  display: block !important;
+  height: 14px !important;
+  width: 14px !important;
+  background-position: center center !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
 }
 
 .admin-linkbar .admin-link i.icon-admin-edit {
   background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.6457 4.50539L4.31552 13.8369C3.96031 14.1922 3.6051 14.8908 3.53406 15.4L3.02492 18.9645C2.83548 20.2553 3.74719 21.1553 5.03778 20.9776L8.60172 20.4684C9.09901 20.3974 9.79759 20.0421 10.1646 19.6869L19.4948 10.3553C21.1051 8.74483 21.8629 6.8738 19.4948 4.50539C17.1268 2.13699 15.256 2.89488 13.6457 4.50539Z" stroke="%23285783" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6C12.8138 8.90283 15.085 11.1741 18 12" stroke="%23285783" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+}
+
+.admin-linkbar .admin-link i.icon-admin-lock {
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 10V8C6 4.69 7 2 12 2C17 2 18 4.69 18 8V10" stroke="%23285783" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 18.5C13.3807 18.5 14.5 17.3807 14.5 16C14.5 14.6193 13.3807 13.5 12 13.5C10.6193 13.5 9.5 14.6193 9.5 16C9.5 17.3807 10.6193 18.5 12 18.5Z" stroke="%23285783" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 22H7C3 22 2 21 2 17V15C2 11 3 10 7 10H17C21 10 22 11 22 15V17C22 21 21 22 17 22Z" stroke="%23285783" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+}
+
+.admin-linkbar .admin-link i.icon-admin-ban {
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="%23285783" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.8999 5L4.8999 19" stroke="%23285783" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>');
 }
 
 .admin-linkbar .admin-link i.icon-rating-empty {

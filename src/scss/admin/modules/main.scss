@@ -57,6 +57,12 @@ body {
   color: white;
   font-weight: 600;
 
+  &.--flex {
+    @include maxWidthXs {
+      flex: 1 auto !important;
+    }
+  }
+
   &:active {
     opacity: .88;
   }
@@ -812,6 +818,13 @@ body {
     font-weight: 600;
     line-height: 24px;
   }
+}
+
+.green-title {
+  color: #6feaa6;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  font-weight: 700;
 }
 
 .am-container {

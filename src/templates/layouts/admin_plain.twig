@@ -1,0 +1,21 @@
+{% set THEME_ASSETS_FOLDER = './assets' %}
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		{% include 'page-components/admin-head.twig' %}
+		{{ block('include_head') }}
+	</head>
+
+
+	<body class="admin_plain{% if bodyClass is defined %} {{bodyClass}}{% endif %}">
+		{% include "admin/components/header-plain.twig" %}
+
+		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
+			</main>
+
+			{% include "page-components/scripts_admin.twig" %}
+			{{ block('include_script') }}
+		</body>
+
+	</html>

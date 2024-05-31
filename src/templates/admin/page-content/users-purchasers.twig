@@ -1,0 +1,97 @@
+<div class="am-content am-content_whales --upd">
+	<div class="am-content__wrapper">
+
+		<div class="am-main__header">
+			<div class="am-container">
+				<div class="am-row__header-wrapper">
+					<div class="am-row__header">
+						<div class="am_vertical-start">
+							<h2 class="am-main__header-title">Users Purchasers</h2>
+							<div class="green-title">{{purchasers_total_spend}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- #region Main Content -->
+		<div class="am-main__flow">
+			<div class="am-container">
+				<div class="am-main__content">
+
+					<div class="am-main__controls">
+						<div class="am_flex8 --center">
+							<a href="/admin/users/new" class="am-btn --royal --flex">
+								{% include "admin/svg/icon_person.svg" %}
+								<span>Add New User</span>
+							</a>
+						</div>
+					</div>
+
+					{% include "admin/components/page-pagination.twig" %}
+
+					<div class="admin__purchasers-table">
+
+						<div class="dataTables_scroll">
+							<div class="dt-buttons">
+								<button class="dt-button buttons-collection buttons-colvis" tabindex="0" aria-controls="allTable" type="button" aria-haspopup="dialog">
+									<span>Column visibility</span>
+									<span class="dt-button-down-arrow">▼</span>
+								</button>
+								<button class="dt-button" tabindex="0" aria-controls="allTable" type="button">
+									<span>Save Column Visibility</span>
+								</button>
+								<button class="dt-button buttons-copy buttons-html5" tabindex="0" aria-controls="allTable" type="button">
+									<span>Copy</span>
+								</button>
+								<button class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="allTable" type="button">
+									<span>CSV</span>
+								</button>
+								<button class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="allTable" type="button">
+									<span>Excel</span>
+								</button>
+								<button class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="allTable" type="button">
+									<span>PDF</span>
+								</button>
+								<button class="dt-button buttons-print" tabindex="0" aria-controls="allTable" type="button">
+									<span>Print</span>
+								</button>
+							</div>
+							<div class="dataTables_scrollBody">
+								<table
+									class="table table-bordered dataTables dataTable no-footer">
+									{# Head #}
+									<thead>
+										<tr role="row">
+											<th>Full Name</th>
+											<th>Total Spent</th>
+											<th>Purchasing</th>
+											<th>Activity</th>
+											<th>Logins</th>
+											<th>Wishlist</th>
+											<th>Address</th>
+											<th>Disputers</th>
+											<th></th>
+										</tr>
+									</thead>
+									{# Body #}
+									<tbody>
+										{% for item in 0..4 %}
+											{% include "admin/components/samples/purchaser-table-row.twig" %}
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
+
+					{% include "admin/components/page-pagination.twig" %}
+
+					<span class="loader"></span>
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+	</div>
+</div>
