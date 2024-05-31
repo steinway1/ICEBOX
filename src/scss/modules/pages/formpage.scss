@@ -952,3 +952,63 @@ textarea {
   flex-direction: column;
   gap: 12px;
 }
+
+.formpage__upload-container {
+  padding: 48px 28px;
+  min-width: 180px;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  box-shadow: none;
+  color: #0779cb;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: rgba(7, 121, 203, 0.03);
+  border: 1px dashed #0779cb;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover,
+  &.--active {
+    background-color: rgba(7, 121, 203, 0.08);
+  }
+
+  input[type=file] {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #349ce7;
+  }
+
+  input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #0779cb;
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 200ms ease;
+  }
+
+  input[type=file]::file-selector-button:hover {
+    background-color: #349ce7;
+  }
+}
+
+.formpage__upload-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0779cb;
+  position: relative;
+  z-index: 2;
+  opacity: 1 !important;
+  margin-bottom: 12px;
+}

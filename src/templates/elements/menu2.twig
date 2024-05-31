@@ -9,10 +9,12 @@
 
 		<div class="menu2__main-nav">
 			<nav role="navigation" aria-label="Main">
-				<div class="menu2__nav-item --search">
-					<input autocomplete="off" type="text" name="keyword" placeholder="Search on Icebox.com..." id="menu_search_field">
-					<span class="--icon">{% include "components/svg/menu2_search.svg" %}</span>
-				</div>
+				<form method="get" action="/search-products">
+					<div class="menu2__nav-item --search">
+						<input autocomplete="off" type="text" name="keyword" placeholder="Search on Icebox.com..." id="menu_search_field">
+						<span class="--icon">{% include "components/svg/menu2_search.svg" %}</span>
+					</div>
+				</form>
 				{# Categories #}
 				<div class="menu2__nav-item --spot --active">
 					<div data-menu-evt="toggleDropdown" class="menu2__link">
