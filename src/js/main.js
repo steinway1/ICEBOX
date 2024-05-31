@@ -4715,7 +4715,7 @@ const formPage = new Object({
   attachWatchesUpload: () => {
     const form = document.querySelector('.form__add-watches')
     const btn = document.querySelector('[data-evt="testSubmit"]')
-    
+
     if (!form) return
     const uploadLabel = document.querySelector('.formpage__watches-label'),
       uploadInput = document.querySelector('#watches_upload'),
@@ -4723,9 +4723,13 @@ const formPage = new Object({
 
     if (uploadInput && uploadLabel && imagesWrap) {
 
-      form.onsubmit = (e) => {
+      form.addEventListener('submit', (e) => {
         e.preventDefault()
         const formData = new FormData(form)
+        const files = [...uploadInput.files]
+        files.forEach((file, i) => {
+          formData.append(`watches_upload[${i}]`, file)
+        })
         $.ajax({
           type: "POST",
           url: form.action,
@@ -4735,7 +4739,7 @@ const formPage = new Object({
           cache: false,
 
           success: function (data) {
-            var r = $.parseJSON(data);
+            const r = JSON.parse(data);
             if (!r.error) {
               showMessage('success', 'Great', r.msg);
               setTimeout(function () {
@@ -4746,33 +4750,27 @@ const formPage = new Object({
             }
           }
         });
-      }
+      })
 
       function processFile(files) {
         if (!files.length) throw new Error('No file selected')
-        files = [...files]
+
         files.forEach((file, i) => {
           if (!file.type.match('image.*')) { return }
 
-          let getIndex = () => {
-            return [...document.querySelectorAll('.formpage__upload')].length + 1
-          }
-
-          let reader = new FileReader()
+          const reader = new FileReader()
           reader.onload = function (e) {
-            let html =
-              `
-               <div class="formpage__upload" data-img-id="${getIndex()}">
-                 <div class="formpage__input-boxes">
-                   <div>
-                     <input value="1" name="visible_image_${getIndex()}" id="image_${getIndex()}" type="checkbox" checked>
-                     <label for="image_${getIndex()}"></label>
-                   </div>
-                 </div>
-                   <div data-name="${file.name}" style="background-image: url(${e.target.result})" class="formpage__upload-bg">
+            const html =
+              `<div class="formpage__upload" data-img-id="${i}">
+               <div class="formpage__input-boxes">
+                 <div>
+                   <input value="1" name="visible_image_${i}" id="image_${i}" type="checkbox" checked>
+                   <label for="image_${i}"></label>
                  </div>
                </div>
-             `
+                 <div data-name="${file.name}" style="background-image: url(${e.target.result})" class="formpage__upload-bg">
+               </div>
+             </div>`
             imagesWrap.append(html)
           }
           reader.readAsDataURL(file)

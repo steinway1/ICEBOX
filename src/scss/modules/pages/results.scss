@@ -166,6 +166,10 @@
   letter-spacing: 0.6px;
   position: relative;
 
+  @include maxWidthMd {
+    text-align: center;
+  }
+
   span {
     display: none;
     opacity: .7;
@@ -235,6 +239,11 @@
   .results-wrapper {
     padding-left: 5vw;
     padding-right: 5vw;
+    width: 100%;
+
+    @include maxWidthMd {
+      width: 100%;
+    }
 
     @include maxWidthXs {
       padding-left: 22px;
@@ -261,7 +270,13 @@
 
 .results__subheading {
   max-width: 360px;
-  font-size: 15px;
+  font-size: 14px;
+  margin-top: 6px;
+  line-height: 20px;
+
+  @include maxWidthMd {
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 767px) {
