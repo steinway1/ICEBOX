@@ -17,7 +17,8 @@ const __VALID = '--valid',
   __INVALID = '--invalid',
   __PENDING = '--pending',
   __LOCKED = '--locked',
-  __ACTIVE = '--active'
+  __ACTIVE = '--active',
+  __EXPANDED = '--expanded'
 
 const paceOptions = {
   ajax: true,
@@ -2370,6 +2371,7 @@ const productPage = new Object({
     if (!new_page_exist) {
       this.renderDOM();
       this.bindEvents();
+      this.bindToggleSummary()
       Object.values(this.initFn).forEach((target) => {
         if (typeof target === "function") target();
       });
@@ -2417,6 +2419,7 @@ const productPage = new Object({
       productPage.fn.toggleOptionVisible($(this));
     });
     this.goldOptionBtn.click(function () {
+      return
       let thisAttr = $(this).attr("data-color");
       productPage.fn.switchGoldColor(thisAttr);
     });
@@ -2589,6 +2592,7 @@ const productPage = new Object({
     //   }
     // },
     checkGoldColor: () => {
+      return
       // On load check active gold color
       let buttons = [...productPage.goldOptionBtn],
         isActived = buttons.filter((el) =>
@@ -2724,6 +2728,39 @@ const productPage = new Object({
       }
     }
   },
+
+  bindToggleSummary: function () {
+    const sum = document.querySelector('.product__item-summary')
+    if (sum) {
+      const currentHeight = sum.offsetHeight
+      const line = sum.closest('.side-row__line')
+
+      if (!line) return
+      if (currentHeight < 250) return
+
+      const toggleBtn = createElem('button', {
+        className: 'toggle-summary',
+        innerHTML: 'Show more'
+      })
+
+      toggleBtn.onclick = () => {
+        const elem = document.querySelector('.product__item-summary')
+        if (elem.offsetHeight > 180) {
+          elem.style.height = '180px'
+          elem.classList.remove(__EXPANDED)
+          toggleBtn.innerHTML = 'Show more'
+        } else {
+          const scrollH = document.querySelector('.product__item-summary').scrollHeight
+          elem.style.height = `${scrollH}px`
+          elem.classList.add(__EXPANDED)
+          toggleBtn.innerHTML = 'Show less'
+        }
+      }
+
+      line.appendChild(toggleBtn)
+      sum.style.height = `180px`
+    }
+  }
 });
 /* #endregion */
 
@@ -2751,12 +2788,12 @@ const productSplide = new Object({
       const thumbnails = productSplide.thumbArr[i];
       let main = new Splide(slider, {
         type: "loop",
-        perPage: 2,
+        perPage: 1,
         perMove: 1,
         autoplay: false,
         pauseOnHover: true,
         pauseOnFocus: true,
-        gap: "10px",
+        gap: "6px",
         arrows: false,
         pagination: false,
         speed: 750,
@@ -2768,8 +2805,6 @@ const productSplide = new Object({
         },
       });
       let thumb = new Splide(thumbnails, {
-        fixedWidth: 58,
-        gap: 6,
         rewind: true,
         pagination: false,
         arrows: false,

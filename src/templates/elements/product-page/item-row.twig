@@ -11,9 +11,9 @@
     {% if tags == true %}<div class="side-row__tags"><span>Rings</span><span>0.75CTW</span><span>Unisex</span></div>{% endif %}
 		<div class="side-row__title-wrap">
 			<h1 id="item_name" class="product__item-title">{{product.item.name}}</h1>
-			<div class="product__add-fav {% if itemIsWishlisted %}is-active{% endif %}" id="wishlist_btn_{{product.item.id}}" onclick="addToWishlist({{product.item.id}});">
+			{# <div class="product__add-fav {% if itemIsWishlisted %}is-active{% endif %}" id="wishlist_btn_{{product.item.id}}" onclick="addToWishlist({{product.item.id}});">
 				{% include "./svg/heart.svg" %}
-			</div>
+			</div> #}
 		</div>
 
 		<div class="side-row__price">
@@ -83,7 +83,7 @@
 				</span>
 			</div>
 		</div>
-
+{# 
 		{% if product.match is defined %}
 			<div class="side-row__line">
 				<div class="match-box">
@@ -107,7 +107,7 @@
 					</div>
 				</div>
 			</div>
-		{% endif %}
+		{% endif %} #}
 
 	</div>
 </div>
