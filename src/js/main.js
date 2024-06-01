@@ -2730,6 +2730,7 @@ const productPage = new Object({
   },
 
   bindToggleSummary: function () {
+    return
     const sum = document.querySelector('.product__item-summary')
     if (sum) {
       const currentHeight = sum.offsetHeight
