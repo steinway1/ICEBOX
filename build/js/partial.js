@@ -3061,6 +3061,7 @@ const productPage = new Object({
 
       line.appendChild(toggleBtn)
       sum.style.height = `180px`
+      sum.classList.add('--limited')
     }
   }
 });

@@ -707,24 +707,26 @@
   transition: all 250ms var(--cubic);
   overflow: hidden;
 
-  &::after {
-    content: '';
-    background-image: linear-gradient(to top, #fff, rgba(255, 255, 255, 0));
-    height: 40%;
-    transition: all 250ms var(--cubic);
-    position: absolute;
-    top: auto;
-    bottom: 0%;
-    left: 0%;
-    right: 0%;
-    pointer-events: none;
+  &.--limited {
+    &::after {
+      content: '';
+      background-image: linear-gradient(to top, #fff, rgba(255, 255, 255, 0));
+      height: 40%;
+      transition: all 250ms var(--cubic);
+      position: absolute;
+      top: auto;
+      bottom: 0%;
+      left: 0%;
+      right: 0%;
+      pointer-events: none;
+    }
   }
 
   &.--expanded {
     margin-bottom: 10px;
 
     &::after {
-      opacity: 0;
+      opacity: 0 !important;
     }
   }
 
@@ -746,7 +748,7 @@
   ul li span {
     padding-left: 4px;
   }
-  
+
   @include maxWidthMd {
     line-height: 22px;
   }
