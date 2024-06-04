@@ -7134,7 +7134,7 @@ class JobApp {
    * Main
    */
   save() {
-    $('#job_form_submit').click();
+    $('#job_application_form').submit();
   }
   finishMessage() {
     this.loadingOn(1000)
