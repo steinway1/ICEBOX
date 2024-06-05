@@ -2,8 +2,9 @@
   background-color: #fff;
   border: 1px solid #e5e9f1;
   box-shadow: 0 12px 48px rgba(23, 28, 41, .04);
-  transition: all 650ms ease, border-color 200ms ease, box-shadow 200ms ease;
+  transition: all 300ms ease;
   overflow: hidden;
+  position: relative;
 
   .am-item__link {
     font-size: 11px;
@@ -21,13 +22,10 @@
 
   @media screen and (min-width: 1024px) {
     &:hover {
-      border-color: var(--blue_gold);
-      box-shadow: 0 0 0 4px rgba(0, 149, 198, .1);
-
-      h3,
-      h4 {
-        color: var(--blue_gold)
-      }
+      // border-color: var(--blue_gold);
+      // box-shadow: 0 0 0 4px rgba(0, 149, 198, .1);
+      box-shadow: 0 24px 86px rgba(23, 28, 41, .12);
+      z-index: 2;
     }
   }
 }
@@ -74,6 +72,19 @@
   }
 }
 
+.fin-item__row-heading {
+  font-weight: 600;
+  padding: 10px 26px;
+  border-bottom: 1px solid #e5e9f1;
+  font-size: 14px;
+  margin: 0;
+
+  @include maxWidthXs {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
 .fin-item__title-group {
   grid-column-gap: 22px;
   grid-row-gap: 4px;
@@ -97,6 +108,13 @@
   display: flex;
   width: 100%;
   // padding: 10px;
+
+  &.--blank {
+    &>div {
+      border: none;
+      padding: 0;
+    }
+  }
 
   &>div {
     flex-flow: column;
@@ -194,29 +212,30 @@
         }
       }
     }
+
     &.--green {
-        background-color: rgba(41, 213, 55, 0.02);
-        position: relative;
-        z-index: 3;
+      background-color: rgba(41, 213, 55, 0.02);
+      position: relative;
+      z-index: 3;
 
-        &::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          z-index: 4;
-          border: 1px solid rgb(162, 245, 156);
-        }
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 4;
+        border: 1px solid rgb(162, 245, 156);
+      }
 
-        &>div,
-        &>span {
-          &:last-child {
-            color: rgb(36, 183, 66);
-            font-weight: 600;
-          }
+      &>div,
+      &>span {
+        &:last-child {
+          color: rgb(36, 183, 66);
+          font-weight: 600;
         }
+      }
     }
 
     &>div,

@@ -1,0 +1,52 @@
+<div class="am-content w_max_1080">
+	<div
+		class="am-content__wrapper">
+
+		<!-- #region Content : Header -->
+		<div class="am-main__header for_today">
+			<div class="am-container">
+				<div class="am-row__header-wrapper">
+					<div class="am-row__header">
+						<div class="am_vertical-start">
+							<h2 class="am-main__header-title">Job Applications
+							</h2>
+							<div class="am-main__subtitle">
+								<span>All applications</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+
+
+		<!-- #region Content : Main -->
+		<div class="am-main__flow">
+			<div class="am-container">
+				<div class="am-main__content">
+					<div class="am__dbl-wrap">
+						<div class="am-main__orders">
+							<div class="am-content-divider">{{submits|length}} Applications in total<span></span>
+							</div>
+
+              {% include "admin/components/page-pagination.twig" %}
+
+							{# ORDERS #}
+							{% for submit in submits %}
+								{% include "admin/components/item-job-application.twig" %}
+							{% endfor %}
+
+              {% include "admin/components/page-pagination.twig" %}
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+
+	</div>
+</div>
+
+{% include "admin/components/edit-modal_fin.twig" %}

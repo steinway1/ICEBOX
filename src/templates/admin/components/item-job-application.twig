@@ -1,0 +1,147 @@
+<div class="fin-item --job">
+	<div class="fin-item__wrapper">
+
+		<div class="fin-item__row">
+			<div class="fin-item__header">
+				<div class="fin-item__title-group">
+					<h4>{{submit.first_name}} {{submit.last_name}}</h4>
+					<div class="am-spot-row">
+						<span>#{{submit.number}}</span>
+						<span>{{submit.date}}</span>
+						<span>{{submit.time}}</span>
+					</div>
+				</div>
+				<div class="am_flex8">
+					<div class="fin-item__status-select pg-btn --select">
+						<select id="change_status{{submit.id}}">
+							<option value="" selected disabled>Status</option>
+							<option value="Success">Success</option>
+							<option value="Processing">Processing</option>
+							<option value="Inactive">Inactive</option>
+						</select>
+					</div>
+					<button data-evt="edit_fin_item" class="pg-btn">Edit</button>
+					<button data-evt="remove_fin_item" class="pg-btn">{% include "admin/svg/icon_cross.svg" %}</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="fin-item__row --blank">
+			<div class="flex_col">
+				<h4 class="fin-item__row-heading color_green">{{submit.salary}}</h4>
+				{# General Information #}
+				<div class="fin-item__details">
+					<div data-cell="first_name">
+						<span>First Name</span>
+						<span>{{submit.first_name}}</span>
+					</div>
+					<div data-cell="last_name">
+						<span>Last Name</span>
+						<span>{{submit.last_name}}</span>
+					</div>
+					<div data-cell="phone">
+						<span>Email</span>
+						<span>{{submit.phone}}</span>
+					</div>
+					<div data-cell="job_positions">
+						<span>Position(s)</span>
+						<span>
+							{% for position in submit.job_positions %}
+								{{position}}
+								{% if not loop.last %},
+								{% endif %}
+							{% endfor %}
+						</span>
+					</div>
+					<div data-cell="state">
+						<span>State</span>
+						<span>{{submit.state}}</span>
+					</div>
+					<div data-cell="city">
+						<span>City</span>
+						<span>{{submit.city}}</span>
+					</div>
+					<div data-cell="working">
+						<span>Working</span>
+						<span>{{submit.job_working}}</span>
+					</div>
+					<div data-cell="relocate">
+						<span>Ready to relocate</span>
+						<span>{{submit.job_relocate}}</span>
+					</div>
+				</div>
+
+				{# Additional Information #}
+				<h4 class="fin-item__row-heading">Experience &amp; More Info</h4>
+				<div class="fin-item__details">
+					<div data-cell="jewelry_experience">
+						<span>Jewelry experience</span>
+						<span>{{submit.job_jewelry_experience}}</span>
+					</div>
+					<div data-cell="skills">
+						<span>Skill</span>
+						<span>{{submit.job_skills}}</span>
+					</div>
+					<div data-cell="sales_before">
+						<span>Sales before</span>
+						<span>{{submit.job_sales_before}}</span>
+					</div>
+					<div data-cell="gia">
+						<span>GIA Education</span>
+						<span>{{submit.job_gia_education}}</span>
+					</div>
+					<div data-cell="diamond_sales">
+						<span>Diamond Sales</span>
+						<span>{{submit.job_diamond_sales}}</span>
+					</div>
+					<div data-cell="driver">
+						<span>Driver's license</span>
+						<span>{{submit.job_driver_license}}</span>
+					</div>
+					<div data-cell="license_from">
+						<span>License from</span>
+						<span>{{submit.job_license_from}}</span>
+					</div>
+					<div data-cell="transport">
+						<span>Transport to work</span>
+						<span>{{submit.job_transportation}}</span>
+					</div>
+					<div data-cell="criminal">
+						<span>Criminal Record</span>
+						<span>{{submit.job_criminal}}</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="fin-item__row">
+			{% if submit.system_details is defined %}
+				<div class="am-spot-row">
+					{% for detail in submit.system_details %}
+						<span>{{detail.label}}
+							:
+							<span>
+								{{detail.value}}</span>
+						</span>
+					{% endfor %}
+				</div>
+			{% endif %}
+			<div class="am-item__note-wrap">
+				<div class="am-item__note-form">
+					<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_{{submitID}}">
+					<button data-am-evt="submitNote" onclick="addNotes({{submitID}})">Add</button>
+				</div>
+				{% for note in submit.notes %}
+					<div class="am-item-note">
+						<div>
+							<span>{{note.author}}</span>:
+							{{note.text}}
+						</div>
+						<div>{{note.date}}</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
