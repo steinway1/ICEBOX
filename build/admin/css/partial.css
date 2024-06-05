@@ -10842,6 +10842,28 @@ textarea.pos-input {
   position: relative;
 }
 
+.fin-item__details > div[data-locked]::before {
+  content: "Click to show SSN";
+  cursor: pointer;
+  font-weight: 600;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  background-color: #eceff7;
+}
+
+.fin-item__details > div[data-locked]::after {
+  display: none;
+}
+
 .fin-item__details > div.--empty[data-cell=ssn] {
   background-color: rgba(213, 41, 64, 0.025);
   position: relative;

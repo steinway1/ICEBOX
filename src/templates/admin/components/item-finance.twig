@@ -45,7 +45,7 @@
 			<div class="fin-item__details">
 				{% for detail in submit.details %}
 					{% set cell_label = detail.label|replace({' ':'_',' ':'_','&':'and'})|lower|replace({' ':'_',' ':'_','&':'and'})|raw %}
-					<div data-cell="{{cell_label}}" {% if detail.value|length == 0 %} class="--empty" {% endif %}>
+					<div data-cell="{{cell_label}}" {% if detail.value|length == 0 %} class="--empty" {% endif %} {% if detail.label == 'SSN' %}data-locked{% endif %}>
 						<span>{{detail.label}}</span>
 						<span>
 							{% if detail.is_link == true %}

@@ -106,6 +106,7 @@ function allowInputSum(input) {
 class LockPin {
   constructor(settings = {}) {
     this.code = settings.code || 1234
+    this.callback = settings.callback || undefined
     this.maxLength = this.code.toString().length
     this.unlockTime = settings.unlockTime || 600
     this.currentPin = []
@@ -177,7 +178,11 @@ class LockPin {
       setTimeout(() => {
         this.destroy()
       }, getTransitionTime(this.holder));
-    }, this.unlockTime);
+    }, this.unlockTime)
+
+    if (this.callback !== undefined) {
+      this.callback()
+    }
   }
   reset() {
     this.currentPin = []
@@ -3053,6 +3058,21 @@ const FinanceList = {
       code: 3256
     })
     lockPIN.push()
+
+    document.addEventListener('click', (e) => {
+      const target = e.target
+      if (target.parentNode.closest('.fin-item__details') && target.hasAttribute('data-locked')) {
+        const callback = () => {
+          target.removeAttribute('data-locked')
+        }
+
+        const pin = new LockPin({
+          code: 3256,
+          callback: callback
+        })
+        pin.push()
+      }
+    })
   },
   bindEvents: {
     documentEvents: function () {
