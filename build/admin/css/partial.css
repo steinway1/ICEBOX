@@ -3432,6 +3432,70 @@ body.blue_head .am-select:hover {
   border-color: var(--bright_blue);
 }
 
+.custom-checkbox.--color {
+  transition: all 200ms ease;
+  user-select: none;
+}
+
+.custom-checkbox.--color:hover > div {
+  border-color: var(--royal_blue_hover);
+}
+
+.custom-checkbox.--color:active {
+  opacity: 0.6;
+}
+
+.custom-checkbox.--color.--light_blue > div::before {
+  background-color: var(--sub_light_blue);
+}
+
+.custom-checkbox.--color.--dark_blue > div::before {
+  background-color: var(--sub_dark_blue);
+}
+
+.custom-checkbox.--color.--yellow > div::before {
+  background-color: var(--sub_yellow);
+}
+
+.custom-checkbox.--color.--orange > div::before {
+  background-color: var(--sub_orange);
+}
+
+.custom-checkbox.--color.--green > div::before {
+  background-color: var(--sub_green);
+}
+
+.custom-checkbox.--color.--purple > div::before {
+  background-color: var(--sub_purple);
+}
+
+.custom-checkbox.--color > input:checked ~ div {
+  border-color: var(--royal_blue_hover);
+}
+
+.custom-checkbox.--color > div {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  border: 1px solid #c3d0df;
+  border-radius: 500px;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 12px 4px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  flex-flow: wrap;
+  transition: all 200ms ease;
+}
+
+.custom-checkbox.--color > div::before {
+  content: "";
+  background-color: var(--sub_light_blue);
+  border-radius: 500px;
+  width: 20px;
+  height: 20px;
+}
+
 .am-mark {
   grid-column-gap: 4px;
   grid-row-gap: 4px;
