@@ -1801,19 +1801,46 @@ span {
 
 /* #region  Page tip */
 .page-tip {
-  position: absolute;
+  position: fixed;
   top: 40px;
   left: 40px;
   z-index: 99999;
-  padding: 10px 16px;
-  border-radius: 0.5rem;
-  background-color: #161a25;
+  padding: 8px 16px;
+  border-radius: 0.6rem;
+  background-color: var(--royal_blue);
   color: white;
   font-size: 12px;
-  line-height: 20px;
+  line-height: 18px;
   font-weight: 700;
   text-align: center;
-  max-width: 160px;
+  max-width: 200px;
+  pointer-events: none;
+  box-shadow: 0 12px 58px rgba(47, 69, 124, 0.6);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    background-color: var(--royal_blue);
+    width: 10px;
+    height: 10px;
+    bottom: -5px;
+  }
+
+  &.--left {
+    &::after {
+      right: auto;
+      left: 18px;
+    }
+  }
+
+  &.--top {
+    &::after {
+      top: -5px;
+      bottom: auto;
+    }
+  }
 }
 
 /* #endregion */
