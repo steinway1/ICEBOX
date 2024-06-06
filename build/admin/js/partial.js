@@ -288,6 +288,18 @@ class LockPin {
   }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const mainWhales = document.querySelector('.main_whales')
+  const whalesContent = document.querySelector('.am-content_whales')
+
+  if (mainWhales && whalesContent) {
+    const pin = new LockPin({
+      code: 3256
+    })
+    pin.push()
+  }
+})
+
 class AskModal {
   constructor(settings = {}) {
     this.heading = settings.heading || 'Are You Sure You Want To Exit?'
@@ -3625,3 +3637,66 @@ document.addEventListener('DOMContentLoaded', () => {
   const toolBar = new ToolBar()
   toolBar.init()
 })
+
+/* #region  Tips */
+// class Tip {
+//   constructor() {
+//     this.tipElem = null;
+//     this.handleHover();
+//   }
+
+//   handleHover() {
+//     document.querySelectorAll('[data-tip]').forEach(elem => {
+//       elem.addEventListener('mouseenter', e => {
+//         this.createTip(e.target);
+//         this.setTipPosition(e.target);
+//         this.tipElem.textContent = e.target.dataset.tip;
+//       });
+
+//       elem.addEventListener('mouseleave', e => {
+//         this.destroyTip();
+//       });
+//     });
+//   }
+
+//   createTip(elem) {
+//     if (!this.tipElem) {
+//       this.tipElem = document.createElement('div');
+//       this.tipElem.classList.add('page-tip');
+//       document.body.append(this.tipElem);
+//     }
+//   }
+
+//   setTipPosition(elem) {
+//     const { left, top, width, height } = elem.getBoundingClientRect();
+//     const tipWidth = this.tipElem.getBoundingClientRect().width;
+//     const tipHeight = this.tipElem.getBoundingClientRect().height;
+
+//     let tipLeft = left + width / 2 - tipWidth / 2;
+//     if (tipLeft + tipWidth > window.innerWidth) {
+//       tipLeft = window.innerWidth - tipWidth;
+//     }
+//     if (tipLeft < 0) {
+//       tipLeft = 0;
+//     }
+
+//     let tipTop = top - tipHeight - 10;
+//     if (tipTop < 0) {
+//       tipTop = top + height + 10;
+//     }
+
+//     this.tipElem.style.left = `${tipLeft}px`;
+//     this.tipElem.style.top = `${tipTop}px`;
+//   }
+
+//   destroyTip() {
+//     if (this.tipElem) {
+//       this.tipElem.remove();
+//       this.tipElem = null;
+//     }
+//   }
+// }
+
+// new Tip();
+
+/* #endregion */
