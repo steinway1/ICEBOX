@@ -51,6 +51,33 @@
 						</div>
 					</div>
 
+					{# Phone Number #}
+					<div data-loan-section="phone" class="loan-case-section">
+						<h6 class="loan-case-section__title">Enter mobile number to finish.
+							<span>Click Send Code and we'll text you a verification code, standard SMS charges may apply.</span>
+						</h6>
+						<div class="loan-input-wrap">
+							<input data-validate="number" class="loan-case__input --icon" pattern="[0-9]*" placeholder="Phone Number" type="text" id="loan_number" required>
+							<div class="loan-case__input-icon">{% include "components/svg/loan-mobile.svg" %}</div>
+						</div>
+						<span class="typo_xs typo_dim">By providing your phone number, you consent to reciving autodialed text and calls from Icebox for non-telemarketing purposes regarding account information, such as transactions details or servicing information.</span>
+					</div>
+
+					{# OTP #}
+					<div data-loan-section="otp" class="loan-case-section">
+						<h6 class="loan-case-section__title">Verification.
+							<span>You will recieve a text to
+								<span data-phone>(900) 274-9663</span>
+								from Icebox.<br>Enter the code below to finish.</span>
+						</h6>
+						<div class="loan-input-wrap">
+							<input data-validate="otp" class="loan-case__input --otp" pattern="[0-9]*" placeholder="Enter 4 digits code" type="text" id="loan_otp" required maxlength="4">
+						</div>
+						<span class="typo_dim">Didn't get a code?
+							<span data-evt="send_code" class="typo_link">Re-send code</span>
+						</span>
+					</div>
+
 
 					{# Address #}
 					<div data-loan-section="address" class="loan-case-section">
@@ -277,34 +304,6 @@
 								{% include "components/svg/dollar.svg" %}
 							</div>
 						</div>
-					</div>
-
-
-					{# Phone Number #}
-					<div data-loan-section="phone" class="loan-case-section">
-						<h6 class="loan-case-section__title">Enter mobile number to finish.
-							<span>Click Send Code and we'll text you a verification code, standard SMS charges may apply.</span>
-						</h6>
-						<div class="loan-input-wrap">
-							<input data-validate="number" class="loan-case__input --icon" pattern="[0-9]*" placeholder="Phone Number" type="text" id="loan_number" required>
-							<div class="loan-case__input-icon">{% include "components/svg/loan-mobile.svg" %}</div>
-						</div>
-						<span class="typo_xs typo_dim">By providing your phone number, you consent to reciving autodialed text and calls from Icebox for non-telemarketing purposes regarding account information, such as transactions details or servicing information.</span>
-					</div>
-
-					{# OTP #}
-					<div data-loan-section="otp" class="loan-case-section">
-						<h6 class="loan-case-section__title">Verification.
-							<span>You will recieve a text to
-								<span data-phone>(900) 274-9663</span>
-								from Icebox.<br>Enter the code below to finish.</span>
-						</h6>
-						<div class="loan-input-wrap">
-							<input data-validate="otp" class="loan-case__input --otp" pattern="[0-9]*" placeholder="Enter 4 digits code" type="text" id="loan_otp" required maxlength="4">
-						</div>
-						<span class="typo_dim">Didn't get a code?
-							<span data-evt="send_code" class="typo_link">Re-send code</span>
-						</span>
 					</div>
 
 				</div>
