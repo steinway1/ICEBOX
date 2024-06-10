@@ -2682,7 +2682,6 @@ const productPage = new Object({
     }
   },
   renderDOM: function () {
-    this.favButton = $(".product__add-fav");
     this.evtExpandSummary = $('[data-evt="expandSummary"]');
     this.summaryContainer = $(".product__item-summary");
     this.buyBtn = $(".buy-btn");
@@ -2706,11 +2705,6 @@ const productPage = new Object({
     this.evtOpenGuide = $("[data-pg-open]");
   },
   bindEvents: function () {
-    if (this.favButton.length) {
-      this.favButton[0].onclick = () => {
-        productPage.fn.toggleFavState();
-      };
-    }
     this.optionBtn.click(function () {
       if ($(this).not(`.${IS_ACTIVE}`)) {
         $(this).siblings().removeClass(IS_ACTIVE)

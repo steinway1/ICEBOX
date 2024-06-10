@@ -206,7 +206,7 @@
                         <div class="am-main__content">
 
                             <div class="am-main__controls">
-                                <div class="am_flex8 --center">
+                                <div class="am_flex8">
                                     <button class="am-btn --royal" data-evt="goCRM">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M18 7V17C18 17.62 17.98 18.17 17.91 18.66C17.62 21.29 16.38 22 13 22H11C7.62 22 6.38 21.29 6.09 18.66C6.02 18.17 6 17.62 6 17V7C6 6.38 6.02 5.83 6.09 5.34C6.38 2.71 7.62 2 11 2H13C16.38 2 17.62 2.71 17.91 5.34C17.98 5.83 18 6.38 18 7Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -233,9 +233,14 @@
 
                             <div class="am_flex8">
                                 <div class="am-main__salesperson-row">
-                                    <img src="https://www.icebox.com/unsafe/150x150/icebox-jewelry.s3.amazonaws.com/whales/3f6678438d3c8a487f05f20f9b9e8095.png" alt="">
-                                    <span>These clients work with
-										<span>Zahir</span>
+                                    <img src="https://www.icebox.com/unsafe/300x300/icebox-jewelry.s3.amazonaws.com/whales/35ed4d5ac8a8dd99b9e5299ed292c208.jpg" alt="">
+                                    <span>Will, you have
+										<span>0</span>
+                                    clients in your CRM.
+                                    <br>
+                                    <span class="typo_xs">
+                    You have 0 clients with birthdays this month, and 0 clients with birthdays today.
+                    </span>
                                     </span>
                                 </div>
                             </div>
@@ -302,7 +307,23 @@
                                 </thead>
                                 <tbody></tbody>
                             </table>
-                            <div class="tb-grid" id="grid_view"></div>
+                            <div class="tb-grid-wrapper">
+                                <div class="tb-grid-controls">
+                                    <label class="toggle-checkbox">
+                                        <input type="checkbox" id="show_questions">
+                                        <span>Show Questions</span>
+                                    </label>
+                                    <label class="toggle-checkbox">
+                                        <input type="checkbox" id="show_spenders">
+                                        <span>Spenders Only</span>
+                                    </label>
+                                    <label class="toggle-checkbox">
+                                        <input type="checkbox" id="show_birthdays">
+                                        <span>View Birthdays</span>
+                                    </label>
+                                </div>
+                                <div class="tb-grid" id="grid_view"></div>
+                            </div>
                             <span class="loader"></span>
                         </div>
                     </div>

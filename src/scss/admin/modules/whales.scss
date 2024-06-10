@@ -1,3 +1,9 @@
+body.--visible_questions {
+  .whale-card__box.--quiz {
+    display: block !important;
+  }
+}
+
 .body_whales {
   .am-header {
     .am-search {
@@ -62,8 +68,7 @@
   }
 
   .am-btn {
-    border-radius: 0px;
-    box-shadow: 0 6px 12px rgba(64, 140, 241, .19);
+    border-radius: 0.3rem;
   }
 
   .am-content-divider {
@@ -109,6 +114,7 @@
 .whale-card__box {
   padding: 24px;
   position: relative;
+  transition: all 400ms ease;
 
   &.--blank {
     padding: 0;
@@ -118,15 +124,17 @@
   &.--quiz {
     padding: 0;
     border-top: 1px solid var(--whale-border);
+    display: none;
   }
 }
 
 .whale-card__date {
   border-bottom: 1px solid var(--whale-border);
-  color: #868b9b;
+  color: #686c7a;
   padding: 6px 14px;
   font-size: 11px;
   font-weight: 600;
+  font-style: italic;
 }
 
 .whale-card__profile {
@@ -158,6 +166,7 @@
   flex-flow: column;
   flex: 1;
   display: flex;
+  align-items: flex-start;
 
   &>span {
     font-size: 12px;
@@ -514,9 +523,8 @@
   width: calc(100% / 3);
   border-bottom: 1px solid var(--whale-border);
   flex-direction: column;
-  flex: auto;
   align-items: flex-start;
-  padding: 8px 14px;
+  padding: 12px 14px;
   display: flex;
 
   @include maxWidthXs {
@@ -556,7 +564,7 @@
 }
 
 .cell-title {
-  opacity: .6;
+  opacity: .75;
   font-size: 10px;
   line-height: 16px;
 }
@@ -572,7 +580,6 @@
   cursor: pointer;
   align-items: center;
   font-size: 12px;
-  font-weight: 600;
   display: flex;
   word-break: break-all;
   display: -webkit-box;
@@ -885,19 +892,28 @@
 }
 
 .am-main__salesperson-row {
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
-  border: 1px solid #498eec;
+  gap: 10px;
   justify-content: flex-start;
   align-items: center;
-  padding: 6px;
   padding-right: 10px;
   display: flex;
   font-weight: 600;
+  // font-size: 16px;
 
   &>img {
-    width: 28px;
-    height: 28px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
     background-color: white;
+  }
+
+  &>span {
+    span {
+      color: var(--royal_blue)
+    }
+
+    span.typo_xs {
+      color: inherit;
+    }
   }
 }

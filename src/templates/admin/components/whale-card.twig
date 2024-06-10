@@ -3,7 +3,6 @@
 
 	{# Top Group -- spent / crm button / salesperson #}
 	<div class="whale-card__top-group">
-		<span class="spend-typo">${{whale.total_spend | number_format(2, '.', ',')}}</span>
 		<button data-evt="cardGoCRM">CRM</button>
 		<div class="whale-card__saleperson" data-cell="saleperson">
 			{{ whale.saleperson_xedit | raw }}
@@ -29,10 +28,7 @@
 				<h3 class="whale-card__name">{{whale.full_name | raw}}
 					<span data-evt="openGoogleTip" class="ext-search"></span>
 				</h3>
-				{% if whale.edge_customer_number != '' %}
-					<span class="typo_dim">Edge:
-						{{ whale.edge_customer_number | raw }}</span>
-				{% endif %}
+				<span class="spend-typo --blank">${{whale.total_spend | number_format(2, '.', ',')}}</span>
 				{{ whale.action_bar | raw }}
 				{% if whale.wiki_link %}
 					<div class="admin-linkbar --external">
@@ -103,6 +99,12 @@
 					<div class="whale-card__cell" data-cell="at_atl">
 						<span class="cell-title">At ATL</span>
 						<span class="cell-value">{{ whale.at_atl | raw }}</span>
+					</div>
+				{% endif %}
+				{% if whale.edge_customer_number != '' %}
+					<div class="whale-card__cell" data-cell="at_atl">
+						<span class="cell-title">Edge</span>
+						<span class="cell-value">{{ whale.edge_customer_number | raw }}</span>
 					</div>
 				{% endif %}
 

@@ -1164,6 +1164,21 @@ const whalesPage = {
           }
         }
       }
+    },
+    attachToggleQuestion: () => {
+      const input = document.querySelector('#show_questions')
+      if (input) {
+        const span = input.parentNode.querySelector('span')
+
+        input.addEventListener('change', () => {
+          const isChecked = input.checked
+          if (isChecked) {
+            document.body.classList.add('--visible_questions')
+          } else {
+            document.body.classList.remove('--visible_questions')
+          }
+        })
+      }
     }
   }
 }
