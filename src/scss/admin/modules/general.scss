@@ -1901,7 +1901,7 @@ span {
 
     &:hover {
       span {
-      color: #6e7890;
+        color: #6e7890;
       }
     }
 
@@ -1958,6 +1958,67 @@ span {
         transition: all 250ms ease;
         transform: translateY(calc(var(--offset) + 1px)) translateX(calc(var(--offset) + 1px));
       }
+    }
+  }
+}
+
+.limit-form {
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  flex-flow: column;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.limit-form__row {
+  background-color: #fff;
+  border-radius: .5rem;
+  flex-flow: column;
+  width: 100%;
+  min-height: 60px;
+  padding: 0;
+  display: flex;
+  box-shadow: 0 8px 42px rgba(127, 151, 180, .2);
+}
+
+.limit-form__row-header {
+  border-bottom: 1px solid #e6ecf3;
+  padding: 18px 26px;
+  font-size: 16px;
+  font-weight: 600;
+
+  @include maxWidthXs {
+    padding: 20px;
+  }
+}
+
+.limit-form__row-body {
+  padding: 26px;
+
+  @include maxWidthXs {
+    padding: 20px;
+  }
+}
+
+.limit-form__inputs-grid {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  flex-flow: wrap;
+  display: flex;
+
+  &>div {
+    flex: 1 auto;
+    min-width: 40%;
+  }
+
+  @include maxWidthXs {
+    flex-direction: column;
+
+    &>div {
+      min-width: 100%;
     }
   }
 }
