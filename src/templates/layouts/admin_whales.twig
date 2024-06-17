@@ -8,13 +8,14 @@
 	</head>
 
 
-	<body {% if bodyClass is defined %} class="{{bodyClass}}"{% endif %}>
+	<body {% if bodyClass is defined %} class="{{bodyClass}}" {% endif %}>
 		{% include "admin/components/header-whales.twig" %}
 
 		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
 			</main>
 
 			{% include "admin/components/sidebar.twig" %}
+			{% include "admin/components/add-popup.twig" %}
 			{% include "page-components/scripts_admin.twig" %}
 			{{ block('include_script') }}
 			{% include "admin/components/back-backdrop.twig" %}

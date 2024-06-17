@@ -239,6 +239,7 @@
 
 
                                     <div class="whale-card__top-group">
+                                        <span class="spend-typo">$20,000.00</span>
                                         <button data-evt="cardGoCRM">CRM</button>
                                         <div class="whale-card__saleperson" data-cell="saleperson">
                                             <a id="_editable_65dc440287675" class="xEdit editable editable-click editable-empty" data-name="whales/salesperson" data-type="select" data-pk="id/49406" data-url="https://www.icebox.com/admin/xedit/save" data-inputclass="input-list-name-edit" data-source="/admin/xjson/whalesSalesperson" data-value="" data-title="Value">Will, Zahir</a>
@@ -261,17 +262,22 @@
                                                 <span class="spot-typo">NBA</span>
                                             </div>
                                             <div class="whale-card__profile-info">
-                                                <h3 class="whale-card__name">Patrick Baldwin Jr.
+                                                <h3 class="whale-card__name">
+                                                    Patrick Baldwin Jr.
                                                     <span data-evt="openGoogleTip" class="ext-search"></span>
                                                 </h3>
-                                                <span class="spend-typo --blank">$20,000.00</span>
-                                                <div class="admin-linkbar"><a data-evt="openEditModal" data-fancybox="" data-type="iframe" data-src="" href="javascript:;" class="admin-link"><i class="icon icon-admin-edit"></i></a><a onclick="" href="javascript:;" class="admin-link" title="Flag/Unflag Whale"><i class="icon icon-rating-empty"></i></a><a onclick="" href="javascript:;" data-evt="toggleWhaleNotes" class="admin-link" title=""><i class="icon icon-note"></i><span class="whale-notes-count"></span></a><a onclick="" class="admin-link --delete"><i class="icon icon-admin-delete"></i></a></div>
-                                                <div class="admin-linkbar --external">
-                                                    <a href="#" target="_blank" class="admin-link">
-                                                        <img src="./assets/link_wikipedia.svg" alt="">
-                                                    </a>
+
+                                                <div class="whale-card__date --icon">
+                                                    <span>Updated
+						17 days ago</span>
                                                 </div>
+
+                                                <div class="admin-linkbar"><a data-evt="openEditModal" data-fancybox="" data-type="iframe" data-src="" href="javascript:;" class="admin-link"><i class="icon icon-admin-edit"></i></a><a onclick="" href="javascript:;" class="admin-link" title="Flag/Unflag Whale"><i class="icon icon-rating-empty"></i></a><a onclick="" href="javascript:;" data-evt="toggleWhaleNotes" class="admin-link" title=""><i class="icon icon-note"></i><span class="whale-notes-count"></span></a><a onclick="" class="admin-link --delete"><i class="icon icon-admin-delete"></i></a></div>
                                             </div>
+                                        </div>
+                                        <div class="am_flex8 mg-top_6">
+                                            <button data-add-evt="addVisit" class="whale-card__sub-btn">Add Visit</button>
+                                            <button data-add-evt="addAppointment" class="whale-card__sub-btn">Add Appointment</button>
                                         </div>
                                     </div>
 
@@ -279,9 +285,6 @@
 
 
                                         <div class="whale-card__box --blank">
-                                            <div class="whale-card__date">Updated
-                                                17 days ago
-                                            </div>
 
                                             <div class="whale-card__cells">
                                                 <div class="whale-card__cell" data-cell="phone">
@@ -318,7 +321,6 @@
                                                     <span class="cell-title">Edge</span>
                                                     <span class="cell-value">001-2561</span>
                                                 </div>
-
                                                 <div class="whale-card__cell" data-cell="socials">
                                                     <div class="tb-social-btn instagram">
                                                         <a href="#" target="_blank">patrKK</a>
@@ -329,24 +331,17 @@
                                                         <span class="tb-social-count">32,018</span>
                                                     </div>
                                                 </div>
+
+                                                <div class="whale-card__cell --external">
+                                                    <a href="#" target="_blank" class="whale-card__external-link --wiki"></a>
+                                                    <a href="#" target="_blank" class="whale-card__external-link --youtube"></a>
+                                                </div>
                                             </div>
                                         </div>
 
 
                                         <div class="whale-card__box --quiz">
-                                            <div class="whale-card__quiz-row">
-                                                <span >Possible Customer</span>
-                                                <div class="whale-card__quiz-form">
-                                                    <label>
-                                                        <input type="radio" name="whale_customer_1" onchange="quickWhaleUpdate(1,'customer');" value="1">
-                                                        <span >Yes</span>
-                                                    </label>
-                                                    <label>
-                                                        <input type="radio" name="whale_customer_1" onchange="quickWhaleUpdate(1,'customer');" value="0">
-                                                        <span >No</span>
-                                                    </label>
-                                                </div>
-                                            </div>
+
                                             <div class="whale-card__quiz-row">
                                                 <span>Wears Jewelry?</span>
                                                 <div class="whale-card__quiz-form">
@@ -369,19 +364,6 @@
                                                     </label>
                                                     <label>
                                                         <input type="radio" name="whale_address_1" value="0" onchange="quickWhaleUpdate(1,'address');">
-                                                        <span>No</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="whale-card__quiz-row">
-                                                <span>Current Customer ?</span>
-                                                <div class="whale-card__quiz-form">
-                                                    <label>
-                                                        <input type="radio" name="whale_current_customer_1" value="1" onchange="quickWhaleUpdate(1,'current_customer');">
-                                                        <span>Yes</span>
-                                                    </label>
-                                                    <label>
-                                                        <input type="radio" name="whale_current_customer_1" value="0" onchange="quickWhaleUpdate(1,'current_customer');">
                                                         <span>No</span>
                                                     </label>
                                                 </div>
@@ -701,6 +683,68 @@
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M3 1.25C2.0335 1.25 1.25 2.0335 1.25 3V21C1.25 21.9665 2.0335 22.75 3 22.75H6.55556C7.52205 22.75 8.30556 21.9665 8.30556 21V3C8.30556 2.0335 7.52205 1.25 6.55556 1.25H3ZM2.75 3C2.75 2.86193 2.86193 2.75 3 2.75H6.55556C6.69363 2.75 6.80556 2.86193 6.80556 3V21C6.80556 21.1381 6.69363 21.25 6.55556 21.25H3C2.86193 21.25 2.75 21.1381 2.75 21V3ZM9.77777 1.25C9.36356 1.25 9.02777 1.58579 9.02777 2C9.02777 2.41421 9.36356 2.75 9.77777 2.75H21C21.1381 2.75 21.25 2.86193 21.25 3V21C21.25 21.1381 21.1381 21.25 21 21.25H9.77777C9.36356 21.25 9.02777 21.5858 9.02777 22C9.02777 22.4142 9.36356 22.75 9.77777 22.75H21C21.9665 22.75 22.75 21.9665 22.75 21V3C22.75 2.0335 21.9665 1.25 21 1.25H9.77777Z" fill="currentColor"></path>
             </svg> </button>
     </aside>
+    <div class="add-popup">
+        <div class="add-popup__container">
+            <form method="post">
+                <div class="add-popup__content">
+                    <div class="add-popup__row --header">
+                        <h3 data-add-heading>New Visit:
+                            <span>Whale Name</span>
+                        </h3>
+                        <p>Fill in the fields below to add a new record.</p>
+                        <button class="over-close-btn" data-add-evt="cancel"></button>
+                    </div>
+                    <div class="add-popup__row">
+                        <div class="add-popup__input-grid">
+                            <div class="input-box">
+                                <div>
+                                    <input data-datepicker type="text" name="visit_date" id="visit_date">
+                                    <label for="visit_date">Date</label>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <div>
+                                    <input type="text" name="visit_time" id="visit_time">
+                                    <label for="visit_time">Time</label>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <div>
+                                    <input type="text" name="visit_duration" id="visit_duration">
+                                    <label for="visit_duration">Duration</label>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <div>
+                                    <input type="text" name="visit_how_many" id="visit_how_many">
+                                    <label for="visit_how_many">How Many</label>
+                                </div>
+                            </div>
+                            <div class="input-box --select">
+                                <div>
+                                    <select name="visit_transaction" id="visit_transaction">
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                    <label for="visit_trasnaction">Transaction</label>
+                                </div>
+                            </div>
+                            <div class="input-box --icon --dollar">
+                                <div>
+                                    <input type="text" name="visit_amount" id="visit_amount">
+                                    <label for="visit_amount">Amount</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-popup__row --footer">
+                        <button data-add-evt="cancel" class="--sub">Cancel</button>
+                        <button data-add-evt="submit">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <script src="./js/partial-min.js"></script>
     <script src="./js/typescript.js"></script>
 

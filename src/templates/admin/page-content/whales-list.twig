@@ -111,7 +111,7 @@
 					<div class="am-main__content">
 
 						<div class="am-main__controls">
-							<div class="am_flex8">
+							<div class="am_flex8 --center">
 								<button class="am-btn --royal" data-evt="goCRM">
 									{% include "admin/svg/icon_cards.svg" %}
 									<span>CRM Cards</span>
@@ -132,104 +132,78 @@
 								<div class="am-main__salesperson-row">
 									<img src="{{ saleperson_photo }}" alt="">
 									<span>{{ saleperson_name }}, you have
-										<span>{{ salesperson_clients|length }}</span>
+										<span>{{ saleperson_clients_count }}</span>
 										clients in your CRM.
-                    <br>
-                    <span class="typo_xs">
-                    You have {{ saleperson_clients.month_birhday|length }} clients with birthdays this month, and {{ saleperson_clients.today|length }} clients with birthdays today.
-                    </span>
-                    </span>
+										<br>
+										{% if saleperson_birthdays %}
+											<span class="typo_xs">
+												You have
+												{{ saleperson_clients.month_birhday|length }}
+												clients with birthdays this month, and
+												{{ saleperson_clients.today|length }}
+												clients with birthdays today.
+											</span>
+										{% endif %}
+									</div>
 								</div>
-							</div>
-						{% endif %}
+								<form action="" method="get">
+									<div class="am_flex8">
+										{% for color in saleperson_clients_colors %}
+											<label class="custom-checkbox --color --{{ color.class }}">
+												<input type="radio" name="salesperson_spend" value="{{ color.count }}">
+												<div>
+													<span>{{ color.count }}</span>
+												</div>
+											</label>
+										{% endfor %}
+									</div>
+								</form>
+							{% endif %}
 
-						{% if saleperson %}
-							<form action="" method="get">
-								<div class="am_flex8">
-									<label class="custom-checkbox --color --light_blue">
-										<input type="radio" name="salesperson_spend" value="0">
-										<div>
-											<span>{{saleperson.spenders.light_blue|length}}</span>
-										</div>
+							<table class="datatables" id="allTable" {% if table_view == false %} style="display:none" {% endif %}>
+								<thead>
+									<tr>
+										<th>Salesperson(s)</th>
+										<th>Full Name</th>
+										<th>Instagram Full</th>
+										<th>Salary</th>
+										<th>Team</th>
+										<th>Total Pay</th>
+										<th>Social</th>
+										<th>City</th>
+										<th>State</th>
+										<th>ATL Stop</th>
+										<th>URL</th>
+										<th>Actions</th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+							<div class="tb-grid-wrapper">
+								<div class="tb-grid-controls">
+									<label class="toggle-checkbox">
+										<input type="checkbox" id="show_questions">
+										<span>Show Questions</span>
 									</label>
-									<label class="custom-checkbox --color --dark_blue">
-										<input type="radio" name="salesperson_spend" value="1">
-										<div>
-											<span>{{saleperson.spenders.dark_blue|length}}</span>
-										</div>
+									<label class="toggle-checkbox">
+										<input type="checkbox" id="show_spenders">
+										<span>Spenders Only</span>
 									</label>
-									<label class="custom-checkbox --color --yellow">
-										<input type="radio" name="salesperson_spend" value="2">
-										<div>
-											<span>{{saleperson.spenders.yellow|length}}</span>
-										</div>
-									</label>
-									<label class="custom-checkbox --color --orange">
-										<input type="radio" name="salesperson_spend" value="3">
-										<div>
-											<span>{{saleperson.spenders.orange|length}}</span>
-										</div>
-									</label>
-									<label class="custom-checkbox --color --green">
-										<input type="radio" name="salesperson_spend" value="4">
-										<div>
-											<span>{{saleperson.spenders.green|length}}</span>
-										</div>
-									</label>
-									<label class="custom-checkbox --color --purple">
-										<input type="radio" name="salesperson_spend" value="5">
-										<div>
-											<span>{{saleperson.spenders.purple|length}}</span>
-										</div>
+									<label class="toggle-checkbox">
+										<input type="checkbox" id="show_birthdays">
+										<span>View Birthdays</span>
 									</label>
 								</div>
-							</form>
-						{% endif %}
-
-						<table class="datatables" id="allTable" {% if table_view == false %} style="display:none" {% endif %}>
-							<thead>
-								<tr>
-									<th>Salesperson(s)</th>
-									<th>Full Name</th>
-									<th>Instagram Full</th>
-									<th>Salary</th>
-									<th>Team</th>
-									<th>Total Pay</th>
-									<th>Social</th>
-									<th>City</th>
-									<th>State</th>
-									<th>ATL Stop</th>
-									<th>URL</th>
-									<th>Actions</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody></tbody>
-						</table>
-						<div class="tb-grid-wrapper">
-							<div class="tb-grid-controls">
-								<label class="toggle-checkbox">
-									<input type="checkbox" id="show_questions">
-									<span>Show Questions</span>
-								</label>
-								<label class="toggle-checkbox">
-									<input type="checkbox" id="show_spenders">
-									<span>Spenders Only</span>
-								</label>
-								<label class="toggle-checkbox">
-									<input type="checkbox" id="show_birthdays">
-									<span>View Birthdays</span>
-								</label>
+								<div class="tb-grid" id="grid_view"></div>
 							</div>
-							<div class="tb-grid" id="grid_view"></div>
+							<span class="loader"></span>
 						</div>
-						<span class="loader"></span>
 					</div>
 				</div>
+				<!-- #endregion -->
 			</div>
-			<!-- #endregion -->
 		</div>
-	</div>
 
-{% endif %}
+	{% endif %}

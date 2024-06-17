@@ -26,30 +26,26 @@
 				<span class="spot-typo">{{whale.tab}}</span>
 			</div>
 			<div class="whale-card__profile-info">
-				<h3 class="whale-card__name">
-					{% if whale.is_musician %}
-						{% if whale.stage_name != '' %}
-							{{ whale.stage_name | raw }}
-						{% else %}
-							{{whale.full_name | raw}}
-						{% endif %}
-					{% else %}
-						{{whale.full_name | raw}}
-					{% endif %}
+				<h3 class="whale-card__name">{{whale.full_name | raw}}
 					<span data-evt="openGoogleTip" class="ext-search"></span>
 				</h3>
-
 				<div class="whale-card__date --icon">
 					<span>Updated
 						{{whale.last_updated}}</span>
 				</div>
-
 				{{ whale.action_bar | raw }}
+				{# {% if whale.wiki_link %}
+													<div class="admin-linkbar --external">
+														<a href="{{ whale.wiki_link }}" target="_blank" class="admin-link">
+															<img src="./assets/link_wikipedia.svg" alt="">
+														</a>
+													</div>
+												{% endif %} #}
 			</div>
 		</div>
 		<div class="am_flex8 mg-top_6">
-			<button data-add-evt="addVisit" class="whale-card__sub-btn">Add Visit</button>
-			<button data-add-evt="addAppointment" class="whale-card__sub-btn">Add Appointment</button>
+			<button class="whale-card__sub-btn">Add Visit</button>
+			<button class="whale-card__sub-btn">Add Appointment</button>
 		</div>
 	</div>
 
@@ -58,7 +54,6 @@
 
 		{# Details #}
 		<div class="whale-card__box --blank">
-
 			<div class="whale-card__cells">
 				{% if whale.have_phone and whale.have_phone != '' %}
 					<div class="whale-card__cell" data-cell="phone">
@@ -116,6 +111,7 @@
 						<span class="cell-value">{{ whale.edge_customer_number | raw }}</span>
 					</div>
 				{% endif %}
+
 				{% if whale.socials %}
 					<div class="whale-card__cell" data-cell="socials">
 						{% for key, obj in whale.socials %}
@@ -140,38 +136,24 @@
 						{% endfor %}
 					</div>
 				{% endif %}
-
-				{% if whale.wiki_link or whale.youtube_link %}
-					<div class="whale-card__cell --external">
-						{% if whale.wiki_link %}
-							<a href="{{ whale.wiki_link }}" target="_blank" class="whale-card__external-link --wiki"></a>
-						{% endif %}
-						{% if whale.youtube_link %}
-							<a href="{{ whale.youtube_link }}" target="_blank" class="whale-card__external-link --youtube"></a>
-						{% endif %}
-					</div>
-				{% endif %}
 			</div>
 		</div>
 
 		{# Quiz #}
 		<div class="whale-card__box --quiz">
-
-			{% if whale.current_customer == false %}
-				<div class="whale-card__quiz-row">
-					<span {% if whale.current_customer%} style="text-decoration: line-through" {% endif %}>Possible Customer</span>
-					<div class="whale-card__quiz-form">
-						<label>
-							<input type="radio" name="whale_customer_{{whale.id}}" onchange="quickWhaleUpdate({{ whale.id }},'customer');" {% if whale.possible_customer %} checked {% endif %} value="1" {% if whale.current_customer%} disabled {% endif %}>
-							<span {% if whale.current_customer%} style="text-decoration: line-through" {% endif %}>Yes</span>
-						</label>
-						<label>
-							<input type="radio" name="whale_customer_{{whale.id}}" onchange="quickWhaleUpdate({{ whale.id }},'customer');" {% if whale.possible_customer == false %} checked {% endif %} value="0" {% if whale.current_customer%} disabled {% endif %}>
-							<span {% if whale.current_customer%} style="text-decoration: line-through" {% endif %}>No</span>
-						</label>
-					</div>
+			<div class="whale-card__quiz-row">
+				<span {% if whale.current_customer%} style="text-decoration: line-through" {% endif %}>Possible Customer</span>
+				<div class="whale-card__quiz-form">
+					<label>
+						<input type="radio" name="whale_customer_{{whale.id}}" onchange="quickWhaleUpdate({{ whale.id }},'customer');" {% if whale.possible_customer %} checked {% endif %} value="1" {% if whale.current_customer%} disabled {% endif %}>
+						<span {% if whale.current_customer%} style="text-decoration: line-through" {% endif %}>Yes</span>
+					</label>
+					<label>
+						<input type="radio" name="whale_customer_{{whale.id}}" onchange="quickWhaleUpdate({{ whale.id }},'customer');" {% if whale.possible_customer == false %} checked {% endif %} value="0" {% if whale.current_customer%} disabled {% endif %}>
+						<span {% if whale.current_customer%} style="text-decoration: line-through" {% endif %}>No</span>
+					</label>
 				</div>
-			{% endif %}
+			</div>
 			<div class="whale-card__quiz-row">
 				<span>Wears Jewelry?</span>
 				<div class="whale-card__quiz-form">
@@ -198,21 +180,19 @@
 					</label>
 				</div>
 			</div>
-			{% if whale.total_spend == '' or whale.edge_customer_number == ''%}
-				<div class="whale-card__quiz-row">
-					<span>Current Customer ?</span>
-					<div class="whale-card__quiz-form">
-						<label>
-							<input type="radio" name="whale_current_customer_{{whale.id}}" value="1" onchange="quickWhaleUpdate({{ whale.id }},'current_customer');" {% if whale.current_customer %} checked {% endif %}>
-							<span>Yes</span>
-						</label>
-						<label>
-							<input type="radio" name="whale_current_customer_{{whale.id}}" value="0" onchange="quickWhaleUpdate({{ whale.id }},'current_customer');" {% if whale.current_customer == false %} checked {% endif %}>
-							<span>No</span>
-						</label>
-					</div>
+			<div class="whale-card__quiz-row">
+				<span>Current Customer ?</span>
+				<div class="whale-card__quiz-form">
+					<label>
+						<input type="radio" name="whale_current_customer_{{whale.id}}" value="1" onchange="quickWhaleUpdate({{ whale.id }},'current_customer');" {% if whale.current_customer %} checked {% endif %}>
+						<span>Yes</span>
+					</label>
+					<label>
+						<input type="radio" name="whale_current_customer_{{whale.id}}" value="0" onchange="quickWhaleUpdate({{ whale.id }},'current_customer');" {% if whale.current_customer == false %} checked {% endif %}>
+						<span>No</span>
+					</label>
 				</div>
-			{% endif %}
+			</div>
 			<div class="whale-card__quiz-row">
 				<span>Visited Icebox ?</span>
 				<div class="whale-card__quiz-form">

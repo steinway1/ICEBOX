@@ -14,7 +14,26 @@ const
   __EMPTY = '--empty',
   __TRUE = '--true',
   __FALSE = '--false',
-  __FADE = '--fade'
+  __FADE = '--fade',
+  __VISIBLE = '--visible'
+
+function createElem(tagName, options) {
+  const { className, id, innerHTML, style, attributes, toAppend } = options
+  const elem = document.createElement(tagName)
+  if (className) elem.className = className;
+  if (id) elem.id = id;
+  if (innerHTML) elem.innerHTML = innerHTML;
+  if (style) {
+    for (const key in options.style) { elem.style[key] = options.style[key] }
+  }
+  if (attributes) {
+    for (const key in options.attributes) { elem.setAttribute(key, options.attributes[key]) }
+  }
+  if (toAppend) {
+    for (const child of toArray(toAppend)) { elem.appendChild(child) }
+  }
+  return elem
+}
 
 function lockScroll() {
   setTimeout(function () {
@@ -40,6 +59,41 @@ function unlockScroll() {
       (document.body.style.left = ""),
       (document.body.style.width = ""),
       window.scroll(0, o);
+  }
+}
+
+class PopupBackdrop {
+  constructor(settings = {}) {
+    this.el = createElem('div', {
+      className: 'page-backdrop',
+    })
+    this.callback = settings.callback || null
+    this.show()
+    this.el.addEventListener('click', (e) => {
+      if (e.target === this.el) {
+        this.hide()
+      }
+    })
+  }
+
+  show() {
+    document.body.appendChild(this.el)
+    this.el.style.display = 'block'
+    setTimeout(() => {
+      this.el.style.opacity = '1'
+    }, 1);
+  }
+
+  hide() {
+    this.el.style.opacity = '0'
+    setTimeout(() => {
+      this.el.style.display = 'none'
+      this.el.remove()
+    }, getTransitionTime(this.el));
+
+    if (this.callback) {
+      this.callback()
+    }
   }
 }
 
@@ -443,24 +497,6 @@ function pageMsg(settings = {}) {
 
 function toArray(value) {
   return Array.isArray(value) ? value : [value];
-}
-
-function createElem(tagName, options) {
-  const { className, id, innerHTML, style, attributes, toAppend } = options
-  const elem = document.createElement(tagName)
-  if (className) elem.className = className;
-  if (id) elem.id = id;
-  if (innerHTML) elem.innerHTML = innerHTML;
-  if (style) {
-    for (const key in options.style) { elem.style[key] = options.style[key] }
-  }
-  if (attributes) {
-    for (const key in options.attributes) { elem.setAttribute(key, options.attributes[key]) }
-  }
-  if (toAppend) {
-    for (const child of toArray(toAppend)) { elem.appendChild(child) }
-  }
-  return elem
 }
 
 Number.prototype.between = function (min, max) {
@@ -3732,3 +3768,127 @@ onContentLoaded(() => {
   new PageTip()
 })
 /* #endregion */
+
+class AddModal {
+  constructor() {
+    this.rootEl = document.querySelector('.add-popup')
+    this.heading = this.rootEl.querySelector('[data-add-heading]')
+    this.form = this.rootEl.querySelector('form')
+    this.active = false
+    this.whaleId = undefined
+    this.whaleName = undefined
+    this.init()
+  }
+
+  get getWhaleId() {
+    return this.whaleId
+  }
+  get getWhaleName() {
+    return this.whaleName
+  }
+
+  submitVisit() {
+    let id = this.getWhaleId
+    if (id !== undefined) {
+      new pageMsg({
+        type: 'success',
+        heading: `Success!`,
+        msg: `New visit for <b>${this.getWhaleName}</b> added.`,
+      })
+    }
+  }
+  submitAppointment() {
+    let id = this.getWhaleId
+    if (id !== undefined) {
+      new pageMsg({
+        type: 'success',
+        heading: `Success!`,
+        msg: `New appointment for <b>${this.getWhaleName}</b> added.`,
+      })
+    }
+  }
+
+  open() {
+    if (!this.active) {
+      window.backdrop = new PopupBackdrop({
+        callback: () => { this.close() }
+      })
+      this.rootEl.classList.add(__VISIBLE)
+      this.active = true
+    }
+  }
+  close() {
+    if (this.active) {
+      this.rootEl.classList.remove(__VISIBLE)
+      this.active = false
+      const backdrop = window.backdrop
+      if (backdrop) backdrop.hide()
+    }
+  }
+  setup(card, type) {
+    if (!card) return
+    let name = card.querySelector('.whale-card__name').textContent
+    let id = type == 'visit' ? 'addVisit' : 'addAppointment'
+    let whaleId = card.dataset.id.replace(/\D/g, '')
+
+    this.whaleId = whaleId
+    this.whaleName = name
+    this.heading.innerHTML = `
+    New ${type}:
+    <span>${name}</span>
+    `
+    this.form.id = id
+    this.form.onsubmit = (e) => {
+      e.preventDefault()
+      this.close()
+      if (type == 'visit') {
+        this.submitVisit()
+      } else {
+        this.submitAppointment()
+      }
+    }
+  }
+
+  bindEvents() {
+    // Add visit
+    document.addEventListener('click', (e) => {
+      const target = e.target
+      if (target.closest('[data-add-evt="addVisit"]')) {
+        const card = target.closest('.whale-card')
+        if (!card) throw new Error('Whale Card not found')
+        this.open()
+        this.setup(card, 'visit')
+      }
+    })
+
+    // Add appointment
+    document.addEventListener('click', (e) => {
+      const target = e.target
+      if (target.closest('[data-add-evt="addAppointment"]')) {
+        const card = target.closest('.whale-card')
+        if (!card) throw new Error('Whale Card not found')
+        this.open()
+        this.setup(card, 'appointment')
+      }
+    })
+
+    // Close
+    document.addEventListener('click', (e) => {
+      const target = e.target
+      if (target.closest('[data-add-evt="cancel"]')) {
+        e.preventDefault()
+        this.close()
+      }
+    })
+  }
+
+  init() {
+    if (this.rootEl) {
+      this.bindEvents()
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.addModal = new AddModal()
+})
