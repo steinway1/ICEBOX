@@ -396,27 +396,50 @@ button.dt-paging-button.current {
   }
 }
 
+.admin-link {
+  &.--pulsing {
+    animation: linkPulse 1.6s infinite;
+  }
+}
+
+@keyframes linkPulse {
+  0% {
+    border-color: #f0f6ff;
+    box-shadow: 0 0 0 0 rgba(55, 134, 241, 0.7);
+  }
+
+  50% {
+    border-color: #79a9eb;
+    box-shadow: 0 0 0 6px rgba(55, 134, 241, 0);
+  }
+
+  100% {
+    border-color: #f0f6ff;
+    box-shadow: 0 0 0 0 rgba(55, 134, 241, 0);
+  }
+}
+
 .admin-linkbar .admin-link {
-  color: #285783 !important;
-  text-transform: uppercase !important;
-  cursor: pointer !important;
-  background-color: #f0f6ff !important;
-  border: 1px solid #f0f6ff !important;
-  border-radius: 6px !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 5px !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  line-height: 0 !important;
-  display: flex !important;
-  gap: 4px !important;
-  transition: all 200ms ease !important;
+  color: #285783;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: #f0f6ff;
+  border: 1px solid #f0f6ff;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 0;
+  display: flex;
+  gap: 4px;
+  transition: all 200ms ease;
 
   &[data-evt="toggleWhaleNotes"] {
     &.is-active {
-      background-color: var(--navy_blue_light) !important;
-      color: #fff !important;
+      background-color: var(--royal_blue);
+      color: white;
 
       i {
         background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 12.2H15" stroke="%23ffffff" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 16.2H12.38" stroke="%23ffffff" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z" stroke="%23ffffff" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16 4.02002C19.33 4.20002 21 5.43002 21 10V16C21 20 20 22 15 22H9C4 22 3 20 3 16V10C3 5.44002 4.67 4.20002 8 4.02002" stroke="%23ffffff" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>');
@@ -1840,7 +1863,7 @@ span {
   text-align: center;
   max-width: 200px;
   pointer-events: none;
-  box-shadow: 0 12px 58px rgba(47, 69, 124, 0.6);
+  box-shadow: 0 12px 58px rgba(78, 108, 184, 0.4);
 
   &::after {
     content: '';

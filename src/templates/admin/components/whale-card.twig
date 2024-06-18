@@ -8,6 +8,12 @@
 		<div class="whale-card__saleperson" data-cell="saleperson">
 			{{ whale.saleperson_xedit | raw }}
 		</div>
+		{% if whale.catalog_sent == 'Yes' %}
+			<div data-tip="Catalog sent" class="catalog-sent-icon --active"></div>
+		{% else %}
+			<div data-tip="Catalog unsent" class="catalog-sent-icon"></div>
+		{% endif %}
+
 	</div>
 
 	{# Profile Group -- avatar / upload image / spender color #}
@@ -270,12 +276,14 @@
 					</div>
 				{% endfor %}
 			</div>
-			<div class="whale-card__notes-footer">
-				<div class="am-item__note-form">
-					<input class="am-note-input" id="new_whale_note_{{ whale.id }}" autocomplete="off" placeholder="New note here..." type="text">
-					<button onclick="AddWhaleNote({{ whale.id }});">Add</button>
-				</div>
-			</div>
 		</div>
 	</div>
+
+	<div class="whale-card__notes-footer">
+		<div class="am-item__note-form">
+			<input class="am-note-input" id="new_whale_note_{{ whale.id }}" autocomplete="off" placeholder="New note here..." type="text">
+			<button onclick="AddWhaleNote({{ whale.id }});">Add</button>
+		</div>
+	</div>
+  
 </div>

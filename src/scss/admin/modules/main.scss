@@ -1831,6 +1831,42 @@ body {
       }
     }
   }
+
+  &.--box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:active {
+      opacity: .65;
+    }
+
+    &:hover {
+      &>span {
+        border-color: var(--royal_blue_hover);
+      }
+    }
+
+    input {
+      &:checked {
+        &+span {
+          border-color: var(--royal_blue);
+        background-color: rgba(73, 144, 238, 0.07);
+        }
+      }
+    }
+
+    &>span {
+      padding: 6px 16px;
+      border-radius: .5rem;
+      border: 1px solid #c8cedc;
+      font-size: 13px;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
 }
 
 .am-mark {

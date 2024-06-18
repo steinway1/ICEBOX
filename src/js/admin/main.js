@@ -1276,29 +1276,56 @@ const whaleCards = {
     setInitialStats: () => {
       whaleCards.updateNotesCount()
     },
-    attachNoteButtonClick: () => {
-      const arr = [...document.querySelectorAll('[data-evt="toggleWhaleNotes"]')]
-      arr.forEach((btn) => {
-        btn.onclick = () => {
-          const
-            card = btn.closest('.whale-card'),
-            noteContainer = card.querySelector('.whale-card__notes'),
-            cells = card.querySelector('.whale-card__cells')
-          if (noteContainer && cells) {
-            if (noteContainer.isVisible()) {
-              btn.classList.remove(IS_ACTIVE)
-              noteContainer.classList.remove(IS_VISIBLE)
-              cells.classList.remove(IS_HIDDEN)
-              setTimeout(() => {
-                noteContainer.style.display = 'none'
-              }, getTransitionTime(noteContainer));
+    attachNotes: () => {
+      const cls = '--notes_visible'
+
+      // Mouseover Avatar
+      document.addEventListener('mouseover', (e) => {
+        const target = e.target
+        if (target.closest('.whale-card__avatar')) {
+          const card = target.closest('.whale-card')
+          if (card) {
+            if (!card.classList.contains(cls)) {
+              card.classList.add(cls)
+            }
+          }
+        }
+      })
+      // Mouseout Avatar
+      document.addEventListener('mouseout', (e) => {
+        const target = e.target
+        if (target.closest('.whale-card__avatar')) {
+          const card = target.closest('.whale-card')
+          if (card) {
+            if (card.classList.contains(cls)) {
+              card.classList.remove(cls)
+            }
+          }
+        }
+      })
+      // Input
+      document.querySelectorAll('.whale-card').forEach((card) => {
+        const input = card.querySelector('.am-note-input')
+        const btn = card.querySelector('[data-evt="toggleWhaleNotes"]')
+        if (input) {
+          input.addEventListener('focus', () => {
+            if (!card.classList.contains(cls)) {
+              card.classList.add(cls)
+            }
+          })
+        }
+      })
+      // Button click
+      document.addEventListener('click', (e) => {
+        const target = e.target
+        if (target.dataset.evt == 'toggleWhaleNotes' || target.closest('[data-evt="toggleWhaleNotes"]')) {
+          const btn = target.closest('[data-evt="toggleWhaleNotes"]') || target
+          const card = target.closest('.whale-card')
+          if (card) {
+            if (card.classList.contains(cls)) {
+              card.classList.remove(cls)
             } else {
-              btn.classList.add(IS_ACTIVE)
-              noteContainer.style.display = 'block'
-              cells.classList.add(IS_HIDDEN)
-              setTimeout(() => {
-                noteContainer.classList.add(IS_VISIBLE)
-              }, 1);
+              card.classList.add(cls)
             }
           }
         }
@@ -3118,7 +3145,7 @@ const FinanceList = {
     const lockPIN = new LockPin({
       code: 3256
     })
-    lockPIN.push()
+    // lockPIN.push()
 
     document.addEventListener('click', (e) => {
       const target = e.target

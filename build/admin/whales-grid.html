@@ -244,6 +244,8 @@
                                         <div class="whale-card__saleperson" data-cell="saleperson">
                                             <a id="_editable_65dc440287675" class="xEdit editable editable-click editable-empty" data-name="whales/salesperson" data-type="select" data-pk="id/49406" data-url="https://www.icebox.com/admin/xedit/save" data-inputclass="input-list-name-edit" data-source="/admin/xjson/whalesSalesperson" data-value="" data-title="Value">Will, Zahir</a>
                                         </div>
+                                        <div data-tip="Catalog sent" class="catalog-sent-icon --active"></div>
+
                                     </div>
 
 
@@ -272,7 +274,7 @@
 						17 days ago</span>
                                                 </div>
 
-                                                <div class="admin-linkbar"><a data-evt="openEditModal" data-fancybox="" data-type="iframe" data-src="" href="javascript:;" class="admin-link"><i class="icon icon-admin-edit"></i></a><a onclick="" href="javascript:;" class="admin-link" title="Flag/Unflag Whale"><i class="icon icon-rating-empty"></i></a><a onclick="" href="javascript:;" data-evt="toggleWhaleNotes" class="admin-link" title=""><i class="icon icon-note"></i><span class="whale-notes-count"></span></a><a onclick="" class="admin-link --delete"><i class="icon icon-admin-delete"></i></a></div>
+                                                <div class="admin-linkbar"><a data-evt="openEditModal" data-fancybox="" data-type="iframe" data-src="" href="javascript:;" class="admin-link"><i class="icon icon-admin-edit"></i></a><a onclick="" href="javascript:;" class="admin-link" title="Flag/Unflag Whale"><i class="icon icon-rating-empty"></i></a><a onclick="" href="javascript:;" data-evt="toggleWhaleNotes" class="admin-link --notes --pulsing" title=""><i class="icon icon-note"></i><span class="whale-notes-count">4</span></a><a onclick="" class="admin-link --delete"><i class="icon icon-admin-delete"></i></a></div>
                                             </div>
                                         </div>
                                         <div class="am_flex8 mg-top_6">
@@ -385,7 +387,7 @@
                                                 <span>Catalog Sent ?</span>
                                                 <div class="whale-card__quiz-form">
                                                     <label>
-                                                        <input type="radio" name="whale_catalog_sent_1" value="1" onchange="quickWhaleUpdate(1,'catalog_sent');">
+                                                        <input type="radio" name="whale_catalog_sent_1" value="1" onchange="quickWhaleUpdate(1,'catalog_sent');" checked>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label>
@@ -399,15 +401,25 @@
 
                                         <div class="whale-card__notes">
                                             <div class="whale-card__notes-scroll" id="whale_notes_1">
-                                            </div>
-                                            <div class="whale-card__notes-footer">
-                                                <div class="am-item__note-form">
-                                                    <input class="am-note-input" id="new_whale_note_1" autocomplete="off" placeholder="New note here..." type="text">
-                                                    <button onclick="AddWhaleNote(1);">Add</button>
+                                                <div class="whale-card__note">
+                                                    <div class="whale-card__note-date">27 Sep, 2024</div>
+                                                    <div class="whale-card__note-text">
+                                                        <span class="whale-card__note-author">Zahir
+							</span>:
+                                                        Lorem ipsum text
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="whale-card__notes-footer">
+                                        <div class="am-item__note-form">
+                                            <input class="am-note-input" id="new_whale_note_1" autocomplete="off" placeholder="New note here..." type="text">
+                                            <button onclick="AddWhaleNote(1);">Add</button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
