@@ -3816,22 +3816,60 @@ class AddModal {
 
   submitVisit() {
     let id = this.getWhaleId
+    var whaleName = this.getWhaleName;
+    var frm_data = $('#addVisit').serialize();
     if (id !== undefined) {
-      new pageMsg({
-        type: 'success',
-        heading: `Success!`,
-        msg: `New visit for <b>${this.getWhaleName}</b> added.`,
-      })
+      $.ajax({
+        url:'/admin/json/whale-visit?type=1&id='+id,
+        type:'POST',
+        data:frm_data,
+        success:function(data){
+          var r = $.parseJSON(data);
+          if(!r.error){
+            new pageMsg({
+              type: 'success',
+              heading: `Success!`,
+              msg: `New visit for <b>${whaleName}</b> added.`,
+            })
+          }else{
+            new pageMsg({
+              type: 'error',
+              heading: `Error!`,
+              msg: r.msg,
+            });
+          }
+        }
+      });
+
     }
   }
   submitAppointment() {
     let id = this.getWhaleId
+    var whaleName = this.getWhaleName;
+    var frm_data = $('#addAppointment').serialize();
     if (id !== undefined) {
-      new pageMsg({
-        type: 'success',
-        heading: `Success!`,
-        msg: `New appointment for <b>${this.getWhaleName}</b> added.`,
-      })
+      $.ajax({
+        url:'/admin/json/whale-visit?type=2&id='+id,
+        type:'POST',
+        data:frm_data,
+        success:function(data){
+          var r = $.parseJSON(data);
+          if(!r.error){
+            new pageMsg({
+              type: 'success',
+              heading: `Success!`,
+              msg: `New appointment for <b>${whaleName}</b> added.`,
+            })
+          }else{
+            new pageMsg({
+              type: 'error',
+              heading: `Error!`,
+              msg: r.msg,
+            });
+          }
+        }
+      });
+
     }
   }
 
