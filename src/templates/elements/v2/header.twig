@@ -1,0 +1,61 @@
+<header class="header">
+	<div class="header__main">
+		<div class="wrapper --header">
+			<nav role="navigation" class="header-nav">
+				<a href="/" class="main-logo">
+					{% include "components/svg/logo.svg" %}
+				</a>
+				<div class="header-nav__group --left">
+					<button class="header__nav-link" data-evt="toggleMenu">
+						{% include "components/svg/menu_v2.svg" %}
+						<span>Menu</span>
+					</button>
+					<button class="header__nav-link" data-evt="toggleSearch">
+						{% include "components/svg/search.svg" %}
+						<span>Search</span>
+					</button>
+				</div>
+				<div class="header-nav__group --right">
+					<div class="--relative">
+						<button class="header__nav-link" {% if user %} data-evt="toggleAccountDropdown" {% else %} data-evt="openSignModal" data-sign-switch="otp" {% endif %}>
+							{% include "components/svg/account.svg" %}
+							{% if not user %}
+								<span>My Account</span>
+							{% endif %}
+						</button>
+						{% if user %}
+							{% include "components/header/login-dropdown.twig" %}
+						{% endif %}
+					</div>
+					{% if user %}
+						<a href="/account/wishlist" class="header__nav-link{% if user %} --flex{% endif %}">
+							{% include "components/svg/wishlist.svg" %}
+						</a>
+					{% endif %}
+					<button class="header__nav-link" data-evt="toggleCart">
+						{% include "components/svg/cart.svg" %}
+						{% if cart_items is defined and cart_items > 0 and cart_items not "0" %}
+							<span class="cart-count">3</span>
+						{% endif %}
+					</button>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<div class="header-search">
+		<div class="header-search__form-wrap">
+			<form method="get" action="/search-products">
+				<div class="header-search__input-wrap">
+					<input autocomplete="off" type="text" name="keyword" class="header-search__input" placeholder="Search on Icebox.com" id="main_search_field">
+					<button class="header-search__submit">Search</button>
+					<span class="header-search__span-icon">
+						<svg viewbox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<circle cx="10.5" cy="10.5" r="9.75"></circle>
+							<path d="M23.5 23.5L17.5 17.5"></path>
+						</svg>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+</header>

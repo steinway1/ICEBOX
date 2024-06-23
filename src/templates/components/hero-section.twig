@@ -1,0 +1,72 @@
+<div class="hero-section" data-hero-section {% if splide %} data-splide-section="{{ splide_type ?: 'row' }}" {% endif %} {% if mobile_grid %} data-mobile-grid="true" {% endif %} {% if splide_loop %} data-splide-loop="true" {% endif %}>
+	{% if banner %}
+		<div class="hero-banner{% if half_banner %} --half{% endif %}">
+			<a href="{{ url }}" class="hero-banner__pic-link">
+				<img loading="eager" src="{{ banner }}" alt="{{ alt }}" class="hero-banner__img">
+			</a>
+			<div class="hero-banner__summary">
+				<h2 class="hero-heading">
+					<a href="{{ url }}">{{ heading }}</a>
+				</h2>
+				<p class="hero-subheading">{{ subheading }}</p>
+				<div class="hero-banner__footer">
+					<a href="{{ url }}" class="hero-link">
+						<span>{{ link_text ?: 'Shop Now' }}</span>
+						{% include "components/svg/hero-arrow.svg" %}
+					</a>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<div class="hero-banner__summary --static">
+			<h2 class="hero-heading">
+				<a href="{{ url }}">{{ heading }}</a>
+			</h2>
+			<p class="hero-subheading">{{ subheading }}</p>
+		</div>
+	{% endif %}
+	{% if not custom %}
+		<div class="hero-cards{% if splide %} splide{% endif %}">
+			{% if section_items %}
+				<div class="hero-wrapper">
+					{% if not splide %}
+						<div class="hero-cards-grid --static">
+							{% for item in section_items %}
+								{% if loop.index < ((max_items ?: 8) + 1) %}
+									{% include "elements/hero-card.twig" %}
+								{% endif %}
+							{% endfor %}
+						</div>
+					{% else %}
+						<div class="splide__track">
+							<div class="splide__list">
+								{% for item in section_items %}
+									{% include "elements/hero-card.twig", with { splide: true } %}
+								{% endfor %}
+							</div>
+						</div>
+					{% endif %}
+				</div>
+				{% if not hide_footer %}
+					<div class="hero-btn-group">
+						<a href="{{ url }}" class="hero-btn">{{ button_text ?: 'Shop All' }}</a>
+						{% if splide %}
+							<div class="splide__arrows">
+								<button class="hero-btn --arrow --reverse splide__arrow splide__arrow--prev" disabled>
+									{% include "components/svg/hero-arrow.svg" %}
+								</button>
+								<button class="hero-btn --arrow splide__arrow splide__arrow--next">
+									{% include "components/svg/hero-arrow.svg" %}
+								</button>
+							</div>
+						{% endif %}
+					</div>
+				{% endif %}
+			{% endif %}
+		</div>
+	{% else %}
+		<div class="hero-wrapper">
+			{% include custom %}
+		</div>
+	{% endif %}
+</div>

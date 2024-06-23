@@ -25,11 +25,9 @@
 			</div>
 		</div>
 	</div>
-	{% if shipDate %}
+	{% if notice != '' %}
 		<div class="cart-item__notice">
-			This item is made to order and will ship in 4 weeks. Expect your item to arrive on or before
-			<span>{{shipDate}}</span>.
+			{{notice | raw}}
 		</div>
-		{% else %}
 	{% endif %}
 </div>

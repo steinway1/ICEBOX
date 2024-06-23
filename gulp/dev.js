@@ -82,6 +82,7 @@ const root = {
       },
       bundle: {
         main: './src/js/main.js',
+        main_v2: './src/js/main_v2.js',
         login: './src/js/login.js',
         cartMail: './src/js/cart-mail.js',
       },
@@ -296,6 +297,25 @@ gulp.task('js:dev',
       .pipe(gulp.dest(root.dev.js))
   })
 
+gulp.task('js2:dev',
+  () => {
+    return gulp
+      .src([
+        root.src.js.lib.jquery,
+        root.src.js.lib.jqueryCrs,
+        root.src.js.lib.splide,
+        root.src.js.lib.splideGrid,
+        root.src.js.lib.parsley,
+        root.src.js.lib.intlTelInput,
+        root.src.js.bundle.main_v2,
+      ])
+      .pipe(changed(root.dev.js))
+      .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+      .pipe(concat('partial2.js'))
+      .pipe(minify())
+      .pipe(gulp.dest(root.dev.js))
+  })
+
 gulp.task('js-promo:dev',
   () => {
     return gulp
@@ -397,7 +417,7 @@ gulp.task('watch:dev',
       gulp.watch('./src/templates/admin/svg/**', gulp.parallel('twig-admin:dev')),
       gulp.watch('./src/templates/admin/assets/**/*', gulp.parallel('assets-admin:dev')),
       gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev', 'css-admin:dev')),
-      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js-vday:dev', 'js-admin:dev')),
+      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js2:dev', 'js-vday:dev', 'js-admin:dev')),
       gulp.watch('./src/js/**/*.ts', gulp.parallel('ts-admin:dev')),
       gulp.watch('./src/assets/**/*', gulp.parallel('assets:dev'))
   }

@@ -1,0 +1,44 @@
+<div class="hero-card{% if item.unpublished %} unpublished-card{% endif %}{% if splide == true %} splide__slide{% endif %}">
+
+	{% if userIsAdmin == true %}
+		{% include "elements/admin-card.twig" %}
+	{% endif %}
+
+	<div class="hero-card__media">
+		<a href="{{ item.href }}" class="hero-card__pic-wrap">
+			<img alt="{{ item.alt }}" src="{{ item.cover }}" {% if item.extra_classes == '' %} loading="lazy" {% endif %} class="hero-card__img{% if disableZoom is not defined %} {{ item.extra_classes }}{% endif %}">
+			{% if item.sirv_html is defined %}
+				{{ item.sirv_html | raw }}
+			{% endif %}
+		</a>
+	</div>
+	<div class="hero-card__details">
+		{% if item.details %}
+			<div class="hero-card__sub-details">
+				<span>{{item.details}}</span>
+				{% if item.custom_tag %}
+					<span class="--blue">{{ item.custom_tag }}</span>
+				{% endif %}
+			</div>
+		{% endif %}
+		<h3 class="hero-card__name">
+			<a href="{{ item.href }}">{{ item.name }}</a>
+		</h3>
+		<div class="hero-card__price-wrap{% if item.salePrice %} --sale{% endif %}">
+			{% if item.price_range  %}
+				<span class="hero-card__price">{{item.price_range}}</span>
+			{% else %}
+				<span class="hero-card__price">{{item.price}}</span>
+			{% endif %}
+			{% if item.salePrice %}
+				<span class="hero-card__price --sale">{{item.salePrice}}</span>
+			{% endif %}
+			{% if item.discountRate %}
+				<span class="hero-card__sale-rate">-{{item.discountRate}}%</span>
+			{% endif %}
+		</div>
+	</div>
+	{% if user.admin %}
+		{{ item.extra_html | raw}}
+	{% endif %}
+</div>

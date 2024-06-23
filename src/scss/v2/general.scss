@@ -1,0 +1,158 @@
+body {
+  font-family: "ProximaNova", sans-serif;
+}
+
+.--flex {
+  display: flex !important;
+}
+
+.--relative {
+  position: relative !important;
+}
+
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .004);
+}
+
+.layout_v2 {
+  .cur-modal__backdrop {
+    display: none !important;
+    pointer-events: none;
+  }
+
+  .cur-item {
+    &.is-active {
+      border-color: #a5d3e2;
+    }
+  }
+
+  .cur-modal {
+    max-width: 560px;
+    width: 100%;
+    left: auto;
+    transition: var(--transition-xl);
+
+    .cur-modal__container {
+      transition: var(--transition-xl);
+      width: 100%;
+      max-width: unset;
+    }
+
+    &.--active {
+      .cur-modal__container {
+        transform: translateX(0%);
+      }
+    }
+
+    @include maxWidthXs {
+      max-width: calc(100% - 32px);
+    }
+  }
+
+  footer {
+    padding: 0;
+  }
+
+  .footer__wrapper {
+    padding-top: 12px;
+  }
+
+  .footer-logo-img {
+    width: 120px;
+  }
+
+  @include maxWidthMd {
+    .footer-sub-col__body {
+      padding: 24px 12px;
+    }
+  }
+
+  .footer-col {
+    border-color: #f1f2f4 !important;
+
+    @include maxWidthMd {
+      .footer-col__header {
+        padding: 12px;
+      }
+
+      .footer-contact-link {
+        padding: 12px;
+      }
+
+      .footer-link {
+        padding: 12px;
+      }
+
+      h5 {
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 0.4px;
+      }
+
+      svg {
+        width: 10px;
+        height: 10px;
+        path {
+          stroke-width: 4px;
+        }
+      }
+    }
+  }
+}
+
+.wrapper {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 14px;
+  padding-right: 14px;
+
+  &.--header {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.main-logo {
+  justify-content: center;
+  align-items: center;
+  width: 138px;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.logo-svg {
+  color: var(--blue);
+  justify-content: center;
+  align-items: center;
+  width: 138px;
+  display: flex;
+}
+
+.page-backdrop {
+  z-index: 99;
+  opacity: 0;
+  background-color: rgba(10, 12, 19, 0.7);
+  transition: all .35s cubic-bezier(.39, .575, .565, 1);
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  &.--half {
+    background-color: rgba(10, 12, 19, 0.3);
+  }
+}
+
+.iti.iti--allow-dropdown {
+  width: 100%;
+}

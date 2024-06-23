@@ -1,0 +1,48 @@
+{% set THEME_ASSETS_FOLDER = "./assets/" %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+	<head>
+		{% include 'page-components/v2/head.twig' %}
+		{{ block('include_head') }}
+	</head>
+
+
+	<body class="layout_v2">
+		{% if disable_layout is not defined %}
+			{% include "elements/v2/header.twig" %}
+		{% endif %}
+
+
+		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
+			{% if disable_layout is not defined  %}
+				{% if userIsAdmin == true %}
+					{% include "elements/admin-bar.twig" %}
+				{% endif %}
+			{% endif %}
+		</main>
+
+		{% include "elements/footer.twig" %}
+
+		{# Page elements #}
+		{% include "elements/menu.twig" %}
+		{% include "elements/v2/cart-modal.twig" %}
+		{% include "elements/sign-modal.twig" %}
+		{% include "elements/currency-modal.twig" %}
+		{% include "elements/connect-button.twig" %}
+
+		{# Scripts #}
+		{% include "page-components/v2/scripts.twig" %}
+		{% if show_admin_controls %}
+			<script>
+				LOAD_ADMIN_DATA = true;
+$(document).ready(function () {
+loadAdminData();
+});
+			</script>
+		{% endif %}
+
+	</body>
+
+</html>

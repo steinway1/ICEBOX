@@ -1,0 +1,218 @@
+<!-- Settings:
+
+  ***
+  - heading: string - Required (No default)
+  // Main heading in the banner
+
+  ***
+  - subheading: string - Required (No default)
+  // Subheading in the banner
+
+  ***
+  - banner: string - Required (No default)
+  // Banner image in the hero section
+
+  ***
+  - half_banner: boolean - Not Required (default = false)
+  // If true, then the banner will be half height
+
+  ***
+  - alt: string - Required (No default)
+  // Alt text for the banner
+
+  ***
+  - url: string - Required (No default)
+  // Link to results page
+
+  ***
+  - link_text: string - Not Required (default = 'Shop Now')
+  // Text for the link in the banner
+
+  ***
+  - button_text: string - Not Required (default = 'Shop All')
+  // Text for the button in the bottom of the section
+
+  ***
+  - splide: boolean - Not Required (default = false)
+  // If true, then the section will be splide slider
+
+  ***
+  - splide_type: string - Not Required (default = 'row')
+  // 'row' or 'grid'
+  // If splide_type = grid, then number of items must be divisible by 8
+
+  ***
+  - section_items: array - Required
+  // Array of items in the section
+
+  ***
+  - max_items: number - Not Required (default = 8)
+  // Maximum number of items in the section IF not splide
+
+  ***
+  - mobile_grid: boolean - Not Required (default = false)
+  // Show product items as grid in mobile view
+  // If mobile_grid is true, then number of items must be divisible by 4
+
+  ***
+  hide_footer: boolean - Not Required (default = false)
+  If true, then button group in the bottom will be hidden
+
+-->
+
+{# Most Popular #}
+{% include "components/hero-section.twig", with {
+  heading: 'Icebox Jewelry Collection 2024',
+  subheading: 'Discover the Icy Elegance: Introducing the Icebox Jewelry Collection 2024',
+  banner: './assets/v2/v2-banner_popular.webp',
+  alt: 'Men and women wearing icebox jewellery',
+  url: '/all',
+  splide: true,
+  splide_type: 'grid',
+  section_items: popular_items
+} %}
+
+{# Chains #}
+{% include "components/hero-section.twig", with {
+  heading: 'Gold Chains',
+  subheading: 'Discover meticulously crafted pieces designed to elevate your style with timeless elegance',
+  banner: './assets/v2/v2-banner_chains.webp',
+  alt: 'Icebox gold chains made of solid 14k gold',
+  url: '/results/gold-chains',
+  splide: true,
+  splide_type: 'row',
+  section_items: gold_chains_items
+} %}
+
+{# Engagement #}
+{% include "components/hero-section.twig", with {
+  heading: 'Engagement Rings',
+  subheading: 'Our collection of elegant and timeless engagement rings for every occasion',
+  banner: './assets/v2/v2-banner_engagement.webp',
+  alt: 'Women wearing icebox engagement rings',
+  url: '/results/rings?sub[]=Engagement%20Rings',
+  splide: true,
+  splide_type: 'row',
+  section_items: engagement_items
+} %}
+
+{# Pendants #}
+{% include "components/hero-section.twig", with {
+  heading: 'Diamond Pendants',
+  subheading: 'Explore a collection of elegant and timeless diamond pendants for every occasion',
+  banner: './assets/v2/v2-banner_pendants.webp',
+  alt: 'Men wearing icebox diamond pendants made of solid 14k gold',
+  url: '/results/pendants',
+  splide: true,
+  splide_type: 'grid',
+  section_items: pendants_items
+} %}
+
+{# Necklaces #}
+{% include "components/hero-section.twig", with {
+  heading: 'Diamond Necklaces',
+  subheading: 'We\'ve picked the finest and most beautiful diamond necklaces.',
+  banner: './assets/v2/v2-banner_necklaces.webp',
+  alt: 'Men wearing icebox diamond necklaces made of solid 14k gold',
+  url: '/results/necklaces',
+  splide: true,
+  splide_type: 'row',
+  section_items: necklaces_items
+} %}
+
+{# Leather #}
+{% include "components/hero-section.twig", with {
+  heading: 'Leather Goods',
+  subheading: 'Shop our best sellers and discover the classic and elegant style of leather.',
+  banner: './assets/v2/v2-banner_leather.webp',
+  alt: 'Icebox leather watch traveller case',
+  url: '/results/travel-cases',
+  splide: true,
+  splide_type: 'row',
+  section_items: leather_items
+} %}
+
+{# Diamond Watches #}
+{% include "components/hero-section.twig", with {
+  heading: 'Diamond Watches',
+  subheading: 'Shop our best sellers and discover the classic and elegant style of leather.',
+  banner: './assets/v2/v2-banner_watches.webp',
+  alt: 'Diamond watches in icebox collection',
+  url: '/results/watches',
+  splide: true,
+  splide_type: 'grid',
+  section_items: watches_items
+} %}
+
+{# Bracelets #}
+{% include "components/hero-section.twig", with {
+  heading: 'Diamond Bracelets',
+  subheading: 'Shop our best sellers and discover the classic and elegant style of leather.',
+  banner: './assets/v2/v2-banner_bracelets.webp',
+  alt: 'Men wearing icebox diamond bracelets made of solid 14k gold',
+  url: '/results/bracelets',
+  splide: true,
+  splide_type: 'row',
+  section_items: bracelets_items,
+  mobile_grid: true
+} %}
+
+{# Plain Watches #}
+{% include "components/hero-section.twig", with {
+  heading: 'Plain Watches',
+  subheading: 'Shop our best sellers and discover the classic and elegant style of leather.',
+  banner: './assets/v2/v2-banner_plain-watches.webp',
+  alt: 'Plain watches in icebox collection',
+  url: '/results/watch-market',
+  splide: false,
+  section_items: plain_watches_items,
+  mobile_grid: true,
+  max_items: 4,
+} %}
+
+{# Jewelry Cleaner #}
+{% include "components/hero-section.twig", with {
+  heading: 'Jewelry Cleaner',
+  subheading: 'Shop our best sellers and discover the classic and elegant style of leather.',
+  banner: './assets/v2/v2-banner_cleaner.webp',
+  alt: 'Icebox jewelry polishing kit',
+  url: '/results/accessories?sub[]=Items',
+  splide: true,
+  section_items: cleaner_items,
+  splide_loop: true
+} %}
+
+{# Custom #}
+{% include "components/hero-section.twig", with {
+  heading: 'Custom Jewelry',
+  subheading: 'Shop our best sellers and discover the classic and elegant style of leather.',
+  banner: './assets/v2/v2-banner_custom.webp',
+  half_banner: true,
+  link_text: 'Explore Custom',
+  splide: true,
+  splide_loop: true,
+  alt: 'A few custom pendants on the arm',
+  url: '/results/custom',
+  section_items: custom_items
+} %}
+
+{# Fashion Rings #}
+{% include "components/hero-section.twig", with {
+  heading: 'Fashion Rings',
+  subheading: 'Shop our best sellers and discover the classic jand elegant style of leather.',
+  banner: './assets/v2/v2-banner_rings.webp',
+  half_banner: true,
+  splide: true,
+  splide_loop: true,
+  link_text: 'Shop Rings',
+  alt: 'Gold fashion rings in icebox collection',
+  url: '/results/rings',
+  section_items: rings_items,
+} %}
+
+{# Engagement Shapes #}
+{% include "components/hero-section.twig", with {
+  heading: 'Shop Rings By Shape',
+  subheading: 'Looking for something unique? Explore our collection of diamond shapes',
+  custom: 'components/section_shapes.twig'
+} %}

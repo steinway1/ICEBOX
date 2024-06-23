@@ -1,270 +1,125 @@
-<div class="mob-menu">
-	<div onclick="menu.toggle();" class="mob-menu__backdrop"></div>
-	<div class="mob-menu__container">
-		<div
-			class="mob-menu__wrapper">
-			<!-- Menu main content -->
-			<div class="mob-menu__main-content">
-				<div class="mob-menu__scroll-content">
-					<div class="mob-menu__header">
-						<a href="/" aria-current="page" class="mob-menu__logo">
-							<img src="{{ THEME_ASSETS_FOLDER }}/logo.svg" loading="eager" alt="Icebox logo">
-						</a>
-						<button onclick="menu.toggle();" class="mob-menu__close-btn">
-							{% include "components/svg/close.svg" %}
-						</button>
+<div class="menu2">
+	<div class="menu2__header">
+		<a href="/">{% include "components/svg/logo.twig" with { class: "menu2__logo"} %}</a>
+		<button data-evt="toggleMenu" class="menu2__close-btn">
+			{% include "components/svg/menu2_close.svg" %}
+		</button>
+	</div>
+	<div class="menu2__wrapper">
+
+		<div class="menu2__main-nav">
+			<nav role="navigation" aria-label="Main">
+				<div class="menu2__nav-item --search">
+					<form method="get" action="/search-products">
+					<input autocomplete="off" type="text" name="keyword" placeholder="Search on Icebox.com..." id="menu_search_field">
+					</form>
+					<span class="--icon">{% include "components/svg/menu2_search.svg" %}</span>
+				</div>
+				{# Categories #}
+				<div class="menu2__nav-item --spot --active">
+					<div data-menu-evt="toggleDropdown" class="menu2__link">
+						<span>Shop By Category</span>
+						{% include "components/svg/menu2_dd.svg" %}
 					</div>
-					<!-- Menu main navigation -->
-					<nav role="navigation" aria-label="Main" class="mob-menu__nav-list">
-						{% if black_friday == true and cyber_monday == false and xmas == false and new_year == false and vday == false%}
-							<div class="mob-menu__nav-item is_bfs">
-								<a href="/black-friday">
-									<span data-text-glitch="BLACK FRIDAY">BLACK FRIDAY SALE</span>
-								</a>
-							</div>
-						{% endif %}
-
-						{% if cyber_monday == true and black_friday == true and xmas == false %}
-							<div class="mob-menu__nav-item is_bfs">
-								<a href="/cyber-monday">
-									<span data-text-glitch="CYBER MONDAY">CYBER MONDAY SALE</span>
-								</a>
-							</div>
-						{% endif %}
-
-						{% if cyber_monday == false and black_friday == false and xmas == false%}
-							<div class="mob-menu__nav-item is-sale">
-								<a href="/sale">
-									<span>SALE</span>
-								</a>
-							</div>
-						{% endif %}
-						{% if xmas == true and black_friday == true and cyber_monday == false %}
-							<a href="/xmas" class="xmas-nav-link">
-								<img src="{{ THEME_ASSETS_FOLDER }}/xmas/poster-desktop-title.webp" loading="eager" alt="">
-							</a>
-						{% endif %}
-						{% if new_year == true and black_friday == true and cyber_monday == false and xmas == false%}
-							<div class="mob-menu__nav-item is_ny">
-								<a href="/new-year">
-									<img src="{{ THEME_ASSETS_FOLDER }}/new-year/menu-title.webp" loading="eager" alt="">
-								</a>
-							</div>
-						{% endif %}
-
-						{% if new_year == false and black_friday == true and cyber_monday == false and xmas == false and vday == true%}
-							<div class="mob-menu__nav-item --vday">
-								<a href="/valentines-day" class="vday-nav-link is-valentine">
-									<img src="{{THEME_ASSETS_FOLDER}}/assets/vday/link-ring.webp" loading="eager" alt="">
-									<span>Valentine's Sale</span>
-								</a>
-							</div>
-						{% endif %}
-
-						{% for item in navbar %}
-							{% if item.id != 15 %}
-								<div class="mob-menu__nav-item">
-									<a href="{{ item.href }}">
-										<span>{{ item.caption }}
-											{% if user.admin %}({{ item.count }})</span>
+					<div data-menu-dropdown class="menu2__dropdown">
+						<div class="menu2__dropdown-adjust">
+							{% for item in navbar %}
+								{% if item.id != 15 and item.id != 10 %}
+									<a href="{{item.href}}">
+										{% if item.id == 25 %}
+											Watches
+										{% else %}
+											{{ item.caption }}
 										{% endif %}
-
+										{% if user.admin %}
+											<span>
+												({{ item.count }})</span>
+										{% endif %}
 									</a>
-									{% if item.id != 19 and item.id != 26 %}
-										<button data-menu-nav="{{ item.caption }}" class="mob-menu__nav-step"></button>
-									{% endif %}
-								</div>
-							{% endif %}
-							{% if item.id == 23 %}
-								<div class="mob-menu__nav-item">
-									<a href="/gia-products">Engagement Rings</a>
-								</div>
-							{% endif %}
-
-						{% endfor %}
-						<div class="mob-menu__nav-item ">
-							<a href="/made-to-order">
-								<span>Made To Order
-									{% if user.admin %}({{ made_to_order_count }})
-									{% endif %}
-								</span>
-							</a>
+								{% endif %}
+								{% if item.id == 23 %}
+									<a href="/results/rings?sub[]=Engagement%20Rings">Engagement Rings</a>
+								{% endif %}
+							{% endfor %}
 						</div>
-
-					</nav>
-					<!-- Menu sub navigation -->
-					<nav role="navigation" aria-label="Sub" class="mob-menu__sub-nav">
-						<a href="/cart" class="mob-menu__spot-link">
-							<span>My Cart<span class="mob-menu__cart-count ">(<span class="bag-counter">{{ cart_items }}</span>)</span>
-							</span>
-							<svg class="mob-menu__icon" width="12" height="12" viewbox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M1 1L12 11L1 21" stroke="currentColor" stroke-width="2.5"></path>
-							</svg>
-						</a>
-						<div class="mob-menu__sub-nav-list">
-							<a {% if user %} href="/account" {% else %} onclick="signModal.open('login')" href="javascript:void(0)" {% endif %} class="mob-menu__sub-nav-item">
-								<img src="{{ THEME_ASSETS_FOLDER }}/menu/menu-icon_account.svg" loading="eager" alt="account icon">
-								<span>My Account</span>
-							</a>
-							{% if user == false %}
-								<a onclick="signModal.open('register')" href="javascript:void(0);" class="mob-menu__sub-nav-item js-login-btn">
-									<img src="{{ THEME_ASSETS_FOLDER }}/menu/menu-icon_account.svg" loading="eager" alt="account icon">
-									<span>Create Account</span>
-								</a>
-							{% endif %}
-							<a href="/track-order" class="mob-menu__sub-nav-item">
-								<img src="{{ THEME_ASSETS_FOLDER }}/menu/menu-icon_track.svg" loading="eager" alt="track order icon">
-								<span>Track Your Order</span>
-							</a>
-							{% if user %}
-								<a href="/account/wishlist" class="mob-menu__sub-nav-item">
-									<img src="{{ THEME_ASSETS_FOLDER }}/menu/menu-icon_wishlist.svg" loading="eager" alt="wishlist icon">
-									<span>Wishlist</span>
-								</a>
-							{% endif %}
-							{% if user %}
-								<a href="/logout" class="mob-menu__sub-nav-item">
-									<img src="{{ THEME_ASSETS_FOLDER }}/menu/menu-icon_logout.svg" loading="eager" alt="sign out icon">
-									<span>Sign Out</span>
-								</a>
-							{% endif %}
-						</div>
-
-						<a href="tel:+17705585466" class="mob-menu__mega-link">
-							<div
-								class="mob-menu__mega-link-heading">
-								{# <span class="mob-menu__mega-link-subheading">Got any question?</span> #}
-								<span>Talk To Us Now</span>
-							</div>
-							<svg class="mob-menu__icon" width="12" height="12" viewbox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M1 1L12 11L1 21" stroke="currentColor" stroke-width="2.5"></path>
-							</svg>
-						</a>
-						<a href="/chat-whatsapp" class="mob-menu__mega-link">
-							<div
-								class="mob-menu__mega-link-heading">
-								{# <span class="mob-menu__mega-link-subheading">Do you need our help?</span> #}
-								<span>
-									<span class="menu__wa-dot"></span>Chat on WhatsApp Now</span>
-							</div>
-							<svg class="mob-menu__icon" width="12" height="12" viewbox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M1 1L12 11L1 21" stroke="currentColor" stroke-width="2.5"></path>
-							</svg>
-						</a>
-						<div data-modal="currency" data-toggle="modal" data-target="#countryModal" class="mob-menu__mega-link">
-							<span class="mob-menu__mega-link-heading">Change Currency</span>
-							<span>USD</span>
-						</div>
-					</nav>
-				</div>
-			</div>
-			<!-- Menu over content -->
-			<div class="mob-menu__over-content" style="transform: translateX(100%);">
-				<div class="mob-menu__scroll-content">
-					<div class="mob-menu__header">
-						<button data-evt="hideOver" class="mob-menu__step-back">
-							<svg width="25" height="25" viewbox="0 0 38 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M12.5 1L1.5 11L12.5 21" stroke="currentColor" stroke-width="2"></path>
-								<path d="M1.5 11H38" stroke="currentColor" stroke-width="2"></path>
-							</svg>
-						</button>
-						<span class="mob-menu__over-heading">Pendants Collection</span>
-					</div>
-					<div class="mob-menu__step-block">
-						{% for item in navbar %}
-							<div data-menu-over="{{ item.caption }}" class="mob-menu__step-content">
-								<nav role="navigation" aria-label="Pendants" class="mob-menu__nav-list">
-									<div class="mob-menu__nav-item mob-menu__nav-item_bold">
-										<a href="{{ item.href }}">Shop All</a>
-									</div>
-									{% if item.id != 25 %}
-										<div
-											class="mob-menu__nav-item is_bfs"><!--<a href="{{ item.href }}?discounted">
-																						<span data-text-glitch="SHOP SALE">SHOP SALE</span>
-																						{% if user.admin %}
-																							<span class="mob-menu__nav-item-count">({{ item.count_discounted }})</span>
-																						{% endif %}
-																					</a>-->
-										</div>
-										<div class="mob-menu__nav-item ">
-											<a href="{{ item.href }}?gender[]=Male">Men's
-												{{ item.caption }}
-												{% if user.admin %}
-													<span class="mob-menu__nav-item-count">({{ item.count_men }})</span>
-												{% endif %}
-											</a>
-										</div>
-										<div class="mob-menu__nav-item ">
-											<a href="{{ item.href }}?gender[]=Female">Women's
-												{{ item.caption }}
-												{% if user.admin %}
-													<span class="mob-menu__nav-item-count">({{ item.count_women }})</span>
-												{% endif %}
-											</a>
-										</div>
-									{% endif %}
-									{% if item.id == 25 %}
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Rolex">
-												<span>Rolex</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Audemars Piguet ">
-												<span>Audemars Piguet</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Patek Philippe">
-												<span>Patek Philippe</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Vacheron Constantin">
-												<span>Vacheron Constantin</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Richard Mille">
-												<span>Richard Mille</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Cartier">
-												<span>Cartier</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Hublot">
-												<span>Hublot</span>
-											</a>
-										</div>
-										<div class="mob-menu__nav-item">
-											<a href="/results/watch-market?brand[]=Other">
-												<span>Other Brands</span>
-											</a>
-										</div>
-									{% else %}
-										{% for sub in item.subs %}
-											<div class="mob-menu__nav-item">
-												<a href="{{ sub.href }}">
-													<span>{{ sub.caption }}
-														{% if user.admin %}
-															<span class="mob-menu__nav-item-count">({{ sub.count }})</span>
-														{% endif %}
-													</span>
-												</a>
-											</div>
-										{% endfor %}
-									{% endif %}
-
-
-								</nav>
-							</div>
-						{% endfor %}
 					</div>
 				</div>
-			</div>
+
+				{# Cart #}
+				<div class="menu2__nav-item{% if cart_page %} --active{% endif %}">
+					<a class="menu2__link" href="/cart">
+						<span>Cart
+							<span>({{ cart_items }})</span>
+						</span>
+						{% include "components/svg/menu2_external.svg" %}
+					</a>
+				</div>
+
+				{# My Account or Login #}
+				<div class="menu2__nav-item{% if account_page %} --active{% endif %}">
+					<a class="menu2__link" {% if user %} href="/account" {% else %} onclick="signModal.open('login')" href="javascript:void(0)" {% endif %}>
+						<span>My Account</span>
+						{% include "components/svg/menu2_external.svg" %}
+					</a>
+				</div>
+
+				{% if user %}
+					<div class="menu2__nav-item{% if wishlist_page %} --active{% endif %}">
+						<a href="/account/wishlist" class="menu2__link">
+							<span>Wishlist</span>
+							{% include "components/svg/menu2_external.svg" %}
+						</a>
+					</div>
+				{% endif %}
+
+				{# Create Account #}
+				{% if user == false %}
+					<div class="menu2__nav-item">
+						<div onclick="signModal.open('register')" class="menu2__link">
+							<span>Create Account</span>
+							{% include "components/svg/menu2_external.svg" %}
+						</div>
+					</div>
+				{% endif %}
+
+				{# Track Order #}
+				<div class="menu2__nav-item{% if tracking_page %} --active{% endif %}">
+					<a href="/track-order" class="menu2__link">
+						<span>Track Your Order</span>
+						{% include "components/svg/menu2_external.svg" %}
+					</a>
+				</div>
+
+				{% if user %}
+					<div class="menu2__nav-item">
+						<a href="/logout" class="menu2__link">
+							<span>Sign Out</span>
+							{% include "components/svg/menu2_exit.svg" %}
+						</a>
+					</div>
+				{% endif %}
+			</nav>
 		</div>
+
+		<div class="menu2__sub-nav">
+			<nav role="navigation" aria-label="Sub">
+				<a href="tel:+17705585466" target="_blank" class="menu2__sub-link">
+					<span>+ 1 770 558 5466</span>
+					{% include "components/svg/menu2_arrow.svg" %}
+				</a>
+				<a href="/chat-whatsapp" target="_blank" class="menu2__sub-link">
+					<span>Chat on WhatsApp now
+						<span class="menu__wa-dot"></span>
+					</span>
+					{% include "components/svg/menu2_arrow.svg" %}
+				</a>
+				<div data-evt="toggleCurrency" class="menu2__sub-link">
+					<span>Change Currency</span>
+					<strong>USD</strong>
+				</div>
+			</nav>
+		</div>
+
+
 	</div>
 </div>

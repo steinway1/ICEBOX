@@ -1,6 +1,6 @@
 <div class="menu2">
 	<div class="menu2__header">
-		<a href="/">{% include "components/svg/logo.twig", with { class: "menu2__logo"} %}</a>
+		<a href="/">{% include "components/svg/logo.twig" with { class: "menu2__logo"} %}</a>
 		<button data-evt="toggleMenu" class="menu2__close-btn">
 			{% include "components/svg/menu2_close.svg" %}
 		</button>
@@ -9,12 +9,12 @@
 
 		<div class="menu2__main-nav">
 			<nav role="navigation" aria-label="Main">
-				<form method="get" action="/search-products">
-					<div class="menu2__nav-item --search">
-						<input autocomplete="off" type="text" name="keyword" placeholder="Search on Icebox.com..." id="menu_search_field">
-						<span class="--icon">{% include "components/svg/menu2_search.svg" %}</span>
-					</div>
-				</form>
+				<div class="menu2__nav-item --search">
+					<form method="get" action="/search-products">
+					<input autocomplete="off" type="text" name="keyword" placeholder="Search on Icebox.com..." id="menu_search_field">
+					</form>
+					<span class="--icon">{% include "components/svg/menu2_search.svg" %}</span>
+				</div>
 				{# Categories #}
 				<div class="menu2__nav-item --spot --active">
 					<div data-menu-evt="toggleDropdown" class="menu2__link">

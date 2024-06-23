@@ -68,7 +68,7 @@ const root = {
         splide: './src/js/splide.js',
         splideGrid: './src/js/splide-grid.js',
         intlTelInput: './src/js/intlTelInput.js',
-        pace:'./src/js/plugins/pace/pace.min.js',
+        pace: './src/js/plugins/pace/pace.min.js',
         popper: './src/js/popper.js',
         tippy: './src/js/tippy.js',
         parsley: './src/js/parsley.min.js',
@@ -78,6 +78,7 @@ const root = {
       },
       bundle: {
         main: './src/js/main.js',
+        main_v2: './src/js/main_v2.js',
         login: './src/js/login.js',
         cartMail: './src/js/cart-mail.js',
       },
@@ -277,6 +278,25 @@ gulp.task('js:build',
       .pipe(gulp.dest(root.build.js))
   })
 
+gulp.task('js2:build',
+  () => {
+    return gulp
+      .src([
+        root.src.js.lib.jquery,
+        root.src.js.lib.jqueryCrs,
+        root.src.js.lib.splide,
+        root.src.js.lib.splideGrid,
+        root.src.js.lib.parsley,
+        root.src.js.lib.intlTelInput,
+        root.src.js.bundle.main_v2,
+      ])
+      .pipe(changed(root.build.js))
+      .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+      .pipe(concat('partial2.js'))
+      .pipe(minify())
+      .pipe(gulp.dest(root.build.js))
+  })
+
 gulp.task('js-promo:build',
   () => {
     return gulp
@@ -365,7 +385,7 @@ gulp.task('fonts:build',
 gulp.task('clean:build', (done) => {
   if (fs.existsSync(root.build._)) {
     return gulp
-      .src(root.build._, { read: false })
+      .src(root.build._, { read: false }) 
       .pipe(clean({ force: true }))
   }
   done()
@@ -377,6 +397,7 @@ gulp.task('watch:build',
     gulp.watch('./src/templates/**/*.twig', gulp.parallel('twig:build')),
       gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:build')),
       gulp.watch('./src/js/**/*.js', gulp.parallel('js:build')),
+      gulp.watch('./src/js/**/*.js', gulp.parallel('js2:build')),
       // gulp.watch('./src/templates/data/*.json', gulp.parallel('js:build')),
       gulp.watch('./assets/**/*', gulp.parallel('assets:build'))
   }
