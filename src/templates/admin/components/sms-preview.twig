@@ -1,0 +1,40 @@
+<div class="sms-preview{% if sms.active %} --active{% endif %}" data-sms-id="{{ sms.id }}" data-whale-id="{{ sms.whale.id }}">
+	<div class="sms-preview__side">
+		<div class="sms-preview__pic-wrap" data-tip="{{ sms.whale.name }}">
+			<img loading="eager" src="{{ sms.whale.photo }}" alt="">
+		</div>
+		<button class="sms-preview__btn" onclick="window.sms.addToFavorites({{ sms.id }})" data-tip="Add to favorites">
+			{% include "admin/svg/board-icon_star.svg" %}
+		</button>
+		<button class="sms-preview__btn --remove" onclick="window.sms.remove({{ sms.id }})">
+			{% include "admin/svg/board-icon_cancel.svg" %}
+		</button>
+	</div>
+	<div class="sms-preview__main">
+		<div class="sms-preview__info">
+			<div class="sms-preview__title">
+				<div class="sms-preview__name">{{ sms.whale.name }}</div>
+				<div class="sms-preview__spot">{{ sms.whale.tab }}</div>
+			</div>
+			<div class="sms-preview__date">{{ sms.date }}</div>
+		</div>
+		<div class="sms-preview__msg-content">
+			<p class="sms-preview__msg">{{ sms.text }}</p>
+			<div class="sms-preview__sent-group">
+				{% include "admin/svg/board-icon_sent.svg" %}
+				<span>Sent by
+					<em>{{ sms.sent_by }}</em>
+				</span>
+			</div>
+		</div>
+		<div class="sms-preview__footer">
+			<button class="sms-tag" onclick="window.sms.addTag({{ sms.id }})">
+				{% include "admin/svg/board-icon_tag.svg" %}
+				<span>+ Tag</span>
+			</button>
+      {% for tag in sms.tags %}
+        <span class="sms-tag{% if tag.color_class %} --{{ tag.color_class }}{% endif %}">{{ tag.name }}</span>
+      {% endfor %}
+		</div>
+	</div>
+</div>

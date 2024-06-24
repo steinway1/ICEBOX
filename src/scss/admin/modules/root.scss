@@ -2,6 +2,10 @@
   --body_color: #f7faff;
   --white: #ffffff;
   --black: #28344b;
+  --dark_grey: #8c96a5;
+  --light_blue: #eef5fc;
+  --light_blue_dim: #cddff5;
+  --light_blue_hover: #dae5f1;
   --bright_blue: #3a78cc;
   --bright_blue_hover: #5092eb;
   --navy_blue: #22497e;
@@ -11,6 +15,7 @@
   --royal_blue_hover: #2368ca;
   --royal_blue_light: #488eec;
   --royal_blue_light_hover: #4478bc;
+  --royal_blue_transparent: rgba(50, 121, 218, .05);
   --navy_blue_pale: #577daf;
   --blue_gold: #408cf1;
   --blue_gold_hover: #60a1f6;
@@ -20,4 +25,28 @@
   --light_grey: #eef0f8;
   --dark-grey: #7e8490;
   --whale-border: #e9f0f8;
+  --transition-m: all 250ms cubic-bezier(.39, .575, .565, 1);
+  --transition-l: all 350ms cubic-bezier(.39, .575, .565, 1);
+  --transition-s: all 175ms cubic-bezier(.39, .575, .565, 1);
+  --box-shadow-color: rgba(54, 88, 134, .03);
+
+  --board-sidebar-width: 280px;
+  --board-padding: 38px;
+  --board-content-width: 60%;
+
+  @media screen and (min-width: 1440px) {
+    --board-content-width: 64%;
+  }
+
+  @include maxWidthMd {
+    --board-padding: 24px;
+  }
+
+  @include maxWidthSm {
+    --board-cont-width: 100%;
+  }
+
+  @include maxWidthXs {
+    --board-padding: 20px;
+  }
 }

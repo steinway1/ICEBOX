@@ -3720,8 +3720,10 @@ class ToolBar {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const toolBar = new ToolBar()
-  toolBar.init()
+  if (document.querySelector('.toolbar')) {
+    const toolBar = new ToolBar()
+    toolBar.init()
+  }
 })
 
 /* #region  Tips */
@@ -3965,5 +3967,7 @@ class AddModal {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.addModal = new AddModal()
+  if (document.querySelector('.add-popup')) {
+    window.addModal = new AddModal()
+  }
 })

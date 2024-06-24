@@ -1,0 +1,58 @@
+<div class="board-sidebar">
+	<div class="board-sidebar__header">
+		<a href="/" target="_blank">{% include "admin/svg/logo.twig", with { svg_class: 'board-logo' } %}</a>
+		<button class="board-sidebar__menu-btn"></button>
+	</div>
+	<div class="board-sidebar__main">
+		<div class="board__scroller">
+			<div class="board-sidebar__wrapper">
+				<button class="board__btn">Send new SMS</button>
+			</div>
+			{# Navigation #}
+			<div class="board-sidebar__nav">
+				<a href="#" class="board-link --active">
+					<div class="board-link__group">
+						{% include "admin/svg/board-icon_home.svg" %}
+						<span>All Sms</span>
+					</div>
+					<span>{{sms_all|length ?: '0'}}</span>
+				</a>
+				<a href="#" class="board-link">
+					<div class="board-link__group">
+						{% include "admin/svg/board-icon_star.svg" %}
+						<span>Starred</span>
+					</div>
+					<span>{{sms_starred|length ?: '0'}}</span>
+				</a>
+				<a href="#" class="board-link">
+					<div class="board-link__group">
+						{% include "admin/svg/board-icon_msg-time.svg" %}
+						<span>Last 24 Hours</span>
+					</div>
+					<span>{{sms_day|length ?: '0'}}</span>
+				</a>
+				<a href="#" class="board-link">
+					<div class="board-link__group">
+						{% include "admin/svg/board-icon_cancel.svg" %}
+						<span>Trash</span>
+					</div>
+					<span>{{sms_trash|length ?: '0'}}</span>
+				</a>
+			</div>
+			{# Salesperson #}
+			<div class="board-sidebar__nav">
+				<h4 class="board-sidebar__heading">Salesperson</h4>
+				<div class="board-sidebar__wrapper">
+					<div class="board-spot-grid">
+						{% for salesperson in salespersons %}
+							<a href="{{ salesperson.href }}" class="board__spot-link{% if salesperson.active %} --active{% endif %}">
+								<img src="{{ salesperson.img }}" alt="">
+								<span>{{ salesperson.name }}</span>
+							</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,51 @@
+<div class="sms-viewer{% if not whale %} --empty{% endif %}">
+	<div class="sms-viewer__content">
+		<div class="sms-viewer__header">
+			<div class="sms-viewer__head-controls" onclick="window.sms.closeViewer()">
+				{% include "admin/svg/board-icon_back-arrow.svg" %}
+				<span>Leave
+					{{ whale.full_name }}
+					chat</span>
+			</div>
+			<div class="sms-viewer__welcome">
+				<div class="sms-preview__pic-wrap" data-tip="{{ whale.full_name }}">
+					<img loading="eager" src="{{ whale.photo }}" alt="">
+				</div>
+				<div class="sms-preview__title">
+					<div class="sms-preview__name">
+						<span class="typo_xs">Chat with</span>
+						<br>
+						<span>{{ whale.full_name }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="sms-viewer__main">
+			<div class="board__scroller">
+				<div class="sms-viewer__msg-group">
+					{% for sms in whale.sms_list %}
+						<div class="sms-viewer__msg{% if sms.sent_by_whale %} --whale{% endif %}">
+							<div class="sms-viewer__msg-text">
+								<span>{{ sms.text }}</span>
+								<span class="typo_xs">{{ sms.time }}, {{ sms.date }}</span>
+							</div>
+							<div class="sms-preview__sent-group">
+								{% include "admin/svg/board-icon_sent.svg" %}
+								<span>Sent by
+									{{ sms.sent_by }}</span>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<div class="sms-viewer__footer">
+			<div class="am_flex8">
+				<input type="text" autocomplete="off" placeholder="Write new message" class="board__input">
+				<button class="sms-viewer__btn" onclick="window.sms.sendMessage({{ whale.id }})">
+					{% include "admin/svg/board-icon_send.svg" %}
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

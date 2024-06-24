@@ -1,0 +1,53 @@
+<div class="sms-board">
+	<div class="sms-board__wrapper">
+
+		<div class="board__header">
+			<div class="board__title-content">
+				<h4 class="board__heading">{{ page_heading }}</h4>
+				<span class="board__subheading">{{ sms_count }}
+					SMS in total</span>
+				<button class="board-icon-btn">
+					{% include "admin/svg/board-icon_filter.svg" %}
+				</button>
+			</div>
+			<div class="board__top-group">
+				<div class="board__input-box">
+					<input type="text" autocomplete="off" placeholder="Search by whale, text, keywords..." class="board__input">
+					{% include "admin/svg/icon_search.svg" %}
+				</div>
+			</div>
+		</div>
+
+		<div class="board__flex-content">
+			<div class="board__sms-container">
+				<div class="board__sms-group">
+					<div class="board__scroller">
+						<div class="space_between">
+							<span class="typo_bold">Recently Sent</span>
+							<div class="flex_end">
+								<span class="typo_xs">1 - 20 out of
+									{{ sms_count }}</span>
+								<button class="board__pag-btn --prev" disabled onclick="window.sms.prev()"></button>
+								<button class="board__pag-btn --next" onclick="window.sms.next()"></button>
+							</div>
+						</div>
+						{% for sms in page_sms_list %}
+							{% include "admin/components/sms-preview.twig" %}
+						{% endfor %}
+						<div class="flex_end">
+							<span class="typo_xs">1 - 20 out of
+								{{ sms_count }}</span>
+							<button class="board__pag-btn --prev" disabled onclick="window.sms.prev()"></button>
+							<button class="board__pag-btn --next" onclick="window.sms.next()"></button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="board__preview-container">
+      {% include "admin/components/sms-viewer.twig" , with { whale: whales[0] } %}
+			</div>
+		</div>
+
+	</div>
+</div>
