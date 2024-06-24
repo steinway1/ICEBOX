@@ -196,6 +196,16 @@
 										<span>View Birthdays</span>
 									</label>
 								</div>
+
+								{% if empty_search %}
+									<div class="empty-search-box">
+										{% include "admin/svg/icon_empty-search.svg" %}
+										<h5>No results found</h5>
+										<p>Nothing was found for this query. Try changing the keywords.</p>
+									</div>
+								{% endif %}
+
+
 								<div class="tb-grid" id="grid_view"></div>
 							</div>
 							<span class="loader"></span>
