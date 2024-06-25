@@ -9,9 +9,10 @@
 
 
 	<body class="admin_board">
-		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
+		<main id="sms_board" {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
 			</main>
 		</body>
+{% include "admin/components/sms-toolbar.twig" %}
     {% include "admin/components/sidebar_board.twig" %}
 		{% include "page-components/scripts.twig" %}
 		{{ block('include_script') }}

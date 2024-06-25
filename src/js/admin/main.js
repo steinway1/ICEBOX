@@ -15,7 +15,9 @@ const
   __TRUE = '--true',
   __FALSE = '--false',
   __FADE = '--fade',
-  __VISIBLE = '--visible'
+  __VISIBLE = '--visible',
+  __ACTIVE = '--active',
+  __HIDDEN = '--hidden'
 
 function createElem(tagName, options) {
   const { className, id, innerHTML, style, attributes, toAppend } = options
@@ -3822,18 +3824,18 @@ class AddModal {
     var frm_data = $('#addVisit').serialize();
     if (id !== undefined) {
       $.ajax({
-        url:'/admin/json/whale-visit?type=1&id='+id,
-        type:'POST',
-        data:frm_data,
-        success:function(data){
+        url: '/admin/json/whale-visit?type=1&id=' + id,
+        type: 'POST',
+        data: frm_data,
+        success: function (data) {
           var r = $.parseJSON(data);
-          if(!r.error){
+          if (!r.error) {
             new pageMsg({
               type: 'success',
               heading: `Success!`,
               msg: `New visit for <b>${whaleName}</b> added.`,
             })
-          }else{
+          } else {
             new pageMsg({
               type: 'error',
               heading: `Error!`,
@@ -3851,18 +3853,18 @@ class AddModal {
     var frm_data = $('#addAppointment').serialize();
     if (id !== undefined) {
       $.ajax({
-        url:'/admin/json/whale-visit?type=2&id='+id,
-        type:'POST',
-        data:frm_data,
-        success:function(data){
+        url: '/admin/json/whale-visit?type=2&id=' + id,
+        type: 'POST',
+        data: frm_data,
+        success: function (data) {
           var r = $.parseJSON(data);
-          if(!r.error){
+          if (!r.error) {
             new pageMsg({
               type: 'success',
               heading: `Success!`,
               msg: `New appointment for <b>${whaleName}</b> added.`,
             })
-          }else{
+          } else {
             new pageMsg({
               type: 'error',
               heading: `Error!`,
@@ -3961,3 +3963,197 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addModal = new AddModal()
   }
 })
+
+/* #region SMS Page */
+class SMS {
+  constructor() {
+    this.board = document.querySelector('#sms_board')
+    this.sidebar = document.querySelector('.board-sidebar')
+    this.toolbar = document.querySelector('.board-toolbar')
+    this.__barCollapsed = '--sidebar_collapsed'
+    this.menuIsOpen = false
+    this.init()
+  }
+
+  // Methods - Sidebar
+  hideSidebar() {
+    document.body.classList.add(this.__barCollapsed)
+  }
+  showSidebar() {
+    document.body.classList.remove(this.__barCollapsed)
+  }
+  toggleSidebar() {
+    if (window.innerWidth < 992) {
+      this.toggleMenu()
+    }
+    if (document.body.classList.contains(this.__barCollapsed)) {
+      this.showSidebar()
+      return
+    }
+    this.hideSidebar()
+    return
+  }
+  // Methods - Menu
+  openMenu() {
+    if (!this.menuIsOpen) {
+      this.menuIsOpen = true
+      lockScroll()
+      window.smsMenuBackdrop = new PopupBackdrop({
+        callback: () => {
+          this.closeMenu()
+        }
+      })
+      this.sidebar.style.display = 'flex'
+      if (this.toolbar) {
+        this.toolbar.classList.add(__HIDDEN)
+      }
+      setTimeout(() => {
+        this.sidebar.classList.add(__ACTIVE)
+      }, 5);
+    }
+  }
+  closeMenu() {
+    if (this.menuIsOpen) {
+      this.menuIsOpen = false
+      unlockScroll()
+      this.sidebar.classList.remove(__ACTIVE)
+      if (window.smsMenuBackdrop) {
+        window.smsMenuBackdrop.hide()
+      }
+      if (this.toolbar) {
+        this.toolbar.classList.remove(__HIDDEN)
+      }
+      setTimeout(() => {
+        this.sidebar.style.display = 'none'
+      }, getTransitionTime(this.sidebar));
+    }
+  }
+  toggleMenu() {
+    if (this.menuIsOpen) {
+      this.closeMenu()
+    } else {
+      this.openMenu()
+    }
+  }
+  // Methods - SMS Preview Events
+  addToFavorites(id, event) {
+    if (id) {
+      const elem = event.target.classList.contains('.sms-preview__btn') ? event.target : event.target.closest('.sms-preview__btn')
+      if (elem) {
+        elem.classList.toggle(__ACTIVE)
+      }
+    }
+  }
+  remove(id, event) {
+    const remove = () => {
+      if (id) {
+        const elem = event.target.parentNode.closest('.sms-preview')
+        if (elem) {
+          this.animateRemoveMessage(elem)
+        }
+      }
+    }
+    const ask = new AskModal({
+      heading: 'Delete Message',
+      subheading: 'Are you sure want to delete this message?',
+      exitText: 'Back',
+      submitText: 'Delete',
+      submitCallback: [remove]
+    })
+    ask.show()
+  }
+  // Methods - Tags
+  addTag(id, event) {
+    event.stopPropagation()
+    const elem = event.target
+    const tagsHolder = elem.parentNode.closest('.sms-preview__footer')
+    if (!tagsHolder) throw new Error('class SMS. addTag : tagsHolder not found')
+
+    if (!tagsHolder.querySelector('.sms-tag-add')) {
+      const renderHTML = () => {
+        return `
+        <div class="sms-tag-add">
+          <input type="text" class="sms-tag --blue">
+          <select name="" id="" class="sms-tag" onchange="window.sms.changeTagColor(event)">
+            <option value="blue" selected>Blue</option>
+            <option value="green">Green</option>
+            <option value="purple">Purple</option>
+            <option value="orange">Orange</option>
+            <option value="red">Red</option>
+          </select>
+          <button class="sms-tag_btn --cancel" onclick="window.sms.cancelTag(event)"></button>
+          <button class="sms-tag_btn --confirm" onclick="window.sms.confirmTag(event)"></button>
+        </div>
+        `
+      }
+      tagsHolder.insertAdjacentHTML('beforeend', renderHTML())
+      const input = tagsHolder.querySelector('input.sms-tag')
+      input.focus()
+    }
+  }
+  changeTagColor(event) {
+    const elem = event.target
+    const parent = elem.closest('.sms-tag-add')
+    if (!parent) throw new Error('class SMS. changeTagColor : parent not found')
+    const input = parent.querySelector('input.sms-tag')
+    const option = elem.options[elem.selectedIndex].value
+    input.classList.remove(...input.classList)
+    addClasses(input, 'sms-tag', `--${option}`)
+  }
+  cancelTag(event) {
+    const elem = event.target
+    const parent = elem.closest('.sms-tag-add')
+    if (parent) {
+      parent.remove()
+    } else {
+      throw new Error('class SMS. cancelTag : parent not found')
+    }
+  }
+  confirmTag(event) {
+    const elem = event.target
+    const parent = elem.closest('.sms-tag-add')
+    const tagsHolder = parent.parentNode.closest('.sms-preview__footer')
+    if (!parent) throw new Error('class SMS. confirmTag : parent not found')
+
+    const input = parent.querySelector('input.sms-tag')
+    const value = input.value
+
+    if (!value) {
+      new pageMsg({
+        type: 'error',
+        heading: 'No Value',
+        msg: 'You can\'t add tag with empty value.'
+      })
+      throw new Error('class SMS. confirmTag : value not found')
+    }
+
+    const className = input.className
+    const newTag = createElem('div', {
+      innerHTML: value,
+      className: className
+    })
+    tagsHolder.appendChild(newTag)
+    this.cancelTag(event)
+  }
+
+  // Utils
+  animateRemoveMessage(elem) {
+    elem.style.transform = 'translateX(18px)'
+    elem.style.opacity = 0
+    setTimeout(() => {
+      elem.remove()
+    }, getTransitionTime(elem));
+  }
+
+  // Initialize
+  init() {
+    if (this.board) {
+      console.log('init sms page')
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.sms = new SMS()
+})
+/* #endregion SMS Page */

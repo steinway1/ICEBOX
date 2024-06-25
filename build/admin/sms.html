@@ -30,7 +30,7 @@
 
 
 <body class="admin_board">
-    <main class="main_sms">
+    <main id="sms_board" class="main_sms">
         <div class="sms-board">
             <div class="sms-board__wrapper">
 
@@ -75,12 +75,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -109,7 +109,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -124,12 +124,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -158,7 +158,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -173,12 +173,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -207,7 +207,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -222,12 +222,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -256,7 +256,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -271,12 +271,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -305,7 +305,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -320,12 +320,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -354,7 +354,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -369,12 +369,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -403,7 +403,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -418,12 +418,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -452,7 +452,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -467,12 +467,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -501,7 +501,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -516,12 +516,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -550,7 +550,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -565,12 +565,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -599,7 +599,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -614,12 +614,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -648,7 +648,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -663,12 +663,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -697,7 +697,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -712,12 +712,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -746,7 +746,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -761,12 +761,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -795,7 +795,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -810,12 +810,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -844,7 +844,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -859,12 +859,12 @@
                                         <div class="sms-preview__pic-wrap" data-tip="Moneybagg Yo">
                                             <img loading="eager" src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6678e3d23cfa32ff078ec577_moneybagg.webp" alt="">
                                         </div>
-                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295)" data-tip="Add to favorites">
+                                        <button class="sms-preview__btn" onclick="window.sms.addToFavorites(1295, event)" data-tip="Add to favorites">
                                             <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295)">
+                                        <button class="sms-preview__btn --remove" onclick="window.sms.remove(1295, event)">
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -893,7 +893,7 @@
                                             </div>
                                         </div>
                                         <div class="sms-preview__footer">
-                                            <button class="sms-tag" onclick="window.sms.addTag(1295)">
+                                            <button class="sms-tag" onclick="window.sms.addTag(1295, event)">
                                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.8319 8.70005L15.3019 4.17005C14.3519 3.22005 13.0419 2.71005 11.7019 2.78005L6.70193 3.02005C4.70193 3.11005 3.11193 4.70005 3.01193 6.69005L2.77193 11.69C2.71193 13.03 3.21193 14.34 4.16193 15.29L8.69193 19.82C10.5519 21.68 13.5719 21.68 15.4419 19.82L19.8319 15.43C21.7019 13.58 21.7019 10.56 19.8319 8.70005ZM9.50193 12.38C7.91193 12.38 6.62193 11.09 6.62193 9.50005C6.62193 7.91005 7.91193 6.62005 9.50193 6.62005C11.0919 6.62005 12.3819 7.91005 12.3819 9.50005C12.3819 11.09 11.0919 12.38 9.50193 12.38Z" fill="currentColor"></path>
                                                 </svg> <span>+ Tag</span>
@@ -992,6 +992,44 @@
         </div>
     </main>
 </body>
+<div class="board-toolbar">
+    <a href="#" class="board-toolbar__btn --active">
+        <svg class="svg_home" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.02 2.83999L3.63 7.03999C2.73 7.73999 2 9.22999 2 10.36V17.77C2 20.09 3.89 21.99 6.21 21.99H17.79C20.11 21.99 22 20.09 22 17.78V10.5C22 9.28999 21.19 7.73999 20.2 7.04999L14.02 2.71999C12.62 1.73999 10.37 1.78999 9.02 2.83999Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 17.99V14.99" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>All SMS</span>
+    </a>
+    <a href="#" class="board-toolbar__btn">
+        <svg class="svg_star" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05144L20.0969 8.58576C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1272 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58576L7.08837 8.05144C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>Starred</span>
+    </a>
+    <a href="#" class="board-toolbar__btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M18.8999 5L4.8999 19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>Trash</span>
+    </a>
+    <a href="#" class="board-toolbar__btn">
+        <svg class="svg_msg_time" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 7.42993V13.4299C22 14.9299 21.5 16.1799 20.62 17.0599C19.75 17.9299 18.5 18.4299 17 18.4299V20.5599C17 21.3599 16.11 21.84 15.45 21.4L11 18.4299H8.88C8.96 18.1299 9 17.8199 9 17.4999C9 16.4799 8.61 15.54 7.97 14.83C7.25 14.01 6.18 13.4999 5 13.4999C3.88 13.4999 2.86 13.96 2.13 14.71C2.04 14.31 2 13.8799 2 13.4299V7.42993C2 4.42993 4 2.42993 7 2.42993H17C20 2.42993 22 4.42993 22 7.42993Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 17.5C9 18.7 8.47001 19.77 7.64001 20.5C6.93001 21.12 6.01 21.5 5 21.5C2.79 21.5 1 19.71 1 17.5C1 16.24 1.58 15.11 2.5 14.38C3.19 13.83 4.06 13.5 5 13.5C7.21 13.5 9 15.29 9 17.5Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5.25 16.25V17.75L4 18.5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M8.5 10.5H15.5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>24H</span>
+    </a>
+    <button class="board-toolbar__btn --filled" onclick="window.sms.toggleMenu()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 7H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M3 12H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M3 17H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg> <span>Menu</span>
+    </button>
+</div>
 <div class="board-sidebar">
     <div class="board-sidebar__header">
         <a href="/" target="_blank"><svg class="board-logo" width="100%" height="100%" viewbox="0 0 203 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1018,7 +1056,7 @@
                 <path d="M187.156 31.2704V30.1271H191.819L184.672 18.5805L175.99 31.3085H174.397L183.857 17.3991L174.454 1.85112H170.984V0.707886H180.957V1.85112L187.307 12.3499L194.492 1.85112H194.549V0.707886H200.331V1.85112H196.047L188.046 13.5502L198.587 30.1271H202V31.2704H187.156Z" fill="currentColor"></path>
                 <path d="M83.2645 27.6311C82.5255 28.5822 81.5226 29.2918 80.3827 29.6698C79.1067 30.0621 77.7725 30.2296 76.4392 30.1652H71.3775V16.1415C72.7616 16.1415 74.1457 16.1415 75.5104 16.0463C76.6003 15.9615 77.6969 16.0646 78.7523 16.3512C79.7915 16.6106 80.7135 17.2148 81.3684 18.066C82.0018 19.026 82.3386 20.1532 82.3358 21.3052H83.6815V11.2066H82.3735C82.3735 11.359 82.3735 11.5115 82.3735 11.6258C82.3344 11.8263 82.2644 12.0193 82.1648 12.1974L81.8047 12.7119C81.6341 12.9118 81.4761 13.1218 81.3304 13.3407C80.8177 14.0101 80.0853 14.4758 79.2643 14.6554C78.4475 14.9234 77.6001 15.0835 76.7425 15.1317C75.7388 15.1891 74.732 15.1891 73.7283 15.1317C72.7426 15.1317 71.9652 15.0174 71.4155 15.0174V1.92733C73.3113 1.92733 74.9984 1.92733 76.4771 1.92733C77.8102 1.87248 79.1426 2.03988 80.4207 2.42273C81.5606 2.80079 82.5635 3.51033 83.3021 4.46153C84.177 5.72288 84.7897 7.14859 85.1033 8.65339H86.4876L86.165 0.707886H61.1023V1.92733H65.5952V30.1271H61.1023V31.2704H86.165L86.4494 23.8203H84.9516C84.6451 25.19 84.0718 26.4853 83.2645 27.6311Z" fill="currentColor"></path>
             </svg></a>
-        <button class="board-sidebar__menu-btn"></button>
+        <button class="board-sidebar__menu-btn" onclick="window.sms.toggleSidebar()"></button>
     </div>
     <div class="board-sidebar__main">
         <div class="board__scroller">
@@ -1026,7 +1064,7 @@
                 <button class="board__btn">Send new SMS</button>
             </div>
 
-            <div class="board-sidebar__nav">
+            <div class="board-sidebar__nav --nav">
                 <a href="#" class="board-link --active">
                     <div class="board-link__group">
                         <svg class="svg_home" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1070,7 +1108,7 @@
                 </a>
             </div>
 
-            <div class="board-sidebar__nav">
+            <div class="board-sidebar__nav --salesperson">
                 <h4 class="board-sidebar__heading">Salesperson</h4>
                 <div class="board-sidebar__wrapper">
                     <div class="board-spot-grid">

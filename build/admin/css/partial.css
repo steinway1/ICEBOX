@@ -634,6 +634,7 @@ a {
   --body_color: #f7faff;
   --white: #ffffff;
   --black: #28344b;
+  --board-grey: #f3f8fd;
   --dark_grey: #8c96a5;
   --light_blue: #eef5fc;
   --light_blue_dim: #cddff5;
@@ -12118,7 +12119,7 @@ textarea.pos-input {
 }
 
 .admin_board {
-  background-color: #f3f8fd;
+  background-color: var(--board-grey);
 }
 
 .board-logo {
@@ -12164,6 +12165,10 @@ textarea.pos-input {
 
 .board-sidebar .board__btn {
   width: 100%;
+}
+
+.board-sidebar.--active {
+  transform: translateX(0%);
 }
 
 .board-sidebar__wrapper {
@@ -12345,6 +12350,7 @@ textarea.pos-input {
   width: 100vw;
   height: 100vh;
   padding-left: var(--board-sidebar-width);
+  transition: var(--transition-l);
 }
 
 .sms-board__wrapper {
@@ -12617,6 +12623,59 @@ textarea.pos-input {
   height: 42px;
 }
 
+.sms-tag-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+input.sms-tag {
+  padding-left: 12px;
+  padding-right: 12px;
+  max-width: 92px;
+}
+
+select.sms-tag {
+  height: 28px !important;
+  padding: 0 10px !important;
+  font-size: 11px !important;
+  color: black !important;
+  border: 1px solid rgb(206, 211, 224);
+  background-color: transparent !important;
+}
+
+select.sms-tag:hover {
+  border-color: var(--royal_blue);
+}
+
+.sms-tag_btn {
+  width: 24px;
+  height: 24px;
+  background-size: 10px 10px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 50px;
+  border: 2px solid rgb(206, 211, 224);
+}
+
+.sms-tag_btn.--confirm {
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 9.80769L9.90698 17L22 6" stroke="%23171c29" stroke-width="4"/></svg>');
+}
+
+.sms-tag_btn.--confirm:hover {
+  border-color: #21b88b;
+}
+
+.sms-tag_btn.--cancel {
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L22 22" stroke="%23171c29" stroke-width="4"/><path d="M22 2L2 22" stroke="%23171c29" stroke-width="4"/></svg>');
+  background-size: 8px 8px;
+}
+
+.sms-tag_btn.--cancel:hover {
+  border-color: #b9404a;
+}
+
 .sms-tag {
   grid-column-gap: 4px;
   grid-row-gap: 4px;
@@ -12707,6 +12766,15 @@ textarea.pos-input {
   background-color: #d63d4a;
 }
 
+.sms-preview__btn.--active {
+  background-color: var(--royal_blue);
+  color: white;
+}
+
+.sms-preview__btn.--active svg path {
+  fill: white;
+}
+
 .sms-preview__title {
   grid-column-gap: 4px;
   grid-row-gap: 4px;
@@ -12738,6 +12806,7 @@ textarea.pos-input {
   grid-column-gap: 12px;
   grid-row-gap: 12px;
   display: flex;
+  transition: var(--transition-m);
 }
 
 .sms-preview.--active .sms-preview__main {
@@ -12956,14 +13025,18 @@ textarea.pos-input {
   align-items: flex-start;
 }
 
+.sms-viewer__msg.--whale .typo_xs {
+  color: white;
+}
+
 .sms-viewer__msg.--whale .sms-viewer__msg-text {
   border-radius: 0.8rem 0.8rem 0.8rem 0;
   background-color: #21b88b;
+  color: white;
 }
 
 .sms-viewer__msg-text {
-  color: #fff;
-  background-color: var(--royal_blue);
+  background-color: var(--board-grey);
   border-radius: 0.8rem 0.8rem 0;
   flex-flow: column;
   order: -1;
@@ -12979,11 +13052,64 @@ textarea.pos-input {
 }
 
 .sms-viewer__msg-text .typo_xs {
-  color: white;
   opacity: 0.65;
 }
 
 /* #endregion SMS Viewer */
+
+.board-toolbar {
+  z-index: 20;
+  color: #fff;
+  background-color: #3279da;
+  border-radius: 0.8rem;
+  max-width: 420px;
+  display: none;
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  overflow: auto;
+  transform: translate(-50%);
+  transition: var(--transition-m);
+}
+
+.board-toolbar.--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.board-toolbar__btn {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 0.8rem;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 10px;
+  display: flex;
+}
+
+.board-toolbar__btn.--filled {
+  color: white;
+}
+
+.board-toolbar__btn.--active {
+  color: #fff;
+  background-color: #4589e6;
+}
+
+.board-toolbar__btn svg {
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  display: flex;
+}
 
 @font-face {
   font-family: "Figtree";
@@ -13098,6 +13224,37 @@ textarea.pos-input {
     background-color: #fff;
     z-index: 2;
     box-shadow: 0 0 36px 0 rgba(21, 38, 51, 0.07);
+  }
+
+  .admin_board.--sidebar_collapsed {
+    --board-sidebar-width: 60px !important;
+  }
+
+  .admin_board.--sidebar_collapsed .board-sidebar__header a {
+    display: none;
+  }
+
+  .admin_board.--sidebar_collapsed .board__btn {
+    display: none;
+  }
+
+  .admin_board.--sidebar_collapsed .board-sidebar__heading {
+    display: none;
+  }
+
+  .admin_board.--sidebar_collapsed .board-spot-grid {
+    display: none;
+  }
+
+  .admin_board.--sidebar_collapsed .board-link {
+    padding: 18px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .admin_board.--sidebar_collapsed .board-link span {
+    display: none;
   }
 }
 
@@ -13369,6 +13526,8 @@ textarea.pos-input {
   }
 
   .board-sidebar {
+    position: fixed;
+    z-index: 100;
     transform: translateX(-100%);
     display: none;
   }
@@ -13386,6 +13545,11 @@ textarea.pos-input {
     position: static;
     overflow: auto !important;
     padding-right: 0;
+    padding-bottom: 98px;
+  }
+
+  .board__sms-group .space_between {
+    padding-right: var(--board-padding);
   }
 
   .board__preview-container {
@@ -13415,6 +13579,10 @@ textarea.pos-input {
   }
 
   .sms-viewer__head-controls {
+    display: flex;
+  }
+
+  .board-toolbar {
     display: flex;
   }
 }
@@ -14475,6 +14643,11 @@ textarea.pos-input {
     width: 50%;
   }
 
+  .board-sidebar {
+    width: 100%;
+    max-width: 80vw;
+  }
+
   .board__title-content .board-icon-btn {
     right: 8px;
   }
@@ -14497,6 +14670,19 @@ textarea.pos-input {
 
   .sms-viewer__msg-text {
     max-width: 85%;
+  }
+
+  .board-toolbar {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 12px;
+    right: 12px;
+    transform: none;
+  }
+
+  .board-toolbar__btn {
+    flex: 1;
   }
 }
 
