@@ -548,6 +548,11 @@
   padding-bottom: 16px;
   padding-left: 24px;
   padding-right: 24px;
+
+  @include maxWidthXs {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .sms-preview__msg {
@@ -648,7 +653,7 @@ select.sms-tag {
   &.--cancel {
     background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L22 22" stroke="%23171c29" stroke-width="4"/><path d="M22 2L2 22" stroke="%23171c29" stroke-width="4"/></svg>');
     background-size: 8px 8px;
-    
+
     &:hover {
       border-color: #b9404a;
     }
@@ -792,6 +797,59 @@ select.sms-tag {
   &.--active {
     .sms-preview__main {
       border-color: var(--royal_blue);
+    }
+  }
+
+  &.--empty {
+    --bg-color: #eff4f9;
+    pointer-events: none;
+
+    .sms-preview__main {
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      border: none;
+
+      div, span, a, p {
+        color: transparent !important;
+        border-radius: 50rem;
+        line-height: 18px;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 40%;
+        background-image: linear-gradient(rgba(255, 255, 255, 0), var(--board-grey));
+      }
+    }
+
+    .sms-preview__name {
+      background-color: var(--bg-color);
+      min-width: 120px;
+    }
+
+    .sms-preview__spot {
+      background-color: var(--bg-color);
+      min-width: 68px;
+    }
+
+    .sms-preview__date {
+      background-color: var(--bg-color);
+      min-width: 74px;
+    }
+
+    .sms-preview__msg {
+      background-color: var(--bg-color);
+      margin-bottom: 4px;
+    }
+
+    .sms-tag {
+      background-color: var(--bg-color);
+      min-width: 52px;
     }
   }
 }

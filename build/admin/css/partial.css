@@ -12813,6 +12813,62 @@ select.sms-tag:hover {
   border-color: var(--royal_blue);
 }
 
+.sms-preview.--empty {
+  --bg-color: #eff4f9;
+  pointer-events: none;
+}
+
+.sms-preview.--empty .sms-preview__main {
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+}
+
+.sms-preview.--empty .sms-preview__main div,
+.sms-preview.--empty .sms-preview__main span,
+.sms-preview.--empty .sms-preview__main a,
+.sms-preview.--empty .sms-preview__main p {
+  color: transparent !important;
+  border-radius: 50rem;
+  line-height: 18px;
+}
+
+.sms-preview.--empty .sms-preview__main::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), var(--board-grey));
+}
+
+.sms-preview.--empty .sms-preview__name {
+  background-color: var(--bg-color);
+  min-width: 120px;
+}
+
+.sms-preview.--empty .sms-preview__spot {
+  background-color: var(--bg-color);
+  min-width: 68px;
+}
+
+.sms-preview.--empty .sms-preview__date {
+  background-color: var(--bg-color);
+  min-width: 74px;
+}
+
+.sms-preview.--empty .sms-preview__msg {
+  background-color: var(--bg-color);
+  margin-bottom: 4px;
+}
+
+.sms-preview.--empty .sms-tag {
+  background-color: var(--bg-color);
+  min-width: 52px;
+}
+
 /* #endregion SMS Preview */
 
 .board__pag-btn {
@@ -14650,6 +14706,11 @@ select.sms-tag:hover {
 
   .board__title-content .board-icon-btn {
     right: 8px;
+  }
+
+  .sms-preview__msg-content {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .sms-preview__footer {

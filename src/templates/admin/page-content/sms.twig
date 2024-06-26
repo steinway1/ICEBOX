@@ -31,9 +31,17 @@
 								<button class="board__pag-btn --next" onclick="window.sms.next()"></button>
 							</div>
 						</div>
-						{% for sms in page_sms_list %}
-							{% include "admin/components/sms-preview.twig" %}
-						{% endfor %}
+						{% if sms_list_empty %}
+							<div>
+								<b>SMS list is empty.</b>
+							</div>
+							<button class="board__btn" onclick="window.sms.new()">Send Message</button>
+							{% include "admin/components/sms-preview_empty.twig" %}
+						{% else %}
+							{% for sms in page_sms_list %}
+								{% include "admin/components/sms-preview.twig" %}
+							{% endfor %}
+						{% endif %}
 						<div class="flex_end">
 							<span class="typo_xs">1 - 20 out of
 								{{ sms_count }}</span>
@@ -45,7 +53,7 @@
 			</div>
 
 			<div class="board__preview-container">
-      {% include "admin/components/sms-viewer.twig" , with { whale: whales[0] } %}
+				{% include "admin/components/sms-viewer.twig" , with { whale: whales[0] } %}
 			</div>
 		</div>
 
