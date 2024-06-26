@@ -35,6 +35,61 @@
       }
     }
   }
+
+  /* #region  Select2 */
+  .select2 {
+    width: 100% !important;
+  }
+
+  .select2-selection {
+    border: 1px solid #dde0eb;
+    border-radius: 0.6rem;
+    padding: 12px 18px;
+    height: auto;
+    transition: var(--transition-m) !important;
+    position: relative;
+
+    &:hover {
+      border-color: var(--royal_blue);
+    }
+
+    &:focus {
+      border-color: var(--royal_blue);
+    }
+  }
+
+  .select2-selection__rendered {
+    padding: 0 !important;
+  }
+
+  .select2-selection__placeholder {
+    color: var(--dark_grey) !important;
+    transition: var(--transition-m) !important;
+  }
+
+  .select2-selection__arrow {
+    top: 50% !important;
+    right: 16px !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .select2-dropdown {
+    border: 1px solid #dde0eb !important;
+  }
+
+  .select2-search--dropdown {
+    padding: 0 !important;
+  }
+
+  .select2-search__field {
+    padding: 8px;
+    border: 1px solid #eeeff5 !important;
+    background-color: #eeeff5;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* #endregion Select2 */
 }
 
 .board-logo {
@@ -406,6 +461,7 @@
   padding: 10px 16px 10px 44px;
   box-shadow: 0 4px 24px var(--box-shadow-color);
   transition: var(--transition-m);
+  outline: none;
 
   &:focus {
     &::placeholder {
@@ -413,10 +469,42 @@
     }
   }
 
+  &:active {
+    opacity: .65;
+  }
+
   &::placeholder {
     color: var(--dark_grey);
     transition: var(--transition-m);
   }
+
+  &.--blank {
+    padding: 12px 18px;
+    border: 1px solid #dde0eb;
+    box-shadow: none;
+
+    &:hover {
+      border-color: var(--royal_blue);
+    }
+
+    &:focus {
+      border-color: var(--royal_blue);
+    }
+
+    &:disabled {
+      background-color: #ebedf3;
+      border-color: #ebedf3;
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: #adb4c0;
+      }
+    }
+  }
+}
+
+textarea.board__input {
+  min-height: 84px;
 }
 
 .board__flex-content {
@@ -473,6 +561,10 @@
     }
 
     .space_between {
+      padding-right: var(--board-padding);
+    }
+
+    .board__scroller>.flex_end {
       padding-right: var(--board-padding);
     }
   }
@@ -810,7 +902,10 @@ select.sms-tag {
       box-shadow: none;
       border: none;
 
-      div, span, a, p {
+      div,
+      span,
+      a,
+      p {
         color: transparent !important;
         border-radius: 50rem;
         line-height: 18px;
@@ -1068,6 +1163,8 @@ select.sms-tag {
   align-items: center;
   height: 48px;
   padding: 8px 18px;
+  gap: 6px;
+  font-weight: 600;
   display: flex;
   flex: none;
   transition: var(--transition-s);
@@ -1083,6 +1180,11 @@ select.sms-tag {
   svg {
     width: 18px;
     height: 18px;
+  }
+
+  &.--grey {
+    background-color: #f3f8fe;
+    color: #798197;
   }
 }
 

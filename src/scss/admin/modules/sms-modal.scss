@@ -1,0 +1,73 @@
+.sms-modal {
+  position: fixed;
+  z-index: 120;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+  max-width: 510px;
+  min-height: 60px;
+  background-color: white;
+  box-shadow: 0 12px 58px var(--box-shadow-color);
+  border-radius: 0.8rem;
+  line-height: 22px;
+  display: none;
+
+  h2,h3 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+
+    span {
+      font-size: 14px;
+      display: block;
+      margin-top: 5px;
+      line-height: 20px;
+      font-weight: 400;
+    }
+  }
+
+  @include maxWidthXs {
+    transform: none;
+    border-radius: 0.6rem 0.6rem 0 0;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+  }
+
+  .custom-checkbox {
+    padding-left: 4px;
+    span {
+      gap: 6px;
+
+      &::before {
+        border-radius: 0.2rem;
+        background-color: #dde0eb;
+        border-color: #dde0eb;
+      }
+    }
+  }
+
+  .sms-viewer__btn {
+    flex: 1;
+  }
+}
+
+.sms-modal__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 32px;
+
+  @include maxWidthXs {
+    padding: 32px 20px;
+    gap: 20px;
+  }
+}
+
+.sms-modal__input-grid {
+  display: flex;
+  flex-flow: wrap;
+  gap: 12px;
+}

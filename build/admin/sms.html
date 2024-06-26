@@ -73,7 +73,7 @@
                                 <div>
                                     <b>SMS list is empty.</b>
                                 </div>
-                                <button class="board__btn" onclick="window.sms.new()">Send Message</button>
+                                <button class="board__btn" onclick="window.sms.openSMSModal()">Send Message</button>
                                 <div class="sms-preview --empty">
                                     <div class="sms-preview__main">
                                         <div class="sms-preview__info">
@@ -254,7 +254,7 @@
     <div class="board-sidebar__main">
         <div class="board__scroller">
             <div class="board-sidebar__wrapper">
-                <button class="board__btn">Send new SMS</button>
+                <button class="board__btn" onclick="window.sms.openSMSModal()">Send new SMS</button>
             </div>
 
             <div class="board-sidebar__nav --nav">
@@ -364,6 +364,37 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="sms-modal">
+    <div class="sms-modal__wrapper">
+        <h2>Send new SMS.
+            <span>Select a whale and fill in the fields below.</span>
+        </h2>
+        <form action="post" id="form_new_sms">
+            <div class="sms-modal__input-grid">
+                <select class="select2" id="sms_whale"></select>
+                <div class="flex_col --8">
+                    <input type="text" id="sms_phone" class="board__input --blank" placeholder="Phone number" disabled>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" value="sms_phone_manual" onchange="sms_phone.disabled = !this.checked; sms_phone.value = ''">
+                        <span>Manual phone number</span>
+                    </label>
+                </div>
+                <textarea id="sms_msg" class="board__input --blank" placeholder="Type your message..."></textarea>
+            </div>
+        </form>
+        <div class="am_flex8">
+            <button class="sms-viewer__btn --grey" onclick="window.sms.closeSMSModal()">
+                <span>Cancel</span>
+            </button>
+            <button class="sms-viewer__btn" onclick="window.sms.sendNewSMS()">
+                <span>Send</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.39993 6.32L15.8899 3.49C19.6999 2.22 21.7699 4.3 20.5099 8.11L17.6799 16.6C15.7799 22.31 12.6599 22.31 10.7599 16.6L9.91993 14.08L7.39993 13.24C1.68993 11.34 1.68993 8.23 7.39993 6.32Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M10.1101 13.65L13.6901 10.06" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg> </button>
         </div>
     </div>
 </div>

@@ -1,0 +1,29 @@
+<div class="sms-modal">
+	<div class="sms-modal__wrapper">
+		<h2>Send new SMS.
+			<span>Select a whale and fill in the fields below.</span>
+		</h2>
+		<form action="post" id="form_new_sms">
+			<div class="sms-modal__input-grid">
+				<select class="select2" id="sms_whale"></select>
+				<div class="flex_col --8">
+					<input type="text" id="sms_phone" class="board__input --blank" placeholder="Phone number" disabled>
+					<label class="custom-checkbox">
+						<input type="checkbox" value="sms_phone_manual" onchange="sms_phone.disabled = !this.checked; sms_phone.value = ''">
+						<span>Manual phone number</span>
+					</label>
+				</div>
+				<textarea id="sms_msg" class="board__input --blank" placeholder="Type your message..."></textarea>
+			</div>
+		</form>
+		<div class="am_flex8">
+			<button class="sms-viewer__btn --grey" onclick="window.sms.closeSMSModal()">
+				<span>Cancel</span>
+			</button>
+			<button class="sms-viewer__btn" onclick="window.sms.sendNewSMS()">
+				<span>Send</span>
+				{% include "admin/svg/board-icon_send.svg" %}
+			</button>
+		</div>
+	</div>
+</div>

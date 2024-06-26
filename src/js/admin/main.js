@@ -70,6 +70,7 @@ class PopupBackdrop {
       className: 'page-backdrop',
     })
     this.callback = settings.callback || null
+    this.instant = settings.instant || false
     this.show()
     this.el.addEventListener('click', (e) => {
       if (e.target === this.el) {
@@ -79,6 +80,9 @@ class PopupBackdrop {
   }
 
   show() {
+    if (this.instant) {
+      this.el.classList.add('--instant')
+    }
     document.body.appendChild(this.el)
     this.el.style.display = 'block'
     setTimeout(() => {
@@ -3970,6 +3974,7 @@ class SMS {
     this.board = document.querySelector('#sms_board')
     this.sidebar = document.querySelector('.board-sidebar')
     this.toolbar = document.querySelector('.board-toolbar')
+    this.SMSModal = document.querySelector('.sms-modal')
     this.__barCollapsed = '--sidebar_collapsed'
     this.menuIsOpen = false
     this.init()
@@ -4136,6 +4141,48 @@ class SMS {
     this.cancelTag(event)
   }
 
+  // SMS
+  initSelect2() {
+    $('#sms_whale').select2({
+      placeholder: "Select a whale",
+      ajax: {
+        url: '',
+        dataType: 'json'
+      }
+    })
+  }
+  sendNewSMS() {
+    const form = document.querySelector('#form_new_sms')
+    form.submit()
+  }
+  openSMSModal() {
+    lockScroll()
+    if (this.SMSModal) {
+      this.SMSModal.style.display = 'block'
+      window.SMSModalBackdrop = new PopupBackdrop({
+        instant: true,
+        callback: () => {
+          this.closeSMSModal(1)
+        }
+      })
+    }
+  }
+  closeSMSModal(offBackdrop) {
+    unlockScroll()
+    if (this.SMSModal) {
+      this.SMSModal.style.display = 'none'
+      const inputs = [...this.SMSModal.querySelectorAll('input, textarea')]
+      for (const input of inputs) {
+        input.value = ''
+      }
+    }
+    if (!offBackdrop) {
+      if (window.SMSModalBackdrop) {
+        window.SMSModalBackdrop.hide()
+      }
+    }
+  }
+
   // Utils
   animateRemoveMessage(elem) {
     elem.style.transform = 'translateX(18px)'
@@ -4148,7 +4195,7 @@ class SMS {
   // Initialize
   init() {
     if (this.board) {
-      console.log('init sms page')
+      this.initSelect2()
     }
   }
 }
