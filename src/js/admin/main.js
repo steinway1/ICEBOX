@@ -4044,9 +4044,21 @@ class SMS {
   addToFavorites(id, event) {
     if (id) {
       const elem = event.target.classList.contains('.sms-preview__btn') ? event.target : event.target.closest('.sms-preview__btn')
-      if (elem) {
-        elem.classList.toggle(__ACTIVE)
-      }
+      $.ajax({
+        url:'/admin/json/conversation-favorite/'+id,
+        type:'GET',
+        success:function(data){
+          var r = $.parseJSON(data);
+          if(!r.error){
+            if (elem) {
+              elem.classList.toggle(__ACTIVE)
+            }
+          }else{
+            toastr.error(r.msg);
+          }
+        }
+      })
+
     }
   }
   remove(id, event) {
@@ -4087,7 +4099,7 @@ class SMS {
             <option value="red">Red</option>
           </select>
           <button class="sms-tag_btn --cancel" onclick="window.sms.cancelTag(event)"></button>
-          <button class="sms-tag_btn --confirm" onclick="window.sms.confirmTag(event)"></button>
+          <button class="sms-tag_btn --confirm" onclick="window.sms.confirmTag(event,${id})"></button>
         </div>
         `
       }
@@ -4114,7 +4126,7 @@ class SMS {
       throw new Error('class SMS. cancelTag : parent not found')
     }
   }
-  confirmTag(event) {
+  confirmTag(event,id) {
     const elem = event.target
     const parent = elem.closest('.sms-tag-add')
     const tagsHolder = parent.parentNode.closest('.sms-preview__footer')
@@ -4138,6 +4150,7 @@ class SMS {
       className: className
     })
     tagsHolder.appendChild(newTag)
+    storeNewTag(value,className,id);
     this.cancelTag(event)
   }
 
@@ -4146,14 +4159,13 @@ class SMS {
     $('#sms_whale').select2({
       placeholder: "Select a whale",
       ajax: {
-        url: '',
+        url: '/admin/json/search-whale',
         dataType: 'json'
       }
     })
   }
   sendNewSMS() {
-    const form = document.querySelector('#form_new_sms')
-    form.submit()
+    $('#submit_sms_btn').click();
   }
   openSMSModal() {
     lockScroll()
