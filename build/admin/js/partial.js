@@ -4057,15 +4057,15 @@ class SMS {
     if (id) {
       const elem = event.target.classList.contains('.sms-preview__btn') ? event.target : event.target.closest('.sms-preview__btn')
       $.ajax({
-        url:'/admin/json/conversation-favorite/'+id,
-        type:'GET',
-        success:function(data){
+        url: '/admin/json/conversation-favorite/' + id,
+        type: 'GET',
+        success: function (data) {
           var r = $.parseJSON(data);
-          if(!r.error){
+          if (!r.error) {
             if (elem) {
               elem.classList.toggle(__ACTIVE)
             }
-          }else{
+          } else {
             toastr.error(r.msg);
           }
         }
@@ -4078,7 +4078,18 @@ class SMS {
       if (id) {
         const elem = event.target.parentNode.closest('.sms-preview')
         if (elem) {
-          this.animateRemoveMessage(elem)
+          $.ajax({
+            url: '/admin/json/conversation-trash/' + id,
+            type: 'GET',
+            success: function (data) {
+              var r = $.parseJSON(data);
+              if (!r.error) {
+                this.animateRemoveMessage(elem)
+              } else {
+                toastr.error(r.msg);
+              }
+            }
+          })
         }
       }
     }
@@ -4138,7 +4149,7 @@ class SMS {
       throw new Error('class SMS. cancelTag : parent not found')
     }
   }
-  confirmTag(event,id) {
+  confirmTag(event, id) {
     const elem = event.target
     const parent = elem.closest('.sms-tag-add')
     const tagsHolder = parent.parentNode.closest('.sms-preview__footer')
@@ -4162,7 +4173,7 @@ class SMS {
       className: className
     })
     tagsHolder.appendChild(newTag)
-    storeNewTag(value,className,id);
+    storeNewTag(value, className, id);
     this.cancelTag(event)
   }
 
