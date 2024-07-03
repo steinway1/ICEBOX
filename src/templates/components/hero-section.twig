@@ -22,7 +22,9 @@
 			<h2 class="hero-heading">
 				<a href="{{ url }}">{{ heading }}</a>
 			</h2>
-			<p class="hero-subheading">{{ subheading }}</p>
+			{% if subheading %}
+				<p class="hero-subheading">{{ subheading }}</p>
+			{% endif %}
 		</div>
 	{% endif %}
 	{% if not custom %}
@@ -49,7 +51,7 @@
 				</div>
 				{% if not hide_footer %}
 					<div class="hero-btn-group">
-						<a href="{{ url }}" class="hero-btn">{{ button_text ?: 'Shop All' }}</a>
+						<a href="{{ url }}" class="hero-btn{% if disable_button %} --inactive{% endif %}">{{ button_text ?: 'Shop All' }}</a>
 						{% if splide %}
 							<div class="splide__arrows">
 								<button class="hero-btn --arrow --reverse splide__arrow splide__arrow--prev" disabled>

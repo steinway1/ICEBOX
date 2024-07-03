@@ -32,6 +32,11 @@
 		{% include "elements/currency-modal.twig" %}
 		{% include "elements/connect-button.twig" %}
 
+		{% if user is not defined %}
+			{% include "elements/welcome-modal.twig" %}
+		{% endif %}
+
+
 		{# Scripts #}
 		{% include "page-components/v2/scripts.twig" %}
 		{% if show_admin_controls %}

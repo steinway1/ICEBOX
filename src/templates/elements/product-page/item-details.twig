@@ -1,0 +1,257 @@
+{# Item name #}
+<div class="side-row__title-wrap">
+	<h1 id="item_name" class="product__item-title">{{product.item.name}}</h1>
+	{% if user != false %}
+		<div class="product__add-fav {% if product.is_in_wishlist %}is-active{% endif %}" id="wishlist_btn_{{product.item.id}}" {% if (product.is_in_wishlist == false) and (user) %} onclick="addToWishlist({{product.item.id}});" {% endif %}>
+			{% include "elements/product-page/svg/heart.svg" %}
+		</div>
+	{% endif %}
+</div>
+
+{# Stock #}
+{% include "elements/product-page/stock-availability.twig" %}
+
+{# Price #}
+<div class="side-row__price">
+	<div class="side-row__line_price">
+		{% if product.item.salePrice is defined %}
+			{% if product.call_for_price == false and product.item.sold == false %}
+				<span class="product__item-price sale_price" id="current_base_price">
+					{{product.item.salePrice}}
+				</span>
+				<span class="product__item-price old_price" data-old-price="{{ product.item.old_price }}">
+					{{product.item.price}}
+				</span>
+				<span class="product-discount-rate">{{product.item.discountRate}}% OFF</span>
+			{% else %}
+				<span class="product__item-price">
+					{% if product.item.sold %}
+						SOLD
+					{% else %}
+						{{product.call_for_price_text}}</span>
+				{% endif %}
+
+			{% endif %}
+		{% else %}
+
+			{% if product.call_for_price == false %}
+				{% if product.item.sold == false %}
+					<span class="product__item-price" id="current_base_price">{{product.item.price}}</span>
+				{% else %}
+					<span class="product__item-price">SOLD</span>
+				{% endif %}
+
+			{% else %}
+				<span class="product__item-price">{{product.call_for_price_text}}</span>
+			{% endif %}
+
+		{% endif %}
+	</div>
+</div>
+
+{# Gold Pick #}
+{% for option in product.options %}
+	{% if option.type == "goldColor" %}
+		<div class="gold-options">
+			{% for optionBtn in option.set %}
+				<div data-color="{{optionBtn.color}}" data-select="color" class="color-pick{% if optionBtn.active %} is-active{% endif %}">
+					<span class="color-gradient {{optionBtn.class}}"></span>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+{% endfor %}
+
+
+{# Detailed price #}
+<div class="side-row__detailed-price" style="display: none;">
+	<span class="--diamond">
+		<span>Diamond Price:</span>
+		<span></span>
+		<span id="diamond_ring_price"></span>
+	</span>
+	<span class="--ring">
+		<span>Ring Price:</span>
+		<span></span>
+		<span id="ring_ring_price"></span>
+	</span>
+	<span>
+		<span>Total Price:</span>
+		<span></span>
+		<span id="ring_total_price"></span>
+	</span>
+</div>
+
+{# Match Items #}
+{% if product.matching_items is defined  and product.show_perfect_match %}
+	{% set matching_item = product.matching_items[0] %}
+	<div class="match-box">
+		<div class="match-box-dash">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<p class="match-box-heading">Perfect Matching
+			{{ matching_item.category_name }}</p>
+		<div class="match-box__wrapper">
+			<a href="{{matching_item.href}}" class="match-box__thumb">
+				<img src="{{matching_item.cover}}" loading="lazy" alt="{{matching_item.alt}}" class="match-box-thumbnail">
+			</a>
+			<div class="match-box__details-wrapper">
+				<a href="{{matching_item.href}}">
+					<span class="match-box-title">{{matching_item.name}}</span>
+				</a>
+				<span class="match-box-price">${{matching_item.price}}</span>
+				<a href="{{ matching_item.href }}" class="match-box-btn">Go To Item</a>
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+{# Options #}
+<div class="product__options">
+	{% for option in product.options %}
+		{% if option.type != 'goldColor' %}
+			{% include 'elements/product-page/custom-fields/' ~ option.type ~ '.twig' %}
+		{% endif %}
+	{% endfor %}
+</div>
+
+{# Add To Cart #}
+<div class="side-row__payments">
+	<div class="product__btn-group">
+		{% if product.temp_unavailable == false %}
+			{% if product.call_for_price == false %}
+				<a id="ajax-button" href="javascript:void(0);" class="buy-btn" onclick="addToCart({{IN_IFRAME}})">
+					<span>ADD TO CART</span>
+				</a>
+			{% else %}
+				<a href="tel:+1770828554" class="buy-btn">
+					<span>{{ product.call_for_price_text }}</span>
+				</a>
+			{% endif %}
+		{% else %}
+			<a href="javascript:void(0)" class="buy-btn">
+				{% if product.item.sold %}
+					<span>Sold</span>
+				{% else %}
+					<span>Temporarily Unavailable</span>
+				{% endif %}
+			</a>
+		{% endif %}
+	</div>
+	{% if is_watch_market_item  %}
+		<a class="buy-btn --sub" href="/chat-whatsapp-2?p_id={{ product.item.id }}" target="_blank">
+			<img src="{{THEME_ASSETS_FOLDER}}wa_fill-icon.svg" alt="Whatsapp Icon Picture" loading="eager">
+			<span>Talk Now on WhatsApp</span>
+		</a>
+	{% else %}
+		<a class="buy-btn --sub" href="/chat-whatsapp?p_id={{ product.item.id }}" target="_blank">
+			<img src="{{THEME_ASSETS_FOLDER}}wa_fill-icon.svg" alt="Whatsapp Icon Picture" loading="eager">
+			<span>Talk Now on WhatsApp</span>
+		</a>
+	{% endif %}
+	<div class="product__ship-insured">
+		{% include "components/svg/double_box.svg" %}
+		<span>Shop with confidence, all orders ship insured.</span>
+	</div>
+</div>
+
+{# Pay Later #}
+<div class="paylater-box">
+	<div class="paylater-box__container">
+
+		<div id="payLaterBoxIntro" class="paylater-box__content">
+			<button class="paylater-btn" onclick="window.product.togglePayLater()">Buy Now &amp; Pay Later</button>
+			<div data-paylater class="paylater-box__img-wrap">
+				<img src="{{ THEME_ASSETS_FOLDER }}pay-klarna_icon.svg" loading="lazy" alt="pay later with Klarna">
+				<img src="{{ THEME_ASSETS_FOLDER }}pay-affirm_icon.svg" loading="lazy" alt="pay later with Affirm">
+				<img src="{{ THEME_ASSETS_FOLDER }}pay-afterpay_icon.svg" loading="lazy" alt="pay later with Afterpay">
+			</div>
+		</div>
+
+		<div id="payLaterBoxDetails" class="paylater-box__content">
+			<div class="paylater-box__wrapper">
+				<div class="paylater-box__row">
+					<p>Icebox.com is offering service through Klarna, Affirm or Afterpay.</p>
+					<p>Add items to your cart and get approved during the checkout process!</p>
+					<p>Approvals are fast and items are paid for instantly after your approval.</p>
+				</div>
+				<div class="paylater-box__row">
+					<div class="paylater-box__features">
+						<span>No Credit Score Impact</span>
+						<span>Quick &amp; Easy To Follow</span>
+						<span>Personal Installments Plan</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{# Description #}
+<div class="product__item-summary">
+	{% if product.item.mainDescription %}
+		<p>{{product.item.mainDescription | raw }}</p>
+	{% endif %}
+</div>
+
+{# More Details #}
+<div class="product__more-details">
+	<div class="product__item-option --info">
+		<div class="product-option__head">
+			<div class="product-option-name">More Details</div>
+			<div class="product-option__head-right">
+				<div class="product-option__dd-icon">
+					<svg width="12" height="12" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 6L12 17L23 6" stroke="black" stroke-width="2.5"></path>
+					</svg>
+				</div>
+			</div>
+		</div>
+		<div class="product-option__body">
+			<div class="product-option__wrapper">
+				<div class="product__details-grid">
+					{% for detail in product.details %}
+						<div class="product__about-row">
+							<div class="product__about-title">{{detail.title | raw}}
+								{% if detail.titleSpan %}
+									{{detail.titleSpan}}
+								{% endif %}
+							</div>
+							<div class="product__about-name" id="{{ detail.id }}">{{detail.value}}</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="product__item-option --info">
+		<div class="product-option__head">
+			<div class="product-option-name">Our Policy</div>
+			<div class="product-option__head-right">
+				<div class="product-option__dd-icon">
+					<svg width="12" height="12" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 6L12 17L23 6" stroke="black" stroke-width="2.5"></path>
+					</svg>
+				</div>
+			</div>
+		</div>
+		<div class="product-option__body">
+			<div class="product-option__wrapper">
+				<p class="warranty-p">
+					{% if is_watch_market_item %}
+						All sales are final.  No refunds, no exchanges.  Please call if you have any questions about our jewelry or watches.
+					{% else %}
+						Item design &amp; details may vary slightly from provided image. Icebox Diamonds &amp; Watches
+						<span>DOES NOT ACCEPT RETURNS OR ISSUE REFUNDS FOR ANY REASON.</span>
+						<br>We do allow (1) exchange within 14 days of the purchase date.
+					{% endif %}
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

@@ -42,9 +42,46 @@ const
   __ACTIVE = '--active',
   __HALF = '--half',
   __LOCKED = '--locked',
-  IS_HIDDEN = 'is-hidden'
+  __EXPANDED = '--expanded',
+  __COLLAPSED = '--collapsed',
+  IS_HIDDEN = 'is-hidden',
+  IS_ACTIVE = 'is-active'
 
 /* #region  Utils */
+class RippleEffect {
+  constructor(el, event) {
+    this.el = el
+    this.event = event
+    this.rippleClass = "eff_ripple-circle"
+    this.animateClass = "ripple-circle_animated"
+  }
+  push() {
+    if (window.getComputedStyle(this.el).position === "static") {
+      this.el.style.position = 'relative'
+    }
+    if (window.getComputedStyle(this.el).overflow !== "hidden") {
+      this.el.style.overflow = 'hidden'
+    }
+    if (!this.el.querySelector(`.${this.rippleClass}`)) {
+      this.el.appendChild(createElem('span', { className: this.rippleClass }))
+    }
+    let circle = this.el.querySelector(`.${this.rippleClass}`)
+    circle.classList.remove(this.animateClass)
+
+    if (!circle.clientHeight && !circle.clientWidth) {
+      let d = Math.max(this.el.clientWidth, this.el.clientHeight)
+      circle.style.height = '52px'
+      circle.style.width = '52px'
+    }
+    const x = this.event.pageX - this.el.offsetLeft - (circle.clientWidth / 2)
+    const y = this.event.pageY - this.el.offsetTop - ((circle.clientHeight / 2) * 3.7)
+
+    circle.style.top = `${y}px`
+    circle.style.left = `${x}px`
+    circle.classList.add(this.animateClass)
+  }
+}
+
 function lockScroll() {
   setTimeout(function () {
     if (!document.body.hasAttribute("ib-scroll-lock")) {
@@ -1101,6 +1138,8 @@ class ConnectButton {
     this.offsetTimer = undefined
     this.hideTimer = undefined
     this.state = false
+    this.defaultBtnPosition = undefined
+    this.defaultListPosition = undefined
     this.init()
   }
 
@@ -1121,6 +1160,16 @@ class ConnectButton {
           }, this.delay * index);
         })
       }, 5);
+    }
+  }
+
+  adjustPos(offset) {
+    if (offset == 'default') {
+      this.rootEl.style.bottom = `${this.defaultBtnPosition}px`
+      this.list.style.bottom = `${this.defaultListPosition}px`
+    } else {
+      this.rootEl.style.bottom = `${offset}px`
+      this.list.style.bottom = `${this.defaultListPosition + offset - this.defaultBtnPosition}px`
     }
   }
 
@@ -1196,6 +1245,8 @@ class ConnectButton {
     const bottomOffset = bottomPosition + buttonHeight + 8
 
     this.list.style.bottom = `${bottomOffset}px`
+    this.defaultListPosition = bottomOffset
+    this.defaultBtnPosition = parseInt(window.getComputedStyle(this.rootEl).bottom)
   }
 
   init() {
@@ -1216,22 +1267,22 @@ class Footer {
   }
 
   bindEvents() {
-      const headersArr = [...this.rootEl.querySelectorAll('.footer-col__header')]
-      for (const header of headersArr) {
-        const content = header.parentNode.querySelector('.footer-col__body')
-        if (content) {
-          header.addEventListener('click', () => {
-            if (window.innerWidth < 992) {
-              const contentHeight = content.clientHeight
-              if (contentHeight == 0) {
-                content.style.height = 'auto'
-              } else {
-                content.style.height = 0
-              }
+    const headersArr = [...this.rootEl.querySelectorAll('.footer-col__header')]
+    for (const header of headersArr) {
+      const content = header.parentNode.querySelector('.footer-col__body')
+      if (content) {
+        header.addEventListener('click', () => {
+          if (window.innerWidth < 992) {
+            const contentHeight = content.clientHeight
+            if (contentHeight == 0) {
+              content.style.height = 'auto'
+            } else {
+              content.style.height = 0
             }
-          })
-        }
+          }
+        })
       }
+    }
   }
 
   init() {
@@ -1241,6 +1292,223 @@ class Footer {
   }
 }
 /* #endregion Footer */
+
+/* #region Product Page */
+class ProductPage {
+  constructor() {
+    this.rootEl = document.querySelector('#product-page')
+    this.optionArr = [...document.querySelectorAll('.product__item-option')]
+    if (!this.rootEl) {
+      return
+    }
+    this.init()
+  }
+
+  // Methods
+  togglePayLater() {
+    const intro = document.querySelector('#payLaterBoxIntro')
+    const details = document.querySelector('#payLaterBoxDetails')
+    if (intro && details) {
+      if (details.clientHeight) {
+        details.style.display = 'none'
+      } else {
+        details.style.display = 'block'
+      }
+    }
+  }
+
+  // Events
+  bindOptionToggle() {
+    for (const option of this.optionArr) {
+      const head = option.querySelector('.product-option__head')
+      const body = option.querySelector('.product-option__body')
+      if (head && body) {
+        head.addEventListener('click', () => {
+          option.classList.toggle(__EXPANDED)
+        })
+      }
+    }
+  }
+  bindSelectedOptionSwitch() {
+    for (const option of this.optionArr) {
+      const buttonArr = [...option.querySelectorAll('.option-btn')]
+      for (const button of buttonArr) {
+        button.addEventListener('click', (event) => {
+          const ripple = new RippleEffect(button, event).push()
+          buttonArr.forEach(btn => btn.classList.remove(IS_ACTIVE))
+          button.classList.add(IS_ACTIVE)
+        })
+      }
+    }
+  }
+  bindAddFavorite() {
+    const buttonArr = [...document.querySelectorAll('.product__add-fav')]
+    for (const button of buttonArr) {
+      button.addEventListener('click', (event) => {
+        const ripple = new RippleEffect(button, event).push()
+        button.classList.toggle(IS_ACTIVE)
+      })
+    }
+  }
+  bindSelectColor() {
+    const arr = [...document.querySelectorAll('.color-pick')]
+    for (const elem of arr) {
+      elem.addEventListener('click', (event) => {
+        const ripple = new RippleEffect(elem, event).push()
+        arr.forEach(el => el.classList.remove(IS_ACTIVE))
+        elem.classList.add(IS_ACTIVE)
+      })
+    }
+  }
+  bindScrollEvents() {
+    const trigger = document.querySelector('.buy-btn#ajax-button')
+    const floatBtn = document.querySelector('.product-float')
+    const header = document.querySelector('.header')
+    let offset = 0
+
+    if (header) {
+      offset = header.clientHeight
+    }
+
+    window.addEventListener('scroll', () => {
+      const topOfWindow = window.scrollY
+      const topOfElement = trigger.offsetTop + offset
+      const bottomOfPage = document.documentElement.scrollHeight - window.innerHeight
+      if (topOfWindow > topOfElement) {
+        floatBtn.classList.add(__VISIBLE)
+        if (window.connectButton) {
+          window.connectButton.adjustPos(floatBtn.clientHeight + 12)
+        }
+      } else {
+        floatBtn.classList.remove(__VISIBLE)
+        if (window.connectButton) {
+          window.connectButton.adjustPos('default')
+        }
+      }
+      if (topOfWindow === bottomOfPage) {
+        floatBtn.classList.remove(__VISIBLE)
+        if (window.connectButton) {
+          window.connectButton.adjustPos('default')
+        }
+      }
+    })
+  }
+
+  // Init
+  initSplide() {
+    const arr = [...document.querySelectorAll('.product-slider')]
+    for (const splideEl of arr) {
+      const splide = new Splide(splideEl, {
+        type: "slider",
+        perPage: 2,
+        perMove: 1,
+        autoplay: false,
+        pauseOnHover: true,
+        pauseOnFocus: true,
+        gap: "6px",
+        arrows: false,
+        pagination: false,
+        speed: 750,
+        arrows: true,
+        pagination: true,
+        breakpoints: {
+          660: {
+            perPage: 1
+          }
+        }
+      }).mount()
+    }
+  }
+  setOptionValues() {
+    for (const option of this.optionArr) {
+      const holder = option.querySelector('.product-option__head-right')
+      const block = option.querySelector('.options-block')
+      if (holder && block) {
+        const selected = block.querySelector('.option-btn.is-active')
+        if (selected) {
+          const value = selected.dataset.value
+          if (!value) return
+          holder.appendChild(createElem('span', {
+            innerHTML: value
+          }))
+        }
+      }
+    }
+  }
+  setSummaryState() {
+    const summary = document.querySelector('.product__item-summary')
+    if (summary.clientHeight > 160) {
+      summary.classList.add(__COLLAPSED)
+    }
+    document.addEventListener('click', (e) => {
+      const target = e.target
+      if (target.classList.contains('.product__item-summary') || target.closest('.product__item-summary')) {
+        summary.classList.remove(__COLLAPSED)
+      }
+    })
+  }
+
+  init() {
+    if (this.rootEl) {
+      this.initSplide()
+      this.setOptionValues()
+      this.setSummaryState()
+      this.bindOptionToggle()
+      this.bindSelectedOptionSwitch()
+      this.bindAddFavorite()
+      this.bindSelectColor()
+      this.bindScrollEvents()
+    }
+  }
+}
+/* #endregion Product Page */
+
+class WelcomeModal {
+  constructor(settings = {}) {
+    this.rootEl = document.querySelector('.welcome-modal')
+    this.toShow = settings.toShow || false
+    this.timeToShow = settings.timeToShow || 3000
+    this.init()
+  }
+
+  show() {
+    this.rootEl.classList.add(__VISIBLE)
+  }
+  hide() {
+    this.rootEl.classList.remove(__VISIBLE)
+    setTimeout(() => {
+      this.rootEl.remove()
+    }, getTransitionTime(this.rootEl));
+  }
+  join() {
+    if (window.signModal) {
+      window.signModal.open()
+      this.hide()
+    }
+  }
+
+  bindEvents() {
+    const join = [...document.querySelectorAll('[data-welcome-evt="join"]')]
+    const cancel = [...document.querySelectorAll('[data-welcome-evt="cancel"]')]
+
+    for (const button of join) {
+      button.onclick = () => { this.join() }
+    }
+
+    for (const button of cancel) {
+      button.onclick = () => { this.hide() }
+    }
+  }
+
+  init() {
+    if (this.rootEl) {
+      this.bindEvents()
+      setTimeout(() => {
+        this.show()
+      }, this.timeToShow);
+    }
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   window.menu = new Menu()
@@ -1252,6 +1520,13 @@ document.addEventListener('DOMContentLoaded', () => {
   window.currencyModal = new CurrencyModal()
   window.connectButton = new ConnectButton()
   window.footer = new Footer()
+  window.product = new ProductPage()
+
+  window.welcomeModal = new WelcomeModal({
+    toShow: true,
+    timeToShow: 2000
+  })
+  
   initValidators()
   initTelInput()
 })

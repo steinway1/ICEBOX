@@ -1,7 +1,7 @@
-{% extends 'layouts/default.twig' %}
+{% extends 'layouts/default_v2.twig' %}
 {% set pageBanner = true %}
 {% set updateLayout = true %}
-{% set mainClass = 'main_product_upd' %}
+{% set mainClass = 'main_product_v2' %}
 
 {% block include_head %}
 {# Styles / preload scripts / etc... #}
@@ -9,7 +9,8 @@
 
 {% block content %}
 {% include "./page-content/product-page-v2.twig" %}
-{% include "./elements/sales-history.twig" %}
+{% include "elements/product-page/product-float.twig" %}
+{# {% include "./elements/sales-history.twig" %} #}
 {% endblock %}
 
 {% block include_script %}

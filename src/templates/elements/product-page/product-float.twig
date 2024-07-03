@@ -1,0 +1,34 @@
+<div class="product-float">
+	<div class="product-float__wrapper">
+		<div class="product-float__details">
+			{% set item = product.media[0].elements[0] %}
+			{% include "elements/product-page/product-media.twig" with {
+					type: item.type,
+					imgSrc: item.src,
+					alt: item.alt,
+					zoom:item.zoom_class,
+					splide: false
+				  } %}
+			<span class="product-float__name">{{ product.item.name }}</span>
+		</div>
+		{% if product.temp_unavailable == false %}
+			{% if product.call_for_price == false %}
+				<a href="javascript:void(0);" class="product-float__btn" onclick="addToCart({{IN_IFRAME}})">
+					<span>ADD TO CART</span>
+				</a>
+			{% else %}
+				<a href="tel:+1770828554" class="product-float__btn">
+					<span>{{ product.call_for_price_text }}</span>
+				</a>
+			{% endif %}
+		{% else %}
+			<a href="javascript:void(0)" class="product-float__btn">
+				{% if product.item.sold %}
+					<span>Sold</span>
+				{% else %}
+					<span>Temporarily Unavailable</span>
+				{% endif %}
+			</a>
+		{% endif %}
+	</div>
+</div>
