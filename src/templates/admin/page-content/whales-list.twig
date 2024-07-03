@@ -219,7 +219,11 @@
 								{% endif %}
 
 
-								<div class="tb-grid" id="grid_view"></div>
+								<div class="tb-grid" id="grid_view">
+                {% set whale = whales[0] %}
+                {% include "admin/components/whale-card.twig", with { whale: whale } %}
+                {% include "admin/components/whale-card2.twig", with { whale: whale } %}
+                </div>
 							</div>
 							<span class="loader"></span>
 						</div>

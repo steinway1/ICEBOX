@@ -1478,23 +1478,20 @@ const gTip = {
   extendElem: function () {
     this.elem.setupLinks = () => {
       if (gTip.card) {
+        const linksToHide = ['Contract', 'Sportrac']
+        const links = [...this.elem.querySelectorAll('a')]
         const attr = gTip.card.dataset.showContract
-        if (attr) {
-          const hideContract = gTip.card.dataset.showContract == 'false' ? true : false
-          const linksToHide = ['Contract', 'Sportrac']
-          const links = [...this.elem.querySelectorAll('a')]
 
-          if (hideContract) {
-            links.forEach((link) => {
-              if (linksToHide.includes(link.textContent)) {
-                link.style.display = 'none'
-              }
-            })
-          } else {
-            links.forEach((link) => {
-              link.style.display = 'block'
-            })
-          }
+        links.forEach((link) => {
+          link.style.display = 'block'
+        })
+
+        if (!attr) {
+          links.forEach((link) => {
+            if (linksToHide.includes(link.textContent)) {
+              link.style.display = 'none'
+            }
+          })
         }
       }
     }
