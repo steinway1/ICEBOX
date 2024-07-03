@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pin = new LockPin({
       code: 3256
     })
-    pin.push()
+    // pin.push()
   }
 })
 
@@ -1456,15 +1456,40 @@ const gTip = {
   elem: document.querySelector('.g-tip'),
   input: document.querySelector('.g-tip__input'),
   init: function () {
+    this.elem = document.querySelector('.g-tip')
+    this.input = document.querySelector('.g-tip__input')
     if (this.elem && this.input) {
       this.extendElem()
       this.bindEvents()
     }
   },
   extendElem: function () {
+    this.elem.setupLinks = () => {
+      if (gTip.card) {
+        const attr = gTip.card.dataset.showContract
+        if (attr) {
+          const hideContract = gTip.card.dataset.showContract == 'false' ? true : false
+          const linksToHide = ['Contract', 'Sportrac']
+          const links = [...this.elem.querySelectorAll('a')]
+
+          if (hideContract) {
+            links.forEach((link) => {
+              if (linksToHide.includes(link.textContent)) {
+                link.style.display = 'none'
+              }
+            })
+          } else {
+            links.forEach((link) => {
+              link.style.display = 'block'
+            })
+          }
+        }
+      }
+    }
     this.elem.open = () => {
       if (gTip.card) {
         const anchor = gTip.card.querySelector('.ext-search')
+
         if (anchor) {
           const rect = anchor.getBoundingClientRect(), box = gTip.elem
           box.style.display = 'block'
@@ -1507,6 +1532,7 @@ const gTip = {
     btnArr.forEach((btn) => {
       btn.onclick = (e) => {
         gTip.card = e.target.closest('.whale-card')
+        gTip.elem.setupLinks()
         gTip.elem.open()
       }
     })
@@ -1752,15 +1778,17 @@ const pageObjects = [
   gTip
 ]
 
-for (const obj of pageObjects) {
-  if (obj && typeof obj.init === 'function') {
-    try {
-      obj.init();
-    } catch (err) {
-      throw new Error(`Error executing obj.init: ${err.message}`);
+document.addEventListener('DOMContentLoaded', () => {
+  for (const obj of pageObjects) {
+    if (obj && typeof obj.init === 'function') {
+      try {
+        obj.init();
+      } catch (err) {
+        throw new Error(`Error executing obj.init: ${err.message}`);
+      }
     }
   }
-}
+})
 
 const whaleCardAttachAvatarUpload = () => {
   document.onclick = (e) => {
