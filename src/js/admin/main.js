@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pin = new LockPin({
       code: 3256
     })
-    // pin.push()
+    pin.push()
   }
 })
 
@@ -3179,7 +3179,7 @@ const FinanceList = {
     const lockPIN = new LockPin({
       code: 3256
     })
-    // lockPIN.push()
+    lockPIN.push()
 
     document.addEventListener('click', (e) => {
       const target = e.target
