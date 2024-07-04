@@ -1,0 +1,45 @@
+<div class="am-content w_max_1080 --upd">
+	<div
+		class="am-content__wrapper">
+
+		{# Mobile Arrows #}
+		{% include "admin/components/page-arrows.twig" %}
+
+
+		<!-- #region Content : Header -->
+		<div class="am-main__header for_today">
+			<div class="am-container">
+				<div class="am-row__header-wrapper">
+					{% include "admin/components/top-header.twig" %}
+					{% include "admin/components/date-form.twig" %}
+				</div>
+			</div>
+		</div>
+		<!-- #endregion -->
+
+
+		<div class="am-main__flow">
+			<div class="am-container">
+				<div class="am-main__content">
+					<div class="am__dbl-wrap">
+						<div class="am-main__orders">
+							<div class="am-content-divider"></div>
+							{# ORDERS #}
+							{% for order in orders %}
+								{% include "admin/components/item-today.twig" %}
+							{% endfor %}
+
+
+						</div>
+
+						{# Today Statistics #}
+						{% include "admin/components/today-stats.twig" %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>

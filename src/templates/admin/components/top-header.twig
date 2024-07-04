@@ -1,0 +1,27 @@
+<div class="am-row__header">
+    <div class="am_vertical-start">
+        <h2 class="am-main__header-title">{{ title }} Transactions Report
+
+            {% if date_from == '' %}
+                For {{day}} {{date}}
+            {% else %}
+                Between {{ date }} AND {{ date_from }}
+            {% endif %}
+
+
+
+        </h2>
+        {% if countdown != '' %}
+        <div class="am-main__subtitle">
+            {% include "admin/svg/icon_clock.svg" %}
+            {{ countdown | raw}}
+        </div>
+        {% endif %}
+    </div>
+    <div class="am_flex8">
+        <a data-fancybox="" data-src="/admin/orders/print-slip-date" data-type="ajax" class="am-today-btn">Print Day Packing Slips</a>
+        <a href="javascript:void(0);" onclick="sendSaksItemsRequests();" class="am-today-btn">[<span id="total_saks_orders_email">{{ fullby_saks_count }}</span>] Send SAKS Orders</a>
+        <a href="javascript:void(0);" onclick="hideDivsWithoutPulseChild();"class="am-today-btn"><span id="repeated_count"></span>&nbsp;Keep Only Repeated Customers</a>
+        <a href="javascript:void(0);" onclick="showAll();"class="am-today-btn"><span ></span> Show All</a>
+    </div>
+</div>

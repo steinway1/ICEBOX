@@ -2860,6 +2860,10 @@ body.blue_head .am-select:hover {
   color: white;
 }
 
+.for_today .am-row__header {
+  flex-direction: column !important;
+}
+
 .am-btn {
   padding: 10px 12px;
   display: flex;
@@ -4387,6 +4391,52 @@ body.blue_head .am-select:hover {
   background-position: left 22px center !important;
 }
 
+.am-content.--upd .am-today__side {
+  padding-bottom: 0;
+}
+
+.am-content.--upd .am-item__over {
+  border-width: 1px;
+}
+
+.am-content.--upd .for_today .am-today-btn {
+  background-color: var(--royal_blue_light);
+  border-color: var(--royal_blue_light);
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0px;
+}
+
+.am-content.--upd .for_today .am-today-btn:hover {
+  color: white !important;
+  background-color: transparent !important;
+  border-color: var(--royal_blue_light) !important;
+}
+
+.am-content.--upd .for_today .am-select-wrap {
+  background-color: transparent;
+  color: white;
+  border: 1px solid var(--navy_blue_pale);
+}
+
+.am-content.--upd .for_today .am-select-wrap:hover {
+  border-color: var(--royal_blue_light);
+}
+
+.am-content.--upd .for_today .am-select-wrap::after {
+  border-color: white;
+}
+
+.am-content.--upd .for_today .am-select-wrap input {
+  background-color: transparent;
+  color: white;
+  font-size: 13px;
+}
+
+.am-content.--upd .for_today .am-select-wrap input::placeholder {
+  color: white;
+}
+
 .am-main__summary {
   font-size: 11px;
   font-weight: 700;
@@ -4398,6 +4448,100 @@ body.blue_head .am-select:hover {
   text-transform: uppercase;
   line-height: 16px;
 }
+
+/* #region Orders Modal */
+
+.orders-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  max-width: 860px;
+  background-color: var(--body_color);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: var(--transition-l);
+  display: none;
+}
+
+.orders-modal.--visible {
+  transform: translateX(0);
+}
+
+.orders-modal .am-item {
+  box-shadow: 0 14px 58px rgba(23, 28, 41, 0.05);
+}
+
+.orders-modal .am-item .am-item__row {
+  border-color: var(--body_color) !important;
+}
+
+.orders-modal .am-item__over {
+  border: 4px solid white;
+}
+
+.orders-modal .am-item__over > div {
+  position: static;
+}
+
+.orders-modal__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.orders-modal__body {
+  padding: 34px;
+}
+
+.orders-modal__header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 18px 34px;
+  flex: none;
+  border-bottom: 1px solid #e2e6ee;
+  justify-content: space-between;
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  background-color: var(--body_color);
+}
+
+.orders-modal__header h3 {
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  gap: 2px;
+  flex-direction: column;
+  text-transform: uppercase;
+}
+
+.orders-modal__header h3 span {
+  color: #408cf1;
+}
+
+.orders-modal__close-btn {
+  width: 42px;
+  height: 42px;
+  margin-right: -21px;
+  background-image: url('data:image/svg+xml,<svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L23 23" stroke="%23171c29" stroke-width="3"></path><path d="M23 1L1 23" stroke="%23171c29" stroke-width="3"></path></svg>');
+  background-size: 12px 12px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  flex: none;
+}
+
+.orders-modal__list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* #endregion Orders Modal */
 
 .am-sidebar__nav {
   flex: 1;
@@ -4967,7 +5111,6 @@ body.blue_head .am-select:hover {
   margin-top: 2px;
   font-size: 12px;
   display: flex;
-  font-weight: 600;
 }
 
 .am-item__sub-row {
@@ -14352,6 +14495,19 @@ select.sms-tag:hover {
     padding-top: calc(var(--header-height_mob) + var(--pd-lg)) !important;
   }
 
+  .am-content.--upd .am-today__top-arrows {
+    margin-top: 68px;
+    background-color: #29558f;
+  }
+
+  .am-content.--upd .am-today__top-arrows button {
+    background-color: #3e73b9;
+  }
+
+  .am-content.--upd .for_today {
+    padding-top: 24px !important;
+  }
+
   .am-sidebar {
     z-index: 15;
     width: clamp(300px, 400px, 100vw - 38px);
@@ -15110,8 +15266,21 @@ select.sms-tag:hover {
     padding: calc(var(--header-height_mob) + var(--pd-s)) var(--pd-s) var(--pd-s) !important;
   }
 
+  .am-content.--upd .am-side-box {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .am-main__summary {
     justify-content: center;
+  }
+
+  .orders-modal__body {
+    padding: 16px;
+  }
+
+  .orders-modal__header {
+    padding: 20px;
   }
 
   .am-item {

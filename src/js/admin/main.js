@@ -76,6 +76,9 @@ class PopupBackdrop {
       if (e.target === this.el) {
         this.hide()
       }
+      if (this.callback) {
+        this.callback()
+      }
     })
   }
 
@@ -96,10 +99,6 @@ class PopupBackdrop {
       this.el.style.display = 'none'
       this.el.remove()
     }, getTransitionTime(this.el));
-
-    if (this.callback) {
-      this.callback()
-    }
   }
 }
 
@@ -4267,3 +4266,42 @@ document.addEventListener('DOMContentLoaded', () => {
   window.sms = new SMS()
 })
 /* #endregion SMS Page */
+
+/* #region Orders Modal */
+class OrdersModal {
+  constructor() {
+    this.rootEl = document.querySelector('.orders-modal')
+    this.list = document.querySelector('#orders_modal_list')
+  }
+
+  // Methods
+  close() {
+    unlockScroll()
+    this.rootEl.classList.remove(__VISIBLE)
+    if (window.orderModalBackdrop) {
+      window.orderModalBackdrop.hide()
+    }
+    setTimeout(() => {
+      this.rootEl.style.display = 'none'
+    }, getTransitionTime(this.rootEl));
+  }
+  
+  open() {
+    lockScroll()
+    this.rootEl.style.display = 'block'
+    window.orderModalBackdrop = new PopupBackdrop({
+      callback: () => { this.close() }
+    })
+    setTimeout(() => {
+      this.rootEl.classList.add(__VISIBLE)
+    }, 5);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.querySelector('.orders-modal')
+  if (modal) {
+    window.ordersModal = new OrdersModal()
+  }
+})
+/* #endregion Orders Modal */
