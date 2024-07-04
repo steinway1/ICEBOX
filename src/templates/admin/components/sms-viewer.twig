@@ -41,7 +41,7 @@
 		</div>
 		<div class="sms-viewer__footer">
 			<div class="am_flex8">
-				<input type="text" autocomplete="off" placeholder="Write new message" class="board__input">
+				<textarea rows="1" id="new_converation_message" type="text" autocomplete="off" placeholder="Write new message" class="board__input"></textarea>
 				<button class="sms-viewer__btn" onclick="window.sms.sendMessage({{ whale.id }})">
 					{% include "admin/svg/board-icon_send.svg" %}
 				</button>

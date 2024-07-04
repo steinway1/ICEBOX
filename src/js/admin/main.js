@@ -4230,6 +4230,20 @@ class SMS {
       }
     }
   }
+  bindInputEvents() {
+    const input = document.querySelector('#new_converation_message')
+    const button = document.querySelector('.sms-viewer__btn')
+    if (input && button) {
+      input.addEventListener('keydown', (e) => {
+        const keyIsEnter = e.key === 'Enter'
+        if (keyIsEnter) {
+          e.preventDefault()
+          button.click()
+          input.value = ''
+        }
+      })
+    }
+  }
 
   // Utils
   animateRemoveMessage(elem) {
@@ -4244,6 +4258,7 @@ class SMS {
   init() {
     if (this.board) {
       this.initSelect2()
+      this.bindInputEvents()
     }
   }
 }
