@@ -1109,6 +1109,7 @@ const whalesPage = {
         }
       }
     })
+    this.hidePhones()
   },
   toggleView: function (viewType = 'list') {
     const grid = document.querySelector('.tb-grid-container')
@@ -1137,6 +1138,35 @@ const whalesPage = {
           break;
         default:
           break;
+      }
+    }
+  },
+  hidePhones: function() {
+    const cardsArr = [...document.querySelectorAll('.whale-card')]
+    for (const card of cardsArr) {
+      const phoneCell = card.querySelector('[data-cell="phone"]')
+      if (phoneCell) {
+        if (!phoneCell.classList.contains('--sealed')) {
+          phoneCell.classList.add('--sealed')
+          const value = phoneCell.querySelector('.cell-value')
+          const initValue = value.innerText
+          const lastFourDigits = value.innerText.replace(/ /g, '').replace(/-/g, '').slice(-4)
+          value.innerText = `···· ${lastFourDigits}`
+  
+          value.reveal = () => {
+            phoneCell.classList.remove('--sealed')
+            phoneCell.classList.add('--full')
+            value.innerText = initValue
+          }
+  
+          value.onclick = () => {
+            const pin = new LockPin({
+              code: 3257,
+              callback: value.reveal
+            })
+            pin.push()
+          }
+        }
       }
     }
   },

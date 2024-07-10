@@ -600,6 +600,20 @@ body.--visible_questions {
   padding: 12px 14px;
   display: flex;
 
+  &.--full {
+    min-width: 50% !important;
+  }
+
+  &.--sealed {
+    .cell-value {
+      font-weight: 600;
+
+      &:hover {
+        color: var(--navy_blue_pale)
+      }
+    }
+  }
+
   &.--external {
     width: 100%;
     flex-direction: row;
