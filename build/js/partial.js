@@ -3241,6 +3241,7 @@ const pageEls = new Object({
     Object.values(this.attachEvent).forEach((target) => {
       if (typeof target === 'function') target();
     })
+    this.attachToggleInputs()
   },
   attachEvent: {
     filterDropdown: () => {
@@ -3386,8 +3387,45 @@ const pageEls = new Object({
     //     }
     //   })
     // }
+  },
+  attachToggleInputs: function () {
+    const arr = [...document.querySelectorAll('[data-input-toggle]')]
+    for (const input of arr) {
+      const btn = input.parentNode.querySelector('button') || input.parentNode.querySelector('input[type="submit"]')
+      if (btn) {
+        input.addEventListener('input', () => {
+          const value = input.value
+          if (value) {
+            btn.disabled = false
+            return
+          }
+          btn.disabled = true
+          return
+        })
+
+        input.addEventListener('keydown', (e) => {
+          const keyIsEnter = e.key === 'Enter'
+          if (keyIsEnter) {
+            e.preventDefault()
+            btn.click()
+          }
+        })
+
+        btn.addEventListener('click', () => {
+          const value = input.value
+          input.value = ''
+          input.dispatchEvent(new Event('input'))
+        })
+      }
+    }
   }
 })
+
+function applyRedeemCode() {
+  const value = document.querySelector('#redeem_input')
+  const holder = document.querySelector('.checkout-redeem')
+  console.log('Code redeem')
+}
 
 const attachPayModal = () => {
   let evtOpenLater = $('[data-evt="payModalLater"]'),

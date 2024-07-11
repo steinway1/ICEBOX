@@ -34,6 +34,36 @@
 				{% endfor %}
 
 			</ul>
+
+			{% if cart.codes %}
+				<div class="checkout-redeem">
+					<h3>Codes Applied:</h3>
+					{% for code in cart.codes %}
+						<a href="{{code.href}}" class="checkout-item --code">
+							<div class="checkout-item__pic-wrap">
+								<img src="{{code.item_src}}" alt="{{code.item_name}}">
+							</div>
+							<div class="checkout-item__details">
+								<div>
+									<h6 class="checkout-item-title">{{code.item_name}}</h6>
+									<div class="checkout-item__code">Code:
+										<span>{{code.value}}</span>
+									</div>
+								</div>
+								<div class="checkout-item-price">
+									<span>{{code.discount_price ?: "Free" }}</span>
+								</div>
+							</div>
+						</a>
+					{% endfor %}
+				</div>
+			{% endif %}
+
+
+			<div class="redeem-input-wrap">
+				<input data-input-toggle id="redeem_input" type="text" class="redeem-input" placeholder="Enter discount code">
+				<button id="redeem_button" class="redeem-btn" onclick="applyRedeemCode()" disabled>Apply</button>
+			</div>
 		</div>
 		<div class="checkout-box">
 			<div class="checkout-summary__main">
