@@ -943,7 +943,8 @@
                                             <div class="sms-viewer__msg">
                                                 <div class="sms-viewer__msg-text">
                                                     <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, facilis possimus, ea accusantium dicta exercitationem illum deserunt temporibus magnam, quo cum! Maxime ex distinctio nihil? Tempora ullam iste beatae nesciunt.</span>
-                                                    <span class="typo_xs">10:24 AM, 23 June, 7:54 PM</span>
+                                                    <span class="typo_xs">10:24 AM,
+									23 June, 7:54 PM</span>
                                                 </div>
                                                 <div class="sms-preview__sent-group">
                                                     <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -958,7 +959,8 @@
                                             <div class="sms-viewer__msg --whale">
                                                 <div class="sms-viewer__msg-text">
                                                     <span>Yes, I'm in.</span>
-                                                    <span class="typo_xs">10:24 AM, 23 June, 7:54 PM</span>
+                                                    <span class="typo_xs">10:24 AM,
+									23 June, 7:54 PM</span>
                                                 </div>
                                                 <div class="sms-preview__sent-group">
                                                     <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -976,6 +978,19 @@
                                 <div class="sms-viewer__footer">
                                     <div class="am_flex8">
                                         <textarea rows="1" id="new_converation_message" type="text" autocomplete="off" placeholder="Write new message" class="board__input"></textarea>
+                                        <div data-custom-upload data-upload-type="button" class="custom-upload --btn">
+                                            <div class="custom-upload__box">
+                                                <svg width="39" height="48" viewbox="0 0 39 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M19.2 0H0V42.9419H33.8581V14.6581L19.2 0Z" fill="#E9EDF3"></path>
+                                                    <path d="M33.8581 14.6581L19.2 0V14.6581H33.8581Z" fill="#D6DEE9"></path>
+                                                    <ellipse cx="28.4903" cy="37.7806" rx="10.2194" ry="10.2194" fill="#171C29"></ellipse>
+                                                    <path d="M32.4389 35.918L28.8507 32.3298C28.8037 32.2828 28.7479 32.2454 28.6865 32.22C28.6251 32.1945 28.5593 32.1814 28.4929 32.1814C28.4264 32.1814 28.3606 32.1945 28.2992 32.22C28.2378 32.2454 28.182 32.2828 28.1351 32.3298L24.5418 35.918C24.4469 36.0129 24.3936 36.1416 24.3936 36.2758C24.3936 36.41 24.4469 36.5388 24.5418 36.6336C24.6367 36.7285 24.7654 36.7819 24.8996 36.7819C25.0338 36.7819 25.1625 36.7285 25.2574 36.6336L27.9828 33.9133V40.8461C27.9828 41.1253 28.2112 41.3536 28.4903 41.3536C28.7695 41.3536 28.9978 41.1253 28.9978 40.8461V33.9133L31.7182 36.6336C31.8197 36.7352 31.9466 36.7808 32.0785 36.7808C32.2105 36.7808 32.3374 36.7301 32.4389 36.6336C32.4859 36.5867 32.5233 36.5309 32.5487 36.4695C32.5742 36.4081 32.5873 36.3423 32.5873 36.2758C32.5873 36.2094 32.5742 36.1436 32.5487 36.0822C32.5233 36.0208 32.4859 35.965 32.4389 35.918Z" fill="white"></path>
+                                                    <path d="M28.4903 43.7278C25.7562 43.7278 23.5355 41.4801 23.5355 38.7127C23.5355 38.462 23.7382 38.2568 23.9859 38.2568C24.2337 38.2568 24.4364 38.462 24.4364 38.7127C24.4364 40.9741 26.2561 42.816 28.4903 42.816C30.7245 42.816 32.5443 40.9741 32.5443 38.7127C32.5443 38.462 32.747 38.2568 32.9947 38.2568C33.2425 38.2568 33.4452 38.462 33.4452 38.7127C33.4452 41.4756 31.2245 43.7278 28.4903 43.7278Z" fill="white" fill-opacity="0.5"></path>
+                                                </svg>
+                                                <span>+ File</span>
+                                            </div>
+                                            <input type="file" accept="image/jpeg, image/png, image/webp" multiple="">
+                                        </div>
                                         <button class="sms-viewer__btn" onclick="window.sms.sendMessage(1)">
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M7.39993 6.32L15.8899 3.49C19.6999 2.22 21.7699 4.3 20.5099 8.11L17.6799 16.6C15.7799 22.31 12.6599 22.31 10.7599 16.6L9.91993 14.08L7.39993 13.24C1.68993 11.34 1.68993 8.23 7.39993 6.32Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -1176,12 +1191,36 @@
 </div>
 <div class="sms-modal">
     <div class="sms-modal__wrapper">
-        <h2>Send new SMS.
-            <span>Select a whale and fill in the fields below.</span>
-        </h2>
+        <div class="flex_col --12">
+            <h2>Send new SMS.
+                <span>Select a whale and fill in the fields below.</span>
+            </h2>
+            <div class="toggle-radio-bar">
+                <label class="custom-radio">
+                    <input type="radio" name="sms_type" value="sms" checked>
+                    <span>SMS</span>
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="sms_type" value="mms">
+                    <span>MMS</span>
+                </label>
+                <label class="custom-radio">
+                    <input type="checkbox" name="sms_group" value="true">
+                    <span class="--green">Group</span>
+                </label>
+            </div>
+        </div>
         <form action="post" id="form_new_sms">
             <div class="sms-modal__input-grid">
-                <select class="select2" id="sms_whale"></select>
+                <div class="flex_col --8">
+                    <select class="select2" id="sms_whale"></select>
+                    <div class="sms-modal__group-list">
+                        Send to:
+                        <span>Khalif Malik Ibn Shaman Brown (Swae Lee)</span>
+                        <span>Travis Scott</span>
+                        <span>Andrew Shommerseck (Allure Not Today)</span>
+                    </div>
+                </div>
                 <div class="flex_col --8">
                     <input type="text" id="sms_phone" class="board__input --blank" placeholder="Phone number" disabled>
                     <label class="custom-checkbox">
@@ -1196,6 +1235,19 @@
             <button class="sms-viewer__btn --grey" onclick="window.sms.closeSMSModal()">
                 <span>Cancel</span>
             </button>
+            <div data-custom-upload data-upload-type="button" class="custom-upload --btn">
+                <input type="file" accept="image/jpeg, image/png, image/webp" multiple="">
+                <div class="custom-upload__box">
+                    <svg width="39" height="48" viewbox="0 0 39 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.2 0H0V42.9419H33.8581V14.6581L19.2 0Z" fill="#E9EDF3"></path>
+                        <path d="M33.8581 14.6581L19.2 0V14.6581H33.8581Z" fill="#D6DEE9"></path>
+                        <ellipse cx="28.4903" cy="37.7806" rx="10.2194" ry="10.2194" fill="#171C29"></ellipse>
+                        <path d="M32.4389 35.918L28.8507 32.3298C28.8037 32.2828 28.7479 32.2454 28.6865 32.22C28.6251 32.1945 28.5593 32.1814 28.4929 32.1814C28.4264 32.1814 28.3606 32.1945 28.2992 32.22C28.2378 32.2454 28.182 32.2828 28.1351 32.3298L24.5418 35.918C24.4469 36.0129 24.3936 36.1416 24.3936 36.2758C24.3936 36.41 24.4469 36.5388 24.5418 36.6336C24.6367 36.7285 24.7654 36.7819 24.8996 36.7819C25.0338 36.7819 25.1625 36.7285 25.2574 36.6336L27.9828 33.9133V40.8461C27.9828 41.1253 28.2112 41.3536 28.4903 41.3536C28.7695 41.3536 28.9978 41.1253 28.9978 40.8461V33.9133L31.7182 36.6336C31.8197 36.7352 31.9466 36.7808 32.0785 36.7808C32.2105 36.7808 32.3374 36.7301 32.4389 36.6336C32.4859 36.5867 32.5233 36.5309 32.5487 36.4695C32.5742 36.4081 32.5873 36.3423 32.5873 36.2758C32.5873 36.2094 32.5742 36.1436 32.5487 36.0822C32.5233 36.0208 32.4859 35.965 32.4389 35.918Z" fill="white"></path>
+                        <path d="M28.4903 43.7278C25.7562 43.7278 23.5355 41.4801 23.5355 38.7127C23.5355 38.462 23.7382 38.2568 23.9859 38.2568C24.2337 38.2568 24.4364 38.462 24.4364 38.7127C24.4364 40.9741 26.2561 42.816 28.4903 42.816C30.7245 42.816 32.5443 40.9741 32.5443 38.7127C32.5443 38.462 32.747 38.2568 32.9947 38.2568C33.2425 38.2568 33.4452 38.462 33.4452 38.7127C33.4452 41.4756 31.2245 43.7278 28.4903 43.7278Z" fill="white" fill-opacity="0.5"></path>
+                    </svg>
+                    <span>+ File</span>
+                </div>
+            </div>
             <button class="sms-viewer__btn" onclick="window.sms.sendNewSMS()">
                 <span>Send</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

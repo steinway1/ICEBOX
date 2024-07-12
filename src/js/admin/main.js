@@ -1129,7 +1129,7 @@ const whalesPage = {
       }
     }
   },
-  hidePhones: function() {
+  hidePhones: function () {
     const cardsArr = [...document.querySelectorAll('.whale-card')]
     for (const card of cardsArr) {
       const phoneCell = card.querySelector('[data-cell="phone"]')
@@ -1140,13 +1140,13 @@ const whalesPage = {
           const initValue = value.innerText
           const lastFourDigits = value.innerText.replace(/ /g, '').replace(/-/g, '').slice(-4)
           value.innerText = `···· ${lastFourDigits}`
-  
+
           value.reveal = () => {
             phoneCell.classList.remove('--sealed')
             phoneCell.classList.add('--full')
             value.innerText = initValue
           }
-  
+
           value.onclick = () => {
             const pin = new LockPin({
               code: 3257,
@@ -4032,6 +4032,7 @@ class SMS {
     this.__barCollapsed = '--sidebar_collapsed'
     this.menuIsOpen = false
     this.init()
+    // new PopupBackdrop()
   }
 
   // Methods - Sidebar
@@ -4052,6 +4053,7 @@ class SMS {
     this.hideSidebar()
     return
   }
+
   // Methods - Menu
   openMenu() {
     if (!this.menuIsOpen) {
@@ -4094,6 +4096,7 @@ class SMS {
       this.openMenu()
     }
   }
+
   // Methods - SMS Preview Events
   addToFavorites(id, event) {
     if (id) {
@@ -4144,6 +4147,7 @@ class SMS {
     })
     ask.show()
   }
+
   // Methods - Tags
   addTag(id, event) {
     event.stopPropagation()
@@ -4219,6 +4223,22 @@ class SMS {
     this.cancelTag(event)
   }
 
+  // Methods - General
+  toggleGroupMode(cond) {
+    if (cond) {
+      body.setAttribute('data-group-sms', '')
+    } else {
+      body.removeAttribute('data-group-sms')
+    }
+  }
+  toggleMMSMode(cond) {
+    if (cond) {
+      body.setAttribute('data-type-mms', '')
+    } else {
+      body.removeAttribute('data-type-mms')
+    }
+  }
+
   // SMS
   initSelect2() {
     $('#sms_whale').select2({
@@ -4248,7 +4268,7 @@ class SMS {
     unlockScroll()
     if (this.SMSModal) {
       this.SMSModal.style.display = 'none'
-      const inputs = [...this.SMSModal.querySelectorAll('input, textarea')]
+      const inputs = [...this.SMSModal.querySelectorAll('input[type="text"], textarea')]
       for (const input of inputs) {
         input.value = ''
       }
@@ -4273,6 +4293,43 @@ class SMS {
       })
     }
   }
+  bindToggleGroupMode() {
+    const inputs = [...document.querySelectorAll('input[name="sms_group"]')]
+    for (const input of inputs) {
+      input.addEventListener('change', () => {
+        const isChecked = input.checked
+        if (isChecked) {
+          this.toggleGroupMode(1)
+        } else {
+          this.toggleGroupMode(0)
+        }
+      })
+    }
+  }
+  bindToggleMMSMode() {
+    const inputs = [...document.querySelectorAll('input[name="sms_type"]')]
+    for (const input of inputs) {
+      input.addEventListener('change', () => {
+        const value = input.value
+        if (value === 'sms') {
+          this.toggleMMSMode(0)
+        } else if (value === 'mms') {
+          this.toggleMMSMode(1)
+        }
+      })
+    }
+  }
+  bindCustomUpload() {
+    const btnArr = [...document.querySelectorAll('[data-custom-upload].--btn')]
+    for (const btn of btnArr) {
+      btn.addEventListener('click', () => {
+        const input = btn.querySelector('input[type="file"]')
+        if (input) {
+          input.dispatchEvent(new MouseEvent('click'))
+        }
+      })
+    }
+  }
 
   // Utils
   animateRemoveMessage(elem) {
@@ -4288,6 +4345,9 @@ class SMS {
     if (this.board) {
       this.initSelect2()
       this.bindInputEvents()
+      this.bindToggleGroupMode()
+      this.bindToggleMMSMode()
+      this.bindCustomUpload()
     }
   }
 }
@@ -4315,7 +4375,7 @@ class OrdersModal {
       this.rootEl.style.display = 'none'
     }, getTransitionTime(this.rootEl));
   }
-  
+
   open() {
     lockScroll()
     this.rootEl.style.display = 'block'

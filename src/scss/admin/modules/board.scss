@@ -1,5 +1,21 @@
+body[data-group-sms] {
+  .sms-modal__group-list {
+    display: flex;
+  }
+}
+
+body[data-type-mms]  {
+  [data-custom-upload] {
+    display: flex !important;
+  }
+}
+
 .admin_board {
   background-color: var(--board-grey);
+
+  [data-custom-upload] {
+    display: none;
+  }
 
   &.--sidebar_collapsed {
     @media screen and (min-width: 992px) {
@@ -1120,6 +1136,10 @@ select.sms-tag {
     &::placeholder {
       color: #798197;
     }
+  }
+
+  .custom-upload.--btn {
+    flex: none;
   }
 }
 
