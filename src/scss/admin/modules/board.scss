@@ -4,18 +4,8 @@ body[data-group-sms] {
   }
 }
 
-body[data-type-mms]  {
-  [data-custom-upload] {
-    display: flex !important;
-  }
-}
-
 .admin_board {
   background-color: var(--board-grey);
-
-  [data-custom-upload] {
-    display: none;
-  }
 
   &.--sidebar_collapsed {
     @media screen and (min-width: 992px) {
@@ -205,10 +195,10 @@ body[data-type-mms]  {
 
 .board__btn {
   background-color: var(--royal_blue);
-  border-radius: .6rem;
+  border-radius: .8rem;
   justify-content: center;
   align-items: center;
-  padding: 10px 16px;
+  padding: 12px 16px;
   font-size: 13px;
   font-weight: 600;
   transition: var(--transition-s);
@@ -237,7 +227,7 @@ body[data-type-mms]  {
   grid-row-gap: 12px;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 14px 20px;
   font-size: 13px;
   font-weight: 600;
   transition: all .15s;
@@ -508,12 +498,12 @@ body[data-type-mms]  {
     }
 
     &:disabled {
-      background-color: #ebedf3;
+      background-color: #f0f2f7;
       border-color: #ebedf3;
       cursor: not-allowed;
 
       &::placeholder {
-        color: #adb4c0;
+        color: #949ba7;
       }
     }
   }
@@ -596,6 +586,7 @@ textarea.board__input:not(#new_converation_message) {
     padding: 0;
     width: 0%;
     overflow: hidden;
+    display: none;
   }
 }
 
@@ -1177,12 +1168,13 @@ select.sms-tag {
 
 .sms-viewer__btn {
   background-color: #171c29;
+  border: 1px solid #171c29;
   color: #fff;
   border-radius: .8rem;
   justify-content: center;
   align-items: center;
   height: 48px;
-  padding: 8px 18px;
+  padding: 6px 18px;
   gap: 6px;
   font-weight: 600;
   display: flex;
@@ -1191,6 +1183,7 @@ select.sms-tag {
 
   &:hover {
     background-color: var(--royal_blue);
+    border-color: var(--royal_blue);
   }
 
   &:active {
@@ -1203,8 +1196,14 @@ select.sms-tag {
   }
 
   &.--grey {
-    background-color: #f3f8fe;
-    color: #798197;
+    background-color: transparent;
+    border-color: #dde0eb;
+    color: #5b6171;
+
+    &:hover {
+      border-color: var(--black);
+      color: var(--black);
+    }
   }
 }
 

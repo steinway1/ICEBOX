@@ -1217,10 +1217,6 @@ div.dt-container .dt-paging {
       &:last-child {
         margin-right: 0 !important;
       }
-
-      &.--green {
-        background-color: #2a9d8f;
-      }
     }
   }
 }
@@ -2412,30 +2408,48 @@ span {
   justify-content: center;
   align-items: center;
 
+  &.--min {
+    label {
+      span {
+        padding: 4px 12px;
+        font-size: 12px;
+      }
+    }
+  }
+
   label {
     flex: 1;
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     color: #798197;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
 
-    span {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 6px 12px;
-      border-radius: calc(0.8rem - 4px);
-      transition: var(--transition-m);
-      border: 1px solid transparent;
-
-      &.--green {
+    &.--green {
+      span {
         &:hover {
           border-color: #23b88b;
         }
       }
+
+      input {
+        &:checked {
+          &~span {
+            background-color: #23b88b;
+          }
+        }
+      }
+    }
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: calc(0.8rem - 4px);
+      border: 1px solid transparent;
 
       &:hover {
         border-color: var(--royal_blue);
@@ -2456,14 +2470,6 @@ span {
         &~span {
           background-color: var(--royal_blue);
           color: white;
-        }
-      }
-
-      &[type="checkbox"] {
-        &:checked {
-          &~span {
-            background-color: #23b88b;
-          }
         }
       }
     }
@@ -2494,10 +2500,11 @@ span {
     gap: 4px;
     min-width: 64px;
     flex: 1;
+    font-size: 13px;
 
     .custom-upload__box {
       min-height: unset;
-      padding: 8px 16px;
+      padding: 10px 16px;
       border-radius: 0.8rem;
       height: 100%;
       width: 100%;
@@ -2505,8 +2512,8 @@ span {
     }
 
     svg {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
     }
   }
 }
@@ -2629,7 +2636,7 @@ span {
   align-items: center;
   font-weight: 600;
   gap: 12px;
-  border: 1.5px dashed #d3dae2;
+  border: 1.5px dashed #dde0eb;
   border-radius: 16px;
   padding: 52px 22px;
   min-height: 98px;

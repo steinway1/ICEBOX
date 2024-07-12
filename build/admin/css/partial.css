@@ -6791,10 +6791,6 @@ div.dt-container .dt-paging {
   margin-right: 0 !important;
 }
 
-.am-spot-row > span.--spot.--green {
-  background-color: #2a9d8f;
-}
-
 .ask-modal {
   z-index: 99999;
   position: fixed;
@@ -7894,10 +7890,15 @@ span.--warn {
   align-items: center;
 }
 
+.toggle-radio-bar.--min label span {
+  padding: 4px 12px;
+  font-size: 12px;
+}
+
 .toggle-radio-bar label {
   flex: 1;
   white-space: nowrap;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #798197;
   user-select: none;
@@ -7905,18 +7906,21 @@ span.--warn {
   -moz-user-select: none;
 }
 
+.toggle-radio-bar label.--green span:hover {
+  border-color: #23b88b;
+}
+
+.toggle-radio-bar label.--green input:checked ~ span {
+  background-color: #23b88b;
+}
+
 .toggle-radio-bar label span {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: calc(0.8rem - 4px);
-  transition: var(--transition-m);
   border: 1px solid transparent;
-}
-
-.toggle-radio-bar label span.--green:hover {
-  border-color: #23b88b;
 }
 
 .toggle-radio-bar label span:hover {
@@ -7937,10 +7941,6 @@ span.--warn {
 .toggle-radio-bar label input:checked ~ span {
   background-color: var(--royal_blue);
   color: white;
-}
-
-.toggle-radio-bar label input[type=checkbox]:checked ~ span {
-  background-color: #23b88b;
 }
 
 [data-custom-upload],
@@ -7969,11 +7969,12 @@ span.--warn {
   gap: 4px;
   min-width: 64px;
   flex: 1;
+  font-size: 13px;
 }
 
 .custom-upload.--btn .custom-upload__box {
   min-height: unset;
-  padding: 8px 16px;
+  padding: 10px 16px;
   border-radius: 0.8rem;
   height: 100%;
   width: 100%;
@@ -7981,8 +7982,8 @@ span.--warn {
 }
 
 .custom-upload.--btn svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .custom-upload__info {
@@ -8101,7 +8102,7 @@ span.--warn {
   align-items: center;
   font-weight: 600;
   gap: 12px;
-  border: 1.5px dashed #d3dae2;
+  border: 1.5px dashed #dde0eb;
   border-radius: 16px;
   padding: 52px 22px;
   min-height: 98px;
@@ -13254,18 +13255,10 @@ body[data-group-sms] .sms-modal__group-list {
   display: flex;
 }
 
-body[data-type-mms] [data-custom-upload] {
-  display: flex !important;
-}
-
 .admin_board {
   background-color: var(--board-grey);
   /* #region  Select2 */
   /* #endregion Select2 */
-}
-
-.admin_board [data-custom-upload] {
-  display: none;
 }
 
 .admin_board .select2 {
@@ -13405,10 +13398,10 @@ body[data-type-mms] [data-custom-upload] {
 
 .board__btn {
   background-color: var(--royal_blue);
-  border-radius: 0.6rem;
+  border-radius: 0.8rem;
   justify-content: center;
   align-items: center;
-  padding: 10px 16px;
+  padding: 12px 16px;
   font-size: 13px;
   font-weight: 600;
   transition: var(--transition-s);
@@ -13437,7 +13430,7 @@ body[data-type-mms] [data-custom-upload] {
   grid-row-gap: 12px;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 14px 20px;
   font-size: 13px;
   font-weight: 600;
   transition: all 0.15s;
@@ -13680,13 +13673,13 @@ body[data-type-mms] [data-custom-upload] {
 }
 
 .board__input.--blank:disabled {
-  background-color: #ebedf3;
+  background-color: #f0f2f7;
   border-color: #ebedf3;
   cursor: not-allowed;
 }
 
 .board__input.--blank:disabled::placeholder {
-  color: #adb4c0;
+  color: #949ba7;
 }
 
 textarea.board__input:not(#new_converation_message) {
@@ -14265,12 +14258,13 @@ select.sms-tag:hover {
 
 .sms-viewer__btn {
   background-color: #171c29;
+  border: 1px solid #171c29;
   color: #fff;
   border-radius: 0.8rem;
   justify-content: center;
   align-items: center;
   height: 48px;
-  padding: 8px 18px;
+  padding: 6px 18px;
   gap: 6px;
   font-weight: 600;
   display: flex;
@@ -14280,6 +14274,7 @@ select.sms-tag:hover {
 
 .sms-viewer__btn:hover {
   background-color: var(--royal_blue);
+  border-color: var(--royal_blue);
 }
 
 .sms-viewer__btn:active {
@@ -14292,8 +14287,14 @@ select.sms-tag:hover {
 }
 
 .sms-viewer__btn.--grey {
-  background-color: #f3f8fe;
-  color: #798197;
+  background-color: transparent;
+  border-color: #dde0eb;
+  color: #5b6171;
+}
+
+.sms-viewer__btn.--grey:hover {
+  border-color: var(--black);
+  color: var(--black);
 }
 
 .sms-viewer__msg-group {
@@ -14423,6 +14424,14 @@ select.sms-tag:hover {
   border-radius: 0.8rem;
   line-height: 22px;
   display: none;
+}
+
+.sms-modal [data-custom-upload] {
+  display: none;
+}
+
+.sms-modal form.--mms [data-custom-upload] {
+  display: flex;
 }
 
 .sms-modal h2,
@@ -14965,6 +14974,7 @@ select.sms-tag:hover {
     padding: 0;
     width: 0%;
     overflow: hidden;
+    display: none;
   }
 
   .sms-preview__main {

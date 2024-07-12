@@ -4236,25 +4236,71 @@ class SMS {
   }
 
   // Methods - General
-  toggleGroupMode(cond) {
-    if (cond) {
-      body.setAttribute('data-group-sms', '')
-    } else {
-      body.removeAttribute('data-group-sms')
+  toggleSMSType() {
+    const nameGroup = [...document.querySelectorAll('input[name="new_sms_type"]')]
+    if (nameGroup.length) {
+      const selected = nameGroup.find(input => input.checked)
+      if (selected) {
+        const value = selected.value
+        const forms = [...this.SMSModal.querySelectorAll('form')]
+
+        switch (value) {
+          case 'single':
+            for (const form of forms) {
+              if (form.id == 'new_sms_single') {
+                form.style.display = 'block'
+              } else {
+                form.style.display = 'none'
+              }
+            }
+            break;
+          case 'bulk':
+            for (const form of forms) {
+              if (form.id == 'new_sms_bulk') {
+                form.style.display = 'block'
+              } else {
+                form.style.display = 'none'
+              }
+            }
+            break;
+          default:
+            for (const form of forms) {
+              form.style.display = 'none'
+            }
+            forms[0].style.display = 'block'
+            break;
+        }
+      }
     }
   }
-  toggleMMSMode(cond) {
-    if (cond) {
-      body.setAttribute('data-type-mms', '')
-    } else {
-      body.removeAttribute('data-type-mms')
+  toggleMMSMode(event) {
+    const target = event.target
+    const form = target.parentNode.closest('form')
+    const label = target.closest('label')
+    if (form) {
+      const isChecked = target.checked
+      if (isChecked) {
+        form.classList.add('--mms')
+        label.querySelector('span').textContent = 'Disable MMS'
+      } else {
+        form.classList.remove('--mms')
+        label.querySelector('span').textContent = 'Enable MMS'
+      }
     }
   }
 
   // SMS
   initSelect2() {
-    $('#sms_whale').select2({
+    $('#sms_single_whale').select2({
       placeholder: "Select a whale",
+      ajax: {
+        url: '/admin/json/search-whale',
+        dataType: 'json'
+      }
+    })
+
+    $('#sms_bulk_whale').select2({
+      placeholder: "Select a whales...",
       ajax: {
         url: '/admin/json/search-whale',
         dataType: 'json'
@@ -4274,6 +4320,9 @@ class SMS {
           this.closeSMSModal(1)
         }
       })
+      if (this.menuIsOpen && window.innerWidth < 992) {
+        this.closeMenu()
+      }
     }
   }
   closeSMSModal(offBackdrop) {
@@ -4305,32 +4354,6 @@ class SMS {
       })
     }
   }
-  bindToggleGroupMode() {
-    const inputs = [...document.querySelectorAll('input[name="sms_group"]')]
-    for (const input of inputs) {
-      input.addEventListener('change', () => {
-        const isChecked = input.checked
-        if (isChecked) {
-          this.toggleGroupMode(1)
-        } else {
-          this.toggleGroupMode(0)
-        }
-      })
-    }
-  }
-  bindToggleMMSMode() {
-    const inputs = [...document.querySelectorAll('input[name="sms_type"]')]
-    for (const input of inputs) {
-      input.addEventListener('change', () => {
-        const value = input.value
-        if (value === 'sms') {
-          this.toggleMMSMode(0)
-        } else if (value === 'mms') {
-          this.toggleMMSMode(1)
-        }
-      })
-    }
-  }
   bindCustomUpload() {
     const btnArr = [...document.querySelectorAll('[data-custom-upload].--btn')]
     for (const btn of btnArr) {
@@ -4357,9 +4380,8 @@ class SMS {
     if (this.board) {
       this.initSelect2()
       this.bindInputEvents()
-      this.bindToggleGroupMode()
-      this.bindToggleMMSMode()
       this.bindCustomUpload()
+      this.toggleSMSType()
     }
   }
 }
