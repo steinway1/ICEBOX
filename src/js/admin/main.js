@@ -4241,6 +4241,7 @@ class SMS {
                 form.style.display = 'none'
               }
             }
+            $('#sms_send_btn_global').attr('onclick','window.sms.sendNewSMS(0)');
             break;
           case 'bulk':
             for (const form of forms) {
@@ -4250,6 +4251,7 @@ class SMS {
                 form.style.display = 'none'
               }
             }
+            $('#sms_send_btn_global').attr('onclick','window.sms.sendNewSMS(1)');
             break;
           default:
             for (const form of forms) {
@@ -4295,8 +4297,13 @@ class SMS {
       }
     })
   }
-  sendNewSMS() {
-    $('#submit_sms_btn').click();
+  sendNewSMS(type = 0) {
+    if(type == 0){
+      $('#submit_sms_btn').click();
+    }else{
+      $('#submit_bulk_sms_btn').click();
+    }
+
   }
   openSMSModal() {
     lockScroll()
