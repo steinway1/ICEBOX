@@ -334,6 +334,17 @@ body[data-group-sms] {
     width: 28px;
     height: 28px;
   }
+
+  &.--unread {
+    &::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50px;
+      background-color: var(--royal_blue);
+      animation: winking 1.2s ease-in-out infinite;
+    }
+  }
 }
 
 .sms-board {

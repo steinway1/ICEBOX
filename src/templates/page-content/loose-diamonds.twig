@@ -1,0 +1,250 @@
+{# Rating #}
+{% include "elements/general/rating-bar.twig" %}
+
+{# Banner #}
+<div class="loose-banner">
+	<div class="wrapper">
+		<div class="loose-banner__content">
+			<div class="loose-banner__details">
+				<h3>Certified Loose Diamonds</h3>
+				<p>Select the ideal diamond to grace your jewelry creation from our wide array of gemstones, offering ten unique shapes to choose from.</p>
+				<button>How To Choose Diamond?</button>
+			</div>
+			<img src="{{THEME_ASSETS_FOLDER}}/loose-banner_img.webp" alt="">
+		</div>
+	</div>
+</div>
+
+{# Diamond Filter #}
+<div class="loose__diamond-filter">
+	<div class="wrapper">
+		<div class="diamond-filter-grid">
+			<div class="dm-filter-btn" data-type="ShapeCollection[]" data-value="round">
+				<img src="{{THEME_ASSETS_FOLDER}}/dm-box-round.webp" alt="">
+				<span>Round</span>
+			</div>
+			<div class="dm-filter-btn" data-type="ShapeCollection[]" data-value="princess">
+				<img src="{{THEME_ASSETS_FOLDER}}/dm-box-princess.webp" alt="">
+				<span>Princess</span>
+			</div>
+			<div class="dm-filter-btn" data-type="ShapeCollection[]" data-value="emerald">
+				<img src="{{THEME_ASSETS_FOLDER}}/dm-box-emerald.webp" alt="">
+				<span>Emerald</span>
+			</div>
+			<div class="dm-filter-btn" data-type="ShapeCollection[]" data-value="cushion">
+				<img src="{{THEME_ASSETS_FOLDER}}/dm-box-cushion.webp" alt="">
+				<span>Cushion</span>
+			</div>
+			<div class="dm-filter-btn" data-type="ShapeCollection[]" data-value="marquise">
+				<img src="{{THEME_ASSETS_FOLDER}}/dm-box-marquise.webp" alt="">
+				<span>Marquise</span>
+			</div>
+			<div class="dm-filter-btn" data-type="ShapeCollection[]" data-value="radiant">
+				<img src="{{THEME_ASSETS_FOLDER}}/dm-box-radiant.webp" alt="">
+				<span>Radiant</span>
+			</div>
+			<div class="dm-filter-btn" data-type="ShapeCollection[]" data-value="oval">
+				<img src="{{THEME_ASSETS_FOLDER}}/dm-box-oval.webp" alt="">
+				<span>Oval</span>
+			</div>
+			<div class="dm-filter-btn" data-type="ShapeCollection[]" data-value="pear">
+				<img src="{{THEME_ASSETS_FOLDER}}/dm-box-pear.webp" alt="">
+				<span>Pear</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+{# Results filters #}
+<div class="loose__filters">
+	<div class="wrapper">
+		<div
+			class="loose__filters-group">
+			{# Color #}
+			<div class="loose-select">
+				<div class="loose-select__btn">
+					<span>Color</span>
+					{% include "components/svg/dropdown.svg" %}
+				</div>
+				<div class="loose-select__drop">
+					<div class="loose-select__grid" data-filter-group>
+						<div class="loose-filter-btn" data-value="D" data-type="color[]">D</div>
+						<div class="loose-filter-btn" data-value="E" data-type="color[]">E</div>
+						<div class="loose-filter-btn" data-value="F" data-type="color[]">F</div>
+						<div class="loose-filter-btn" data-value="G" data-type="color[]">G</div>
+						<div class="loose-filter-btn" data-value="H" data-type="color[]">H</div>
+						<div class="loose-filter-btn" data-value="I" data-type="color[]">I</div>
+						<div class="loose-filter-btn" data-value="J" data-type="color[]">J</div>
+						<div class="loose-filter-btn" data-value="K" data-type="color[]">K</div>
+					</div>
+				</div>
+			</div>
+
+			{# Clarity #}
+			<div class="loose-select">
+				<div class="loose-select__btn">
+					<span>Clarity</span>
+					{% include "components/svg/dropdown.svg" %}
+				</div>
+				<div class="loose-select__drop">
+					<div class="loose-select__grid" data-filter-group>
+						<div class="loose-filter-btn" data-value="IF" data-type="clarity[]">IF</div>
+						<div class="loose-filter-btn" data-value="VVS1" data-type="clarity[]">VVS1</div>
+						<div class="loose-filter-btn" data-value="VVS2" data-type="clarity[]">VVS2</div>
+						<div class="loose-filter-btn" data-value="VS1" data-type="clarity[]">VS1</div>
+						<div class="loose-filter-btn" data-value="VS2" data-type="clarity[]">VS2</div>
+						<div class="loose-filter-btn" data-value="SI1" data-type="clarity[]">SI1</div>
+						<div class="loose-filter-btn" data-value="SI2" data-type="clarity[]">SI2</div>
+						<div class="loose-filter-btn" data-value="SI3" data-type="clarity[]">SI3</div>
+						<div class="loose-filter-btn" data-value="I1" data-type="clarity[]">I1</div>
+					</div>
+				</div>
+			</div>
+
+			{# Cut #}
+			<div class="loose-select">
+				<div class="loose-select__btn">
+					<span>Cut</span>
+					{% include "components/svg/dropdown.svg" %}
+				</div>
+				<div class="loose-select__drop">
+					<div class="loose-select__grid" data-filter-group>
+						<div class="loose-filter-btn" data-value="Excellent" data-type="cut[]">Excellent</div>
+						<div class="loose-filter-btn" data-value="Very Good" data-type="cut[]">Very Good</div>
+						<div class="loose-filter-btn" data-value="Good" data-type="cut[]">Good</div>
+					</div>
+				</div>
+			</div>
+
+			{# Polish #}
+			<div class="loose-select">
+				<div class="loose-select__btn">
+					<span>Polish</span>
+					{% include "components/svg/dropdown.svg" %}
+				</div>
+				<div class="loose-select__drop">
+					<div class="loose-select__grid" data-filter-group>
+						<div class="loose-filter-btn" data-value="Excellent" data-type="polish[]">Excellent</div>
+						<div class="loose-filter-btn" data-value="Very Good" data-type="polish[]">Very Good</div>
+						<div class="loose-filter-btn" data-value="Good" data-type="polish[]">Good</div>
+					</div>
+				</div>
+			</div>
+
+			{# Price Range #}
+			<div class="loose-select">
+				<div class="loose-select__btn">
+					<span>Price</span>
+					{% include "components/svg/dropdown.svg" %}
+				</div>
+				<div class="loose-select__drop">
+					<div class="loose-select__dbl-input">
+						<div>
+							<span>Min Price</span>
+							<input type="text" class="loose-select__input" name="from_price" id="fromPrice" placeholder="From">
+						</div>
+						<div>
+							<span>Max Price</span>
+							<input type="text" class="loose-select__input" name="to_price" id="toPrice" placeholder="To">
+						</div>
+					</div>
+					<div class="loose-disclaimer">For Diamonds Only</div>
+				</div>
+			</div>
+
+			{# Carat Range #}
+			<div class="loose-select">
+				<div class="loose-select__btn">
+					<span>Carat</span>
+					{% include "components/svg/dropdown.svg" %}
+				</div>
+				<div class="loose-select__drop">
+					<div class="loose-select__dbl-input">
+						<div>
+							<span>Min Carat</span>
+							<input type="text" class="loose-select__input" name="from_carat" id="fromCarat" placeholder="0.05">
+						</div>
+						<div>
+							<span>Max Carat</span>
+							<input type="text" class="loose-select__input" name="to_carat" id="toCarat" placeholder="5.00">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<button class="loose__spot-btn --reset" onclick="window.loose.resetFilters();">Reset All</button>
+			<button class="loose__spot-btn --filters" onclick="window.loose.openSortModal();">Filters</button>
+		</div>
+
+    {# Sort #}
+    <div class="loose__sort">
+      <select name="loose_sort" id="loose_sort">
+        <option value="default" selected>Best Match</option>
+        <option value="high_low">High - Low</option>
+        <option value="low_high">Low - High</option>
+      </select>
+    </div>
+	</div>
+</div>
+
+{# Results num / view #}
+<div class="loose__filters --static">
+	<div class="wrapper">
+		<span class="typo_xs">Results -
+			{{ diamonds_result|number_format }}
+			diamonds</span>
+		<div class="--flex_8">
+			<button class="loose__view-btn --list" onclick="window.loose.listView()">
+				<svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M19.9 13.5H4.1C2.6 13.5 2 14.14 2 15.73V19.77C2 21.36 2.6 22 4.1 22H19.9C21.4 22 22 21.36 22 19.77V15.73C22 14.14 21.4 13.5 19.9 13.5Z" fill="currentColor"></path>
+					<path d="M19.9 2H4.1C2.6 2 2 2.64 2 4.23V8.27C2 9.86 2.6 10.5 4.1 10.5H19.9C21.4 10.5 22 9.86 22 8.27V4.23C22 2.64 21.4 2 19.9 2Z" fill="currentColor"></path>
+				</svg>
+				<span>List</span>
+			</button>
+			<button class="loose__view-btn --grid" onclick="window.loose.gridView()">
+				<svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M22 8.52V3.98C22 2.57 21.36 2 19.77 2H15.73C14.14 2 13.5 2.57 13.5 3.98V8.51C13.5 9.93 14.14 10.49 15.73 10.49H19.77C21.36 10.5 22 9.93 22 8.52Z" fill="currentColor"></path>
+					<path d="M22 19.77V15.73C22 14.14 21.36 13.5 19.77 13.5H15.73C14.14 13.5 13.5 14.14 13.5 15.73V19.77C13.5 21.36 14.14 22 15.73 22H19.77C21.36 22 22 21.36 22 19.77Z" fill="currentColor"></path>
+					<path d="M10.5 8.52V3.98C10.5 2.57 9.86 2 8.27 2H4.23C2.64 2 2 2.57 2 3.98V8.51C2 9.93 2.64 10.49 4.23 10.49H8.27C9.86 10.5 10.5 9.93 10.5 8.52Z" fill="currentColor"></path>
+					<path d="M10.5 19.77V15.73C10.5 14.14 9.86 13.5 8.27 13.5H4.23C2.64 13.5 2 14.14 2 15.73V19.77C2 21.36 2.64 22 4.23 22H8.27C9.86 22 10.5 21.36 10.5 19.77Z" fill="currentColor"></path>
+				</svg>
+				<span>Grid</span>
+			</button>
+		</div>
+	</div>
+</div>
+
+<div class="loose__results">
+	<div class="wrapper">
+		<div class="loose__results-grid">
+			{% for diamond in results %}
+				<div class="dm-item">
+					<a href="{{diamond.href}}" target="_blank" class="dm-item__media">
+						<img src="{{diamond.src}}" alt="{{diamond.alt}}">
+						<span>Sample Image</span>
+					</a>
+					<div class="dm-item__details">
+						<span class="dm-item__spot">
+							<span>{{ diamond.polish }}
+								Polish</span>
+						</span>
+						<h3 class="dm-item__name">
+							<a href="{{diamond.href}}" target="_blank">
+								{{diamond.carat}}CTW
+								{{diamond.clarity}}
+								{{ diamond.color }}
+								Color
+								{{ diamond.shape }}
+								Diamond
+							</a>
+						</h3>
+						<div class="dm-item__price">
+							$
+							{{ diamond.price }}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

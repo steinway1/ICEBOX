@@ -45,7 +45,7 @@
 				<div class="board-sidebar__wrapper">
 					<div class="board-spot-grid">
 						{% for salesperson in salespersons %}
-							<a href="{{ salesperson.href }}" class="board__spot-link{% if salesperson.active %} --active{% endif %}">
+							<a href="{{ salesperson.href }}" class="board__spot-link{% if salesperson.active %} --active{% endif %}{% if salesperson.unread == true %} --unread{% endif %}">
 								<img src="{{ salesperson.img }}" alt="">
 								<span>{{ salesperson.name }}</span>
 							</a>

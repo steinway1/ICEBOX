@@ -1,0 +1,128 @@
+<div class="sort-modal">
+	<div
+		class="sort-modal__scroll">
+
+		{# Color #}
+		<div class="sort-modal-row">
+			<div class="sort-modal-row__head">
+				<span>Color</span>
+			</div>
+			<div class="sort-modal-row__body">
+				<div class="sort-modal-row__content">
+					<div class="loose-select__grid" data-filter-group>
+						<div class="loose-filter-btn" data-value="D" data-type="color[]">D</div>
+						<div class="loose-filter-btn" data-value="E" data-type="color[]">E</div>
+						<div class="loose-filter-btn" data-value="F" data-type="color[]">F</div>
+						<div class="loose-filter-btn" data-value="G" data-type="color[]">G</div>
+						<div class="loose-filter-btn" data-value="H" data-type="color[]">H</div>
+						<div class="loose-filter-btn" data-value="I" data-type="color[]">I</div>
+						<div class="loose-filter-btn" data-value="J" data-type="color[]">J</div>
+						<div class="loose-filter-btn" data-value="K" data-type="color[]">K</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{# Clarity #}
+		<div class="sort-modal-row">
+			<div class="sort-modal-row__head">
+				<span>Clarity</span>
+			</div>
+			<div class="sort-modal-row__body">
+				<div class="sort-modal-row__content">
+					<div class="loose-select__grid" data-filter-group>
+						<div class="loose-filter-btn" data-value="IF" data-type="clarity[]">IF</div>
+						<div class="loose-filter-btn" data-value="VVS1" data-type="clarity[]">VVS1</div>
+						<div class="loose-filter-btn" data-value="VVS2" data-type="clarity[]">VVS2</div>
+						<div class="loose-filter-btn" data-value="VS1" data-type="clarity[]">VS1</div>
+						<div class="loose-filter-btn" data-value="VS2" data-type="clarity[]">VS2</div>
+						<div class="loose-filter-btn" data-value="SI1" data-type="clarity[]">SI1</div>
+						<div class="loose-filter-btn" data-value="SI2" data-type="clarity[]">SI2</div>
+						<div class="loose-filter-btn" data-value="SI3" data-type="clarity[]">SI3</div>
+						<div class="loose-filter-btn" data-value="I1" data-type="clarity[]">I1</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{# Cut #}
+		<div class="sort-modal-row">
+			<div class="sort-modal-row__head">
+				<span>Cut</span>
+			</div>
+			<div class="sort-modal-row__body">
+				<div class="sort-modal-row__content">
+					<div class="loose-select__grid" data-filter-group>
+						<div class="loose-filter-btn" data-value="Excellent" data-type="cut[]">Excellent</div>
+						<div class="loose-filter-btn" data-value="Very Good" data-type="cut[]">Very Good</div>
+						<div class="loose-filter-btn" data-value="Good" data-type="cut[]">Good</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{# Polish #}
+		<div class="sort-modal-row">
+			<div class="sort-modal-row__head">
+				<span>Polish</span>
+			</div>
+			<div class="sort-modal-row__body">
+				<div class="sort-modal-row__content">
+					<div class="loose-select__grid" data-filter-group>
+						<div class="loose-filter-btn" data-value="Excellent" data-type="polish[]">Excellent</div>
+						<div class="loose-filter-btn" data-value="Very Good" data-type="polish[]">Very Good</div>
+						<div class="loose-filter-btn" data-value="Good" data-type="polish[]">Good</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{# Price Range #}
+		<div class="sort-modal-row">
+			<div class="sort-modal-row__head">
+				<span>Price Range</span>
+			</div>
+			<div class="sort-modal-row__body">
+				<div class="sort-modal-row__content">
+					<div class="loose-select__dbl-input">
+						<div>
+							<span>Min Price</span>
+							<input type="text" class="loose-select__input" name="from_price" placeholder="From">
+						</div>
+						<div>
+							<span>Max Price</span>
+							<input type="text" class="loose-select__input" name="to_price" placeholder="To">
+						</div>
+					</div>
+					<div class="loose-disclaimer">For Diamonds Only</div>
+				</div>
+			</div>
+		</div>
+
+		{# Carat Range #}
+		<div class="sort-modal-row">
+			<div class="sort-modal-row__head">
+				<span>Carat Range</span>
+			</div>
+			<div class="sort-modal-row__body">
+				<div class="sort-modal-row__content">
+					<div class="loose-select__dbl-input">
+						<div>
+							<span>Min Carat</span>
+							<input type="text" class="loose-select__input" name="from_carat" placeholder="0.05">
+						</div>
+						<div>
+							<span>Max Carat</span>
+							<input type="text" class="loose-select__input" name="to_carat" placeholder="5.00">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="sort-modal__footer">
+		<button class="sort-modal__btn --sub" onclick="window.loose.closeSortModal()">Cancel</button>
+		<button class="sort-modal__btn" onclick="window.loose.applyFilters()">Apply</button>
+	</div>
+</div>

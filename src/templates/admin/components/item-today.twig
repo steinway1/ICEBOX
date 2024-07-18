@@ -34,6 +34,11 @@
 								</div>
 							</div>
 						{% endfor %}
+						{# {% if item.appraisal_url != '' %}
+							<a href="{{item.appraisal_url}}" target="_blank" class="am-item__appr-link">
+								<img src="{{THEME_ASSETS_FOLDER}}/appr-thumb.webp" alt="">
+							</a>
+						{% endif %} #}
 					</div>
 
 					<div class="am-item__main-spot">
@@ -45,10 +50,6 @@
 							<a data-type="iframe" data-fancybox data-src="/admin/order-quick-edit/{{item.id}}" target="_blank" class="am-item__td-btn">
 								{% include "admin/svg/icon_clip.svg" %}
 							</a>
-							<a href="{{item.appraisalURL}}" class="am-item__td-btn">
-								{% include "admin/svg/icon_appraisal.svg" %}
-							</a>
-							<button class="am-item__td-btn">SEND TO SAKS</button>
 						</div>
 
 					</div>

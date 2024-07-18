@@ -311,7 +311,9 @@ const IS_VISIBLE = "is-visible",
   IS_EMPTY = 'is-empty',
   __TRUE = '--true',
   __FALSE = '--false',
-  __FADE = '--fade'
+  __FADE = '--fade',
+  __HALF = '--half',
+  __SELECTED = '--selected'
 
 let $body = $('body')
 
@@ -771,6 +773,52 @@ const initTelInput = () => {
 const getOrdinalTxt = (n) => {
   return n % 10 == 1 && n % 100 != 11 ? 'st' : n % 10 == 2 && n % 100 != 12 ? 'nd' : n % 10 == 3 && n % 100 != 13 ? 'rd' : 'th'
 }
+
+/* #region  Page Backdrop */
+class Backdrop {
+  constructor(settings = {}) {
+    this.el = createElem('div', {
+      className: 'page-backdrop',
+    })
+    this.callback = settings.callback || null
+    this.zIndex = settings.zIndex || undefined
+    this.background = settings.background || undefined
+    this.half = settings.half || false
+    this.show()
+    this.el.addEventListener('click', (e) => {
+      if (e.target === this.el) {
+        this.hide()
+      }
+    })
+  }
+
+  show() {
+    document.body.appendChild(this.el)
+    if (this.zIndex) {
+      this.el.style.zIndex = this.zIndex
+    }
+    if (this.half) {
+      this.el.classList.add(__HALF)
+    }
+    this.el.style.display = 'block'
+    setTimeout(() => {
+      this.el.style.opacity = '1'
+    }, 1);
+  }
+
+  hide() {
+    this.el.style.opacity = '0'
+    setTimeout(() => {
+      this.el.style.display = 'none'
+      this.el.remove()
+    }, getTransitionTime(this.el));
+
+    if (this.callback) {
+      this.callback()
+    }
+  }
+}
+/* #endregion */
 
 class PageConfetti {
   constructor() {
@@ -3423,17 +3471,17 @@ const pageEls = new Object({
 
 function applyRedeemCode() {
   const value = $('#redeem_input').val();
-  if(value != ''){
+  if (value != '') {
     $.ajax({
-      url:'/json/redeem-promo-code',
-      type:'POST',
-      data:{code:value},
-      success:function(data){
+      url: '/json/redeem-promo-code',
+      type: 'POST',
+      data: { code: value },
+      success: function (data) {
         var r = $.parseJSON(data);
-        if(!r.error){
+        if (!r.error) {
           $('.checkout-redeem').show();
-        }else{
-          showMessage('error','Error',r.msg);
+        } else {
+          showMessage('error', 'Error', r.msg);
         }
       }
     });
@@ -8610,6 +8658,227 @@ document.addEventListener('DOMContentLoaded', () => {
     window.sellMyWatch = new SellWatch()
     window.sellMyWatch.init()
   }
+})
+/* #endregion */
+
+
+/* #region  Loose Diamonds */
+class LooseDiamonds {
+  constructor() {
+    this.main = document.querySelector('.loose_diamonds')
+    this.resultsContainer = document.querySelector('.loose__results')
+    this.viewBtnArr = [...document.querySelectorAll('.loose__view-btn')]
+    this.looseSelectArr = [...document.querySelectorAll('.loose-select')]
+    this.dmBtnArr = [...document.querySelectorAll('.dm-filter-btn')]
+    this.sortModalActive = false
+    if (this.main) {
+      this.init()
+    }
+  }
+
+  // Methods
+  listView() {
+    this.main.classList.add('--list')
+  }
+  gridView() {
+    this.main.classList.remove('--list')
+  }
+  observeFilters() {
+    for (const select of this.looseSelectArr) {
+      const btnArr = [...select.querySelectorAll('.loose-filter-btn')]
+      const inputArr = [...select.querySelectorAll('input[type="text"]')]
+
+      const someIsChecked = btnArr.some(el => el.classList.contains(__ACTIVE))
+      const someIsValue = inputArr.some(el => el.value.length > 0)
+
+      if (someIsChecked || someIsValue) {
+        select.classList.add(__SELECTED)
+      } else {
+        select.classList.remove(__SELECTED)
+      }
+    }
+  }
+  resetFilters() {
+    for (const select of this.looseSelectArr) {
+      const btnArr = [...select.querySelectorAll('.loose-filter-btn')]
+      const inputArr = [...select.querySelectorAll('input[type="text"]')]
+
+      btnArr.forEach(el => el.classList.remove(__ACTIVE))
+      inputArr.forEach(el => el.value = '')
+
+      select.classList.remove(__SELECTED)
+    }
+  }
+  openSortModal() {
+    const sortModal = document.querySelector('.sort-modal')
+    if (sortModal) {
+      window.looseSortBackdrop = new Backdrop({
+        half: true,
+        callback: () => { this.closeSortModal(true) }
+      })
+      lockScroll()
+      sortModal.style.display = 'block'
+      setTimeout(() => {
+        sortModal.classList.add(__ACTIVE)
+      }, 5);
+    }
+  }
+  closeSortModal(cond = false) {
+    const sortModal = document.querySelector('.sort-modal')
+    if (sortModal) {
+      unlockScroll()
+      sortModal.classList.remove(__ACTIVE)
+      setTimeout(() => {
+        sortModal.style.display = 'none'
+      }, getTransitionTime(sortModal));
+      if (!cond) {
+        const backdrop = window.looseSortBackdrop
+        if (backdrop) {
+          backdrop.hide()
+        }
+      }
+
+      const rowArr = [...document.querySelectorAll('.sort-modal-row')]
+      for (const row of rowArr) {
+        row.querySelector('.sort-modal-row__body').style.height = 0
+      }
+    }
+  }
+  applyFilters() {
+    this.closeSortModal()
+  }
+
+  // Bind Events
+  bindLooseSelects() {
+    for (const select of this.looseSelectArr) {
+      const btn = select.querySelector('.loose-select__btn')
+      const drop = select.querySelector('.loose-select__drop')
+      if (btn && drop) {
+        btn.addEventListener('click', () => {
+          if (select.classList.contains(__ACTIVE)) {
+            select.classList.remove(__ACTIVE)
+          } else {
+            this.looseSelectArr.forEach(el => el.classList.remove(__ACTIVE))
+            select.classList.add(__ACTIVE)
+          }
+        })
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      if (this.looseSelectArr.some(el => el.classList.contains(__ACTIVE))) {
+        this.looseSelectArr.forEach(el => el.classList.remove(__ACTIVE))
+      }
+    })
+
+    document.addEventListener('click', (e) => {
+      const target = e.target
+      if (!target.closest('.loose-select')) {
+        this.looseSelectArr.forEach(el => el.classList.remove(__ACTIVE))
+      }
+    })
+  }
+  bindFilterBtnGroup() {
+    const groupArr = [...document.querySelectorAll('[data-filter-group]')]
+    for (const group of groupArr) {
+      const btnArr = [...group.querySelectorAll('.loose-filter-btn')]
+      for (const btn of btnArr) {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle(__ACTIVE)
+          this.observeFilters()
+        })
+      }
+    }
+
+    for (const select of this.looseSelectArr) {
+      const inputArr = [...select.querySelectorAll('input[type="text"]')]
+      for (const input of inputArr) {
+        input.addEventListener('input', () => {
+          this.observeFilters()
+        })
+      }
+    }
+  }
+  bindDmSelectClick() {
+    const fade = (except = undefined) => {
+      this.dmBtnArr.forEach(el => {
+        if (el !== except && !el.classList.contains(__ACTIVE)) {
+          el.classList.add(__FADE)
+        }
+      })
+    }
+
+    const reset = () => {
+      this.dmBtnArr.forEach(el => {
+        el.classList.remove(__ACTIVE)
+        el.classList.remove(__FADE)
+      })
+    }
+
+    for (const btn of this.dmBtnArr) {
+      btn.addEventListener('click', () => {
+        const someFaded = this.dmBtnArr.some(el => el.classList.contains(__FADE))
+        const targetActive = btn.classList.contains(__ACTIVE)
+        const targetFaded = btn.classList.contains(__FADE)
+        const target = btn
+
+        if (targetActive) {
+          target.classList.remove(__ACTIVE)
+          if (this.dmBtnArr.some(el => el.classList.contains(__ACTIVE))) {
+            target.classList.add(__FADE)
+          } else {
+            reset()
+          }
+        } else {
+          target.classList.add(__ACTIVE)
+          target.classList.remove(__FADE)
+          fade(target)
+        }
+
+      })
+    }
+  }
+  bindSortModalEvents() {
+    const modal = document.querySelector('.sort-modal')
+    if (modal) {
+      const rowArr = [...modal.querySelectorAll('.sort-modal-row')]
+      for (const row of rowArr) {
+        const head = row.querySelector('.sort-modal-row__head')
+        const body = row.querySelector('.sort-modal-row__body')
+
+        if (head && body) {
+          head.addEventListener('click', () => {
+            if (body.clientHeight > 0) {
+              row.classList.remove(__ACTIVE)
+              body.style.height = 0
+            } else {
+              rowArr.forEach((r) => {
+                if (r !== row) {
+                  r.classList.remove(__ACTIVE)
+                  r.querySelector('.sort-modal-row__body').style.height = 0
+                }
+              })
+              row.classList.add(__ACTIVE)
+              const content = body.querySelector('.sort-modal-row__content')
+              body.style.height = `${content.scrollHeight + 1}px`
+            }
+          })
+        }
+      }
+    }
+  }
+
+  init() {
+    this.bindLooseSelects()
+    this.bindFilterBtnGroup()
+    this.bindDmSelectClick()
+    this.observeFilters()
+    this.bindSortModalEvents()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.loose = new LooseDiamonds()
 })
 /* #endregion */
 function initValidators() {

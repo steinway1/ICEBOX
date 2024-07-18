@@ -396,10 +396,8 @@ button.dt-paging-button.current {
   }
 }
 
-.admin-link {
-  &.--pulsing {
-    animation: linkPulse 1.6s infinite;
-  }
+.--pulsing {
+  animation: linkPulse 1.6s infinite;
 }
 
 @keyframes linkPulse {
@@ -2673,5 +2671,19 @@ span {
   &:active {
     background-color: transparent;
     opacity: .6;
+  }
+}
+
+@keyframes winking {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

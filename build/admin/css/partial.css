@@ -3723,6 +3723,10 @@ body.blue_head .am-select:hover {
   font-weight: 400;
 }
 
+.am-upload-input output {
+  min-height: unset;
+}
+
 .am-upload-input:hover {
   color: #3a78cc;
   background-color: rgba(64, 140, 241, 0);
@@ -4774,11 +4778,11 @@ body.blue_head .am-select:hover {
   line-height: 0;
 }
 
-.link-indicator.is-green {
+.link-indicator.--green {
   background-color: #1edd9c;
 }
 
-.link-indicator.is-red {
+.link-indicator.--red {
   background-color: #ff667d;
 }
 
@@ -4882,6 +4886,19 @@ body.blue_head .am-select:hover {
 
 .am-item__over > div > span:nth-child(2) {
   background-color: #3b6297;
+}
+
+.am-item__appr-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 72px;
+  margin-top: 8px;
+}
+
+.am-item__appr-link img {
+  width: 100%;
+  height: 100%;
 }
 
 .am-item__td-btn {
@@ -5451,7 +5468,7 @@ body.blue_head .am-select:hover {
 .am-item-note > div:last-child {
   letter-spacing: 0.6px;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
 }
 
@@ -6007,7 +6024,7 @@ button.dt-paging-button.current {
   height: 16px;
 }
 
-.admin-link.--pulsing {
+.--pulsing {
   animation: linkPulse 1.6s infinite;
 }
 
@@ -8136,6 +8153,20 @@ span.--warn {
 .custom-upload__box:active {
   background-color: transparent;
   opacity: 0.6;
+}
+
+@keyframes winking {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 :root {
@@ -12773,6 +12804,11 @@ textarea.pos-input {
   background-size: 11px;
 }
 
+.fin-item .am-item-note {
+  background-color: var(--bright_blue);
+  color: white;
+}
+
 .fin-item__header {
   width: 100%;
   grid-column-gap: 18px;
@@ -13535,6 +13571,15 @@ body[data-group-sms] .sms-modal__group-list {
   border-radius: 500px;
   width: 28px;
   height: 28px;
+}
+
+.board__spot-link.--unread::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background-color: var(--royal_blue);
+  animation: winking 1.2s ease-in-out infinite;
 }
 
 .sms-board {
@@ -15381,8 +15426,8 @@ select.sms-tag:hover {
   }
 
   .wrapper {
-    padding-left: 22px;
-    padding-right: 22px;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 
   :root {

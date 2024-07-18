@@ -90,8 +90,8 @@
   @include maxWidthSm {
     a {
       svg {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
       }
     }
   }
@@ -116,10 +116,11 @@
     padding: 6px 14px;
     transition: all .25s cubic-bezier(.39, .575, .565, 1);
     font-size: 13px;
+    letter-spacing: 0.2px;
 
     &.is-active {
-      color: #037ea7;
-      border-bottom: 2px solid #0095c6;
+      color: var(--blue);
+      border-bottom: 2px solid var(--blue);
     }
 
     &.sub-link_spot {
@@ -128,11 +129,11 @@
   }
 
   a:hover {
-    border-bottom-color: #0095c6;
+    border-bottom-color: var(--blue);
   }
 
   a.is-sale {
-    color: #0095c6;
+    color: var(--blue);
     // background-image: linear-gradient(33deg, rgba(0, 149, 198, .06), rgba(0, 149, 198, .03));
     font-weight: 600;
   }
@@ -173,10 +174,15 @@
 
 .header-nav-wrapper {
   background-color: #fff;
-  padding-top: 18px;
-  padding-bottom: 18px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   position: relative;
   z-index: 2;
+
+  @include maxWidthXs {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
 }
 
 .header-logo {
@@ -189,12 +195,12 @@
   transform: translate(-50%);
 
   img {
-    width: 138px;
+    width: 130px;
   }
 
   @include maxWidthXs {
     img {
-      width: 130px;
+      width: 124px;
     }
   }
 }
