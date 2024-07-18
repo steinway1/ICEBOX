@@ -1,0 +1,68 @@
+<div class="sms-board">
+	<div class="sms-board__wrapper">
+
+		<div class="board__header">
+			<div class="board__title-content">
+				<h4 class="board__heading">SMS Bulk Campaigns</h4>
+				<span class="board__subheading">{{ bulk_count }}
+					campaigns</span>
+				<button class="board-icon-btn">
+					{% include "admin/svg/board-icon_filter.svg" %}
+				</button>
+			</div>
+			<div class="board__top-group">
+				<div class="board__input-box">
+					<input type="text" autocomplete="off" placeholder="Search by whale, text, keywords..." class="board__input">
+					{% include "admin/svg/icon_search.svg" %}
+				</div>
+			</div>
+		</div>
+
+		<div class="board__flex-content">
+			<div class="board__sms-container">
+				<div class="board__sms-group">
+					<div class="board__scroller">
+						<div class="space_between">
+							<span class="typo_bold">Campaigns</span>
+						</div>
+						{% if empty_bulk_list == true %}
+							<div>
+								<b>No campaigns yet.</b>
+							</div>
+							{% include "admin/components/sms-preview_empty.twig" %}
+						{% else %}
+							{% for campaign in sms_bulk_list %}
+								{% include "admin/components/sms-campaign.twig" %}
+							{% endfor %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="board__sms-container --bulk_sms_list">
+				<div class="board__sms-group">
+					<div class="board__scroller">
+						<div class="space_between">
+							<span class="typo_bold">SMS in campaign</span>
+						</div>
+						{% if campaign_selected == false %}
+							<div>
+								<b>Select campaign to show SMS.</b>
+							</div>
+							{% include "admin/components/sms-preview_empty.twig" %}
+						{% else %}
+							{% for sms in campaign_sms %}
+								{% include "admin/components/sms-preview.twig" %}
+							{% endfor %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="board__preview-container">
+				{% include "admin/components/sms-viewer.twig" , with { whale: whales[0] } %}
+			</div>
+		</div>
+
+	</div>
+</div>

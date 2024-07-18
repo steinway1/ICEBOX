@@ -546,7 +546,7 @@ textarea.board__input:not(#new_converation_message) {
   position: relative;
 
   .board__scroller {
-    padding-right: 12px;
+    padding-right: 18px;
 
     &::-webkit-scrollbar {
       display: block;
@@ -903,6 +903,32 @@ select.sms-tag {
   grid-row-gap: 12px;
   display: flex;
   transition: var(--transition-m);
+
+  &.--bulk {
+    .sms-preview__info {
+      padding: 18px;
+    }
+
+    .sms-preview__date {
+      color: #4d5969;
+      margin-bottom: 3px;
+
+      span {
+        color: var(--black);
+      }
+    }
+
+    .sms-preview__spot {
+      margin-top: 1px;
+      font-size: 12px;
+      &>span {
+        color: var(--black);
+        opacity: .6;
+        text-transform: none;
+        letter-spacing: 0;
+      }
+    }
+  }
 
   &.--active {
     .sms-preview__main {
@@ -1355,3 +1381,56 @@ select.sms-tag {
     flex: 1;
   }
 }
+
+/* #region  Bulk */
+.main_sms.--bulk {
+  --board-content-width: 44%;
+
+  .sms-preview__name {
+    font-size: 13px;
+  }
+
+  .sms-preview__msg {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .sms-preview__sent-group {
+    display: none;
+  }
+
+  .sms-tag {
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .sms-preview__pic-wrap img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .--bulk_sms_list {
+    .sms-preview__spot {
+      display: none;
+    }
+  }
+
+  .sms-preview__btn {
+    width: 26px;
+    height: 26px;
+    padding: 6px;
+    border-radius: 0.3rem;
+    
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .board__sms-container {
+    &:not(:first-child) {
+      padding-left: 16px;
+    }
+  }
+}
+/* #endregion */

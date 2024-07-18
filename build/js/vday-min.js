@@ -1,0 +1,1 @@
+$(function(){document.querySelector(".vday_results")});

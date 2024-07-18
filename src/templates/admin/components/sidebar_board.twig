@@ -33,6 +33,13 @@
 				</a>
 				<a href="#" class="board-link">
 					<div class="board-link__group">
+						{% include "admin/svg/board-icon_bulk.svg" %}
+						<span>Bulk SMS Campaigns</span>
+					</div>
+					<span>{{sms_bulk_list|length ?: '0'}}</span>
+				</a>
+				<a href="#" class="board-link">
+					<div class="board-link__group">
 						{% include "admin/svg/board-icon_cancel.svg" %}
 						<span>Trash</span>
 					</div>

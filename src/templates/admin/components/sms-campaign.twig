@@ -1,0 +1,16 @@
+<div class="sms-preview --bulk{% if campaign.active %} --active{% endif %}" data-campaign-id="{{ campaign.id }}">
+	<div class="sms-preview__main">
+		<div class="sms-preview__info">
+			<div class="sms-preview__title">
+				<div class="sms-preview__date">Created on
+					<span>{{ campaign.date }}</span></div>
+				<div class="sms-preview__name">{{ campaign.name }}</div>
+				<div class="sms-preview__spot">
+					<span>Group:</span>
+					{{ campaign.group }}
+					-
+					{{ campaign.persons_total }}</div>
+			</div>
+		</div>
+	</div>
+</div>
