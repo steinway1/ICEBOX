@@ -1194,9 +1194,9 @@ body {
   }
 
   &>input {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
+    position: absolute !important;
+    z-index: -1 !important;
+    opacity: 0 !important;
 
     &:checked+span::before {
       border-color: var(--blue);
@@ -2028,6 +2028,88 @@ input.custom-range__output {
 
   .loose-disclaimer {
     margin-top: 10px;
+  }
+}
+
+/* #endregion */
+
+.--bg_cross {
+  background-image: url('data:image/svg+xml,<svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L23 23" stroke="currentColor" stroke-width="3"></path><path d="M23 1L1 23" stroke="currentColor" stroke-width="3"></path></svg>');
+  background-size: 12px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* #region Custom Fixed Header Table */
+.s-table {
+  width: 100%;
+  table-layout: fixed;
+
+  th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    background-color: #edeff5;
+  }
+
+  td {
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 13px;
+    border-bottom: 1px solid #ebecf5;
+  }
+
+  tr {
+    td {
+      border-right: 1px solid #ebecf5;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+.s-table-header {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.s-table-content {
+  max-height: 240px;
+  overflow-x: auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.icon-btn {
+  color: #fff;
+  cursor: pointer;
+  background-image: linear-gradient(69deg, #bb364e, rgba(199, 74, 97, 0) 32%);
+  border-radius: .3rem;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0.25rem;
+  display: flex;
+  background-size: 14px 14px;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  &.--remove {
+    background-color: #c54244;
+    background-image: url('data:image/svg+xml,<svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.8999 5L4.8999 19" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>');
+
+    &:hover {
+      background-color: #ad2022;
+      box-shadow: inset 0 2px 5px 3px rgba(0, 0, 0, .09);
+    }
+  }
+
+  &:active {
+    opacity: .6;
   }
 }
 

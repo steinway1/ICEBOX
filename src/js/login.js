@@ -163,6 +163,11 @@ class SignModal {
   }
   open() {
     if (!this.opened) {
+      if (menu) {
+        if (menu.isOpened) {
+          menu.close()
+        }
+      }
       const content = this.contentArr.find(e => e.dataset.signContent == 'sms') || this.contentArr[0]
       this.opened = true
       this.rootEl.style.display = 'block'

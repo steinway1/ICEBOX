@@ -3,12 +3,15 @@
 {% set mainClass = 'main_product' %}
 
 {% block include_head %}
-{# Styles / preload scripts / etc... #}
+	{# Styles / preload scripts / etc... #}
 {% endblock %}
 
 {% block content %}
-{% include "./page-content/product-page.twig" %}
-{% include "./elements/sales-history.twig" %}
+	{% include "./page-content/product-page.twig" %}
+	{% include "./elements/sales-history.twig" %}
+	{# {% if userIsAdmin == true and product_category == 'watch' %}
+		{% include "elements/v-modal.twig" %}
+	{% endif %} #}
 {% endblock %}
 
 {% block include_script %}

@@ -1,0 +1,79 @@
+<div id="watchVariants" class="v-modal">
+	<div class="v-modal__header">
+		<h3>
+			Watch Variants:
+			<span>{{ watch_name }}</span>
+		</h3>
+		<button class="v-modal__close-btn --bg_cross"></button>
+	</div>
+	<div class="v-modal__content">
+
+		<div class="s-table-header">
+			<table class="s-table" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Vendor</th>
+						<th>SKU</th>
+						<th>Condition</th>
+						<th>Year</th>
+						<th data-cell="checkbox">Box</th>
+						<th data-cell="checkbox">Papers</th>
+						<th>Price</th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div class="s-table-content">
+			<table class="s-table" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr>
+						<td>
+							<input type="text" class="form-control datepicker" name="new_watch_variants_date[]">
+						</td>
+						<td>
+							<input type="text" class="form-control" name="new_watch_variants_vendor[]" value="">
+						</td>
+						<td>
+							<input type="text" class="form-control" name="new_watch_variants_sku[]" value="">
+						</td>
+						<td>
+							<select class="form-control" name="new_watch_variants_conditions[]" required="">
+								<option value="" disabled selected>Select</option>
+								<option value="Unworn">Unworn</option>
+								<option value="Pre Owned">Pre Owned</option>
+							</select>
+						</td>
+						<td>
+							<input type="text" class="form-control datepicker" required="" data-format="YYYY" name="new_watch_variants_year[]" placeholder="YYYY">
+						</td>
+						<td data-cell="checkbox">
+							<label class="custom-checkbox">
+								<input type="checkbox" name="new_watch_variants_box[]" checked>
+								<span>Yes</span>
+							</label>
+						</td>
+						<td data-cell="checkbox">
+							<label class="custom-checkbox">
+								<input type="checkbox" name="new_watch_variants_papers[]" checked>
+								<span>Yes</span>
+							</label>
+						</td>
+						<td>
+							<input type="text" class="form-control" name="new_watch_variants_price[]" value="215,025" required="">
+						</td>
+						<td>
+							<button class="icon-btn --remove"></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	<div class="v-modal__footer">
+		<button class="v-modal__btn">+ Add Variant</button>
+		<button class="v-modal__btn --green">Save</button>
+	</div>
+</div>

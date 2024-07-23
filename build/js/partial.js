@@ -3161,16 +3161,15 @@ const productSplide = new Object({
       const slider = productSplide.sliderArr[i];
       const thumbnails = productSplide.thumbArr[i];
       let main = new Splide(slider, {
-        type: "loop",
+        type: "slider",
         perPage: 1,
         perMove: 1,
-        autoplay: false,
-        pauseOnHover: true,
-        pauseOnFocus: true,
-        gap: "6px",
-        arrows: false,
-        pagination: false,
+        gap: 0,
+        arrows: true,
+        pagination: true,
         speed: 750,
+        drag: false,
+        noDrag: '--sirv',
         breakpoints: {
           478: {
             perPage: 1,
@@ -3178,16 +3177,26 @@ const productSplide = new Object({
           },
         },
       });
-      let thumb = new Splide(thumbnails, {
-        rewind: true,
-        pagination: false,
-        arrows: false,
-        cover: true,
-        isNavigation: true,
-      });
-      main.sync(thumb);
+      // let thumb = new Splide(thumbnails, {
+      //   rewind: true,
+      //   pagination: false,
+      //   arrows: false,
+      //   cover: true,
+      //   isNavigation: true,
+      // })
+
+      // main.on('drag', () => {
+      //   const root = main.root
+      //   const slide = root.querySelector('.splide__slide.is-active')
+      //   const slideIsSirv = slide.classList.contains('--sirv')
+      //   if (slideIsSirv) {
+      //     main.destroy()
+      //   }
+      // })
+
+      // main.sync(thumb);
       main.mount();
-      thumb.mount();
+      // thumb.mount();
     });
   },
   initMoreSplide: function () {
@@ -8739,10 +8748,11 @@ class LooseDiamonds {
   }
   openSortModal() {
     const sortModal = document.querySelector('.sort-modal')
+    const closeCallback = () => { this.closeSortModal(true) }
     if (sortModal) {
       window.looseSortBackdrop = new Backdrop({
         half: true,
-        callback: () => { this.closeSortModal(true) }
+        callback: closeCallback
       })
       lockScroll()
       sortModal.style.display = 'block'
@@ -8907,6 +8917,27 @@ class LooseDiamonds {
 
 document.addEventListener('DOMContentLoaded', () => {
   window.loose = new LooseDiamonds()
+})
+/* #endregion */
+
+/* #region Watch Variants Modal */
+class VariantsModal {
+  constructor() {
+    this.rootEl = document.querySelector('#watchVariants')
+    if (this.rootEl) {
+      this.init()
+    }
+  }
+
+  init() {
+    new Backdrop({
+      half: true
+    })
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // window.watchVariants = new VariantsModal()
 })
 /* #endregion */
 function initValidators() {
@@ -9074,6 +9105,11 @@ class SignModal {
   }
   open() {
     if (!this.opened) {
+      if (menu) {
+        if (menu.isOpened) {
+          menu.close()
+        }
+      }
       const content = this.contentArr.find(e => e.dataset.signContent == 'sms') || this.contentArr[0]
       this.opened = true
       this.rootEl.style.display = 'block'

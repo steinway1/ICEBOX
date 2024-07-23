@@ -1,0 +1,173 @@
+.v-modal {
+  z-index: 9999;
+  background-color: #fff;
+  border-radius: .5rem;
+  width: 100%;
+  max-width: 1020px;
+  min-height: 60px;
+  transition: all .45s cubic-bezier(.39, .575, .565, 1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  display: none;
+
+  @include maxWidthMd {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    max-width: none;
+    top: auto;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    transform: translate(0%);
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 26px;
+
+    span {
+      display: block;
+      color: #717683;
+      margin-top: 4px;
+      font-size: 13px;
+      line-height: 20px;
+    }
+  }
+
+  select {
+    background-image: url('data:image/svg+xml,<svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6L12 17L23 6" stroke="black" stroke-width="4"></path></svg>');
+    background-size: 8px;
+    background-position: right 6px center;
+    background-repeat: no-repeat;
+    padding-right: 20px !important;
+    cursor: pointer;
+  }
+
+  input,select {
+    border: 1px solid #d6d8e4;
+    border-radius: .3rem;
+    height: 30px;
+    margin-bottom: 0;
+    padding: 0 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+    background-color: #fff;
+    width: 100%;
+    line-height: 1.42857;
+    display: block;
+
+    &:hover {
+      border-color: #3279da;
+    }
+
+    &:focus {
+      border-color: #3279da;
+      box-shadow: 0 0 0 2px rgba(50, 121, 218, .18);
+    }
+
+    &:active {
+      opacity: .65;
+    }
+
+    &::placeholder {
+      color: #9096a4;
+    }
+  }
+
+  .custom-checkbox > input:checked + span::before {
+    background-color: #3279da;
+    border-color: #3279da;
+  }
+
+  table {
+    th,td {
+      &:last-child {
+        width: 58px;
+      }
+
+      &[data-cell="checkbox"] {
+        width: 82px;
+      }
+    }
+  }
+}
+
+.v-modal__close-btn {
+  letter-spacing: .2px;
+  cursor: pointer;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+  margin-right: -12px;
+  padding: 12px;
+  font-size: 13px;
+  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  display: flex;
+}
+
+.v-modal__footer {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  padding: 6px;
+  display: flex;
+}
+
+.v-modal__btn {
+  padding: 14px;
+  border-radius: .35rem;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  display: flex;
+  color: #161b29;
+  background-color: #eeeff5;
+
+  &:hover {
+    background-color: #dcdde4;
+  }
+
+  &.--green {
+    background-color: #32a879;
+    color: white;
+
+    &:hover {
+      background-color: #36c58c;
+    }
+  }
+
+  &:active {
+    opacity: .6;
+  }
+}
+
+.v-modal__header {
+  grid-column-gap: 14px;
+  grid-row-gap: 14px;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+  border-bottom: 1px solid #edeff5;
+  padding: 24px;
+
+  @include maxWidthXs {
+    padding: 22px;
+  }
+}
+
+.v-modal__content {
+  flex-flow: column;
+  min-height: 120px;
+  display: flex;
+  background-color: white;
+
+  @include maxWidthMd {
+    background-color: #eeeff5;
+  }
+}
