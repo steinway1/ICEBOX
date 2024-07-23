@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pin = new LockPin({
       code: 3256
     })
-    // pin.push()
+    pin.push()
   }
 })
 
