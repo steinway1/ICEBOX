@@ -5376,6 +5376,7 @@ body.blue_head .am-select:hover {
 
 .am-item__note-form {
   position: relative;
+  height: 50px;
 }
 
 .am-item__note-form button {
@@ -5403,7 +5404,7 @@ body.blue_head .am-select:hover {
 }
 
 .am-note-input {
-  height: 46px;
+  height: 100%;
   text-align: left;
   background-color: #f5f7f9;
   border: 1px solid #ebeff4;
@@ -5413,6 +5414,7 @@ body.blue_head .am-select:hover {
   width: 100%;
   padding: 8px 12px;
   font-size: 13px;
+  outline: none;
 }
 
 .am-note-input:hover {
@@ -9014,8 +9016,12 @@ body.--visible_questions .whale-card__box.--quiz {
   width: auto !important;
 }
 
+.whale-card .am-item__note-form {
+  height: 38px;
+}
+
 .whale-card .am-note-input {
-  height: 36px;
+  height: 100%;
   border-radius: 0.4rem !important;
   background-color: #f2f5f9 !important;
   border-color: #f2f5f9 !important;
@@ -9262,12 +9268,54 @@ body.--visible_questions .whale-card__box.--quiz {
   transform: translateY(20px);
 }
 
+.whale-card__input {
+  display: none;
+  height: 30px;
+  width: auto;
+  max-width: 54%;
+  padding: 4px 8px;
+  border-radius: 0.4rem;
+  background-color: #f2f5f9;
+  border: 1px solid #f2f5f9;
+  font-size: 12px;
+  box-shadow: none;
+  font-weight: 600;
+}
+
+.whale-card__input:hover,
+.whale-card__input:focus {
+  border-color: var(--royal_blue);
+  background-color: white;
+}
+
+.whale-card__input:hover ~ button,
+.whale-card__input:focus ~ button {
+  background-color: var(--royal_blue);
+  color: white;
+}
+
 .whale-card__cell {
   width: 33.3333333333%;
   flex-direction: column;
   align-items: flex-start;
   padding: 12px 14px;
   display: flex;
+}
+
+.whale-card__cell.--edit [data-cell-evt=reveal] {
+  display: none;
+}
+
+.whale-card__cell.--edit [data-cell-evt=sms] {
+  display: none;
+}
+
+.whale-card__cell.--edit .whale-card__input {
+  display: block !important;
+}
+
+.whale-card__cell.--edit .cell-value {
+  display: none;
 }
 
 .whale-card__cell.--full {
@@ -9282,11 +9330,55 @@ body.--visible_questions .whale-card__box.--quiz {
   color: var(--navy_blue_pale);
 }
 
+.whale-card__cell.--phone {
+  background-image: url('data:image/svg+xml,<svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 6V16C17 20 16 21 12 21H6C2 21 1 20 1 16V6C1 2 2 1 6 1H12C16 1 17 2 17 6Z" stroke="%23292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 4.5H7" stroke="%23292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.0002 18.1C9.85624 18.1 10.5502 17.406 10.5502 16.55C10.5502 15.694 9.85624 15 9.0002 15C8.14415 15 7.4502 15.694 7.4502 16.55C7.4502 17.406 8.14415 18.1 9.0002 18.1Z" stroke="%23292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  background-size: 14px 14px;
+  background-position: left 14px center;
+  background-repeat: no-repeat;
+  font-weight: 600;
+  padding-left: 34px !important;
+  border-bottom: 1px solid #e9f0f8;
+  gap: 8px !important;
+  justify-content: space-between;
+}
+
+.whale-card__cell.--phone .cell-value {
+  max-width: 60%;
+  user-select: auto;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  -khtml-user-select: auto;
+  cursor: text;
+}
+
+.whale-card__cell.--phone .cell-value:hover {
+  color: unset !important;
+}
+
+.whale-card__cell.--phone .am_flex8 {
+  justify-content: flex-end;
+}
+
+.whale-card__cell.--phone .tb-social-count {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--navy_blue_light);
+  cursor: pointer;
+  flex: none;
+  border: none !important;
+}
+
+.whale-card__cell.--phone .tb-social-count:hover {
+  opacity: 0.6;
+}
+
 .whale-card__cell.--external {
   width: 100%;
   flex-direction: row;
   gap: 14px;
   flex-flow: wrap;
+  align-items: center;
   padding: 10px 14px;
 }
 

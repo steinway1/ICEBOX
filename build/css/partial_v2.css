@@ -8021,23 +8021,26 @@ svg.sign-loader circle {
   --toolbar-height: 16px;
   --toolbar-spacing: 8px;
   --toolbar-button-color: #000;
-  --toolbar-radius: 100px;
-  background: #22262b;
+  --toolbar-radius: 0.3rem;
+  background: #2a2f3b;
   border-radius: 8px;
   bottom: 0;
   -webkit-box-shadow: 0 0 1px #1b2733, 0 8px 16px rgba(27, 39, 51, 0.08);
   box-shadow: 0 0 1px #1b2733, 0 8px 16px rgba(27, 39, 51, 0.08);
-  left: 0;
-  right: 0;
-  padding: 6px 8px;
+  padding: 8px;
   position: fixed;
   text-align: center;
   white-space: nowrap;
   z-index: 100;
   color: var(--toolbar-color);
   font-size: var(--toolbar-fontsize);
-  width: 92%;
-  margin: 16px auto;
+  margin: 0 auto -14px auto;
+  max-width: calc(100vw - 24px);
+  left: 50%;
+  right: unset;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: auto;
 }
 
 .iba-toolbar .iba-button--toggle span {
@@ -8092,70 +8095,61 @@ svg.sign-loader circle {
 }
 
 .product__certificate-link {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  margin-top: 0px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  font-size: 14px;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
+  justify-content: center;
   align-items: center;
-  border-left: 0px solid var(--blue-gold);
   font-weight: 600;
   transition: all 0ms !important;
-  text-transform: uppercase;
+}
+
+.product__certificate-link span {
+  text-transform: lowercase;
+}
+
+.product__certificate-link span::first-letter {
+  text-transform: capitalize;
 }
 
 .product__certificate-link svg {
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
+  width: 14px !important;
+  height: 14px !important;
+  margin-right: 5px;
 }
 
 .product__certificate-link:hover {
-  color: #0995c6;
-  border-left: 0px solid var(--blue-gold);
+  color: #07ace2;
   padding-left: 0px;
   text-decoration: underline !important;
 }
 
 .product__certificate-link:hover span {
-  color: #0995c6;
-  border-left: 0px solid var(--blue-gold);
+  color: #07ace2;
   padding-left: 0px;
   text-decoration: underline !important;
 }
 
 .iba-button-icon {
   width: 32px;
-  height: 32px;
+  height: 100%;
+  min-height: 32px;
   position: relative;
-  background-color: #42474d;
-  border-radius: var(--toolbar-radius);
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
+  background-color: #4e5461;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 11px;
+  display: flex;
   justify-content: center;
-  margin-right: var(--toolbar-spacing);
+  align-items: center;
   cursor: pointer;
 }
 
+.iba-button-icon svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
 .iba-button-icon path {
-  fill: currentColor;
+  fill: white !important;
 }
 
 .iba-button-icon .svgIcon-root {
@@ -8164,13 +8158,13 @@ svg.sign-loader circle {
 
 .iba-button-icon.active,
 .iba-button-icon:hover {
-  background-color: var(--blue-gold);
+  background-color: #07ace2;
 }
 
 .svgIcon-root {
   fill: currentColor;
-  width: 1em;
-  height: 1em;
+  width: 1.2rem;
+  height: 1.2rem;
   display: inline-block;
   font-size: 1.5rem;
   -webkit-transition: fill 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
@@ -8204,7 +8198,8 @@ svg.sign-loader circle {
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center;
+  align-items: stretch;
+  gap: var(--toolbar-spacing);
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -8214,9 +8209,11 @@ svg.sign-loader circle {
 }
 
 .iba-toolbar-col {
+  display: flex;
   -webkit-box-flex: 1;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
+  gap: var(--toolbar-spacing);
   position: relative;
 }
 
@@ -8226,7 +8223,10 @@ svg.sign-loader circle {
 
 .iba-toolbar-stock {
   position: relative;
-  margin-right: var(--toolbar-spacing);
+  margin-right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .iba-toolbar-stock-col {
@@ -8243,24 +8243,40 @@ svg.sign-loader circle {
 }
 
 .iba-toolbar-stock-table {
-  margin-left: var(--toolbar-spacing);
+  margin-left: 6px;
 }
 
 .iba-toolbar-stock-table-cell {
-  width: 30px;
+  width: 22px;
+  overflow: hidden;
+  flex: none;
   height: var(--toolbar-height);
   line-height: var(--toolbar-height);
-  display: table-cell;
-  background-color: #000;
-  padding-top: 2px;
-  margin: 1px;
-  font-weight: var(--font-bold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  background-color: #4e5461;
+  padding-top: 1px;
+  margin: 0;
+}
+
+.iba-toolbar-stock-table-cell:first-child {
+  border-top-left-radius: 0.2rem;
+  border-bottom-left-radius: 0.2rem;
+}
+
+.iba-toolbar-stock-table-cell:last-child {
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
 }
 
 .iba-toolbar-stock-title {
   width: 30px;
   text-align: right;
-  font-size: var(--toolbar-fontsize);
+  font-size: 11px;
+  font-weight: 600;
   line-height: var(--toolbar-height);
 }
 
@@ -8288,21 +8304,20 @@ svg.sign-loader circle {
 
 .iba-toolbar-label {
   position: relative;
-  line-height: 28px;
-  height: 28px;
-  background-color: var(--color-brand-50);
+  line-height: 22px;
+  min-height: 32px;
+  height: 100%;
+  background-color: #dbebff !important;
   font-size: var(--toolbar-fontsize);
+  font-weight: 600;
   margin: 0;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
-  display: inline-flex;
-  vertical-align: middle;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+  display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: var(--toolbar-radius);
-  padding: 1px 12px 0;
-  margin-right: var(--toolbar-spacing);
+  padding: 0 12px;
   cursor: pointer;
 }
 
@@ -8367,35 +8382,6 @@ svg.sign-loader circle {
 
   .menu2.--visible {
     transform: translateX(0%);
-  }
-}
-
-@media (min-width: 601px) {
-  .iba-toolbar {
-    margin: 0 auto;
-    left: 50%;
-    right: unset;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width: auto;
-  }
-
-  .iba-toolbar-col {
-    margin-right: var(--toolbar-spacing);
-    margin-bottom: 0;
-  }
-
-  .iba-toolbar-col:last-child {
-    margin-right: 0;
-  }
-
-  .iba-toolbar-col:after {
-    width: 1px;
-    height: 24px;
-    position: absolute;
-    right: 0;
-    background-color: #000;
-    content: "";
   }
 }
 

@@ -67,18 +67,24 @@
 
 			<div class="whale-card__cells">
 				{% if whale.have_phone and whale.have_phone != '' %}
-					<div class="whale-card__cell" data-cell="phone">
-						<span class="cell-title">Phone</span>
+					<div class="whale-card__cell --external --phone" data-cell="phone">
 						<span class="cell-value">{{ whale.have_phone | raw }}</span>
+            <input class="whale-card__input" type="text" value="{{ whale.have_phone | raw }}">
+						<div class="am_flex8">
+							<span class="tb-social-count" data-cell-evt="reveal">Show</span>
+							<span class="tb-social-count" data-cell-evt="edit">Edit</span>
+							<span class="tb-social-count" data-cell-evt="sms" data-tip="Send SMS to whale">SMS</span>
+						</div>
 					</div>
 				{% endif %}
+
 				{% if whale.have_email and whale.have_email != '' %}
 					<div class="whale-card__cell" data-cell="email">
 						<span class="cell-title">Email</span>
 						<span class="cell-value">{{ whale.have_email | raw }}</span>
 					</div>
 				{% endif %}
-				{% if whale.salary and whale.salary != '' %}
+				{% if whale.salary and whale.salary != '' and whale.tab|lower != 'music' %}
 					<div class="whale-card__cell" data-cell="salary">
 						<span class="cell-title">Salary</span>
 						<span class="cell-value">{{ whale.salary | raw }}</span>
@@ -90,7 +96,7 @@
 						<span class="cell-value">{{ whale.team_html | raw }}</span>
 					</div>
 				{% endif %}
-				{% if whale.career_earnings and whale.career_earnings != '' %}
+				{% if whale.career_earnings and whale.career_earnings != '' and whale.tab|lower != 'music' %}
 					<div class="whale-card__cell" data-cell="total_pay">
 						<span class="cell-title">Earnings</span>
 						<span class="cell-value">{{ whale.career_earnings | raw }}</span>
@@ -157,6 +163,7 @@
 						{% endif %}
 					</div>
 				{% endif %}
+
 			</div>
 		</div>
 
@@ -285,5 +292,5 @@
 			<button onclick="AddWhaleNote({{ whale.id }});">Add</button>
 		</div>
 	</div>
-  
+
 </div>

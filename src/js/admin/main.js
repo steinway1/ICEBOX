@@ -17,7 +17,10 @@ const
   __FADE = '--fade',
   __VISIBLE = '--visible',
   __ACTIVE = '--active',
-  __HIDDEN = '--hidden'
+  __HIDDEN = '--hidden',
+  __SEALED = '--sealed',
+  __REVEALED = '--revealed',
+  __EDIT = '--edit'
 
 function createElem(tagName, options) {
   const { className, id, innerHTML, style, attributes, toAppend } = options
@@ -166,6 +169,7 @@ class LockPin {
     this.callback = settings.callback || undefined
     this.maxLength = this.code.toString().length
     this.unlockTime = settings.unlockTime || 600
+    this.allowClose = settings.allowClose || false
     this.currentPin = []
     this.isLocked = false
   }
@@ -314,6 +318,12 @@ class LockPin {
         if (!this.isLocked) {
           e.preventDefault()
           const key = e.key
+
+          if (key === 'Escape' && this.allowClose) {
+            this.destroy()
+            unlockScroll()
+          }
+
           if (key === 'Backspace') {
             if (this.currentPin.length > 0) {
               this.currentPin.pop()
@@ -353,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pin = new LockPin({
       code: 3256
     })
-    pin.push()
+    // pin.push()
   }
 })
 
@@ -1130,31 +1140,74 @@ const whalesPage = {
     }
   },
   hidePhones: function () {
-    const cardsArr = [...document.querySelectorAll('.whale-card')]
-    for (const card of cardsArr) {
-      const phoneCell = card.querySelector('[data-cell="phone"]')
-      if (phoneCell) {
-        if (!phoneCell.classList.contains('--sealed')) {
-          phoneCell.classList.add('--sealed')
-          const value = phoneCell.querySelector('.cell-value')
-          const initValue = value.innerText
-          const lastFourDigits = value.innerText.replace(/ /g, '').replace(/-/g, '').slice(-4)
-          value.innerText = `···· ${lastFourDigits}`
+    const phoneCellArr = [...document.querySelectorAll('[data-cell="phone"]')]
+    for (const cell of phoneCellArr) {
 
-          value.reveal = () => {
-            phoneCell.classList.remove('--sealed')
-            phoneCell.classList.add('--full')
-            value.innerText = initValue
+      const evtReveal = cell.querySelector('[data-cell-evt="reveal"]')
+      const evtEdit = cell.querySelector('[data-cell-evt="edit"]')
+      const evtSMS = cell.querySelector('[data-cell-evt="sms"]')
+      const input = cell.querySelector('.whale-card__input')
+      const cellValue = cell.querySelector('.cell-value')
+      let phoneValue
+
+      if (cellValue && evtEdit && evtReveal && input) {
+        phoneValue = cellValue.innerText
+
+        cell.seal = () => {
+          if (!cell.classList.contains(__SEALED)) {
+            cell.classList.add(__SEALED)
+            const lastFourDigits = phoneValue.replace(/ /g, '').replace(/-/g, '').slice(-4)
+            cellValue.innerText = `···· ${lastFourDigits}`
           }
+        }
+        cell.reveal = () => {
+          cell.classList.remove(__SEALED)
+          cell.classList.add(__REVEALED)
+          cellValue.innerText = phoneValue
+          evtReveal.remove()
+        }
+        cell.edit = () => {
+          cell.classList.add(__EDIT)
+          input.value = phoneValue
+          input.focus()
+          evtEdit.innerHTML = 'Save'
+        }
+        cell.save = () => {
+          cell.classList.remove(__EDIT)
+          cell.classList.remove(__SEALED)
+          cellValue.innerText = input.value
+          phoneValue = input.value
+          evtEdit.innerHTML = 'Edit'
+          evtReveal.remove()
+        }
+        cell.seal()
 
-          value.onclick = () => {
+        // Events
+        evtReveal.onclick = () => {
+          const pin = new LockPin({
+            code: 3257,
+            callback: cell.reveal,
+            allowClose: true
+          })
+          pin.push()
+        }
+        evtEdit.onclick = () => {
+          if (cell.classList.contains(__EDIT)) {
+            cell.save()
+          } else {
             const pin = new LockPin({
               code: 3257,
-              callback: value.reveal
+              callback: cell.edit,
+              allowClose: true
             })
             pin.push()
           }
         }
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.keyCode === 13) {
+            cell.save()
+          }
+        })
       }
     }
   },
@@ -4241,7 +4294,7 @@ class SMS {
                 form.style.display = 'none'
               }
             }
-            $('#sms_send_btn_global').attr('onclick','window.sms.sendNewSMS(0)');
+            $('#sms_send_btn_global').attr('onclick', 'window.sms.sendNewSMS(0)');
             break;
           case 'bulk':
             for (const form of forms) {
@@ -4251,7 +4304,7 @@ class SMS {
                 form.style.display = 'none'
               }
             }
-            $('#sms_send_btn_global').attr('onclick','window.sms.sendNewSMS(1)');
+            $('#sms_send_btn_global').attr('onclick', 'window.sms.sendNewSMS(1)');
             break;
           default:
             for (const form of forms) {
@@ -4298,9 +4351,9 @@ class SMS {
     })
   }
   sendNewSMS(type = 0) {
-    if(type == 0){
+    if (type == 0) {
       $('#submit_sms_btn').click();
-    }else{
+    } else {
       $('#submit_bulk_sms_btn').click();
     }
 

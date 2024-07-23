@@ -2608,6 +2608,34 @@ const productPage = new Object({
   },
 
   initFn: {
+    setupSummary: () => {
+      const
+        sum = document.querySelector('.product__item-summary'),
+        maxHeight = 150
+
+      if (sum) {
+        let isBigger = sum.scrollHeight > maxHeight
+        if (isBigger) {
+          sum.style.height = `${maxHeight}px`
+          sum.insertAdjacentHTML(
+            'beforeend',
+            `<div class="product__item-summary-gradient"></div>
+            `
+          )
+
+          const expandElement = document.createElement('div');
+          expandElement.classList.add('product__item-summary-expand');
+          expandElement.onclick = () => {
+            const gradient = sum.querySelector('.product__item-summary-gradient')
+            gradient.remove()
+            expandElement.remove()
+            sum.style.height = 'auto'
+          };
+
+          sum.appendChild(expandElement);
+        }
+      }
+    },
     // Events Fires on initialization
     // checkSummary: () => {
     //   // If there is a list, then collapse description else nothing.
