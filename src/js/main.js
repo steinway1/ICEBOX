@@ -3307,6 +3307,16 @@ const myBag = new Object({
           saleElem.innerText = `${sale}% OFF`
         }
       }
+    },
+    setCapitalizeCheckoutBtn: function() {
+      const btnArr = [...document.querySelectorAll('.checkout__main-btn')]
+      for (const btn of btnArr) {
+        const text = btn.innerText.split(' ').reduce((acc, el) => {
+          acc.push(el.charAt(0).toUpperCase() + el.slice(1).toLowerCase())
+          return acc
+        }, [])
+        btn.innerText = text.join(' ')
+      }
     }
 
   }
