@@ -46,6 +46,23 @@
 										<span class="mybag-card-price">{{price}}</span>
 									{% endif %}
 								</div>
+
+								<div class="mybag-card__quantity">
+									<div class="mybag-card__select-wrap">
+										{% include "components/svg/dropdown.svg" with { class: 'checkout__dd-icon' } %}
+										<select title="Quantity" class="mybag-card__select" name="qty[]" onchange="$('#updateCartFrm').submit();">
+											{% for selectOptions in 1..10 %}
+												{% if selectOptions == qty %}
+													<option value="{{qty}}" selected>{{qty}}</option>
+												{% else %}
+													<option value="{{selectOptions}}">{{selectOptions}}</option>
+												{% endif %}
+											{% endfor %}
+										</select>
+									</div>
+								</div>
+
+
 							</div>
 						</div>
 					</div>

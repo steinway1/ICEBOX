@@ -17824,14 +17824,14 @@ input.custom-range__output {
 }
 
 .mybag-card__select-wrap {
-  width: 3.2rem;
+  width: 3rem;
   background: #fff;
 }
 
 .checkout__dd-icon {
-  width: 12px !important;
-  height: 12px !important;
-  right: 0.7rem;
+  width: 10px !important;
+  height: 10px !important;
+  right: 0.6rem;
   position: absolute;
   z-index: 1;
   top: 50%;
@@ -17843,9 +17843,10 @@ input.custom-range__output {
   text-transform: none;
   margin: 0;
   box-sizing: border-box;
-  height: 2.2rem;
-  font-size: 12px;
-  line-height: 1rem;
+  height: 2rem;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 0.8rem;
   color: #19110b;
   width: 100%;
   appearance: none;
@@ -17871,11 +17872,11 @@ input.custom-range__output {
 
 .mybag-card__select select:focus {
   box-shadow: none;
-  border-color: #0095c6;
+  border-color: var(--black);
 }
 
 .mybag-card__select-wrap select:hover:not(:disabled) {
-  border-color: #0095c6;
+  border-color: var(--black);
 }
 
 .checkout__price-row_total .checkout__price {
@@ -18838,6 +18839,17 @@ input.custom-range__output {
 
 .checkout-summary .checkout-box {
   padding: 32px var(--padding) 32px var(--padding);
+}
+
+.mybag__summary-col {
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  flex-flow: column;
+  flex: none;
+  width: 34%;
+  min-width: 420px;
+  padding: var(--padding);
+  display: flex;
 }
 
 .mybag__page-btn {
@@ -32764,6 +32776,12 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     padding: 14px 0;
   }
 
+  .mybag__summary-col {
+    width: 100%;
+    min-width: auto;
+    padding: 14px 0;
+  }
+
   .mybag-summary__sub-typo {
     text-align: left;
   }
@@ -33869,7 +33887,6 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
 
   .mybag-card__quantity {
     order: 1;
-    margin-left: 10px;
   }
 
   .sub-wrapper {
@@ -35830,8 +35847,6 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
 
   .mybag-card__quantity {
     order: 1;
-    margin-left: 8px;
-    margin-right: 0;
   }
 
   .mybag-card__options {
