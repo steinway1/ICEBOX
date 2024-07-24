@@ -1,12 +1,9 @@
 .mybag-main {
+  font-size: 14px;
   display: block;
   min-height: 100vh;
-  background-color: #f6f7fa;
-  --padding: 32px;
-
-  @include maxWidthSm {
-    --padding: 18px;
-  }
+  letter-spacing: .2px !important;
+  background-color: var(--main-grey);
 }
 
 .mybag-main svg,
@@ -15,94 +12,10 @@
   height: unset;
 }
 
-.mybag-card-sale {
-  color: #108cb4;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.mybag-card-price {
-  font-weight: 600;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card-price_new {
-  order: -1;
-}
-
-.card-price_old {
-  color: #9398a7;
-
-  &::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 1.5px;
-    background-color: #9398a7;
-  }
-}
-
-.mybar__cards-header {
-  grid-column-gap: 2px;
-  grid-row-gap: 2px;
-  flex-flow: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.mybag-card__thumbnail {
-  width: 120px;
-  height: 120px;
-  position: relative;
-  overflow: hidden;
-  flex: none;
-
-  a {
-    width: 100%;
-    height: 100%;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-  }
-
-  &::after {
-    content: "";
-    opacity: 0.03;
-    pointer-events: none;
-    background-color: #283a69;
-    position: absolute;
-    top: 0%;
-    bottom: 0%;
-    left: 0%;
-    right: 0%;
-    z-index: 1;
-  }
-
-  @include maxWidthXs {
-    width: 100px;
-    height: 100px;
-  }
-}
-
 .checkout-box {
   background-color: var(--white);
   // border: 1px solid var(--sub-grey);
   padding: 30px;
-
-  &.--info {
-    @include minWidthMd {
-      padding: 0 !important;
-      background-color: transparent;
-      margin-top: 12px;
-    }
-  }
 }
 
 .checkout-box__gift-row {
@@ -185,7 +98,6 @@
 .mybag-information-row__wrap a {
   font-weight: 600;
   text-decoration: underline;
-  font-size: 13px;
 }
 
 .mybag-information-row__wrap a:hover {
@@ -572,15 +484,15 @@
 }
 
 .mybag-card-title {
-  // letter-spacing: .3px;
-  // text-transform: uppercase;
-  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
   font-weight: 600;
-  line-height: 22px;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  line-height: 20px;
   overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
 }
 
 .checkout-item:last-child {
@@ -622,6 +534,7 @@
   display: flex !important;
 }
 
+.mybag-card__thumbnail:after,
 .checkout-item__pic-wrap:after {
   content: "";
   display: block;
@@ -905,48 +818,33 @@
   transition: all .3s var(--main-easing);
 }
 
-.mybag-summary__main {
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
-  flex-flow: column;
-  display: flex;
-}
-
 .summary-price {
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 6px;
   display: flex;
-  font-size: 13px;
-  line-height: 20px;
-
-  &>span {
-    &:last-child {
-      font-weight: 600;
-    }
-  }
 }
 
-.mybag-summary-price_discount {
-  span {
-    &:last-child {
-      color: #108cb4;
-    }
-  }
-}
+.summary-price>*:first-child {}
 
-.mybag-summary-price_total {
-  border-top: 1px solid #e5e7f0;
-  padding-top: 12px;
-  font-size: 14px;
+.summary-price>*:last-child {
   font-weight: 600;
+}
 
-  span {
-    &:last-child {
-      font-size: 15px;
-    }
-  }
+.summary-price.mybag-summary-price_total>*:last-child {
+  color: #06a8dd;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.summary-price.mybag-summary-price_total {
+  margin-top: 16px;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.summary-price.mybag-summary-price_discount {
+  color: #0095c6;
 }
 
 .checkout-form__radio-details {
@@ -1322,25 +1220,28 @@
 }
 
 .mybag-card__notice {
-  grid-column-gap: 6px;
-  grid-row-gap: 6px;
-  color: rgba(23, 28, 41, .69);
+  // background-color: var(--white);
+  // border: 1px solid var(--sub-grey);
   justify-content: flex-start;
   align-items: center;
-  margin-top: 14px;
-  padding: 0;
-  padding-left: 20px;
-  line-height: 20px;
-  font-size: 12px;
-  font-weight: 600;
+  padding: 10px 0px;
+  // max-width: 400px;
   display: flex;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" id="info"><path d="M10 .4C4.697.4.399 4.698.399 10A9.6 9.6 0 0 0 10 19.601c5.301 0 9.6-4.298 9.6-9.601 0-5.302-4.299-9.6-9.6-9.6zm.896 3.466c.936 0 1.211.543 1.211 1.164 0 .775-.62 1.492-1.679 1.492-.886 0-1.308-.445-1.282-1.182 0-.621.519-1.474 1.75-1.474zM8.498 15.75c-.64 0-1.107-.389-.66-2.094l.733-3.025c.127-.484.148-.678 0-.678-.191 0-1.022.334-1.512.664l-.319-.523c1.555-1.299 3.343-2.061 4.108-2.061.64 0 .746.756.427 1.92l-.84 3.18c-.149.562-.085.756.064.756.192 0 .82-.232 1.438-.719l.362.486c-1.513 1.512-3.162 2.094-3.801 2.094z"/></svg>');
-  background-position: left center;
-  background-size: 14px 14px;
-  background-repeat: no-repeat;
+  position: relative;
 
-  @include maxWidthXs {
-    padding-left: 24px;
+  img {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+  }
+
+  >span {
+    line-height: 20px;
+    font-size: 13px;
+  }
+
+  >span span {
+    font-weight: 600;
   }
 }
 
@@ -1363,43 +1264,36 @@
 }
 
 .mybag__cards-col {
-  background-color: #fff;
   flex: 1;
-  padding: var(--padding);
-  padding-left: 5vw !important;
-
-  @media screen and (min-width: 1440px) {
-    padding-left: 7vw !important;
-  }
-
-  @include maxWidthMd {
-    padding: 32px var(--padding) 32px var(--padding) !important;
-  }
+  margin-right: 48px;
 }
 
 .checkout-btn {
-  color: white;
-  background-color: var(--black);
+  color: var(--white);
+  width: 100%;
+  text-transform: uppercase;
+  background-color: var(--checkout-blue);
+  border: 2px solid var(--checkout-blue);
   justify-content: center;
   align-items: center;
-  width: 100%;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding: 12px;
   font-weight: 700;
+  transition: all .2s var(--main-easing);
   display: flex;
-  transition: all 200ms ease;
+}
 
-  &:hover {
-    background-color: var(--blue);
-  }
+.checkout-btn:hover {
+  color: var(--checkout-blue);
+  background-color: var(--white);
+  border: 2px solid var(--checkout-blue);
 }
 
 .mybag-card__content-wrap {
-  flex-flow: column;
-  flex: 1;
-  justify-content: space-between;
-  display: flex;
   height: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 24px;
+  display: flex;
 }
 
 .sm-container {
@@ -1416,21 +1310,32 @@
 
 
 .mybag-floating {
-  z-index: 20;
-  background-color: #fff;
-  border-top: 1px solid #e5e7f0;
-  padding: 14px;
+  z-index: 10;
+  padding: 6px;
+  transition: all .3s var(--main-easing);
   display: none;
-  position: -webkit-sticky;
-  position: sticky;
-  bottom: 0;
+  position: fixed;
+  top: auto;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+
+  button {
+    background-color: var(--black);
+    border: 1px solid var(--black);
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 16px 20px;
+  }
+
+  &.is-hidden {
+    transform: translateY(110%)
+  }
 
   @include maxWidthMd {
     display: block;
-  }
-
-  @include maxWidthXs {
-    padding: 8px;
   }
 }
 
@@ -1440,18 +1345,16 @@
   flex-flow: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 14px;
   display: flex;
 }
 
 .mybag-card__options {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  flex-direction: column;
   display: flex;
   position: relative;
-  align-items: center;
-  row-gap: 3px;
-  column-gap: 8px;
-  flex-flow: wrap;
-  font-size: 12px;
 }
 
 .mybag-card__header {
@@ -1459,33 +1362,33 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 20px;
   display: flex;
   position: relative;
-
-  @include maxWidthXs {
-    margin-bottom: 1px;
-  }
 }
 
 .mybag-content {
   display: flex;
-  min-height: 100vh;
+}
+
+.mybag-card__container {
+  background-color: var(--white);
+  // border: 1px solid var(--sub-grey);
 }
 
 .mybag-card__wrap {
-  grid-column-gap: 14px;
-  grid-row-gap: 14px;
-  padding: 0;
   display: flex;
 }
 
 .mybag-card__controls-group {
-  column-gap: 8px;
-  row-gap: 1px;
-  flex-flow: wrap;
+  grid-column-gap: 14px;
+  grid-row-gap: 14px;
   align-items: center;
   display: flex;
+
+  &:last-child {
+    gap: 8px;
+  }
 }
 
 .mybag-card__select-wrap {
@@ -1502,6 +1405,7 @@
 
 .mybag-card__details {
   flex-direction: column;
+  flex: 1;
   justify-content: space-between;
   padding: 0;
   display: flex;
@@ -1515,11 +1419,7 @@
   display: flex;
   position: -webkit-sticky;
   position: sticky;
-  top: 132px;
-
-  .checkout-box {
-    padding: 32px var(--padding) 32px var(--padding);
-  }
+  top: 138px;
 }
 
 .mybag-summary__footer {
@@ -1528,38 +1428,43 @@
   justify-content: center;
   align-items: center;
   margin-top: 24px;
-
-  @include maxWidthMd {
-    align-items: flex-start;
-    text-align: left;
-    margin-top: 0;
-
-    button {
-      display: none;
-    }
-  }
 }
 
-.mybag__page-controls {
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
-  cursor: pointer;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 20px;
-  display: flex;
-
-  @include maxWidthXs {
-    margin-bottom: 32px;
-  }
-}
-
+.mybag__page-controls,
 .checkout__page-controls {
   justify-content: space-between;
   align-items: center;
   padding-top: 46px;
   padding-bottom: 46px;
   display: flex;
+}
+
+.mybag__cards-header {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.mybag__cards-header.checkout-box {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.mybag-card__thumbnail {
+  width: 36%;
+  border-right: 4px solid #f6f8fa;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  display: flex;
+}
+
+.mybag-card__thumbnail.mybag-card__thumbnail_mobile {
+  display: none;
 }
 
 .mybag-summary__header {
@@ -1574,43 +1479,29 @@
 }
 
 .mybag__summary-col {
-  grid-column-gap: 24px;
-  grid-row-gap: 24px;
-  flex-flow: column;
-  flex: none;
-  width: 34%;
-  min-width: 420px;
-  padding: var(--padding);
-  display: flex;
-
-  @include maxWidthMd {
-    width: 100%;
-    min-width: auto;
-    padding: 14px 0;
-  }
+  flex: 1;
+  max-width: 400px;
 }
 
 .mybag__page-btn {
-  letter-spacing: .6px;
   text-transform: uppercase;
-  font-size: 10px;
-  font-weight: 700;
-  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all .2s var(--main-easing);
+  display: flex;
+  gap: 14px;
 
-  svg {
-    justify-content: center;
-    align-items: center;
-    width: 16px;
-    height: 16px;
-    display: flex;
+  &:hover {
+    text-decoration: underline;
   }
 
-  @include minWidthMd {
-    &:hover {
-      opacity: .6;
-    }
+  svg {
+    align-items: center;
+    margin-top: -1px;
+    display: flex;
   }
 }
 
@@ -1619,10 +1510,23 @@
 }
 
 .mybag-heading {
-  margin-bottom: 2px;
-  font-size: 24px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  // text-transform: uppercase;
+  font-size: 22px;
   font-weight: 600;
-  line-height: 34px;
+  line-height: 24px;
+  margin: 0;
+
+  >span {
+    color: #9b9b9b;
+    margin-left: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+    padding-bottom: 4px;
+  }
 }
 
 .mybag-heading.mybag-heading_small {
@@ -1658,20 +1562,19 @@
 .mybag-card__title-group {
   flex-direction: column;
   align-items: flex-start;
-  margin-right: 16px;
+  margin-right: 38px;
   display: flex;
 }
 
 .mybag-summary__sub-typo {
   width: 100%;
+  max-width: 240px;
   text-align: center;
   margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 12px;
   line-height: 18px;
-
-  @include maxWidthMd {
-    text-align: left;
-  }
 }
 
 .mybag-wrapper {
@@ -1704,24 +1607,10 @@
 }
 
 .mybag-card {
-  border-bottom: 1px solid #e5e7f0;
-  flex-flow: column;
-  margin-bottom: 16px;
-  padding-bottom: 16px;
-  display: flex;
-
-  @include maxWidthXs {
-    margin-bottom: 26px;
-    padding-bottom: 24px;
-  }
-
-  &:last-child {
-    @include maxWidthXs {
-      border: none;
-      padding-bottom: 0;
-      margin-bottom: 0;
-    }
-  }
+  padding: 0;
+  position: relative;
+  border-radius: 0px;
+  background-color: transparent;
 }
 
 .mybag-card__option-row {
@@ -1737,7 +1626,22 @@
   grid-row-gap: 10px;
   flex-direction: column;
   display: flex;
-  padding-top: 32px;
+}
+
+.mybag-card-price {
+  align-items: center;
+  display: flex;
+  font-weight: 600;
+}
+
+.card-price_old {
+  text-decoration: line-through !important;
+}
+
+.card-price_new {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--checkout-blue)
 }
 
 .mybag-card__picture {
@@ -1748,7 +1652,7 @@
 
 .mybag-features {
   background-color: var(--white);
-  padding: 32px var(--padding) 32px var(--padding);
+  padding: 46px 78px;
   position: relative;
 }
 
@@ -1767,13 +1671,25 @@
     max-width: 440px;
   }
 
+  .mybag-card__thumbnail {
+    width: 30%;
+    padding: 20px;
+  }
+
   .mybag-summary__payments img {
     max-width: 38px;
   }
 
-  .mybag-wrapper {
+  .mybag-wrapper,
+  .mybag-features {
     padding-left: 98px;
     padding-right: 98px;
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  .mybag__summary-col {
+    max-width: 340px;
   }
 }
 
@@ -1825,10 +1741,23 @@
     font-size: 13px;
   }
 
+  .mybag__cards-col {
+    margin-right: 0;
+    padding-bottom: 52px;
+    padding-left: 52px;
+    padding-right: 52px;
+  }
+
   .mybag-content {
     display: block;
   }
 
+  .mybag__summary-col {
+    max-width: calc(780px - (52px * 2));
+    margin: auto;
+  }
+
+  .mybag__page-controls,
   .checkout__page-controls {
     padding-left: 52px;
     padding-right: 52px;
@@ -1842,6 +1771,11 @@
   .mybag-features__col {
     padding-left: 12px;
     padding-right: 12px;
+  }
+
+  .mybag-features {
+    padding-left: 52px;
+    padding-right: 52px;
   }
 }
 
@@ -1859,14 +1793,37 @@
     grid-auto-flow: row;
   }
 
+  .mybag__cards-col {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .mybag-card__notice {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
   .mybag-card__quantity {
     order: 1;
     margin-left: 10px;
   }
 
+  .mybag__page-controls,
   .checkout__page-controls {
     padding-left: 30px;
     padding-right: 30px;
+  }
+
+  .mybag-card__thumbnail {
+    width: 36%;
+  }
+
+  .mybag-card__title-group {
+    margin-right: 0;
+  }
+
+  .mybag-card-price {
+    order: 1;
   }
 }
 
@@ -1944,10 +1901,20 @@
     display: block;
   }
 
+  .mybag__cards-col {
+    padding-bottom: 38px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   .mybag-card__quantity {
     order: 1;
     margin-left: 8px;
     margin-right: 0;
+  }
+
+  .mybag-card__content-wrap {
+    padding: 0;
   }
 
   .mybag-card__options {
@@ -1955,20 +1922,84 @@
     grid-row-gap: 4px;
   }
 
+  .mybag-card__header {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    align-items: stretch;
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  .mybag-card__wrap {
+    display: block;
+  }
+
   .mybag-features__col-details {
     text-align: left;
     align-items: flex-start;
   }
 
+  .mybag-card__details {
+    padding: 22px;
+  }
+
+  .mybag__page-controls,
   .checkout__page-controls {
     padding: 22px;
     display: block;
+
+  }
+
+  .mybag__cards-header.checkout-box {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .mybag-card__thumbnail {
+    width: 100%;
+    display: none;
+  }
+
+  .mybag-card__thumbnail.mybag-card__thumbnail_mobile {
+    width: 25%;
+    max-width: 100%;
+    min-width: 110px;
+    border-right: 1px solid var(--sub-grey);
+    flex: none;
+    padding: 6px;
+    display: flex;
+  }
+
+  .mybag-card__notice {
+    padding-left: 20px;
+    padding-right: 20px;
+
+    img {
+      margin-right: 12px;
+    }
+  }
+
+  .mybag-card-title {
+    margin-right: 0;
+  }
+
+  .mybag__page-btn {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    width: 100%;
   }
 
   .mybag-card__main-btn {
     flex: 1;
     padding-top: 7px;
     padding-bottom: 7px;
+  }
+
+  .mybag-card__title-group {
+    flex: 1;
+    justify-content: center;
+    margin-right: 0;
+    padding: 12px 14px;
   }
 
   .mybag-wrapper {
@@ -1996,9 +2027,17 @@
     font-size: 12px;
   }
 
+  .mybag-card-price {
+    order: -1;
+  }
+
   .mybag-card__picture {
     max-height: 110px;
     object-fit: cover;
+  }
+
+  .mybag-features {
+    padding: 26px 20px;
   }
 }
 
@@ -2442,75 +2481,5 @@
     font-weight: 700;
     display: inline-block;
     text-transform: uppercase;
-  }
-}
-
-.mybag-card-drop {
-  position: relative;
-
-  &:hover {
-    &>div:last-child {
-      display: block;
-    }
-  }
-
-  &>div:first-child {
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    background-image: url('data:image/svg+xml,<svg width="13" height="3" viewBox="0 0 13 3" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="1.5" cy="1.5" r="1.5" fill="currentColor"></circle><circle cx="6.5" cy="1.5" r="1.5" fill="currentColor"></circle><circle cx="11.5" cy="1.5" r="1.5" fill="currentColor"></circle></svg>');
-    background-size: 13px 13px;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-
-  &>div:last-child {
-    z-index: 4;
-    display: none;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-
-    @include maxWidthMd {
-      left: auto;
-      right: 0;
-      transform: none;
-    }
-
-    &>div {
-      background-color: #fff;
-      border-radius: .4rem;
-      flex-flow: column;
-      min-height: 40px;
-      display: flex;
-      overflow: hidden;
-      box-shadow: 0 6px 36px rgba(23, 28, 41, .1);
-
-      @include maxWidthMd {
-        box-shadow: 0 6px 28px rgba(168, 173, 187, .6);
-      }
-
-      &>button,
-      &>a {
-        cursor: pointer;
-        width: 140px;
-        padding: 8px 12px;
-        font-size: 13px;
-        line-height: 20px;
-        font-weight: 600;
-        text-align: left;
-
-        &:hover {
-          background-color: #e0e2e9;
-        }
-
-        @include maxWidthMd {
-          width: 190px;
-        }
-      }
-    }
   }
 }
