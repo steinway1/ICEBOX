@@ -1,18 +1,18 @@
 /* #region  Welcome Section */
 
 .home-row-btn {
-  min-width: 220px;
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
+  min-width: 200px;
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
   color: #fff;
-  letter-spacing: 1px;
+  letter-spacing: 0.4px;
   text-transform: uppercase;
   background-color: #08a0d2;
   justify-content: center;
   align-items: center;
   padding: 10px 18px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -88,20 +88,19 @@
 }
 
 .home-welcome__link {
-  min-width: 160px;
-  grid-column-gap: 26px;
-  grid-row-gap: 26px;
+  min-width: 140px;
+  gap: 20px;
   color: #fff;
-  letter-spacing: 1px;
+  letter-spacing: 0.4px;
   text-transform: uppercase;
   white-space: nowrap;
   word-break: normal;
   background-color: #08a0d2;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  font-size: 13px;
-  font-weight: 600;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 700;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -159,9 +158,9 @@
   h1,
   h2,
   h3 {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 600;
-    line-height: 32px;
+    line-height: 30px;
     text-transform: uppercase;
   }
 
@@ -185,7 +184,7 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  padding: 20px;
+  padding: 18px;
   display: flex;
   position: absolute;
   top: auto;
@@ -261,7 +260,7 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    padding: 20px;
+    padding: 18px;
   }
 
   .home-welcome-box {
@@ -279,15 +278,15 @@
   position: relative;
   overflow: hidden;
 
-  @media screen and (min-width: 992px) {
-    &:nth-child(odd) .home-row__summary-center {
-      order: -1 !important;
-    }
-  }
-
   .splide__track {
     padding-top: 3px;
     padding-bottom: 3px;
+  }
+
+  @include minWidthMd {
+    .product-card__media {
+      aspect-ratio: 1/1.1;
+    }
   }
 }
 
@@ -304,10 +303,6 @@
 .home-row__header {
   width: 100%;
   padding-bottom: 0px;
-
-  @include maxWidthXs {
-    padding-bottom: 34px;
-  }
 }
 
 .home-row__controls {
@@ -319,10 +314,12 @@
 }
 
 .home-spot__heading {
-  letter-spacing: 0.6px;
+  letter-spacing: 0.4px;
   text-transform: uppercase;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 600;
+  line-height: 30px;
+  margin-top: 24px;
 
   span {
     max-width: 380px;
@@ -332,18 +329,17 @@
     margin-right: auto;
     font-size: 14px;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 22px;
     display: block;
 
     @include maxWidthSm {
       margin-top: 4px;
       margin-left: auto;
-      line-height: 26px;
     }
 
     @include maxWidthXs {
       max-width: 320px;
-      margin-top: 8px;
+      margin-top: 2px;
     }
   }
 }
@@ -361,9 +357,10 @@
 
 .home-row__img {
   width: 56%;
-  max-height: 390px;
+  max-height: 380px;
   object-fit: cover;
   position: relative;
+  order: -1;
 
   &::after {
     content: '';
@@ -407,11 +404,6 @@
 .home-content {
   width: 100vw;
   padding-top: 58px;
-
-  .wrapper {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
 }
 
 .home-row__img-flex {
@@ -505,16 +497,16 @@
 }
 
 .home-row__heading {
-  font-size: 26px;
-  letter-spacing: 0.6px;
+  font-size: 24px;
+  letter-spacing: 0.4px;
   font-weight: 600;
-  line-height: 32px;
+  line-height: 30px;
   text-transform: uppercase;
 
   span {
     letter-spacing: 0;
     text-transform: none;
-    margin-top: 6px;
+    margin-top: 4px;
     margin-right: auto;
     font-size: 14px;
     font-weight: 400;
@@ -523,14 +515,12 @@
     max-width: 320px;
 
     @include maxWidthSm {
-      margin-top: 4px;
+      margin-top: 2px;
       margin-left: auto;
-      line-height: 26px;
     }
 
     @include maxWidthXs {
       max-width: 320px;
-      margin-top: 8px;
     }
   }
 }
@@ -549,6 +539,11 @@
   padding-top: 28px;
   padding-bottom: 28px;
   display: flex;
+
+  @include maxWidthXs {
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
 }
 
 .home-row__body {
@@ -556,32 +551,40 @@
 }
 
 .home-row__summary-center {
-  text-align: center;
   flex-flow: column wrap;
   flex: 1;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 34px 5vw;
   display: flex;
 
   .home-row-btn {
     margin-top: 18px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+
+    @include maxWidthSm {
+      margin-top: 16px;
+    }
   }
 
   .home-row__subheading {
     max-width: 320px;
   }
+
+  @include maxWidthXs {
+    padding: 36px 18px;
+  }
 }
 
 .home-row__mob-sub-link {
-  letter-spacing: 1px;
+  letter-spacing: 0.4px;
   text-transform: uppercase;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: underline;
+  font-size: 12px;
+  font-weight: 700;
   display: none;
+
+  @include maxWidthXs {
+    display: flex;
+  }
 }
 
 .home-spot__details {
@@ -701,19 +704,6 @@
   .home-row__img {
     width: 62%;
   }
-
-  .home-row__summary-center {
-    padding-left: 7vw;
-    padding-right: 7vw;
-  }
-}
-
-@media screen and (min-width: 1920px) {
-
-  .home-row__summary-center {
-    padding-left: 8vw;
-    padding-right: 8vw;
-  }
 }
 
 @media screen and (max-width: 991px) {
@@ -731,8 +721,8 @@
   }
 
   .home-row__summary-center {
-    padding-left: 42px;
-    padding-right: 42px;
+    padding-left: 46px;
+    padding-right: 46px;
   }
 
   .diamonds-row {
@@ -779,9 +769,8 @@
   }
 
   .home-row__summary-center {
-    padding-bottom: 0;
-    padding-left: 36px;
-    padding-right: 36px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   .home-spot__details {
@@ -889,17 +878,10 @@
     padding-top: 16px;
   }
 
-  .home-row__wrapper {
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-
   .home-row__summary-center {
     width: 100%;
-  }
-
-  .home-row__mob-sub-link {
-    display: flex;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 
   .home-spot__details {
@@ -943,14 +925,13 @@
   position: relative;
 
   &::before {
-    content: 'Shop By Category';
     display: block;
-    font-size: 26px;
-    letter-spacing: 0.6px;
+    font-size: 24px;
+    letter-spacing: 0.4px;
     font-weight: 600;
-    line-height: 32px;
+    line-height: 30px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     text-align: left;
   }
 
@@ -978,7 +959,6 @@
     background-size: 13px 13px;
     background-position: center;
     background-repeat: no-repeat;
-    margin-top: 26px;
 
     svg {
       display: none !important;
@@ -1003,7 +983,7 @@
     padding: 0;
 
     &::before {
-      padding: 0 20px;
+      padding: 0 18px;
       text-align: left;
     }
 

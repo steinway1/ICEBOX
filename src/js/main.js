@@ -1779,7 +1779,7 @@ const homepageCategoriesSlider = new Object({
     if (el && el !== null) {
       let slider = new Splide(el, {
         type: "loop",
-        perPage: 4,
+        perPage: 7,
         perMove: 2,
         autoplay: 0,
         gap: "6px",
@@ -1787,10 +1787,10 @@ const homepageCategoriesSlider = new Object({
         pagination: 0,
         speed: 750,
         breakpoints: {
-          1680: { perPage: 5, },
-          1120: { perPage: 4, },
+          1680: { perPage: 6, },
+          1120: { perPage: 5, },
           767: { perPage: 3, perMove: 2 },
-          600: { perPage: 2, gap: 6, pagination: 1 }
+          600: { perPage: 2, gap: 6 }
         }
       })
       slider.mount()
@@ -1816,13 +1816,11 @@ const homePageSplide = new Object({
         pagination: 0,
         speed: 750,
         breakpoints: {
-          1680: {
-            perPage: 5,
-            perMove: 1,
+          1980: {
+            perPage: 5
           },
-          1120: {
-            perPage: 5,
-            perMove: 1,
+          1680: {
+            perPage: 4
           },
           991: {
             perPage: 4,
@@ -1832,14 +1830,13 @@ const homePageSplide = new Object({
             grid: {
               rows: 2,
               cols: 3,
-              gap: { row: "10px", col: "10px" },
-            },
+              gap: { row: "24px", col: "8px" }
+            }
           },
           478: {
             grid: {
               rows: 2,
-              cols: 2,
-              gap: { row: "8px", col: "8px" },
+              cols: 2
             },
           },
         },
