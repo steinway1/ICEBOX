@@ -1081,6 +1081,32 @@ class contentBackdrop {
 
 
 /* #region  Results Filters */
+
+function removeZeroSubheading() {
+  const arr = [...document.querySelectorAll('.results__subheading')]
+  for (const subheading of arr) {
+    if (subheading.innerHTML.length < 1) {
+      subheading.remove()
+    }
+  }
+}
+
+function formatGoldChainsSubheading() {
+  const subheading = document.querySelector('.results__subheading')
+  if (subheading) {
+    const text = 'Welcome to our collection of fine 14k solid gold chains, where luxury meets affordability'
+    if (subheading.innerHTML.includes(text)) {
+      const sentences = subheading.innerHTML.split('.').filter(sentence => sentence.trim() !== '')
+      if (sentences[0] === text) {
+        subheading.innerHTML = `
+        <strong>${text}.</strong>
+        ${sentences.slice(1).join('. ')}
+        `
+      }
+    }
+  }
+}
+
 const setPageFilters = () => {
   const filters = Array.from(document.querySelectorAll('.page-filter-box')).reduce((acc, box) => {
     if (box.querySelector('.page-filter-drop') !== null && box.querySelector('.page-filter-btn') !== null) { acc.push(box) }
@@ -3273,7 +3299,7 @@ const myBag = new Object({
     })
   },
   attachEvents: {
-    formatSummaryPrice: function() {
+    formatSummaryPrice: function () {
       const lines = [...document.querySelectorAll('.summary-price')]
       for (const line of lines) {
         const span = line.querySelector('span:last-child')
@@ -3308,7 +3334,7 @@ const myBag = new Object({
         }
       }
     },
-    setCapitalizeCheckoutBtn: function() {
+    setCapitalizeCheckoutBtn: function () {
       const btnArr = [...document.querySelectorAll('.checkout__main-btn')]
       for (const btn of btnArr) {
         const text = btn.innerText.split(' ').reduce((acc, el) => {
@@ -5144,6 +5170,8 @@ bindCardFav()
 
 document.addEventListener("DOMContentLoaded", function () {
   setPageFilters()
+  removeZeroSubheading()
+  formatGoldChainsSubheading()
   homepageCategoriesSlider.init()
   initPageObjects();
   initTelInput();

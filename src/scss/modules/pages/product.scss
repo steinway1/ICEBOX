@@ -512,7 +512,7 @@
     box-shadow: none;
     background-color: white;
     background-image: none;
-    border-color: var(--black);
+    border-color: var(--blue);
     color: var(--black);
   }
 
@@ -3332,7 +3332,7 @@
 
 .product__item-summary-gradient {
   height: 100px;
-  background-image: linear-gradient(to top, #fff 40%, rgba(255, 255, 255, 0));
+  background-image: linear-gradient(to top, #fff 15%, rgba(255, 255, 255, 0));
   transition: all .35s var(--cubic);
   position: absolute;
   top: auto;
@@ -3346,7 +3346,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  letter-spacing: .6px;
+  letter-spacing: .4px;
   text-transform: uppercase;
   cursor: pointer;
   position: absolute;
@@ -3355,19 +3355,17 @@
   right: 0;
   z-index: 2;
   background-color: white;
-  margin-top: 6px;
-  padding-top: 4px;
-  padding-bottom: 4px;
   font-size: 11px;
   font-weight: 600;
   transition: all .2s var(--cubic);
+  text-decoration: underline;
+
+  @include maxWidthMd {
+    justify-content: flex-start;
+  }
 
   &::after {
     content: "Show More";
-  }
-
-  &:hover {
-    background-color: rgb(238, 241, 245);
   }
 
   &:active {

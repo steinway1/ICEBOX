@@ -6183,7 +6183,7 @@ svg.sign-loader circle {
   color: var(--black);
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 3px;
   font-size: 9px;
   line-height: 14px;
   font-weight: 700;
@@ -6398,17 +6398,6 @@ svg.sign-loader circle {
   font-weight: 600;
   line-height: 22px;
   color: #9398a7;
-}
-
-.product-card__sale-price::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background-color: #9398a7;
-  transform: translateY(-50%) translateX(-50%);
-  width: 100%;
-  height: 1px;
 }
 
 .product-card__sale-badge {
@@ -12417,7 +12406,7 @@ input.custom-range__output {
   box-shadow: none;
   background-color: white;
   background-image: none;
-  border-color: var(--black);
+  border-color: var(--blue);
   color: var(--black);
 }
 
@@ -14911,7 +14900,7 @@ input.custom-range__output {
 
 .product__item-summary-gradient {
   height: 100px;
-  background-image: linear-gradient(to top, #fff 40%, rgba(255, 255, 255, 0));
+  background-image: linear-gradient(to top, #fff 15%, rgba(255, 255, 255, 0));
   transition: all 0.35s var(--cubic);
   position: absolute;
   top: auto;
@@ -14925,7 +14914,7 @@ input.custom-range__output {
   justify-content: center;
   align-items: center;
   text-align: center;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.4px;
   text-transform: uppercase;
   cursor: pointer;
   position: absolute;
@@ -14934,20 +14923,14 @@ input.custom-range__output {
   right: 0;
   z-index: 2;
   background-color: white;
-  margin-top: 6px;
-  padding-top: 4px;
-  padding-bottom: 4px;
   font-size: 11px;
   font-weight: 600;
   transition: all 0.2s var(--cubic);
+  text-decoration: underline;
 }
 
 .product__item-summary-expand::after {
   content: "Show More";
-}
-
-.product__item-summary-expand:hover {
-  background-color: rgb(238, 241, 245);
 }
 
 .product__item-summary-expand:active {
@@ -15589,7 +15572,12 @@ input.custom-range__output {
   max-width: 860px;
   font-size: 14px;
   margin-top: 6px;
-  line-height: 20px;
+  line-height: 24px;
+}
+
+.results__subheading strong {
+  display: block;
+  margin-bottom: 2px;
 }
 
 /* #endregion */
@@ -16974,6 +16962,7 @@ input.custom-range__output {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  line-height: 22px;
 }
 
 .page-filter-btn > span {
@@ -17081,7 +17070,6 @@ input.custom-range__output {
 .filter-modal label {
   flex: 1 !important;
   min-width: 40% !important;
-  white-space: nowrap;
 }
 
 .filter-modal label input:checked ~ div {
@@ -32557,6 +32545,10 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
     justify-content: center;
   }
 
+  .product__item-summary-expand {
+    justify-content: flex-start;
+  }
+
   .results__main-wrapper {
     display: block;
   }
@@ -32572,10 +32564,6 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
 
   .res-banner {
     flex-direction: column;
-  }
-
-  .results__heading {
-    text-align: center;
   }
 
   .results-wrapper.for_scrollable {
@@ -33505,7 +33493,7 @@ a.header__sub-link.is_ny:hover .xmas-nav-link {
   }
 
   .product-card__sub-detail {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     font-size: 9px;
   }
 
