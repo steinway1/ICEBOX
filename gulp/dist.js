@@ -14,6 +14,7 @@ const twig = require('gulp-twig')
 // CSS
 const sass = require('gulp-sass')(require('sass'))
 const sassGlob = require('gulp-sass-glob')
+const cleanCSS = require('gulp-clean-css')
 const groupMedia = require('gulp-group-css-media-queries');
 // JS
 const webpack = require('webpack-stream')
@@ -246,6 +247,7 @@ gulp.task('css:build',
       .pipe(sassGlob())
       .pipe(sass())
       .pipe(groupMedia())
+      .pipe(cleanCSS({compatibility: 'ie8'}))
       .pipe(gulp.dest(root.build.css))
   }
 )
