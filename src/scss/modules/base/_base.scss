@@ -47,19 +47,9 @@ a {
   padding-left: 5vw;
   padding-right: 5vw;
 
-  @media screen and (min-width: 1440px) {
-    padding-left: 7vw;
-    padding-right: 7vw;
-  }
-
-  @media screen and (min-width: 1920px) {
-    padding-left: 8vw;
-    padding-right: 8vw;
-  }
-
-  @media screen and (max-width: 991px) {
-    padding-left: 42px;
-    padding-right: 42px;
+  @include maxWidthMd {
+    padding-left: 48px;
+    padding-right: 48px;
 
     &.wrapper_adjust {
       padding-left: 0;
@@ -67,16 +57,15 @@ a {
     }
   }
 
-  @media screen and (max-width: 767px) {
-    padding-left: 36px;
-    padding-right: 36px;
+  @include maxWidthSm {
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
-  @media screen and (max-width: 479px) {
+  @include maxWidthXs {
     padding-left: 18px;
     padding-right: 18px;
   }
-
 }
 
 .cards-holder {
