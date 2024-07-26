@@ -4531,14 +4531,12 @@ const mailModal = new Object({
     this.modal.show()
     this.modal.find('input').focus()
     setTimeout(() => {
-      this.backdrop.css({ opacity: 1 })
-      this.container.css({ transform: 'translateY(0px)', opacity: 1 })
-    }, 2);
+      this.modal.addClass(__ACTIVE)
+    }, 5);
   },
   close: function () {
     unlockScroll()
-    this.backdrop.css({ opacity: 0 })
-    this.container.css({ transform: 'translateY(42px)', opacity: 0 })
+    this.modal.removeClass(__ACTIVE)
     setTimeout(() => {
       this.modal.hide()
     }, getTransitionTime(this.container));
@@ -8688,14 +8686,14 @@ function observeSmartPictures() {
     const img = el.querySelector('img')
     if (!img) {
       el.classList.add(__LOADED)
-      return
-    }
-    if (img.complete || img.src.length === 0) {
-      el.classList.add(__LOADED)
     } else {
-      img.addEventListener('load', () => {
+      if (img.complete || img.src.length === 0) {
         el.classList.add(__LOADED)
-      })
+      } else {
+        img.addEventListener('load', () => {
+          el.classList.add(__LOADED)
+        })
+      }
     }
   }
 }

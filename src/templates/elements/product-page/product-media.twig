@@ -1,29 +1,33 @@
-<div class="product-media{% if splide == true %} splide__slide{% endif %}{% if type == "sirv" %} --sirv{% endif %}">
+<div class="product-media{% if splide == true %} splide__slide{% endif %}{% if type == " sirv" %} --sirv{% endif %}">
 	<div class="product-media__inner-wrap">
 
 		{% if type == 'image' %}
-			<img src="{{imgSrc}}" loading="lazy" alt="{{alt}}" class="product-media-img {{ zoom }}">
+			<div class="smart-picture">
+				<img src="{{imgSrc}}" loading="lazy" alt="{{alt}}" class="product-media-img {{ zoom }}">
+			</div>
 		{% endif %}
 
 		{% if type == 'sirv' %}
-			<div class="Sirv" data-src="{{imgSrc}}"></div>
-		{% endif %}
-		{#
-		{% if type == 'video' %}
-			<div class="product-media-video">
-				<svg onclick="$('#video_{{productItem.item.id}}').trigger('play');$(this).hide();" version="1.1" id="play_icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="100px" width="100px"
-					 viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-                                      <path class="stroke-solid" fill="#0995c6" stroke="#fff"  d="M49.9,2.5C23.6,2.8,2.1,24.4,2.5,50.4C2.9,76.5,24.7,98,50.3,97.5c26.4-0.6,47.4-21.8,47.2-47.7
-                                        C97.3,23.7,75.7,2.3,49.9,2.5"/>
-					<path class="icon" fill="#fff" d="M38,69c-1,0.5-1.8,0-1.8-1.1V32.1c0-1.1,0.8-1.6,1.8-1.1l34,18c1,0.5,1,1.4,0,1.9L38,69z"/>
-                                    </svg>
-				<?php endif;?>
-				<video id="video_{{productItem.item.id}}" {% if user.admin %} playsinline controls autoplay loo {% else %} playsinline muted autoplay loop {% endif %}  preload="auto">
-					<source  src="/{{imgSrc}}" type="video/mp4">
-				</video>
+			<div class="smart-picture">
+				<div class="Sirv" data-src="{{imgSrc}}"></div>
 			</div>
 		{% endif %}
-		#}
+		{#
+						{% if type == 'video' %}
+							<div class="product-media-video">
+								<svg onclick="$('#video_{{productItem.item.id}}').trigger('play');$(this).hide();" version="1.1" id="play_icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="100px" width="100px"
+									 viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+				                                      <path class="stroke-solid" fill="#0995c6" stroke="#fff"  d="M49.9,2.5C23.6,2.8,2.1,24.4,2.5,50.4C2.9,76.5,24.7,98,50.3,97.5c26.4-0.6,47.4-21.8,47.2-47.7
+				                                        C97.3,23.7,75.7,2.3,49.9,2.5"/>
+									<path class="icon" fill="#fff" d="M38,69c-1,0.5-1.8,0-1.8-1.1V32.1c0-1.1,0.8-1.6,1.8-1.1l34,18c1,0.5,1,1.4,0,1.9L38,69z"/>
+				                                    </svg>
+								<?php endif;?>
+								<video id="video_{{productItem.item.id}}" {% if user.admin %} playsinline controls autoplay loo {% else %} playsinline muted autoplay loop {% endif %}  preload="auto">
+									<source  src="/{{imgSrc}}" type="video/mp4">
+								</video>
+							</div>
+						{% endif %}
+						#}
 		{% if type == 'video' %}
 			<div class="product-media-video">
 				<video id="video_{{productItem.item.id}}" {% if user.admin %} playsinline controls autoplay loop {% else %} playsinline muted autoplay loop {% endif %} preload="auto">
