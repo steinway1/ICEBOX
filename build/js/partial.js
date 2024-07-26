@@ -313,7 +313,8 @@ const IS_VISIBLE = "is-visible",
   __FALSE = '--false',
   __FADE = '--fade',
   __HALF = '--half',
-  __SELECTED = '--selected'
+  __SELECTED = '--selected',
+  __LOADED = '--loaded'
 
 let $body = $('body')
 
@@ -2084,7 +2085,7 @@ const homepageCategoriesSlider = new Object({
         perPage: 7,
         perMove: 2,
         autoplay: 0,
-        gap: "6px",
+        gap: "8px",
         arrows: 1,
         pagination: 0,
         speed: 750,
@@ -8982,6 +8983,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // window.watchVariants = new VariantsModal()
 })
 /* #endregion */
+
+function observeSmartPictures() {
+  const arr = [...document.querySelectorAll('.smart-picture')]
+  for (const el of arr) {
+    const img = el.querySelector('img')
+    if (!img) {
+      el.classList.add(__LOADED)
+      return
+    }
+    if (img.complete || img.src.length === 0) {
+      el.classList.add(__LOADED)
+    } else {
+      img.addEventListener('load', () => {
+        el.classList.add(__LOADED)
+      })
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  observeSmartPictures()
+})
 function initValidators() {
   $(".needs-validation").parsley({
     errorClass: 'is-invalid text-danger',

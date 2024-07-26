@@ -15,7 +15,8 @@ const twig = require('gulp-twig')
 const sass = require('gulp-sass')(require('sass'))
 const sassGlob = require('gulp-sass-glob')
 const cleanCSS = require('gulp-clean-css')
-const groupMedia = require('gulp-group-css-media-queries');
+const groupMedia = require('gulp-group-css-media-queries')
+const purgecss = require('gulp-purgecss')
 // JS
 const webpack = require('webpack-stream')
 const babel = require('gulp-babel')
@@ -47,6 +48,7 @@ const root = {
   src: {
     _: './src/',
     html: './src/html/*.html',
+    twig: './src/templates/*.twig',
     scss: './src/scss/*.scss',
     adminSCSS: './src/scss/admin/*.scss',
     adminJS: {
@@ -247,7 +249,7 @@ gulp.task('css:build',
       .pipe(sassGlob())
       .pipe(sass())
       .pipe(groupMedia())
-      .pipe(cleanCSS({compatibility: 'ie8'}))
+      .pipe(cleanCSS({ compatibility: 'ie8' }))
       .pipe(gulp.dest(root.build.css))
   }
 )
@@ -389,7 +391,7 @@ gulp.task('fonts:build',
 gulp.task('clean:build', (done) => {
   if (fs.existsSync(root.build._)) {
     return gulp
-      .src(root.build._, { read: false }) 
+      .src(root.build._, { read: false })
       .pipe(clean({ force: true }))
   }
   done()
