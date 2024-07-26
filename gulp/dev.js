@@ -50,6 +50,7 @@ const root = {
     _: './src/',
     html: './src/html/*.html',
     scss: './src/scss/*.scss',
+    assets: './src/assets/*',
     adminSCSS: './src/scss/admin/*.scss',
     adminJS: {
       _: './src/js/admin/*.js',
@@ -254,6 +255,15 @@ gulp.task('twig:dev',
       .pipe(gulp.dest(root.dev._))
   }
 )
+
+gulp.task('imagemin:dev', () => {
+  return gulp
+    .src(root.src.assets)
+    .pipe(changed(root.dev.assets))
+    .pipe(plumber(setPlumberNotify('IMAGE MINIFY')))
+    .pipe(imagemin())
+    .pipe(gulp.dest(root.dev.assets))
+})
 
 gulp.task('css:dev',
   () => {
