@@ -54,6 +54,7 @@
       &[data-evt="toggleAccountDropdown"] {
         display: none;
       }
+
       span:not(.cart-count) {
         display: none;
       }
@@ -112,15 +113,41 @@
 
   a {
     text-transform: uppercase;
-    border-bottom: 2px solid rgba(0, 0, 0, 0);
     padding: 6px 14px;
-    transition: all .25s cubic-bezier(.39, .575, .565, 1);
+    transition: all .25s ease;
     font-size: 13px;
-    letter-spacing: 0.2px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: auto;
+      right: 0;
+      width: 0%;
+      height: 1.5px;
+      background-color: var(--blue);
+      transition: all .25s ease;
+    }
+
+    &:hover {
+      color: #0b789c;
+
+      &::after {
+        right: auto;
+        left: 0;
+        width: 100%;
+      }
+    }
 
     &.is-active {
-      color: var(--blue);
-      border-bottom: 2px solid var(--blue);
+      color: #0b789c;
+
+      &::after {
+        right: auto;
+        left: 0;
+        width: 100%;
+      }
     }
 
     &.sub-link_spot {
@@ -129,12 +156,10 @@
   }
 
   a:hover {
-    border-bottom-color: var(--blue);
   }
 
   a.is-sale {
     color: var(--blue);
-    // background-image: linear-gradient(33deg, rgba(0, 149, 198, .06), rgba(0, 149, 198, .03));
     font-weight: 600;
   }
 }
@@ -502,7 +527,7 @@
   background-color: #fff;
   transition: all .2s cubic-bezier(.39, .575, .565, 1);
   position: relative;
-  box-shadow: 0 38px 96px rgba(80, 82, 87, .35);
+  box-shadow: 0 38px 96px rgba(136, 139, 146, 0.3);
 }
 
 .nav-drop__sub-wrap {
@@ -515,22 +540,19 @@
 
 .nav-drop-link {
   z-index: 2;
-  max-width: 270px;
-  min-width: 220px;
+  width: 260px;
   cursor: pointer;
   background-color: #fff;
   background-image: none;
   background-repeat: repeat;
   background-size: auto;
-  border: 1px solid #f3f8fa;
+  border-bottom: 1px solid #f3f8fa;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: -1px;
   padding: 12px 14px;
   transition: all .2s cubic-bezier(.39, .575, .565, 1);
   display: flex;
   position: relative;
-  font-size: 14px;
   font-weight: 600;
 
   &:hover {
@@ -542,7 +564,7 @@
   }
 
   &.nav-drop-link_spot {
-    background-image: linear-gradient(156deg, rgba(7, 126, 165, .06), rgba(255, 255, 255, 0));
+    // background-image: linear-gradient(156deg, rgba(7, 126, 165, .06), rgba(255, 255, 255, 0));
     font-weight: 600;
   }
 
@@ -582,7 +604,7 @@
   max-height: 80vh;
   background-color: #fff;
   flex-direction: column;
-  padding: 6px;
+  padding: 2px;
   display: none;
   position: relative;
 

@@ -263,8 +263,8 @@
     padding-top: 0;
 
     .side-row__body-head {
-      background-color: rgb(246, 247, 249);
-      padding: 6px;
+      background-color: transparent;
+      padding: 0;
     }
   }
 }
@@ -328,9 +328,9 @@
   text-transform: uppercase;
   // background-color: rgba(63, 194, 172, .06);
   font-size: 10px;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.4px;
   font-weight: 700;
-  line-height: 16px;
+  line-height: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -497,27 +497,24 @@
 }
 
 .option-btn {
-  min-height: 46px;
-  min-width: 26%;
+  min-height: 48px;
+  min-width: 62px;
   grid-column-gap: 8px;
   grid-row-gap: 8px;
   text-align: center;
   cursor: pointer;
-  background-color: #ffffff;
-  border: 1px solid #cfd5dd;
+  background-color: #f6f7f9;
+  border: 1px solid #f6f7f9;
   flex-wrap: nowrap;
-  flex: 1;
   justify-content: center;
   align-items: center;
-  padding: 6px 16px 5px;
+  padding: 10px 16px;
   font-size: 13px;
   font-weight: 600;
   transition: all .15s var(--cubic);
   display: flex;
   position: relative;
   overflow: hidden;
-  color: #61646c;
-  // box-shadow: 0 0 rgba(9, 149, 198, .1);
 
   &.is-active {
     box-shadow: none;
@@ -529,23 +526,15 @@
 
   &:hover {
     border-color: var(--blue);
-    color: var(--black)
-  }
-}
-
-#optionGoldColor {
-  .option-btn {
-    font-size: 13px;
-    flex: auto;
-    line-height: 18px;
+    color: var(--black);
+    background-color: white;
   }
 }
 
 .color-gradient {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background-color: #51bfe5;
-  border-radius: 50rem;
   flex: none;
   margin-top: -1px;
 }
@@ -638,19 +627,21 @@
   letter-spacing: 0.4px;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 6px;
+  padding: 6px 12px;
   font-size: 11px;
   font-weight: 700;
-  flex: 1;
   transition: all 200ms ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 
   &.is-active {
-    background-color: var(--black);
-    color: white;
+    background-color: #eff2f6;
   }
 
   &:not(.is-active):hover {
-    background-color: rgb(226, 229, 236);
+    opacity: .6;
   }
 
   &:active {
@@ -676,7 +667,6 @@
 
   &.for_more {
     flex-flow: row wrap;
-    padding: 6px;
   }
 }
 
@@ -684,7 +674,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding: 8px 12px;
+  padding: 12px;
   border: 1px solid #dce1e7;
   flex: 1;
   min-width: 40%;
@@ -768,7 +758,7 @@
   grid-row-gap: 10px;
   flex-direction: column;
   display: flex;
-  line-height: 22px;
+  line-height: 24px;
   font-size: 13px;
   position: relative;
   transition: all 250ms var(--cubic);
@@ -803,17 +793,12 @@
     flex-direction: column;
     margin-top: 0;
     margin-bottom: 0;
-    padding-left: 16px;
+    // padding-left: 16px;
     display: flex;
   }
 
   ul li {
     list-style: unset !important;
-  }
-
-  ul li p,
-  ul li span {
-    padding-left: 4px;
   }
 
   @include maxWidthMd {
@@ -1031,6 +1016,10 @@
   align-items: flex-start;
   padding: 12px 14px;
   display: flex;
+
+  img {
+    display: none;
+  }
 }
 
 .diamond-color-img {
@@ -1248,21 +1237,6 @@
     position: relative;
   }
 }
-
-.option-gia>img {
-  width: 14px;
-  flex: none;
-  margin-top: 4px;
-}
-
-// .side-row.side-row_details {
-//   border-top: 1px solid #e3e9ec;
-//   // border-bottom: 1px solid #e3e9ec;
-
-//   @include maxWidthXs {
-//     border-bottom: 1px solid #e3e9ec;
-//   }
-// }
 
 .side-row__title-wrap {
   justify-content: space-between;
@@ -1686,21 +1660,6 @@
   .options-block {
     display: grid;
     grid-template-columns: repeat(5, 1fr)
-  }
-}
-
-.option_gold-color .options-block {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  .option-btn {
-    line-height: 18px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
-
-  .product-option__head {
-    background-color: #f1e9d8;
   }
 }
 
@@ -3378,14 +3337,15 @@
 }
 
 .product__item-summary-gradient {
-  height: 100px;
-  background-image: linear-gradient(to top, #fff 15%, rgba(255, 255, 255, 0));
+  height: 120px;
+  background-image: linear-gradient(to top, #fff 20%, rgba(255, 255, 255, 0));
   transition: all .35s var(--cubic);
   position: absolute;
   top: auto;
   bottom: 0%;
   left: 0%;
   right: 0%;
+  pointer-events: none;
 }
 
 .product__item-summary-expand {
@@ -3401,7 +3361,6 @@
   left: 0;
   right: 0;
   z-index: 2;
-  background-color: white;
   font-size: 11px;
   font-weight: 600;
   transition: all .2s var(--cubic);
