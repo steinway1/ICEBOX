@@ -8,9 +8,9 @@
 			<!--Profile welcome title-->
 			<div class="account__nav-header">
 				<span class="account__membership">Member since
-					{{user.regDate|date("m/d/Y")}}</span>
+					{{user.created_at|date("m/d/Y")}}</span>
 				<h2 class="account__welcome-title">Welcome
-					{{user.name}}!</h2>
+					{{user.first_name}}!</h2>
 				<span class="account__subtitle">Manage your orders, subscriptions, wishlist.</span>
 			</div>
 			<!--Profile navigation-->
@@ -32,7 +32,7 @@
 						<a href="/account/wishlist" class="account__switch-btn">Wishlist</a>
 					</li>
 					<li class="account__nav-list-item">
-						<a href="/account/wishlist" class="account__switch-btn logout">Logout</a>
+						<a href="/logout" class="account__switch-btn logout">Logout</a>
 					</li>
 				</ul>
 			</nav>
@@ -57,50 +57,37 @@
 						</button>
 					</div>
 					<div class="profile-card__body">
+						{% set billing = user.billing_address %}
 						<div class="profile-card__details">
-							{% if billing.name %}
-								{% if billing.lastName %}
-									<span>{{billing.name}}
-										{{billing.lastName}}</span>
-								{% else %}
-									<span>{{billing.name}}</span>
-								{% endif %}
-								{% if billing.main %}
-									<span>{{billing.main}}</span>
-								{% endif %}
-								{% if billing.city %}
-									<span>{{billing.city}}</span>
-								{% endif %}
-								{% if billing.region %}
-									<span>{{billing.region}}</span>
-								{% endif %}
-							{% endif %}
-							{% if user.phone %}
-								<span>{{user.phone}}</span>
-							{% endif %}
+									<span>{{billing.first_name}} {{billing.last_name}}</span>
+									<span>{{ billing.email }}</span>
+									<span>{{billing.phone}}</span>
+									<span>{{ billing.address1 }}{% if billing.address2 != '' %}, {{ billing.address2 }}{% endif %}</span>
+									<span>{{ billing.city }}, {{ billing.state }} {{ billing.zip_code }}</span>
+									<span>{{ billing.country }}</span>
 						</div>
 						<div class="profile-card__details form">
 							<div class="profile__form-wrap">
 								<form method="post" class="profile-card__form" action="/update-billing-address">
 									<div class="profile-card__input-wrap half">
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="First Name" name="first_name" id="firstName" required="" value="{{billing.name}}">
+											<input type="text" class="profile__input" placeholder="First Name" name="first_name" id="firstName" required="" value="{{billing.first_name}}">
 										</div>
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="Last Name" name="last_name" id="lastName" required="" value="{{billing.lastName}}">
+											<input type="text" class="profile__input" placeholder="Last Name" name="last_name" id="lastName" required="" value="{{billing.last_name}}">
 										</div>
 									</div>
 									<div class="profile-card__input-wrap half">
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="Phone Number" name="bl_phone" id="bl_phone" required="" value="{{user.phone}}">
+											<input type="text" class="profile__input" placeholder="Phone Number" name="bl_phone" id="bl_phone" required="" value="{{billing.phone}}">
 										</div>
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="Address" name="address1" id="address" required="" value="{{billing.main}}">
+											<input type="text" class="profile__input" placeholder="Address" name="address1" id="address" required="" value="{{billing.address1}}">
 										</div>
 									</div>
 									<div class="profile-card__input-wrap">
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="Apartments, suite etc (optional)" name="address2" id="addressDetails2" value="">
+											<input type="text" class="profile__input" placeholder="Appartments, suite etc (optional)" name="address2" id="addressDetails2" value="{{billing.address2}}">
 										</div>
 									</div>
 									<div class="profile-card__input-wrap half">
@@ -108,7 +95,7 @@
 											<input type="text" class="profile__input" placeholder="City" name="city" id="city" required="" value="{{billing.city}}">
 										</div>
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="Region / State" name="state" id="state" required="" value="{{billing.region}}">
+											<input type="text" class="profile__input" placeholder="Region / State" name="state" id="state" required="" value="{{billing.state}}">
 										</div>
 									</div>
 									<div class="profile-card__input-wrap half">
@@ -116,7 +103,7 @@
 											<input type="text" class="profile__input" placeholder="Country" name="country" id="country2" required="" value="{{billing.country}}">
 										</div>
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="Postal Code" name="zip_code" id="postalCode2" required="" value="{{billing.postalCode}}">
+											<input type="text" class="profile__input" placeholder="Postal Code" name="zip_code" id="postalCode2" required="" value="{{billing.zip_code}}">
 										</div>
 									</div>
 									<div class="profile-card__input-wrap half">
@@ -142,26 +129,13 @@
 					</div>
 					<div class="profile-card__body">
 						<div class="profile-card__details info">
-							{% if address.name %}
-								{% if address.lastName %}
-									<span>{{address.name}}
-										{{address.lastName}}</span>
-								{% else %}
-									<span>{{address.name}}</span>
-								{% endif %}
-								{% if address.main %}
-									<span>{{address.main}}</span>
-								{% endif %}
-								{% if address.city %}
-									<span>{{address.city}}</span>
-								{% endif %}
-								{% if address.region %}
-									<span>{{address.region}}</span>
-								{% endif %}
-							{% endif %}
-							{% if user.phone %}
-								<span>{{user.phone}}</span>
-							{% endif %}
+							{% set shipping = user.shipping_address %}
+							<span>{{shipping.first_name}} {{shipping.last_name}}</span>
+							<span>{{ shipping.email }}</span>
+							<span>{{shipping.phone}}</span>
+							<span>{{ shipping.address1 }}{% if shipping.address2 != '' %}, {{ shipping.address2 }}{% endif %}</span>
+							<span>{{ shipping.city }}, {{ shipping.state }} {{ shipping.zip_code }}</span>
+							<span>{{ shipping.country }}</span>
 						</div>
 
 						<div class="profile-card__details form">
@@ -169,39 +143,39 @@
 								<form method="post" class="profile-card__form" action="/update-shipping-address">
 									<div class="profile-card__input-wrap half">
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="First Name" name="first_name" id="firstName" value="{{address.name}}" required="">
+											<input type="text" class="profile__input" placeholder="First Name" name="first_name" id="firstName" value="{{shipping.first_name}}" required="">
 										</div>
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="Last Name" name="last_name" id="lastName" value="{{address.lastName}}" required="">
+											<input type="text" class="profile__input" placeholder="Last Name" name="last_name" id="lastName" value="{{shipping.last_name}}" required="">
 										</div>
 									</div>
 									<div class="profile-card__input-wrap half">
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="Phone Number" name="sh_phone" id="sh_phone" value="{{user.phone}}" required="">
+											<input type="text" class="profile__input" placeholder="Phone Number" name="sh_phone" id="sh_phone" value="{{shipping.phone}}" required="">
 										</div>
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="Address" name="address1" id="address" required="" value="{{address.main}}">
+											<input type="text" class="profile__input" placeholder="Address" name="address1" id="address" required="" value="{{shipping.address1}}">
 										</div>
 									</div>
 									<div class="profile-card__input-wrap">
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="Apartments, suite etc (optional)" name="address2" id="addressDetails" value="{{address.suite}}">
+											<input type="text" class="profile__input" placeholder="Appartments, suite etc (optional)" name="address2" id="addressDetails" value="{{shipping.address2}}">
 										</div>
 									</div>
 									<div class="profile-card__input-wrap half">
 										<div class="account__input-border">
-											<input type="text" class="profile__input" value="{{address.city}}" placeholder="City" name="city" id="city" required="">
+											<input type="text" class="profile__input" value="{{shipping.city}}" placeholder="City" name="city" id="city" required="">
 										</div>
 										<div class="account__input-border">
-											<input type="text" class="profile__input" value="{{address.region}}" placeholder="Region / State" name="state" id="state" required="">
+											<input type="text" class="profile__input" value="{{shipping.state}}" placeholder="Region / State" name="state" id="state" required="">
 										</div>
 									</div>
 									<div class="profile-card__input-wrap half">
 										<div class="account__input-border">
-											<input type="text" class="profile__input" value="{{address.country}}" placeholder="Country" name="country" id="country" required="">
+											<input type="text" class="profile__input" value="{{shipping.country}}" placeholder="Country" name="country" id="country" required="">
 										</div>
 										<div class="account__input-border">
-											<input type="text" class="profile__input" placeholder="Postal Code" name="zip_code" id="postalCode" required="" value="{{address.postalCode}}">
+											<input type="text" class="profile__input" placeholder="Postal Code" name="zip_code" id="postalCode" required="" value="{{shipping.zip_code}}">
 										</div>
 									</div>
 									<div class="profile-card__input-wrap half">

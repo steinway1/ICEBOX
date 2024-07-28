@@ -3676,21 +3676,22 @@ const account = new Object({
       }
     },
     toggleInvoiceHeight: function () {
-      const invoiceHeader = Array.from($('.order__invoice-header'))
-      for (let i = 0; i < invoiceHeader.length; i++) {
-        const el = invoiceHeader[i];
-        $(el).click(function () {
-          let body = $(this).siblings('.order__invoice-body')
-          if (body.height() == 0) {
-            let sHeight = body[0].scrollHeight
-            body.css({ height: `${sHeight}px` })
+      const invoiceArr = [...document.querySelectorAll('.order__invoice')]
+      for (const invoice of invoiceArr) {
+        const header = invoice.querySelector('.order__invoice-header')
+        const body = invoice.querySelector('.order__invoice-body')
+
+        header.onclick = () => {
+          const toClose = invoice.classList.contains(__ACTIVE)
+          if (toClose) {
+            invoice.classList.remove(__ACTIVE)
+            body.style.height = `80px`
           } else {
-            body.css({ height: `${body.height()}px` })
-            setTimeout(() => {
-              body.css({ height: "0px" })
-            }, 1);
+            invoice.classList.add(__ACTIVE)
+            const scrollHeight = body.scrollHeight
+            body.style.height = `${scrollHeight}px`
           }
-        })
+        }
       }
     }
   }

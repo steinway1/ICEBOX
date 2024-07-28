@@ -8,9 +8,9 @@
 			<!--Profile welcome title-->
 			<div class="account__nav-header">
 				<span class="account__membership">Member since
-					{{user.regDate|date("m/d/Y")}}</span>
+					{{user.created_at|date("m/d/Y")}}</span>
 				<h2 class="account__welcome-title">Welcome
-					{{user.name}}!</h2>
+					{{user.first_name}}!</h2>
 				<span class="account__subtitle">Manage your orders, subscriptions, wishlist.</span>
 			</div>
 			<!--Profile navigation-->
@@ -32,7 +32,7 @@
 						<a href="/account/wishlist" class="account__switch-btn">Wishlist</a>
 					</li>
 					<li class="account__nav-list-item">
-						<a href="/account/wishlist" class="account__switch-btn logout">Logout</a>
+						<a href="/logout" class="account__switch-btn logout">Logout</a>
 					</li>
 				</ul>
 			</nav>
@@ -49,17 +49,21 @@
 				<h4 class="account-main__title">My Orders</h4>
 			</div>
 
-			{% for order in active %}
+			{% for order in orders %}
 				<div class="order-card">
 					<div class="order-card__header">
 						<h4 class="order-card__title">Order #{{order.id}}</h4>
+
+						{% if order.status == 'Success' or order.paid %}
+							<span class="order-card__status success">{{order.status}}</span>
+						{% endif %}
 						{% if order.status == 'Pending' %}
 							<span class="order-card__status pending">{{order.status}}
 								- need payment to complete</span>
 						{% endif %}
-						{% if order.status == 'Active' %}
+						{% if order.status == 'Refunded' %}
 							<span class="order-card__status success">{{order.status}}
-								- order is shipping</span>
+								- order is refunded</span>
 						{% endif %}
 						{% if order.status == 'Cancelled' %}
 							<span class="order-card__status cancel">{{order.status}}
@@ -70,17 +74,17 @@
 						<div class="order__invoice">
 							<div class="order__invoice-header">
 								<span>Invoice</span>
-								{% include "../components/svg/dropdown.svg" %}
+								{% include "components/svg/dropdown.svg" %}
 							</div>
 							<div class="order__invoice-body">
 								<div class="invoice-card__details-main">
-									<span class="invoice-card__detail">Order Date<span class="order__detail-span">{{order.date|date("m/d/Y")}}</span>
+									<span class="invoice-card__detail">Order Date<span class="order__detail-span">{{order.created_at|date("m/d/Y")}}</span>
 									</span>
-									<span class="invoice-card__detail">Bill To:<span class="order__detail-span">{{order.billName}}</span>
+									<span class="invoice-card__detail">Bill To:<span class="order__detail-span">{{order.bill_to}}</span>
 									</span>
 									<span class="invoice-card__detail">Order ID<span class="order__detail-span">#{{order.id}}</span>
 									</span>
-									<span class="invoice-card__detail">Total Items<span class="order__detail-span">{{order.items.length}}
+									<span class="invoice-card__detail">Total Items<span class="order__detail-span">{{order.items_count}}
 											item</span>
 									</span>
 								</div>
@@ -88,39 +92,40 @@
 									<div class="invoice-card__details-row">
 										<span class="invoice-card__detail">Shipping Address:
 											<span class="order__detail-span">
-												<b>{{order.address.shipping.name}}
-													{{order.address.shipping.lastName}}</b>
-												<br>{{order.address.shipping.main}}
-												<br>{{order.address.shipping.city}},
-												{{order.address.shipping.region}}
-												<br>{{order.address.shipping.country}}
+												<b>{{order.shipping_address.first_name}}
+													{{order.shipping_address.last_name}}</b>
+												<br>{{order.shipping_address.address1}}
+												{% if order.shipping_address.address2 != '' %},{{ order.shipping_address.address2 }}
+												{% endif %}
+												<br>{{order.shipping_address.city}},
+												{{order.shipping_address.state}}
+												{{ order.shipping_address.zip_code }}
+												<br>{{order.shipping_address.country}}
 											</span>
 										</span>
 									</div>
 									<div class="invoice-card__details-row">
 										<span class="invoice-card__detail">Billing Address:
 											<span class="order__detail-span">
-												{% if order.address.billing == false %}
-													Same as shipping address
-												{% else %}
-													<b>{{order.address.billing.name}}
-														{{order.address.billing.lastName}}</b>
-													<br>{{order.address.billing.main}}
-													<br>{{order.address.billing.city}},
-													{{order.address.billing.region}}
-													<br>{{order.address.billing.country}}
+												<b>{{order.billing_address.first_name}}
+													{{order.billing_address.last_name}}</b>
+												<br>{{order.billing_address.address1}}
+												{% if order.billing_address.address2 != '' %},{{ order.billing_address.address2 }}
 												{% endif %}
+												<br>{{order.billing_address.city}},
+												{{order.billing_address.state}}
+												{{ order.billing_address.zip_code }}
+												<br>{{order.billing_address.country}}
 											</span>
 										</span>
 									</div>
 								</div>
 								<div class="invoice-card__details-more">
-									<span class="invoice-card__cost shipping">Shipping Cost:<span>$
-											{{order.shippingCost|number_format(2)}}
+									{% if order.tax is defined %}
+										<span class="invoice-card__cost shipping">Sale Tax:<span>{{order.tax}}</span>
 										</span>
-									</span>
-									<span class="invoice-card__cost product">Total Amount:<span>$
-											{{order.totalAmount|number_format(2)}}
+									{% endif %}
+									<span class="invoice-card__cost product">Total Amount:<span>{{order.total}}
 										</span>
 									</span>
 								</div>
@@ -132,38 +137,38 @@
 									<div class="mybag-card__container">
 										<div class="mybag-card__wrap">
 											<div class="mybag-card__thumbnail">
-												<img src="{{item.imgSrc}}" loading="lazy" class="mybag-card__picture">
+												<img src="{{item.thumbnail}}" loading="lazy" class="mybag-card__picture">
 											</div>
 											<div class="mybag-card__content">
 												<div class="mybag-card__content-wrap">
 													<div class="mybag-card__header">
 														<div class="mybag-card__thumbnail mybag-card__thumbnail_mobile">
-															<img src="{{item.imgSrc}}" loading="lazy" class="mybag-card__picture">
+															<img src="{{item.thumbnail}}" loading="lazy" class="mybag-card__picture">
 														</div>
 														<div class="mybag-card__title-group">
 															<a href="{{item.href}}" target="_blank">
 																<h5 class="mybag-card-title">{{item.name}}</h5>
 															</a>
-														</div>
-													</div>
-													<div class="mybag-card__details">
-														<div class="mybag-card__options">
-															{% for option in item.options %}
-																<div class="mybag-card__option-row">
-																	<span>{{option.name}}</span>
-																	<span>{{option.value}}</span>
+															<div class="mybag-card__details">
+																<div class="mybag-card__options">
+																	{% for option in item.options %}
+																		<div class="mybag-card__option-row">
+																			<span>{{option.name}}</span>
+																			<span>{{option.value}}</span>
+																		</div>
+																	{% endfor %}
 																</div>
-															{% endfor %}
-														</div>
-														<div class="mybag-card__controls">
-															<div class="mybag-card__controls-wrap">
-																<div class="mybag-card__controls-group">
-																	{% if item.salePrice %}
-																		<span class="mybag-card-price card-price_old">${{item.price|number_format(0)}}</span>
-																		<span class="mybag-card-price card-price_new">${{item.salePrice|number_format(0)}}</span>
-																	{% else %}
-																		<span class="mybag-card-price">${{item.price|number_format(0)}}</span>
-																	{% endif %}
+																<div class="mybag-card__controls">
+																	<div class="mybag-card__controls-wrap">
+																		<div class="mybag-card__controls-group">
+																			{% if item.salePrice %}
+																				<span class="mybag-card-price card-price_old">${{item.price|number_format(0)}}</span>
+																				<span class="mybag-card-price card-price_new">${{item.salePrice|number_format(0)}}</span>
+																			{% else %}
+																				<span class="mybag-card-price">{{item.total}}</span>
+																			{% endif %}
+																		</div>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -174,7 +179,10 @@
 									</div>
 								</div>
 							{% endfor %}
-              <button class="finish-order-btn">Finish Order Now</button>
+
+							{% if order.status == 'Pending' %}
+								<a href="/new-payment/stripe/go/{{ order.id }}" class="finish-order-btn">Complete Order Now</a>
+							{% endif %}
 						</div>
 					</div>
 				</div>
