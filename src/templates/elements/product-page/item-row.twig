@@ -8,12 +8,18 @@
 			</div>
 		{% endif %}
 		{# {% include "elements/product-card/stock-dash-box.twig" %} #}
-    {% if tags == true %}<div class="side-row__tags"><span>Rings</span><span>0.75CTW</span><span>Unisex</span></div>{% endif %}
+		{% if tags == true %}
+			<div class="side-row__tags">
+				<span>Rings</span>
+				<span>0.75CTW</span>
+				<span>Unisex</span>
+			</div>
+		{% endif %}
 		<div class="side-row__title-wrap">
 			<h1 id="item_name" class="product__item-title">{{product.item.name}}</h1>
 			{# <div class="product__add-fav {% if itemIsWishlisted %}is-active{% endif %}" id="wishlist_btn_{{product.item.id}}" onclick="addToWishlist({{product.item.id}});">
-				{% include "./svg/heart.svg" %}
-			</div> #}
+										{% include "./svg/heart.svg" %}
+									</div> #}
 		</div>
 
 		<div class="side-row__price">
@@ -68,24 +74,43 @@
 			</div>
 		</div>
 
-		<div class="side-row__ship-line">
-			<div class="product__item-availability{% if product.item.stock == false %} availability_order{% endif %}">
-				<div class="product__availability-svg">
-					{% include "./svg/ship.svg" %}
+		{% if item.temp_unavailable %}
+			<div class="side-row__ship-line">
+				<div class="product__item-availability availability_order">
+					<div class="product__availability-svg">
+						{% include "elements/product-page/svg/ship.svg" %}
+					</div>
+					<span class="product__availability-info">
+						{% if product.item.sold %}
+							This item is sold!
+						{% else %}
+							This item is temporarily unavailable !
+						{% endif %}
+
+					</span>
 				</div>
-				<span class="product__availability-info">
-					{% if product.item.stock == false %}
-						This item is made to order &amp; Ships by
-						{{product.item.shippingDate}}.
-					{% else %}
-						In Stock &amp; Ships Today!
-					{% endif %}
-				</span>
 			</div>
-		</div>
-{# 
-		{% if product.match is defined %}
-			<div class="side-row__line">
+		{% else %}
+			<div class="side-row__ship-line">
+				<div class="product__item-availability{% if product.item.stock == false %} availability_order{% endif %}">
+					<div class="product__availability-svg">
+						{% include "./svg/ship.svg" %}
+					</div>
+					<span class="product__availability-info">
+						{% if product.item.stock == false %}
+							This item is made to order &amp; Ships by
+							{{product.item.shippingDate}}.
+						{% else %}
+							In Stock
+						{% endif %}
+					</span>
+				</div>
+			</div>
+		{% endif %}
+
+		{% if product.matching_items is defined  and product.show_perfect_match %}
+			{% set matching_item = product.matching_items[0] %}
+			<div class="side-row__line desktop-only">
 				<div class="match-box">
 					<div class="match-box-dash">
 						<span></span>
@@ -93,21 +118,20 @@
 						<span></span>
 						<span></span>
 					</div>
-					<p class="match-box-heading">Perfect Matching Bracelet</p>
+					<p class="match-box-heading">Perfect Matching
+						{{ matching_item.category_name }}</p>
 					<div class="match-box__wrapper">
-						<img src="{{product.match.imgSrc}}" loading="lazy" alt="{{product.match.alt}}" class="match-box-thumbnail">
+						<img src="{{matching_item.cover}}" loading="lazy" alt="{{matching_item.alt}}" class="match-box-thumbnail">
 						<div class="match-box__details-wrapper">
-							<a href="{{product.match.href}}">
-								<span class="match-box-title">{{product.match.name}}</span>
+							<a href="{{matching_item.href}}">
+								<span class="match-box-title">{{matching_item.name}}</span>
 							</a>
-							<span class="match-box-price">${{product.match.price}}
-								USD</span>
-							<button onclick="addToCart({{product.match.id}})" class="match-box-btn">ADD TO CART</button>
+							<span class="match-box-price">{{matching_item.price}}</span>
+							<a href="{{ matching_item.href }}" class="match-box-btn">View Item</a>
 						</div>
 					</div>
 				</div>
 			</div>
-		{% endif %} #}
-
+		{% endif %}
 	</div>
 </div>
