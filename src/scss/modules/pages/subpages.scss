@@ -5,8 +5,8 @@
   position: relative;
 
   h4 {
-    font-size: 22px;
-    line-height: 36px;
+    font-size: 18px;
+    line-height: 26px;
     font-weight: 600;
   }
 
@@ -78,10 +78,8 @@
 }
 
 .sub-welcome__subheading {
-  max-width: 360px;
   margin-top: 4px;
-  font-size: 16px;
-  line-height: 24px;
+  line-height: 22px;
 }
 
 .sub-welcome__group {
@@ -99,12 +97,11 @@
 }
 
 .sub-welcome__heading {
-  max-width: 360px;
-  letter-spacing: 1px;
+  letter-spacing: 0.4px;
   text-transform: uppercase;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 600;
-  line-height: 32px;
+  line-height: 28px;
 }
 
 .sub-welcome__title {
@@ -236,22 +233,30 @@
   max-height: 50vh;
   max-width: 440px;
   box-shadow: none;
-  border: 1px solid #000;
   position: -webkit-sticky;
   position: sticky;
   top: 152px;
   overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border: 1px solid #eef3f8;
+  border-radius: 0.5rem;
+  list-style-type: none;
 
   button,
   a {
     cursor: pointer;
-    padding: 8px 20px;
-    font-weight: 600;
     text-align: left;
-    transition: all 200ms ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-weight: 600;
+    -webkit-transition: all 300ms var(--cubic);
+    transition: all 300ms var(--cubic);
 
     &:hover {
-      background-color: #f1f1f1;
+      background-color: rgb(232, 241, 246);
     }
   }
 }
@@ -278,7 +283,6 @@
 
 .sub-box__sidebar-wrapper {
   flex-direction: column;
-  padding: 14px 0;
   display: flex;
   position: relative;
 }
@@ -315,11 +319,30 @@
 
 
 ul.faq-list {
-  li {
-    background-color: #f5f8fa;
+  gap: 0;
 
-    @include maxWidthXs {
-      background-color: #f5f8fa;
+  h4 {
+    margin-bottom: 14px;
+  }
+
+  li {
+    background-color: transparent;
+    border: 1px solid #e9edf1;
+    margin-bottom: -1px;
+    overflow: hidden;
+
+    &:nth-child(2) {
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 0.5rem 0.5rem;
+    }
+
+    &.--active {
+      .faq-head {
+        background-color: #f6f7fa;
+      }
     }
   }
 
@@ -329,28 +352,34 @@ ul.faq-list {
   }
 
   .faq-head {
-    padding: 18px 24px;
+    padding: 18px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
-    text-transform: uppercase;
     gap: 18px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-weight: 600;
     cursor: pointer;
     user-select: none;
+    transition: all 200ms ease;
+
+    // h6 {
+    //   text-transform: lowercase;
+
+    //   &::first-letter {
+    //     text-transform: capitalize;
+    //   }
+    // }
+
+    @include minWidthMd {
+      &:hover {
+        background-color: #f6f7fa;
+      }
+    }
   }
 
   p {
-    padding: 0px 24px 24px 24px;
+    padding: 20px;
     line-height: 24px;
-    font-size: 15px;
-
-    @include maxWidthXs {
-      font-size: 14px;
-      line-height: 22px;
-    }
 
     a {
       font-weight: 600;
@@ -364,12 +393,12 @@ main.main_finance {
   background-color: #f5f6f8;
 
   .subpage__finance-content {
-    & > .wrapper {
+    &>.wrapper {
       @include maxWidthXs {
         padding-left: 0px;
         padding-right: 0px;
       }
-    }    
+    }
   }
 
   .subpage__finance-content {
@@ -434,9 +463,9 @@ main.main_finance {
 
 .subpage__finance-content {
   padding-top: 88px;
-    padding-bottom: 68px;
+  padding-bottom: 68px;
 
-    @include maxWidthXs {
-      padding-bottom: 32px;
-    }
+  @include maxWidthXs {
+    padding-bottom: 32px;
+  }
 }

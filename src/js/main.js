@@ -3132,28 +3132,44 @@ const pageEls = new Object({
       }
     },
     faqLists: () => {
-      let faqLists = Array.from($('.faq-list'))
-      for (let i = 0; i < faqLists.length; i++) {
-        const list = $(faqLists[i]),
-          li = list.find('li')
+      const headArr = [...document.querySelectorAll('.faq-head')]
+      let liArr = []
+      for (const faqHead of headArr) {
+        const li = faqHead.closest('li')
+        const body = faqHead.nextElementSibling
+        if (li && body) {
+          liArr.push(li)
+          li.show = () => {
+            li.classList.add(__ACTIVE)
+            const scrollHeight = body.scrollHeight
+            body.style.height = `${scrollHeight}px`
+            setTimeout(() => {
+              body.style.height = 'auto'
+            }, 1);
+          }
+          li.hide = () => {
+            li.classList.remove(__ACTIVE)
+            body.style.height = 0
+          }
 
-        li.eq(0).find('.faq-body').css({ height: 'auto' })
-
-        for (let n = 0; n < li.length; n++) {
-          const el = $(li[n])
-          let head = el.find('.faq-head'),
-            body = el.find('.faq-body'),
-            svg = el.find('svg')
-
-          head.click(function () {
-            if (body.height() == 0) {
-              body.css({ height: 'auto' })
-              svg.css({ transform: 'rotate(180deg)' })
+          faqHead.onclick = () => {
+            console.log(body)
+            if (body.offsetHeight !== 0) {
+              li.hide()
             } else {
-              body.css({ height: 0 })
-              svg.css({ transform: 'rotate(0deg)' })
+              li.show()
             }
-          })
+          }
+
+          // Transform letters
+          const h6 = faqHead.querySelector('h6')
+          if (h6) {
+            const capitalized = h6.textContent.toLowerCase().replace(/(\b)(\w)/g, (match, p1, p2) => p2.toUpperCase())
+            h6.textContent = capitalized
+          }
+
+          // Reveal first
+          if (liArr[0] === li) li.show()
         }
       }
     },
