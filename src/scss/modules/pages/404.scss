@@ -1,33 +1,56 @@
 .nopage-content {
   width: 100%;
-  max-width: 1320px;
-  text-align: center;
+  max-width: unset;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin-left: auto;
   margin-right: auto;
   padding-top: 98px;
   padding-bottom: 86px;
   display: flex;
+  background-color: white !important;
 
   .tabs-wrapper {
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
+
+  .wrapper {
+    padding: 0;
+    margin: unset;
+  }
+
+  .categories-tabs {
+    justify-content: flex-start;
+    margin: unset;
+    max-width: unset;
+
+    span {
+      display: block;
+      width: 100%;
+      padding: 48px 18px 5px 18px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      font-weight: 700;
+      margin-top: 8px;
+      position: absolute;
+      z-index: 2;
+      bottom: 0;
+      color: white;
+      background-image: linear-gradient(rgba(15, 19, 27, 0), rgba(15, 19, 27, 0.6));
+    }
+  }
 }
 
 .nopage__back-link {
   z-index: 1;
-  color: #0a7ba0;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-bottom: 2px solid #0095c6;
-  border-radius: 0;
   margin-top: -18px;
-  padding-top: 8px;
-  padding-bottom: 4px;
-  font-size: 12px;
-  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 0.4rem;
+  background: rgb(232, 241, 246);
+  font-weight: 600;
   position: relative;
 }
 
@@ -52,6 +75,7 @@
       font-size: 12px;
       line-height: 16px;
     }
+
     &>span:last-child {
       width: 100%;
       letter-spacing: 1px;
@@ -70,22 +94,23 @@
 }
 
 .nopage__heading {
-  color: #08111f;
-  margin-top: 24px;
-  font-size: 32px;
+  color: var(--black);
+  margin-top: 36px;
+  font-size: 24px;
   font-weight: 600;
-  line-height: 34px;
+  line-height: 28px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+
+  @include maxWidthXs {
+    margin-top: 24px;
+  }
 }
 
 .nopage__subheading {
-  max-width: 520px;
-  text-align: center;
-  text-transform: capitalize;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 26px;
-  margin-top: 12px;
-  margin-bottom: 48px;
+  line-height: 24px;
+  margin-top: 6px;
+  margin-bottom: 24px;
 }
 
 .nopage__input-wrap {
@@ -200,16 +225,9 @@
 }
 
 @media screen and (max-width: 479px) {
-  .nopage__back-link {
-    margin-top: -10%;
-  }
 
   .nopage__nav-grid {
     grid-column-gap: 12px;
-  }
-
-  .nopage__subheading {
-    max-width: 240px;
   }
 
   .nopage__sub-content {
@@ -219,14 +237,10 @@
   .nopage__main-img {
     width: 82%;
   }
-
-  .nopage-content {
-    padding-top: 82px;
-  }
 }
 
 .wrapper {
   &.wrapper_404 {
-    background-color: #f5f8fa;
+    background-color: white;
   }
 }
