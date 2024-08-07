@@ -318,8 +318,7 @@
 }
 
 .side-row__ship-line {
-  margin-top: 14px;
-  margin-bottom: 8px;
+  margin: 12px 0 8px 0;
   order: -1;
   display: flex;
   align-items: center;
@@ -331,8 +330,8 @@
   align-items: center;
   position: relative;
   font-size: 12px;
-  padding: 8px 12px 8px 32px;
-  border: 1px solid #bfe6f3;
+  padding: 10px 14px 10px 32px;
+  // border: 1px solid #bfe6f3;
   border-radius: 500px;
   font-weight: 600;
   border-color: #dcf3e8;
@@ -1236,7 +1235,7 @@
 .side-row__line_price {
   gap: 10px;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 4px;
   display: flex;
 }
 
@@ -1252,7 +1251,7 @@
 .product__item-price.old_price {
   // text-decoration: line-through;
   // opacity: .5;
-  color: #9398a7;
+  color: #a5a7af;
   order: 1;
   position: relative;
 
@@ -1260,8 +1259,8 @@
     content: "";
     position: absolute;
     width: 100%;
-    height: 1.5px;
-    background-color: #9398a7;
+    height: 1px;
+    background-color: #6f7179;
   }
 }
 
@@ -1296,10 +1295,9 @@
 .product__item-title {
   font-size: 18px;
   font-weight: 600;
-  line-height: 26px;
+  line-height: 30px;
   text-transform: uppercase;
   max-width: 420px;
-  letter-spacing: 0.3px;
 }
 
 .option-letters-input {
@@ -2113,6 +2111,9 @@
 }
 
 .side-row {
+  display: flex;
+  flex-direction: column;
+
   #payLaterBoxIntro {
     &>p {
       display: none;
@@ -2838,10 +2839,6 @@
 }
 
 .product-discount-rate {
-  letter-spacing: 1px;
-  background-color: rgb(238 241 245);
-  padding: 2px 6px;
-  font-size: 12px;
   font-weight: 700;
   display: inline-block;
   position: relative;
@@ -2962,7 +2959,10 @@
 .side-row__price {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 10px;
+  order: -1;
+  margin: 6px 0;
 }
 
 .side-row__detailed-price {
@@ -3388,15 +3388,13 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  letter-spacing: .4px;
-  text-transform: uppercase;
   cursor: pointer;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 2;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   transition: all .2s var(--cubic);
   text-decoration: underline;
@@ -3996,5 +3994,28 @@
       right: 0%;
       z-index: 1;
     }
+  }
+}
+
+.price-alert-btn {
+  font-size: 11px;
+  line-height: 24px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 6px;
+  border-radius: 0.4rem;
+  background-image: url('data:image/svg+xml,<svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C7.46957 0 6.96086 0.210714 6.58579 0.585786C6.21071 0.960859 6 1.46957 6 2V2.341C3.67 3.165 2 5.388 2 8V13H1C0.734784 13 0.48043 13.1054 0.292893 13.2929C0.105357 13.4804 0 13.7348 0 14C0 14.2652 0.105357 14.5196 0.292893 14.7071C0.48043 14.8946 0.734784 15 1 15H15C15.2652 15 15.5196 14.8946 15.7071 14.7071C15.8946 14.5196 16 14.2652 16 14C16 13.7348 15.8946 13.4804 15.7071 13.2929C15.5196 13.1054 15.2652 13 15 13H14V8C14.0002 6.75894 13.6156 5.54834 12.8992 4.53489C12.1829 3.52144 11.17 2.75496 10 2.341V2C10 1.46957 9.78929 0.960859 9.41421 0.585786C9.03914 0.210714 8.53043 0 8 0ZM8 18C7.46957 18 6.96086 17.7893 6.58579 17.4142C6.21071 17.0391 6 16.5304 6 16H10C10 16.5304 9.78929 17.0391 9.41421 17.4142C9.03914 17.7893 8.53043 18 8 18Z" fill="black"/></svg>');
+  background-position: left center;
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+  // padding: 2px 12px 2px 32px;
+  padding: 0 0 0 18px;
+  // color: white;
+  transition: all 200ms ease;
+  // background-color: rgb(15, 147, 118);
+
+  &:hover {
+    // color: var(--blue)
+    opacity: .5;
   }
 }

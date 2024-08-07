@@ -68,11 +68,13 @@
 										<span>$
 											{{ cart.originalPrice|number_format(2) }}</span>
 									</div>
-									<div class="cart-modal__summary-price is-discount">
-										<span>Discount</span>
-										<span>- $
-											{{cart.discountPrice|number_format(2)}}</span>
-									</div>
+									{% if cart.discountPrice is defined %}
+										<div class="cart-modal__summary-price is-discount">
+											<span>Discount</span>
+											<span>- $
+												{{cart.discountPrice|number_format(2)}}</span>
+										</div>
+									{% endif %}
 									<div class="cart-modal__summary-price">
 										<span>Delivery Charge</span>
 										<span>On Checkout</span>

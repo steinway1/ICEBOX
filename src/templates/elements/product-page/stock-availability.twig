@@ -1,6 +1,6 @@
 {% if product.temp_unavailable == false %}
     <div class="side-row__ship-line">
-            <div class="product__item-availability in_stock_msg" style="display:none;">
+            <div class="product__item-availability in_stock_msg">
                 <div class="product__availability-svg">
                     {% include "elements/product-page/svg/ship.svg" %}
                 </div>
@@ -15,7 +15,7 @@
                             <div class="product__availability-svg">
                                 {% include "elements/product-page/svg/ship.svg" %}
                             </div>
-                            <span class="product__availability-info">This watch will ship on  <span class="product__availability-date" >{{ "+4weeks"|date("F d, Y") }}</span></span>
+                            <span class="product__availability-info">This watch will ship in  <span class="product__availability-date" >{{ "+4weeks"|date("F d, Y") }}</span></span>
                         </div>
                     {% else %}
                         {# watch is not plain gold  #}

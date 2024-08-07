@@ -4,113 +4,132 @@
 	{# Card Overlay #}
 	<div class="am-item__over">
 		<div>
-			<span>Order #{{order.number}}</span>
-			<span>${{order.orderAmount}}
-				({{order.qtyTotal}})</span>
+			<span>Order #{{order.id}}</span>
+			<span>{{order.total}}
+				({{order.items | length}})</span>
+			{% if order.gift_wrap %}
+				<span>GIFT WRAP</span>
+			{% endif %}
 		</div>
 	</div>
 
 	<div class="am-item__body">
 		{% for item in order.items %}
 			<div
-				class="am-item__row">
+				class="am-item__row ">
 
 				<!-- #region ITEM : TOP -->
 				<div class="am-item__main">
 
 					<div class="am-item__pic-wrap">
-						<img src="{{item.imgURL}}" loading="eager" alt="">
+						<img src="{{item.thumbnail}}" loading="eager" alt="">
 						<button class="am-zoom-btn"></button>
 					</div>
 
 					<div class="am-item__main-details">
 						<h4 class="am-item__title">
-							<a href="{{item.url}}" target="_blank">{{item.title}}</a>
+							<a href="{{item.href}}" target="_blank">{{item.name}}</a>
 						</h4>
 						{% for option in item.options %}
 							<div class="am-item__options">
-								<div>{{option.name}}:
-									<span>{{option.value}}</span>
+								<div>{{option.name | raw}}:
+									<span>{{option.value | raw }}</span>
 								</div>
 							</div>
 						{% endfor %}
-						{# {% if item.appraisal_url != '' %}
-							<a href="{{item.appraisal_url}}" target="_blank" class="am-item__appr-link">
-								<img src="{{THEME_ASSETS_FOLDER}}/appr-thumb.webp" alt="">
-							</a>
-						{% endif %} #}
 					</div>
 
 					<div class="am-item__main-spot">
 
 						<div class="am-item__td-controls">
-							<a href="https://www.icebox.com/admin/view-packing-slip/{{item.id}}" target="_blank" class="am-item__td-btn">
+							<a href="https://www.icebox.com/admin/view-packing-slip/{{order.id}}" target="_blank" class="am-item__td-btn">
 								{% include "admin/svg/icon_print.svg" %}
 							</a>
-							<a data-type="iframe" data-fancybox data-src="/admin/order-quick-edit/{{item.id}}" target="_blank" class="am-item__td-btn">
+							<a data-type="iframe" data-fancybox data-src="/admin/order-quick-edit/{{order.id}}" target="_blank" class="am-item__td-btn">
 								{% include "admin/svg/icon_clip.svg" %}
 							</a>
+							{% if item.appraisal_url != '' %}
+								<a href="{{item.appraisal_url}}" target="_blank" class="am-item__td-btn">
+									{% include "admin/svg/icon_appraisal.svg" %}
+								</a>
+							{% endif %}
+							<!--
+														<button class="am-item__td-btn" {% if item.fullfill_disable %} disabled {% endif %}>{{ item.fullfill_by_sakes }}</button>
+														-->
 						</div>
 
 					</div>
 				</div>
 				<!-- #endregion ITEM : TOP -->
 
-				<div class="am-item__space-row">
 
-					<div class="am-item__details">
-						{% if item.stockTags is defined %}
-							<div class="am-item__details-row">
-								{% for tag in item.stockTags %}
-									<span class="am-item__color-tag{% if tag.stock == false %} tag_blue{% endif %}">{{tag.value}}</span>
-								{% endfor %}
-							</div>
-						{% endif %}
-						{% if item.links is defined %}
-							<div class="am-item__details-row">
-								{% for link in item.links %}
-									<a href="{{link.url}}" class="am-item__link">{{link.title}}</a>
-								{% endfor %}
-							</div>
-						{% endif %}
-						<div class="am-item__details-row to_space">
-							<div class="flex-row_8">
-								{% for tag in item.tags %}
-									<span class="am-item__tag">{{tag.value}}</span>
-								{% endfor %}
-							</div>
-						</div>
+				<div class="am-item__details">
+
+					{% if item.stockTags is defined %}
 						<div class="am-item__details-row">
-							<div class="am-item__note-wrap">
-								<div class="am-item__note-form">
-									<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_{{itemID}}">
-									<button data-am-evt="submitNote" onclick="addNotes({{itemID}})">Add</button>
-								</div>
-								{% for note in item.notes %}
-									<div class="am-item-note">
-										<div>
-											<span>{{note.author}}</span>:
-											{{note.text}}
-										</div>
-										<div>{{note.date}}</div>
-									</div>
-								{% endfor %}
+							{% for tag in item.stockTags %}
+								<span class="am-item__color-tag{% if tag.in_stock == false %} tag_blue{% endif %}">{{tag.stock_status}}</span>
+							{% endfor %}
+						</div>
+					{% endif %}
+
+					{% if item.links is defined %}
+						<div class="am-item__details-row">
+							{% for link in item.links %}
+								<a href="{{link.href}}" class="am-item__link" {% if item.external %} target="_blank" {% endif %}>{{link.caption}}</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+
+					<div class="am-item__details-row to_space">
+						<div class="flex-row_8">
+							{% for tag in item.tags %}
+								<span class="am-item__tag ">{{tag | raw}}</span>
+							{% endfor %}
+						</div>
+						<div class="am-item__price-wrap">
+							<div class="am-item__price">
+								{% if item.discount is defined %}
+									<span class="off-price">{{item.discount}}% OFF</span>
+								{% endif %}
+								<span>
+									{{item.total}}
+									{% if item.tax %}
+										<br>
+										<span class="typo_xs">{{item.tax_percent}}% TAX - ${{item.tax_total|number_format(2)}}</span>
+									{% endif %}
+								</span>
 							</div>
 						</div>
 					</div>
 
-					<div class="am-item__price-wrap">
-						<div class="am-item__price">
-							{% if item.price.sale is defined %}
-								<span class="off-price">{{item.price.sale}}% OFF</span>
-							{% endif %}
-							${{item.price.value}}
+					<div class="am-item__details-row">
+						<div class="am-item__note-wrap" id="note_box_{{ item.id }}">
+							<div class="am-item__note-form">
+								<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_{{item.id}}">
+								<button onclick="addNotes({{item.id}})">Add</button>
+							</div>
+							{% for note in item.notes %}
+								<div class="am-item-note" id="item_note_'.$note->id.'">
+									<div>
+										<span>{{note.author}}</span>:
+										{{note.comment}}
+									</div>
+									<div>{{note.date}}</div>
+								</div>
+							{% endfor %}
 						</div>
 					</div>
 
 				</div>
-
 			</div>
 		{% endfor %}
 	</div>
 </div>
+
+
+{# {% if item.appraisal_url != '' %}
+	<a href="{{item.appraisal_url}}" target="_blank" class="am-item__appr-link">
+		<img src="{{THEME_ASSETS_FOLDER}}/appr-thumb.webp" alt="">
+	</a>
+{% endif %} #}

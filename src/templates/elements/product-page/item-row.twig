@@ -1,112 +1,86 @@
 <div class="side-row">
 	<div class="side-row__body">
-
-		{% if black_friday == true %}
-			<div class="bfs-badges">
-				<span class="bfs-badge">BLACK FRIDAY</span>
-				<span class="bfs-badge --discount">-30%</span>
-			</div>
-		{% endif %}
-		{# {% include "elements/product-card/stock-dash-box.twig" %} #}
-		{% if tags == true %}
-			<div class="side-row__tags">
-				<span>Rings</span>
-				<span>0.75CTW</span>
-				<span>Unisex</span>
-			</div>
+		{% if  product.item.salePrice is defined %}
+			{% include "elements/product-card/stock-dash-box.twig" %}
 		{% endif %}
 		<div class="side-row__title-wrap">
 			<h1 id="item_name" class="product__item-title">{{product.item.name}}</h1>
-			{# <div class="product__add-fav {% if itemIsWishlisted %}is-active{% endif %}" id="wishlist_btn_{{product.item.id}}" onclick="addToWishlist({{product.item.id}});">
-										{% include "./svg/heart.svg" %}
-									</div> #}
+			{% if user != false %}
+				<div class="product__add-fav {% if product.is_in_wishlist %}is-active{% endif %}" id="wishlist_btn_{{product.item.id}}" {% if (product.is_in_wishlist == false) and (user) %} onclick="addToWishlist({{product.item.id}});" {% endif %}>
+					{% include "elements/product-page/svg/heart.svg" %}
+				</div>
+			{% endif %}
 		</div>
 
+		{# Price #}
 		<div class="side-row__price">
 			<div class="side-row__line_price">
 				{% if product.item.salePrice is defined %}
-					<span class="product__item-price old_price">$
-						{{product.item.price}}</span>
-					<span class="product__item-price sale_price">$
-						{{product.item.salePrice}}</span>
-					<span class="product-discount-rate">-{{product.item.discount}}%</span>
+					{% if product.call_for_price == false and product.item.sold == false %}
+						<span class="product__item-price old_price" data-old-price="{{ product.item.old_price }}">
+							{{product.item.price}}
+						</span>
+						<span class="product__item-price sale_price" id="current_base_price">
+							{{product.item.salePrice}}
+						</span>
+						<span class="product-discount-rate">-{{product.item.discountRate}}%</span>
+					{% else %}
+						<span class="product__item-price">
+							{% if product.item.sold %}
+								SOLD
+							{% else %}
+								{{product.call_for_price_text}}</span>
+						{% endif %}
+
+					{% endif %}
 				{% else %}
-					<span class="product__item-price">$
-						{{product.item.price}}</span>
+
+					{% if product.call_for_price == false%}
+						{% if product.item.sold == false %}
+							<span class="product__item-price" id="current_base_price">{{product.item.price}}</span>
+						{% else %}
+							<span class="product__item-price">SOLD</span>
+						{% endif %}
+
+					{% else %}
+						<span class="product__item-price">{{product.call_for_price_text}}</span>
+					{% endif %}
+
 				{% endif %}
 			</div>
 
-			{# Detailed Price #}
-			{% if product.item.detailedPrice is defined %}
-				{% set prices = product.item.detailedPrice %}
-				<div class="side-row__detailed-price">
-					{% for price in prices %}
-						<span {% if price.extraClass is defined %} class="{{price.extraClass}}" {% endif %}>
-							<span>{{price.title}}:</span>
-							<span></span>
-							<span>${{price.value}}</span>
-						</span>
-					{% endfor %}
-				</div>
-			{% endif %}
+			<div class="side-row__detailed-price" style="display:none;">
+				<span class="--diamond">
+					<span>Diamond Price:</span>
+					<span></span>
+					<span id="diamond_ring_price"></span>
+				</span>
+				<span class="--ring">
+					<span>Ring Price:</span>
+					<span></span>
+					<span id="ring_ring_price"></span>
+				</span>
+				<span>
+					<span>Total Price:</span>
+					<span></span>
+					<span id="ring_total_price"></span>
+				</span>
+			</div>
 
+			{# {% if product.item.sold == false %}
+				<button class="price-alert-btn">Sign up for price alerts</button>
+			{% endif %} #}
 		</div>
 
 		<div class="side-row__line">
 			<div class="product__item-summary">
 				{% if product.item.mainDescription %}
-					<p>{{product.item.mainDescription}}</p>
-				{% endif %}
-
-				{% if product.item.summary %}
-					<ul role="list">
-						{% for item in product.item.summary %}
-							<li>
-								<p>{{item}}</p>
-							</li>
-						{% endfor %}
-					</ul>
-				{% endif %}
-
-				{% if product.item.subDescription %}
-					<p>{{product.item.subDescription}}</p>
+					<p>{{product.item.mainDescription | raw }}</p>
 				{% endif %}
 			</div>
 		</div>
 
-		{% if item.temp_unavailable %}
-			<div class="side-row__ship-line">
-				<div class="product__item-availability availability_order">
-					<div class="product__availability-svg">
-						{% include "elements/product-page/svg/ship.svg" %}
-					</div>
-					<span class="product__availability-info">
-						{% if product.item.sold %}
-							This item is sold!
-						{% else %}
-							This item is temporarily unavailable !
-						{% endif %}
-
-					</span>
-				</div>
-			</div>
-		{% else %}
-			<div class="side-row__ship-line">
-				<div class="product__item-availability{% if product.item.stock == false %} availability_order{% endif %}">
-					<div class="product__availability-svg">
-						{% include "./svg/ship.svg" %}
-					</div>
-					<span class="product__availability-info">
-						{% if product.item.stock == false %}
-							This item is made to order &amp; Ships by
-							{{product.item.shippingDate}}.
-						{% else %}
-							In Stock
-						{% endif %}
-					</span>
-				</div>
-			</div>
-		{% endif %}
+		{% include "elements/product-page/stock-availability.twig" %}
 
 		{% if product.matching_items is defined  and product.show_perfect_match %}
 			{% set matching_item = product.matching_items[0] %}
@@ -133,5 +107,6 @@
 				</div>
 			</div>
 		{% endif %}
+
 	</div>
 </div>
