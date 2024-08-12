@@ -60,6 +60,26 @@
       padding: 0 58px 0 0;
     }
   }
+
+  .results-show {
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+
+  .form-switch {
+    label {
+      font-size: 12px !important;
+      font-weight: 600 !important;
+    }
+
+    input {
+      border-color: #d7dae2 !important;
+
+      &::after {
+        background: #d7dae2 !important;
+      }
+    }
+  }
 }
 
 .loose-banner {
@@ -206,14 +226,13 @@
 }
 
 .loose__filters {
-  z-index: 10;
-  background-color: #fff;
-  padding: 20px 0;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 102px;
-  gap: 12px;
-  flex-flow: wrap;
+  z-index: 10 !important;
+  background-color: #fff !important;
+  padding: 20px 0 !important;
+  top: 102px !important;
+  gap: 12px !important;
+  flex-flow: wrap !important;
+  max-width: unset !important;
 
   &.--static {
     position: static;
@@ -233,6 +252,16 @@
     align-items: center;
     gap: 10px;
     flex-flow: wrap;
+  }
+
+  @include maxWidthXs {
+    .--flex_8 {
+      flex: auto;
+    }
+
+    .form-switch {
+      width: auto !important;
+    }
   }
 }
 
@@ -511,6 +540,7 @@
   font-weight: 600;
   display: flex;
   cursor: pointer;
+  flex: none;
 
   &:hover {
     background-color: #eef0f5;
@@ -528,6 +558,10 @@
   &.--grid {
     background-color: var(--black);
     color: white;
+  }
+
+  svg {
+    flex: none;
   }
 }
 
@@ -578,7 +612,7 @@
   display: flex;
   position: relative;
   overflow: hidden;
-  padding: 12px;
+  padding: 0 !important;
 
   &::after {
     content: '';
@@ -603,10 +637,6 @@
     position: absolute;
     bottom: 8px;
     right: 8px;
-  }
-
-  @include maxWidthXs {
-    aspect-ratio: 1 / 1.26;
   }
 }
 
