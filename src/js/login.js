@@ -128,6 +128,7 @@ class SignModal {
       return displayProperty !== 'none'
     })
     if (!section) throw new Error(`Expected to find section with data-sign-content=${contentType}`)
+    if (activeSection == section) return
     if (contentType == 'otp') {
       this.otpArr.forEach((el) => {
         el.value = ''
@@ -174,7 +175,7 @@ class SignModal {
       this.adjustEl.style.height = 'auto'
       this.contentArr.forEach(e => e.style.display = 'none')
       content.style.display = 'flex'
-      content.querySelector('input').focus()
+      // content.querySelector('input').focus()
       lockScroll()
       const show = () => {
         this.backdrop.style.opacity = 1
@@ -234,6 +235,10 @@ class SignModal {
       el.addEventListener('click', (e) => {
         e.preventDefault()
         this.toggle()
+        const contentName = el.dataset.signSwitch
+        if (contentName) {
+          this.switch(contentName)
+        }
       })
     }
   }
@@ -334,7 +339,7 @@ class SignModal {
   initialSetup() {
     this.rootEl.style.display = 'none'
     this.close()
-    this.switch()
+    this.switch('phone_register')
   }
   init() {
     if (this.rootEl) {

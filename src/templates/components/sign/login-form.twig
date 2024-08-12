@@ -1,38 +1,40 @@
-<form id="pop_frm_login" class="needs-validation" action="/json-authenticate" novalidate="" data-gtm-form-interact-id="0">
-
-	<input type="hidden" name="csrf_token" value="">
-
-	<div class="sign-modal__form-row">
-		<label for="userEmail">Email Address</label>
-		<input type="email" id="userEmail" autocorrect="off" spellcheck="false" required="">
-	</div>
-
-	<div class="sign-modal__form-row">
-		<label for="userPassword">Password</label>
-		<div class="sign-modal__pass-input-wrap">
-			<input type="password" id="userPassword" name="password" autocorrect="off" spellcheck="false" data-parsley-id="7" data-gtm-form-interact-field-id="1">
-			<div data-evt="togglePasswordVisible" class="sign-modal__pass-switch">
-				<div class="sign-modal__pass-icon">
-					{% include "../svg/open-eye.svg" %}
-					{% include "../svg/close-eye.svg" %}
-				</div>
+<form id="pop_frm_login" class="sign-form needs-validation" action="/json-authenticate">
+	<input type="hidden" name="csrf_token" value="{{csrf_token}}"/>
+	<div class="sign-form__row">
+		<div class="sign-form__item">
+			<div class="sign-form__input-wrap">
+				<input type="email" id="userEmail" name="email" class="sign-form__input" placeholder="Enter your email" required>
 			</div>
+			<label for="email">Email Address</label>
+		</div>
+	</div>
+	<div class="sign-form__row">
+		<div class="sign-form__item">
+			<div class="sign-form__input-wrap">
+				<input type="password" id="userPassword" name="password" required placeholder="•••••••••" class="sign-form__input --password">
+				<button data-evt="togglePassword" class="sign-modal__toggle-btn">
+					{% include "components/svg/pass-toggle-show.svg" %}
+					{% include "components/svg/pass-toggle-hide.svg" %}
+				</button>
+			</div>
+			<label for="password">Password</label>
 		</div>
 	</div>
 
-	<div class="sign-modal__form-row form-row_options">
-		<label class="sign-modal__checkbox-label">
-			<input id="subscribe" name="remember" type="checkbox" checked="" data-parsley-multiple="remember">
-			<span>Keep me signed in</span>
-		</label>
-		<a href="javascript:void(0);" data-sign-switch="password" class="sign-modal__sub-link">Forgot password?</a>
-	</div>
-
-	<div class="sign-modal__form-row">
-		<div class="sign-modal__button-wrap">
-			<button class="sign-modal__main-btn js-submit">Login</button>
+	<div class="sign-form__row --options">
+		<div class="flex_space">
+			<label class="custom-checkbox">
+				<input id="subscribe" name="remember" type="checkbox" checked="" data-parsley-multiple="remember">
+				<span>Keep me signed in</span>
+			</label>
+			<button data-sign-switch="password">
+				<strong>Forgot Password?</strong>
+			</button>
 		</div>
-		<button type="button" data-sign-switch="phone" class="sign-modal__sub-btn">Login With Phone No</button>
+	</div>
+	<div class="sign-form__btn-group">
+		<button class="sign-modal__btn js-submit">Sign In</button>
+		<button data-sign-switch="phone" class="sign-modal__btn --sub">Sign In with OTP</button>
 	</div>
 
 </form>

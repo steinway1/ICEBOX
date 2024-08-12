@@ -6048,15 +6048,15 @@ button.dt-paging-button.current {
 }
 
 .admin-linkbar .admin-link {
-  color: #285783;
+  color: #285783 !important;
   text-transform: uppercase;
   cursor: pointer;
-  background-color: #f0f6ff;
-  border: 1px solid #f0f6ff;
-  border-radius: 6px;
+  background-color: #f0f6ff !important;
+  border: 1px solid #f0f6ff !important;
+  border-radius: 6px !important;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding: 5px !important;
   font-size: 10px;
   font-weight: 700;
   line-height: 0;
@@ -6066,8 +6066,8 @@ button.dt-paging-button.current {
 }
 
 .admin-linkbar .admin-link[data-evt=toggleWhaleNotes].is-active {
-  background-color: var(--royal_blue);
-  color: white;
+  background-color: var(--royal_blue) !important;
+  color: white !important;
 }
 
 .admin-linkbar .admin-link[data-evt=toggleWhaleNotes].is-active i {
@@ -6085,8 +6085,8 @@ button.dt-paging-button.current {
 }
 
 .admin-linkbar .admin-link:hover {
-  background-color: transparent;
-  border-color: var(--royal_blue);
+  background-color: transparent !important;
+  border-color: var(--royal_blue) !important;
 }
 
 .admin-linkbar .admin-link i {
@@ -8845,9 +8845,9 @@ body.--visible_questions .whale-card__box.--quiz {
 }
 
 .whale-card__date.--icon {
-  opacity: 0.65;
+  font-weight: 400;
   color: var(--black);
-  font-size: 10px;
+  font-size: 11px;
   border: none !important;
   padding: 0 0 0 14px;
   font-style: normal;
@@ -8950,13 +8950,34 @@ body.--visible_questions .whale-card__box.--quiz {
   box-shadow: 0 8px 58px rgba(184, 196, 230, 0.3);
 }
 
+.whale-card.--drop-active .whale-more-btn {
+  background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.9853 22.9853L0.985291 0.985283" stroke="white" stroke-width="4"/><path d="M0.985289 22.9853L22.9853 0.985283" stroke="white" stroke-width="4"/></svg>');
+  background-size: 10px 10px;
+  border-color: #3886f0;
+}
+
+.whale-card.--drop-active .whale-more-drop {
+  display: block;
+}
+
+.whale-card.--drop-active::after {
+  content: "";
+  display: block;
+  z-index: 3;
+  opacity: 0.7;
+  background-color: #f4f9ff;
+  border-radius: 0.6rem;
+  position: absolute;
+  inset: 0%;
+}
+
 .whale-card.--notes_visible .whale-card__notes {
   display: flex;
 }
 
 .whale-card.--notes_visible [data-evt=toggleWhaleNotes] {
-  background-color: var(--royal_blue);
-  color: white;
+  background-color: var(--royal_blue) !important;
+  color: white !important;
 }
 
 .whale-card.--notes_visible [data-evt=toggleWhaleNotes] i {
@@ -9788,6 +9809,90 @@ body.--visible_questions .whale-card__box.--quiz {
 
 .catalog-sent-icon.--active {
   background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_16_26)"><path d="M15 0C12.7185 0 12 1.5 12 1.5C12 1.5 11.25 0 7.5 0H0V21H7.5C7.5 21 12 21.0465 12 24C12 21.0465 16.5 21 16.5 21H24V0H15ZM7.5 18H3V3H7.5C7.5 3 12 3.0465 12 6V19.5C12 19.5 11.25 18 7.5 18Z" fill="%233786F1"/></g><defs><clipPath id="clip0_16_26"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>');
+}
+
+.whale-more-wrap {
+  z-index: 4;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1px;
+  display: flex;
+  position: absolute;
+  bottom: -8px;
+  right: 2px;
+}
+
+.whale-more-btn {
+  z-index: 5;
+  color: #fff;
+  cursor: pointer;
+  background-color: #3786f1;
+  border: 3px solid #fff;
+  border-radius: 50rem;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  position: relative;
+  background-image: url('data:image/svg+xml,<svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="3" transform="matrix(-1 0 0 1 15 9)" fill="white"></circle><circle cx="3" cy="3" r="3" transform="matrix(-1 0 0 1 24 9)" fill="white"></circle><circle cx="3" cy="3" r="3" transform="matrix(-1 0 0 1 6 9)" fill="white"></circle></svg>');
+  background-size: 14px 14px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.whale-more-btn:not(.--active):hover {
+  background-color: #2f6fc7;
+}
+
+.whale-more-drop {
+  display: none;
+  z-index: 4;
+  background-color: #fff;
+  border-radius: 20px 0.8rem 0.8rem;
+  width: 210px;
+  padding: 0;
+  position: absolute;
+  inset: 0% auto auto 0%;
+  overflow: hidden;
+  box-shadow: 0 12px 58px rgba(191, 203, 219, 0.6901960784);
+}
+
+.whale-more-drop__header {
+  color: #fff;
+  background-color: #3886f0;
+  padding: 6px 10px 6px 36px;
+  font-weight: 600;
+}
+
+.whale-more-drop__content {
+  flex-flow: column;
+  padding: 0;
+  display: flex;
+  min-height: 60px;
+}
+
+.drop-btn {
+  cursor: pointer;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  text-align: left;
+  line-height: 20px;
+}
+
+.drop-btn:hover {
+  color: #0e589e;
+  background-color: #f0f6ff;
+  padding-left: 14px;
+}
+
+.drop-btn form {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .edit-modal {
@@ -15764,6 +15869,11 @@ select.sms-tag:hover {
     padding: calc(var(--header-height_mob) + var(--pd-s)) var(--pd-s) var(--pd-s) !important;
   }
 
+  .am-content.--upd .am-main__header.for_today {
+    padding-top: 38px !important;
+    padding-bottom: 38px !important;
+  }
+
   .am-content.--upd .am-side-box {
     padding-left: 0;
     padding-right: 0;
@@ -15783,6 +15893,7 @@ select.sms-tag:hover {
 
   .main_today .--upd .am-main__header.for_today {
     padding-top: 38px !important;
+    padding-bottom: 38px !important;
   }
 
   .am-item {

@@ -1,9 +1,6 @@
-<div class="whale-card" data-id="whale_{{ whale.id }}" {% if whale.show_contract_sportrac %} data-show-contract="true" {% endif %}>
-	{% if whale.catalog_sent  %}
-		<div data-tip="Catalog sent" class="catalog-sent-icon --active"></div>
-	{% else %}
-		<div data-tip="Catalog not sent" class="catalog-sent-icon"></div>
-	{% endif %}
+<div
+	class="whale-card" data-id="whale_{{ whale.id }}">
+
 	{# Top Group -- spent / crm button / salesperson #}
 	<div class="whale-card__top-group">
 		<span class="spend-typo">${{whale.total_spend | number_format(2, '.', ',')}}</span>
@@ -11,6 +8,12 @@
 		<div class="whale-card__saleperson" data-cell="saleperson">
 			{{ whale.saleperson_xedit | raw }}
 		</div>
+		{% if whale.catalog_sent == 'Yes' %}
+			<div data-tip="Catalog sent" class="catalog-sent-icon --active"></div>
+		{% else %}
+			<div data-tip="Catalog unsent" class="catalog-sent-icon"></div>
+		{% endif %}
+
 	</div>
 
 	{# Profile Group -- avatar / upload image / spender color #}
@@ -19,25 +22,11 @@
 			<div class="whale-card__avatar-group">
 				<div class="whale-card__avatar --{{ whale.color_choice }}">
 					<img src="{{whale.photo}}" alt="" id="avatar_photo_{{ whale.id }}">
-					<div class="whale-more-wrap">
-						<div data-evt="whale_toggle_more" class="whale-more-btn"></div>
-						<div class="whale-more-drop">
-							<div class="whale-more-drop__header">
-								<span>Manage</span>
-							</div>
-							<div class="whale-more-drop__content">
-								<label data-evt="change_avatar" for="avatar_img_{{whale.id}}" class="drop-btn">
-									<span>Change Photo</span>
-									<form method="post" id="frm_whale_photo_{{ whale.id }}" class="frm_upload" action="/admin/json/update-whale-photo">
-										<input type="hidden" name="whale_id" value="{{ whale.id }}"/>
-										<input type="file" name="photo" accept="image/*" class="avatar_file" id="avatar_img_{{whale.id}}" onchange="$(this).parent().submit();">
-									</form>
-								</label>
-                <button data-add-evt="addVisit" class="drop-btn">Add Visit</button>
-                <button data-add-evt="addAppointment" class="drop-btn">Add Appointment</button>
-                {# <button data-evt="choose_fingers" class="drop-btn">Choose Fingers Size</button> #}
-							</div>
-						</div>
+					<div class="avatar-upload-btn">
+						<form method="post" id="frm_whale_photo_{{ whale.id }}" class="frm_upload" action="/admin/json/update-whale-photo">
+							<input type="hidden" name="whale_id" value="{{ whale.id }}"/>
+							<input type="file" name="photo" accept="image/*" class="avatar_file" id="avatar_img_{{whale.id}}" onchange="$(this).parent().submit();">
+						</form>
 					</div>
 				</div>
 				<span class="spot-typo">{{whale.tab}}</span>
@@ -64,6 +53,10 @@
 				{{ whale.action_bar | raw }}
 			</div>
 		</div>
+		<div class="am_flex8 mg-top_6">
+			<button data-add-evt="addVisit" class="whale-card__sub-btn">Add Visit</button>
+			<button data-add-evt="addAppointment" class="whale-card__sub-btn">Add Appointment</button>
+		</div>
 	</div>
 
 	<div
@@ -74,18 +67,24 @@
 
 			<div class="whale-card__cells">
 				{% if whale.have_phone and whale.have_phone != '' %}
-					<div class="whale-card__cell" data-cell="phone">
-						<span class="cell-title">Phone</span>
+					<div class="whale-card__cell --external --phone" data-cell="phone">
 						<span class="cell-value">{{ whale.have_phone | raw }}</span>
+            <input class="whale-card__input" type="text" value="{{ whale.have_phone | raw }}">
+						<div class="am_flex8">
+							<span class="tb-social-count" data-cell-evt="reveal">Show</span>
+							<span class="tb-social-count" data-cell-evt="edit">Edit</span>
+							<span class="tb-social-count" data-cell-evt="sms" data-tip="Send SMS to whale">SMS</span>
+						</div>
 					</div>
 				{% endif %}
+
 				{% if whale.have_email and whale.have_email != '' %}
 					<div class="whale-card__cell" data-cell="email">
 						<span class="cell-title">Email</span>
 						<span class="cell-value">{{ whale.have_email | raw }}</span>
 					</div>
 				{% endif %}
-				{% if whale.salary and whale.salary != '' %}
+				{% if whale.salary and whale.salary != '' and whale.tab|lower != 'music' %}
 					<div class="whale-card__cell" data-cell="salary">
 						<span class="cell-title">Salary</span>
 						<span class="cell-value">{{ whale.salary | raw }}</span>
@@ -97,7 +96,7 @@
 						<span class="cell-value">{{ whale.team_html | raw }}</span>
 					</div>
 				{% endif %}
-				{% if whale.career_earnings and whale.career_earnings != '' %}
+				{% if whale.career_earnings and whale.career_earnings != '' and whale.tab|lower != 'music' %}
 					<div class="whale-card__cell" data-cell="total_pay">
 						<span class="cell-title">Earnings</span>
 						<span class="cell-value">{{ whale.career_earnings | raw }}</span>
@@ -117,7 +116,7 @@
 						<span class="cell-value">{{ whale.birthday | raw}}</span>
 					</div>
 				{% endif %}
-				{% if whale.at_atl and whale.at_atl != '' and whale.show_at_atl %}
+				{% if whale.at_atl and whale.at_atl != '' %}
 					<div class="whale-card__cell" data-cell="at_atl">
 						<span class="cell-title">At ATL</span>
 						<span class="cell-value">{{ whale.at_atl | raw }}</span>
@@ -164,6 +163,7 @@
 						{% endif %}
 					</div>
 				{% endif %}
+
 			</div>
 		</div>
 
@@ -285,10 +285,12 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="whale-card__notes-footer">
 		<div class="am-item__note-form">
 			<input class="am-note-input" id="new_whale_note_{{ whale.id }}" autocomplete="off" placeholder="New note here..." type="text">
 			<button onclick="AddWhaleNote({{ whale.id }});">Add</button>
 		</div>
 	</div>
+
 </div>

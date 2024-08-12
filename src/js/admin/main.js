@@ -1212,6 +1212,38 @@ const whalesPage = {
     }
   },
   initFn: {
+    attachMoreBtnClick: () => {
+      document.addEventListener('click', (e) => {
+        const target = e.target
+        const btn = e.target.dataset.evt === 'whale_toggle_more' ? e.target : e.target.closest('[data-evt="whale_toggle_more"]')
+
+        if (btn) {
+          const card = target.closest('.whale-card')
+          const drop_menu = card.parentNode.querySelector('.whale-more-drop')
+
+          document.querySelectorAll('.whale-card.--drop-active').forEach((elCard) => {
+            if (elCard !== card) {
+              elCard.classList.remove('--drop-active')
+            }
+          })
+
+          if (card && drop_menu) {
+            const is_active = card.classList.contains('--drop-active')
+            if (is_active) {
+              card.classList.remove('--drop-active')
+            } else {
+              card.classList.add('--drop-active')
+            }
+          }
+        }
+
+        if (!target.closest('.whale-more-wrap')) {
+          document.querySelectorAll('.whale-card.--drop-active').forEach((card) => {
+            card.classList.remove('--drop-active')
+          })
+        }
+      })
+    },
     attachDropdownBtnClick: () => {
       const btnArr = [...document.querySelectorAll('[data-tb-dropdown]')]
       btnArr.forEach((btn) => {
@@ -1870,18 +1902,6 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 const whaleCardAttachAvatarUpload = () => {
-  document.onclick = (e) => {
-    const target = e.target
-    if (target.classList.contains('.avatar-upload-btn') || target.closest('.avatar-upload-btn')) {
-      try {
-        const input = target.querySelector('input')
-        if (input) input.click()
-      } catch (e) {
-        throw new Error(`Upload avatar error: ${e.message}`)
-      }
-    }
-  }
-
   document.addEventListener('change', (e) => {
     const target = e.target
     if (target.matches('input[data-input="avatar_upload"][type="file"]')) {

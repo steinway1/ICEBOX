@@ -4,11 +4,42 @@
 		<div
 			class="sign-modal__adjust">
 
+			{# OTP REGISTER #}
+			<div data-sign-content="phone_register" class="sign-modal__content">
+				<div class="sign-modal__header">
+					<h4 class="sign-modal__heading">Create account with OTP
+						<span>Enter your phone number and we&#x27;ll send you a 4 digit code.</span>
+					</h4>
+					<button data-evt="closeSignModal" class="sign-modal__ct-btn">
+						{% include "components/svg/close.svg" %}
+					</button>
+				</div>
+				<div class="sign-modal__body">
+					<form id="frm_login_otp" method="post" action="/send-otp" class="sign-form">
+						<div class="sign-form__row">
+							<div class="sign-form__item">
+								<div class="sign-form__input-wrap">
+									<input type="tel" class="sign-form__input" data-input="tel" name="login_otp_phone" id="phone_input_Login" autocorrect="off" spellcheck="false" placeholder="Enter your phone number" pattern="\d*" required>
+								</div>
+								<label for="phone_input_Login">Phone Number</label>
+							</div>
+						</div>
+						<div class="sign-form__btn-group">
+							<button data-sign-switch="otp" class="sign-modal__btn js-submit">Send Code</button>
+							<button data-sign-switch="phone" class="sign-modal__btn --sub">Have an account? Sign In</button>
+						</div>
+					</form>
+				</div>
+				<div class="sign-modal__footer">
+					<button data-sign-switch="register" class="sign-modal__sub-btn --mg_auto">Create Account With Email</button>
+				</div>
+			</div>
+
 			{# OTP #}
 			<div data-sign-content="phone" class="sign-modal__content">
 				<div class="sign-modal__header">
-					<h4 class="sign-modal__heading">Login to Icebox with SMS
-						<span>Enter your phone number and we&#x27;ll send you a 5 digit code.</span>
+					<h4 class="sign-modal__heading">Login to Icebox with OTP
+						<span>Enter your phone number and we&#x27;ll send you a 4 digit code.</span>
 					</h4>
 					<button data-evt="closeSignModal" class="sign-modal__ct-btn">
 						{% include "components/svg/close.svg" %}
@@ -32,7 +63,7 @@
 				</div>
 				<div class="sign-modal__footer">
 					<strong>Don&#x27;t have an Icebox account?</strong>
-					<button data-sign-switch="register" class="sign-modal__sub-btn">Create Account</button>
+					<button data-sign-switch="phone_register" class="sign-modal__sub-btn">Create Account</button>
 				</div>
 			</div>
 
@@ -88,7 +119,7 @@
 				</div>
 				<div class="sign-modal__footer">
 					<strong>Don&#x27;t have an Icebox account?</strong>
-					<button data-sign-switch="register" class="sign-modal__sub-btn">Create Account</button>
+					<button data-sign-switch="phone_register" class="sign-modal__sub-btn">Create Account</button>
 				</div>
 			</div>
 

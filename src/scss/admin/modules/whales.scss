@@ -140,9 +140,10 @@ body.--visible_questions {
   font-style: italic;
 
   &.--icon {
-    opacity: .65;
+    // opacity: .65;
+    font-weight: 400;
     color: var(--black);
-    font-size: 10px;
+    font-size: 11px;
     border: none !important;
     padding: 0 0 0 14px;
     font-style: normal;
@@ -245,14 +246,37 @@ body.--visible_questions {
   display: flex;
   box-shadow: 0 8px 58px rgba(184, 196, 230, .3);
 
+  &.--drop-active {
+    .whale-more-btn {
+      background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.9853 22.9853L0.985291 0.985283" stroke="white" stroke-width="4"/><path d="M0.985289 22.9853L22.9853 0.985283" stroke="white" stroke-width="4"/></svg>');
+      background-size: 10px 10px;
+      border-color: #3886f0;
+    }
+
+    .whale-more-drop {
+      display: block;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      z-index: 3;
+      opacity: .7;
+      background-color: #f4f9ff;
+      border-radius: .6rem;
+      position: absolute;
+      inset: 0%;
+    }
+  }
+
   &.--notes_visible {
     .whale-card__notes {
       display: flex;
     }
 
     [data-evt="toggleWhaleNotes"] {
-      background-color: var(--royal_blue);
-      color: white;
+      background-color: var(--royal_blue) !important;
+      color: white !important;
 
       i {
         background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 12.2H15" stroke="%23ffffff" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 16.2H12.38" stroke="%23ffffff" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z" stroke="%23ffffff" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16 4.02002C19.33 4.20002 21 5.43002 21 10V16C21 20 20 22 15 22H9C4 22 3 20 3 16V10C3 5.44002 4.67 4.20002 8 4.02002" stroke="%23ffffff" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>');
@@ -1153,5 +1177,89 @@ body.--visible_questions {
 
   &.--active {
     background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_16_26)"><path d="M15 0C12.7185 0 12 1.5 12 1.5C12 1.5 11.25 0 7.5 0H0V21H7.5C7.5 21 12 21.0465 12 24C12 21.0465 16.5 21 16.5 21H24V0H15ZM7.5 18H3V3H7.5C7.5 3 12 3.0465 12 6V19.5C12 19.5 11.25 18 7.5 18Z" fill="%233786F1"/></g><defs><clipPath id="clip0_16_26"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>');
+  }
+}
+
+.whale-more-wrap {
+  z-index: 4;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1px;
+  display: flex;
+  position: absolute;
+  bottom: -8px;
+  right: 2px;
+}
+
+.whale-more-btn {
+  z-index: 5;
+  color: #fff;
+  cursor: pointer;
+  background-color: #3786f1;
+  border: 3px solid #fff;
+  border-radius: 50rem;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  position: relative;
+  background-image: url('data:image/svg+xml,<svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="3" transform="matrix(-1 0 0 1 15 9)" fill="white"></circle><circle cx="3" cy="3" r="3" transform="matrix(-1 0 0 1 24 9)" fill="white"></circle><circle cx="3" cy="3" r="3" transform="matrix(-1 0 0 1 6 9)" fill="white"></circle></svg>');
+  background-size: 14px 14px;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  &:not(.--active):hover {
+    background-color: #2f6fc7;
+  }
+}
+
+.whale-more-drop {
+  display: none;
+  z-index: 4;
+  background-color: #fff;
+  border-radius: 20px .8rem .8rem;
+  width: 210px;
+  padding: 0;
+  position: absolute;
+  inset: 0% auto auto 0%;
+  overflow: hidden;
+  box-shadow: 0 12px 58px #bfcbdbb0;
+}
+
+.whale-more-drop__header {
+  color: #fff;
+  background-color: #3886f0;
+  padding: 6px 10px 6px 36px;
+  font-weight: 600;
+}
+
+.whale-more-drop__content {
+  flex-flow: column;
+  padding: 0;
+  display: flex;
+  min-height: 60px;
+}
+
+.drop-btn {
+  cursor: pointer;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  text-align: left;
+  line-height: 20px;
+
+  &:hover {
+    color: #0e589e;
+    background-color: #f0f6ff;
+    padding-left: 14px;
+  }
+
+  form {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
   }
 }
