@@ -286,36 +286,23 @@ gulp.task('css:dev',
 
 
 /* #region  Javascript */
-// const libs = [
-//   root.src.js.lib.jquery,
-//   root.src.js.lib.jqueryCrs,
-//   root.src.js.lib.splide,
-//   root.src.js.lib.splideGrid,
-//   root.src.js.lib.intlTelInput,
-//   root.src.js.lib.popper,
-//   root.src.js.lib.tippy,
-//   root.src.js.lib.parsley,
-//   root.src.js.lib.zoom,
-//   root.src.js.lib.fancybox,
-//   root.src.js.bundle.main,
-//   root.src.js.bundle.login,
-//   root.src.js.bundle.cartMail
-// ]
 
-// gulp.task('js:dev',
-//   () => {
-//     const libsStream = gulp
-//       .src(libs)
-//       .pipe(changed(root.dev.js))
-//       .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-//       .pipe(concat('libs.js'))
-//       // .pipe(minify())
-//       .pipe(gulp.dest(root.dev.js))
-
-//     return mergeStream(libsStream)
-//       .pipe(concat('partial.js'))
-//       .pipe(gulp.dest(root.dev.js));
+// gulp.task('js:dev', () => {
+//   // Browserify configuration
+//   return browserify({
+//     entries: [
+//       root.src.js.bundle.main
+//     ],
+//     debug: true // Enables source maps for easier debugging
 //   })
+//     .bundle()
+//     .pipe(source('partial.js')) // Output from Browserify as 'bundle.js'
+//     .pipe(buffer()) // Convert to buffer for further processing
+//     .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+//     .pipe(minify()) // Optional: Minify the final bundle
+//     .pipe(gulp.dest(root.dev.js)); // Output to the destination folder
+// })
+
 gulp.task('js:dev',
   () => {
     return gulp
@@ -343,6 +330,7 @@ gulp.task('js:dev',
       // .pipe(webpack(require('./../webpack.config.js')))
       .pipe(gulp.dest(root.dev.js))
   })
+
 /* #endregion Javascript */
 
 gulp.task('js2:dev',

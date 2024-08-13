@@ -1594,11 +1594,11 @@ const setPageFilters = () => {
           pageFilters.hideAll()
         }
       })
-      window.addEventListener('scroll', function () {
-        if (pageFilters.atLeastOneVisible()) {
-          pageFilters.hideAll()
-        }
-      })
+      // window.addEventListener('scroll', function () {
+      //   if (pageFilters.atLeastOneVisible()) {
+      //     pageFilters.hideAll()
+      //   }
+      // })
     }
     pageFilters.init = function () {
       pageFilters.observeCheckState()
