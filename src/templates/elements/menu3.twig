@@ -1,0 +1,47 @@
+<div class="menu">
+
+	<button class="menu__close-btn"></button>
+
+	<div class="menu__wrapper">
+		<div class="menu__header">
+			<button onclick="window.menu.closeOverList()" class="back-btn"></button>
+			<span id="activeListName" class="menu__spot-title" data-title="Explore Icebox">Explore Icebox</span>
+		</div>
+		<div class="menu__main">
+
+			<div
+				class="menu__content-list">
+				{# Main Navigation #}
+				<div class="menu__list">
+					{% include "components/menu/nav_main.twig" %}
+				</div>
+
+				{# Sub Navigation #}
+				<div class="menu__list --sub">
+					{% include "components/menu/nav_sub.twig" %}
+				</div>
+
+				{# Utils Navigation #}
+				<div class="menu__list --sub --grey">
+					{% include "components/menu/nav_utils.twig" %}
+				</div>
+			</div>
+
+			<div class="menu__over-list">
+				{% include "components/menu/list_men.twig" %}
+				{% include "components/menu/list_women.twig" %}
+				{% include "components/menu/list_gold_chains.twig" %}
+				{% include "components/menu/list_pendants.twig" %}
+				{% include "components/menu/list_earrings.twig" %}
+				{% include "components/menu/list_necklaces.twig" %}
+				{% include "components/menu/list_rings.twig" %}
+				{% include "components/menu/list_bracelets.twig" %}
+				{% include "components/menu/list_watches.twig" %}
+				{% include "components/menu/list_accessories.twig" %}
+				{% include "components/menu/list_custom.twig" %}
+				{% include "components/menu/list_travel_cases.twig" %}
+			</div>
+
+		</div>
+	</div>
+</div>

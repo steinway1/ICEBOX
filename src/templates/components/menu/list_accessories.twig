@@ -1,0 +1,12 @@
+<div class="menu__list" data-menu-list="accessories">
+	<a href="/results/accessories" class="menu__item">
+		<span>
+			<strong>Shop All</strong>
+		</span>
+	</a>
+  	{% for category in accessories_subcategories %}
+		<a href="{{category.href}}" class="menu__item">
+			<span>{{category.name}}</span>
+		</a>
+	{% endfor %}
+</div>

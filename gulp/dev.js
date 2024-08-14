@@ -293,14 +293,14 @@ gulp.task('css:dev',
 //     entries: [
 //       root.src.js.bundle.main
 //     ],
-//     debug: true // Enables source maps for easier debugging
+//     debug: true
 //   })
 //     .bundle()
-//     .pipe(source('partial.js')) // Output from Browserify as 'bundle.js'
-//     .pipe(buffer()) // Convert to buffer for further processing
+//     .pipe(source('partial.js'))
+//     .pipe(buffer())
 //     .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-//     .pipe(minify()) // Optional: Minify the final bundle
-//     .pipe(gulp.dest(root.dev.js)); // Output to the destination folder
+//     .pipe(minify())
+//     .pipe(gulp.dest(root.dev.js))
 // })
 
 gulp.task('js:dev',

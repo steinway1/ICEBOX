@@ -164,9 +164,9 @@ class SignModal {
   }
   open() {
     if (!this.opened) {
-      if (menu) {
-        if (menu.isOpened) {
-          menu.close()
+      if (window.menu) {
+        if (window.menu.state) {
+          window.menu.state = false
         }
       }
       const content = this.contentArr.find(e => e.dataset.signContent == 'sms') || this.contentArr[0]
