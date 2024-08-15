@@ -514,19 +514,21 @@
 
 
                 <!--<div class="loose__sort">
-            <select name="loose_sort" id="loose_sort">
-                <option value="default" selected>Best Match</option>
-                <option value="high_low">High - Low</option>
-                <option value="low_high">Low - High</option>
-            </select>
-        </div>-->
+																				            <select name="loose_sort" id="loose_sort">
+																				                <option value="default" selected>Best Match</option>
+																				                <option value="high_low">High - Low</option>
+																				                <option value="low_high">Low - High</option>
+																				            </select>
+																				        </div>-->
             </div>
         </div>
 
 
         <div class="loose__filters --static">
             <div class="wrapper">
-                <span class="typo_xs results-show">Showing <span class="show-number">1,356</span> diamonds</span>
+                <span class="typo_xs results-show">Showing
+			<span class="show-number">1,356</span>
+                diamonds</span>
                 <div class="--flex_8">
                     <form action="get" class="form-switch">
                         <input id="dmImages" onchange="updateView();" checked type="checkbox" class="switch">
@@ -552,152 +554,456 @@
             </div>
         </div>
 
+
+        <div class="loose__filters --static">
+            <div class="wrapper">
+                <div class="--flex_8">
+                    <div class="loan-input-wrap">
+                        <div class="loan-case__select-wrap">
+                            <select class="loan-case__input" name="loose_sort_price">
+                                <option value="" disabled selected>Sort By Price</option>
+                                <option value="high-low">Price High - Low</option>
+                                <option value="low-high">Price Low - High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="loan-input-wrap">
+                        <div class="loan-case__select-wrap">
+                            <select class="loan-case__input" name="loose_sort_price">
+                                <option value="" disabled selected>Sort By Size</option>
+                                <option value="high-low">Carat Weight High - Low</option>
+                                <option value="low-high">Carat Weight Low - High</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="loose__results">
             <div class="wrapper">
-                <div class="default-sample book-loader">
-                    <div class="diamond">
-                        <div class="diamond__main">
-                            <img src="/assets/public-2022/loose-diamonds/img/dim-dm.svg" loading="lazy" class="default-img">
-                            <div class="diamond__group-name">
-                                <p class="diamond__details-title">Diamond Name</p>
-                                <p class="diamond-name">0.5-CARATROUND DIAMOND</p>
-                                <p class="diamond__price-mob">Price: <span class="mob__price-span"></span></p>
-                            </div>
-                        </div>
-                        <div class="diamond__details">
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">Carat</p>
-                                <p class="diamond-details">0.80</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">color</p>
-                                <p class="diamond-details">H</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">clarity</p>
-                                <p class="diamond-details">SI1</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">cut</p>
-                                <p class="diamond-details">good</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">polish</p>
-                                <p class="diamond-details">very good</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">symmetry</p>
-                                <p class="diamond-details">very good</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">price</p>
-                                <p class="diamond-details price"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="diamond">
-                        <div class="diamond__main">
-                            <img src="/assets/public-2022/loose-diamonds/img/dim-dm.svg" loading="lazy" class="default-img">
-                            <div class="diamond__group-name">
-                                <p class="diamond__details-title">Diamond Name</p>
-                                <p class="diamond-name">0.5-CARATROUND DIAMOND</p>
-                                <p class="diamond__price-mob">Price: <span class="mob__price-span"></span></p>
-                            </div>
-                        </div>
-                        <div class="diamond__details">
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">Carat</p>
-                                <p class="diamond-details">0.80</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">color</p>
-                                <p class="diamond-details">H</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">clarity</p>
-                                <p class="diamond-details">SI1</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">cut</p>
-                                <p class="diamond-details">good</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">polish</p>
-                                <p class="diamond-details">very good</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">symmetry</p>
-                                <p class="diamond-details">very good</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">price</p>
-                                <p class="diamond-details price"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="diamond">
-                        <div class="diamond__main">
-                            <img src="/assets/public-2022/loose-diamonds/img/dim-dm.svg" loading="lazy" class="default-img">
-                            <div class="diamond__group-name">
-                                <p class="diamond__details-title">Diamond Name</p>
-                                <p class="diamond-name">0.5-CARATROUND DIAMOND</p>
-                                <p class="diamond__price-mob">Price: <span class="mob__price-span"></span></p>
-                            </div>
-                        </div>
-                        <div class="diamond__details">
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">Carat</p>
-                                <p class="diamond-details">0.80</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">color</p>
-                                <p class="diamond-details">H</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">clarity</p>
-                                <p class="diamond-details">SI1</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">cut</p>
-                                <p class="diamond-details">good</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">polish</p>
-                                <p class="diamond-details">very good</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">symmetry</p>
-                                <p class="diamond-details">very good</p>
-                            </div>
-                            <div class="diamond__details-col">
-                                <p class="diamond__details-title">price</p>
-                                <p class="diamond-details price"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="loose__results-grid results">
 
-                </div>
-                <div class="no-wrap" style="display:none;">
-                    <div class="no-sample">
-                        <div class="no-sample__img-wrap"><img src="/assets/public-2022/loose-diamonds/img/dim-dm.svg" loading="lazy" alt="" class="dim-diamond"></div>
-                        <div class="no-sample__body">
-                            <div class="no-sample__fline top"></div>
-                            <div class="no-sample__fline bottom"></div>
+                    <div class="dm-item">
+
+                        <div class="dm-item__admin">
+                            <button class="dm-item__hide-admin" onclick="window.loose.hideAdmin(event.target)">Hide</button>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_arbie">
+                                <span>Arbie</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_michelle">
+                                <span>Michelle</span>
+                            </label>
+                            <label class="custom-checkbox --green">
+                                <input type="radio" name="diamond_stock_" value="diamond_stock">
+                                <span>In Stock</span>
+                            </label>
+                            <label class="custom-checkbox --red">
+                                <input type="radio" name="diamond_stock_" value="diamond_sold">
+                                <span>Sold</span>
+                            </label>
+                            <input type="text" name="diamond_country_" value="" placeholder="Country" class="loose-select__input">
+                            <input type="number" min="0" step="0.05" name="diamond_vs_" value="" placeholder="VS" class="loose-select__input">
+                        </div>
+
+                        <a href="/diamond/162770338" target="_blank" class="dm-item__media">
+                            <img src="https://media.rapnet.com/ewogICJidWNrZXQiOiAibWVkaWEtdXBsb2FkLWZpbGVzLXByb2QteHFrbHMiLAogICJrZXkiOiAicmFwbmV0LzMyNDU3L2ltYWdlLzE1ODU0MDQxN19OMDMxNDY3OS1PZmZpY2VsaWdodCBibGFjay0wMS8wNjU3OTk0Ni0zODE0LTQ4MzctYjY1MC05ZDUxMDhkYTM5OTIuanBnIiwKICAiZWRpdHMiOiB7CiAgICAicmVzaXplIjogewogICAgICAid2lkdGgiOiA3NjAsCiAgICAgICJoZWlnaHQiOiA3NjAKICAgIH0KICB9LAogICJjcmVhdGVkZGF0ZSI6ICIwMy8xOC8yMDI0IDA3OjAxOjM1Igp9?Signature=ocltuR~bgnYQ3a-QlChdqAAEXdEbIhN46xn9vJXb-U~XXublGzsYC34gswRI7MjRb2eYQkfPYkBmYtFTURimvQFQ-2z4g0Y3e5z2srD~wj4REX2Ns4CmjJ9fTvGcQgim2yRTZ7FZRklhyTIW~jWZTMSQI7YrvsEF0pFe9s08WQxG8rOsKCfiAamF-d-UedGoauj0oRlCslDEqUH1jX95437gitl~ww51k07YFSg6qGNIyuGWoQyRbZM1F-NPbmJIINmD515KtCUORIfVf0jK8L5OV0s-9dUj04G4yjlcBDPB-l3xRyBz4Z~hrvlh59dqBWDZQp6v3hOMsSIu6vym8g__&Key-Pair-Id=APKAIALSMTWCPJ6TB5HQ&Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vbWVkaWEucmFwbmV0LmNvbS8qIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzI0MTc1Nzc4fSwiRGF0ZUdyZWF0ZXJUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3MjM1NzAwNzh9fX1dfQ__" alt="" loading="lazy">
+                            <span>Sample Image</span>
+                        </a>
+                        <div class="dm-item__details">
+                            <span class="dm-item__spot">
+							<span>.50ctw</span>
+                            </span>
+                            <h3 class="dm-item__name">
+                                <a href="/diamond/162770338" target="_blank">
+                                    Round Diamond 162770338 - I Color - VS2 Clarity - .50ctw Natural
+                                </a>
+                            </h3>
+                            <div class="dm-item__price">
+                                $1,125
+                            </div>
                         </div>
                     </div>
-                    <div class="no-sample behind">
-                        <div class="no-sample__img-wrap behind"><img src="/assets/public-2022/loose-diamonds/img/dim-dm.svg" loading="lazy" alt="" class="dim-diamond"></div>
-                        <div class="no-sample__body">
-                            <div class="no-sample__fline top behind"></div>
-                            <div class="no-sample__fline bottom behind"></div>
+                    <div class="dm-item">
+
+                        <div class="dm-item__admin">
+                            <button class="dm-item__hide-admin" onclick="window.loose.hideAdmin(event.target)">Hide</button>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_arbie">
+                                <span>Arbie</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_michelle">
+                                <span>Michelle</span>
+                            </label>
+                            <label class="custom-checkbox --green">
+                                <input type="radio" name="diamond_stock_" value="diamond_stock">
+                                <span>In Stock</span>
+                            </label>
+                            <label class="custom-checkbox --red">
+                                <input type="radio" name="diamond_stock_" value="diamond_sold">
+                                <span>Sold</span>
+                            </label>
+                            <input type="text" name="diamond_country_" value="" placeholder="Country" class="loose-select__input">
+                            <input type="number" min="0" step="0.05" name="diamond_vs_" value="" placeholder="VS" class="loose-select__input">
+                        </div>
+
+                        <a href="/diamond/162770338" target="_blank" class="dm-item__media">
+                            <img src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6692b030c3652e1b087d4654_dm_sample1.jpg" alt="" loading="lazy">
+                            <span>Sample Image</span>
+                        </a>
+                        <div class="dm-item__details">
+                            <span class="dm-item__spot">
+							<span>.50ctw</span>
+                            </span>
+                            <h3 class="dm-item__name">
+                                <a href="/diamond/162770338" target="_blank">
+                                    Round Diamond 162770338 - I Color - VS2 Clarity - .50ctw Natural
+                                </a>
+                            </h3>
+                            <div class="dm-item__price">
+                                $1,125
+                            </div>
                         </div>
                     </div>
-                    <p class="no-title">Unfortunately, no diamonds were found.</p>
-                    <p class="no-subtitle">Try changing your search parameters.</p>
-                </div>
-                <div class="pagination-wrapper">
+                    <div class="dm-item">
+
+                        <div class="dm-item__admin">
+                            <button class="dm-item__hide-admin" onclick="window.loose.hideAdmin(event.target)">Hide</button>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_arbie">
+                                <span>Arbie</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_michelle">
+                                <span>Michelle</span>
+                            </label>
+                            <label class="custom-checkbox --green">
+                                <input type="radio" name="diamond_stock_" value="diamond_stock">
+                                <span>In Stock</span>
+                            </label>
+                            <label class="custom-checkbox --red">
+                                <input type="radio" name="diamond_stock_" value="diamond_sold">
+                                <span>Sold</span>
+                            </label>
+                            <input type="text" name="diamond_country_" value="" placeholder="Country" class="loose-select__input">
+                            <input type="number" min="0" step="0.05" name="diamond_vs_" value="" placeholder="VS" class="loose-select__input">
+                        </div>
+
+                        <a href="/diamond/162770338" target="_blank" class="dm-item__media">
+                            <img src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6692b030c3652e1b087d4654_dm_sample1.jpg" alt="" loading="lazy">
+                            <span>Sample Image</span>
+                        </a>
+                        <div class="dm-item__details">
+                            <span class="dm-item__spot">
+							<span>.50ctw</span>
+                            </span>
+                            <h3 class="dm-item__name">
+                                <a href="/diamond/162770338" target="_blank">
+                                    Round Diamond 162770338 - I Color - VS2 Clarity - .50ctw Natural
+                                </a>
+                            </h3>
+                            <div class="dm-item__price">
+                                $1,125
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dm-item">
+
+                        <div class="dm-item__admin">
+                            <button class="dm-item__hide-admin" onclick="window.loose.hideAdmin(event.target)">Hide</button>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_arbie">
+                                <span>Arbie</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_michelle">
+                                <span>Michelle</span>
+                            </label>
+                            <label class="custom-checkbox --green">
+                                <input type="radio" name="diamond_stock_" value="diamond_stock">
+                                <span>In Stock</span>
+                            </label>
+                            <label class="custom-checkbox --red">
+                                <input type="radio" name="diamond_stock_" value="diamond_sold">
+                                <span>Sold</span>
+                            </label>
+                            <input type="text" name="diamond_country_" value="" placeholder="Country" class="loose-select__input">
+                            <input type="number" min="0" step="0.05" name="diamond_vs_" value="" placeholder="VS" class="loose-select__input">
+                        </div>
+
+                        <a href="/diamond/162770338" target="_blank" class="dm-item__media">
+                            <img src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6692b030c3652e1b087d4654_dm_sample1.jpg" alt="" loading="lazy">
+                            <span>Sample Image</span>
+                        </a>
+                        <div class="dm-item__details">
+                            <span class="dm-item__spot">
+							<span>.50ctw</span>
+                            </span>
+                            <h3 class="dm-item__name">
+                                <a href="/diamond/162770338" target="_blank">
+                                    Round Diamond 162770338 - I Color - VS2 Clarity - .50ctw Natural
+                                </a>
+                            </h3>
+                            <div class="dm-item__price">
+                                $1,125
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dm-item">
+
+                        <div class="dm-item__admin">
+                            <button class="dm-item__hide-admin" onclick="window.loose.hideAdmin(event.target)">Hide</button>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_arbie">
+                                <span>Arbie</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_michelle">
+                                <span>Michelle</span>
+                            </label>
+                            <label class="custom-checkbox --green">
+                                <input type="radio" name="diamond_stock_" value="diamond_stock">
+                                <span>In Stock</span>
+                            </label>
+                            <label class="custom-checkbox --red">
+                                <input type="radio" name="diamond_stock_" value="diamond_sold">
+                                <span>Sold</span>
+                            </label>
+                            <input type="text" name="diamond_country_" value="" placeholder="Country" class="loose-select__input">
+                            <input type="number" min="0" step="0.05" name="diamond_vs_" value="" placeholder="VS" class="loose-select__input">
+                        </div>
+
+                        <a href="/diamond/162770338" target="_blank" class="dm-item__media">
+                            <img src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6692b030c3652e1b087d4654_dm_sample1.jpg" alt="" loading="lazy">
+                            <span>Sample Image</span>
+                        </a>
+                        <div class="dm-item__details">
+                            <span class="dm-item__spot">
+							<span>.50ctw</span>
+                            </span>
+                            <h3 class="dm-item__name">
+                                <a href="/diamond/162770338" target="_blank">
+                                    Round Diamond 162770338 - I Color - VS2 Clarity - .50ctw Natural
+                                </a>
+                            </h3>
+                            <div class="dm-item__price">
+                                $1,125
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dm-item">
+
+                        <div class="dm-item__admin">
+                            <button class="dm-item__hide-admin" onclick="window.loose.hideAdmin(event.target)">Hide</button>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_arbie">
+                                <span>Arbie</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_michelle">
+                                <span>Michelle</span>
+                            </label>
+                            <label class="custom-checkbox --green">
+                                <input type="radio" name="diamond_stock_" value="diamond_stock">
+                                <span>In Stock</span>
+                            </label>
+                            <label class="custom-checkbox --red">
+                                <input type="radio" name="diamond_stock_" value="diamond_sold">
+                                <span>Sold</span>
+                            </label>
+                            <input type="text" name="diamond_country_" value="" placeholder="Country" class="loose-select__input">
+                            <input type="number" min="0" step="0.05" name="diamond_vs_" value="" placeholder="VS" class="loose-select__input">
+                        </div>
+
+                        <a href="/diamond/162770338" target="_blank" class="dm-item__media">
+                            <img src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6692b030c3652e1b087d4654_dm_sample1.jpg" alt="" loading="lazy">
+                            <span>Sample Image</span>
+                        </a>
+                        <div class="dm-item__details">
+                            <span class="dm-item__spot">
+							<span>.50ctw</span>
+                            </span>
+                            <h3 class="dm-item__name">
+                                <a href="/diamond/162770338" target="_blank">
+                                    Round Diamond 162770338 - I Color - VS2 Clarity - .50ctw Natural
+                                </a>
+                            </h3>
+                            <div class="dm-item__price">
+                                $1,125
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dm-item">
+
+                        <div class="dm-item__admin">
+                            <button class="dm-item__hide-admin" onclick="window.loose.hideAdmin(event.target)">Hide</button>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_arbie">
+                                <span>Arbie</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_michelle">
+                                <span>Michelle</span>
+                            </label>
+                            <label class="custom-checkbox --green">
+                                <input type="radio" name="diamond_stock_" value="diamond_stock">
+                                <span>In Stock</span>
+                            </label>
+                            <label class="custom-checkbox --red">
+                                <input type="radio" name="diamond_stock_" value="diamond_sold">
+                                <span>Sold</span>
+                            </label>
+                            <input type="text" name="diamond_country_" value="" placeholder="Country" class="loose-select__input">
+                            <input type="number" min="0" step="0.05" name="diamond_vs_" value="" placeholder="VS" class="loose-select__input">
+                        </div>
+
+                        <a href="/diamond/162770338" target="_blank" class="dm-item__media">
+                            <img src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6692b030c3652e1b087d4654_dm_sample1.jpg" alt="" loading="lazy">
+                            <span>Sample Image</span>
+                        </a>
+                        <div class="dm-item__details">
+                            <span class="dm-item__spot">
+							<span>.50ctw</span>
+                            </span>
+                            <h3 class="dm-item__name">
+                                <a href="/diamond/162770338" target="_blank">
+                                    Round Diamond 162770338 - I Color - VS2 Clarity - .50ctw Natural
+                                </a>
+                            </h3>
+                            <div class="dm-item__price">
+                                $1,125
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dm-item">
+
+                        <div class="dm-item__admin">
+                            <button class="dm-item__hide-admin" onclick="window.loose.hideAdmin(event.target)">Hide</button>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_arbie">
+                                <span>Arbie</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_michelle">
+                                <span>Michelle</span>
+                            </label>
+                            <label class="custom-checkbox --green">
+                                <input type="radio" name="diamond_stock_" value="diamond_stock">
+                                <span>In Stock</span>
+                            </label>
+                            <label class="custom-checkbox --red">
+                                <input type="radio" name="diamond_stock_" value="diamond_sold">
+                                <span>Sold</span>
+                            </label>
+                            <input type="text" name="diamond_country_" value="" placeholder="Country" class="loose-select__input">
+                            <input type="number" min="0" step="0.05" name="diamond_vs_" value="" placeholder="VS" class="loose-select__input">
+                        </div>
+
+                        <a href="/diamond/162770338" target="_blank" class="dm-item__media">
+                            <img src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6692b030c3652e1b087d4654_dm_sample1.jpg" alt="" loading="lazy">
+                            <span>Sample Image</span>
+                        </a>
+                        <div class="dm-item__details">
+                            <span class="dm-item__spot">
+							<span>.50ctw</span>
+                            </span>
+                            <h3 class="dm-item__name">
+                                <a href="/diamond/162770338" target="_blank">
+                                    Round Diamond 162770338 - I Color - VS2 Clarity - .50ctw Natural
+                                </a>
+                            </h3>
+                            <div class="dm-item__price">
+                                $1,125
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dm-item">
+
+                        <div class="dm-item__admin">
+                            <button class="dm-item__hide-admin" onclick="window.loose.hideAdmin(event.target)">Hide</button>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_arbie">
+                                <span>Arbie</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_michelle">
+                                <span>Michelle</span>
+                            </label>
+                            <label class="custom-checkbox --green">
+                                <input type="radio" name="diamond_stock_" value="diamond_stock">
+                                <span>In Stock</span>
+                            </label>
+                            <label class="custom-checkbox --red">
+                                <input type="radio" name="diamond_stock_" value="diamond_sold">
+                                <span>Sold</span>
+                            </label>
+                            <input type="text" name="diamond_country_" value="" placeholder="Country" class="loose-select__input">
+                            <input type="number" min="0" step="0.05" name="diamond_vs_" value="" placeholder="VS" class="loose-select__input">
+                        </div>
+
+                        <a href="/diamond/162770338" target="_blank" class="dm-item__media">
+                            <img src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6692b030c3652e1b087d4654_dm_sample1.jpg" alt="" loading="lazy">
+                            <span>Sample Image</span>
+                        </a>
+                        <div class="dm-item__details">
+                            <span class="dm-item__spot">
+							<span>.50ctw</span>
+                            </span>
+                            <h3 class="dm-item__name">
+                                <a href="/diamond/162770338" target="_blank">
+                                    Round Diamond 162770338 - I Color - VS2 Clarity - .50ctw Natural
+                                </a>
+                            </h3>
+                            <div class="dm-item__price">
+                                $1,125
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dm-item">
+
+                        <div class="dm-item__admin">
+                            <button class="dm-item__hide-admin" onclick="window.loose.hideAdmin(event.target)">Hide</button>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_arbie">
+                                <span>Arbie</span>
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="radio" name="diamond_admin_" value="diamond_michelle">
+                                <span>Michelle</span>
+                            </label>
+                            <label class="custom-checkbox --green">
+                                <input type="radio" name="diamond_stock_" value="diamond_stock">
+                                <span>In Stock</span>
+                            </label>
+                            <label class="custom-checkbox --red">
+                                <input type="radio" name="diamond_stock_" value="diamond_sold">
+                                <span>Sold</span>
+                            </label>
+                            <input type="text" name="diamond_country_" value="" placeholder="Country" class="loose-select__input">
+                            <input type="number" min="0" step="0.05" name="diamond_vs_" value="" placeholder="VS" class="loose-select__input">
+                        </div>
+
+                        <a href="/diamond/162770338" target="_blank" class="dm-item__media">
+                            <img src="https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/6692b030c3652e1b087d4654_dm_sample1.jpg" alt="" loading="lazy">
+                            <span>Sample Image</span>
+                        </a>
+                        <div class="dm-item__details">
+                            <span class="dm-item__spot">
+							<span>.50ctw</span>
+                            </span>
+                            <h3 class="dm-item__name">
+                                <a href="/diamond/162770338" target="_blank">
+                                    Round Diamond 162770338 - I Color - VS2 Clarity - .50ctw Natural
+                                </a>
+                            </h3>
+                            <div class="dm-item__price">
+                                $1,125
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

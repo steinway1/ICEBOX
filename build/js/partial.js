@@ -9003,6 +9003,15 @@ class LooseDiamonds {
   applyFilters() {
     this.closeSortModal()
   }
+  hideAdmin(target) {
+    if (target) {
+      const item = target.closest('.dm-item')
+      const adminBar = item.querySelector('.dm-item__admin')
+      if (adminBar) {
+        adminBar.style.display = 'none'
+      }
+    }
+  }
 
   // Bind Events
   bindLooseSelects() {
