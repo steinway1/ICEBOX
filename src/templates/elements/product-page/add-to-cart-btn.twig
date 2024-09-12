@@ -1,24 +1,44 @@
 <div class="side-row__payments">
-	<div class="product__btn-group">
-		{% if product.temp_unavailable == false %}
-			{% if product.call_for_price == false %}
-				<a id="ajax-button" href="javascript:void(0);" class="buy-btn" onclick="addToCart({{IN_IFRAME}})">
-					<span>ADD TO CART</span>
-					<span class="buy-btn__price" id="add_cart_btn_price">...</span>
-				</a>
-			{% else %}
-				<a href="tel:+1770828554" class="buy-btn">
-					<span>{{ product.call_for_price_text }}</span>
-				</a>
-			{% endif %}
+    <div class="product__btn-group">
+        {% if product.temp_unavailable == false %}
+            {% if product.call_for_price == false %}
+                <a id="ajax-button"  href="javascript:void(0);"  class="buy-btn"  onclick="addToCart({{IN_IFRAME}})" >
+                    {% if product.made_to_order == true %}
+                      <span>ADD TO CART | <em>MADE TO ORDER</em></span>
+                    {% else %}
+                      <span>ADD TO CART | <em>IN STOCK</em></span>
+                    {% endif %}
+                </a>
+            {% else %}
+                <a  href="tel:+1770828554"  class="buy-btn">
+                    <span>{{ product.call_for_price_text }}</span>
+                </a>
+            {% endif %}
 
-		{% else %}
-			<a href="javascript:void(0)" class="buy-btn">
-				<span>Temporarily Unavailable</span>
-			</a>
-		{% endif %}
+        {% else %}
+            <a href="javascript:void(0)"  class="buy-btn">
+                {% if product.item.sold %}
+                    <span>Sold</span>
+                {% else %}
+                    <span>Temporarily Unavailable</span>
+                {% endif %}
 
-	</div>
+            </a>
+        {% endif %}
 
-	{% include "elements/paylater-box_short.twig" %}
+    </div>
+
+    {% if is_watch_market_item  %}
+        <a class="product__wa-link" href="/chat-whatsapp-2?p_id={{ product.item.id }}" target="_blank">
+            <img src="{{THEME_ASSETS_FOLDER}}wa_fill-icon.svg" alt="Whatsapp Icon Picture" loading="eager">
+            <span>Talk Now on WhatsApp</span>
+        </a>
+    {% else %}
+        <a class="product__wa-link" href="/chat-whatsapp?p_id={{ product.item.id }}" target="_blank">
+            <img src="{{THEME_ASSETS_FOLDER}}wa_fill-icon.svg" alt="Whatsapp Icon Picture" loading="eager">
+            <span>Talk Now on WhatsApp</span>
+        </a>
+        {% include "elements/paylater-box_short.twig" %}
+
+    {% endif %}
 </div>

@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pin = new LockPin({
       code: 3256
     })
-    pin.push()
+    // pin.push()
   }
 })
 
@@ -1414,7 +1414,7 @@ const whaleCards = {
       // Mouseover Avatar
       document.addEventListener('mouseover', (e) => {
         const target = e.target
-        if (target.closest('.whale-card__avatar')) {
+        if (target.closest('.whale-card__avatar') && (!target.closest('.whale-more-wrap'))) {
           const card = target.closest('.whale-card')
           if (card) {
             if (!card.classList.contains(cls)) {

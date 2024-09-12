@@ -85,8 +85,8 @@
 		</div>
 
 		{# {% if  (productItem.inStock or productItem.force_sale) and productItem.is_discounted and productItem.is_gold_chain == false %}
-			{% include "elements/product-card/stock-dash-box.twig" %}
-		{% endif %} #}
+					{% include "elements/product-card/stock-dash-box.twig" %}
+				{% endif %} #}
 
 
 		<div class="product-card__details">
@@ -99,7 +99,12 @@
 					</span>
 				{% endif %}
 				<h2>
-					<a href="{{productItem.href}}" class="product-card__name">{{productItem.name}}</a>
+					<a href="{{productItem.href}}" class="product-card__name">
+						{% if productItem.inStock == true %}
+							<span data-tip="In Stock" data-tip-class="stock" class="stock-inline"></span>
+						{% endif %}
+						<span>{{productItem.name}}</span>
+					</a>
 				</h2>
 			</div>
 

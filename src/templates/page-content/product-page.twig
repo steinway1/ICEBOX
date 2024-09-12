@@ -1,5 +1,5 @@
 <div
-	class="product__wrapper{% if black_friday == true %} product_bfs{% endif %}">
+	class="product__wrapper">
 
 
 	<!-- #region Viewer / Media -->
@@ -7,49 +7,58 @@
 		class="product__view">
 
 		{# Desktop Viewer #}
-		<div class="product__desktop-viewer">
-			{% for item in product.media.yellow %}
-				{% include "../elements/product-page/product-media.twig" with {
-        type: item.type,
-        imgSrc: item.imgSrc,
-        alt: item.alt,
-        splide: false
-      } %}
-			{% endfor %}
-		</div>
+		{% for media in product.media %}
+			<div class="product__desktop-viewer Poster-{{ media.color }}" {% if media.visible == false %} style="display:none" {% endif %}>
+				{% for item in product.media.yellow %}
+					{% include "elements/product-page/product-media.twig" with {
+					type: item.type,
+					imgSrc: item.imgSrc,
+					alt: item.alt,
+					zoom:item.zoom_class,
+					splide: false
+				  } %}
+				{% endfor %}
+			</div>
+		{% endfor %}
 
 		{# Slider Viewer #}
 		<div class="product__slider-viewer">
-			<div class="product-slider splide product-slide-yellow">
+			{% set loop_index = 0 %}
+			{% for media in product.media %}
+			<div class="product-slider splide product-slide-{{ media.color }} mobile-slide-{{ media.color }}" {% if media.visible == false %} style="display:none" {% endif %}>
 				<div class="splide__track">
 					<div class="splide__list">
 						{% for item in product.media.yellow %}
-							{% include "../elements/product-page/product-media.twig" with {
-              type: item.type,
-              imgSrc: item.imgSrc,
-              alt: item.alt,
-              splide: true
-            } %}
+							{% include "elements/product-page/product-media.twig" with {
+						  type: item.type,
+						  index:loop_index,
+						  imgSrc: item.imgSrc,
+						  alt: item.alt,
+						  splide: true
+						} %}
 						{% endfor %}
+					{% set loop_index = loop_index + 1 %}
 					</div>
 				</div>
 			</div>
 
-			{# Thumbnails Slider #}
-			{# <div class="product-slider_thumbnails splide product-thumb-yellow">
+			{# Thumbnails Slider
+			<div class="product-slider_thumbnails splide product-thumb-{{ media.color }} mobile-thumb-{{ media.color }}" {% if media.visible == false %} style="display:none" {% endif %}>
 				<div class="splide__track">
 					<div class="splide__list">
-						{% for item in product.media.yellow %}
-							{% include "../elements/product-page/product-media.twig" with {
-              type: item.type,
-              imgSrc: item.imgSrc,
-              alt: item.alt,
-              splide: true
-            } %}
+						{% for item in media.elements %}
+							{% include "elements/product-page/product-media.twig" with {
+							  type: item.type,
+							  imgSrc: item.src,
+							  alt: item.alt,
+							  splide: true
+							} %}
 						{% endfor %}
 					</div>
 				</div>
-			</div> #}
+			</div>
+			#}
+			{% endfor %}
 		</div>
 	</div>
 	<!-- #endregion -->
@@ -60,37 +69,36 @@
 			class="side-body">
 
 			{# BREADCRUMBS #}
-			{% include "../elements/product-page/breadcrumbs.twig" %}
+			{% include "elements/product-page/breadcrumbs.twig" %}
 
 			{# ITEM #}
-			{% include "../elements/product-page/item-row.twig" %}
+			{% include "elements/product-page/item-row.twig" %}
 
 			{# ITEM OPTIONS #}
-			{% include "../elements/product-page/options-row.twig" %}
+			{% include "elements/product-page/options-row.twig" %}
 
 			{# ITEM DETAILS #}
-			{% include "../elements/product-page/details-row.twig" %}
+			{% include "elements/product-page/details-row.twig" %}
 
 			{# GUIDE MODAL #}
-			{% include "../elements/pg-modal.twig" %}
+			{% include "elements/pg-modal.twig" %}
 
-		{# FLOATING BTN #}
-			{# {% include "../elements/product-page/floating-btn.twig" %} #}
+			{# FLOATING BTN #}
+			{% include "elements/product-page/floating-btn.twig" %}
 
 
 		</div>
 	</aside>
 
 </div>
+{% include "elements/product-page/promises.twig" %}
+{% include "elements/product-page/hidden-form.twig" %}
 
-
-{# {% include "elements/product-page/countdown-row.twig" %} #}
-{# {% include "elements/page-reviews.twig" %} #}
-{% include "../elements/product-page/promises.twig" %}
-
-{# YOU MAY ALSO LIKE #}
-{% include "../elements/product-page/also-slider.twig" %}
+{% for Productslider in product.bottom_sliders %}
+	{% include "elements/product-page/items-slider.twig" with {slider:Productslider}%}
+{% endfor %}
+{% if  product.item.salePrice is defined %}
 <div class="product-page__float-stock">
 	{% include "elements/product-card/stock-dash-box.twig" %}
 </div>
-{# {% include "elements/zoom-modal.twig" %} #}
+{% endif %}

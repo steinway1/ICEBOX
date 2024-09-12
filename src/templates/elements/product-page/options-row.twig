@@ -308,19 +308,7 @@
 		</div>
 
 		{# Pay Buttons #}
-		<div class="side-row__payments">
-			<div class="product__btn-group">
-				<a id="productAddCart" href="javascript:void(0)" onclick="addToCartNew()" class="buy-btn">
-					<span>Add To Cart</span>
-					<span class="buy-btn__price">${{product.item.price}}</span>
-				</a>
-			</div>
-			<a class="product__wa-link" href="/chat-whatsapp" target="_blank">
-				<img src="{{THEME_ASSETS_FOLDER}}wa_fill-icon.svg" alt="Whatsapp Icon Picture" loading="eager">
-				<span>Talk Now on WhatsApp</span>
-			</a>
-			{% include "../paylater-box_short.twig" %}
-		</div>
+    {% include 'elements/product-page/add-to-cart-btn.twig'%}
 
 	</div>
 </div>
