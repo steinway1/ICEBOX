@@ -507,14 +507,14 @@ class Backdrop {
     }, 1);
   }
 
-  hide(ignoreCallback = false) {
+  hide() {
     this.el.style.opacity = '0'
     setTimeout(() => {
       this.el.style.display = 'none'
       this.el.remove()
     }, getTransitionTime(this.el));
 
-    if (this.callback && !ignoreCallback) {
+    if (this.callback) {
       this.callback()
     }
   }
@@ -1538,10 +1538,6 @@ class Menu {
   close(fromSetter = false) {
     if (!fromSetter) {
       this._state = false
-    }
-
-    if (window.menuBackdrop) {
-      window.menuBackdrop.hide(true)
     }
 
     unlockScroll()
