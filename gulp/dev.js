@@ -84,7 +84,8 @@ const root = {
         parsley: './src/js/parsley.min.js',
         zoom: './src/js/jQuery-zoom.js',
         fancybox: './src/js/fancybox.min.js',
-        sirv: './src/js/sirv.js'
+        sirv: './src/js/sirv.js',
+        zenscroll: './src/js/zenscroll.js'
       },
       bundle: {
         main: './src/js/main.js',
@@ -287,49 +288,50 @@ gulp.task('css:dev',
 
 /* #region  Javascript */
 
-// gulp.task('js:dev', () => {
-//   // Browserify configuration
-//   return browserify({
-//     entries: [
-//       root.src.js.bundle.main
-//     ],
-//     debug: true
-//   })
-//     .bundle()
-//     .pipe(source('partial.js'))
-//     .pipe(buffer())
-//     .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-//     .pipe(minify())
-//     .pipe(gulp.dest(root.dev.js))
-// })
-
-gulp.task('js:dev',
-  () => {
-    return gulp
-      .src([
-        root.src.js.lib.jquery,
-        root.src.js.lib.jqueryCrs,
-        root.src.js.lib.splide,
-        root.src.js.lib.splideGrid,
-        root.src.js.lib.intlTelInput,
-        root.src.js.lib.popper,
-        root.src.js.lib.tippy,
-        root.src.js.lib.parsley,
-        root.src.js.lib.zoom,
-        root.src.js.lib.fancybox,
-        // root.src.js.lib.sirv,
-        root.src.js.bundle.main,
-        root.src.js.bundle.login,
-        root.src.js.bundle.cartMail
-
-      ])
-      .pipe(changed(root.dev.js))
-      .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-      .pipe(concat('partial.js'))
-      .pipe(minify())
-      // .pipe(webpack(require('./../webpack.config.js')))
-      .pipe(gulp.dest(root.dev.js))
+gulp.task('js:dev', () => {
+  // Browserify configuration
+  return browserify({
+    entries: [
+      root.src.js.bundle.main
+    ],
+    debug: true
   })
+    .bundle()
+    .pipe(source('partial.js'))
+    .pipe(buffer())
+    .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+    .pipe(minify())
+    .pipe(gulp.dest(root.dev.js))
+})
+
+// gulp.task('js:dev',
+//   () => {
+//     return gulp
+//       .src([
+//         root.src.js.lib.jquery,
+//         root.src.js.lib.jqueryCrs,
+//         root.src.js.lib.splide,
+//         root.src.js.lib.splideGrid,
+//         root.src.js.lib.intlTelInput,
+//         root.src.js.lib.popper,
+//         root.src.js.lib.tippy,
+//         root.src.js.lib.parsley,
+//         root.src.js.lib.zoom,
+//         root.src.js.lib.fancybox,
+//         root.src.js.lib.zenscroll,
+//         // root.src.js.lib.sirv,
+//         root.src.js.bundle.main,
+//         root.src.js.bundle.login,
+//         root.src.js.bundle.cartMail
+
+//       ])
+//       .pipe(changed(root.dev.js))
+//       .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+//       .pipe(concat('partial.js'))
+//       .pipe(minify())
+//       // .pipe(webpack(require('./../webpack.config.js')))
+//       .pipe(gulp.dest(root.dev.js))
+//   })
 
 /* #endregion Javascript */
 

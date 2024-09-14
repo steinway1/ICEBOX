@@ -6,6 +6,7 @@ const fs = require('fs')
 const clean = require('gulp-clean')
 const changed = require('gulp-changed')
 const server = require('gulp-server-livereload');
+const webserver = require('gulp-webserver');
 // HTML
 const fileInclude = require('gulp-file-include')
 const prettyHtml = require('gulp-pretty-html')
@@ -14,14 +15,19 @@ const twig = require('gulp-twig')
 // CSS
 const sass = require('gulp-sass')(require('sass'))
 const sassGlob = require('gulp-sass-glob')
+const sourceMaps = require('gulp-sourcemaps')
+const groupMedia = require('gulp-group-css-media-queries');
 const cleanCSS = require('gulp-clean-css')
-const groupMedia = require('gulp-group-css-media-queries')
-const purgecss = require('gulp-purgecss')
 // JS
 const webpack = require('webpack-stream')
 const babel = require('gulp-babel')
 const concat = require('gulp-concat')
 const minify = require('gulp-minify')
+const ts = require('gulp-typescript')
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const mergeStream = require('merge-stream')
 // Other
 const plumber = require('gulp-plumber')
 const notify = require('gulp-notify')
@@ -254,35 +260,51 @@ gulp.task('css:build',
   }
 )
 
-
-gulp.task('js:build',
-  () => {
-    return gulp
-      .src([
-        root.src.js.lib.jquery,
-        root.src.js.lib.jqueryCrs,
-        root.src.js.lib.splide,
-        root.src.js.lib.splideGrid,
-        root.src.js.lib.intlTelInput,
-        root.src.js.lib.pace,
-        root.src.js.lib.popper,
-        root.src.js.lib.tippy,
-        root.src.js.lib.parsley,
-        root.src.js.lib.zoom,
-        root.src.js.lib.fancybox,
-        // root.src.js.lib.sirv,
-        root.src.js.bundle.main,
-        root.src.js.bundle.login,
-        root.src.js.bundle.cartMail
-      ])
-      .pipe(changed(root.build.js))
-      .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-      .pipe(concat('partial.js'))
-      .pipe(minify())
-      // .pipe(babel())
-      // .pipe(webpack(require('./../webpack.config.js')))
-      .pipe(gulp.dest(root.build.js))
+gulp.task('js:build', () => {
+  // Browserify configuration
+  return browserify({
+    entries: [
+      root.src.js.bundle.main
+    ],
+    debug: true
   })
+    .bundle()
+    .pipe(source('partial.js'))
+    .pipe(buffer())
+    .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+    .pipe(minify())
+    .pipe(gulp.dest(root.build.js))
+})
+
+
+// gulp.task('js:build',
+//   () => {
+//     return gulp
+//       .src([
+//         root.src.js.lib.jquery,
+//         root.src.js.lib.jqueryCrs,
+//         root.src.js.lib.splide,
+//         root.src.js.lib.splideGrid,
+//         root.src.js.lib.intlTelInput,
+//         root.src.js.lib.pace,
+//         root.src.js.lib.popper,
+//         root.src.js.lib.tippy,
+//         root.src.js.lib.parsley,
+//         root.src.js.lib.zoom,
+//         root.src.js.lib.fancybox,
+//         // root.src.js.lib.sirv,
+//         root.src.js.bundle.main,
+//         root.src.js.bundle.login,
+//         root.src.js.bundle.cartMail
+//       ])
+//       .pipe(changed(root.build.js))
+//       .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+//       .pipe(concat('partial.js'))
+//       .pipe(minify())
+//       // .pipe(babel())
+//       // .pipe(webpack(require('./../webpack.config.js')))
+//       .pipe(gulp.dest(root.build.js))
+//   })
 
 gulp.task('js2:build',
   () => {

@@ -1,19 +1,19 @@
-const config = {
-	mode: 'development',
-	entry: {
-		main: ['./src/js/main.js', ]
-	},
-	output: {
-		filename: 'partial.bundle.js',
-	},
-	module: {
-		rules: [
-			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader'],
-			},
-		],
-	},
-}
+const path = require('path');
 
-module.exports = config;
+module.exports = {
+  entry: './src/js/main.js',
+  output: {
+    filename: 'partial.js',
+    path: path.resolve(__dirname, 'dist/js')
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      }
+    ]
+  }
+};
