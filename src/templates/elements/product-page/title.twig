@@ -1,0 +1,6 @@
+<div class="side-row__title-wrap">
+	<h1 id="item_name" class="product__item-title">{{product.item.name}}</h1>
+	<div class="product__add-fav {% if product.is_in_wishlist %}is-active{% endif %}" id="wishlist_btn_{{product.item.id}}" {% if (product.is_in_wishlist == false) and (user) %} onclick="addToWishlist({{product.item.id}});" {% endif %}>
+		{% include "elements/product-page/svg/heart.svg" %}
+	</div>
+</div>

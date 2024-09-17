@@ -70,7 +70,6 @@ const Menu = require('./modules/modals/menu')
 /** PG Filters/Select/Modal
  * @type Objects
  */
-window.pgFilter = require('./modules/elements/pg-filter')
 window.pgSelect = require('./modules/elements/pg-select')
 window.pgModal = require('./modules/elements/pg-modal')
 
@@ -87,8 +86,10 @@ const
   LooseDiamonds = require('./modules/pages/loose-diamonds'),
   /* Homepage : /index */
   Homepage = require('./modules/pages/homepage'),
+  ResultsPage = require('./modules/pages/results'),
+  ProductPage = require('./modules/pages/product'),
   /* Product Page : /product-page */
-  productPage = require('./modules/pages/product-page'),
+  productPage = require('./modules/pages/product'),
   /* My Bag : /cart */
   myBag = require('./modules/pages/my-bag'),
   /* Account Profile : /account */
@@ -111,11 +112,9 @@ const
 const
   pageObjectsArr = [
     header,
-    pgFilter,
     cartModal,
     currencyModal,
     pgModal,
-    productPage,
     footer,
     pageEls,
     myBag,
@@ -187,4 +186,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Homepage
   new Homepage()
+
+  // Results
+  const resultsMain = document.querySelector('.main_results')
+  if (resultsMain) {
+    new ResultsPage()
+  }
+
+  const productMain = document.querySelector('.main_product')
+  if (productMain) {
+    new ProductPage()
+  }
 })

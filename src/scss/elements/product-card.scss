@@ -39,7 +39,7 @@
 
   &>span {
     &.--blue {
-      color: #0095c6 !important;
+      color: #131317 !important;
       order: -1;
     }
 
@@ -61,19 +61,18 @@
 }
 
 .product-card__name {
-  line-height: 20px;
+  line-height: 22px;
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   transition: all 0.2s ease;
   font-size: 13px;
 
   &:hover {
     color: #048cb9;
-    text-decoration: underline;
   }
 
   @include maxWidthXs {
@@ -148,7 +147,6 @@
   }
 
   @include maxWidthXs {
-    max-height: 140px;
     object-fit: cover;
   }
 }
@@ -159,7 +157,6 @@
   padding: 2px 6px;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.4px;
   line-height: 16px;
   position: absolute;
   top: 0;
@@ -175,7 +172,7 @@
 .product-card__media {
   width: 100%;
   // filter: brightness(98.5%);
-  aspect-ratio: 1/1.2;
+  aspect-ratio: 1/1;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -249,12 +246,11 @@
 .product-card__details {
   flex-direction: column;
   flex: 1;
-  justify-content: space-between;
-  padding: 20px 20px 0px 0px;
+  padding: 12px 12px 0px 0px;
   display: flex;
 
   @include maxWidthXs {
-    padding: 16px 12px 0px 12px;
+    padding: 12px 12px 0 12px;
   }
 }
 
@@ -263,7 +259,7 @@
   grid-row-gap: 6px;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 3px;
   display: flex;
 
   &.is-sale {
@@ -597,32 +593,23 @@
 
 .product-card__colors {
   position: absolute;
-  right: 16px;
-  bottom: 16px;
+  right: 10px;
+  top: 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
   z-index: 2;
 
   span {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
+    width: 11px;
+    height: 11px;
+    // transform: rotate(45deg);
+    margin-left: -3px;
+    border-radius: 50px;
     background-color: #e5d5b0;
+    border: 2px solid #f8f9fa;
 
     &:nth-child(n+4) {
       display: none !important;
-    }
-  }
-
-  @include maxWidthSm {
-    gap: 5px;
-    right: 10px;
-    bottom: 10px;
-
-    span {
-      width: 7px;
-      height: 7px;
     }
   }
 }

@@ -1,104 +1,74 @@
-<div
-	class="product__wrapper">
+{% include 'elements/product-page/general-js-vars.twig' %}
+<div class="product__main">
+	<div class="wrapper">
+		<div class="product__wrapper">
 
+			<div
+				class="product__view">
+				{# Breadcrumbs #}
+				{% include "elements/product-page/breadcrumbs.twig" %}
 
-	<!-- #region Viewer / Media -->
-	<div
-		class="product__view">
-
-		{# Desktop Viewer #}
-		{% for media in product.media %}
-			<div class="product__desktop-viewer Poster-{{ media.color }}" {% if media.visible == false %} style="display:none" {% endif %}>
-				{% for item in product.media.yellow %}
-					{% include "elements/product-page/product-media.twig" with {
-					type: item.type,
-					imgSrc: item.imgSrc,
-					alt: item.alt,
-					zoom:item.zoom_class,
-					splide: false
-				  } %}
-				{% endfor %}
+				{# -- Gallery #}
+				{% include "elements/product-page/gallery_desktop.twig" %}
+				{% include "elements/product-page/gallery_mobile.twig" %}
 			</div>
-		{% endfor %}
 
-		{# Slider Viewer #}
-		<div class="product__slider-viewer">
-			{% set loop_index = 0 %}
-			{% for media in product.media %}
-			<div class="product-slider splide product-slide-{{ media.color }} mobile-slide-{{ media.color }}" {% if media.visible == false %} style="display:none" {% endif %}>
-				<div class="splide__track">
-					<div class="splide__list">
-						{% for item in product.media.yellow %}
-							{% include "elements/product-page/product-media.twig" with {
-						  type: item.type,
-						  index:loop_index,
-						  imgSrc: item.imgSrc,
-						  alt: item.alt,
-						  splide: true
-						} %}
-						{% endfor %}
-					{% set loop_index = loop_index + 1 %}
+			{# -- Side #}
+			<aside class="product__side">
+				<div
+					class="side-body">
+
+					{# Subcategory / Title / Wishlist / Reviews Bar #}
+					<div class="side-row__category">{{product.subcategory.caption}}</div>
+					{% include "elements/product-page/title.twig" %}
+					{% include "elements/product-page/reviews-bar.twig" %}
+
+					{# Price / Sale / Stock #}
+					<div class="side-row__margin-row">
+						<div class="side-row__border-row">
+							{% include "elements/product-page/price.twig" %}
+						</div>
+						<div class="side-row__border-row">
+							{% include 'elements/product-page/stock-availability.twig'  %}
+						</div>
 					</div>
-				</div>
-			</div>
 
-			{# Thumbnails Slider
-			<div class="product-slider_thumbnails splide product-thumb-{{ media.color }} mobile-thumb-{{ media.color }}" {% if media.visible == false %} style="display:none" {% endif %}>
-				<div class="splide__track">
-					<div class="splide__list">
-						{% for item in media.elements %}
-							{% include "elements/product-page/product-media.twig" with {
-							  type: item.type,
-							  imgSrc: item.src,
-							  alt: item.alt,
-							  splide: true
-							} %}
-						{% endfor %}
+					{# Options #}
+					<div class="side-row__options">
+						{% include "elements/product-page/options.twig" %}
 					</div>
+
+					{# Buttons #}
+					<div class="side-row__buttons">
+						{% include "elements/product-page/buttons.twig" %}
+					</div>
+
+					{# Shipping & Question #}
+					<div class="side-row__more">
+						{% include "elements/product-page/side-more.twig" %}
+					</div>
+
 				</div>
-			</div>
-			#}
-			{% endfor %}
+			</aside>
 		</div>
 	</div>
-	<!-- #endregion -->
-
-
-	<aside class="product__side">
-		<div
-			class="side-body">
-
-			{# BREADCRUMBS #}
-			{% include "elements/product-page/breadcrumbs.twig" %}
-
-			{# ITEM #}
-			{% include "elements/product-page/item-row.twig" %}
-
-			{# ITEM OPTIONS #}
-			{% include "elements/product-page/options-row.twig" %}
-
-			{# ITEM DETAILS #}
-			{% include "elements/product-page/details-row.twig" %}
-
-			{# GUIDE MODAL #}
-			{% include "elements/pg-modal.twig" %}
-
-			{# FLOATING BTN #}
-			{% include "elements/product-page/floating-btn.twig" %}
-
-
-		</div>
-	</aside>
-
 </div>
-{% include "elements/product-page/promises.twig" %}
-{% include "elements/product-page/hidden-form.twig" %}
 
+{# Description & Details #}
+{% include "elements/product-page/details.twig" %}
+{# Fedex #}
+{% include "elements/product-page/fedex.twig" %}
+{# Useful Links #}
+{% include "elements/product-page/promises.twig" %}
+{# FAQ #}
+{% include "elements/product-page/faq.twig" %}
+{# More Items #}
 {% for Productslider in product.bottom_sliders %}
 	{% include "elements/product-page/items-slider.twig" with {slider:Productslider}%}
 {% endfor %}
-{% if  product.item.salePrice is defined %}
-<div class="product-page__float-stock">
-	{% include "elements/product-card/stock-dash-box.twig" %}
-</div>
-{% endif %}
+{# Guide Modal #}
+{% include "elements/pg-modal.twig" %}
+{# Options #}
+{% include "elements/product-page/options-modal.twig" %}
+{# Forms #}
+{% include "elements/product-page/hidden-form.twig" %}

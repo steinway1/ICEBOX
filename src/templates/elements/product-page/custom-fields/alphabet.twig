@@ -1,22 +1,22 @@
 <div id="optionDiamondsColor" class="product__item-option">
-	<div class="product-option__head">
-		<div class="product-option-name">{{option.name}}</div>
-		<div class="product-option__head-right">
-			<div class="product-option__dd-icon">
-				{% include "elements/product-page/svg/dropdown.svg" %}
-			</div>
-		</div>
-	</div>
-	<div class="product-option__body">
-		<div class="product-option__wrapper">
-			<div class="options-block">
-				{% for optionBtn in option.set %}
-					<div class="cust_field_btn option-btn{% if optionBtn.active is defined %} is-active{% endif %}" data-show data-value="{{optionBtn.value}}">
-						<span>{{optionBtn.value}}</span>
-					</div>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
-	<input type="hidden" data-name="{{option.name}}" id="custom_field_{{ option.id }}" data-action="Pick" class="custom-fields-fetch" name="customInputNew[field][{{ option.id }}]" value="{{ option.selected_value }}">
+    <div class="product-option__head">
+        <div class="product-option-name">{{option.name}}</div>
+        <div class="product-option__head-right">
+            <div class="product-option__dd-icon">
+                {% include "elements/product-page/svg/dropdown.svg" %}
+            </div>
+        </div>
+    </div>
+    <div class="product-option__body">
+        <div class="product-option__wrapper">
+            <div class="options-block">
+                {% for optionBtn in option.set %}
+                    <div class="cust_field_btn option-btn{% if optionBtn.active is defined %} is-active{% endif %}" data-show data-value="{{optionBtn.value}}">
+                        <span>{{optionBtn.value}}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <input type="hidden" data-name="{{option.name}}"  id="custom_field_{{ option.id }}" data-action="Pick" class="custom-fields-fetch"  name="customInputNew[field][{{ option.id }}]" value="{{ option.selected_value }}">
 </div>

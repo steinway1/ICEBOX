@@ -1,67 +1,95 @@
-{% set banner = true %}
-{% set nav = true %}
-{% set category = results.bracelets %}
-{% set searchQuery = "angels" %}
-{% set stickySidebar = true %}
-{% set collection = 'men' %}
+{% set nav = false %}
+{% set stickySidebar = false %}
 
-{% if black_friday == true %}
-	{% include "elements/black_friday/bfs-ticker.twig" %}
+{% if category.id == 25 %}
+	{% set watch_market_brands = true %}
+	{% set is_watch_market_page = true %}
 {% endif %}
-<div class="results-content">
-	{# {% include 'elements/pay-banner.twig' %} #}
-	{# Banner #}
-		{% if category %}
-			{% if banner == true %}
-		{% include "elements/results/results-banner.twig" %}
+
+<div
+	class="results-content {% if category.id == 25  %} --watch-market {% endif %}">
+
+	<!-- Banner -->
+	{% if category %}
+		{% if category.big_banner != '' %}
+			{% include "elements/results/results-banner.twig" %}
 		{% endif %}
-	{% else %}
+		{% if sale_page %}
+			{% include "elements/results/results-banner_sale.twig" %}
+		{% endif %}
+	{% endif %}
+	{% if search_keyword is defined %}
 		{% include "elements/results/results-empty.twig" %}
 	{% endif %}
 
+
 	<div class="results__wrap">
+		<div class="results__main">
 
-		{# Mobile filter bar #}
-		{# {% include "elements/results/sticky-filters.twig" %} #}
+			{% if (gender is defined) or (sub_nav is defined) or (category_page is defined) or (gia_page is defined) or (watch_market_brands == true) %}
+				{% include "elements/results/results-sub.twig" %}
+			{% endif %}
 
-			<div class="results__main"> {% if category == results.watches %}
+			{% if category.is_watches %}
 				{% include "elements/results/watches-notice.twig" %}
 			{% endif %}
 
-			{% if user_admin == true %}
-				{% include "elements/results/results-sub.twig" with { collection: 'std' } %}
-			{% endif %}
 			{% include "elements/results/page-filters.twig" %}
 			{% include "elements/results/filter-modal.twig" %}
-			{% include "../elements/results/results-bar.twig" %}
+			{% if sale_page is not defined %}
+				{% include "elements/results/results-bar.twig" %}
+			{% endif %}
 
 			<div class="results-cards-content">
 				<div class="wrapper">
 					<div class="results__main-wrapper">
-
 						<div class="results__items">
 							<div class="cards-grid">
-              {# {% include "../elements/crypto-card.twig" %}
-              {% include "../elements/pay-card.twig" %} #}
-              {% include "../elements/financing-card.twig" %}
-								{% for i in 0..10 %}
-									{% include "../elements/product-card.twig" %}
+								{% if from_africa %}
+									{% set index_target = 5 %}
+								{% else %}
+									{% set index_target = 10 %}
+								{% endif %}
+								{% if category.id != 25 and from_africa == false %}
+									{% include 'elements/pay-card.twig' %}
+								{% endif %}
+								{% set loop_index = 0 %}
+								{% set last = "pay" %}
+								{% for item in items %}
+									{% set loop_index = loop_index + 1 %}
+									{% if (loop_index == index_target and category.id != 25) %}
+										{% if last == "crypto" %}
+											{% include "elements/pay-card.twig" %}
+											{% set last = "pay" %}
+										{% else %}
+											{% include "elements/crypto-card.twig" %}
+											{% if from_africa == false  %}
+												{% set last = "crypto" %}
+											{% endif %}
+										{% endif %}
+										{% set loop_index = 0 %}
+									{% else %}
+										{% include "elements/product-card.twig" with {productItem:item}%}
+									{% endif %}
 								{% endfor %}
 							</div>
-							<div class="content-preloader">
-								<span></span>
-							</div>
+							{% if pages is defined %}
+								{% if pages > 1 %}
+									<div class="content-preloader">
+										<span></span>
+									</div>
+								{% endif %}
+							{% else  %}
+								<div class="content-preloader">
+									<span></span>
+								</div>
+							{% endif %}
 						</div>
-
-
 					</div>
-					{# {% include "elements/load-more.twig" %} #}
 				</div>
 			</div>
 
+
 		</div>
-
-
 	</div>
-
 </div>

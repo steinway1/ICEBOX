@@ -1,0 +1,36 @@
+<div id="gallery_mobile" class="product__media">
+	{% for media in product.media %}
+		<div class="product__gallery Poster-{{ media.color }}">
+			<div class="product__thumb-gallery splide">
+				<div class="splide__track">
+					<div class="splide__list">
+						{% for item in media.elements %}
+							{% include "elements/product-page/product-media.twig" , with { 
+                  type: item.type, 
+                  imgSrc: item.src, 
+                  alt: item.alt, 
+                  zoom:item.zoom_class, 
+                  splide: true } %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="product__main-gallery splide">
+				<div class="product__main-gallery-wrapper">
+					<div class="splide__track">
+						<div class="splide__list">
+							{% for item in media.elements %}
+								{% include "elements/product-page/product-media.twig" , with { 
+                  type: item.type, 
+                  imgSrc: item.src, 
+                  alt: item.alt, 
+                  zoom:item.zoom_class, 
+                  splide: true } %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>

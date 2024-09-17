@@ -1,0 +1,28 @@
+<div id="gallery_desktop" class="product__media">
+	{% for media in product.media %}
+		<div class="product__gallery Poster-{{ media.color }}">
+			<div class="product__thumb-gallery">
+				{% for item in media.elements %}
+					{% include "elements/product-page/product-media.twig" , with { 
+                  type: item.type, 
+                  imgSrc: item.src, 
+                  alt: item.alt, 
+                  zoom:item.zoom_class, 
+                  splide: false } %}
+				{% endfor %}
+			</div>
+			<div class="product__main-gallery">
+				<div class="product__main-gallery-wrapper">
+					{% for item in media.elements %}
+						{% include "elements/product-page/product-media.twig" , with { 
+                  type: item.type, 
+                  imgSrc: item.src, 
+                  alt: item.alt, 
+                  zoom:item.zoom_class, 
+                  splide: false } %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>

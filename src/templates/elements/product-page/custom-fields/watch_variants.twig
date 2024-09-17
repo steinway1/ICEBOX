@@ -1,0 +1,17 @@
+
+<div class="product__item-option --watches">
+    <h4 class="md-title">Options Available</h4>
+    <div class="listing-set">
+        {% for optionBtn in option.set %}
+        <div class="listing-btn watch_variant_btn {%if optionBtn.sold %} --disabled {% endif %} {% if optionBtn.selected %} is-active {% endif %}" data-id="{{ optionBtn.value }}">
+            <div class="listing-btn__wrapper">
+                <span>{{  optionBtn.caption }}</span>
+                <span>{{ optionBtn.details }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <input type="hidden"  id="custom_field_watch_variants" data-action="Pick" class="custom-fields-fetch"  name="customInputNew[watch_variant]" value="{{ option.default_value }}">
+
+</div>
+

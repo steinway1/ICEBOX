@@ -1,0 +1,30 @@
+<div class="side-row__line_price">
+	{% if product.item.salePrice is defined %}
+		{% if product.call_for_price == false and product.item.sold == false %}
+			<span class="product__item-price old_price" data-old-price="{{ product.item.old_price }}">
+				{{product.item.price}}
+			</span>
+			<span class="product__item-price sale_price" id="current_base_price">
+				{{product.item.salePrice}}
+			</span>
+			<span class="product-discount-rate">{{product.item.discountRate}}% OFF</span>
+		{% else %}
+			<span class="product__item-price">
+				{% if product.item.sold %}
+					SOLD
+				{% else %}
+					{{product.call_for_price_text}}</span>
+			{% endif %}
+		{% endif %}
+	{% else %}
+		{% if product.call_for_price == false %}
+			{% if product.item.sold == false %}
+				<span class="product__item-price" id="current_base_price">{{product.item.price}}</span>
+			{% else %}
+				<span class="product__item-price">SOLD</span>
+			{% endif %}
+		{% else %}
+			<span class="product__item-price">{{product.call_for_price_text}}</span>
+		{% endif %}
+	{% endif %}
+</div>

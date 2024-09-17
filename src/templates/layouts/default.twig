@@ -15,10 +15,14 @@
 	</head>
 
 
-	<body {% if updateLayout == true %} class="update_layout" {% endif %} {% if christmas == true %} class="xmas_update" {% endif %} {% if vday == true %} class="promo_vday" {% endif %}>
-		{% if pageBanner == true and not black_friday == true and not cyber_monday == true and not christmas == true and not new_year == true and not vday == true %}
-			{% include "../elements/page-banner.twig" %}
+	<body {% if bodyClass is defined %} class="{{bodyClass}}"{% endif %}>
+
+		{% if topBanner is defined and topBanner.text != '' %}
+			<div class="top-banner">
+				{{ topBanner.text }}
+			</div>
 		{% endif %}
+
 		{% include "../elements/header.twig" %}
 
 

@@ -1,0 +1,27 @@
+<div class="product__details">
+	<div class="product__dbl-row">
+		<div class="wrapper">
+			<h4 class="product__xs-heading">Description</h4>
+			<div class="product__item-summary">
+				{% if product.item.mainDescription %}
+					<div id="product_description">{{product.item.mainDescription | raw }}</div>
+				{% endif %}
+			</div>
+		</div>
+		<div id="itemDetails" class="wrapper">
+			<h4 class="product__xs-heading">More Details</h4>
+			<div class="product__details-grid">
+				{% for detail in product.details %}
+					<div class="product__about-row">
+						<div class="product__about-title">{{detail.title | raw}}
+							{% if detail.titleSpan %}
+								{{detail.titleSpan}}
+							{% endif %}
+						</div>
+						<div class="product__about-name" id="{{ detail.id }}">{{detail.value | raw}}</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>

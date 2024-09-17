@@ -1,35 +1,40 @@
 <div class="results-bar">
 	<div class="wrapper">
 		<div class="results-bar__wrapper">
-			<div class="results__show">Showing
-				<span>89</span>
+
+			<div class="results__show">
+				<span id="total_items">{{ category.total_items }}</span>
 				{% if category %}
-          {{category.heading}}
-        {% else %}
-          items
-        {% endif %}</div>
-			{# <div class="results-bar__group">
-				<div class="filter-dropdown">
-					<div class="filter-dropdown__main">
-						<div>Sort:
-							<span class="filter-dropdown__current">Newest First</span>
-						</div>
-						<svg width="100%" height="100%" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-						</svg>
-					</div>
-					<div class="filter-dropdown__list">
-						<div>
-							<a onclick="updateSortByFilter('Newest');">Newest First</a>
-							<a onclick="updateSortByFilter('Popular');">Popular</a>
-							<a onclick="updateSortByFilter('Low');">Price: Low - High</a>
-							<a onclick="updateSortByFilter('High');">Price: High - Low</a>
-							<a onclick="updateSortByFilter('Best-Sellers');">Best Sellers</a>
-							<a onclick="updateSortByFilter('Rat-viewed');">Most Viewed</a>
-						</div>
-					</div>
-				</div>
-			</div> #}
+					{{category.heading}}
+				{% else %}
+					items
+				{% endif %}
+				{% if user.admin %}
+					{% if total_views is defined %}
+						| Total Views :
+						{{ total_views }}
+					{% endif %}
+				{% endif %}
+			</div>
+
+			<div class="view-switch-wrap">
+
+				<button data-results-evt="viewMore" class="view-btn is-active">
+					<svg width="100%" height="100%" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect x="0.75" y="0.75" width="18.5" height="18.5" stroke="currentColor" stroke-width="1.5"></rect>
+						<path d="M10 19.5V1" stroke="currentColor" stroke-width="1.5"></path>
+						<path d="M0.75 10.25L19.25 10.25" stroke="currentColor" stroke-width="1.5"></path>
+					</svg>
+				</button>
+				<button data-results-evt="viewLess" class="view-btn">
+					<svg width="100%" height="100%" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect x="19.25" y="0.75" width="18.5" height="18.5" transform="rotate(90 19.25 0.75)" stroke="currentColor" stroke-width="1.5"></rect>
+						<path d="M0.5 7L19 7" stroke="currentColor" stroke-width="1.5"></path>
+						<path d="M0.5 13L19 13" stroke="currentColor" stroke-width="1.5"></path>
+						<path d="M9.75 0.75L9.75 19.25" stroke="currentColor" stroke-width="1.5"></path>
+					</svg>
+				</button>
+			</div>
 		</div>
 	</div>
 </div>

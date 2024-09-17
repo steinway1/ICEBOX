@@ -9,17 +9,13 @@
 			</div>
 		</div>
 	</div>
-	<div data-pg-open="diamonds" class="option-guide-btn">
-		<img src="{{THEME_ASSETS_FOLDER}}/pg-btn_diamond.svg" loading="lazy" alt="">
-		<span>How To Choose Diamond?</span>
-	</div>
 	<div class="product-option__body">
 		<div class="product-option__wrapper">
 			<div class="options-block">
 				{% for optionBtn in option.set %}
 					<div data-value="{{optionBtn.value}}" class="cust_field_btn option-btn{% if optionBtn.active is defined %} is-active{% endif %}">
 						<div class="option-gia">
-							<img src="{{THEME_ASSETS_FOLDER}}gia-diamond.svg" loading="lazy" alt="">
+							<img src="{{ THEME_ASSETS_FOLDER }}gia-diamond.svg" loading="lazy" alt="">
 							<div class="option-gia__details">
 								<div class="option-gia__typo">{{ optionBtn.caption }}</span>
 							</div>
@@ -28,6 +24,10 @@
 					</div>
 				</div>
 			{% endfor %}
+		</div>
+		<div data-pg-open="diamonds" class="option-guide-btn">
+			<img src="{{ THEME_ASSETS_FOLDER }}pg-btn_diamond.svg" loading="lazy" alt="">
+			<span>How to choose a diamond?</span>
 		</div>
 	</div>
 </div>

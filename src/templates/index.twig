@@ -1,5 +1,7 @@
 {% extends 'layouts/default.twig' %}
-{% set pageBanner = true %}
+{% set topBanner = {
+  text: "Family Owned & Operated Since 1976"
+} %}
 
 {% block include_head %}
 {# Styles / preload scripts / etc... #}
@@ -10,5 +12,8 @@
 {% endblock %}
 
 {% block include_script %}
+	<script>
+		var homepage = true;
+	</script>
 	{# Scripts / etc... #}
 {% endblock %}
