@@ -1,0 +1,74 @@
+<div class="fixed-bar">
+	<div class="fixed-bar__wrapper">
+		{% if is_watch_market_item  %}
+			<a class="product__wa-link" href="/chat-whatsapp-2?p_id={{ product.item.id }}" target="_blank">
+				<img src="{{ THEME_ASSETS_FOLDER }}wa_white-icon.svg" alt="Whatsapp Icon Picture" loading="eager">
+				<span>Live chat on WhatsApp</span>
+			</a>
+		{% else %}
+			<a class="product__wa-link" href="/chat-whatsapp?p_id={{ product.item.id }}" target="_blank">
+				<img src="{{ THEME_ASSETS_FOLDER }}wa_white-icon.svg" alt="Whatsapp Icon Picture" loading="eager">
+				<span>Live chat on WhatsApp</span>
+			</a>
+		{% endif %}
+		<div class="fixed-bar__content">
+			<div class="fixed-bar__item">
+				<div class="fixed-bar__media-wrap">
+					<div class="fixed-bar__media"></div>
+				</div>
+				<div class="fixed-bar__item-details">
+					<h5>{{product.item.name}}</h5>
+					<div class="side-row__line_price">
+						{% if product.item.salePrice is defined %}
+							{% if product.call_for_price == false and product.item.sold == false %}
+								<span class="product__item-price old_price" data-old-price="{{ product.item.old_price }}">
+									{{product.item.price}}
+								</span>
+								<span class="product__item-price sale_price" id="current_base_price_fixed">
+									{{product.item.salePrice}}
+								</span>
+								<span class="product-discount-rate">{{product.item.discountRate}}% OFF</span>
+							{% else %}
+								<span class="product__item-price">
+									{% if product.item.sold %}
+										SOLD
+									{% else %}
+										{{product.call_for_price_text}}</span>
+								{% endif %}
+							{% endif %}
+						{% else %}
+							{% if product.call_for_price == false %}
+								{% if product.item.sold == false %}
+									<span class="product__item-price" id="current_base_price">{{product.item.price}}</span>
+								{% else %}
+									<span class="product__item-price">SOLD</span>
+								{% endif %}
+							{% else %}
+								<span class="product__item-price">{{product.call_for_price_text}}</span>
+							{% endif %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			{# Add To Cart #}
+			<div class="product__btn-group">
+				{% if product.temp_unavailable == false %}
+					{% if product.call_for_price == false %}
+						<a href="javascript:void(0);" class="buy-btn" onclick="addToCart({{IN_IFRAME}})">
+							<span>Add to cart</span>
+						</a>
+					{% else %}
+						<a href="tel:+1770828554" class="buy-btn">
+							<span>{{ product.call_for_price_text }}</span>
+						</a>
+					{% endif %}
+				{% else %}
+					<a href="javascript:void(0)" class="buy-btn">
+						<span>Sold</span>
+					</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>

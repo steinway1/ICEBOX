@@ -117,6 +117,18 @@ function showMessage(type, title, msg) {
   pageAlerts.showAlert(alert_type, title, msg);
 }
 
+function debounce(func, wait) {
+  let timeout
+  return function(...args) {
+    const later = () => {
+      clearTimeout(timeout)
+      func(...args)
+    }
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+  }
+}
+
 module.exports = {
   toArray,
   lockScroll,
@@ -133,5 +145,6 @@ module.exports = {
   toggleAdminBar,
   isEmail,
   saveCartEmail,
-  showMessage
+  showMessage,
+  debounce
 }

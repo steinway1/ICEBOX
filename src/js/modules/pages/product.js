@@ -16,6 +16,9 @@ class ProductPage {
     this.evtCloseOptionModalArr = document.querySelectorAll('[data-evt="optionModalClose"]')
     this.favBtn = document.querySelector('.product__add-fav')
     this.activeOptionIndex = undefined
+
+    this.fixedBar = document.querySelector('.fixed-bar')
+    this.fixedBarTrigger = document.querySelector('.side-row__payments')
     this.init()
   }
 
@@ -335,6 +338,10 @@ class ProductPage {
         if (attr) {
           this.setActiveColor(attr)
           this.setActiveColorPickElem(btn)
+          
+          if (this.fixedBar) {
+            this.fixedBar.classList.remove('--filled')
+          }
         }
       })
     })
@@ -369,6 +376,112 @@ class ProductPage {
     }
   }
 
+  // Fixed Bar
+  positionFixedBar() {
+    const header = document.querySelector('header')
+    if (header && this.fixedBar && this.fixedBarTrigger) {
+      this.fixedBar.style.display = 'block'
+
+      const update = () => {
+        if (window.innerWidth > 991) {
+          this.fixedBar.style.zIndex = -1
+          this.fixedBar.style.position = 'absolute'
+          this.fixedBar.style.top = '100%'
+          if (!header.contains(this.fixedBar)) {
+            header.appendChild(this.fixedBar)
+          }
+        } else {
+          const headerZIndex = window.getComputedStyle(header).getPropertyValue('z-index')
+          this.fixedBar.style.zIndex = parseInt(headerZIndex, 10) - 1
+          this.fixedBar.style.top = 'auto'
+          this.fixedBar.style.position = 'fixed'
+          if (!document.body.contains(this.fixedBar)) {
+            document.body.appendChild(this.fixedBar)
+          }
+        }
+      }
+
+      window.addEventListener('resize', update)
+      update()
+    }
+  }
+  observeFixedBar() {
+    const triggerElem = this.fixedBarTrigger
+    const bar = this.fixedBar
+    let header = document.querySelector('header')
+
+    if (triggerElem && bar) {
+      let headerOffset = header ? header.offsetHeight : 0
+      let observer = null
+
+      const updateObserver = () => {
+        headerOffset = header ? header.offsetHeight : 0
+
+        if (observer) {
+          observer.disconnect()
+        }
+
+        const observerCallback = (entries) => {
+          entries.forEach(entry => {
+            if (entry.boundingClientRect.top < headerOffset && !entry.isIntersecting) {
+              bar.classList.add(__VISIBLE)
+              this.setFixedBarMedia()
+            } else {
+              bar.classList.remove(__VISIBLE)
+            }
+          })
+        }
+
+        observer = new IntersectionObserver(observerCallback, {
+          root: null,
+          rootMargin: `-${headerOffset}px 0px 0px 0px`,
+          threshold: 0
+        })
+
+        observer.observe(triggerElem)
+      }
+
+      updateObserver()
+
+      window.addEventListener('resize', updateObserver)
+    }
+  }
+  setFixedBarMedia() {
+    if (this.fixedBar) {
+
+      if (!this.fixedBar.querySelector('img')) {
+        this.fixedBar.classList.remove('--filled')
+      }
+
+      const visibleGallery = [...document.querySelectorAll('.product__gallery')].find((el) => {
+        return window.getComputedStyle(el).getPropertyValue('display') !== 'none'
+      })
+
+      if (visibleGallery) {
+        const mainGallery = visibleGallery.querySelector('.product__main-gallery')
+        const fixedBarMedia = document.querySelector('.fixed-bar__media')
+
+        if (mainGallery && fixedBarMedia) {
+          const image = mainGallery.querySelector('img')
+          const fixedBarImage = fixedBarMedia.querySelector('img')
+
+          if (image) {
+            if (!fixedBarImage) {
+              const newImg = document.createElement('img')
+              newImg.src = image.src
+              fixedBarMedia.appendChild(newImg)
+            } else {
+              fixedBarImage.src = image.src
+            }
+
+            this.fixedBar.classList.add('--filled')
+          }
+        }
+      }
+    }
+  }
+
+
 
   init() {
     if (window.innerWidth > 991) {
@@ -385,6 +498,9 @@ class ProductPage {
     this.setupDescription()
     this.setupSplide()
     this.setupGallery()
+    this.observeFixedBar()
+    this.positionFixedBar()
+    this.setFixedBarMedia()
   }
 }
 
