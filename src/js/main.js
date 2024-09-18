@@ -187,4 +187,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Homepage
   new Homepage()
+
+  setTimeout(() => {
+    console.log(window.cartModal)
+  }, 5000);
 })

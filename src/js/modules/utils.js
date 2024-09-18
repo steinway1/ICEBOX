@@ -130,6 +130,7 @@ function removeItemFromCart(item_id) {
                   $(this).html(result.count);
               });
               $('.bag-counter').html(result.count);
+              unlockScroll()
               //send_gtag_remove_from_cart_event(result.gtag_event);
           } else {
              showMessage('error','Error',result.msg);
