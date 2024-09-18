@@ -1,0 +1,46 @@
+<div class="finger-modal">
+	<div class="finger-modal__wrapper">
+
+			<div class="add-popup__row --header">
+				<h3>
+					Finger Sizes: 
+					<span data-finger-whale>
+						Whale Name
+					</span>
+				</h3>
+        <p>Select finger sizes.</p>
+			</div>
+
+		<div class="finger-modal__content">
+			<div class="hands-flex">
+
+				<div class="hand-box is-left">
+					<div class="finger-hand">
+						{% include "admin/svg/finger-hand-left.svg" %}
+					</div>
+					<input class="finger-input _1-5" data-finger-input="15" inputmode="decimal" type="text">
+					<input class="finger-input _1-4" data-finger-input="14" inputmode="decimal" type="text">
+					<input class="finger-input _1-3" data-finger-input="13" inputmode="decimal" type="text">
+					<input class="finger-input _1-2" data-finger-input="12" inputmode="decimal" type="text">
+					<input class="finger-input _1-1" data-finger-input="11" inputmode="decimal" type="text">
+				</div>
+
+				<div class="hand-box">
+					<div class="finger-hand">
+						{% include "admin/svg/finger-hand-right.svg" %}
+					</div>
+					<input class="finger-input _2-5" data-finger-input="25" inputmode="decimal" type="text">
+					<input class="finger-input _2-4" data-finger-input="24" inputmode="decimal" type="text">
+					<input class="finger-input _2-3" data-finger-input="23" inputmode="decimal" type="text">
+					<input class="finger-input _2-2" data-finger-input="22" inputmode="decimal" type="text">
+					<input class="finger-input _2-1" data-finger-input="21" inputmode="decimal" type="text">
+				</div>
+
+			</div>
+		</div>
+		<div class="add-popup__row --footer">
+			<button onclick="fingerModal.hide()" class="--sub">Cancel</button>
+			<button onclick="fingerModal.save()">Save</button>
+		</div>
+	</div>
+</div>

@@ -9896,6 +9896,275 @@ body.--visible_questions .whale-card__box.--quiz {
   pointer-events: none;
 }
 
+/* #region  Finger Modal */
+
+.finger-modal {
+  z-index: 2000;
+  position: fixed;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 780px;
+  min-height: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  display: none;
+  box-shadow: 0 12px 28px rgba(23, 28, 41, 0.031372549);
+  transition: all 350ms ease;
+}
+
+.finger-modal.--visible {
+  transform: translate(-50%, -50%);
+}
+
+.finger-modal.--loading::before {
+  content: "";
+  position: absolute;
+  inset: 0%;
+  background-color: #f6f7fa;
+  z-index: 3;
+  border-radius: 0.5rem;
+  transition: all 250ms ease;
+}
+
+.finger-modal.--loading::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: 50% auto auto 50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 38px;
+  aspect-ratio: 1;
+  --c: no-repeat repeating-linear-gradient(90deg, var(--royal_blue) 0 20%, rgba(50, 120, 218, 0) 0 40%);
+  background: var(--c), var(--c), var(--c), var(--c);
+  background-size: 100% 26%;
+  animation: l21 1.5s infinite;
+  transition: all 250ms ease;
+}
+
+.finger-modal__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.finger-modal__wrapper .add-popup__row {
+  padding: 26px;
+  text-align: center;
+}
+
+.finger-modal__wrapper .add-popup__row h3 span {
+  display: inline-block;
+}
+
+.finger-modal__wrapper .add-popup__row button.--sub {
+  background-color: white;
+}
+
+.finger-modal__wrapper .add-popup__row.--footer {
+  border-top: 1px solid #e8ecf3;
+}
+
+.finger-modal__flex-row {
+  display: flex;
+  padding: 26px;
+}
+
+.finger-modal__flex-row:first-child {
+  border-bottom: 1px solid #e8ecf3;
+}
+
+.finger-modal__flex-row:last-child {
+  border-top: 1px solid #e8ecf3;
+}
+
+.finger-modal__content {
+  min-height: 90px;
+}
+
+.hand-box {
+  width: 50%;
+  padding-top: 8%;
+  padding-left: 3%;
+  padding-right: 6%;
+  position: relative;
+}
+
+.hand-box.is-left {
+  padding-left: 6%;
+  padding-right: 3%;
+}
+
+.finger-input {
+  text-align: center;
+  background-color: #f6f7fa;
+  border: 1px solid #d6d9e2;
+  border-radius: 0.3rem;
+  width: 12%;
+  height: 6%;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+  position: absolute;
+  top: 44%;
+  left: 4%;
+}
+
+.finger-input:hover {
+  background-color: #fff;
+  border-color: #07f;
+}
+
+.finger-input:focus {
+  background-color: #fff;
+  border-color: #07f;
+  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.1490196078);
+}
+
+.finger-input::placeholder {
+  color: #94969b;
+}
+
+.finger-input._1-3 {
+  top: 7%;
+  left: auto;
+  right: 59%;
+}
+
+.finger-input._1-4 {
+  top: 15%;
+  left: auto;
+  right: 72%;
+}
+
+.finger-input._1-2 {
+  top: 10%;
+  left: auto;
+  right: 43%;
+}
+
+.finger-input._1-5 {
+  top: 30%;
+  left: auto;
+  right: 82%;
+}
+
+.finger-input._2-4 {
+  top: 15%;
+  left: 72%;
+}
+
+.finger-input._2-2 {
+  top: 10%;
+  left: 43%;
+}
+
+.finger-input._2-3 {
+  top: 7%;
+  left: 59%;
+}
+
+.finger-input._1-1 {
+  left: auto;
+  right: 4%;
+}
+
+.finger-input._2-5 {
+  top: 30%;
+  left: 82%;
+}
+
+.finger-hand {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.finger-hand svg path:not(.finger-path) {
+  pointer-events: none;
+}
+
+.hands-flex {
+  justify-content: flex-end;
+  transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  display: flex;
+}
+
+.finger-path {
+  cursor: pointer;
+  transition: all 150ms ease;
+  opacity: 0;
+}
+
+.finger-path:active {
+  opacity: 0.5;
+}
+
+.finger-path:hover {
+  opacity: 1;
+}
+
+.finger-path.force {
+  opacity: 1 !important;
+}
+
+.no-touch {
+  pointer-events: none;
+}
+
+.finger-input::placeholder {
+  transition: all 200ms ease;
+}
+
+.finger-input:focus::placeholder {
+  opacity: 0;
+}
+
+.finger-input.focus::placeholder {
+  opacity: 0.4;
+}
+
+@keyframes l21 {
+  0% {
+    background-position: -50px 0%, -50px 33.3333333333%, -50px 66.6666666667%, -50px 100%;
+  }
+
+  12.5% {
+    background-position: 0 0%, -50px 33.3333333333%, -50px 66.6666666667%, -50px 100%;
+  }
+
+  25% {
+    background-position: 0 0%, 0 33.3333333333%, -50px 66.6666666667%, -50px 100%;
+  }
+
+  37.5% {
+    background-position: 0 0%, 0 33.3333333333%, 0 66.6666666667%, -50px 100%;
+  }
+
+  45%, 55% {
+    background-position: 0 0%, 0 33.3333333333%, 0 66.6666666667%, 0 100%;
+  }
+
+  62.5% {
+    background-position: 50px 0%, 0 33.3333333333%, 0 66.6666666667%, 0 100%;
+  }
+
+  75% {
+    background-position: 50px 0%, 50px 33.3333333333%, 0 66.6666666667%, 0 100%;
+  }
+
+  87.5% {
+    background-position: 50px 0%, 50px 33.3333333333%, 50px 66.6666666667%, 0 100%;
+  }
+
+  100% {
+    background-position: 50px 0%, 50px 33.3333333333%, 50px 66.6666666667%, 50px 100%;
+  }
+}
+
+/* #endregion Finger Modal */
+
 .edit-modal {
   display: none;
   pointer-events: none;
@@ -15153,6 +15422,10 @@ select.sms-tag:hover {
     gap: 6px;
   }
 
+  .finger-modal {
+    max-width: 90%;
+  }
+
   .am-content_saks .tb-box .am-btn {
     flex: 1 0 auto;
   }
@@ -15424,6 +15697,23 @@ select.sms-tag:hover {
 
   .main_whales .am-row__header .tb-view-switch {
     order: -1;
+  }
+
+  .finger-modal {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    max-width: none;
+    inset: auto 0 0 0%;
+    transform: translateY(100%);
+  }
+
+  .finger-modal.--visible {
+    transform: translateY(0%);
+  }
+
+  .hand-box {
+    flex: none;
+    width: 50%;
   }
 
   .edit-modal .am-row__header {
@@ -16149,6 +16439,63 @@ select.sms-tag:hover {
 
   .whale-card__notes {
     border-top-style: none;
+  }
+
+  .hand-box {
+    width: 76%;
+    margin-left: 12%;
+    margin-right: 12%;
+    padding-top: 18%;
+  }
+
+  .finger-input {
+    width: 18%;
+    height: 8%;
+    font-size: 3.2vw;
+  }
+
+  .finger-input._1-3 {
+    right: 57%;
+  }
+
+  .finger-input._2-1 {
+    left: 0%;
+  }
+
+  .finger-input._1-4 {
+    right: 76%;
+  }
+
+  .finger-input._1-2 {
+    right: 35%;
+  }
+
+  .finger-input._1-5 {
+    right: 86%;
+  }
+
+  .finger-input._2-4 {
+    left: 76%;
+  }
+
+  .finger-input._2-2 {
+    left: 35%;
+  }
+
+  .finger-input._2-3 {
+    left: 57%;
+  }
+
+  .finger-input._1-1 {
+    right: 0%;
+  }
+
+  .finger-input._2-5 {
+    left: 86%;
+  }
+
+  .hands-flex {
+    transform: translate(0);
   }
 
   .edit-modal {

@@ -1264,3 +1264,364 @@ body.--visible_questions {
     pointer-events: none;
   }
 }
+
+/* #region  Finger Modal */
+.finger-modal {
+  z-index: 2000;
+  position: fixed;
+  background-color: #fff;
+  border-radius: .5rem;
+  width: 100%;
+  max-width: 780px;
+  min-height: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  display: none;
+  box-shadow: 0 12px 28px #171c2908;
+  transition: all 350ms ease;
+
+  &.--visible {
+    transform: translate(-50%, -50%);
+  }
+
+  @include maxWidthMd {
+    max-width: 90%;
+  }
+
+  @include maxWidthSm {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    max-width: none;
+    inset: auto 0 0 0%;
+    transform: translateY(100%);
+
+    &.--visible {
+      transform: translateY(0%);
+    }
+  }
+
+  &.--loading {
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0%;
+      background-color: #f6f7fa;
+      z-index: 3;
+      border-radius: .5rem;
+      transition: all 250ms ease;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 4;
+      inset: 50% auto auto 50%;
+      transform: translateY(-50%) translateX(-50%);
+      width: 38px;
+      aspect-ratio: 1;
+      --c: no-repeat repeating-linear-gradient(90deg, var(--royal_blue) 0 20%, rgba(50, 120, 218, 0) 0 40%);
+      background: var(--c), var(--c), var(--c), var(--c);
+      background-size: 100% 26%;
+      animation: l21 1.5s infinite;
+      transition: all 250ms ease;
+    }
+  }
+}
+
+.finger-modal__wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .add-popup__row {
+    padding: 26px;
+    text-align: center;
+
+    h3 {
+      span {
+        display: inline-block;
+      }
+    }
+
+    button {
+      &.--sub {
+        background-color: white;
+      }
+    }
+
+    &.--footer {
+      border-top: 1px solid #e8ecf3;
+    }
+  }
+}
+
+.finger-modal__flex-row {
+  display: flex;
+  padding: 26px;
+
+  &:first-child {
+    border-bottom: 1px solid #e8ecf3;
+  }
+
+  &:last-child {
+    border-top: 1px solid #e8ecf3;
+  }
+}
+
+.finger-modal__content {
+  min-height: 90px;
+}
+
+.hand-box {
+  width: 50%;
+  padding-top: 8%;
+  padding-left: 3%;
+  padding-right: 6%;
+  position: relative;
+}
+
+.hand-box.is-left {
+  padding-left: 6%;
+  padding-right: 3%;
+}
+
+.finger-input {
+  text-align: center;
+  background-color: #f6f7fa;
+  border: 1px solid #d6d9e2;
+  border-radius: .3rem;
+  width: 12%;
+  height: 6%;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  position: absolute;
+  top: 44%;
+  left: 4%;
+}
+
+.finger-input:hover {
+  background-color: #fff;
+  border-color: #07f;
+}
+
+.finger-input:focus {
+  background-color: #fff;
+  border-color: #07f;
+  box-shadow: 0 0 0 2px #0077ff26;
+}
+
+.finger-input::placeholder {
+  color: #94969b;
+}
+
+.finger-input._1-3 {
+  top: 7%;
+  left: auto;
+  right: 59%;
+}
+
+.finger-input._1-4 {
+  top: 15%;
+  left: auto;
+  right: 72%;
+}
+
+.finger-input._1-2 {
+  top: 10%;
+  left: auto;
+  right: 43%;
+}
+
+.finger-input._1-5 {
+  top: 30%;
+  left: auto;
+  right: 82%;
+}
+
+.finger-input._2-4 {
+  top: 15%;
+  left: 72%;
+}
+
+.finger-input._2-2 {
+  top: 10%;
+  left: 43%;
+}
+
+.finger-input._2-3 {
+  top: 7%;
+  left: 59%;
+}
+
+.finger-input._1-1 {
+  left: auto;
+  right: 4%;
+}
+
+.finger-input._2-5 {
+  top: 30%;
+  left: 82%;
+}
+
+.finger-hand {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  svg {
+    path {
+      &:not(.finger-path) {
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+.hands-flex {
+  justify-content: flex-end;
+  transition: all .3s cubic-bezier(.39, .575, .565, 1);
+  display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .hand-box {
+    flex: none;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .hand-box {
+    width: 76%;
+    margin-left: 12%;
+    margin-right: 12%;
+    padding-top: 18%;
+  }
+
+  .finger-input {
+    width: 18%;
+    height: 8%;
+    font-size: 3.2vw;
+  }
+
+  .finger-input._1-3 {
+    right: 57%;
+  }
+
+  .finger-input._2-1 {
+    left: 0%;
+  }
+
+  .finger-input._1-4 {
+    right: 76%;
+  }
+
+  .finger-input._1-2 {
+    right: 35%;
+  }
+
+  .finger-input._1-5 {
+    right: 86%;
+  }
+
+  .finger-input._2-4 {
+    left: 76%;
+  }
+
+  .finger-input._2-2 {
+    left: 35%;
+  }
+
+  .finger-input._2-3 {
+    left: 57%;
+  }
+
+  .finger-input._1-1 {
+    right: 0%;
+  }
+
+  .finger-input._2-5 {
+    left: 86%;
+  }
+
+  .hands-flex {
+    transform: translate(0);
+  }
+}
+
+.finger-path {
+  cursor: pointer;
+  transition: all 150ms ease;
+  opacity: 0;
+}
+
+.finger-path:active {
+  opacity: 0.5;
+}
+
+.finger-path:hover {
+  opacity: 1;
+}
+
+.finger-path.force {
+  opacity: 1 !important;
+}
+
+.no-touch {
+  pointer-events: none;
+}
+
+.finger-input::placeholder {
+  transition: all 200ms ease;
+}
+
+.finger-input:focus::placeholder {
+  opacity: 0;
+}
+
+.finger-input.focus::placeholder {
+  opacity: 0.4;
+}
+
+
+@keyframes l21 {
+  0% {
+    background-position: -50px calc(0*100%/3), -50px calc(1*100%/3), -50px calc(2*100%/3), -50px calc(3*100%/3)
+  }
+
+  12.5% {
+    background-position: 0 calc(0*100%/3), -50px calc(1*100%/3), -50px calc(2*100%/3), -50px calc(3*100%/3)
+  }
+
+  25% {
+    background-position: 0 calc(0*100%/3), 0 calc(1*100%/3), -50px calc(2*100%/3), -50px calc(3*100%/3)
+  }
+
+  37.5% {
+    background-position: 0 calc(0*100%/3), 0 calc(1*100%/3), 0 calc(2*100%/3), -50px calc(3*100%/3)
+  }
+
+  45%,
+  55% {
+    background-position: 0 calc(0*100%/3), 0 calc(1*100%/3), 0 calc(2*100%/3), 0 calc(3*100%/3)
+  }
+
+  62.5% {
+    background-position: 50px calc(0*100%/3), 0 calc(1*100%/3), 0 calc(2*100%/3), 0 calc(3*100%/3)
+  }
+
+  75% {
+    background-position: 50px calc(0*100%/3), 50px calc(1*100%/3), 0 calc(2*100%/3), 0 calc(3*100%/3)
+  }
+
+  87.5% {
+    background-position: 50px calc(0*100%/3), 50px calc(1*100%/3), 50px calc(2*100%/3), 0 calc(3*100%/3)
+  }
+
+  100% {
+    background-position: 50px calc(0*100%/3), 50px calc(1*100%/3), 50px calc(2*100%/3), 50px calc(3*100%/3)
+  }
+}
+/* #endregion Finger Modal */
