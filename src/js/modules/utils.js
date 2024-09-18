@@ -117,6 +117,28 @@ function showMessage(type, title, msg) {
   pageAlerts.showAlert(alert_type, title, msg);
 }
 
+function removeItemFromCart(item_id) {
+  $.ajax({
+      url: '/json/remove-cart/item/' + item_id,
+      type: 'GET',
+      success: function(data) {
+          var result = $.parseJSON(data);
+          if (!result.error) {
+              $('.cart-modal').replaceWith(result.twig_cart_modal);
+              $('.added_items').html(result.count);
+              $('.cart-counter').each(function(){
+                  $(this).html(result.count);
+              });
+              $('.bag-counter').html(result.count);
+              //send_gtag_remove_from_cart_event(result.gtag_event);
+          } else {
+             showMessage('error','Error',result.msg);
+          }
+
+      }
+  });
+}
+
 module.exports = {
   toArray,
   lockScroll,
@@ -133,5 +155,6 @@ module.exports = {
   toggleAdminBar,
   isEmail,
   saveCartEmail,
-  showMessage
+  showMessage,
+  removeItemFromCart
 }
