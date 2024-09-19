@@ -4,24 +4,32 @@
 			<img src="{{imgSrc}}" loading="lazy">
 		</div>
 		<div class="cart-item__details">
+			<span class="cart-item__category">{{category}}</span>
 			<div class="cart-item__info-row">
 				<div class="cart-item__title-group">
 					<a href="{{href}}" target="_blank" class="cart-item-name">{{name}}</a>
-					<div class="cart-item-remove">
-						{% include "../svg/close.svg" with {width: 12, height: 12} %}
-					</div>
 				</div>
 				<div class="cart-item__options-group">
 					{% for option in options %}
-						<span>{{ option.value }}</span>
+						<div class="cart-item__option">
+							<span>{{ option.name }}</span>:
+							<span>{{ option.value | raw }}</span>
+						</div>
 					{% endfor %}
 				</div>
 			</div>
-			<div class="cart-item__price-row {% if salePrice %}is-sale{% endif %}">
-				<span class="cart-item-price">${{price}}</span>
-				{% if salePrice %}
-					<span class="cart-item-price_sale">${{salePrice}}</span>
-				{% endif %}
+
+			<div class="cart-item__footer">
+				<div class="cart-item__btn-group">
+					<button class="cart-item__btn --wishlist{% if is_in_wishlist %} --active{% endif %}" {% if user %} onclick="addToWishlist({{key}});" {% else %} onclick="window.signModal.open()" {% endif %}></button>
+					<button class="cart-item__btn --remove" onclick="removeItemFromCart({{ key }})"></button>
+				</div>
+				<div class="cart-item__price-row">
+					<span class="cart-item-price">{{price}}</span>
+					{% if salePrice %}
+						<span class="cart-item-price_sale">{{salePrice}}</span>
+					{% endif %}
+				</div>
 			</div>
 		</div>
 	</div>

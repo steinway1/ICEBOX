@@ -858,8 +858,8 @@
         <div class="cart-modal__container">
             <div class="cart-modal__wrapper">
                 <div class="cart-modal__header">
-                    <h5 class="cart-modal__heading">Shopping Cart
-                        <span>()</span>
+                    <h5 class="cart-modal__heading">My Cart
+                        <span>(3)</span>
                     </h5>
                     <div data-evt="toggleCart" class="cart-modal__close-btn">
                         <svg width="12" height="12" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -867,41 +867,57 @@
                             <path d="M23 1L1 23" stroke="currentColor" stroke-width="2.5"></path>
                         </svg>
                     </div>
+
                 </div>
                 <div class="cart-modal__scrollable">
-                    <div class="cart-modal__rows-wrap">
+                    <div class="cart-modal__rows-wrap ">
 
                         <div class="cart-row">
-                            <div class="cart-row__wrapper">
+                            <div class="cart-row__wrapper bag_inner">
+
+
+
+
+                                <div class="fedex-notice">
+                                    <img src="./assets/fedex.svg" alt="">
+                                    <span>Guaranteed & Insured Shipping</span>
+                                </div>
+
+
                                 <div class="cart-item">
                                     <div class="cart-item__main">
                                         <div class="cart-item__media">
                                             <img src="./assets/sample-product.webp" loading="lazy">
                                         </div>
                                         <div class="cart-item__details">
+                                            <span class="cart-item__category">Earrings</span>
                                             <div class="cart-item__info-row">
                                                 <div class="cart-item__title-group">
                                                     <a href="#" target="_blank" class="cart-item-name">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</a>
-                                                    <div class="cart-item-remove">
-                                                        <svg width="12" height="12" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1L23 23" stroke="currentColor" stroke-width="2.5"></path>
-                                                            <path d="M23 1L1 23" stroke="currentColor" stroke-width="2.5"></path>
-                                                        </svg>
-                                                    </div>
                                                 </div>
                                                 <div class="cart-item__options-group">
-                                                    <span>Yellow</span>
-                                                    <span>Small</span>
+                                                    <div class="cart-item__option">
+                                                        <span>Color</span>:
+                                                        <span>Yellow</span>
+                                                    </div>
+                                                    <div class="cart-item__option">
+                                                        <span>Size</span>:
+                                                        <span>Small</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="cart-item__price-row is-sale">
-                                                <span class="cart-item-price">$$7,500</span>
-                                                <span class="cart-item-price_sale">$$3,500</span>
+
+                                            <div class="cart-item__footer">
+                                                <div class="cart-item__btn-group">
+                                                    <button class="cart-item__btn --wishlist" onclick="addToWishlist(32503);"></button>
+                                                    <button class="cart-item__btn --remove" onclick="removeItemFromCart(32503)"></button>
+                                                </div>
+                                                <div class="cart-item__price-row">
+                                                    <span class="cart-item-price">$7,500</span>
+                                                    <span class="cart-item-price_sale">$3,500</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="cart-item__notice">
-                                        This item is made to order, Expect your item to arrive on or before June 25th, 2024
                                     </div>
                                 </div>
                                 <div class="cart-item">
@@ -910,23 +926,31 @@
                                             <img src="./assets/sample-product.webp" loading="lazy">
                                         </div>
                                         <div class="cart-item__details">
+                                            <span class="cart-item__category">Earrings</span>
                                             <div class="cart-item__info-row">
                                                 <div class="cart-item__title-group">
                                                     <a href="#" target="_blank" class="cart-item-name">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</a>
-                                                    <div class="cart-item-remove">
-                                                        <svg width="12" height="12" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1L23 23" stroke="currentColor" stroke-width="2.5"></path>
-                                                            <path d="M23 1L1 23" stroke="currentColor" stroke-width="2.5"></path>
-                                                        </svg>
-                                                    </div>
                                                 </div>
                                                 <div class="cart-item__options-group">
-                                                    <span>Yellow</span>
-                                                    <span>Small</span>
+                                                    <div class="cart-item__option">
+                                                        <span>Color</span>:
+                                                        <span>Yellow</span>
+                                                    </div>
+                                                    <div class="cart-item__option">
+                                                        <span>Size</span>:
+                                                        <span>Small</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="cart-item__price-row ">
-                                                <span class="cart-item-price">$$7,500</span>
+
+                                            <div class="cart-item__footer">
+                                                <div class="cart-item__btn-group">
+                                                    <button class="cart-item__btn --wishlist" onclick="addToWishlist(32503);"></button>
+                                                    <button class="cart-item__btn --remove" onclick="removeItemFromCart(32503)"></button>
+                                                </div>
+                                                <div class="cart-item__price-row">
+                                                    <span class="cart-item-price">$7,500</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -934,39 +958,40 @@
                                         This item is made to order, Expect your item to arrive on or before June 25th, 2024
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="cart-row">
-                            <div class="cart-row__wrapper">
-                                <div class="cart-modal__summary-wrap">
+
+                                <div class="cart-modal__summary">
+                                    <div class="cart-modal__summary-price --total">
+                                        <span>Total</span>
+                                        <span class="cart-modal__total-price" id="mini-cart-total">$9,850</span>
+                                    </div>
                                     <div class="cart-modal__summary-price">
                                         <span>Original</span>
-                                        <span>$
-											0.00</span>
+                                        <span>$7,892</span>
                                     </div>
-                                    <div class="cart-modal__summary-price is-discount">
+                                    <div class="cart-modal__summary-price --discount">
                                         <span>Discount</span>
-                                        <span>- $
-												1,250.00</span>
+                                        <span>-
+												$1,250</span>
                                     </div>
                                     <div class="cart-modal__summary-price">
                                         <span>Delivery Charge</span>
                                         <span>On Checkout</span>
                                     </div>
-                                    <div class="cart-modal__summary-price mybag-summary-price_total">
-                                        <span>Total</span>
-                                        <span class="cart-modal__total-price">$
-											0.00</span>
+                                    <a href="/cart" class="cart-modal__btn">Checkout</a>
+                                    <div class="mybag-summary__payments">
+                                        <img src="./assets/checkout/pay-icon_paypal.svg" alt="paypal payment">
+                                        <img src="./assets/checkout/pay-icon_visa.svg" alt="payment visa">
+                                        <img src="./assets/checkout/pay-icon_mastercard.svg" alt="payment mastercard">
+                                        <img src="./assets/checkout/pay-icon_amex.svg" alt="payment amex">
+                                        <img src="./assets/checkout/pay-icon_btc.svg" alt="payment bitcoin">
+                                        <img src="./assets/checkout/pay-icon_wire.svg" alt="payment wire transfer">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                </div>
-                <div class="cart-modal__footer">
-                    <a href="https://www.icebox.com/cart" class="cart-modal__btn">Go To Checkout</a>
                 </div>
             </div>
         </div>

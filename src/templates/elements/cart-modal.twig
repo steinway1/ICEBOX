@@ -3,99 +3,105 @@
 	<div class="cart-modal__container">
 		<div class="cart-modal__wrapper">
 			<div class="cart-modal__header">
-				<h5 class="cart-modal__heading">Shopping Cart
-					<span>({{cartItems.length}})</span>
+				<h5 class="cart-modal__heading">My Cart
+					<span>({{cart_items ?: 0}})</span>
 				</h5>
 				<div data-evt="toggleCart" class="cart-modal__close-btn">
-					{% include "../components/svg/close.svg" with {width: 12, height: 12} %}
+					{% include "components/svg/close.svg" with {width: 12, height: 12} %}
 				</div>
+
 			</div>
 			<div class="cart-modal__scrollable">
-				<div class="cart-modal__rows-wrap">
+				<div class="cart-modal__rows-wrap {% if cart_items == 0 %} is-empty{% endif %}">
 
-					<div class="cart-row{% if cart.items.length == 0 %} is-empty{% endif %}">
-						<div class="cart-row__wrapper">
-							{% if cart.items.length > 0 %}
+					<div class="cart-row">
+						<div
+							class="cart-row__wrapper bag_inner">
+
+							{# Not Empty #}
+							{% if cart_items > 0 %}
+
+								{# Fedex Notice #}
+								<div class="fedex-notice">
+									<img src="{{ THEME_ASSETS_FOLDER }}fedex.svg" alt="">
+									<span>Guaranteed & Insured Shipping</span>
+								</div>
+
+								{# Items #}
 								{% for item in cart.items %}
-									{% include "../components/cart/cart-item.twig" with {
-                imgSrc: item.imgSrc,
-                name: item.name,
-                href: item.href,
-                options: item.options,
-                notice: item.notice,
-                shippingDate: item.shippingDate,
-                price: item.price,
-                salePrice: item.salePrice
-							} %}
+									{% include "components/cart/cart-item.twig" with {
+										key:item.key,
+										imgSrc: item.imgSrc,
+										name: item.name,
+										href: item.href,
+										options: item.options,
+										notice: item.notice,
+										price: item.price,
+										salePrice: item.salePrice,
+                    category: item.category
+									} %}
 								{% endfor %}
-							{% else %}
-								<div class="cart-modal__empty-wrap">
-									<span>Your Cart Is Empty</span>
-									<a href="/" class="home-welcome__link">
-										<span>Start Shopping</span>
-										{% include "components/svg/arrow-next.svg" %}
-									</a>
-								</div>
-								<div class="cart-modal__empty-items">
-									<span>
-										{% if user.recentlyViewed.length > 0 %}Recently Viewed{% else %}Our Best Pieces
-										{% endif %}
-									</span>
-									<div class="cart-modal__empty-grid">
-										{% if user.recentlyViewed %}
-											{# Include Recently if available #}
-											{% for item in 0..5 %}
-												{% include "elements/product-card.twig" %}
-											{% endfor %}
-										{% else %}
-											{# Else Include Popular #}
-											{% for item in 0..5 %}
-												{% include "elements/product-card.twig" %}
-											{% endfor %}
-										{% endif %}
-									</div>
-								</div>
-							{% endif %}
-						</div>
-					</div>
 
-					{% if cart.items.length > 0 %}
-						<div class="cart-row">
-							<div class="cart-row__wrapper">
-								<div class="cart-modal__summary-wrap">
+								{# Summary #}
+								<div class="cart-modal__summary">
+									<div class="cart-modal__summary-price --total">
+										<span>Total</span>
+										<span class="cart-modal__total-price" id="mini-cart-total">{{ cart.soft_total}}</span>
+									</div>
 									<div class="cart-modal__summary-price">
 										<span>Original</span>
-										<span>$
-											{{ cart.originalPrice|number_format(2) }}</span>
+										<span>{{ cart.original_total}}</span>
 									</div>
-									{% if cart.discountPrice is defined %}
-										<div class="cart-modal__summary-price is-discount">
+									{% if cart.total_discount is defined %}
+										<div class="cart-modal__summary-price --discount">
 											<span>Discount</span>
-											<span>- $
-												{{cart.discountPrice|number_format(2)}}</span>
+											<span>-
+												{{cart.total_discount}}</span>
 										</div>
 									{% endif %}
 									<div class="cart-modal__summary-price">
 										<span>Delivery Charge</span>
 										<span>On Checkout</span>
 									</div>
-									<div class="cart-modal__summary-price mybag-summary-price_total">
-										<span>Total</span>
-										<span class="cart-modal__total-price">$
-											{{ cart.fullPrice|number_format(2) }}</span>
+									<a href="/cart" class="cart-modal__btn">Checkout</a>
+									<div class="mybag-summary__payments">
+										<img src="{{ THEME_ASSETS_FOLDER }}checkout/pay-icon_paypal.svg" alt="paypal payment">
+										<img src="{{ THEME_ASSETS_FOLDER }}checkout/pay-icon_visa.svg" alt="payment visa">
+										<img src="{{ THEME_ASSETS_FOLDER }}checkout/pay-icon_mastercard.svg" alt="payment mastercard">
+										<img src="{{ THEME_ASSETS_FOLDER }}checkout/pay-icon_amex.svg" alt="payment amex">
+										<img src="{{ THEME_ASSETS_FOLDER }}checkout/pay-icon_btc.svg" alt="payment bitcoin">
+										<img src="{{ THEME_ASSETS_FOLDER }}checkout/pay-icon_wire.svg" alt="payment wire transfer">
 									</div>
 								</div>
-							</div>
+							{% else %}
+								{# Empty #}
+								<div class="cart-modal__empty-wrap">
+									<span>Cart Is Empty<span>Add more diamonds to your life!</span>
+									</span>
+									<a href="/" class="home-welcome__link">
+										<span>Start Shopping</span>
+										{% include "components/svg/arrow-next.svg" %}
+									</a>
+								</div>
+								{# Recently #}
+								{% if recently_viewed_count != 0 %}
+									<div class="cart-modal__empty-items">
+										<span>
+											Recently Viewed
+										</span>
+										<div class="cart-modal__empty-grid">
+											{% for item in global_recently_viewed %}
+												{% include "elements/product-card.twig" with {productItem:item} %}
+											{% endfor %}
+										</div>
+									</div>
+								{% endif %}
+							{% endif %}
 						</div>
-					{% endif %}
+					</div>
 
 				</div>
 			</div>
-			{% if cart.items.length > 0 %}
-				<div class="cart-modal__footer">
-					<a href="https://www.icebox.com/cart" class="cart-modal__btn">Go To Checkout</a>
-				</div>
-			{% endif %}
 		</div>
 	</div>
 </div>

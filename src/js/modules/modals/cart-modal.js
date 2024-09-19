@@ -1,7 +1,7 @@
 const cartModal = new Object({
   init: function () {
-    this.renderDOM();
-    this.bindToggle();
+    this.renderDOM()
+    this.bindToggle()
   },
   renderDOM: function () {
     this._ = $(".cart-modal");
