@@ -331,6 +331,20 @@ class ProductPage {
       }
     }
   }
+  bindOptionButtonClickInputValue() {
+    const btnArr = [...document.querySelectorAll('.option-btn')]
+    for (const btn of btnArr) {
+      btn.addEventListener('click', () => {
+        const value = btn.dataset.value
+        if (!value) throw new Error('data-value attribute is required')
+        const input = btn.closest('.product__item-option').querySelector('.custom-fields-fetch')
+        if (!input) throw new Error('custom-fields-fetch element is required')
+          
+        input.value = value
+        input.dispatchEvent(new Event('change'))
+      })
+    }
+  }
   bindColorPick() {
     this.colorPickArr.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -338,7 +352,7 @@ class ProductPage {
         if (attr) {
           this.setActiveColor(attr)
           this.setActiveColorPickElem(btn)
-          
+
           if (this.fixedBar) {
             this.fixedBar.classList.remove('--filled')
           }
@@ -492,6 +506,7 @@ class ProductPage {
     }
     this.setActiveOptionsText()
     this.bindOptionButtonClick()
+    this.bindOptionButtonClickInputValue()
     // this.bindColorPick()
     this.bindToggleRow()
     this.bindToggleFav()
