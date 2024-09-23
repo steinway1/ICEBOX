@@ -492,7 +492,7 @@ class ProductPage {
     }
     this.setActiveOptionsText()
     this.bindOptionButtonClick()
-    this.bindColorPick()
+    // this.bindColorPick()
     this.bindToggleRow()
     this.bindToggleFav()
     this.setupDescription()
