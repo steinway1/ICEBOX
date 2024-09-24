@@ -327,7 +327,7 @@ class SignModal {
     this.formsArr.forEach((form, index) => {
       form.addEventListener('submit', () => {
         if ($(form).parsley().isValid()) {
-          form.startLoading()
+          this.startLoading()
         }
       })
     })

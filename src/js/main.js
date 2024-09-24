@@ -1,10 +1,8 @@
-const $ = require('./jquery')
-window.$ = $
-window.jQuery = $
+var $ = require('jquery')
+window.$ = window.jQuery = $
 require('./jquery.crs.min')
 require('./jQuery-zoom')
-// require('./parsley.min')
-require('parsleyjs');
+require('./parsley.min')
 
 window.popper = require('./popper')
 window.tippy = require('./tippy')
