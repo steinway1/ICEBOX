@@ -289,10 +289,13 @@ class ProductPage {
       const btnArr = [...option.querySelectorAll('.option-btn')]
       if (head) {
         head.addEventListener('click', () => {
+          console.log('head clicked')
           if (option.classList.contains('--active')) {
+            console.log('hide')
             this.hideOption(option)
             this.optionsRow.classList.remove('--active')
           } else {
+            console.log('show')
             this.hideAllOptions(option)
             this.optionsRow.classList.add('--active')
           }

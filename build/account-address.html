@@ -89,13 +89,6 @@
                                 </svg> <!-- <span>My Account</span> -->
                             </div>
                         </div>
-                        <a href="/account/wishlist" data-evt="toggleWishlist">
-                            <div>
-                                <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.7899 3.82249C5.17644 1.3925 9.04578 1.3925 11.4323 3.82249L12 4.4005L12.5677 3.82249C14.9542 1.3925 18.8236 1.3925 21.2101 3.82249C23.5966 6.25247 23.5966 10.1923 21.2101 12.6222L12 22L2.7899 12.6222C0.403366 10.1923 0.403366 6.25247 2.7899 3.82249Z" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path>
-                                </svg>
-                            </div>
-                        </a>
                         <a href="javascript:void(0);" class="cart_trigger" data-evt="toggleCart">
                             <div>
                                 <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -272,7 +265,7 @@
                         <span class="account__membership">Member since
 					09/24/2024</span>
                         <h2 class="account__welcome-title">Welcome
-                            John!</h2>
+                            !</h2>
                         <span class="account__subtitle">Manage your orders, subscriptions, wishlist.</span>
                     </div>
                     <!--Profile navigation-->
@@ -392,9 +385,9 @@
                                     <span> </span>
                                     <span></span>
                                     <span></span>
-                                    <span>3255 Peachtree Rd NESuite #2 Atlanta, GA, Peachtree RD NESuite #2, </span>
-                                    <span>Atlanta, Georgia 30305 </span>
-                                    <span>USA</span>
+                                    <span>, </span>
+                                    <span>,  </span>
+                                    <span></span>
                                 </div>
 
                                 <div class="profile-card__details form">
@@ -413,7 +406,7 @@
                                                     <input type="text" class="profile__input" placeholder="Phone Number" name="sh_phone" id="sh_phone" value="" required="">
                                                 </div>
                                                 <div class="account__input-border">
-                                                    <input type="text" class="profile__input" placeholder="Address" name="address1" id="address" required="" value="3255 Peachtree Rd NESuite #2 Atlanta, GA, Peachtree RD NESuite #2">
+                                                    <input type="text" class="profile__input" placeholder="Address" name="address1" id="address" required="" value="">
                                                 </div>
                                             </div>
                                             <div class="profile-card__input-wrap">
@@ -423,15 +416,15 @@
                                             </div>
                                             <div class="profile-card__input-wrap half">
                                                 <div class="account__input-border">
-                                                    <input type="text" class="profile__input" value="Atlanta" placeholder="City" name="city" id="city" required="">
+                                                    <input type="text" class="profile__input" value="" placeholder="City" name="city" id="city" required="">
                                                 </div>
                                                 <div class="account__input-border">
-                                                    <input type="text" class="profile__input" value="Georgia 30305" placeholder="Region / State" name="state" id="state" required="">
+                                                    <input type="text" class="profile__input" value="" placeholder="Region / State" name="state" id="state" required="">
                                                 </div>
                                             </div>
                                             <div class="profile-card__input-wrap half">
                                                 <div class="account__input-border">
-                                                    <input type="text" class="profile__input" value="USA" placeholder="Country" name="country" id="country" required="">
+                                                    <input type="text" class="profile__input" value="" placeholder="Country" name="country" id="country" required="">
                                                 </div>
                                                 <div class="account__input-border">
                                                     <input type="text" class="profile__input" placeholder="Postal Code" name="zip_code" id="postalCode" required="" value="">
@@ -678,16 +671,10 @@
                                 <span>Track Your Order</span>
                             </a>
 
-                            <a href="/account" class="menu__item --icon --account">
-                                <span>My Account</span>
-                            </a>
-                            <a href="/account/wishlist" class="menu__item --icon --wishlist">
-                                <span>Wishlist</span>
-                            </a>
-                            <a href="/logout" class="menu__item --icon --logout">
-                                <span>Sign Out</span>
-                            </a>
 
+                            <div onclick="signModal.open('login')" class="menu__item --icon --account">
+                                <span>Sign In To Your Account</span>
+                            </div>
 
                         </div>
                     </div>
@@ -959,7 +946,7 @@
 
                                             <div class="cart-item__footer">
                                                 <div class="cart-item__btn-group">
-                                                    <button class="cart-item__btn --wishlist" onclick="addToWishlist(32503);"></button>
+                                                    <button class="cart-item__btn --wishlist" onclick="window.signModal.open()"></button>
                                                     <button class="cart-item__btn --remove" onclick="removeItemFromCart(32503)"></button>
                                                 </div>
                                                 <div class="cart-item__price-row">
@@ -995,7 +982,7 @@
 
                                             <div class="cart-item__footer">
                                                 <div class="cart-item__btn-group">
-                                                    <button class="cart-item__btn --wishlist" onclick="addToWishlist(32503);"></button>
+                                                    <button class="cart-item__btn --wishlist" onclick="window.signModal.open()"></button>
                                                     <button class="cart-item__btn --remove" onclick="removeItemFromCart(32503)"></button>
                                                 </div>
                                                 <div class="cart-item__price-row">
