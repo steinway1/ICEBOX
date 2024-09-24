@@ -133,6 +133,7 @@ window.Parsley.on('form:submit', function () {
 });
 
 $(document).ready(function () {
+  initValidators()
   $('#btn_confirm_otp').on('click', function () {
     confirmLoginOtp();
   });

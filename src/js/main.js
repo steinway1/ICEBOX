@@ -7,10 +7,14 @@ window.popper = require('./popper')
 window.tippy = require('./tippy')
 window.Splide = require('./splide')
 require('./splide-grid')
+require('./parsley.min')
 window.intlTelInput = require('./intlTelInput')
-window.Parsley = require('./parsley.min')
 window.zenscroll = require('./zenscroll')
 window.fancybox = require('./fancybox.min')
+
+$(document).ready(function() {
+  $('#pop_frm_login').parsley();
+});
 
 
 /** -- Globals */
