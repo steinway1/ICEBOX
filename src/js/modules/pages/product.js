@@ -341,7 +341,8 @@ class ProductPage {
         if (!input) throw new Error('custom-fields-fetch element is required')
           
         input.value = value
-        input.dispatchEvent(new Event('change'))
+        const event = new Event('change', { bubbles: true })
+        input.dispatchEvent(event)
       })
     }
   }
