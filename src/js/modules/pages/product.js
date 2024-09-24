@@ -134,6 +134,7 @@ class ProductPage {
   }
   setupSplide() {
     const splideArr = [...document.querySelectorAll('.more-row__splide')]
+    console.log('setup splide called')
     for (const el of splideArr) {
       let main = new Splide(el, {
         type: "loop",
@@ -284,18 +285,16 @@ class ProductPage {
 
   // Bind Events
   bindOptionToggleDesktop() {
+    console.log('desktop option toggle binded')
     for (const option of this.optionsArr) {
       const head = option.querySelector('.product-option__head')
       const btnArr = [...option.querySelectorAll('.option-btn')]
       if (head) {
         head.addEventListener('click', () => {
-          console.log('head clicked')
           if (option.classList.contains('--active')) {
-            console.log('hide')
             this.hideOption(option)
             this.optionsRow.classList.remove('--active')
           } else {
-            console.log('show')
             this.hideAllOptions(option)
             this.optionsRow.classList.add('--active')
           }
