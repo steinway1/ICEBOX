@@ -1,14 +1,14 @@
-const $ = require('jquery')
-window.$ = $
-window.jQuery = $
+var $ = require('jquery')
+window.$ = window.jQuery = $
 require('./jquery.crs.min')
 require('./jQuery-zoom')
+require('./parsley.min')
+
 window.popper = require('./popper')
 window.tippy = require('./tippy')
 window.Splide = require('./splide')
 require('./splide-grid')
 window.intlTelInput = require('./intlTelInput')
-window.Parsley = require('./parsley.min')
 window.zenscroll = require('./zenscroll')
 window.fancybox = require('./fancybox.min')
 
@@ -64,7 +64,6 @@ window.bookModal = require('./modules/modals/book-modal')
 window.mailModal = require('./modules/modals/mail-modal')
 window.quizModal = require('./modules/modals/quiz-modal')
 window.salesModal = require('./modules/modals/sales-modal')
-const SignModal = require('./modules/modals/sign-modal')
 const Menu = require('./modules/modals/menu')
 
 /** PG Filters/Select/Modal
@@ -152,7 +151,6 @@ const initPageObjects = () => {
 document.addEventListener("DOMContentLoaded", function () {
   initPageObjects()
   window.pageTip = new PageTip()
-  window.signModal = new SignModal()
 
   // Loan App
   const loanCaseHolder = document.querySelector('[data-id="loan-apply"]')
