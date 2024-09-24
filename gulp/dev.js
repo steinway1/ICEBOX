@@ -289,7 +289,6 @@ gulp.task('css:dev',
 /* #region  Javascript */
 
 gulp.task('js:dev', () => {
-  // Browserify configuration
   return browserify({
     entries: [
       root.src.js.bundle.main
@@ -302,7 +301,7 @@ gulp.task('js:dev', () => {
     .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
     .pipe(minify())
     .pipe(gulp.dest(root.dev.js))
-})
+});
 
 // gulp.task('js:dev',
 //   () => {

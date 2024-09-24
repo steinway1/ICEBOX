@@ -1,18 +1,20 @@
-const $ = require('./jquery')
+const $ = require('jquery')
 window.$ = $
 window.jQuery = $
 require('./jquery.crs.min')
 require('./jQuery-zoom')
-// require('./parsley.min')
-require('parsleyjs');
-
 window.popper = require('./popper')
 window.tippy = require('./tippy')
 window.Splide = require('./splide')
 require('./splide-grid')
+require('./parsley.min')
 window.intlTelInput = require('./intlTelInput')
 window.zenscroll = require('./zenscroll')
 window.fancybox = require('./fancybox.min')
+
+$(document).ready(function() {
+  $('#pop_frm_login').parsley();
+});
 
 
 /** -- Globals */
@@ -35,6 +37,12 @@ window.PageConfetti = require('./modules/dynamic/page-confetti')
 window.AskModal = require('./modules/dynamic/ask-modal')
 /* Loader Root */
 window.rootLoader = require('./modules/dynamic/root-loader')
+
+
+/** -- Page Elements */
+/** Login
+ */
+require('./modules/login')
 
 /** Header / Footer
  * @type Objects
@@ -149,6 +157,7 @@ const initPageObjects = () => {
 document.addEventListener("DOMContentLoaded", function () {
   initPageObjects()
   window.pageTip = new PageTip()
+  window.signModal = new SignModal()
 
   // Loan App
   const loanCaseHolder = document.querySelector('[data-id="loan-apply"]')
@@ -182,9 +191,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Homepage
   new Homepage()
-})
 
-/** -- Page Elements */
-/** Login
- */
-require('./modules/login')
+  setTimeout(() => {
+    console.log(window.cartModal)
+  }, 5000);
+})
