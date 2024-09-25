@@ -47,6 +47,7 @@ window.pageEls = require('./modules/elements/page-elements')
 window.pageReviews = require('./modules/elements/page-reviews')
 window.heroSplide = require('./modules/elements/hero-splide')
 window.pageAlerts = require('./modules/elements/page-alerts')
+window.sirvCards = require('./modules/elements/sirv-cards')
 
 /** Modals
  * Currency / Cart / Menu / Mail / Quiz / Sign / Menu
@@ -116,6 +117,7 @@ const
     account,
     locationPage,
     pageAlerts,
+    sirvCards,
     sellPage,
     bookModal,
     passReset,
@@ -134,7 +136,8 @@ const initPageObjects = () => {
       if (typeof obj.init === "function") {
         obj.init()
       } else {
-        console.log(obj, 'No init function')
+        console.log(obj)
+        console.log('No init function')
       }
     } catch (err) {
       console.error(`Error initializing ${obj}:`, err)
