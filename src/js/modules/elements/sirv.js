@@ -1,3 +1,4 @@
+window.sirvTimer = null
 const sirvCards = {
   visibleClass: 'is-visible',
   init: function () {
@@ -49,3 +50,5 @@ const sirvCards = {
     }
   }
 }
+
+module.exports = sirvCards

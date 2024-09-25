@@ -53,6 +53,7 @@ window.pageEls = require('./modules/elements/page-elements')
 window.pageReviews = require('./modules/elements/page-reviews')
 window.heroSplide = require('./modules/elements/hero-splide')
 window.pageAlerts = require('./modules/elements/page-alerts')
+window.sirvCards = require('./modules/elements/sirv')
 
 /** Modals
  * Currency / Cart / Menu / Mail / Quiz / Sign / Menu
@@ -87,8 +88,6 @@ const
   Homepage = require('./modules/pages/homepage'),
   ResultsPage = require('./modules/pages/results'),
   ProductPage = require('./modules/pages/product'),
-  /* Product Page : /product-page */
-  productPage = require('./modules/pages/product'),
   /* My Bag : /cart */
   myBag = require('./modules/pages/my-bag'),
   /* Account Profile : /account */
@@ -105,6 +104,7 @@ const
   formPage = require('./modules/pages/form-page'),
   /* Tag Preview : /tag */
   tagPreview = require('./modules/pages/tag-preview')
+const sirvCards = require('./modules/elements/sirv')
 
 
 /** -- Initialize Page Objects */
@@ -120,6 +120,7 @@ const
     account,
     locationPage,
     pageAlerts,
+    sirvCards,
     sellPage,
     bookModal,
     passReset,
