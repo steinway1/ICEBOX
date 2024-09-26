@@ -52,6 +52,17 @@ class ProductPage {
           arrows: false,
           pagination: false,
           speed: 750,
+          breakpoints: {
+            991: {
+              perPage: 2
+            },
+            767: {
+              perPage: 1.5
+            },
+            479: {
+              perPage: 1
+            }
+          }
         })
 
         const thumbs = new Splide(thumbsSplide, {
@@ -438,7 +449,7 @@ class ProductPage {
 
         const observerCallback = (entries) => {
           entries.forEach(entry => {
-            if (entry.boundingClientRect.top < headerOffset && !entry.isIntersecting) {
+            if (!entry.isIntersecting) {
               bar.classList.add(__VISIBLE)
               this.setFixedBarMedia()
             } else {

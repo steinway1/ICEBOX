@@ -22,15 +22,30 @@
 					<div class="side-row__category">{{product.subcategory.caption}}</div>
 					{% include "elements/product-page/title.twig" %}
 					{% include "elements/product-page/reviews-bar.twig" %}
+					{# Gold Pick #}
+					{% for option in product.options %}
+						{% if option.type == 'goldColor' %}
+							{% include "elements/product-page/custom-fields/gold-color.twig", with { option: option } %}
+						{% endif %}
+					{% endfor %}
+
 
 					{# Price / Sale / Stock #}
 					<div class="side-row__margin-row">
 						<div class="side-row__border-row">
 							{% include "elements/product-page/price.twig" %}
-						</div>
-						<div class="side-row__border-row">
 							{% include 'elements/product-page/stock-availability.twig'  %}
 						</div>
+
+						{# Description #}
+						<div class="side-row__border-row">
+							<div class="product__item-summary">
+								{% if product.item.mainDescription %}
+									<div id="product_description">{{product.item.mainDescription | raw }}</div>
+								{% endif %}
+							</div>
+						</div>
+
 					</div>
 
 					{# Options #}

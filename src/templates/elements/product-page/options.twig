@@ -1,4 +1,3 @@
-{% set gold_color_option = null %}
 {% set other_options = [] %}
 
 {% for option in product.options %}
@@ -8,10 +7,6 @@
 		{% set other_options = other_options | merge([option]) %}
 	{% endif %}
 {% endfor %}
-
-{% if gold_color_option %}
-	{% include "elements/product-page/custom-fields/gold-color.twig", with { option: gold_color_option } %}
-{% endif %}
 
 {% for option in other_options %}
 	{% include 'elements/product-page/custom-fields/' ~ option.type ~ '.twig' %}

@@ -94,9 +94,17 @@
   }
 
   .smart-picture {
-    width: 100%;
-    height: 100%;
     background-color: white;
+  }
+
+  img {
+    // @include maxWidthMd {
+    //   aspect-ratio: 1.2 / 1;
+    // }
+
+    @include maxWidthXs {
+      aspect-ratio: 1 / 1.16;
+    }
   }
 }
 
@@ -172,11 +180,11 @@
   height: var(--breadcrumbs-height);
 
   @include maxWidthMd {
-    order: 1;
     margin-left: calc(var(--padding) * -1);
     margin-right: calc(var(--padding) * -1);
-    padding: 14px var(--padding);
-    border-bottom: 1px solid var(--p-border);
+    padding: 18px var(--padding) 0;
+    height: auto;
+    order: 1;
   }
 }
 
@@ -188,11 +196,17 @@
   margin-bottom: 0;
   padding: 0;
   display: flex;
+  order: -1;  
 }
 
 .crumb {
   align-items: center;
   display: flex;
+
+  @include maxWidthMd {
+    font-size: 12px;
+    font-weight: 600;
+  }
 }
 
 .crumb__link {
@@ -281,12 +295,11 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
+  margin-top: 6px;
 }
 
 .stock-msg {
   color: #129c73;
-  text-transform: uppercase;
-  font-size: 12px;
   font-weight: 700;
 
   &.--blue {
@@ -1364,22 +1377,6 @@
     transform: scale(.98);
   }
 }
-
-@media screen and (max-width: 479px) {
-
-  .product-media.splide__slide {
-    flex: none;
-  }
-
-  .option-btn:active {
-    transform: scale(.97);
-  }
-
-  .option-letters-input {
-    border-radius: 0;
-  }
-}
-
 
 /* SEPARATE */
 /* #region GENERAL */
@@ -3407,7 +3404,6 @@
 .product__view .product-media,
 .fixed-bar__media {
   position: relative;
-  aspect-ratio: 1/1;
 
   &::after {
     content: "";
@@ -3601,7 +3597,6 @@
 }
 
 .product__main-gallery-wrapper {
-  aspect-ratio: 1 / 1.15;
   position: relative;
   display: flex;
   overflow: hidden;
@@ -3611,31 +3606,8 @@
     width: 100%;
   }
 
-  @include maxWidthMd {
-    aspect-ratio: unset;
-
-    .product-media,
-    .splide__list {
-      aspect-ratio: 2 / 1.7;
-    }
-  }
-
-  @include maxWidthSm {
-    aspect-ratio: unset;
-
-    .product-media,
-    .splide__list {
-      aspect-ratio: 2 / 1.85;
-    }
-  }
-
-  @include maxWidthXs {
-    aspect-ratio: unset;
-
-    .product-media,
-    .splide__list {
-      aspect-ratio: 1 / 1.13;
-    }
+  @media screen and (min-width: 992px) {
+    aspect-ratio: 1 / 1.15;
   }
 }
 
@@ -3713,7 +3685,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-top: 18px;
 }
 
 .gold-option__title {
@@ -4411,6 +4383,7 @@
 }
 
 .product__item-availability.in_stock_msg {
+  font-size: 13px;
   .product__availability-info {
     color: #129c73;
   }
@@ -4418,7 +4391,5 @@
 
 .product__availability-info {
   color: #0992be;
-  text-transform: uppercase;
-  font-size: 12px;
   font-weight: 700;
 }
