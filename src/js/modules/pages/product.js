@@ -196,9 +196,15 @@ class ProductPage {
     const body = this.optionModal.querySelector('.product-option__body')
     const guideBtn = this.optionModal.querySelector('.option-guide-btn')
     const emptyOption = this.optionsArr.find(option => !option.querySelector('.product-option__body'))
+    const input = this.optionModal.querySelector('input[type="hidden"]')
+
+
     if (body && emptyOption) {
       if (guideBtn) {
         body.append(guideBtn)
+      }
+      if (input) {
+        emptyOption.append(input)
       }
       emptyOption.append(body)
     }
@@ -212,6 +218,7 @@ class ProductPage {
       const nextOption = this.optionsArr[currentIndex + 1] || this.optionsArr[0]
       const nextOptionName = nextOption.querySelector('.product-option-name')
       const body = option.querySelector('.product-option__body')
+      const input = option.querySelector('input[type="hidden"]')
 
       const guideBtn = option.querySelector('.option-guide-btn')
       const modalWrapper = this.optionModal.querySelector('.option-modal__wrapper')
@@ -220,6 +227,10 @@ class ProductPage {
         this.optionModalName.innerHTML = optionName.textContent
         this.optionModalNextElem.innerHTML = nextOptionName.textContent
         this.optionModalContent.appendChild(body)
+
+        if (input) {
+          this.optionModalContent.appendChild(input)
+        }
 
         if (guideBtn && modalWrapper) {
           modalWrapper.append(guideBtn)
@@ -348,9 +359,14 @@ class ProductPage {
       btn.addEventListener('click', () => {
         const value = btn.dataset.value
         if (!value) throw new Error('data-value attribute is required')
-        const input = btn.closest('.product__item-option').querySelector('.custom-fields-fetch')
+
+        const parent = btn.closest('.product__item-option') || btn.closest('.option-modal__content')
+        if (!parent) throw new Error('parent element is required')
+
+        const input = parent.querySelector('.custom-fields-fetch')
         if (!input) throw new Error('custom-fields-fetch element is required')
-          
+
+        console.log(value)
         input.value = value
         const event = new Event('change', { bubbles: true })
         input.dispatchEvent(event)
