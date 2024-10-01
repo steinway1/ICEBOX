@@ -448,46 +448,47 @@ class ProductPage {
     }
   }
   observeFixedBar() {
-    const triggerElem = this.fixedBarTrigger
-    const bar = this.fixedBar
-    let header = document.querySelector('header')
-
+    const triggerElem = this.fixedBarTrigger;
+    const bar = this.fixedBar;
+    let header = document.querySelector('header');
+  
     if (triggerElem && bar) {
-      let headerOffset = header ? header.offsetHeight : 0
-      let observer = null
-
+      let headerOffset = header ? header.offsetHeight : 0;
+      let observer = null;
+  
       const updateObserver = () => {
-        headerOffset = header ? header.offsetHeight : 0
-
+        headerOffset = header ? header.offsetHeight : 0;
+  
         if (observer) {
-          observer.disconnect()
+          observer.disconnect();
         }
-
+  
         const observerCallback = (entries) => {
           entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-              bar.classList.add(__VISIBLE)
-              this.setFixedBarMedia()
+            if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+              bar.classList.add(__VISIBLE);
+              this.setFixedBarMedia();
             } else {
-              bar.classList.remove(__VISIBLE)
+              bar.classList.remove(__VISIBLE);
             }
-          })
-        }
-
+          });
+        };
+  
         observer = new IntersectionObserver(observerCallback, {
           root: null,
           rootMargin: `-${headerOffset}px 0px 0px 0px`,
           threshold: 0
-        })
-
-        observer.observe(triggerElem)
-      }
-
-      updateObserver()
-
-      window.addEventListener('resize', updateObserver)
+        });
+  
+        observer.observe(triggerElem);
+      };
+  
+      updateObserver();
+  
+      window.addEventListener('resize', updateObserver);
     }
   }
+  
   setFixedBarMedia() {
     if (this.fixedBar) {
 
