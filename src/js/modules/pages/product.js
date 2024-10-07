@@ -267,21 +267,89 @@ class ProductPage {
       half: true,
       callback: () => { this.closeOptionModal() }
     })
-    this.optionModal.style.display = 'block'
-    setTimeout(() => {
-      this.optionModal.classList.add('--visible')
-    }, 3);
+    this.optionModal.classList.add('--visible')
   }
   closeOptionModal() {
     unlockScroll()
     this.optionModal.classList.remove('--visible')
     setTimeout(() => {
-      this.optionModal.style.display = 'none'
+      this.optionModal.removeAttribute('style')
       this.revertOptions()
     }, getTransitionTime(this.optionModal));
     if (window.optionModalBackdrop) {
       window.optionModalBackdrop.hide(true)
     }
+  }
+  bindPullDown() {
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+    let isMovingRoot = false;
+    const rootEl = this.optionModal;
+    const scroller = document.querySelector('.option-modal__content')
+    const handler = document.querySelector('.option-modal__header')
+    const transition = 'all 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)'
+
+    rootEl.addEventListener('touchstart', (e) => {
+      const target = e.target;
+
+      const isOnHandler = handler.contains(target) || target === handler;
+
+      startY = e.touches[0].clientY;
+      isDragging = true;
+      isMovingRoot = false;
+
+      this.isOnHandler = isOnHandler;
+    }, { passive: false });
+
+    rootEl.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+
+      currentY = e.touches[0].clientY;
+      let diffY = currentY - startY;
+
+      rootEl.style.transition = 'none';
+
+      if (diffY > 0) {
+        if (this.isOnHandler) {
+          if (!isMovingRoot) {
+            isMovingRoot = true;
+          }
+          if (e.cancelable) {
+            e.preventDefault();
+          }
+          rootEl.style.transform = `translateY(${diffY}px)`;
+        } else {
+          if (scroller.scrollTop === 0) {
+            if (!isMovingRoot) {
+              isMovingRoot = true;
+            }
+            if (e.cancelable) {
+              e.preventDefault();
+            }
+            rootEl.style.transform = `translateY(${diffY}px)`;
+          }
+        }
+      }
+    }, { passive: false });
+
+    rootEl.addEventListener('touchend', () => {
+      if (!isDragging) return;
+      isDragging = false;
+
+      if (isMovingRoot) {
+        let diffY = currentY - startY;
+        let hideOffset = rootEl.offsetHeight * 0.3;
+        rootEl.style.transition = transition;
+
+        if (diffY > hideOffset) {
+          this.closeOptionModal();
+          rootEl.style.transform = `translateY(100%)`;
+        } else {
+          rootEl.removeAttribute('style');
+        }
+      }
+    });
   }
 
   // Methods - Options
@@ -313,10 +381,9 @@ class ProductPage {
         head.addEventListener('click', () => {
           if (option.classList.contains('--active')) {
             this.hideOption(option)
-            this.optionsRow.classList.remove('--active')
           } else {
             this.hideAllOptions(option)
-            this.optionsRow.classList.add('--active')
+            this.showOption(option)
           }
         })
       }
@@ -337,8 +404,6 @@ class ProductPage {
       if (btnArr.length) {
         for (const btn of btnArr) {
           btn.addEventListener('click', () => {
-            this.hideAllOptions()
-
             const textContent = btn.textContent.trim()
             if (textContent.length) {
               if (selectedElem) {
@@ -451,18 +516,18 @@ class ProductPage {
     const triggerElem = this.fixedBarTrigger;
     const bar = this.fixedBar;
     let header = document.querySelector('header');
-  
+
     if (triggerElem && bar) {
       let headerOffset = header ? header.offsetHeight : 0;
       let observer = null;
-  
+
       const updateObserver = () => {
         headerOffset = header ? header.offsetHeight : 0;
-  
+
         if (observer) {
           observer.disconnect();
         }
-  
+
         const observerCallback = (entries) => {
           entries.forEach(entry => {
             if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
@@ -473,22 +538,21 @@ class ProductPage {
             }
           });
         };
-  
+
         observer = new IntersectionObserver(observerCallback, {
           root: null,
           rootMargin: `-${headerOffset}px 0px 0px 0px`,
           threshold: 0
         });
-  
+
         observer.observe(triggerElem);
       };
-  
+
       updateObserver();
-  
+
       window.addEventListener('resize', updateObserver);
     }
   }
-  
   setFixedBarMedia() {
     if (this.fixedBar) {
 
@@ -532,6 +596,7 @@ class ProductPage {
     } else {
       this.bindOptionToggleMobile()
       this.bindOptionModalEvents()
+      this.bindPullDown()
     }
     this.setActiveOptionsText()
     this.bindOptionButtonClick()
