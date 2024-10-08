@@ -1205,6 +1205,12 @@
   border-top: 1px solid var(--t-border);
   border-bottom: 1px solid var(--t-border);
   position: relative;
+  
+  .wrapper {
+    @include maxWidthXs {
+      padding: 0;
+    }
+  }
 }
 
 .page-filters__wrapper {
@@ -1216,8 +1222,7 @@
   display: flex;
 
   @include maxWidthMd {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding: 12px;
     justify-content: flex-start;
     gap: 6px;
     align-items: center;

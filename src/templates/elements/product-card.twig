@@ -1,4 +1,4 @@
-<div class="{% if productItem.unpublished %} unpublished-card {% endif %} product-card {% if cyber_monday %} --cm {% endif %} {% if xmas %} --xmas {% endif %} {% if new_year == true %} --ny{% endif %} {% if vday == true %} --vday{% endif %} {% if splideClass is defined %} splide__slide{% else %}{% endif %}" data-id="{{productItem.id}}">
+<div class="{% if productItem.unpublished %} unpublished-card {% endif %} product-card{% if cyber_monday %} --cm {% endif %}{% if promo_bfs %} --bfs {% endif %}{% if xmas %} --xmas {% endif %} {% if new_year == true %} --ny{% endif %} {% if vday == true %} --vday{% endif %} {% if splideClass is defined %} splide__slide{% else %}{% endif %}" data-id="{{productItem.id}}">
 
 	{% if user.admin == true %}
 		{% include "elements/admin-card.twig" %}
@@ -13,6 +13,14 @@
 					{{ productItem.sirv_html | raw }}
 				{% endif %}
 			</a>
+
+
+			{% if promo_bfs %}
+				<div class="product-card__bfs-group">
+					<span class="bfs-badge">BLACK FRIDAY</span>
+					<span class="bfs-sale">-{{productItem.discountRate}}%</span>
+				</div>
+			{% endif %}
 
 			{% if productItem.available_colors is defined %}
 				<div class="product-card__colors">
@@ -32,15 +40,6 @@
 			{% endif %}
 
 			{% if (productItem.inStock or productItem.force_sale) and productItem.is_discounted %}
-
-				{% if black_friday %}
-					<div class="bfs-card">
-						<div class="bfs-badges">
-							<span class="bfs-badge">BLACK FRIDAY</span>
-							<span class="bfs-badge --discount">{{productItem.discountRate}}%</span>
-						</div>
-					</div>
-				{% endif %}
 
 				{% if cyber_monday %}
 					<div class="cm-card">
@@ -85,8 +84,8 @@
 		</div>
 
 		{# {% if  (productItem.inStock or productItem.force_sale) and productItem.is_discounted and productItem.is_gold_chain == false %}
-					{% include "elements/product-card/stock-dash-box.twig" %}
-				{% endif %} #}
+									{% include "elements/product-card/stock-dash-box.twig" %}
+								{% endif %} #}
 
 
 		<div class="product-card__details">
