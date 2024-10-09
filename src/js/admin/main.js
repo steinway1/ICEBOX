@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pin = new LockPin({
       code: 3256
     })
-    // pin.push()
+    pin.push()
   }
 })
 
@@ -3710,17 +3710,23 @@ class ToolBar {
     }, timeout);
   }
   show(menu = this.menuArr[0]) {
+    // this.menuArr.forEach((el) => { el.style.display = 'none' })
+    // menu.style.display = 'block'
+    // console.log(menu.scrollHeight)
     if (!this.locked) {
       if (!this.opened && menu) {
         this.hideMenuArr(0)
         setTimeout(() => {
           this.opened = true
           menu.style.display = 'block'
-          const height = menu.scrollHeight
-          this.menu.style.height = `${height + 4}px`
-          this.rootEl.classList.add(IS_ACTIVE)
-          this.toggleLocked(true, this.menu)
-        }, 1);
+          setTimeout(() => {
+            const height = menu.querySelector('.toolbar-form').scrollHeight
+            console.log(height)
+            this.menu.style.height = `${height + 4}px`
+            this.rootEl.classList.add(IS_ACTIVE)
+            this.toggleLocked(true, this.menu)
+          }, 5);
+        }, 5);
       }
       if (this.opened) {
         const visibleMenu = this.menuArr.find((el) => { return el.style.display === 'block' })
