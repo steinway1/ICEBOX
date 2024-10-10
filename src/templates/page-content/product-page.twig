@@ -21,15 +21,16 @@
 					{# Subcategory / Title / Wishlist / Reviews Bar #}
 					<div class="side-row__category">{{product.subcategory.caption}}</div>
 					{% include "elements/product-page/title.twig" %}
-					{% include "elements/product-page/reviews-bar.twig" %}
+					{% if userIsAdmin %}
+						{% include "elements/product-page/reviews-bar.twig" %}
+					{% endif %}
 					{# Gold Pick #}
 					{% for option in product.options %}
 						{% if option.type == 'goldColor' %}
 							{% include "elements/product-page/custom-fields/gold-color.twig", with { option: option } %}
 						{% endif %}
 					{% endfor %}
-
-
+          
 					{# Price / Sale / Stock #}
 					<div class="side-row__margin-row">
 						<div class="side-row__border-row">
