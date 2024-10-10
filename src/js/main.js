@@ -65,6 +65,7 @@ window.bookModal = require('./modules/modals/book-modal')
 window.mailModal = require('./modules/modals/mail-modal')
 window.quizModal = require('./modules/modals/quiz-modal')
 window.salesModal = require('./modules/modals/sales-modal')
+const noticeModal = require('./modules/modals/notice-modal')
 const Menu = require('./modules/modals/menu')
 
 /** PG Filters/Select/Modal
@@ -196,4 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (productMain) {
     new ProductPage()
   }
+
+  // Notice modal
+  window.noticeModal = new noticeModal()
 })

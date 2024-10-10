@@ -14,6 +14,10 @@
 				{% endif %}
 			</a>
 
+			{% if productItem.diamonds %}
+				<div data-tip="It is natural VS diamonds and it is very high quality diamonds with the most sparkle and light performance." data-notice="It is natural VS diamonds and it is very high quality diamonds with the most sparkle and light performance." class="product-card__vs-btn"></div>
+			{% endif %}
+
 
 			{% if promo_bfs %}
 				<div class="product-card__bfs-group">
@@ -84,8 +88,8 @@
 		</div>
 
 		{# {% if  (productItem.inStock or productItem.force_sale) and productItem.is_discounted and productItem.is_gold_chain == false %}
-									{% include "elements/product-card/stock-dash-box.twig" %}
-								{% endif %} #}
+													{% include "elements/product-card/stock-dash-box.twig" %}
+												{% endif %} #}
 
 
 		<div class="product-card__details">
