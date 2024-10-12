@@ -67,14 +67,24 @@
 			</a>
 		</div>
 		<div class="product-card__details">
+
+			{# Title #}
 			<div class="product-card__title-wrap">
 				{% if productItem.details %}
-					<span class="product-card__sub-detail">{{productItem.details}}</span>
+					<span class="product-card__sub-detail">{{productItem.details}}
+						{% if productItem.custom_tag %}
+							<span class="--blue">{{ productItem.custom_tag }}</span>
+						{% endif %}
+					</span>
 				{% endif %}
 				<h2>
-					<a href="{{productItem.href}}" class="product-card__name">{{productItem.name}}</a>
+					<a href="{{productItem.href}}" class="product-card__name">{{productItem.main_name}}</a>
+				</h2>
+				<h2>
+					<a href="{{productItem.href}}" class="product-card__info">{{productItem.info}}</a>
 				</h2>
 			</div>
+
 			<div class="{% if productItem.salePrice is defined %}product-card__price-wrap is-sale{% else %}product-card__price-wrap{% endif %}">
 				{% if productItem.price_range  %}
 					<span class="product-card__price">{{productItem.price_range}}</span>
