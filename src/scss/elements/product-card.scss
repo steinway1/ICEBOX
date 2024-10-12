@@ -51,12 +51,6 @@
       color: #cf0725 !important;
     }
   }
-
-  @include maxWidthSm {
-    margin-bottom: 4px;
-    font-size: 9px;
-    // display: none;
-  }
 }
 
 a.product-card__name {
@@ -271,12 +265,20 @@ a.product-card__name {
   order: -1;
   font-weight: 600;
   font-size: 17px;
+
+  @include maxWidthXs {
+    font-size: 16px;
+  }
 }
 
 .product-card__sale-price {
   position: relative;
   font-weight: 600;
   font-size: 17px;
+
+  @include maxWidthXs {
+    font-size: 16px;
+  }
 }
 
 .product-card__price-wrap {
