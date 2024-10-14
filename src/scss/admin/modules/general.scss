@@ -2005,43 +2005,104 @@ span {
 }
 
 .limit-form {
-  grid-column-gap: 24px;
-  grid-row-gap: 24px;
+  gap: 0;
   flex-flow: column;
   width: 100%;
-  max-width: 640px;
+  max-width: 590px;
   margin: 0 auto;
   display: flex;
   align-items: center;
+  background-color: white;
+  box-shadow: 0 8px 48px rgba(73, 98, 128, 0.08);
+  border-radius: 0.7rem;
+  border: 1px solid #eff3f7;
+
+  select {
+    border-color: transparent !important;
+    font-size: 14px !important;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: calc(100% - 16px);
+    margin: 0 auto 8px auto;
+    border-radius: 0.7rem;
+    box-shadow: 0 4px 12px rgba(64, 140, 241, 0.13);
+    font-weight: 700;
+  }
 }
 
 .limit-form__row {
-  background-color: #fff;
   border-radius: .5rem;
   flex-flow: column;
   width: 100%;
   min-height: 60px;
   padding: 0;
   display: flex;
-  box-shadow: 0 8px 42px rgba(127, 151, 180, .2);
+
+  &:nth-child(1) {
+    .limit-form__row-header {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      &::before {
+        content: '1';
+        color: #fff;
+        background-color: #337ada;
+        border-radius: 50px;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+        font-weight: 700;
+        display: flex;
+      }
+    }
+  }
+
+  &:nth-child(2) {
+    .limit-form__row-header {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      &::before {
+        content: '2';
+        color: #fff;
+        background-color: #337ada;
+        border-radius: 50px;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+        font-weight: 700;
+        display: flex;
+      }
+    }
+  }
 }
 
 .limit-form__row-header {
-  border-bottom: 1px solid #e6ecf3;
-  padding: 18px 26px;
-  font-size: 16px;
+  border-bottom: 1px solid #eff3f7;
+  padding: 18px 36px;
+  font-size: 18px;
+  line-height: 24px;
   font-weight: 600;
 
   @include maxWidthXs {
-    padding: 20px;
+    padding: 24px;
   }
 }
 
 .limit-form__row-body {
-  padding: 26px;
+  padding: 28px 36px 36px;
 
   @include maxWidthXs {
-    padding: 20px;
+    padding: 24px;
   }
 }
 

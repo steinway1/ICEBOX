@@ -3651,9 +3651,13 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 class ToolBar {
   constructor() {
+    this.rootEl = document.querySelector('.toolbar')
+    if (!this.rootEl) return
+
     this.opened = false
     this.locked = false
-    this.rootEl = document.querySelector('.toolbar')
+    this.celebrating = false
+
     this.wrapper = document.querySelector('.toolbar__wrapper')
     this.container = document.querySelector('.toolbar__container')
     this.menu = document.querySelector('.toolbar-menu')
@@ -3662,11 +3666,14 @@ class ToolBar {
     this.menuSort = document.querySelector('#toolbarSort')
     this.menuFilter = document.querySelector('#toolbarFilter')
     this.menuPoints = document.querySelector('#toolbarPoints')
+    this.menuScore = document.querySelector('#toolbarScore')
     this.inputArr = this.rootEl.querySelectorAll('input')
     this.evtToggleSort = [...document.querySelectorAll('[data-evt="toggleSortMenu"]')]
     this.evtToggleFilter = [...document.querySelectorAll('[data-evt="toggleFilterMenu"]')]
     this.evtTogglePoints = [...document.querySelectorAll('[data-evt="togglePoints"]')]
     this.evtReset = [...document.querySelectorAll('[data-evt="resetToolbarForm"]')]
+
+    this.init()
   }
 
   /**
@@ -3704,15 +3711,22 @@ class ToolBar {
       }, getTransitionTime(elem));
     }
   }
-  hideMenuArr(timeout = 0) {
-    setTimeout(() => {
-      this.menuArr.forEach((el) => { el.style.display = 'none' })
-    }, timeout);
+  hideMenuArr(timeout = 0, except = undefined) {
+    this.menuArr.forEach((el) => {
+      if (el !== except) {
+        el.style.display = 'none'
+      }
+    })
   }
   show(menu = this.menuArr[0]) {
-    // this.menuArr.forEach((el) => { el.style.display = 'none' })
-    // menu.style.display = 'block'
-    // console.log(menu.scrollHeight)
+
+    if (menu == this.menuScore) {
+      this.celebrating = true
+      setTimeout(() => {
+        this.celebrating = false
+      }, 50);
+    }
+    
     if (!this.locked) {
       if (!this.opened && menu) {
         this.hideMenuArr(0)
@@ -3818,10 +3832,75 @@ class ToolBar {
     // Document Events
     document.addEventListener('click', (e) => {
       const target = e.target
-      if (!target.closest('.toolbar')) {
+      if (!target.closest('.toolbar') && !this.celebrating) {
         this.hide()
       }
     })
+  }
+
+  // Scores/ Celebration/ Congratulation
+  pushConfetti() {
+    if (!window.tsParticles) {
+      console.warn('tsParticles not found');
+      return;
+    }
+
+    const delayPattern = [1000, 350, 750, 750]
+    const particleCount = 50
+    const colors = ["#65a6ff", "#15ddbf"]
+    const spread = 75
+    const velocity = 0.2
+    const startVelocity = 35
+    const decay = 0.9
+
+    const duration = delayPattern.reduce((total, delay) => total + delay, 0)
+
+    function shootConfetti() {
+      confetti({
+        particleCount: particleCount,
+        angle: -25,
+        spread: spread,
+        origin: { x: 0.1, y: 0 },
+        colors: colors,
+        velocity: velocity,
+        startVelocity: startVelocity,
+        decay: decay
+      });
+
+      confetti({
+        particleCount: particleCount,
+        angle: -155,
+        spread: spread,
+        origin: { x: 0.9, y: 0 },
+        colors: colors,
+        velocity: velocity,
+        startVelocity: startVelocity,
+        decay: decay
+      });
+    }
+
+    function go() {
+      let index = 0
+
+      function frame() {
+        if (index < delayPattern.length) {
+          shootConfetti()
+
+          setTimeout(() => {
+            index++;
+            requestAnimationFrame(frame)
+          }, delayPattern[index])
+        }
+      }
+
+      frame()
+    }
+
+    go()
+  }
+  showScore() {
+    this.show(this.menuScore)
+    this.pushConfetti()
   }
 
 
@@ -3850,8 +3929,7 @@ class ToolBar {
 
 document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('.toolbar')) {
-    const toolBar = new ToolBar()
-    toolBar.init()
+    window.Toolbar = new ToolBar()
   }
 })
 
@@ -4711,3 +4789,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 /* #endregion Finger Size Modal */
+
+// Init lottie animations
+document.addEventListener('DOMContentLoaded', () => {
+  const lottieContainers = [...document.querySelectorAll('[data-lottie="score"]')]
+  lottieContainers.forEach((container) => {
+    const animation = bodymovin.loadAnimation({
+      container: container,
+      path: 'https://gist.githubusercontent.com/steinway1/e4c3c198b9f2fc369dd72a38f3c22c73/raw/5c7af07965df5f07684b619936285a7e64b57069/toolbar-score.json',
+      autoplay: true,
+      renderer: 'svg',
+      loop: true
+    })
+  })
+})

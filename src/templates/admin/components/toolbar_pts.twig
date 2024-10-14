@@ -1,0 +1,49 @@
+<div class="toolbar">
+	<div class="toolbar__wrapper">
+		<div class="toolbar__container">
+			<div class="toolbar-menu">
+
+				<div class="toolbar-menu__wrapper">
+					<div id="toolbarScore" class="toolbar-content">
+						<div class="toolbar-form">
+							<div class="toolbar__score">
+								<div data-lottie="score"></div>
+								<span>Congratulations,
+									<span>{{user_name}}!</span>
+								</span>
+								<span>You just made +1 score!</span>
+							</div>
+						</div>
+					</div>
+					<div id="toolbarPoints" class="toolbar-content">
+						<div class="toolbar-form">
+							{% for user in users %}
+								<div class="pts-menu__user">
+									<div class="pts-menu__info-group">
+										<div class="pts-menu__user-emblem">
+											<span>{{loop.index}}</span>
+										</div>
+										<span class="pts-menu__user-name">{{user.full_name}}</span>
+									</div>
+									<div class="pts-menu__score-group">
+										<span>{{user.pts}}
+											PTS</span>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="toolbar__btn-group">
+				<button data-evt="togglePoints" class="toolbar-btn">
+					<div data-lottie="diamondSpin"></div>
+					<span>
+						<span data-id="pts">{{user.pts}}</span>
+						POINTS</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
