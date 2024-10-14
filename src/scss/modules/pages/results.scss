@@ -571,6 +571,65 @@
 .results-sub {
   display: none !important;
   padding-bottom: 28px;
+
+  &.--shapes {
+    display: block !important;
+
+    .results-sub__wrap {
+      padding-left: var(--padding);
+      padding-right: var(--padding);
+      gap: 8px;
+    }
+  }
+
+  .results-sub__item {
+    padding: 4px 20px 4px 4px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 14px;
+    background-color: white;
+    border: 1px solid var(--t-border);
+
+    @media screen and (min-width: 992px) {
+      &:hover {
+        border-color: var(--black);
+      }
+    }
+
+    &>div {
+      background-image: none;
+      background-color: transparent;
+      height: 52px;
+      width: 52px;
+      border-radius: 500px;
+      overflow: hidden;
+      flex: none;
+      padding: 0;
+      position: relative;
+
+      &::after {
+        content: "";
+        opacity: 0.04;
+        pointer-events: none;
+        background-color: #283a69;
+        position: absolute;
+        top: 0%;
+        bottom: 0%;
+        left: 0%;
+        right: 0%;
+        z-index: 1;
+        transition: all 200ms ease;
+      }
+    }
+
+    img {
+      padding: 0;
+      transform: scale(1.1);
+    }
+  }
 }
 
 .results-sub__wrap {
@@ -587,31 +646,12 @@
     display: none;
   }
 
-  @media screen and (min-width: 1440px) {
-    padding-left: 7vw;
-    padding-right: 7vw;
-  }
-
-  @media screen and (min-width: 1920px) {
-    padding-left: 8vw;
-    padding-right: 8vw;
-  }
-
   @include maxWidthMd {
     flex-wrap: nowrap;
-    padding-left: 42px;
-    padding-right: 42px;
-    overflow: auto;
-  }
-
-  @include maxWidthSm {
-    padding-left: 36px;
-    padding-right: 36px;
-  }
-
-  @include maxWidthXs {
-    padding-left: 22px;
-    padding-right: 22px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--padding);
   }
 }
 
@@ -631,6 +671,7 @@
   display: flex;
   gap: 8px;
   flex-direction: column;
+  scroll-snap-align: start;
 
   @include maxWidthXs {
     padding-right: 10px;
@@ -1205,7 +1246,7 @@
   border-top: 1px solid var(--t-border);
   border-bottom: 1px solid var(--t-border);
   position: relative;
-  
+
   .wrapper {
     @include maxWidthXs {
       padding: 0;

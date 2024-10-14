@@ -26,9 +26,11 @@
 	<div class="results__wrap">
 		<div class="results__main">
 
-			{% if (gender is defined) or (sub_nav is defined) or (category_page is defined) or (gia_page is defined) or (watch_market_brands == true) %}
-				{% include "elements/results/results-sub.twig" %}
+
+			{% if category.is_engagement %}
+				{% include "elements/results/results-sub_shapes.twig" %}
 			{% endif %}
+
 
 			{% if category.is_watches %}
 				{% include "elements/results/watches-notice.twig" %}
