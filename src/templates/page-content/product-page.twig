@@ -21,6 +21,7 @@
 					{# Subcategory / Title / Wishlist / Reviews Bar #}
 					<div class="side-row__category">{{product.subcategory.caption}}</div>
 					{% include "elements/product-page/title.twig" %}
+          {% include 'elements/product-page/stock-availability.twig'  %}
 					{% if userIsAdmin %}
 						{% include "elements/product-page/reviews-bar.twig" %}
 					{% endif %}
@@ -35,7 +36,6 @@
 					<div class="side-row__margin-row">
 						<div class="side-row__border-row">
 							{% include "elements/product-page/price.twig" %}
-							{% include 'elements/product-page/stock-availability.twig'  %}
 						</div>
 
 						{# Description #}
