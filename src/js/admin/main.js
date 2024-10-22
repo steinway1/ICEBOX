@@ -4666,16 +4666,39 @@ class FingerModal {
       fingers[key] = value
     }
     this.whaleToSave.fingers = fingers
+    $.ajax({
+      url:'/admin/json/save-whale-fingers',
+      type:'POST',
+      data:{id:this.whaleToSave.id,fingers:fingers},
+      success:function(data){
+        console.log('fingers were saved');
+      }
+    })
     this.hide()
   }
 
   // Visibility
   async fetchWhale(whaleId) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(whales[whaleId]);
-      }, 3000);
-    });
+    try {
+      console.log(`fetching whales ${whaleId} finger data`);
+      const response = await fetch(`/admin/json/whale-fingers/${whaleId}`);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+
+      // Check if there's an error in the response
+      if (data.error) {
+        throw new Error('Error fetching whale data');
+      }
+
+      // Return the whale data
+      return data.whale_data;
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+    }
   }
   async show(whaleId) {
     lockScroll()
