@@ -1,31 +1,41 @@
-<div class="side-row__line_price">
-	{% if product.item.salePrice is defined %}
-		{% if product.call_for_price == false and product.item.sold == false %}
-			<span class="product__item-price old_price" data-old-price="{{ product.item.old_price }}">
-				<span>{{product.item.price}}</span>
-        <span class="typo_xs">No discount</span>
-			</span>
-			<span class="product__item-price sale_price" id="current_base_price">
-				<span>{{product.item.salePrice}}</span>
-        <span class="typo_xs">{{product.item.discountRate}}% discount</span>
-			</span>
-		{% else %}
-			<span class="product__item-price">
-				{% if product.item.sold %}
-					SOLD
+{% set price = product.item.price %}
+{% set sale_price = product.item.salePrice %}
+{% set sale_price_defined = product.item.salePrice is defined %}
+{% set call_for_price = product.call_for_price %}
+{% set call_for_price_text = product.call_for_price_text %}
+{% set sold = product.item.sold %}
+{% set is_watch = product.is_watch %}
+{% set msrp = product.item.msrp %}
+{% set msrp_percent = product.item.msrp_percent %}
+{% set lower_msrp = product.item.lower_msrp %}
+
+<div
+	class="side-row__line_price">
+
+	{# First Price - Price or Call For Price or Sold #}
+	{% if not sold and not call_for_price %}
+		<span class="product__item-price">
+			<span id="current_base_price">{{sale_price_defined ? sale_price : price}}</span>
+			{% if sale_price %}
+				<span class="typo_xs --color-red">{{product.item.discountRate}}% OFF</span>
+			{% endif %}
+			{% if msrp and is_watch %}
+				{% if lower_msrp %}
+					<span class="typo_xs --arrow-down --color-green">{{msrp_percent}}% less MSRP</span>
 				{% else %}
-					{{product.call_for_price_text}}</span>
+					<span class="typo_xs --arrow-up --color-red">{{msrp_percent}}% above MSRP</span>
+				{% endif %}
 			{% endif %}
-		{% endif %}
+		</span>
 	{% else %}
-		{% if product.call_for_price == false %}
-			{% if product.item.sold == false %}
-				<span class="product__item-price" id="current_base_price">{{product.item.price}}</span>
-			{% else %}
-				<span class="product__item-price">SOLD</span>
-			{% endif %}
-		{% else %}
-			<span class="product__item-price">{{product.call_for_price_text}}</span>
-		{% endif %}
+		<span class="product__item-price">{{call_for_price ? call_for_price_text : sold ? 'SOLD' : ''}}</span>
+	{% endif %}
+
+	{# Second Price - Old Price or MSRP #}
+	{% if not sold and not call_for_price and (sale_price_defined or (msrp and is_watch)) %}
+		<span class="product__item-price old_price">
+			<span>{{(is_watch and msrp) ? msrp : price}}</span>
+			<span class="typo_xs">{{(is_watch and msrp) ? 'MSRP' : 'Original'}}</span>
+		</span>
 	{% endif %}
 </div>

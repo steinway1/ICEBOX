@@ -379,6 +379,7 @@ class ProductPage {
       const btnArr = [...option.querySelectorAll('.option-btn')]
       if (head) {
         head.addEventListener('click', () => {
+          return
           if (option.classList.contains('--active')) {
             this.hideOption(option)
           } else {
@@ -386,15 +387,17 @@ class ProductPage {
             this.showOption(option)
           }
         })
+        this.showOption(option)
       }
+      // this.showOption(option)
     }
 
-    document.addEventListener('click', (e) => {
-      const target = e.target
-      if (!target.closest('.product__item-option')) {
-        this.hideAllOptions()
-      }
-    })
+    // document.addEventListener('click', (e) => {
+    //   const target = e.target
+    //   if (!target.closest('.product__item-option')) {
+    //     this.hideAllOptions()
+    //   }
+    // })
   }
   bindOptionButtonClick() {
     for (const option of this.optionsArr) {

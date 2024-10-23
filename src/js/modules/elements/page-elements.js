@@ -11,6 +11,20 @@ const pageEls = new Object({
     })
   },
   attachEvent: {
+    // Copy Elements
+    copyEvents: () => {
+      const copyArr = [...document.querySelectorAll('[data-evt-copy]')]
+      if (copyArr.length) {
+        for (const btn of copyArr) {
+          btn.addEventListener('click', () => {
+            const textToCopy = btn.dataset.evtCopy
+            if (textToCopy) {
+              navigator.clipboard.writeText(textToCopy)
+            }
+          })
+        }
+      }
+    },
     // Track Order
     trackOrderSwitch: () => {
       const arr = document.querySelectorAll('input[name="track_with"]')
