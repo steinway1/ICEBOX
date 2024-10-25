@@ -1,129 +1,127 @@
-<footer class="footer">
-	<div class="footer__wrapper">
-		<div class="wrapper wrapper_adjust">
-			<div class="footer__main">
+<div
+	class="footer">
 
-				<div class="footer-sub-col">
-					<div class="footer-sub-col__body">
-						{% if main_logo is defined %}
-							<img src="{{ main_logo }}" loading="lazy" alt="Icebox Logo" class="footer-logo-img">
-						{% else %}
-							<img src="{{ THEME_ASSETS_FOLDER }}logo.svg" loading="lazy" alt="Icebox Logo" class="footer-logo-img">
-						{% endif %}
+	{# Main #}
+	<div class="footer__main">
+		<div class="wrapper">
+			<div
+				class="footer__flex-row">
 
-						<div class="footer-sub-col__details">
-							<div class="footer-sub-col__item">3255 Peachtree Rd NE,<br>Suite #2<br>Atlanta, GA 30305, USA</div>
-							<img class="footer__store-picture" src="{{ THEME_ASSETS_FOLDER }}store-picture.webp" loading="lazy" alt="">
-						</div>
+				{# Main Details #}
+				<div class="footer__main-details">
+					<div class="footer__contacts">
+						<h5 class="contact__heading">Contact Us<span>We work from 11AM to 6PM Monday - Friday.<br>Closed weekends.</span>
+						</h5>
+						<a href="tel:404-842-0266" class="footer__lg-link">+1 (404) 842-0266</a>
+						<a href="/chat-whatsapp" class="footer__btn">
+							<img loading="lazy" src="{{THEME_ASSETS_FOLDER}}wa_white-pic.svg" alt="">
+							<span>Chat on WhatsApp</span>
+							<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewbox="0 0 24 27" fill="none">
+								<path d="M0.5 13.5H20.5" stroke="currentColor" stroke-width="4"></path>
+								<path d="M8.5 1.5L20.5 13.5L8.5 25.5" stroke="currentColor" stroke-width="4"></path>
+							</svg>
+						</a>
+						<a href="mailto:sales@icebox.com" class="footer__lg-link is-low">sales@icebox.com</a>
 					</div>
+					<img alt="Icebox Atlanta store" src="{{THEME_ASSETS_FOLDER}}store-picture.webp" loading="eager" class="footer__store-pic">
+					<h5 class="footer__sub-typo">3255 Peachtree Road, NE<br>Suite #2<br>Atlanta, GA, 30305, USA</h5>
 				</div>
 
-				<div class="footer-col --expand">
-					<div class="footer-col__header">
-						<h5>Shop By Products</h5>
-						<div>
-							{% include "components/svg/dropdown.svg" %}
+				{# Links #}
+				<div class="footer__more-details">
+					<div class="footer__col">
+						<div class="footer__col-head">
+							<h5 class="contact__heading">More Pages</h5>
+							<svg width="100%" height="100%" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="4"></path>
+							</svg>
+						</div>
+						<div class="footer__links-list">
+							{% for item in footer.linksAbout %}
+								{% if item.href == '/account' %}
+									<a {% if user != false %} href="{{item.href}}" {% else %} href="javascript:void(0);" {% endif %} class="{% if user == false %} js-toggle-sign {% endif %}">{{item.caption}}</a>
+								{% else %}
+									<a href="{{item.href}}">{{item.caption}}</a>
+								{% endif %}
+							{% endfor %}
 						</div>
 					</div>
-					<div class="footer-col__body">
-						<div class="footer-col__body-scroll">
-							<div class="footer-col__content-wrap --m_grid">
-								{% for item in footer.linksProducts %}
-									{% if item.id != 15 %}
-										<a href="{{item.href}}" class="footer-link">
-											{% if item.caption == 'Watches' %}
-												Bustdowns
-											{% endif %}
-											{% if item.caption == 'Watch Market' %}
-												Watches
-											{% endif %}
-											{% if item.caption != 'Watches' and item.caption != 'Watch Market'%}
-												{{item.caption}}
-											{% endif %}
-										</a>
-									{% endif %}
-								{% endfor %}
-							</div>
+					<div class="footer__col">
+						<div class="footer__col-head">
+							<h5 class="contact__heading">Shop By Category</h5>
+							<svg width="100%" height="100%" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="4"></path>
+							</svg>
 						</div>
-					</div>
-				</div>
-        				<div class="footer-col">
-					<div class="footer-col__header">
-						<h5>More Pages</h5>
-						<div>
-							{% include "components/svg/dropdown.svg" %}
-						</div>
-					</div>
-					<div class="footer-col__body">
-						<div class="footer-col__body-scroll">
-							<div class="footer-col__content-wrap">
-								{% for item in footer.linksAbout %}
-									{% if item.href == '/account' %}
-										<a {% if user != false %} href="{{item.href}}" {% else %} href="javascript:void(0);" {% endif %} class="footer-link {% if user == false %} js-toggle-sign {% endif %}">{{item.caption}}</a>
-									{% else %}
-										<a href="{{item.href}}" class="footer-link">{{item.caption}}</a>
-									{% endif %}
-								{% endfor %}
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="footer-col">
-					<div class="footer-col__header">
-						<h5>Call Now</h5>
-						<div>
-							{% include "components/svg/dropdown.svg" %}
-						</div>
-					</div>
-					<div class="footer-col__body">
-						<div class="footer-col__body-scroll">
-							<div class="footer-col__content-wrap">
-								{% for item in footer.linksContact %}
-									<a href="{{item.href}}" class="footer-contact-link">
-										<span class="footer-contact-link__heading">{{item.heading}}</span>
-										<span class="footer-contact-link__typo">{{item.caption}}</span>
+						<div class="footer__links-list">
+							{% for item in footer.linksProducts %}
+								{% if item.id != 15 %}
+									<a href="{{item.href}}">
+										{% if item.caption == 'Watches' %}
+											Bustdowns
+										{% endif %}
+										{% if item.caption == 'Watch Market' %}
+											Watches
+										{% endif %}
+										{% if item.caption != 'Watches' and item.caption != 'Watch Market'%}
+											{{item.caption}}
+										{% endif %}
 									</a>
-								{% endfor %}
-							</div>
+								{% endif %}
+							{% endfor %}
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer__social">
-			<h5>Follow Us</h5>
-			<div class="footer__social-grid">
-				<a href="https://www.instagram.com/icebox/" target="_blank">
-					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_instagram.svg" loading="lazy" alt="instagram icon"></a>
-				<a href="https://www.facebook.com/Icebox" target="_blank">
-					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_facebook.svg" loading="lazy" alt="facebook icon"></a>
-				<a href="https://www.youtube.com/channel/UCv8gFyATae1x0VmDHmNbIhg?sub_confirmation=1" target="_blank">
-					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_youtube.svg" loading="lazy" alt="youtube icon"></a>
-				<a href="https://www.twitter.com/icebox" target="_blank">
-					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_x.svg" loading="lazy" alt="x icon"></a>
-				<a href="https://www.tiktok.com/@icebox" target="_blank">
-					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_tiktok.svg" loading="lazy" alt="tiktok icon"></a>
-				<a href="/chat-whatsapp" target="_blank">
-					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_whatsapp.svg" loading="lazy" alt="whatsapp icon"></a>
-			</div>
-		</div>
-		<div class="footer-legal">
-			<div class="wrapper">
-				<div class="footer-legal__main">
-
-					<div data-evt="toggleCurrency" class="page-currency">
-						<span>Currency:</span>
-						<div class="page-currency-current">
-							<img src="{{THEME_ASSETS_FOLDER}}flags/usd.svg" loading="lazy" alt="">
-							<span>$ USD</span>
+					<div class="footer__col --first --static">
+						<div class="footer__col-head">
+							<h5 class="contact__heading">Need Financing?<span>Low rate quotes with no hard credit pull.</span>
+							</h5>
 						</div>
+						<a href="/financing" class="footer__btn is-blue">
+							<span>Apply For Financing</span>
+							<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 27" fill="none">
+								<path d="M0.5 13.5H20.5" stroke="currentColor" stroke-width="4"></path>
+								<path d="M8.5 1.5L20.5 13.5L8.5 25.5" stroke="currentColor" stroke-width="4"></path>
+							</svg>
+						</a>
 					</div>
-
-					<span class="footer-legal__copyright">Icebox.com,
-						{{ "now" | date('Y') }}
-						©. All Rights Reserved.</span>
 				</div>
 			</div>
 		</div>
 	</div>
-</footer>
+
+	{# Bottom Details #}
+	<div class="footer__bottom">
+		<div class="wrapper">
+			<div class="footer__flex-row is-low">
+				<div class="footer__disclaimer">
+					<div>Icebox.com
+						{{ "now" | date('Y') }}©. All Rights Reserved.</div>
+					<div class="footer__socials">
+						<a href="https://www.instagram.com/icebox/">
+							<img loading="lazy" src="{{THEME_ASSETS_FOLDER}}social-box_instagram.svg" alt="">
+						</a>
+						<a href="https://www.youtube.com/channel/UCv8gFyATae1x0VmDHmNbIhg?sub_confirmation=1">
+							<img loading="lazy" src="{{THEME_ASSETS_FOLDER}}social-box_youtube.svg" alt="">
+						</a>
+						<a href="https://www.twitter.com/icebox">
+							<img loading="lazy" src="{{THEME_ASSETS_FOLDER}}social-box_twitter.svg" alt="">
+						</a>
+						<a href="https://www.facebook.com/Icebox">
+							<img loading="lazy" src="{{THEME_ASSETS_FOLDER}}social-box_facebook.svg" alt="">
+						</a>
+						<a href="https://www.tiktok.com/@icebox">
+							<img loading="lazy" src="{{THEME_ASSETS_FOLDER}}social-box_tiktok.svg" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="footer__payments">
+					<img loading="eager" src="{{THEME_ASSETS_FOLDER}}checkout/pay-icon_visa.svg" alt="Visa logo">
+					<img loading="eager" src="{{THEME_ASSETS_FOLDER}}checkout/pay-icon_mastercard.svg" alt="Mastercard logo">
+					<img loading="eager" src="{{THEME_ASSETS_FOLDER}}checkout/pay-icon_paypal.svg" alt="Paypal logo">
+					<img loading="eager" src="{{THEME_ASSETS_FOLDER}}checkout/pay-icon_btc.svg" alt="Bitcoin logo">
+					<img loading="eager" src="{{THEME_ASSETS_FOLDER}}checkout/pay-icon_amex.svg" alt="Amex logo">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

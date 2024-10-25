@@ -1,17 +1,129 @@
 <footer class="footer">
-	<div class="footer__row wrapper">
-		<div class="footer__flex-box">
-			<div class="footer__main-col">
-				<div>
-					<h4 class="footer__col-heading">Contact Us
-						<span>We work from 11AM to 6PM Monday - Friday. Closed weekends.</span>
-					</h4>
+	<div class="footer__wrapper">
+		<div class="wrapper wrapper_adjust">
+			<div class="footer__main">
+
+				<div class="footer-sub-col">
+					<div class="footer-sub-col__body">
+						{% if main_logo is defined %}
+							<img src="{{ main_logo }}" loading="lazy" alt="Icebox Logo" class="footer-logo-img">
+						{% else %}
+							<img src="{{ THEME_ASSETS_FOLDER }}logo.svg" loading="lazy" alt="Icebox Logo" class="footer-logo-img">
+						{% endif %}
+
+						<div class="footer-sub-col__details">
+							<div class="footer-sub-col__item">3255 Peachtree Rd NE,<br>Suite #2<br>Atlanta, GA 30305, USA</div>
+							<img class="footer__store-picture" src="{{ THEME_ASSETS_FOLDER }}store-picture.webp" loading="lazy" alt="">
+						</div>
+					</div>
 				</div>
-				<div></div>
+
+				<div class="footer-col --expand">
+					<div class="footer-col__header">
+						<h5>Shop By Products</h5>
+						<div>
+							{% include "components/svg/dropdown.svg" %}
+						</div>
+					</div>
+					<div class="footer-col__body">
+						<div class="footer-col__body-scroll">
+							<div class="footer-col__content-wrap --m_grid">
+								{% for item in footer.linksProducts %}
+									{% if item.id != 15 %}
+										<a href="{{item.href}}" class="footer-link">
+											{% if item.caption == 'Watches' %}
+												Bustdowns
+											{% endif %}
+											{% if item.caption == 'Watch Market' %}
+												Watches
+											{% endif %}
+											{% if item.caption != 'Watches' and item.caption != 'Watch Market'%}
+												{{item.caption}}
+											{% endif %}
+										</a>
+									{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+        				<div class="footer-col">
+					<div class="footer-col__header">
+						<h5>More Pages</h5>
+						<div>
+							{% include "components/svg/dropdown.svg" %}
+						</div>
+					</div>
+					<div class="footer-col__body">
+						<div class="footer-col__body-scroll">
+							<div class="footer-col__content-wrap">
+								{% for item in footer.linksAbout %}
+									{% if item.href == '/account' %}
+										<a {% if user != false %} href="{{item.href}}" {% else %} href="javascript:void(0);" {% endif %} class="footer-link {% if user == false %} js-toggle-sign {% endif %}">{{item.caption}}</a>
+									{% else %}
+										<a href="{{item.href}}" class="footer-link">{{item.caption}}</a>
+									{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-col">
+					<div class="footer-col__header">
+						<h5>Call Now</h5>
+						<div>
+							{% include "components/svg/dropdown.svg" %}
+						</div>
+					</div>
+					<div class="footer-col__body">
+						<div class="footer-col__body-scroll">
+							<div class="footer-col__content-wrap">
+								{% for item in footer.linksContact %}
+									<a href="{{item.href}}" class="footer-contact-link">
+										<span class="footer-contact-link__heading">{{item.heading}}</span>
+										<span class="footer-contact-link__typo">{{item.caption}}</span>
+									</a>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="footer__row --meta wrapper">
-		<div class="footer__flex-box"></div>
+		<div class="footer__social">
+			<h5>Follow Us</h5>
+			<div class="footer__social-grid">
+				<a href="https://www.instagram.com/icebox/" target="_blank">
+					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_instagram.svg" loading="lazy" alt="instagram icon"></a>
+				<a href="https://www.facebook.com/Icebox" target="_blank">
+					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_facebook.svg" loading="lazy" alt="facebook icon"></a>
+				<a href="https://www.youtube.com/channel/UCv8gFyATae1x0VmDHmNbIhg?sub_confirmation=1" target="_blank">
+					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_youtube.svg" loading="lazy" alt="youtube icon"></a>
+				<a href="https://www.twitter.com/icebox" target="_blank">
+					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_x.svg" loading="lazy" alt="x icon"></a>
+				<a href="https://www.tiktok.com/@icebox" target="_blank">
+					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_tiktok.svg" loading="lazy" alt="tiktok icon"></a>
+				<a href="/chat-whatsapp" target="_blank">
+					<img src="{{ THEME_ASSETS_FOLDER }}icons/social-dark_whatsapp.svg" loading="lazy" alt="whatsapp icon"></a>
+			</div>
+		</div>
+		<div class="footer-legal">
+			<div class="wrapper">
+				<div class="footer-legal__main">
+
+					<div data-evt="toggleCurrency" class="page-currency">
+						<span>Currency:</span>
+						<div class="page-currency-current">
+							<img src="{{THEME_ASSETS_FOLDER}}flags/usd.svg" loading="lazy" alt="">
+							<span>$ USD</span>
+						</div>
+					</div>
+
+					<span class="footer-legal__copyright">Icebox.com,
+						{{ "now" | date('Y') }}
+						©. All Rights Reserved.</span>
+				</div>
+			</div>
+		</div>
 	</div>
 </footer>
