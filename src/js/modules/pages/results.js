@@ -76,7 +76,16 @@ class ResultsPage {
         this.filters[index] = { btnArr: [btn], list: drop };
 
         optionsArr.forEach(option => {
-          option.addEventListener('change', () => this.observeFilters());
+          option.addEventListener('change', () => {
+            this.observeFilters()
+
+            const input = option.querySelector('input');
+            if (input) {
+              if (input.type === 'radio') {
+                box.classList.remove('--focused');
+              }
+            }
+          });
         });
       }
 
