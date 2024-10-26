@@ -11,6 +11,33 @@ const pageEls = new Object({
     })
   },
   attachEvent: {
+    // Floating Whatsapp Button
+    observeFloatWhatsapp() {
+      const elem = document.querySelector('.wa-float')
+      const triggerElem = document.querySelector('.footer')
+      if (!elem || !triggerElem) return
+
+      let offset = 120
+      let observer = null
+
+      const callback = (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            elem.classList.add(__HIDDEN)
+          } else {
+            elem.classList.remove(__HIDDEN)
+          }
+        })
+      }
+
+      observer = new IntersectionObserver(callback, {
+        root: null,
+        rootMargin: `0px 0px -${offset}px 0px`,
+        threshold: 0
+      })
+
+      observer.observe(triggerElem)
+    },
     // Copy Elements
     copyEvents: () => {
       const copyArr = [...document.querySelectorAll('[data-evt-copy]')]

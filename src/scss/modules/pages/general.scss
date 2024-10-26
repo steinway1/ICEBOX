@@ -552,7 +552,7 @@ form button {
   height: 74px;
   justify-content: center;
   align-items: center;
-  margin-top: 16px;
+  margin: 48px 0;
   display: flex;
   position: relative;
   pointer-events: none;
@@ -827,10 +827,16 @@ form button {
 .wa-float {
   z-index: 10;
   position: fixed;
-  bottom: 10px;
-  right: 10px;
-  border-radius: 6px;
+  bottom: 8px;
+  right: 8px;
+  border-radius: 50rem;
   overflow: hidden;
+  transition: all 650ms ease;
+
+  &.--hidden {
+    transform: translateY(100px);
+    opacity: 0;
+  }
 }
 
 .wa-float__wrapper {
@@ -841,8 +847,8 @@ form button {
   border-radius: 6px;
   justify-content: center;
   align-items: center;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-left: 14px;
+  padding-right: 14px;
   transition: all .2s;
   display: flex;
 
@@ -953,7 +959,7 @@ form button {
 }
 
 .wa-float__text-pic {
-  width: 80px;
+  width: 74px;
   padding-top: 2px;
   display: block;
 }
