@@ -129,6 +129,14 @@ function debounce(func, wait) {
   }
 }
 
+function showSkeleton() {
+  document.body.classList.add('--skeleton')
+}
+
+function hideSkeleton() {
+  document.body.classList.remove('--skeleton')
+}
+
 module.exports = {
   toArray,
   lockScroll,
@@ -146,5 +154,7 @@ module.exports = {
   isEmail,
   saveCartEmail,
   showMessage,
-  debounce
+  debounce,
+  showSkeleton,
+  hideSkeleton
 }

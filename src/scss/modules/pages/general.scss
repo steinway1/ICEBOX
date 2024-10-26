@@ -1,3 +1,140 @@
+/* #region  Skeleton Items */
+@keyframes skeleton {
+  to {
+    margin-left: 100%;
+  }
+}
+
+@keyframes skeleton_blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+body.--skeleton {
+  --skeleton-duration: 1s;
+  --skeleton-bg: #eff2f5;
+
+  .product-card__media {
+    border-radius: 0.5rem;
+    background-color: var(--skeleton-bg);
+    position: relative;
+
+    &::before {
+      content: '';
+      z-index: 4;
+      opacity: .35;
+      background-image: linear-gradient(90deg, #fff0, #fff 50%, #0000);
+      width: 124px;
+      margin-left: -124px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      animation: skeleton var(--skeleton-duration) infinite cubic-bezier(.39, .575, .565, 1);
+    }
+
+    &::after {
+      display: none;
+    }
+
+    * {
+      opacity: 0;
+      color: transparent;
+      pointer-events: none;
+    }
+  }
+
+  .product-card__sub-detail {
+    background-color: var(--skeleton-bg);
+    border-radius: 0.5rem;
+    color: transparent;
+    animation: skeleton_blink var(--skeleton-duration) infinite cubic-bezier(.39, .575, .565, 1);
+    animation-delay: 0.0s;
+
+    * {
+      opacity: 0;
+      color: transparent
+    }
+  }
+
+  h2 {
+    animation: skeleton_blink var(--skeleton-duration) infinite cubic-bezier(.39, .575, .565, 1);
+    animation-delay: 0.2s;
+
+    a {
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      color: transparent;
+      background-color: var(--skeleton-bg);
+      border-radius: 0.5rem;
+    }
+  }
+
+  .product-card__price-wrap {
+    height: 24px;
+    line-height: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--skeleton-bg);
+    border-radius: 0.5rem;
+    animation: skeleton_blink var(--skeleton-duration) infinite cubic-bezier(.39, .575, .565, 1);
+    animation-delay: 0.4s;
+
+    * {
+      color: transparent;
+      opacity: 0;
+    }
+  }
+
+  .results__show {
+    background-color: var(--skeleton-bg);
+    border-radius: 0.5rem;
+    animation: skeleton_blink var(--skeleton-duration) infinite cubic-bezier(.39, .575, .565, 1);
+    color: transparent;
+    pointer-events: none;
+  }
+
+  .pay-card {
+    background-image: none;
+    background-color: transparent;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+      content: '';
+      z-index: 4;
+      opacity: .35;
+      background-image: linear-gradient(90deg, #fff0, #fff 50%, #0000);
+      width: 124px;
+      margin-left: -124px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      animation: skeleton var(--skeleton-duration) infinite cubic-bezier(.39, .575, .565, 1);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0%;
+      border-radius: 0.5rem;
+      background-color: var(--skeleton-bg);
+      z-index: 2;
+    }
+  }
+}
+
+/* #endregion */
+
 .tabs-wrapper {
   display: flex;
   flex-direction: column;
@@ -2619,6 +2756,7 @@ input.custom-range__output {
     background-repeat: no-repeat;
   }
 }
+
 .--arrow-up {
   display: flex;
   align-items: center;
