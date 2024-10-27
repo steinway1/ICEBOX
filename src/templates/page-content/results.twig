@@ -31,11 +31,6 @@
 				{% include "elements/results/results-sub_shapes.twig" %}
 			{% endif %}
 
-
-			{% if category.is_watches %}
-				{% include "elements/results/watches-notice.twig" %}
-			{% endif %}
-
 			{% include "elements/results/page-filters.twig" %}
 			{% include "elements/results/filter-modal.twig" %}
 			{% if sale_page is not defined %}
@@ -44,6 +39,21 @@
 
 			<div class="results-cards-content">
 				<div class="wrapper">
+
+					{% if is_watch_market_page %}
+						{% include "elements/results/watches-notice.twig" %}
+					{% endif %}
+
+					<div class="flex_8">
+						<label class="ccb">
+							<input type="checkbox" value="hide_no_price" checked>
+							<div class="ccb-btn">
+								<span class="ccb-box"></span>
+								<span>Hide items with no price</span>
+							</div>
+						</label>
+					</div>
+
 					<div class="results__main-wrapper">
 						<div class="results__items">
 							<div class="cards-grid">

@@ -13,6 +13,30 @@
       border-color: #0095c6;
     }
   }
+
+  &.--watch {
+    .product-card__name {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 22px;
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  .ccb-btn {
+    margin-top: 6px;
+    background-color: #f8f9fa;
+    border-color: #dae2e9;
+    border-radius: 0.5rem;
+    box-shadow: none;
+
+    @media screen and (min-width: 992px) {
+      &:hover {
+        background-color: white;
+        border-color: var(--black);
+      }
+    }
+  }
 }
 
 .product-card__wrapper {
@@ -61,7 +85,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   font-size: 13px;
-  line-height: 22px;
+  line-height: 20px;
 }
 
 .product-card__info {
@@ -242,7 +266,7 @@
 .product-card__details {
   flex-direction: column;
   flex: 1;
-  padding: 24px 24px 0 0;
+  padding: 24px 0 0 0;
   display: flex;
 
   @include maxWidthXs {
@@ -1054,6 +1078,7 @@
   inset: auto auto 0% 0%;
   cursor: pointer;
   color: #7d8490;
+  max-width: 80%;
   user-select: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -1076,6 +1101,11 @@
 
   &::after {
     content: 'Natural Diamonds';
+    line-height: 16px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
   }
 
   @include maxWidthXs {
@@ -1088,3 +1118,74 @@
 }
 
 /* #endregion */
+
+.product-card__play-btn {
+  position: absolute;
+  inset: auto 8px 8px auto;
+  color: #fff;
+  cursor: pointer;
+  background-color: #049dcf;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 10px 10px 10px 12px;
+  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  display: flex;
+  box-shadow: 0 1px 16px rgba(81, 211, 253, 0.1);
+  background-position: left calc(50% + 1px) center;
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  background-image: url('data:image/svg+xml,<svg width="100%" height="100%" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 9.2681C19.3333 10.0379 19.3333 11.9624 18 12.7322L3 21.3925C1.66667 22.1623 -9.11955e-07 21.2 -8.44657e-07 19.6604L-8.75532e-08 2.3399C-2.02551e-08 0.800296 1.66667 -0.161954 3 0.607846L18 9.2681Z" fill="%23ffffff"></path></svg>');
+  user-select: none;
+
+  &:hover {
+    background-color: #10b1e6;
+  }
+
+  &:active {
+    background-color: #0584ae;
+    box-shadow: 0 1px 16px rgba(81, 211, 253, 0);
+  }
+
+  @include maxWidthXs {
+    width: 24px;
+    height: 24px;
+    background-size: 8px 8px;
+  }
+}
+
+.row-price {
+  border: 1px solid var(--erp-border);
+  border-radius: .35rem;
+  flex-flow: column;
+  margin-top: 12px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+
+  &>div {
+    border-bottom: 1px solid var(--erp-border);
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    display: flex;
+    font-size: 15px;
+    line-height: 24px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.--msrp {
+      color: #888e99;
+    }
+
+    span {
+      &:first-child {
+        font-size: 13px;
+      }
+    }
+  }
+}

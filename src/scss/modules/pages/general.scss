@@ -2780,3 +2780,91 @@ input.custom-range__output {
     transform: rotate(180deg);
   }
 }
+
+/* #region Custom checkbox / CCB */
+.ccb {
+  position: relative;
+  user-select: none;
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+
+    &:checked {
+      &+.ccb-btn {
+        background-color: rgba(0, 0, 0, 0.015);
+        color: var(--black);
+        border-color: var(--black);
+      }
+
+      &+div .ccb-box {
+        background-color: var(--black);
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="19" height="14" viewBox="0 0 19 14" fill="none"><path d="M1.65 5L7.64971 11L16.9997 2" stroke="white" stroke-width="4"/></svg>');
+        background-size: 60% 60%;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
+
+.ccb-btn {
+  gap: 8px;
+  cursor: pointer;
+  scroll-snap-align: start;
+  background-color: #fff;
+  border-radius: .4rem;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  border: 1px solid #e0e4f0;
+  color: var(--black);
+  padding: 8px 12px;
+  font-weight: 600;
+  transition: all 150ms ease-in-out;
+  display: flex;
+  box-shadow: 0 1.5px 3px #999fb226;
+
+  &:hover {
+    color: var(--black)
+  }
+
+  &.--min {
+    font-size: 13px;
+    line-height: 16px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+}
+
+.ccb-box {
+  background-color: #e5e9ec;
+  border-radius: .25rem;
+  width: 18px;
+  height: 18px;
+  transition: background-color 150ms ease-in-out;
+}
+
+.--icon_before {
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  &.--bell {
+    &::before {
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="notification"><path d="M43,36.72V39a1,1,0,0,1-1,1H6a1,1,0,0,1-1-1V36.72a2.84,2.84,0,0,1,2.73-2.84A2.31,2.31,0,0,0,8,33.05V21.12a15.42,15.42,0,0,1,5.94-12.2A15.63,15.63,0,0,1,27.41,6.1C33.8,7.66,39,14.46,39,21.25V32.79a3.41,3.41,0,0,0,1.18,1.09h0A2.84,2.84,0,0,1,43,36.72ZM23.52,4.62A17.29,17.29,0,0,1,27,5V4a3,3,0,0,0-3-3,3,3,0,0,0-3,3v.82A16.92,16.92,0,0,1,23.52,4.62ZM17.08,41a7,7,0,0,0,13.84,0Z"/></svg>');
+    }
+  }
+}
+
+/* #endregion */

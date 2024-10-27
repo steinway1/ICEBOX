@@ -5,9 +5,17 @@
 }
 
 .results-cards-content {
-  @include maxWidthXs {
+  .ccb {
+    margin: 0 0 12px 0;
+  }
+
+  .results__notice-wrap {
+    .results-notice {
+      line-height: 20px;
+    }
+    
     .wrapper {
-      padding: 0px;
+      padding: 0;
     }
   }
 }
@@ -234,6 +242,10 @@
   strong {
     display: block;
     margin-bottom: 2px;
+  }
+
+  a {
+    color: var(--blue-gold)
   }
 }
 
@@ -556,15 +568,15 @@
 
 .results-notice {
   background-image: radial-gradient(circle farthest-side at 0 0, #33cbfc0d, #fff);
-  border: 2px solid #13b9ee;
+  border: 1px solid #13b9ee;
   flex-flow: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   line-height: 24px;
-  padding: 16px 20px;
+  padding: 12px 20px;
   display: flex;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -1646,9 +1658,10 @@
 
   @include maxWidthXs {
     grid-column-gap: 8px;
-    grid-row-gap: 42px;
+    grid-row-gap: 28px;
     padding-left: 0;
     padding-right: 0;
+    margin: 0 -14px;
   }
 
   &.--less {
@@ -1689,11 +1702,43 @@
   }
 }
 
-.results-content.--watch-market .product-card__media a img {
-  transform: scale(1.3);
+.results-content.--watch-market {
 
-  @include maxWidthXs {
-    transform: scale(1.55);
+  .res-banner {
+    img {
+      min-height: 320px;
+    }
+  }
+
+  .results__descriptive-wrap {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .results__breadcrumbs {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .results__heading {
+    line-height: 34px;
+    font-size: 26px;
+  }
+
+  .results__subheading {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 12px auto 0;
+  }
+
+  .product-card__media a img {
+    transform: scale(1.3);
+
+    @include maxWidthXs {
+      transform: scale(1.55);
+    }
   }
 }
 
