@@ -119,7 +119,7 @@ function showMessage(type, title, msg) {
 
 function debounce(func, wait) {
   let timeout
-  return function(...args) {
+  return function (...args) {
     const later = () => {
       clearTimeout(timeout)
       func(...args)
@@ -135,6 +135,22 @@ function showSkeleton() {
 
 function hideSkeleton() {
   document.body.classList.remove('--skeleton')
+}
+
+function openPriceModal(target, id) {
+  const card = target.closest('.product-card')
+  if (!card) return
+
+  window.signPriceModal = new window.priceModal(card, id)
+}
+
+function signupPrice() {
+  if (!window.signPriceModal) {
+    console.warn('No price modal found')
+    return
+  }
+
+  window.signPriceModal.signup()
 }
 
 module.exports = {
@@ -156,5 +172,7 @@ module.exports = {
   showMessage,
   debounce,
   showSkeleton,
-  hideSkeleton
+  hideSkeleton,
+  openPriceModal,
+  signupPrice
 }

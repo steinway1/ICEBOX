@@ -12,7 +12,6 @@ window.intlTelInput = require('./intlTelInput')
 window.zenscroll = require('./zenscroll')
 window.fancybox = require('./fancybox.min')
 
-
 /** -- Globals */
 /** Constants / Variables / Utils / Ajax */
 const constants = require('./modules/constants')
@@ -20,7 +19,6 @@ const variables = require('./modules/variables')
 const utils = require('./modules/utils')
 const ajax = require('./modules/ajax')
 Object.assign(window, constants, variables, utils, ajax)
-
 
 /** -- Append Elements */
 /* Page Tips */
@@ -33,7 +31,8 @@ window.PageConfetti = require('./modules/dynamic/page-confetti')
 window.AskModal = require('./modules/dynamic/ask-modal')
 /* Loader Root */
 window.rootLoader = require('./modules/dynamic/root-loader')
-
+/* Sign Up price alerts */
+window.priceModal = require('./modules/dynamic/price-modal')
 
 /** -- Page Elements */
 /** Login

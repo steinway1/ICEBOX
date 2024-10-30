@@ -96,7 +96,7 @@
 			{% include "elements/product-card/stock-dash-box.twig" %}
 		{% endif %}
 
-		<button onclick="window.signupPrice({{productItem.id}})" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+		<button onclick="window.openPriceModal(event.target, {{productItem.id}})" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
 
 
 		<div class="product-card__details">
