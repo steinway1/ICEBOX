@@ -1175,17 +1175,37 @@
     border-bottom: 1px solid var(--erp-border);
     justify-content: space-between;
     align-items: center;
-    padding: 6px 12px;
+    padding: 6px 10px;
     display: flex;
     font-size: 15px;
     line-height: 24px;
+    gap: 8px;
+
+    &>span {
+      display: flex;
+      flex-flow: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      column-gap: 6px;
+      row-gap: 0;
+    }
 
     &:last-child {
       border-bottom: none;
     }
 
+    &:not(.--msrp, .--empty) {
+      span {
+        &:last-child {
+          color: #138874;
+        }
+      }
+    }
+
     &.--msrp {
-      color: #888e99;
+      span {
+        color: #888e99;
+      }
     }
 
     &.--empty {
@@ -1219,7 +1239,7 @@
 
         @media screen and (min-width: 992px) {
           &:hover {
-        background-color: #e0edeb;
+            background-color: white;
           }
         }
       }
@@ -1231,4 +1251,49 @@
       }
     }
   }
+}
+
+.msrp-diff-price {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    margin-right: -3px;
+    flex: none;
+    display: block;
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url('data:image/svg+xml,<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 24L37.5 24" stroke="black" stroke-width="6" stroke-linecap="square"/></svg>');
+  }
+
+  &.--equal {
+    span {
+      color: var(--black) !important;
+    }
+  }
+
+  &.--upper {
+    &::before {
+      background-image: url('data:image/svg+xml,<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 39L23.5 11" stroke="%23d70040" stroke-width="6" stroke-linecap="square"/><path d="M40 24.5L23.5 8L7 24.5" stroke="%23d70040" stroke-width="6"/></svg>');
+    }
+
+    span {
+      color: var(--red) !important;
+    }
+  }
+
+  &.--lower {
+    &::before {
+      background-image: url('data:image/svg+xml,<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 8V36" stroke="%23138874" stroke-width="6" stroke-linecap="square"/><path d="M7 22.5L23.5 39L40 22.5" stroke="%23138874" stroke-width="6"/></svg>');
+    }
+  }
+}
+
+.msrp-diff {
+  font-weight: 700;
 }

@@ -125,7 +125,22 @@
 								Our Price
 							{% endif %}
 						</span>
-						<span>{{productItem.price}}</span>
+						{# Price #}
+						{% if productItem.msrp_price %}
+
+							{% set msrp_num = productItem.msrp_price|number_format %}
+							{% set price_num = productItem.price|number_format %}
+							{% set diff = ((price_num - msrp_num) / msrp_num * 100)|number_format(0) %}
+							{% set class = diff > 0 ? '--upper' : diff < 0 ? '--lower' : '--equal' %}
+
+							<span class="msrp-diff-price {{ class }}">
+								<span class="msrp-diff">{{ diff|abs }}%</span>
+								<span>{{ productItem.price }}</span>
+							</span>
+
+						{% else %}
+							<span>{{productItem.price}}</span>
+						{% endif %}
 					</div>
 					{% if productItem.msrp %}
 						<div class="--msrp">
