@@ -4462,3 +4462,50 @@
 .product__availability-info {
   // color: var(--blue);
 }
+
+.product__item-availability {
+
+  &.in_stock_msg {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 18px;
+    color: #00ac9e;
+    font-weight: 700;
+
+    &::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background-color: #00ac9e;
+      border-radius: 9px;
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      animation: dotPulse 1.2s infinite ease-in-out;
+    }
+    
+    &::after {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background-color: #00ac9e;
+      border-radius: 9px;
+      position: absolute;
+      left: 0;
+      z-index: 2;
+    }
+    
+  }
+}
+
+@keyframes dotPulse {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
