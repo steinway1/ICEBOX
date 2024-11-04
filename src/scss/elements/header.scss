@@ -28,7 +28,35 @@
       height: 20px;
 
       path {
-        stroke-width: 1.25px;
+        stroke-width: 1.5px;
+      }
+    }
+
+    &[data-evt="toggleCart"] {
+      margin-top: -3px;
+
+      path {
+        stroke-width: 1.8px;
+      }
+    }
+
+    @include maxWidthMd {
+      margin-right: -4px;
+
+      svg {
+        width: 32px;
+        height: 32px;
+        padding: 4px;
+        // margin-right: -4px;
+      }
+
+      &.--large {
+        svg {
+          width: 36px;
+          height: 32px;
+          padding: 0;
+          margin: 0;
+        }
       }
     }
   }
@@ -100,13 +128,8 @@
     grid-row-gap: 12px;
   }
 
-  @include maxWidthSm {
-    a {
-      svg {
-        width: 18px;
-        height: 18px;
-      }
-    }
+  @include maxWidthMd {
+    gap: 6px;
   }
 }
 
@@ -199,12 +222,14 @@
   font-weight: 600;
   display: flex;
 
-  @include maxWidthXs {
-    width: 14px;
-    height: 14px;
+  @include maxWidthMd {
+    width: 16px;
+    height: 16px;
     padding-top: 0;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
+    top: -2px;
+    right: 0px;
   }
 }
 
@@ -213,6 +238,10 @@
   padding: 12px 0;
   position: relative;
   z-index: 2;
+
+  @include maxWidthMd {
+    padding: 8px 0;
+  }
 }
 
 .header-logo {
@@ -230,7 +259,7 @@
 
   @include maxWidthXs {
     img {
-      width: 124px;
+      width: 130px;
     }
   }
 }

@@ -1,4 +1,17 @@
-<div class="product__promises">
+<div class="product__promises wrapper">
+	{% include "elements/product-page/fedex.twig" %}
+	<div class="--financing">
+		<div>
+			<h4 class="product__xs-heading">Apply For Financing.</h4>
+			<p class="product__typo">Just a few steps and you get personalized rate quotes with no hard credit pull.
+				<span>Get approved in less than 5 minutes!</span>
+			</p>
+		</div>
+		<a href="/financing" target="_blank" class="fancy-btn">
+			<span>Apply Now</span>
+			{% include "components/svg/arrow.svg" %}
+		</a>
+	</div>
 	<div>
 		<div>
 			<h4 class="product__xs-heading">Live Chat on WhatsApp</h4>
@@ -7,18 +20,6 @@
 		<a href="/chat-whatsapp" target="_blank" class="fancy-btn --green">
 			<img src="{{THEME_ASSETS_FOLDER}}wa_white-icon.svg" alt="">
 			<span>Chat Now</span>
-			{% include "components/svg/arrow.svg" %}
-		</a>
-	</div>
-	<div>
-		<div>
-			<h4 class="product__xs-heading">Apply For Financing.</h4>
-			<p class="product__typo">Just a few steps and you get personalized rate quotes with no hard credit pull.
-				<span>‍Get approved in less than 5 minutes!</span>
-			</p>
-		</div>
-		<a href="/financing" target="_blank" class="fancy-btn">
-			<span>Apply Now</span>
 			{% include "components/svg/arrow.svg" %}
 		</a>
 	</div>

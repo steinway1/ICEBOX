@@ -92,10 +92,12 @@ class ProductPage {
   setActiveOptionsText() {
     for (const option of this.optionsArr) {
       const holder = option.querySelector('.product-option__head-right')
-      const activeBtn = option.querySelector('.option-btn.is-active')
+      const activeBtn = option.querySelector('.option-btn.is-active') || option.querySelector('.option-btn.active')
 
       if (holder && activeBtn) {
-        const textContent = activeBtn.textContent.trim()
+
+        const textContent = activeBtn.textContent
+
         if (textContent.length) {
           const selectedElem = createElem('div', {
             className: 'product-option-current',
@@ -407,15 +409,17 @@ class ProductPage {
       if (btnArr.length) {
         for (const btn of btnArr) {
           btn.addEventListener('click', () => {
-            const textContent = btn.textContent.trim()
-            if (textContent.length) {
-              if (selectedElem) {
-                selectedElem.innerHTML = textContent
+            if (!btn.classList.contains('disabled')) {
+              const textContent = btn.textContent.trim()
+              if (textContent.length) {
+                if (selectedElem) {
+                  selectedElem.innerHTML = textContent
+                }
               }
-            }
 
-            btnArr.forEach(el => el.classList.remove(IS_ACTIVE))
-            btn.classList.add(IS_ACTIVE)
+              btnArr.forEach(el => el.classList.remove(IS_ACTIVE))
+              btn.classList.add(IS_ACTIVE)
+            }
           })
         }
       }
@@ -434,10 +438,11 @@ class ProductPage {
         const input = parent.querySelector('.custom-fields-fetch')
         if (!input) throw new Error('custom-fields-fetch element is required')
 
-        console.log(value)
+
         input.value = value
         const event = new Event('change', { bubbles: true })
         input.dispatchEvent(event)
+        this.closeOptionModal()
       })
     }
   }
