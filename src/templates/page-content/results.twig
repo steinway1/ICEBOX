@@ -16,7 +16,6 @@
 		{% endif %}
 		{% if sale_page %}
 			{% include "elements/results/results-banner_sale.twig" %}
-      {% include "elements/results/results-bar.twig" %}
 		{% endif %}
 	{% endif %}
 	{% if search_keyword is defined %}
@@ -27,16 +26,13 @@
 	<div class="results__wrap">
 		<div class="results__main">
 
-
 			{% if category.is_engagement %}
 				{% include "elements/results/results-sub_shapes.twig" %}
 			{% endif %}
 
 			{% include "elements/results/page-filters.twig" %}
 			{% include "elements/results/filter-modal.twig" %}
-			{% if sale_page is not defined %}
-				{% include "elements/results/results-bar.twig" %}
-			{% endif %}
+			{% include "elements/results/results-bar.twig" %}
 
 			<div class="results-cards-content">
 				<div class="wrapper">
