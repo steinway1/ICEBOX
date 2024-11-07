@@ -22,6 +22,9 @@
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
 
 
@@ -34,31 +37,56 @@
     <script src="https://scripts.sirv.com/sirv.js"></script>
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 
 
-<body class="body_bfs">
-    <a href="/sale" target="_blank" class="bf-top-banner">
-        <div class="bf-top-banner__img-wrap"><img loading="eager" src="./assets/bf-top-banner-img.svg" alt="" class="bf-top-banner__img"></div>
-        <div class="bf-top-banner__timer">
-            <div class="bf-top-banner__timer-head">Black Friday Ends In</div>
-            <div class="bf-top-banner__digits">
-                <div id="sale_timer_days" class="bf-top-banner__digit">00</div>
-                <div class="bf-top-banner__divider">:</div>
-                <div id="sale_timer_hours" class="bf-top-banner__digit">00</div>
-                <div class="bf-top-banner__divider">:</div>
-                <div id="sale_timer_minutes" class="bf-top-banner__digit">00</div>
-                <div class="bf-top-banner__divider">:</div>
-                <div id="sale_timer_seconds" class="bf-top-banner__digit sec">00</div>
-            </div>
-        </div>
-    </a>
+<body class=" --black-friday">
+
+
     <header class="header">
+        <a href="/sale" class="bf-top-banner">
+            <div class="bf-top-banner__img-wrap"><img loading="eager" src="./assets/bf-top-banner-img.svg" alt="" class="bf-top-banner__img"></div>
+            <div class="bf-top-banner__timer">
+                <div class="bf-top-banner__timer-head">Black Friday Ends In</div>
+                <div class="bf-top-banner__digits">
+                    <div data-black-timer="days" class="bf-top-banner__digit">00</div>
+                    <div class="bf-top-banner__divider">:</div>
+                    <div data-black-timer="hours" class="bf-top-banner__digit">00</div>
+                    <div class="bf-top-banner__divider">:</div>
+                    <div data-black-timer="minutes" class="bf-top-banner__digit">00</div>
+                    <div class="bf-top-banner__divider">:</div>
+                    <div data-black-timer="seconds" class="bf-top-banner__digit sec">00</div>
+                </div>
+            </div>
+        </a> <a href="/sale" class="cm-top-banner">
+            <div class="cm-top-banner__main">
+                <div data-text="CYBER SALE EVENT" class="cm-top-banner__text glitch is-glitching">
+                    CYBER
+                    <span>SALE</span>
+                    EVENT
+                </div>
+                <div data-text="CYBER SALE EVENT" class="cm-top-banner__text glitch is-glitching is-over">
+                    CYBER
+                    <span>SALE</span>
+                    EVENT
+                </div>
+            </div>
 
+            <div class="cm-timer">
+                <span>Sale Ends In</span>
+                <div>
+                    <span>
+				<span data-cyber-timer="days">00</span>
+                    <span>days</span>
+                    </span>
+                    <span>
+				<span data-cyber-timer="hours">00</span>
+                    <span>hours</span>
+                    </span>
+                </div>
+            </div>
 
+        </a>
         <div class="header-nav-wrapper">
             <div class="wrapper">
                 <div class="header-nav">
@@ -152,6 +180,12 @@
                     <a href="https://www.icebox.com/results/glasses" class="header__sub-link" data-dropdown="">Glasses</a>
                     <a href="https://www.icebox.com/results/glasses" class="header__sub-link sub-link_spot" data-dropdown="">Made To Order</a>
 
+                    <a href="https://www.icebox.com/black-friday" class="header__sub-link is_bfs">
+                        <span data-text-glitch="BLACK FRIDAY">BLACK FRIDAY</span>
+                    </a>
+                    <a href="/cyber-monday" class="header__sub-link is_cm">
+                        <span data-text-glitch="CYBER MONDAY">CYBER MONDAY</span>
+                    </a>
                 </div>
                 <div class="nav-drop">
                     <div class="nav-drop__container">
@@ -280,89 +314,130 @@
 
     <main class="black_friday main_results">
         <div class="results-content">
-            <div class="bf-banner">
-                <div class="bf-banner__wrapper">
-                    <div class="bf-background">
-                        <div class="bf-background__side">
-                            <div class="dm-canvas-bf is-left bf-side_1"></div>
-                            <div class="bf-background__over"></div>
+            <div class="black-banner">
+                <div class="black-banner__wrapper">
+                    <div class="black-banner__background">
+                        <div class="black-banner__side">
+                            <div id="black-canvas-1" class="black-banner__canvas for_bf1"></div>
+                            <div class="black-banner__over-gradient"></div>
                         </div>
-                        <div class="bf-background__side">
-                            <div class="dm-canvas-bf is-right bf-side_2"></div>
-                            <div class="bf-background__over is-flipped"></div>
-                        </div>
-                    </div>
-                    <div class="bf-text">
-                        <div class="bf-text__box is-top">
-                            <div class="bf-subtext">The Best Deal of the year!<span>Time Is Limited!</span>
-                            </div>
-                        </div>
-                        <img src="./assets/bfs-text_1.avif" loading="eager" alt="" class="bf-text-img is-top">
-                        <img src="./assets/bfs-text_2.avif" loading="eager" alt class="bf-text-img">
-                        <div class="bf-text__box is-bottom">
-                            <div class="bf-subtext is-bigger">Up To
-                                <span class="bg-subtext__span">70%</span>
-                                OFF
-                            </div>
+                        <div class="black-banner__side">
+                            <div id="black-canvas-2" class="black-banner__canvas for_bf2"></div>
+                            <div class="black-banner__over-gradient is-rotated"></div>
                         </div>
                     </div>
-                    <div class="bf-ticker-row">
-                        <div class="bf-ticker-wrap">
-                            <div class="bf-ticker">
-                                <div>Countless Deals!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div class="bf-ticker__spot-typo">HUrry! Deals end!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div>Massive Savings!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div class="bf-ticker__spot-typo">Fresh sales hourly!</div>
-                                <div class="bf-ticker__divider"></div>
-                            </div>
-                            <div class="bf-ticker">
-                                <div>Countless Deals!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div class="bf-ticker__spot-typo">HUrry! Deals end!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div>Massive Savings!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div class="bf-ticker__spot-typo">Fresh sales hourly!</div>
-                                <div class="bf-ticker__divider"></div>
-                            </div>
-                            <div class="bf-ticker">
-                                <div>Countless Deals!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div class="bf-ticker__spot-typo">HUrry! Deals end!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div>Massive Savings!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div class="bf-ticker__spot-typo">Fresh sales hourly!</div>
-                                <div class="bf-ticker__divider"></div>
-                            </div>
-                            <div class="bf-ticker">
-                                <div>Countless Deals!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div class="bf-ticker__spot-typo">HUrry! Deals end!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div>Massive Savings!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div class="bf-ticker__spot-typo">Fresh sales hourly!</div>
-                                <div class="bf-ticker__divider"></div>
-                            </div>
-                            <div class="bf-ticker">
-                                <div>Countless Deals!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div class="bf-ticker__spot-typo">HUrry! Deals end!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div>Massive Savings!</div>
-                                <div class="bf-ticker__divider"></div>
-                                <div class="bf-ticker__spot-typo">Fresh sales hourly!</div>
-                                <div class="bf-ticker__divider"></div>
-                            </div>
+                    <div class="black-banner__ticker-row">
+                        <div>
+                            <h4>Countless Deals!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                            <h4>Massive Savings!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                        </div>
+                        <div>
+                            <h4>Countless Deals!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                            <h4>Massive Savings!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                        </div>
+                        <div>
+                            <h4>Countless Deals!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                            <h4>Massive Savings!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                        </div>
+                        <div>
+                            <h4>Countless Deals!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                            <h4>Massive Savings!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                        </div>
+                        <div>
+                            <h4>Countless Deals!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                            <h4>Massive Savings!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="black-banner__main">
+                        <div class="black-banner__main-wrapper">
+                            <img loading="eager" alt="black friday" src="./assets/promo/black-friday/2024/black-poster-2024.avif" class="black-banner__pic for_desk">
+                            <img loading="eager" alt="black friday" src="./assets/promo/black-friday/2024/black-poster-2024_mobile.avif" class="black-banner__pic for_mob">
+                        </div>
+                    </div>
+                    <div class="black-banner__ticker-row to-reverse">
+                        <div>
+                            <h4>Countless Deals!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                            <h4>Massive Savings!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                        </div>
+                        <div>
+                            <h4>Countless Deals!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                            <h4>Massive Savings!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                        </div>
+                        <div>
+                            <h4>Countless Deals!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                            <h4>Massive Savings!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                        </div>
+                        <div>
+                            <h4>Countless Deals!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                            <h4>Massive Savings!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                        </div>
+                        <div>
+                            <h4>Countless Deals!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
+                            <h4>Massive Savings!</h4>
+                            <span></span>
+                            <h5>Best Deals Ever</h5>
+                            <span></span>
                         </div>
                     </div>
                 </div>
             </div>
-
 
             <div class="results__wrap">
                 <div class="results__main">
@@ -691,6 +766,21 @@
 
                     <div class="results-cards-content">
                         <div class="wrapper">
+
+                            <div class="promo-counter-row">
+                                <div class="expire-tab --black-friday">
+                                    <div class="expire-tab__heading">EXPIRES IN:</div>
+                                    <div class="expire-tab__grid">
+                                        <div><span data-black-timer="days">00</span><span>Days</span>
+                                        </div>
+                                        <div><span data-black-timer="hours">00</span><span>Hours</span>
+                                        </div>
+                                        <div><span data-black-timer="minutes">00</span><span>Min</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="results__main-wrapper">
                                 <div class="results__items">
                                     <div class="cards-grid">
@@ -709,10 +799,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -735,13 +842,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -758,10 +870,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -784,13 +913,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -807,10 +941,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -833,13 +984,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -856,10 +1012,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -882,13 +1055,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -905,10 +1083,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -931,13 +1126,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -954,10 +1154,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -980,13 +1197,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1003,10 +1225,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -1029,13 +1268,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1052,10 +1296,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -1078,13 +1339,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1101,10 +1367,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -1127,13 +1410,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1150,10 +1438,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -1176,13 +1481,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1199,10 +1509,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -1225,13 +1552,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1248,10 +1580,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -1274,13 +1623,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1297,10 +1651,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -1323,13 +1694,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1346,10 +1722,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -1372,13 +1765,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1395,10 +1793,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -1421,13 +1836,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1444,10 +1864,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -1470,13 +1907,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1493,10 +1935,27 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" product-card     " data-id="">
+
+
+
+
+
+
+                                        <div class="product-card --black-friday --cm" data-id="">
 
 
                                             <div class="product-card__wrapper">
+
+
+                                                <div class="bf-badge">
+                                                    <span>BLACK FRIDAY</span>
+                                                    <span>60%<span>OFF</span>
+                                                </div>
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
 
                                                 <div class="product-card__media">
                                                     <a href="#">
@@ -1519,13 +1978,18 @@
                                                 </div>
 
 
-                                                <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+
+                                                <div class="ccb-btn --min --black-friday">Limited at this price!</div>
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
 
 
                                                 <div class="product-card__details">
                                                     <div class="product-card__title-wrap">
                                                         <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
+															<span class="--blue">2003</span>
                                                         </span>
 
                                                         <h2>
@@ -1554,8 +2018,6 @@
                 </div>
             </div>
         </div>
-
-
 
     </main>
     <div class="footer">
@@ -3015,140 +3477,16 @@
     </a>
 
     <script src="./js/partial-min.js"></script>
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/3.5.0/tsparticles.bundle.min.js"></script>
+    <script src="./js/promo/libs/confetti.browser.min.js"></script>
+    <script src="./js/promo/libs/three.min.js"></script>
+    <script src="./js/promo/libs/vanta-waves.min.js"></script>
+    <script src="./js/promo/black-friday/2024.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/3.5.0/tsparticles.bundle.min.js"></script>
+    <script src="./js/promo/libs/confetti.browser.min.js"></script>
+    <script src="./js/promo/cyber-monday/2024.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() { // Confetti
-            function pushConfetti() {
-                const colors = ["#ec575a", "#E5C1BD"];
-                const shots = 5;
-                const pauseDuration = 2000;
-                let currentShot = 0;
 
-                let y,
-                    count
-
-                if (window.innerWidth > 991) {
-                    y = 0.6
-                    count = 50
-                } else {
-                    y = 0.8
-                    count = 38
-                }
-
-                function shootConfetti() {
-                    confetti({
-                        particleCount: count,
-                        angle: 60,
-                        spread: 55,
-                        origin: {
-                            x: 0,
-                            y: y
-                        },
-                        colors: colors
-                    });
-
-                    confetti({
-                        particleCount: count,
-                        angle: 120,
-                        spread: 55,
-                        origin: {
-                            x: 1,
-                            y: y
-                        },
-                        colors: colors
-                    });
-
-                    currentShot++;
-                    if (currentShot < shots) {
-                        setTimeout(shootConfetti, pauseDuration);
-                    }
-                }
-                shootConfetti()
-            }
-
-            // Vanta Background
-            function pushVanta() {
-                VANTA.WAVES({
-                    el: ".bf-side_1",
-                    mouseControls: false,
-                    touchControls: false,
-                    gyroControls: false,
-                    minHeight: 200.00,
-                    minWidth: 200.00,
-                    scale: 1.00,
-                    scaleMobile: 1.00,
-                    color: 0x10407,
-                    shininess: 350.00,
-                    waveHeight: 40.50,
-                    waveSpeed: 0.5,
-                    zoom: 20.00
-                })
-
-                VANTA.WAVES({
-                    el: ".bf-side_2",
-                    mouseControls: false,
-                    touchControls: false,
-                    gyroControls: false,
-                    minHeight: 200.00,
-                    minWidth: 200.00,
-                    scale: 1.00,
-                    scaleMobile: 1.00,
-                    color: 0x10407,
-                    shininess: 350.00,
-                    waveHeight: 40.50,
-                    waveSpeed: 0.5,
-                    zoom: 20.00
-                })
-            }
-            // Timer
-            function setBlackFridayTimer() {
-                var timer;
-
-                var compareDate = new Date(2024, 10, 20, 10, 0o0, 0o0);
-
-                timer = setInterval(function() {
-                    timeBetweenDates(compareDate);
-                }, 1000);
-
-                function timeBetweenDates(toDate) {
-                    var dateEntered = toDate;
-                    var now = new Date();
-                    var difference = dateEntered.getTime() - now.getTime();
-
-                    if (difference <= 0) {
-                        clearInterval(timer);
-
-                    } else {
-
-                        var seconds = Math.floor(difference / 1000);
-                        var minutes = Math.floor(seconds / 60);
-                        var hours = Math.floor(minutes / 60);
-                        var days = Math.floor(hours / 24);
-
-                        hours %= 24;
-                        minutes %= 60;
-                        seconds %= 60;
-
-                        $("#sale_timer_days").text(days);
-                        $("#sale_timer_hours").text(hours);
-                        $("#sale_timer_minutes").text(minutes);
-                        $("#sale_timer_seconds").text(seconds);
-                    }
-                }
-            }
-
-            pushVanta()
-            pushConfetti()
-            setBlackFridayTimer()
-        })
-    </script>
 </body>
 
 </html>

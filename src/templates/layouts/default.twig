@@ -1,13 +1,9 @@
 {% set THEME_ASSETS_FOLDER = './assets/' %}
-{% set black_friday = false %}
-{% set cyber_monday = false %}
-{% set christmas = false %}
-{% set new_year = false %}
-{% set vday = false %}
+
+{% set promo_class = black_friday ? '--black-friday' : cyber_monday ? '--cyber-monday' : christmas ? '--christmas' : new_year ? '--new-year' : vday ? '--vday' : false %}
 
 <!DOCTYPE html>
 <html lang="en">
-
 
 	<head>
 		{% include '../page-components/head.twig' %}
@@ -15,7 +11,7 @@
 	</head>
 
 
-	<body {% if bodyClass is defined %} class="{{bodyClass}}" {% endif %}>
+	<body class="{% if bodyClass is defined %} {{bodyClass}}{% endif %}{% if promo_class %} {{promo_class}}{% endif %}">
 
 		{% if topBanner is defined and topBanner.text != '' %}
 			<div class="top-banner">
@@ -30,12 +26,10 @@
 
 			{% if logged %}
 				{% else %}
-				{# {% include "../elements/subscribe.twig" %} #}
 			{% endif %}
 			{% if userIsAdmin == true %}
 				{% include "elements/admin-bar.twig" %}
 			{% endif %}
-			{# {% include "../elements/affirm-disclaimer.twig" %} #}
 		</main>
 		{% include "../elements/footer.twig" %}
 

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <title>
@@ -38,69 +37,39 @@
 </head>
 
 
-<body>
+<body class=" --cyber-monday">
 
 
     <header class="header">
-
-        <div class="bfs-banner --cm">
-
-            <div class="bfs-banner__group to_left">
-                <img src="./assets/pay-klarna.svg" loading="eager" alt="pay later with Klarna">
-                <img src="./assets/pay-affirm.svg" loading="eager" alt="pay later with Affirm">
-                <img src="./assets/pay-afterpay.svg" loading="eager" alt="pay later with Afterpay">
-                <div class="bfs-banner__pay">
-                    <div>
-                        <div class="paylater-box">
-                            <div class="paylater-box__container">
-                                <div class="paylater-box__content">
-                                    <div class="paylater-box__wrapper">
-                                        <div class="paylater-box__row">
-                                            <h3>Buy Now &amp; Pay Later!
-                                            </h3>
-                                            <p>Icebox.com is offering service through Klarna, Affirm or Afterpay.</p>
-                                            <p>Add items to your cart and get approved during the checkout process!</p>
-                                            <p>Approvals are fast and items are paid for instantly after your approval.</p>
-                                        </div>
-                                        <div class="paylater-box__row">
-                                            <h3>Why To Use Service?</h3>
-                                            <div class="paylater-box__features">
-                                                <span>No Credit Score Impact</span>
-                                                <span>Quick &amp; Easy To Follow</span>
-                                                <span>Personal Installments Plan</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+        <a href="/sale" class="cm-top-banner">
+            <div class="cm-top-banner__main">
+                <div data-text="CYBER SALE EVENT" class="cm-top-banner__text glitch is-glitching">
+                    CYBER
+                    <span>SALE</span>
+                    EVENT
+                </div>
+                <div data-text="CYBER SALE EVENT" class="cm-top-banner__text glitch is-glitching is-over">
+                    CYBER
+                    <span>SALE</span>
+                    EVENT
                 </div>
             </div>
 
-            <a href="/cyber-monday" class="bfs-banner__group to_center">
-                <img src="./assets/cm/banner_main-img.webp" loading="eager" alt="cyber monday cyber monday badge" class="for_desktop">
-                <img src="./assets/cm/banner_main-img.webp" loading="eager" alt="cyber monday cyber monday badge" class="for_mobile">
-            </a>
-
-            <div class="bfs-banner__group to_right">
-                <div class="bfs-banner__timer">
-                    <div class="bfs-banner__timer-title">Cyber Week Ends In</div>
-                    <div class="bfs-banner__timer-wrap">
-                        <span id="bfs_timer_days">10</span>
-                        <span>:</span>
-                        <span id="bfs_timer_hours">10</span>
-                        <span>:</span>
-                        <span id="bfs_timer_min">10</span>
-                        <span>:</span>
-                        <span id="bfs_timer_sec">10</span>
-                    </div>
+            <div class="cm-timer">
+                <span>Sale Ends In</span>
+                <div>
+                    <span>
+				<span data-cyber-timer="days">00</span>
+                    <span>days</span>
+                    </span>
+                    <span>
+				<span data-cyber-timer="hours">00</span>
+                    <span>hours</span>
+                    </span>
                 </div>
             </div>
 
-        </div>
-
+        </a>
         <div class="header-nav-wrapper">
             <div class="wrapper">
                 <div class="header-nav">
@@ -194,6 +163,9 @@
                     <a href="https://www.icebox.com/results/glasses" class="header__sub-link" data-dropdown="">Glasses</a>
                     <a href="https://www.icebox.com/results/glasses" class="header__sub-link sub-link_spot" data-dropdown="">Made To Order</a>
 
+                    <a href="/cyber-monday" class="header__sub-link is_cm">
+                        <span data-text-glitch="CYBER MONDAY">CYBER MONDAY</span>
+                    </a>
                 </div>
                 <div class="nav-drop">
                     <div class="nav-drop__container">
@@ -320,105 +292,621 @@
     </header>
 
 
-    <main class="cm_results">
+    <main class="cyber_monday main_results">
         <div class="results-content">
+            <div class="cm-banner">
 
+                <div class="cm-bg">
+                    <div class="cm-canvas-wrap">
+                        <canvas id="cm_canvas"></canvas>
+                    </div>
+                    <div class="cm-canvas-over"></div>
+                </div>
 
+                <div class="cm-main">
+                    <div class="cm-main__text">
+                        <div class="cm-banner__tag">Almost free, no catch!</div>
+                        <div class="cm-banner__main-text-wrap">
+                            <div class="cm-banner__sub-text-wrap">
+                                <div data-text="CYBER" class="cm-banner__text is-first glitch is-glitching">CYBER</div>
+                                <div data-text="CYBER" class="cm-banner__text is-over is-first glitch is-glitching">CYBER</div>
+                            </div>
+                            <div class="cm-banner__main-text">
+                                <div class="cm-banner__sub-text-wrap">
+                                    <div data-text="MONDAY" class="cm-banner__text is-middle glitch is-glitching">MONDAY</div>
+                                    <div data-text="MONDAY" class="cm-banner__text is-over is-middle glitch is-glitching">MONDAY</div>
+                                </div>
+                                <img alt="" src="./assets/promo/cyber-monday/2024/star.avif" loading="eager" class="cm-banner__sub-img">
+                            </div>
+                        </div>
+                        <div class="cm-banner__sub-text-wrap">
+                            <div data-text="SALES" class="cm-banner__text is-last glitch is-glitching">SALES</div>
+                        </div>
+                        <div class="cm-banner__sub-typo">
+                            <span class="cm-slashed">Prices slashed<br></span>
+                            <span class="cm-welcome">SAVE up to
+				</span>
+                            <a href="#" class="cm-green">
+                                <span class="cm-welcome">80%</span>
+                            </a>
+                            <span class="cm-welcome">!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cm-over">
+                    <div class="cm-green-tape">
+                        <div class="cm-tape2">
+                            <span>LIMITED TIME</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>UP TO 80% OFF!</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>LIMITED TIME</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>UP TO 80% OFF!</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                        </div>
+                        <div class="cm-tape2">
+                            <span>LIMITED TIME</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>UP TO 80% OFF!</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>LIMITED TIME</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>UP TO 80% OFF!</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                        </div>
+                        <div class="cm-tape2">
+                            <span>LIMITED TIME</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>UP TO 80% OFF!</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>LIMITED TIME</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>UP TO 80% OFF!</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                        </div>
+                        <div class="cm-tape2">
+                            <span>LIMITED TIME</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>UP TO 80% OFF!</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>LIMITED TIME</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>UP TO 80% OFF!</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                        </div>
+                    </div>
+                    <div class="cm-white-tape">
+                        <div class="cm-tape1">
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                        </div>
+                        <div class="cm-tape1">
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                        </div>
+                        <div class="cm-tape1">
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                        </div>
+                        <div class="cm-tape1">
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                        </div>
+                        <div class="cm-tape1">
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                            <span>CYBER MONDAY</span>
+                            <span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="results__wrap">
-                <div class="cm-banner">
-                    <div class="cm-banner__img">
-                        <img src="./assets/cm/main-poster.webp" loading="eager" alt="Cyber monday poster">
-                    </div>
-                    <div class="cm-banner__back">
-                        <div>
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="cm-banner__matrix">
-                        <div class="matrix-bg"></div>
-                    </div>
-
-                    <div class="bfs-ticker">
-                        <div class="bfs-ticker__tape">
-                            <span>Hundreds of discounted items!</span>
-                            <div></div>
-                            <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
-                            <div></div>
-                            <span>Hundreds of discounted items!</span>
-                            <div></div>
-                            <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
-                            <div></div>
-                        </div>
-                        <div class="bfs-ticker__tape">
-                            <span>Hundreds of discounted items!</span>
-                            <div></div>
-                            <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
-                            <div></div>
-                            <span>Hundreds of discounted items!</span>
-                            <div></div>
-                            <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
-                            <div></div>
-                        </div>
-                        <div class="bfs-ticker__tape">
-                            <span>Hundreds of discounted items!</span>
-                            <div></div>
-                            <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
-                            <div></div>
-                            <span>Hundreds of discounted items!</span>
-                            <div></div>
-                            <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
-                            <div></div>
-                        </div>
-                        <div class="bfs-ticker__tape">
-                            <span>Hundreds of discounted items!</span>
-                            <div></div>
-                            <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
-                            <div></div>
-                            <span>Hundreds of discounted items!</span>
-                            <div></div>
-                            <span data-text-glitch="LIMITED TIME">LIMITED TIME!</span>
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="sticky-filters">
-                    <button data-filter-evt="openSort">
-                        <svg width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 6H23" stroke="black" stroke-width="1.5"></path>
-                            <path d="M5 12H19" stroke="black" stroke-width="1.5"></path>
-                            <path d="M8 18H16" stroke="black" stroke-width="1.5"></path>
-                        </svg> <span>Sort By</span>
-                    </button>
-                    <button data-filter-evt="openFilter">
-                        <svg width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 4H12" stroke="black" stroke-width="1.5"></path>
-                            <path d="M18 4L23 4" stroke="black" stroke-width="1.5"></path>
-                            <path d="M10 12L23 12" stroke="black" stroke-width="1.5"></path>
-                            <path d="M1 12H4" stroke="black" stroke-width="1.5"></path>
-                            <path d="M20 20L23 20" stroke="black" stroke-width="1.5"></path>
-                            <path d="M1 20H14" stroke="black" stroke-width="1.5"></path>
-                            <circle cx="17" cy="20" r="3.25" stroke="black" stroke-width="1.5"></circle>
-                            <circle cx="7" cy="12" r="3.25" stroke="black" stroke-width="1.5"></circle>
-                            <circle cx="15" cy="4" r="3.25" stroke="black" stroke-width="1.5"></circle>
-                        </svg> <span>Filters</span>
-                    </button>
-                </div>
-
-
-
                 <div class="results__main">
 
+                    <div class="results-sub">
+                        <div class="results-sub__wrap">
+                        </div>
+                    </div>
+                    <div class="page-filters">
+                        <form id="" class="wrapper">
+                            <div class="page-filters__wrapper">
+                                <div class="page-filters__group">
 
+                                    <div id="filter_1" class="page-filter-box">
+                                        <div class="page-filter-btn">
+                                            <span>Gold Chains Subcategories</span>
+                                            <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="page-filter-drop">
+                                            <div class="page-filter-drop__container">
+                                                <label>
+                                                    <input type="checkbox" name="gender[]" value="Male" checked>
+                                                    <div>
+                                                        <span>
+																												Male</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="gender[]" value="Female">
+                                                    <div>
+                                                        <span>
+																												Female</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="gender[]" value="Unisex">
+                                                    <div>
+                                                        <span>
+																												Unisex</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="filter_2" class="page-filter-box">
+                                        <div class="page-filter-btn">
+                                            <span>Price Range</span>
+                                            <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="page-filter-drop">
+                                            <div class="page-filter-drop__container">
+                                                <label>
+                                                    <input type="radio" name="pricerange" value="Any Price">
+                                                    <div>
+                                                        <span>
+																												Any Price</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="pricerange" value="$500 & Under">
+                                                    <div>
+                                                        <span>
+																												$500 & Under</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="pricerange" value="$500 - $1000">
+                                                    <div>
+                                                        <span>
+																												$500 - $1000</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="pricerange" value="$1000 - $2000">
+                                                    <div>
+                                                        <span>
+																												$1000 - $2000</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="pricerange" value="$2000 - $5000">
+                                                    <div>
+                                                        <span>
+																												$2000 - $5000</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="filter_3" class="page-filter-box">
+                                        <div class="page-filter-btn">
+                                            <span>Thickness</span>
+                                            <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="page-filter-drop">
+                                            <div class="page-filter-drop__container">
+                                                <label>
+                                                    <input type="checkbox" name="thickness" value="All">
+                                                    <div>
+                                                        <span>
+																												All</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="thickness" value="1mm">
+                                                    <div>
+                                                        <span>
+																												1mm</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="thickness" value="2mm">
+                                                    <div>
+                                                        <span>
+																												2mm</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="thickness" value="3mm">
+                                                    <div>
+                                                        <span>
+																												3mm</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="filter_4" class="page-filter-box">
+                                        <div class="page-filter-btn">
+                                            <span>Color</span>
+                                            <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="page-filter-drop">
+                                            <div class="page-filter-drop__container">
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorYellowGold">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Yellow"></span>
+                                                        Yellow Gold</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorRoseGold">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Rose"></span>
+                                                        Rose Gold</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorWhiteGold">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient White"></span>
+                                                        White Gold</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorBlue">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Blue"></span>
+                                                        Blue</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorRed">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Red"></span>
+                                                        Red</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorSteel">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Steel"></span>
+                                                        Steel</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorTwoTone">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Two_Tone"></span>
+                                                        Two Tone</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorTwoToneRose">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Two_Tone_Rose"></span>
+                                                        Two Tone Rose</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorTriTone">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Tri_Tone"></span>
+                                                        Tri Tone</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorTriToneRose">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Tri_Tone_Rose"></span>
+                                                        Tri Tone Rose</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorBlueGold">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Blue_Gold"></span>
+                                                        Blue Gold</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorMidnightNavy">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Navy_Blue"></span>
+                                                        Midnight Navy</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorPlatinum">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Platinum"></span>
+                                                        Platinum</span>
+                                                    </div>
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" name="" value="colorBlack">
+                                                    <div>
+                                                        <span>
+																													<span class="color-gradient Black"></span>
+                                                        Black</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="page-filters__group">
+                                    <div class="page-filter-box">
+                                        <div class="page-filter-btn">
+                                            <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6.9708 4.6375L6.14597 5.46233L4.66663 3.983V11.6667H3.49997V3.983L2.02122 5.46233L1.1958 4.6375L4.0833 1.75L6.9708 4.6375ZM12.8041 9.3625L9.91663 12.25L7.02913 9.3625L7.85397 8.53767L9.33388 10.017L9.3333 2.33333H10.5V10.017L11.9793 8.53767L12.8041 9.3625V9.3625Z" fill="#131317"></path>
+                                            </svg> <span>Most Popular</span>
+                                            <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="page-filter-drop">
+                                            <div class="page-filter-drop__container">
+                                                <a class="is-active" onclick="updateSortByFilter('Popular','Popular');">Most Popular</a>
+                                                <a onclick="updateSortByFilter('Newest','Newest');">Newest</a>
+                                                <a onclick="updateSortByFilter('High','Price - High to Low');">High - Low</a>
+                                                <a onclick="updateSortByFilter('Low','Price - Low To High');">Low - High</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="filter-modal">
+                        <div class="filter-modal__handler"></div>
+                        <div class="filter-modal__header">Filters</div>
+                        <div class="filter-modal__body">
+                            <div class="filter-modal__filter-list"></div>
+                            <div class="filter-modal__options"></div>
+                        </div>
+                        <div class="filter-modal__footer">
+                            <button data-evt="closeFilterModal" class="filter-modal__btn --sub">Close</button>
+
+                            <button data-evt="closeFilterModal" onclick="submitMobileFilters()" class="filter-modal__btn">Apply</button>
+                        </div>
+                    </div>
                     <div class="results-bar">
                         <div class="wrapper">
                             <div class="results-bar__wrapper">
 
                                 <div class="results__show">
-                                    <span id="total_items"></span>
-                                    items
+                                    <span id="total_items">829</span>
+                                    Gold Chains
                                 </div>
 
                                 <div class="view-switch-wrap">
@@ -443,1088 +931,1181 @@
                         </div>
                     </div>
 
-                    <div class="results-wrapper with_cards">
-                        <div class="results__main-wrapper">
+                    <div class="results-cards-content">
+                        <div class="wrapper">
 
-                            <div class="filter-sidebar to-stick">
-
-                                <div class="filter-row">
-                                    <div class="filter-row__header">
-                                        <span class="filter-title">Products</span>
-                                        <svg width="100%" height="100%" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="filter-row__body">
-                                        <div class="filter-row__container">
+                            <div class="promo-counter-row">
+                                <div class="expire-tab --cm">
+                                    <div class="expire-tab__heading">EXPIRES IN:</div>
+                                    <div class="expire-tab__grid">
+                                        <div>
+                                            <span data-cyber-timer="days">00</span>
+                                            <span>Days</span>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="filter-row">
-                                    <div class="filter-row__header">
-                                        <span class="filter-title">Category</span>
-                                        <svg width="100%" height="100%" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="filter-row__body">
-                                        <div class="filter-row__container">
+                                        <div>
+                                            <span data-cyber-timer="hours">00</span>
+                                            <span>Hours</span>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="filter-row">
-                                    <div class="filter-row__header">
-                                        <span class="filter-title">Price Range</span>
-                                        <svg width="100%" height="100%" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="filter-row__body">
-                                        <div class="filter-row__container">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="filter-row">
-                                    <div class="filter-row__header">
-                                        <span class="filter-title">Gender</span>
-                                        <svg width="100%" height="100%" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="filter-row__body">
-                                        <div class="filter-row__container">
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="filter-row">
-                                    <div class="filter-row__header">
-                                        <span class="filter-title">Gold Color</span>
-                                        <svg width="100%" height="100%" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="filter-row__body">
-                                        <div class="filter-row__container">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="filter-sidebar__overlay"></div>
-                            </div>
-
-
-                            <div class="results__items-grid">
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" product-card     " data-id="">
-
-
-                                    <div class="product-card__wrapper">
-
-                                        <div class="product-card__media">
-                                            <a href="#">
-                                                <img src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/67a5e5469e6d8fc8e13c450a758ffb18.jpg" alt="testAlt" class="product-card__img zoom-0 ">
-                                            </a>
-
-
-                                            <div class="product-card__colors">
-                                                <span class="Yellow"></span>
-                                                <span class="Rose"></span>
-                                                <span class="White"></span>
-                                            </div>
-
-                                            <!-- #region SALE THINGS -->
-                                            <span class="product-card__shipping-tag">In Stock</span>
-
-                                            <!-- #endregion -->
-
-
-                                        </div>
-
-
-                                        <button onclick="window.openPriceModal(event.target, )" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-
-
-                                        <div class="product-card__details">
-                                            <div class="product-card__title-wrap">
-                                                <span class="product-card__sub-detail">Unisex
-													<span class="--blue">2003</span>
-                                                </span>
-
-                                                <h2>
-                                                    <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
-                                                </h2>
-                                            </div>
-
-
-                                            <div class="product-card__price-wrap is-sale">
-                                                <span class="product-card__price">$6,550</span>
-                                                <span class="product-card__sale-price">$3,470</span>
-                                            </div>
-
+                                        <div>
+                                            <span data-cyber-timer="minutes">00</span>
+                                            <span>Min</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="results__main-wrapper">
+                                <div class="results__items">
+                                    <div class="cards-grid">
+                                        <div class="pay-card">
+                                            <div class="pay-card__wrapper">
+                                                <div data-evt="togglePayModal" class="pay-card__pics">
+                                                    <img src="./assets/pay-klarna.svg" loading="lazy" alt="">
+                                                    <img src="./assets/pay-affirm.svg" loading="lazy" alt="">
+                                                    <img src="./assets/pay-afterpay.svg" loading="lazy" alt="">
+                                                </div>
+                                                <div class="pay-card__details">
+                                                    <div class="pay-card__heading">Buy Now. Pay Later.<br><span>No Fees.</span>
+                                                    </div>
+                                                    <p class="pay-card__typo">Take the stress out of payments with our convenient up to 12-month installment plan</p>
+                                                    <button data-evt="payModalLater" class="pay-card__btn">Learn More</button>
+                                                </div>
+                                            </div>
+                                        </div>
 
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="product-card --cm" data-id="">
+
+
+                                            <div class="product-card__wrapper">
+
+
+
+                                                <div class="cm-badge">
+                                                    <span data-text="60%" class="glitch is-glitching">60%</span>
+                                                    <span data-text="OFF" class="glitch is-glitching">OFF</span>
+                                                </div>
+
+                                                <div class="product-card__media">
+                                                    <a href="#">
+                                                        <img src="./assets/product-page_item-pic1.webp" alt="testAlt" class="product-card__img zoom-0 ">
+                                                    </a>
+
+
+                                                    <div class="product-card__colors">
+                                                        <span class="Yellow"></span>
+                                                        <span class="Rose"></span>
+                                                        <span class="White"></span>
+                                                    </div>
+
+                                                    <!-- #region SALE THINGS -->
+                                                    <span class="product-card__shipping-tag">In Stock</span>
+
+                                                    <!-- #endregion -->
+
+
+                                                </div>
+
+
+
+
+                                                <div class="ccb-btn --min --cm">
+                                                    <span data-text="ONLY FEW LEFT">LIMITED AT THIS PRICE</span>
+                                                </div>
+
+
+                                                <div class="product-card__details">
+                                                    <div class="product-card__title-wrap">
+                                                        <span class="product-card__sub-detail">Unisex
+															<span class="--blue">2003</span>
+                                                        </span>
+
+                                                        <h2>
+                                                            <a href="#" class="product-card__name">One Row Hoop Diamond Earrings 14k Solid Gold 0.10ctw</a>
+                                                        </h2>
+                                                    </div>
+
+
+                                                    <div class="product-card__price-wrap is-sale">
+                                                        <span class="product-card__price">$6,550</span>
+                                                        <span class="product-card__sale-price">$3,470</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content-preloader">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
-
-
-            </div>
-
-        </div>
-        <div class="filter-modal">
-            <div class="filter-modal__handler"></div>
-            <div class="filter-modal__header">Filters</div>
-            <div class="filter-modal__body">
-                <div class="filter-modal__filter-list"></div>
-                <div class="filter-modal__options"></div>
-            </div>
-            <div class="filter-modal__footer">
-                <button data-evt="closeFilterModal" class="filter-modal__btn --sub">Close</button>
-
-                <button data-evt="closeFilterModal" onclick="submitMobileFilters()" class="filter-modal__btn">Apply</button>
             </div>
         </div>
-
-
 
     </main>
     <div class="footer">
@@ -2984,6 +3565,9 @@
     </a>
 
     <script src="./js/partial-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/3.5.0/tsparticles.bundle.min.js"></script>
+    <script src="./js/promo/libs/confetti.browser.min.js"></script>
+    <script src="./js/promo/cyber-monday/2024.js"></script>
     <script src="./js/promo-min.js"></script>
 
 

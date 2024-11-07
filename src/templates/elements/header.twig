@@ -1,21 +1,10 @@
 <header class="header">
-
-	{% if black_friday == true or pagePromo == 'black_friday' %}
-		{% include "elements/black-friday/bfs-banner.twig" %}
+	{% if black_friday %}
+		{% include "elements/promo/black-friday/2024/top-banner.twig" %}
 	{% endif %}
-	{% if cyber_monday == true or pagePromo == 'cyber_monday' %}
-		{% include "elements/cyber_monday/cm-banner.twig" %}
+	{% if cyber_monday %}
+		{% include "elements/promo/cyber-monday/2024/top-banner.twig" %}
 	{% endif %}
-	{% if christmas == true or pagePromo == 'christmas' %}
-		{% include "elements/xmas/xmas-banner.twig" %}
-	{% endif %}
-	{% if new_year == true or pagePromo == 'new_year' %}
-		{% include "elements/new_year/ny-banner.twig" %}
-	{% endif %}
-	{% if vday == true or pagePromo == 'vday' %}
-		{% include "elements/vday/vday-banner.twig" %}
-	{% endif %}
-
 	<div class="header-nav-wrapper">
 		<div class="wrapper">
 			<div class="header-nav">

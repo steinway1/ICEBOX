@@ -1,10 +1,68 @@
 {% include 'elements/product-page/general-js-vars.twig' %}
-<div class="product__main">
+<div
+	class="product__main">
+
+	{# Ticker Black Friday#}
+	{% if black_friday %}
+		<div class="black-banner__ticker-row --static">
+			{% for i in 0..4 %}
+				<div>
+					<h4>LIMITED TIME!</h4>
+					<span></span>
+					<h5>{{product.item.discountRate}}% OFF THIS ITEM</h5>
+					<span></span>
+					<h4>LIMITED TIME!</h4>
+					<span></span>
+					<h5>{{product.item.discountRate}}% OFF THIS ITEM</h5>
+					<span></span>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+	{# Ticker Cyber Monday #}
+	{% if cyber_monday %}
+		<div class="cm-green-tape --static">
+			{% for i in 0..3 %}
+				<div class="cm-tape2">
+					{% for i in 0..1 %}
+						<span style="color: white;">LIMITED TIME</span>
+						<span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+						<span data-text="{{product.item.discountRate}}% OFF THIS ITEM" class="glitch is-glitching">{{product.item.discountRate}}% OFF THIS ITEM</span>
+						<span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+					{% endfor %}
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+
 	<div class="wrapper">
 		<div class="product__wrapper">
 
-			<div
-				class="product__view">
+			<div class="product__view">
+
+				{% if black_friday %}
+					<div class="bf-badge">
+						<span>BLACK FRIDAY SALE</span>
+					</div>
+				{% endif %}
+
+				{% if cyber_monday %}
+					<div class="cm-badge">
+						<span>CYBER MONDAY</span>
+					</div>
+				{% endif %}
+
+
 				{# Breadcrumbs #}
 				{% include "elements/product-page/breadcrumbs.twig" %}
 
@@ -30,7 +88,7 @@
 							{% include "elements/product-page/custom-fields/gold-color.twig", with { option: option } %}
 						{% endif %}
 					{% endfor %}
-          
+
 					{# Price / Sale / Stock #}
 					<div class="side-row__margin-row">
 						<div class="side-row__border-row">

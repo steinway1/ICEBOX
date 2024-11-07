@@ -1,59 +1,64 @@
-{% set stickySidebar = true %}
+<div class="results-content">
+	{% include "elements/promo/cyber-monday/2024/results-banner.twig" %}
 
-<div
-	class="results-content">
-	{# Banner #}
-  
+	<div class="results__wrap">
+		<div class="results__main">
 
-	<div
-		class="results__wrap">
-    {% include "elements/cyber_monday/cm-poster.twig" %}
+			{% include "elements/results/results-sub.twig" %}
+			{% include "elements/results/page-filters.twig" %}
+			{% include "elements/results/filter-modal.twig" %}
+			{% include "elements/results/results-bar.twig" %}
 
-		{# Mobile filter bar #}
-		{% include "../elements/results/sticky-filters.twig" %}
+			<div class="results-cards-content">
+				<div class="wrapper">
 
-		{# Sub Categories Navigation #}
-		{% if nav == true %}
-			{% if category.nav is defined %}
-				{% include "../elements/results/results-nav.twig" %}
-			{% endif %}
-		{% endif %}
-
-		<div
-			class="results__main">
-
-			{# Results BAR #}
-			{% include "../elements/results/results-bar.twig" %}
-
-			<div class="results-wrapper with_cards">
-				<div class="results__main-wrapper">
-
-					<div class="filter-sidebar{% if stickySidebar == true %} to-stick{% endif %}">
-						{% include "../elements/results/filters.twig" with { 
-          filterCategory: true,
-          filterProduct: true,
-          filterPriceRange: true,
-          filterGender: true,
-          filterColor: true
-         } %}
-						<div class="filter-sidebar__overlay"></div>
+					<div class="promo-counter-row">
+						<div class="expire-tab --cm">
+							<div class="expire-tab__heading">EXPIRES IN:</div>
+							<div class="expire-tab__grid">
+								<div>
+									<span data-cyber-timer="days">00</span>
+									<span>Days</span>
+								</div>
+								<div>
+									<span data-cyber-timer="hours">00</span>
+									<span>Hours</span>
+								</div>
+								<div>
+									<span data-cyber-timer="minutes">00</span>
+									<span>Min</span>
+								</div>
+							</div>
+						</div>
 					</div>
 
-
-					<div class="results__items-grid">
-						{% for item in 0..19 %}
-							{% include "../elements/product-card.twig" %}
-						{% endfor %}
+					<div class="results__main-wrapper">
+						<div class="results__items">
+							<div class="cards-grid">
+								{% include "elements/pay-card.twig" %}
+								{% for item in sale_items %}
+									{% include "elements/product-card.twig" with {
+                    productItem: item,
+                    promo_bfs: true
+                  }%}
+								{% endfor %}
+							</div>
+							{% if pages is defined %}
+								{% if pages > 1 %}
+									<div class="content-preloader">
+										<span></span>
+									</div>
+								{% endif %}
+							{% else  %}
+								<div class="content-preloader">
+									<span></span>
+								</div>
+							{% endif %}
+						</div>
 					</div>
-
-
 				</div>
 			</div>
 
 		</div>
-
-
 	</div>
-
 </div>
-{% include "../elements/results/filter-modal.twig" %}

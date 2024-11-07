@@ -94,6 +94,8 @@ const root = {
         cartMail: './src/js/cart-mail.js',
       },
       promo: {
+        _: './src/js/promo/**/*.js',
+        root: './src/js/promo',
         lib: './src/js/promo/libraries/*.js',
         main: './src/js/promo/*.js'
       },
@@ -128,6 +130,7 @@ const root = {
     adminFonts: './dev/admin/fonts/',
     css: './dev/css/',
     js: './dev/js/',
+    jsPromo: './dev/js/promo',
     jsPlugins: './dev/js/plugins/',
     assets: './dev/assets/',
     adminAssets: './dev/admin/assets/',
@@ -357,15 +360,17 @@ gulp.task('js2:dev',
 gulp.task('js-promo:dev',
   () => {
     return gulp
-      .src([
-        root.src.js.promo.lib,
-        root.src.js.promo.main
-      ])
+      .src(root.src.js.promo._, { base: root.src.js.promo.root })
       .pipe(changed(root.dev.js))
       .pipe(plumber(setPlumberNotify('JS-PROMO')))
-      .pipe(concat('promo.js'))
-      .pipe(minify())
-      .pipe(gulp.dest(root.dev.js))
+      .pipe(gulp.dest(root.dev.jsPromo))
+      .pipe(minify({
+        ext: {
+          min: '.min.js'
+        },
+        noSource: true
+      }))
+      .pipe(gulp.dest(root.dev.jsPromo))
   })
 
 gulp.task('js-xmas:dev',
@@ -455,7 +460,7 @@ gulp.task('watch:dev',
       gulp.watch('./src/templates/admin/svg/**', gulp.parallel('twig-admin:dev')),
       gulp.watch('./src/templates/admin/assets/**/*', gulp.parallel('assets-admin:dev')),
       gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev', 'css-admin:dev')),
-      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js2:dev', 'js-vday:dev', 'js-admin:dev')),
+      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js2:dev', 'js-admin:dev', 'js-promo:dev')),
       gulp.watch('./src/js/**/*.ts', gulp.parallel('ts-admin:dev')),
       gulp.watch('./src/assets/**/*', gulp.parallel('assets:dev'))
   }
