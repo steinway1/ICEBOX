@@ -1,7 +1,5 @@
 <div class="am-content am-content__add-customer --upd">
-	<div
-		class="am-content__wrapper">
-		<!-- #region Content : Header -->
+	<div class="am-content__wrapper">
 		<div class="am-main__header">
 			<div class="am-container">
 				<div class="am-row__header-wrapper">
@@ -14,14 +12,14 @@
 				</div>
 			</div>
 		</div>
-		<!-- #endregion -->
-		<!-- #region Main Content -->
 		<div class="am-main__flow">
 			<div class="am-container">
 				<div class="am-main__content">
 
-					<form class="limit-form" method="post" id="add_customer_form">
+					<form
+						class="limit-form" method="post" id="add_customer_form">
 
+						{# Store Details #}
 						<div class="limit-form__row">
 							<div class="limit-form__row-header">
 								Store Details
@@ -51,6 +49,7 @@
 							</div>
 						</div>
 
+						{# Client Information #}
 						<div class="limit-form__row">
 							<div class="limit-form__row-header">
 								Client Information
@@ -76,6 +75,69 @@
 										</div>
 									</div>
 								</div>
+							</div>
+						</div>
+
+						{# More Details #}
+						<div class="limit-form__row --collapsed">
+							<div class="limit-form__row-header">
+								More Details
+							</div>
+							<div
+								class="limit-form__row-body">
+								<div class="limit-form__inputs-grid">
+									<div>
+										<label class="am-select-label" for="gender">Gender</label>
+										<div class="am-select-wrap">
+											<select class="am-select" id="gender" name="gender" required>
+												<option value="N/A" default selected>N/A</option>
+												<option value="male">Male</option>
+												<option value="female">Female</option>
+											</select>
+										</div>
+									</div>
+									<div>
+										<label class="am-select-label" for="zip_code">ZIP Code</label>
+										<div class="am-select-wrap --input">
+											<input type="text" class="am-input" id="zip_code" name="zip_code" placeholder="ZIP Code" required>
+										</div>
+									</div>
+									<div>
+										<label class="am-select-label" for="email">Email</label>
+										<div class="am-select-wrap --input">
+											<input type="email" class="am-input" id="email" name="email" placeholder="Email" required>
+										</div>
+									</div>
+									<div>
+										<label class="am-select-label" for="married">Marital Status</label>
+										<div class="am-select-wrap">
+											<select class="am-select" id="married" name="married" required>
+												<option value="N/A" selected disabled>Maried...</option>
+												<option value="married_yes">Yes</option>
+												<option value="married_no">No</option>
+											</select>
+										</div>
+									</div>
+									<div>
+										<label class="am-select-label" for="anniversary">Anniversary</label>
+										<div class="am-select-wrap --input">
+											<input data-datepicker type="text" class="am-input" id="anniversary" name="anniversary" placeholder="Anniversary" required>
+										</div>
+									</div>
+									<div>
+										<label class="am-select-label" for="birthday">Birthday</label>
+										<div class="am-select-wrap --input">
+											<input data-datepicker type="text" class="am-input" id="birthday" name="birthday" placeholder="Birthday" required>
+										</div>
+									</div>
+									<div>
+										<div class="am-select-wrap --input">
+											<textarea name="notes" id="notes" class="am-input" placeholder="Notes"></textarea>
+										</div>
+									</div>
+								</div>
+
+                <div class="am-btn --light" data-evt="toggleCustomerRow">+ More Details</div>
 							</div>
 						</div>
 

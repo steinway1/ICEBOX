@@ -3738,7 +3738,7 @@ class ToolBar {
         this.celebrating = false
       }, 50);
     }
-    
+
     if (!this.locked) {
       if (!this.opened && menu) {
         this.hideMenuArr(0)
@@ -4679,10 +4679,10 @@ class FingerModal {
     }
     this.whaleToSave.fingers = fingers
     $.ajax({
-      url:'/admin/json/save-whale-fingers',
-      type:'POST',
-      data:{id:this.whaleToSave.id,fingers:fingers},
-      success:function(data){
+      url: '/admin/json/save-whale-fingers',
+      type: 'POST',
+      data: { id: this.whaleToSave.id, fingers: fingers },
+      success: function (data) {
         console.log('fingers were saved');
       }
     })
@@ -4837,4 +4837,43 @@ document.addEventListener('DOMContentLoaded', () => {
       loop: true
     })
   })
+})
+
+/**
+ * Page Elements
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  function attachDatePickers() {
+    const arr = [...document.querySelectorAll('[data-datepicker]')]
+    for (const input of arr) {
+      new AirDatepicker(input, {
+        autoClose: false,
+        dateFormat(date) {
+          return date.toLocaleString('en', { month: 'numeric', day: 'numeric', year: 'numeric' })
+        }
+      })
+    }
+  }
+
+  function bindToggleCustomerRows() {
+    const arr = [...document.querySelectorAll(['[data-evt="toggleCustomerRow"]'])]
+    for (const elem of arr) {
+      elem.addEventListener('click', () => {
+        const row = elem.closest('.limit-form__row')
+
+        if (row) {
+          if (row.classList.contains('--collapsed')) {
+            row.classList.remove('--collapsed')
+            elem.textContent = 'Less Details'
+          } else {
+            row.classList.add('--collapsed')
+            elem.textContent = '+ More Details'
+          }
+        }
+      })
+    }
+  }
+
+  attachDatePickers()
+  bindToggleCustomerRows()
 })

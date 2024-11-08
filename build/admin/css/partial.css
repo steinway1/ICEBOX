@@ -2875,6 +2875,7 @@ body.blue_head .am-select:hover {
   transition: all 200ms ease;
   color: white;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .am-btn.--round {
@@ -2927,6 +2928,13 @@ body.blue_head .am-select:hover {
 .am-btn.--border:hover:not(:disabled) {
   background-color: var(--bright_blue);
   color: white;
+}
+
+.am-btn.--light {
+  color: #1e65c4;
+  border: none;
+  background-color: rgba(30, 102, 196, 0.1);
+  border-radius: 0.5rem;
 }
 
 .am-btn.--border_light {
@@ -3389,6 +3397,15 @@ body.blue_head .am-select:hover {
   overflow: hidden;
 }
 
+.am-select-wrap textarea {
+  width: 100%;
+  min-height: 86px;
+  padding: 20px;
+  border: none !important;
+  outline: none !important;
+  border-radius: 0.8rem;
+}
+
 .am-select-wrap.--input {
   cursor: text;
 }
@@ -3463,12 +3480,13 @@ body.blue_head .am-select:hover {
 
 .am-content.am-content__add-customer .am-select,
 .am-content.am-content__add-customer .am-input {
-  height: 48px;
+  height: 42px;
 }
 
 .am-content.am-content__add-customer .am-select-wrap {
   border: 1px solid #d6dee8;
   border-radius: 0.5rem;
+  box-shadow: 0 2px 2px 0 rgba(214, 222, 232, 0.25);
 }
 
 .am-content.am-content__add-customer .am-select-wrap:hover {
@@ -7606,6 +7624,42 @@ span.--warn {
   display: flex;
 }
 
+.limit-form__row:nth-child(3) .limit-form__row-header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.limit-form__row:nth-child(3) .limit-form__row-header::before {
+  content: "3";
+  color: #fff;
+  background-color: #337ada;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+}
+
+.limit-form__row:not(.collapsed) [data-evt=toggleCustomerRow] {
+  margin-top: 12px;
+}
+
+.limit-form__row.--collapsed .limit-form__row-body {
+  padding-top: 0;
+}
+
+.limit-form__row.--collapsed .limit-form__row-header {
+  display: none;
+}
+
+.limit-form__row.--collapsed .limit-form__inputs-grid {
+  display: none;
+}
+
 .limit-form__row-header {
   border-bottom: 1px solid #eff3f7;
   padding: 18px 36px;
@@ -7626,7 +7680,7 @@ span.--warn {
 }
 
 .limit-form__inputs-grid > div {
-  flex: 1 auto;
+  flex: 1;
   min-width: 40%;
 }
 

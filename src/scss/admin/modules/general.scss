@@ -2084,6 +2084,47 @@ span {
       }
     }
   }
+
+  &:nth-child(3) {
+    .limit-form__row-header {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      &::before {
+        content: '3';
+        color: #fff;
+        background-color: #337ada;
+        border-radius: 50px;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+        font-weight: 700;
+        display: flex;
+      }
+    }
+  }
+
+  &:not(.collapsed) {
+    [data-evt="toggleCustomerRow"] {
+      margin-top: 12px;
+    }
+  }
+
+  &.--collapsed {
+    .limit-form__row-body {
+      padding-top: 0;
+    }
+
+    .limit-form__row-header {
+      display: none;
+    }
+
+    .limit-form__inputs-grid {
+      display: none;
+    }
+  }
 }
 
 .limit-form__row-header {
@@ -2113,7 +2154,7 @@ span {
   display: flex;
 
   &>div {
-    flex: 1 auto;
+    flex: 1;
     min-width: 40%;
   }
 
