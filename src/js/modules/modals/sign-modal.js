@@ -274,6 +274,7 @@ class SignModal {
       this.bindTogglePassword()
       this.bindSubmit()
       this.initialSetup()
+      this.bindKeyPress()
       initValidators()
     }
   }

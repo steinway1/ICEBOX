@@ -332,6 +332,19 @@ class SignModal {
       })
     })
   }
+  bindKeyPress() {
+    document.addEventListener('keypress', (e) => {
+      const isEnter = e.key === 'Enter' || e.keyCode === 13
+
+      if (isEnter && this.opened) {
+        e.preventDefault()
+        const activeSection = this.getActiveContent
+        if (activeSection) {
+          activeSection.querySelector('.js-submit').click()
+        }
+      }
+    })
+  }
 
   /**
    * Initialize
@@ -349,6 +362,7 @@ class SignModal {
       this.bindTogglePassword()
       this.bindSubmit()
       this.initialSetup()
+      this.bindKeyPress()
     }
   }
 }
