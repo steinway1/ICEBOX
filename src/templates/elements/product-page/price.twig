@@ -6,49 +6,50 @@
 {% set sold = product.item.sold %}
 {% set is_watch = product.is_watch %}
 {% set msrp = product.item.msrp %}
-{% set msrp_percent = product.item.msrp_percent %}
-{% set lower_msrp = product.item.lower_msrp %}
+{% set msrp_percent = product.item.msrp_percentage %}
 
-<div
-	class="side-row__line_price">
+{% if msrp and (price or sale_price) %}
+	{% set watch_price = price ?: sale_price %}
+	{% set lower_msrp = msrp|number_format(0) > watch_price|number_format(0) %}
+{% endif %}
 
-	{# First Price - Price or Call For Price or Sold #}
-	{% if not sold and not call_for_price %}
-		<span class="product__item-price">
-			<span id="current_base_price">{{sale_price_defined ? sale_price : price}}</span>
-			{% if sale_price %}
-				<span class="typo_xs --color-red">{{product.item.discountRate}}% OFF</span>
-			{% endif %}
-			{% if msrp and is_watch %}
+{% if not sold and not call_for_price %}
+	<div
+		class="side-row__line_price">
+
+		<!-- Old Price or MSRP -->
+		{% if sale_price_defined or msrp %}
+			<div class="flex_8 sub-price">
+				<span class="product__item-price old_price">{{ msrp ?: price }}</span>
+				<span>Original Price</span>
+			</div>
+		{% endif %}
+
+		<!-- Main Price : Base price -->
+		<div class="flex_8">
+			<span id="current_base_price" class="price_holder product__item-price">{{sale_price_defined ? sale_price : price}}</span>
+			{% if msrp %}
 				{% if lower_msrp %}
-					<span class="typo_xs --arrow-down --color-green">{{msrp_percent}}% less MSRP</span>
+					<span class="price-tag --sale" id="discount_rate">SALE
+						-{{msrp_percent|number_format(0)}}%</span>
 				{% else %}
-					<span class="typo_xs --arrow-up --color-red">{{msrp_percent}}% above MSRP</span>
+					<span class="price-tag --grey" id="discount_rate">{{msrp_percent|number_format(0)}}% ABOVE MSRP</span>
 				{% endif %}
+			{% elseif sale_price %}
+				<span class="price-tag --sale" id="discount_rate">SALE -{{product.item.discountRate}}%</span>
+			{% else %}
+				<span class="price-tag" id="discount_rate">ORIGINAL PRICE</span>
 			{% endif %}
-		</span>
-	{% else %}
-		<span class="product__item-price">{{call_for_price ? call_for_price_text : sold ? 'SOLD' : ''}}</span>
-	{% endif %}
-
-	{# Second Price - Old Price or MSRP #}
-	{% if not sold and not call_for_price and (sale_price_defined or (msrp and is_watch)) %}
-		<span class="product__item-price old_price">
-			<span>{{(is_watch and msrp) ? msrp : price}}</span>
-			<span class="typo_xs">{{(is_watch and msrp) ? 'MSRP' : 'Original'}}</span>
-		</span>
-	{% endif %}
-
-	{% if black_friday %}
-		<div class="flex_8">
-			<div class="ccb-btn --min --black-friday">Only 1 left at this price!</div>
 		</div>
-	{% endif %}
-
-  	{% if cyber_monday %}
-		<div class="flex_8">
-			<div class="ccb-btn --min --cyber-monday">Only 1 left at this price!</div>
-		</div>
-	{% endif %}
-
-</div>
+	</div>
+{% else %}
+	<!-- Sold OR Call For Price -->
+	<div class="side-row__line_price {{ call_for_price ? '--call' : '--out' }}">
+		<span class="product__item-price">{{call_for_price ? call_for_price_text : sold ? 'Sold' : ''}}</span>
+		{% if call_for_price %}
+			<a data-tip="Call Now" class="tel-link" href="tel:404-842-0266" target="_blank">
+				<span>404-842-0266</span>
+			</a>
+		{% endif %}
+	</div>
+{% endif %}

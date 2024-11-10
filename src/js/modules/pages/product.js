@@ -374,6 +374,22 @@ class ProductPage {
     option.classList.remove('--active')
   }
 
+  // Price
+  formatPrice() {
+    const priceArr = [...document.querySelectorAll('.product__item-price')]
+
+    for (const elem of priceArr) {
+      const text = elem.textContent
+      const containsDollar = text.includes('$')
+      const parentBar = elem.closest('.fixed-bar')
+
+      if (containsDollar && !parentBar) {
+        const price = text.replace('$', '')
+        elem.innerHTML = `<span class="dollar-symbol">$</span>${price.replace(/\s/g, '')}`
+      }
+    }
+  }
+
   // Bind Events
   bindOptionToggleDesktop() {
     for (const option of this.optionsArr) {
@@ -618,6 +634,11 @@ class ProductPage {
     this.observeFixedBar()
     this.positionFixedBar()
     this.setFixedBarMedia()
+    this.formatPrice()
+
+    setTimeout(() => {
+      this.formatPrice()
+    }, 2000);
   }
 }
 
