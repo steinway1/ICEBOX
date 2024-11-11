@@ -2,7 +2,7 @@
 	<div class="product__btn-group">
 		{% if product.temp_unavailable == false %}
 			{% if product.call_for_price == false %}
-				<a id="ajax-button" href="javascript:void(0);" class="buy-btn" onclick="addToCart({{IN_IFRAME}})">
+				<a id="ajax-button" href="javascript:void(0);" class="buy-btn" onclick="window.addCartModal.show()">
 					<span>ADD TO CART</span>
 					<span class="buy-btn__price" id="add_cart_btn_price">...</span>
 				</a>

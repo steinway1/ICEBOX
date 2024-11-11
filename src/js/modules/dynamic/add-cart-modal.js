@@ -93,33 +93,35 @@ class AddCartModal {
   }
 
   show() {
-    this._createElement()
+    if (document.querySelector('.main_product')) {
+      this._createElement()
 
-    if (!this.elem) throw new Error('No element created')
+      if (!this.elem) throw new Error('No element created')
 
-    lockScroll()
-    document.querySelector('header').appendChild(this.elem)
-    this.elem.style.display = 'block'
+      lockScroll()
+      document.querySelector('header').appendChild(this.elem)
+      this.elem.style.display = 'block'
 
-    requestAnimationFrame(() => {
-      this.elem.classList.add(__VISIBLE)
-    })
+      requestAnimationFrame(() => {
+        this.elem.classList.add(__VISIBLE)
+      })
 
-    window.addCartModalBackdrop = new Backdrop({
-      opacity: 0.7,
-      zIndex: 90,
-      callback: () => {
-        this.destroy()
-      }
-    })
+      window.addCartModalBackdrop = new Backdrop({
+        opacity: 0.7,
+        zIndex: 90,
+        callback: () => {
+          this.destroy()
+        }
+      })
+    }
   }
 
   destroy() {
     if (this.elem) {
 
       unlockScroll()
-      this.elem.classList.remove(__VISIBLE)      
-      
+      this.elem.classList.remove(__VISIBLE)
+
       const backdrop = window.addCartModalBackdrop
       if (backdrop) {
         backdrop.hide(true)
