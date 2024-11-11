@@ -4299,6 +4299,17 @@
       }
     }
   }
+
+  @include maxWidthMd {
+    .option-modal__content {
+      .product-option-name {
+        margin: 0;
+        padding: 8px 20px;
+        text-align: center;
+        background-color: #e7e8eb;
+      }
+    }
+  }
 }
 
 .option-modal__wrapper {
@@ -4335,6 +4346,14 @@
 
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  @media screen and (min-width: 992px) {
+    .product-option__body {
+      .product-option-name {
+        margin: 12px 0;
+      }
+    }
   }
 }
 
