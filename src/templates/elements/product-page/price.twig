@@ -13,37 +13,49 @@
 	{% set lower_msrp = msrp|number_format(0) > watch_price|number_format(0) %}
 {% endif %}
 
+{# Not sold and not call for price #}
 {% if not sold and not call_for_price %}
 	<div
 		class="side-row__line_price">
-
-		<!-- Old Price or MSRP -->
+    
+		{# Sale OR MSRP line #}
 		{% if sale_price_defined or msrp %}
 			<div class="flex_8 sub-price">
 				<span class="product__item-price old_price">{{ msrp ?: price }}</span>
-				<span>Original Price</span>
+				<span>{{ msrp ? 'MSRP' : 'Original Price' }}</span>
 			</div>
 		{% endif %}
 
-		<!-- Main Price : Base price -->
+		{# BASE Price #}
 		<div class="flex_8">
-			<span id="current_base_price" class="price_holder product__item-price">{{sale_price_defined ? sale_price : price}}</span>
+			<span id="current_base_price" class="price_holder product__item-price">
+				{{sale_price_defined ? sale_price : price}}
+			</span>
+
+			{% if sale_price %}
+				<span class="price-tag --sale" id="discount_rate">SALE -{{product.item.discountRate}}%</span>
+			{% endif %}
+
 			{% if msrp %}
 				{% if lower_msrp %}
-					<span class="price-tag --sale" id="discount_rate">SALE
-						-{{msrp_percent|number_format(0)}}%</span>
+					<span class="price-tag --sale" id="discount_rate">{{msrp_percent|number_format(0)}}% OFF</span>
+					<span class="price-tag --green" id="discount_rate">BELOW MSRP</span>
 				{% else %}
-					<span class="price-tag --grey" id="discount_rate">{{msrp_percent|number_format(0)}}% ABOVE MSRP</span>
+					<span class="price-tag --grey" id="discount_rate">OUR PRICE</span>
+					<span class="price-tag --green" id="discount_rate">GOOD DEAL</span>
 				{% endif %}
-			{% elseif sale_price %}
-				<span class="price-tag --sale" id="discount_rate">SALE -{{product.item.discountRate}}%</span>
-			{% else %}
+			{% endif %}
+
+			{% if not sale_price and not msrp %}
 				<span class="price-tag" id="discount_rate">ORIGINAL PRICE</span>
 			{% endif %}
 		</div>
+
 	</div>
-{% else %}
-	<!-- Sold OR Call For Price -->
+{% endif %}
+
+{# Sold or call for price #}
+{% if sold or call_for_price %}
 	<div class="side-row__line_price {{ call_for_price ? '--call' : '--out' }}">
 		<span class="product__item-price">{{call_for_price ? call_for_price_text : sold ? 'Sold' : ''}}</span>
 		{% if call_for_price %}
