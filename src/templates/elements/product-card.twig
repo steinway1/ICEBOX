@@ -20,6 +20,10 @@
 	{% set classes = classes|merge(['--watch']) %}
 {% endif %}
 
+{% if productItem.sold %}
+	{% set classes = classes|merge(['--sold']) %}
+{% endif %}
+
 <div class="{{ classes|join(' ') }}" data-id="{{ productItem.id }}">
 
 	{% if user.admin == true %}
