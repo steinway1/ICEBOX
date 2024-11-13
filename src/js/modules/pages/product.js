@@ -1,3 +1,5 @@
+const ZoomGallery = require('../dynamic/zoom-gallery')
+
 class ProductPage {
   constructor() {
     this.optionsArr = [...document.querySelectorAll('.product__item-option:not(.--static)')]
@@ -19,7 +21,38 @@ class ProductPage {
 
     this.fixedBar = document.querySelector('.fixed-bar')
     this.fixedBarTrigger = document.querySelector('.side-row__payments')
+
+    this.galleryZoomInstance = null
+
     this.init()
+  }
+
+  init() {
+    if (window.innerWidth > 991) {
+      this.bindOptionToggleDesktop()
+    } else {
+      this.bindOptionToggleMobile()
+      this.bindOptionModalEvents()
+      this.bindPullDown()
+    }
+    this.setActiveOptionsText()
+    this.bindOptionButtonClick()
+    this.bindOptionButtonClickInputValue()
+    // this.bindColorPick()
+    this.bindToggleRow()
+    this.bindToggleFav()
+    this.setupDescription()
+    this.setupSplide()
+    this.setupGallery()
+    this.observeFixedBar()
+    this.positionFixedBar()
+    this.setFixedBarMedia()
+    this.formatPrice()
+    this.bindGalleryZoom()
+
+    setTimeout(() => {
+      this.formatPrice()
+    }, 2000);
   }
 
   // Gallery
@@ -506,6 +539,27 @@ class ProductPage {
       })
     }
   }
+  bindGalleryZoom() {
+    const galleryArr = [...document.querySelectorAll('#gallery_mobile .product__main-gallery')]
+    for (const gallery of galleryArr) {
+      gallery.addEventListener('click', (event) => {
+        const mediaClicked = event.target.closest('.product-media')
+        if (window.innerWidth < 480 && mediaClicked) {
+
+          if (this.galleryZoomInstance) {
+            this.galleryZoomInstance.destroy()
+            this.galleryZoomInstance = null
+          }
+
+          const list = gallery.querySelector('.splide__list')
+          if (list) {
+            const mediaArr = [...list.querySelectorAll('.product-media:not(.splide__slide--clone)')]
+            this.galleryZoomInstance = new ZoomGallery(mediaArr)
+          }
+        }
+      })
+    }
+  }
 
   // Fixed Bar
   positionFixedBar() {
@@ -610,35 +664,6 @@ class ProductPage {
         }
       }
     }
-  }
-
-
-
-  init() {
-    if (window.innerWidth > 991) {
-      this.bindOptionToggleDesktop()
-    } else {
-      this.bindOptionToggleMobile()
-      this.bindOptionModalEvents()
-      this.bindPullDown()
-    }
-    this.setActiveOptionsText()
-    this.bindOptionButtonClick()
-    this.bindOptionButtonClickInputValue()
-    // this.bindColorPick()
-    this.bindToggleRow()
-    this.bindToggleFav()
-    this.setupDescription()
-    this.setupSplide()
-    this.setupGallery()
-    this.observeFixedBar()
-    this.positionFixedBar()
-    this.setFixedBarMedia()
-    this.formatPrice()
-
-    setTimeout(() => {
-      this.formatPrice()
-    }, 2000);
   }
 }
 

@@ -1,7 +1,6 @@
 var $ = require('jquery')
 window.$ = window.jQuery = $
 require('./jquery.crs.min')
-require('./jQuery-zoom')
 require('./parsley.min')
 
 window.popper = require('./popper')
@@ -35,8 +34,7 @@ window.rootLoader = require('./modules/dynamic/root-loader')
 window.priceModal = require('./modules/dynamic/price-modal')
 
 /** -- Page Elements */
-/** Login
- */
+// Login
 require('./modules/login')
 
 /** Header / Footer

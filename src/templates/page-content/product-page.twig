@@ -66,6 +66,11 @@
 				{# Breadcrumbs #}
 				{% include "elements/product-page/breadcrumbs.twig" %}
 
+				<div class="product__mob-details">
+					<div class="side-row__category">{{product.subcategory.caption}}</div>
+					{% include "elements/product-page/title.twig" %}
+				</div>
+
 				{# -- Gallery #}
 				{% include "elements/product-page/gallery_desktop.twig" %}
 				{% include "elements/product-page/gallery_mobile.twig" %}
