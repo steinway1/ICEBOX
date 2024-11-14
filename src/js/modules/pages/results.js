@@ -1,3 +1,5 @@
+const CareModal = require('../modals/care-modal')
+
 class ResultsPage {
   constructor() {
     this.rootEl = document.querySelector('.main_results');
@@ -6,6 +8,7 @@ class ResultsPage {
     this.cardsGrid = document.querySelector('.cards-grid');
     this.filterModalActive = false;
     this.filters = {};
+    this.careModalInstance = null
     this.init();
   }
 
@@ -340,6 +343,13 @@ class ResultsPage {
     }
   }
 
+  // Other
+  bindCareModal() {
+    if (document.querySelector('.care-modal')) {
+      this.careModalInstance = new CareModal()
+    }
+  }
+
   init() {
     if (window.innerWidth > 991) {
       this.setupDesktopFilters();
@@ -355,6 +365,7 @@ class ResultsPage {
     this.adjustStickyBarOnResize()
     this.formatFilterTitles()
     this.bindViewSwitch()
+    this.bindCareModal()
   }
 }
 

@@ -1,6 +1,7 @@
 var $ = require('jquery')
 window.$ = window.jQuery = $
 require('./jquery.crs.min')
+require('./jQuery-zoom')
 require('./parsley.min')
 
 window.popper = require('./popper')

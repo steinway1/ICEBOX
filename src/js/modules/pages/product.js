@@ -167,7 +167,11 @@ class ProductPage {
 
         if (holder) {
           for (let element of elements) {
-            if (element.textContent.trim().startsWith("These pieces are handcrafted and manufactured by Icebox")) {
+            if (
+              element.textContent.trim().startsWith("These pieces are handcrafted and")
+              ||
+              element.textContent.trim().startsWith("This piece is handcrafted and")
+            ) {
               holder.appendChild(element);
               element.classList.add('product__more-typo')
               break

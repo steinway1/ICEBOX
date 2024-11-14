@@ -5,12 +5,17 @@
 } %}
 
 {% block include_head %}
-{# Styles / preload scripts / etc... #}
+	{# Styles / preload scripts / etc... #}
 {% endblock %}
 
 {% block content %}
-{% include "./page-content/results.twig" %}
+	{% include "./page-content/results.twig" %}
+
+	{% if care_page == true %}
+		{% include "elements/results/care-modal.twig" %}
+	{% endif %}
 {% endblock %}
+
 
 {% block include_script %}
 	{# Scripts / etc... #}

@@ -8,21 +8,26 @@
 
 <div class="results-content {% if category.id == 25  %} --watch-market {% endif %}">
 
+	{% if care_page == true %}
+  {% include "elements/results/care-banner.twig" %}
+	{% else %}
 		{% if category %}
 			{% if category.big_banner != '' %}
-		{% include "elements/results/results-banner.twig" %}
-		{% endif %}
+				{% include "elements/results/results-banner.twig" %}
+			{% endif %}
 			{% if sale_page %}
-		{% include "elements/results/results-banner_sale.twig" %}
-	{% endif %}
-	{% endif %}
+				{% include "elements/results/results-banner_sale.twig" %}
+			{% endif %}
+		{% endif %}
 		{% if search_keyword is defined %}
-	{% include "elements/results/results-empty.twig" %}
+			{% include "elements/results/results-empty.twig" %}
+		{% endif %}
 	{% endif %}
 
 
-		<div class="results__wrap">
-			<div class="results__main"> {% if (gender is defined) or (sub_nav is defined) or (category_page is defined) or (gia_page is defined) or (watch_market_brands == true) %}
+	<div class="results__wrap">
+		<div class="results__main">
+			{% if (gender is defined) or (sub_nav is defined) or (category_page is defined) or (gia_page is defined) or (watch_market_brands == true) %}
 				{% include "elements/results/results-sub.twig" %}
 			{% endif %}
 			{% if category.is_watches %}
