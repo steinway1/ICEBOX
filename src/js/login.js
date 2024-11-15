@@ -370,6 +370,7 @@ $(document).ready(function () {
     resendOtp();
   });
   $('#frm_login_otp').on('submit', function (e) {
+    alert('form submittd');
     var phoneField = document.querySelector('#phone_input_Login');
     var iti = window.intlTelInputGlobals.getInstance(phoneField);
     e.preventDefault();
@@ -386,6 +387,7 @@ $(document).ready(function () {
       success: function (data) {
         var r = $.parseJSON(data);
         var MsgClass = (r.error) ? 'is-failed' : 'is-successful';
+        alert(MsgClass);
         showSignMessage(r.msg, MsgClass);
         if (!r.error) {
           $('.sign-modal__phone-span').html(fullPhone);

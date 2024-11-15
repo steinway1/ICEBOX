@@ -84,7 +84,7 @@ class SignModal {
     this.adjustEl = rootEl.querySelector('.sign-modal__adjust')
     this.backdrop = rootEl.querySelector('.sign-modal__backdrop')
     this.container = rootEl.querySelector('.sign-modal__container')
-    this.formsArr = [...rootEl.querySelectorAll('form')]
+    this.formsArr = [...rootEl.querySelectorAll('.needs-validation')]
     this.evtOpenArr = document.querySelectorAll('[data-evt="openSignModal"]')
     this.evtCloseArr = document.querySelectorAll('[data-evt="closeSignModal"]')
     this.evtJsToggleSign = document.querySelectorAll('.js-toggle-sign')
