@@ -41,7 +41,7 @@ class AddCartModal {
   _renderItemHTML() {
     const name = this.nameElem.textContent
     const price = this.priceElem.textContent
-    const salePrice = this.salePriceElem ? this.salePriceElem.textContent : null
+    const salePrice = this.salePriceElem ? `<span class="cart-item-price_sale">${this.salePriceElem.textContent}</span></span>` : ''
     const category = this.categoryElem ? `<div class="cart-item__category">${this.categoryElem.textContent}</div>` : ''
     const src = this.src
 
@@ -55,7 +55,7 @@ class AddCartModal {
       <h3 class="cart-item-name">${name}</h3>
       <div class="cart-item__price-row">
         <span class="cart-item-price">${price}</span>
-        <span class="cart-item-price_sale">$3,500</span>
+        ${salePrice}
       </div>
       </div>
     </div>
