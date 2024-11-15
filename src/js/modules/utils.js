@@ -230,6 +230,17 @@ function createTimer(settings = {}) {
   }
 }
 
+function getFakeProduct() {
+  return {
+    title: "Crosses Lightning Bolt Diamond Pendant 14k Solid Gold .15ctw",
+    image: "https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/67148792fc8b5f4949e7a59e_ap5.webp",
+    price: "$3,990",
+    show_discount: true,
+    original_price: "$4,990",
+    category: "Crosses"
+  }
+}
+
 module.exports = {
   toArray,
   lockScroll,
@@ -252,5 +263,6 @@ module.exports = {
   hideSkeleton,
   openPriceModal,
   signupPrice,
-  createTimer
+  createTimer,
+  getFakeProduct
 }

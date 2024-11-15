@@ -1,73 +1,58 @@
 class AddCartModal {
   constructor() {
-    this.elem = null
-    this.nameElem = null
-    this.priceElem = null
-    this.salePriceElem = null
-    this.src = null
-    this.categoryElem = null
     this.heading = 'Item added to cart.'
+    this.product = null
+    this.elem = null
+    this.backdropInstance = null
   }
 
-  _setProduct() {
-    const name = document.querySelector('#item_name')
-    const price = document.querySelector('#current_base_price')
-    const salePrice = document.querySelector('.old_price')
-    const category = document.querySelector('.side-row__category')
-    const src = (() => {
-
-      const gallery = [...document.querySelectorAll('#gallery_desktop .product__gallery')].find((el) => {
-        if (window.getComputedStyle(el).display !== 'none') {
-          return el
-        }
-      })
-      const img = gallery.querySelector('.product__main-gallery img')
-      if (!img) throw new Error('No image found')
-
-      return img.src
-    })()
-
-    if (!name || !price || !src) {
-      throw new Error('Missing elements : name, price, src')
+  create(product) {
+    this.product = product
+    if (!this.product) {
+      throw new Error('AddCartModal : Product not found')
     }
 
-    this.nameElem = name
-    this.priceElem = price
-    this.salePriceElem = salePrice ? salePrice : null
-    this.src = src
-    this.categoryElem = category ? category : null
+    this._createElem()
+    this.show()
   }
 
+  // Create Element
   _renderItemHTML() {
-    const name = this.nameElem.textContent
-    const price = this.priceElem.textContent
-    const salePrice = this.salePriceElem ? `<span class="cart-item-price_sale">${this.salePriceElem.textContent}</span></span>` : ''
-    const category = this.categoryElem ? `<div class="cart-item__category">${this.categoryElem.textContent}</div>` : ''
-    const src = this.src
+    const {
+      title,
+      image,
+      price,
+      show_discount,
+      original_price,
+      category
+    } = this.product
+
+    const renderSalePrice = () => {
+      return show_discount && original_price ? `<span class="cart-item-price_sale">${original_price}</span>` : ''
+    }
 
     return `
     <div class="cart-item">
       <div class="cart-item__media">
-        <img src="${src}">
+        <img src="${image}">
       </div>
       <div class="cart-item__details">
-      ${category}
-      <h3 class="cart-item-name">${name}</h3>
+      <div class="cart-item__category">${category ? category : ''}</div>
+      <h3 class="cart-item-name">${title}</h3>
       <div class="cart-item__price-row">
         <span class="cart-item-price">${price}</span>
-        ${salePrice}
+        ${renderSalePrice()}
       </div>
       </div>
     </div>
     `
   }
-
   _renderHTML() {
     return `
     <div class="add-cart-modal__container">
       <div class="add-cart-modal__header">
         <h3>${this.heading}</h3>
-        <button onclick="window.addCartModal.destroy()">
+        <button data-evt="closeAddCartModal">
           <svg width="100%" height="100%" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 3L21 21" stroke="currentColor" stroke-width="3"></path>
             <path d="M21 3L3 21" stroke="currentColor" stroke-width="3"></path>
@@ -76,28 +61,32 @@ class AddCartModal {
       </div>
       ${this._renderItemHTML()}
       <div class="add-cart-modal__footer">
-        <a href="javascript:void(0)" onclick="event.preventDefault(); window.addCartModal.destroy()" class="--sub">Back To Shopping</a>
+        <a href="javascript:void(0)" data-evt="closeAddCartModal" class="--sub">Back To Shopping</a>
         <a href="/cart">Go To Checkout</a>
       </div>
     </div>
     `
   }
-
-  _createElement() {
-    this._setProduct()
-
+  _createElem() {
     this.elem = createElem('div', {
       className: 'add-cart-modal',
       innerHTML: this._renderHTML()
     })
+
+    this.attachEvents()
   }
 
+  // Attach Event
+  attachEvents() {
+    const closeEvt = this.elem.querySelectorAll('[data-evt="closeAddCartModal"]')
+    for (const evt of closeEvt) {
+      evt.onclick = () => { this.destroy() }
+    }
+  }
+
+  // Visibility
   show() {
-    if (document.querySelector('.main_product')) {
-      this._createElement()
-
-      if (!this.elem) throw new Error('No element created')
-
+    if (this.elem) {
       lockScroll()
       document.querySelector('header').appendChild(this.elem)
       this.elem.style.display = 'block'
@@ -106,7 +95,7 @@ class AddCartModal {
         this.elem.classList.add(__VISIBLE)
       })
 
-      window.addCartModalBackdrop = new Backdrop({
+      this.backdropInstance = new Backdrop({
         opacity: 0.7,
         zIndex: 90,
         callback: () => {
@@ -115,33 +104,24 @@ class AddCartModal {
       })
     }
   }
-
   destroy() {
     if (this.elem) {
 
       unlockScroll()
       this.elem.classList.remove(__VISIBLE)
 
-      const backdrop = window.addCartModalBackdrop
+      const backdrop = this.backdropInstance
       if (backdrop) {
         backdrop.hide(true)
-        delete window.addCartModalBackdrop
+        this.backdropInstance = null
       }
 
       setTimeout(() => {
         this.elem.remove()
-        this._clear()
+        this.elem = null
+        this.product = null
       }, getTransitionTime(this.elem))
     }
-  }
-
-  _clear() {
-    this.elem = null
-    this.nameElem = null
-    this.priceElem = null
-    this.salePriceElem = null
-    this.src = null
-    this.categoryElem = null
   }
 }
 
