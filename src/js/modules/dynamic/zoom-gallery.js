@@ -1,7 +1,8 @@
 class ZoomGallery {
-  constructor(mediaArr) {
+  constructor(mediaArr, scrollIndex) {
     this.elem = null
     this.mediaArr = mediaArr
+    this.scrollIndex = scrollIndex || undefined
     this.init()
   }
 
@@ -40,6 +41,13 @@ class ZoomGallery {
     this.elem.innerHTML = this._renderInnerHTML()
     document.body.append(this.elem)
   }
+  _scrollToIndex() {
+    if (this.scrollIndex) {
+      const scroller = this.elem.querySelector('.zoom2__scroller')
+      const mediaHeight = this.elem.querySelector('.product-media').offsetHeight
+      scroller.scrollTop = mediaHeight * this.scrollIndex
+    }
+  }
 
   // Methods
   hide() {
@@ -57,6 +65,7 @@ class ZoomGallery {
 
     lockScroll()
     this.elem.style.display = 'block'
+    this._scrollToIndex()
     requestAnimationFrame(() => {
       this.elem.classList.add(__VISIBLE)
     })

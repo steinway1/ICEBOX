@@ -558,7 +558,8 @@ class ProductPage {
           const list = gallery.querySelector('.splide__list')
           if (list) {
             const mediaArr = [...list.querySelectorAll('.product-media:not(.splide__slide--clone)')]
-            this.galleryZoomInstance = new ZoomGallery(mediaArr)
+            const index = mediaArr.indexOf(mediaClicked)
+            this.galleryZoomInstance = new ZoomGallery(mediaArr, index)
           }
         }
       })
