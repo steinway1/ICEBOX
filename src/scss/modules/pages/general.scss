@@ -2319,34 +2319,44 @@ input.custom-range__output {
   height: 100%;
   position: relative;
   overflow: hidden;
-  background-color: #f8f9fa;
+  background-color: #f0f2f4;
   transform-origin: center;
+  display: block;
+  -webkit-animation: loading-skeleton 2s infinite;
+  animation: loading-skeleton 2s infinite;
+  background-image: -webkit-gradient(linear, left top, right top, from(#fbfdfe), color-stop(20%, #f0f2f4), color-stop(80%, #f0f2f4), to(#fbfdfe));
+  background-image: linear-gradient(90deg, #fbfdfe 0%, #f0f2f4 20%, #f0f2f4 80%, #fbfdfe 100%);
+  background-position: 50% 0;
+  background-repeat: repeat;
+  background-size: 200%;
 
   img {
     width: 100% !important;
-    transition: all 250ms ease;
     opacity: 0 !important;
+    -webkit-transition: 0.4s !important;
+    transition: 0.4s !important;
+    will-change: opacity !important;
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -12px;
-    margin-top: -12px;
-    // transform: translateX(-50%) translateY(-50%);
-    z-index: 5;
-    width: 24px;
-    aspect-ratio: 1;
-    transform-origin: center;
-    border-radius: 50%;
-    border: 1.5px solid var(--black);
-    transition: all 200ms ease;
-    animation:
-      l20-1 1.2s infinite linear alternate,
-      l20-2 2.4s infinite linear;
-  }
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   margin-left: -12px;
+  //   margin-top: -12px;
+  //   // transform: translateX(-50%) translateY(-50%);
+  //   z-index: 5;
+  //   width: 24px;
+  //   aspect-ratio: 1;
+  //   transform-origin: center;
+  //   border-radius: 50%;
+  //   border: 1.5px solid var(--black);
+  //   transition: all 200ms ease;
+  //   animation:
+  //     l20-1 1.2s infinite linear alternate,
+  //     l20-2 2.4s infinite linear;
+  // }
 
   &.--loaded {
     background-color: transparent !important;
@@ -2356,60 +2366,66 @@ input.custom-range__output {
       opacity: 1 !important;
     }
 
-    &::after {
-      opacity: 0 !important;
-    }
+    // &::after {
+    //   opacity: 0 !important;
+    // }
   }
 }
 
-
-@keyframes l20-1 {
-  0% {
-    clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%)
-  }
-
-  12.5% {
-    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%)
-  }
-
-  25% {
-    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%)
-  }
-
-  50% {
-    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
-  }
-
-  62.5% {
-    clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
-  }
-
-  75% {
-    clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%)
-  }
-
+@keyframes loading-skeleton {
   100% {
-    clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%)
+    background-position: -150% 0;
   }
 }
 
-@keyframes l20-2 {
-  0% {
-    transform: scaleY(1) rotate(0deg)
-  }
 
-  49.99% {
-    transform: scaleY(1) rotate(135deg)
-  }
+// @keyframes l20-1 {
+//   0% {
+//     clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%)
+//   }
 
-  50% {
-    transform: scaleY(-1) rotate(0deg)
-  }
+//   12.5% {
+//     clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%)
+//   }
 
-  100% {
-    transform: scaleY(-1) rotate(-135deg)
-  }
-}
+//   25% {
+//     clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%)
+//   }
+
+//   50% {
+//     clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
+//   }
+
+//   62.5% {
+//     clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
+//   }
+
+//   75% {
+//     clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%)
+//   }
+
+//   100% {
+//     clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%)
+//   }
+// }
+
+// @keyframes l20-2 {
+//   0% {
+//     transform: scaleY(1) rotate(0deg)
+//   }
+
+//   49.99% {
+//     transform: scaleY(1) rotate(135deg)
+//   }
+
+//   50% {
+//     transform: scaleY(-1) rotate(0deg)
+//   }
+
+//   100% {
+//     transform: scaleY(-1) rotate(-135deg)
+//   }
+// }
 
 .col_8 {
   display: flex;

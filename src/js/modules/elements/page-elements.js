@@ -845,21 +845,21 @@ const pageEls = new Object({
       })
     },
     observeSmartPictures: () => {
-      const arr = [...document.querySelectorAll('.smart-picture')]
-      for (const el of arr) {
+      const smartPictures = document.querySelectorAll('.smart-picture')
+      smartPictures.forEach(el => {
         const img = el.querySelector('img')
-        if (!img) {
-          el.classList.add(__LOADED)
-        } else {
-          if (img.complete || img.src.length === 0) {
-            el.classList.add(__LOADED)
-          } else {
-            img.addEventListener('load', () => {
-              el.classList.add(__LOADED)
-            })
+        if (img) {
+          img.addEventListener('load', () => {
+            el.classList.add('--loaded')
+          });
+    
+          if (img.complete) {
+            el.classList.add('--loaded')
           }
+        } else {
+          el.classList.add('--loaded')
         }
-      }
+      })
     }
   }
 })
