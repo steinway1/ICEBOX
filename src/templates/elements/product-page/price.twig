@@ -17,7 +17,7 @@
 {% if not sold and not call_for_price %}
 	<div
 		class="side-row__line_price">
-    
+
 		{# Sale OR MSRP line #}
 		{% if sale_price_defined or msrp %}
 			<div class="flex_8 sub-price">
@@ -64,4 +64,12 @@
 			</a>
 		{% endif %}
 	</div>
+{% endif %}
+
+{% if black_friday %}
+	<div class="ccb-btn --min --black-friday">Only one at this price!</div>
+{% endif %}
+
+{% if cyber_monday %}
+	<div class="ccb-btn --min --cm">Only one at this price!</div>
 {% endif %}

@@ -194,6 +194,12 @@ body.--black-friday {
   background-color: #060911;
 }
 
+.black-banner__ticker-row h4,
+.black-banner__ticker-row h5,
+.black-banner__ticker-row span {
+  font-weight: 600;
+}
+
 .black-banner__ticker-row {
   z-index: 3;
   -webkit-backdrop-filter: blur(5px);
@@ -216,8 +222,8 @@ body.--black-friday {
     font-size: 16px;
 
     &>div {
-      padding-top: 6px;
-      padding-bottom: 6px;
+      padding-top: 10px;
+      padding-bottom: 8px;
     }
   }
 
@@ -232,7 +238,7 @@ body.--black-friday {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 18px;
-    font-weight: 400;
+    font-weight: 600;
     display: flex;
     animation: bfticker1 20s linear infinite;
 
@@ -245,6 +251,7 @@ body.--black-friday {
 
     h5 {
       color: #eb3b52;
+      font-weight: 600;
     }
   }
 }
@@ -499,10 +506,10 @@ body.--black-friday {
   justify-content: space-between;
   align-items: center;
   height: 32px;
-  padding: 1px 12px 0;
+  padding: 5px 8px 2px 8px;
   font-family: Bebas Neue, sans-serif;
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 12px;
   display: flex;
   overflow: hidden;
@@ -526,14 +533,14 @@ body.--black-friday {
   }
 
   &.--inline {
-    height: auto;
-    line-height: 22px;
-    display: inline-flex;
     position: relative;
-    inset: -2px auto auto auto;
-    font-size: 14px;
-    border-radius: .4rem;
-    padding: 1px 8px;
+    height: auto !important;
+    line-height: 22px !important;
+    display: inline-flex;
+    inset: -2px auto auto auto !important;
+    font-size: 14px !important;
+    border-radius: .4rem !important;
+    padding: 2px 8px 0 8px;
   }
 
   span {
@@ -541,12 +548,13 @@ body.--black-friday {
     justify-content: center;
     align-items: center;
     gap: 4px;
+    font-weight: 600;
 
     span {
       opacity: .7;
       margin-top: 1px;
       font-size: 14px;
-      font-weight: 400;
+      font-weight: 600;
     }
   }
 
@@ -574,6 +582,10 @@ body.--black-friday {
       font-size: 18px;
       height: 30px;
     }
+
+    &:not(.--inline) {
+      top: 32px;
+    }
   }
 }
 
@@ -589,6 +601,23 @@ body.--black-friday {
   }
 }
 
+.side-row__margin-row {
+  .ccb-btn.--black-friday {
+    margin-top: 10px;
+    font-size: 15px;
+    text-transform: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #e52d2d !important;
+    color: white;
+    border-radius: 0.7rem;
+
+    &:hover {
+      background-color: #e52d2d !important;
+    }
+  }
+}
+
 .ccb-btn.--black-friday {
   border-color: #e6273b;
   background-color: white;
@@ -599,8 +628,8 @@ body.--black-friday {
   border-radius: .6rem;
 
   &:hover {
-    border-color: inherit;
-    background-color: inherit;
+    border-color: #e6273b !important;
+    background-color: white !important;
   }
 
   @include maxWidthXs {

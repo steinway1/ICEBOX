@@ -3606,6 +3606,7 @@
 
 #gallery_mobile {
   display: none;
+  position: relative;
 
   @include maxWidthMd {
     display: block;
@@ -3622,6 +3623,11 @@
     .splide__track {
       padding-left: var(--padding) !important;
     }
+  }
+
+  .bf-badge,
+  .cm-badge {
+    left: var(--padding)
   }
 }
 
@@ -5027,3 +5033,7 @@
 }
 
 /* #endregion */
+
+.stock-dash-box {
+  display: none !important;
+}

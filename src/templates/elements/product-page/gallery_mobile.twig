@@ -1,4 +1,16 @@
 <div id="gallery_mobile" class="product__media">
+	{% if black_friday %}
+		<div class="bf-badge">
+			<span>BLACK FRIDAY SALE</span>
+		</div>
+	{% endif %}
+
+	{% if cyber_monday %}
+		<div class="cm-badge">
+			<span>CYBER MONDAY</span>
+		</div>
+	{% endif %}
+  
 	{% for media in product.media %}
 		<div class="product__gallery Poster-{{ media.color }}">
 			<div class="product__thumb-gallery splide">
