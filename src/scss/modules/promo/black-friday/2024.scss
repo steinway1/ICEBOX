@@ -7,27 +7,6 @@ body.--black-friday {
     background-image: linear-gradient(81deg, #13131700 60%, #c9243666);
   }
 
-  .side-row__buttons .product__btn-group {
-    .buy-btn {
-      &::after {
-        content: '1 LEFT';
-        z-index: 2;
-        color: #fff;
-        text-align: center;
-        background-color: #df2139;
-        border-top-left-radius: .4rem;
-        border-bottom-right-radius: .3rem;
-        border-bottom-left-radius: .3rem;
-        padding: 4px 6px;
-        font-size: 11px;
-        font-weight: 700;
-        line-height: 12px;
-        position: absolute;
-        inset: 0% auto auto 0%;
-      }
-    }
-  }
-
   .side-row__payments {
     .expire-tab {
       width: 100%;
@@ -634,6 +613,25 @@ body.--black-friday {
 
   @include maxWidthXs {
     font-size: 3vw;
+  }
+}
+
+.buy-btn.--black-friday {
+  &::after {
+    content: '1 LEFT';
+    z-index: 2;
+    color: #fff;
+    text-align: center;
+    background-color: #df2139;
+    border-top-left-radius: .4rem;
+    border-bottom-right-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+    padding: 4px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 12px;
+    position: absolute;
+    inset: 0% auto auto 0%;
   }
 }
 
