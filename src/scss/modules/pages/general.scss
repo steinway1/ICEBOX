@@ -131,6 +131,39 @@ body.--skeleton {
       z-index: 2;
     }
   }
+
+  .cm-badge,
+  .bf-badge,
+  .row-price {
+    display: none !important;
+  }
+
+  .ccb-btn {
+    border-color: transparent;
+    background-color: #f0f2f5;
+    color: transparent;
+    transition: all 0ms !important;
+
+    &:hover {
+      border-color: transparent !important;
+      background-color: #f0f2f5 !important;
+      color: transparent !important;
+    }
+
+    &::before {
+      content: "";
+      z-index: 4;
+      opacity: .35;
+      background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 50%, rgba(0, 0, 0, 0));
+      width: 124px;
+      margin-left: -124px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      animation: skeleton var(--skeleton-duration) infinite cubic-bezier(.39, .575, .565, 1);
+    }
+  }
 }
 
 /* #endregion */
