@@ -8,8 +8,11 @@ class BlackFriday {
 
   init() {
     this.setupTimer()
-    this.pushConfetti()
     this.setupVanta()
+
+    if (document.querySelector('.main_results')) {
+      this.pushConfetti()
+    }
   }
 
   // Timer
