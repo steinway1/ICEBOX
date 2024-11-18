@@ -19,7 +19,7 @@ class BlackFriday {
       hourSelector: '[data-black-timer="hours"]',
       minuteSelector: '[data-black-timer="minutes"]',
       secondSelector: '[data-black-timer="seconds"]',
-      date: '2024-12-04 10:00:00'
+      date: '2024-11-30 10:00:00'
     })
   }
   // Confetti
