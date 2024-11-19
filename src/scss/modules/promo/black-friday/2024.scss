@@ -475,6 +475,22 @@ body.--black-friday {
   }
 }
 
+.menu__item.--black-friday {
+  &::after {
+    content: '';
+    z-index: 2;
+    opacity: .25;
+    background-image: linear-gradient(90deg, #fff0, rgba(255, 238, 242, 0.3) 30%, rgb(255, 238, 242, 0.5) 50%, rgba(255, 238, 242, 0) 80%);
+    width: 30%;
+    height: 98px;
+    transition: all .8s cubic-bezier(.39, .575, .565, 1);
+    position: absolute;
+    left: -100px;
+    transform: skew(25deg);
+    animation: saleBlink_2 2.5s ease-in-out infinite;
+  }
+}
+
 .bf-badge {
   grid-column-gap: 1px;
   grid-row-gap: 1px;
@@ -579,6 +595,19 @@ body.--black-friday {
     left: 100%;
   }
 }
+
+@keyframes saleBlink_2 {
+
+  0%,
+  100% {
+    left: -100px;
+  }
+
+  50% {
+    left: 100%;
+  }
+}
+
 
 .side-row__margin-row {
   .ccb-btn.--black-friday {
