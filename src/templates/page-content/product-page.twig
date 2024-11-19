@@ -48,7 +48,8 @@
 	<div class="wrapper">
 		<div class="product__wrapper">
 
-			<div class="product__view">
+			<div
+				class="product__view">
 
 
 				{# Breadcrumbs #}
@@ -57,6 +58,7 @@
 				<div class="product__mob-details">
 					<div class="side-row__category">{{product.subcategory.caption}}</div>
 					{% include "elements/product-page/title.twig" %}
+					{% include "elements/product-page/share-row.twig" %}
 				</div>
 
 				{# -- Gallery #}
@@ -75,7 +77,9 @@
 					{% if userIsAdmin %}
 						{% include "elements/product-page/reviews-bar.twig" %}
 					{% endif %}
-					{# Gold Pick #}
+					{% include "elements/product-page/share-row.twig" %}
+
+					{# Gold Option #}
 					{% for option in product.options %}
 						{% if option.type == 'goldColor' %}
 							{% include "elements/product-page/custom-fields/gold-color.twig", with { option: option } %}

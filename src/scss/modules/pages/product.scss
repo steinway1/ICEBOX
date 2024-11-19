@@ -44,6 +44,10 @@
 
   --thumb-width: 10vw;
   --breadcrumbs-height: 50px;
+
+  .share-row {
+    margin-top: 8px;
+  }
 }
 
 .product__wrapper {
@@ -175,6 +179,12 @@
   @include maxWidthMd {
     padding-top: 24px;
     padding-bottom: 24px;
+  }
+
+  @include maxWidthXs {
+    .share-row {
+      display: none;
+    }
   }
 }
 
@@ -4885,6 +4895,11 @@
     .side-row__category {
       margin-bottom: 8px;
     }
+  }
+
+  .share-row {
+    order: 1 !important;
+    z-index: 6;
   }
 }
 
