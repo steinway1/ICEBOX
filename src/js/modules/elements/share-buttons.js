@@ -1,5 +1,6 @@
 class ShareButtons {
   constructor() {
+    return
     this.currentUrl = window.location.href
     this.currentTitle = document.title
     this.elemArr = [...document.querySelectorAll('.share-btn')]

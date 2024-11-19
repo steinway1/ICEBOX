@@ -11,6 +11,24 @@ const pageEls = new Object({
     })
   },
   attachEvent: {
+    // Page Share Button
+    bindPageShareButton() {
+      const elemArr = [...document.querySelectorAll('[data-share-page]')]
+      for (const elem of elemArr) {
+        elem.addEventListener('click', () => {
+          const span = elem.querySelector('span')
+          navigator.clipboard.writeText(window.location.href)
+            .then(() => {
+              span.textContent = 'Share'
+              span.textContent= 'URL Copied!'
+              setTimeout(() => {
+                span.textContent = 'Share'
+              }, 800);
+            })
+            .catch(err => { throw new Error('Copying error occured', err) })
+        })
+      }
+    },
     // Floating Whatsapp Button
     observeFloatWhatsapp() {
       const elem = document.querySelector('.wa-float')
@@ -852,7 +870,7 @@ const pageEls = new Object({
           img.addEventListener('load', () => {
             el.classList.add('--loaded')
           });
-    
+
           if (img.complete) {
             el.classList.add('--loaded')
           }

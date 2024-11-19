@@ -66,7 +66,7 @@ window.salesModal = require('./modules/modals/sales-modal')
 const noticeModal = require('./modules/modals/notice-modal')
 const Menu = require('./modules/modals/menu')
 const AddCartModal = require('./modules/dynamic/add-cart-modal')
-const ShareButtons = require('./modules/elements/share-buttons')
+// const ShareButtons = require('./modules/elements/share-buttons')
 
 /** PG Filters/Select/Modal
  * @type Objects
@@ -205,5 +205,5 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addCartModal = new AddCartModal()
 
   // Share Buttons
-  const shareButtons = new ShareButtons()
+  // const shareButtons = new ShareButtons()
 })

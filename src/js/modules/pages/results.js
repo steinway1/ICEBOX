@@ -73,6 +73,9 @@ class ResultsPage {
     this.filterBoxArr.forEach((box, index) => {
       const btn = box.querySelector('.page-filter-btn');
       const drop = box.querySelector('.page-filter-drop');
+
+      if (!btn || !drop) { return false }
+      
       const optionsArr = drop.querySelector('a') ? [...drop.querySelectorAll('a')] : [...drop.querySelectorAll('label')];
 
       if (optionsArr.length) {
@@ -116,6 +119,9 @@ class ResultsPage {
     this.filterBoxArr.forEach((filter, index) => {
       const btn = filter.querySelector('.page-filter-btn');
       const drop = filter.querySelector('.page-filter-drop');
+
+      if (!btn || !drop) { return false }
+
       const optionsArr = drop.querySelector('a') ? [...drop.querySelectorAll('a')] : [...drop.querySelectorAll('label')];
 
       if (!optionsArr.length) return;
