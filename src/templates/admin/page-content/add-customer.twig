@@ -83,8 +83,7 @@
 							<div class="limit-form__row-header">
 								More Details
 							</div>
-							<div
-								class="limit-form__row-body">
+							<div class="limit-form__row-body">
 								<div class="limit-form__inputs-grid">
 									<div>
 										<label class="am-select-label" for="gender">Gender</label>
@@ -137,7 +136,45 @@
 									</div>
 								</div>
 
-                <div class="am-btn --light" data-evt="toggleCustomerRow">+ More Details</div>
+								<div class="am-btn --light" data-evt="toggleCustomerRow" data-text="+ More Details">+ More Details</div>
+							</div>
+						</div>
+
+						{# Finger Sizes #}
+						<div class="limit-form__row --collapsed">
+							<div class="limit-form__row-header">
+								Finger Sizes
+							</div>
+							<div class="limit-form__row-body">
+								<div class="limit-form__inputs-grid">
+									<div class="limit-form__row">
+											<div class="finger-modal__content">
+												<div class="hands-flex">
+													<div class="hand-box is-left">
+														<div class="finger-hand">
+															{% include "admin/svg/finger-hand-left.svg" %}
+														</div>
+														<input class="finger-input _1-5" data-finger-input="15" inputmode="decimal" type="text">
+														<input class="finger-input _1-4" data-finger-input="14" inputmode="decimal" type="text">
+														<input class="finger-input _1-3" data-finger-input="13" inputmode="decimal" type="text">
+														<input class="finger-input _1-2" data-finger-input="12" inputmode="decimal" type="text">
+														<input class="finger-input _1-1" data-finger-input="11" inputmode="decimal" type="text">
+													</div>
+													<div class="hand-box">
+														<div class="finger-hand">
+															{% include "admin/svg/finger-hand-right.svg" %}
+														</div>
+														<input class="finger-input _2-5" data-finger-input="25" inputmode="decimal" type="text">
+														<input class="finger-input _2-4" data-finger-input="24" inputmode="decimal" type="text">
+														<input class="finger-input _2-3" data-finger-input="23" inputmode="decimal" type="text">
+														<input class="finger-input _2-2" data-finger-input="22" inputmode="decimal" type="text">
+														<input class="finger-input _2-1" data-finger-input="21" inputmode="decimal" type="text">
+													</div>
+												</div>
+											</div>
+									</div>
+								</div>
+								<div class="am-btn --light" data-evt="toggleCustomerRow" data-text="Add Finger Sizes">Add Finger Sizes</div>
 							</div>
 						</div>
 

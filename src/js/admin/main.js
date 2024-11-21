@@ -4848,15 +4848,35 @@ document.addEventListener('DOMContentLoaded', () => {
     for (const elem of arr) {
       elem.addEventListener('click', () => {
         const row = elem.closest('.limit-form__row')
+        const text = elem.dataset.text || 'More Details'
 
         if (row) {
           if (row.classList.contains('--collapsed')) {
             row.classList.remove('--collapsed')
-            elem.textContent = 'Less Details'
+            elem.textContent = 'Hide'
           } else {
             row.classList.add('--collapsed')
-            elem.textContent = '+ More Details'
+            elem.textContent = text
           }
+        }
+      })
+    }
+  }
+
+  function bindFingerSizeInput() {
+    const arr = [...document.querySelectorAll('[data-finger-input]')]
+
+    const validateValue = (value) => {
+      const num = parseFloat(value)
+      return /^(\d+(\.5?)?)?$/.test(value) && num <= 25
+    }
+
+    for (const input of arr) {
+      input.addEventListener('input', () => {
+        // Resrtict Numeric Value
+        const value = input.value
+        if (!validateValue(value)) {
+          input.value = value.slice(0, -1)
         }
       })
     }
@@ -4864,4 +4884,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   attachDatePickers()
   bindToggleCustomerRows()
+  bindFingerSizeInput()
 })
