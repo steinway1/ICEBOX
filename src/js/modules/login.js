@@ -339,8 +339,10 @@ class SignModal {
       if (isEnter && this.opened) {
         e.preventDefault()
         const activeSection = this.getActiveContent
-        if (activeSection) {
-          activeSection.querySelector('.js-submit').click()
+        const btnGroup = activeSection.querySelector('.sign-form__btn-group')
+        
+        if (btnGroup) {
+          btnGroup.querySelector('button').click()
         }
       }
     })
