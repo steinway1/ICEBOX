@@ -80,14 +80,22 @@
 		</form>
 
 		{# Footer #}
-		<div class="am_flex8">
-			<button class="sms-viewer__btn --grey" onclick="window.sms.closeSMSModal()">
-				<span>Cancel</span>
-			</button>
-			<button class="sms-viewer__btn" onclick="window.sms.sendNewSMS()">
-				<span>Send</span>
-				{% include "admin/svg/board-icon_send.svg" %}
-			</button>
+		<div class="sms-viewer__footer">
+			<div class="am_flex8">
+				<button class="sms-viewer__btn --grey" onclick="window.sms.closeSMSModal()">
+					<span>Cancel</span>
+				</button>
+				<button class="sms-viewer__btn" onclick="window.sms.sendNewSMS()">
+					<span>Send</span>
+					{% include "admin/svg/board-icon_send.svg" %}
+				</button>
+			</div>
+
+			<div class="am_flex8">
+				<div class="sms-viewer__btn --green">Sent: {{sms.sent ?: 0}}</div>
+				<div class="sms-viewer__btn --red">Error: {{sms.error ?: 0}}</div>
+				<div class="sms-viewer__btn --filled">Total: {{sms.total ?: 0}}</div>
+			</div>
 		</div>
 
 	</div>
