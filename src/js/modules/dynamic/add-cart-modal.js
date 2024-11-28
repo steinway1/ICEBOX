@@ -6,6 +6,7 @@ class AddCartModal {
     this.backdropInstance = null
   }
 
+  /** @param {Object} product */
   create(product) {
     this.product = product
     if (!this.product) {

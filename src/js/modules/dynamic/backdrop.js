@@ -1,4 +1,8 @@
+/**
+ * @typedef {Object} BackdropSettings
+ */
 class Backdrop {
+  /** @param {BackdropSettings} [settings] */
   constructor(settings = {}) {
     this.el = createElem('div', {
       className: 'page-backdrop',
