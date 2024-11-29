@@ -1,6 +1,6 @@
 <div class="sms-preview{% if sms.active %} --active{% endif %}" data-sms-id="{{ sms.id }}" data-whale-id="{{ sms.whale.id }}">
 	<div class="sms-preview__side">
-		<div class="sms-preview__pic-wrap" data-tip="{{ sms.whale.name }}">
+		<div class="sms-preview__pic-wrap" data-tip="{{ sms.whale.number }}">
 			<img loading="eager" src="{{ sms.whale.photo }}" alt="">
 		</div>
 		<button class="sms-preview__btn" onclick="window.sms.addToFavorites({{ sms.id }}, event)" data-tip="Add to favorites">
