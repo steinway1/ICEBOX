@@ -492,8 +492,9 @@ a {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 5vw;
-  padding-right: 5vw;
+  padding-left: var(--padding);
+  padding-right: var(--padding);
+  position: relative;
 }
 
 .cards-holder {
@@ -634,6 +635,7 @@ a {
   --body_color: #f7faff;
   --white: #ffffff;
   --black: #28344b;
+  --black_hover: #3b4861;
   --board-grey: #f3f8fd;
   --dark_grey: #8c96a5;
   --light_blue: #eef5fc;
@@ -17087,6 +17089,22 @@ li.splide__slide {
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 @media screen and (min-width: 768px) {
   .wh-input-box.--third {
     min-width: 30%;
@@ -17360,11 +17378,6 @@ li.splide__slide {
 }
 
 @media screen and (max-width: 991px) {
-  .wrapper {
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-
   .wrapper.wrapper_adjust {
     padding-left: 0;
     padding-right: 0;
@@ -17742,11 +17755,6 @@ li.splide__slide {
 
   .page-alert__wrapper {
     display: block;
-  }
-
-  .wrapper {
-    padding-left: 32px;
-    padding-right: 32px;
   }
 
   .footer-affirm__wrapper {
@@ -18181,11 +18189,6 @@ li.splide__slide {
 
   .page-alert-title {
     text-align: center;
-  }
-
-  .wrapper {
-    padding-left: 18px;
-    padding-right: 18px;
   }
 
   :root {

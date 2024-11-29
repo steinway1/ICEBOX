@@ -1,0 +1,180 @@
+{% set THEME_ASSETS_FOLDER = './assets/' %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% include 'page-components/head.twig' %}
+		{{ block('include_head') }}
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+	</head>
+
+
+	<body class="body_bfs">
+		{% include "elements/black-friday/bfs-top-banner_2024.twig" %}
+		{% include "elements/header.twig" %}
+
+
+		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
+
+			{% if logged %}
+				{% else %}
+				{# {% include "../elements/subscribe.twig" %} #}
+			{% endif %}
+			{% if userIsAdmin == true %}
+				{% include "elements/admin-bar.twig" %}
+			{% endif %}
+			{# {% include "../elements/affirm-disclaimer.twig" %} #}
+		</main>
+		{% include "elements/footer.twig" %}
+
+
+		{% include "elements/menu3.twig" %}
+		{# {% include "../elements/menu.twig" %} #}
+		{% include "elements/cart-modal.twig" %}
+		{% include "elements/sign-modal.twig" %}
+		{% include "elements/currency-modal.twig" %}
+		{% include "elements/page-alerts.twig" %}
+		{% include "elements/pay-modal.twig" %}
+		{% include "elements/mail-modal.twig" %}
+		{% include "elements/quiz-modal.twig" %}
+		{% include "elements/whatsapp-float.twig" %}
+		{# {% include "elements/black_friday/bfs-modal.twig" %} #}
+		{% include "page-components/scripts.twig" %}
+		{{ block('include_script') }}
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/3.5.0/tsparticles.bundle.min.js"></script>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function () { // Confetti
+function pushConfetti() {
+const colors = ["#ec575a", "#E5C1BD"];
+const shots = 5;
+const pauseDuration = 2000;
+let currentShot = 0;
+
+let y,
+count
+
+if (window.innerWidth > 991) {
+y = 0.6
+count = 50
+} else {
+y = 0.8
+count = 38
+}
+
+function shootConfetti() {
+confetti({
+particleCount: count,
+angle: 60,
+spread: 55,
+origin: {
+x: 0,
+y: y
+},
+colors: colors
+});
+
+confetti({
+particleCount: count,
+angle: 120,
+spread: 55,
+origin: {
+x: 1,
+y: y
+},
+colors: colors
+});
+
+currentShot++;
+if (currentShot < shots) {
+setTimeout(shootConfetti, pauseDuration);
+}
+}
+shootConfetti()
+}
+
+// Vanta Background
+function pushVanta() {
+VANTA.WAVES({
+el: ".bf-side_1",
+mouseControls: false,
+touchControls: false,
+gyroControls: false,
+minHeight: 200.00,
+minWidth: 200.00,
+scale: 1.00,
+scaleMobile: 1.00,
+color: 0x10407,
+shininess: 350.00,
+waveHeight: 40.50,
+waveSpeed: 0.5,
+zoom: 20.00
+})
+
+VANTA.WAVES({
+el: ".bf-side_2",
+mouseControls: false,
+touchControls: false,
+gyroControls: false,
+minHeight: 200.00,
+minWidth: 200.00,
+scale: 1.00,
+scaleMobile: 1.00,
+color: 0x10407,
+shininess: 350.00,
+waveHeight: 40.50,
+waveSpeed: 0.5,
+zoom: 20.00
+})
+}
+// Timer
+function setBlackFridayTimer() {
+var timer;
+
+var compareDate = new Date(2024, 10, 20, 10, 0o0, 0o0);
+
+timer = setInterval(function () {
+timeBetweenDates(compareDate);
+}, 1000);
+
+function timeBetweenDates(toDate) {
+var dateEntered = toDate;
+var now = new Date();
+var difference = dateEntered.getTime() - now.getTime();
+
+if (difference <= 0) {
+clearInterval(timer);
+
+} else {
+
+var seconds = Math.floor(difference / 1000);
+var minutes = Math.floor(seconds / 60);
+var hours = Math.floor(minutes / 60);
+var days = Math.floor(hours / 24);
+
+hours %= 24;
+minutes %= 60;
+seconds %= 60;
+
+$("#sale_timer_days").text(days);
+$("#sale_timer_hours").text(hours);
+$("#sale_timer_minutes").text(minutes);
+$("#sale_timer_seconds").text(seconds);
+}
+}
+}
+
+pushVanta()
+pushConfetti()
+setBlackFridayTimer()
+})
+		</script>
+	</body>
+
+</html>

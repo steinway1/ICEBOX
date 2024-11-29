@@ -1,104 +1,145 @@
+{% include 'elements/product-page/general-js-vars.twig' %}
 <div
-	class="product__wrapper">
+	class="product__main">
 
-
-	<!-- #region Viewer / Media -->
-	<div
-		class="product__view">
-
-		{# Desktop Viewer #}
-		{% for media in product.media %}
-			<div class="product__desktop-viewer Poster-{{ media.color }}" {% if media.visible == false %} style="display:none" {% endif %}>
-				{% for item in product.media.yellow %}
-					{% include "elements/product-page/product-media.twig" with {
-					type: item.type,
-					imgSrc: item.imgSrc,
-					alt: item.alt,
-					zoom:item.zoom_class,
-					splide: false
-				  } %}
-				{% endfor %}
-			</div>
-		{% endfor %}
-
-		{# Slider Viewer #}
-		<div class="product__slider-viewer">
-			{% set loop_index = 0 %}
-			{% for media in product.media %}
-			<div class="product-slider splide product-slide-{{ media.color }} mobile-slide-{{ media.color }}" {% if media.visible == false %} style="display:none" {% endif %}>
-				<div class="splide__track">
-					<div class="splide__list">
-						{% for item in product.media.yellow %}
-							{% include "elements/product-page/product-media.twig" with {
-						  type: item.type,
-						  index:loop_index,
-						  imgSrc: item.imgSrc,
-						  alt: item.alt,
-						  splide: true
-						} %}
-						{% endfor %}
-					{% set loop_index = loop_index + 1 %}
-					</div>
+	{# Ticker Black Friday#}
+	{% if black_friday and product.item.discountRate is defined %}
+		<div class="black-banner__ticker-row --static">
+			{% for i in 0..4 %}
+				<div>
+					<h4>LIMITED TIME!</h4>
+					<span></span>
+					<h5>{{product.item.discountRate}}% OFF THIS ITEM</h5>
+					<span></span>
+					<h4>LIMITED TIME!</h4>
+					<span></span>
+					<h5>{{product.item.discountRate}}% OFF THIS ITEM</h5>
+					<span></span>
 				</div>
-			</div>
-
-			{# Thumbnails Slider
-			<div class="product-slider_thumbnails splide product-thumb-{{ media.color }} mobile-thumb-{{ media.color }}" {% if media.visible == false %} style="display:none" {% endif %}>
-				<div class="splide__track">
-					<div class="splide__list">
-						{% for item in media.elements %}
-							{% include "elements/product-page/product-media.twig" with {
-							  type: item.type,
-							  imgSrc: item.src,
-							  alt: item.alt,
-							  splide: true
-							} %}
-						{% endfor %}
-					</div>
-				</div>
-			</div>
-			#}
 			{% endfor %}
 		</div>
-	</div>
-	<!-- #endregion -->
+	{% endif %}
 
-
-	<aside class="product__side">
-		<div
-			class="side-body">
-
-			{# BREADCRUMBS #}
-			{% include "elements/product-page/breadcrumbs.twig" %}
-
-			{# ITEM #}
-			{% include "elements/product-page/item-row.twig" %}
-
-			{# ITEM OPTIONS #}
-			{% include "elements/product-page/options-row.twig" %}
-
-			{# ITEM DETAILS #}
-			{% include "elements/product-page/details-row.twig" %}
-
-			{# GUIDE MODAL #}
-			{% include "elements/pg-modal.twig" %}
-
-			{# FLOATING BTN #}
-			{% include "elements/product-page/floating-btn.twig" %}
-
-
+	{# Ticker Cyber Monday #}
+	{% if cyber_monday and product.item.discountRate is defined %}
+		<div class="cm-green-tape --static">
+			{% for i in 0..3 %}
+				<div class="cm-tape2">
+					{% for i in 0..1 %}
+						<span style="color: white;">LIMITED TIME</span>
+						<span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+						<span data-text="{{product.item.discountRate}}% OFF THIS ITEM" class="glitch is-glitching">{{product.item.discountRate}}% OFF THIS ITEM</span>
+						<span class="cm-tape__star">
+							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+							</svg>
+						</span>
+					{% endfor %}
+				</div>
+			{% endfor %}
 		</div>
-	</aside>
+	{% endif %}
 
+
+	<div class="wrapper">
+		<div class="product__wrapper">
+
+			<div
+				class="product__view">
+
+
+				{# Breadcrumbs #}
+				{% include "elements/product-page/breadcrumbs.twig" %}
+
+				<div class="product__mob-details">
+					<div class="side-row__category">{{product.subcategory.caption}}</div>
+					{% include "elements/product-page/title.twig" %}
+					{% include "elements/product-page/share-row.twig" %}
+				</div>
+
+				{# -- Gallery #}
+				{% include "elements/product-page/gallery_desktop.twig" %}
+				{% include "elements/product-page/gallery_mobile.twig" %}
+			</div>
+
+			{# -- Side #}
+			<aside class="product__side">
+				<div
+					class="side-body">
+
+					{# Subcategory / Title / Wishlist / Reviews Bar #}
+					<div class="side-row__category">{{product.subcategory.caption}}</div>
+					{% include "elements/product-page/title.twig" %}
+					{% if userIsAdmin %}
+						{% include "elements/product-page/reviews-bar.twig" %}
+					{% endif %}
+					{% include "elements/product-page/share-row.twig" %}
+
+					{# Gold Option #}
+					{% for option in product.options %}
+						{% if option.type == 'goldColor' %}
+							{% include "elements/product-page/custom-fields/gold-color.twig", with { option: option } %}
+						{% endif %}
+					{% endfor %}
+
+					{# Price / Sale / Stock #}
+					<div class="side-row__margin-row">
+						{% include "elements/product-page/price.twig" %}
+						<div class="side-row__border-row --stock">
+							{% include 'elements/product-page/stock-availability.twig'  %}
+						</div>
+
+						{# Description #}
+						<div class="side-row__border-row">
+							<div class="product__item-summary">
+								{% if product.item.mainDescription %}
+									<div id="product_description">{{product.item.mainDescription | raw }}</div>
+								{% endif %}
+							</div>
+						</div>
+
+					</div>
+
+					{# Options #}
+					<div class="side-row__options">
+						{% include "elements/product-page/options.twig" %}
+					</div>
+
+					{# Buttons #}
+					<div class="side-row__buttons">
+						{% include "elements/product-page/buttons.twig" %}
+					</div>
+
+					{# Shipping & Question #}
+					<div class="side-row__more">
+						{% include "elements/product-page/side-more.twig" %}
+					</div>
+
+				</div>
+			</aside>
+		</div>
+	</div>
 </div>
-{% include "elements/product-page/promises.twig" %}
-{% include "elements/product-page/hidden-form.twig" %}
 
+{# Description & Details #}
+{% include "elements/product-page/details.twig" %}
+{# Promises #}
+{% include "elements/product-page/promises.twig" %}
+{# FAQ #}
+{% include "elements/product-page/faq.twig" %}
+{# More Items #}
 {% for Productslider in product.bottom_sliders %}
 	{% include "elements/product-page/items-slider.twig" with {slider:Productslider}%}
 {% endfor %}
-{% if  product.item.salePrice is defined %}
-<div class="product-page__float-stock">
-	{% include "elements/product-card/stock-dash-box.twig" %}
-</div>
-{% endif %}
+{# Guide Modal #}
+{% include "elements/pg-modal.twig" %}
+{# Options #}
+{% include "elements/product-page/options-modal.twig" %}
+{# Float Bar - Add To Cart #}
+{% include "elements/product-page/fixed-bar.twig" %}
+{# Forms #}
+{% include "elements/product-page/hidden-form.twig" %}

@@ -1,0 +1,53 @@
+<div class="box --full">
+	<div class="box__bg-img">
+		<img src="{{THEME_ASSETS_FOLDER}}city-map.svg" alt="City map top view">
+	</div>
+
+	<div class="lx-area">
+		<h1 class="lx-heading">Track Your Order
+			<span>Check the status of your order with phone or email.</span>
+		</h1>
+
+		<div class="lx-box">
+			<div class="lx-switcher --margin">
+				<label class="lx-select">
+					<input type="radio" name="track_with" value="phone" checked>
+					<span>Phone</span>
+				</label>
+				<label class="lx-select">
+					<input type="radio" name="track_with" value="email">
+					<span>Email</span>
+				</label>
+			</div>
+
+			<div class="lx-box__inner-form">
+				<form id="form_track_order" action="" method="post" class="lx-form">
+
+					<div class="lx-form__input-grid">
+						<input type="text" name="order_number" class="lx-input" placeholder="Order Number" pattern="[0-9]*" required>
+						<input type="text" name="phone_number" data-input="tel" id="input_track_phone" class="lx-input" placeholder="Phone Number">
+						<input type="email" name="email_address" class="lx-input" id="input_track_email" placeholder="Email Address">
+					</div>
+
+					<div class="lx-form__input-grid">
+						<input class="lx-btn" type="submit" value="Track Order">
+						<button class="lx-btn --sub" data-evt="reset_track_form">Reset</button>
+					</div>
+
+					<div class="lx-divider">
+						<span></span>
+						<span>Have any questions?</span>
+						<span></span>
+					</div>
+
+					<div class="lx-meta">
+						If you have any issues with your order
+						<a href="/contact">visit our contact page</a>
+						and feel free to contact us.
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

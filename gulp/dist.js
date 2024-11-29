@@ -93,6 +93,8 @@ const root = {
         cartMail: './src/js/cart-mail.js',
       },
       promo: {
+        _: './src/js/promo/**/*.js',
+        root: './src/js/promo',
         lib: './src/js/promo/libraries/*.js',
         main: './src/js/promo/*.js'
       },
@@ -126,6 +128,7 @@ const root = {
     adminFonts: './build/admin/fonts/',
     css: './build/css/',
     js: './build/js/',
+    jsPromo: './build/js/promo',
     jsPlugins: './build/js/plugins/',
     assets: './build/assets/',
     adminAssets: './build/admin/assets/',
@@ -328,15 +331,17 @@ gulp.task('js2:build',
 gulp.task('js-promo:build',
   () => {
     return gulp
-      .src([
-        root.src.js.promo.lib,
-        root.src.js.promo.main
-      ])
+      .src(root.src.js.promo._, { base: root.src.js.promo.root })
       .pipe(changed(root.build.js))
       .pipe(plumber(setPlumberNotify('JS-PROMO')))
-      .pipe(concat('promo.js'))
-      .pipe(minify())
-      .pipe(gulp.dest(root.build.js))
+      .pipe(gulp.dest(root.build.jsPromo))
+      .pipe(minify({
+        ext: {
+          min: '.min.js'
+        },
+        noSource: true
+      }))
+      .pipe(gulp.dest(root.build.jsPromo))
   })
 
 gulp.task('js-xmas:build',

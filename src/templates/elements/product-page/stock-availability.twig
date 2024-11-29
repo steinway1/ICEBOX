@@ -1,10 +1,10 @@
 {% if product.temp_unavailable == false %}
     <div class="side-row__ship-line">
-            <div class="product__item-availability in_stock_msg">
+            <div class="product__item-availability in_stock_msg" style="">
                 <div class="product__availability-svg">
                     {% include "elements/product-page/svg/ship.svg" %}
                 </div>
-                <span class="product__availability-info">In Stock</span>
+                <span class="product__availability-info">In Stock & Ships Today</span>
             </div>
 
         {% if product.category_id == 10 %}
@@ -15,7 +15,7 @@
                             <div class="product__availability-svg">
                                 {% include "elements/product-page/svg/ship.svg" %}
                             </div>
-                            <span class="product__availability-info">This watch will ship in  <span class="product__availability-date" >{{ "+4weeks"|date("F d, Y") }}</span></span>
+                            <span class="product__availability-info">This watch will ship on  <span class="product__availability-date" >{{ "+4weeks"|date("F d, Y") }}</span></span>
                         </div>
                     {% else %}
                         {# watch is not plain gold  #}
@@ -23,7 +23,7 @@
                             <div class="product__availability-svg">
                                 {% include "elements/product-page/svg/ship.svg" %}
                             </div>
-                            <span class="product__availability-info">This watch will ship on  <span class="product__availability-date" >10-14 days</span></span>
+                            <span class="product__availability-info">This watch will ship in  <span class="product__availability-date" >10-14 days</span></span>
                         </div>
                     {% endif %}
                 {% else %}

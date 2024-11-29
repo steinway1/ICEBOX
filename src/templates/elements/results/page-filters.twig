@@ -1,52 +1,65 @@
 <div class="page-filters">
-		<form id="" class="wrapper">
-			<div class="page-filters__wrapper">
-				<div class="page-filters__group">
+	<form id="" class="wrapper">
+		<div class="page-filters__wrapper">
+			<div class="page-filters__group">
 
-					{% for pageFilter in pageFilters %}
-						<div id="{{pageFilter.filterID}}" class="page-filter-box">
-							<div class="page-filter-btn">
-								<span>{{pageFilter.title}}</span>
-								{% include "elements/results/svg/arrow.svg" %}
-							</div>
-							{% if pageFilter.options.length %}
-								<div class="page-filter-drop">
-									<div class="page-filter-drop__container">
-										{% for option in pageFilter.options %}
-											<label>
-												<input type="{% if pageFilter.radio == true %}radio{% else %}checkbox{% endif %}" name="{{option.name}}" value="{{option.value}}" {% if option.checked == true %} checked {% endif %}>
-												<div>
-													<span>
-														{% if option.extraClass is defined %}
-															<span class="color-gradient {{option.extraClass}}"></span>
-														{% endif %}
-														{{option.caption}}{% if user_admin == true %} ({{option.count}}){% endif %}</span>
-												</div>
-											</label>
-										{% endfor %}
-									</div>
-								</div>
-							{% endif %}
+				{% if black_friday or cyber_monday %}
+					<div data-share-page data-tip="Copy Url to this page with current selected filters" class="page-filter-box">
+						<div class="page-filter-btn --share">
+							<span>Share</span>
 						</div>
-					{% endfor %}
+					</div>
+				{% endif %}
 
-				</div>
-				<div class="page-filters__group">
-					<div class="page-filter-box">
+
+				{% for pageFilter in pageFilters %}
+					<div id="{{pageFilter.filterID}}" class="page-filter-box">
 						<div class="page-filter-btn">
-							{% include "elements/results/svg/sort_new.svg" %}
-							<span>Most Popular</span>
+							<span>{{pageFilter.title}}</span>
 							{% include "elements/results/svg/arrow.svg" %}
 						</div>
-						<div class="page-filter-drop">
-							<div class="page-filter-drop__container">
-								{% for sort in pageSort %}
-									<a {% if sort.active == true %} class="is-active" {% endif %} onclick="{{sort.onclick}}">{{sort.title}}</a>
-								{% endfor %}
+						{% if pageFilter.options.length %}
+							<div class="page-filter-drop">
+								<div class="page-filter-drop__container">
+									{% for option in pageFilter.options %}
+										<label>
+											<input type="{% if pageFilter.radio == true %}radio{% else %}checkbox{% endif %}" name="{{option.name}}" value="{{option.value}}" {% if option.checked == true %} checked {% endif %}>
+											<div>
+												<span>
+													{% if option.extraClass is defined %}
+														<span class="color-gradient {{option.extraClass}}"></span>
+													{% endif %}
+													{{option.caption}}
+													{% if user_admin == true %}
+														({{option.count}})
+													{% endif %}
+												</span>
+											</div>
+										</label>
+									{% endfor %}
+								</div>
 							</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+
+			</div>
+			<div class="page-filters__group">
+				<div class="page-filter-box">
+					<div class="page-filter-btn">
+						{% include "elements/results/svg/sort_new.svg" %}
+						<span>Most Popular</span>
+						{% include "elements/results/svg/arrow.svg" %}
+					</div>
+					<div class="page-filter-drop">
+						<div class="page-filter-drop__container">
+							{% for sort in pageSort %}
+								<a {% if sort.active == true %} class="is-active" {% endif %} onclick="{{sort.onclick}}">{{sort.title}}</a>
+							{% endfor %}
 						</div>
 					</div>
 				</div>
 			</div>
-		</form>
+		</div>
+	</form>
 </div>

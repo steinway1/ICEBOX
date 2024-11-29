@@ -1,50 +1,36 @@
-<div class="product__more">
-	<div class="wrapper">
-		<div class="product__promises">
-
-			<div class="product-promise">
-				<div>
-					<div class="product-promise__icon-wrap">
-						{% include "components/svg/double_wallet.svg" %}
-					</div>
-					<h4 class="product-promise__heading">Apply For Financing<span>Get approved in less than 5 minutes!</span>
-					</h4>
-				</div>
-				<a class="--blue" href="/financing" target="_blank">Learn More</a>
-			</div>
-
-			<div class="product-promise">
-				<div>
-					<div class="product-promise__icon-wrap">
-						{% include "components/svg/double_chat.svg" %}
-					</div>
-					<h4 class="product-promise__heading">Click here to chat now!<span>Expert guidance is just a click away.</span>
-					</h4>
-				</div>
-				<a href="/chat-whatsapp">Chat Now</a>
-			</div>
-
-			<div class="product-promise">
-				<div>
-					<div class="product-promise__icon-wrap">
-						{% include "components/svg/double_call.svg" %}
-					</div>
-					<h4 class="product-promise__heading">Call Us Now<span>Have a question? We will answer now!</span>
-					</h4>
-				</div>
-				<a class="--blue" href="tel:+17705585466">770-558-5466</a>
-			</div>
-
-			<div class="product-promise">
-				<div>
-					<div class="product-promise__icon-wrap">
-						{% include "components/svg/double_box.svg" %}
-					</div>
-					<h4 class="product-promise__heading">Insured Shipping<span>Shop with confidence, all orders ship insured.</span>
-					</h4>
-				</div>
-			</div>
-
+<div class="product__promises wrapper">
+	{% include "elements/product-page/fedex.twig" %}
+	<div class="--financing">
+		<div>
+			<h4 class="product__xs-heading">Apply For Financing.</h4>
+			<p class="product__typo">Just a few steps and you get personalized rate quotes with no hard credit pull.
+				<span>Get approved in less than 5 minutes!</span>
+			</p>
 		</div>
+		<a href="/financing" target="_blank" class="fancy-btn">
+			<span>Apply Now</span>
+			{% include "components/svg/arrow.svg" %}
+		</a>
+	</div>
+	<div>
+		<div>
+			<h4 class="product__xs-heading">Live Chat on WhatsApp</h4>
+			<p class="product__typo">Chat with us instantly on WhatsApp for quick answers and personalized assistance!</p>
+		</div>
+		<a href="/chat-whatsapp" target="_blank" class="fancy-btn --green">
+			<img src="{{THEME_ASSETS_FOLDER}}wa_white-icon.svg" alt="">
+			<span>Chat Now</span>
+			{% include "components/svg/arrow.svg" %}
+		</a>
+	</div>
+	<div>
+		<div>
+			<h4 class="product__xs-heading">Call Us Now!</h4>
+			<p class="product__typo">Need assistance? Call us now for immediate support and personalized service!</p>
+		</div>
+		<a href="tel:+17705585466" class="fancy-btn --grey">
+			<span>770-558-5466</span>
+			{% include "components/svg/arrow.svg" %}
+		</a>
 	</div>
 </div>

@@ -1,14 +1,21 @@
 {% extends 'layouts/default.twig' %}
-{% set pageBanner = true %}
 {% set mainClass = 'main_results' %}
+{% set topBanner = {
+  text: "Free Insured Shipping on all US Orders"
+} %}
 
 {% block include_head %}
-{# Styles / preload scripts / etc... #}
+	{# Styles / preload scripts / etc... #}
 {% endblock %}
 
 {% block content %}
-{% include "./page-content/results.twig" %}
+	{% include "./page-content/results.twig" %}
+
+	{% if care_page == true %}
+		{% include "elements/results/care-modal.twig" %}
+	{% endif %}
 {% endblock %}
+
 
 {% block include_script %}
 	{# Scripts / etc... #}

@@ -30,8 +30,8 @@
 						#}
 		{% if type == 'video' %}
 			<div class="product-media-video">
-				<video id="video_{{productItem.item.id}}" {% if user.admin %} playsinline controls autoplay loop {% else %} playsinline muted autoplay loop {% endif %} preload="auto">
-					<source src="/{{imgSrc}}" type="video/mp4">
+				<video id="video_{{productItem.item.id}}" {% if user.admin %} playsinline controls="false" autoplay loop {% else %} playsinline muted autoplay loop {% endif %} preload="auto">
+					<source src="{{imgSrc}}" type="video/mp4">
 				</video>
 			</div>
 		{% endif %}

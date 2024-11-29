@@ -1,0 +1,63 @@
+<div class="toggle-row">
+	<div class="toggle-row__head">
+		<span>Shipping &amp; Returns Policy</span>
+	</div>
+	<div class="toggle-row__body">
+		<div class="toggle-row__wrapper">
+			<p>
+				{% if is_watch_market_item %}
+					<strong>All sales are final.</strong>
+					No refunds, no exchanges. Please call if you have any questions about our jewelry or watches.
+				{% elseif product.category_id == 10 %}
+					Item design &amp; details may vary slightly from provided image. Icebox Diamonds &amp; Watches
+					<br>
+					<strong>does not accept returns or issue refunds for any reason</strong>
+					<br>
+					<strong>WE DO NOT OFFER EXCHANGES ON ANY WATCHES.</strong>
+				{% else %}
+					Item design &amp; details may vary slightly from provided image.
+					<br>
+					Icebox Diamonds &amp; Watches
+					<strong>does not accept returns or issue refunds for any reason</strong>
+					<br>We do allow (1) exchange within 14 days of the purchase date.
+				{% endif %}
+			</p>
+		</div>
+	</div>
+</div>
+<div class="toggle-row">
+	<div class="toggle-row__head">
+		<span>Questions? Schedule a Call.</span>
+	</div>
+	<div class="toggle-row__body">
+		<div class="toggle-row__wrapper">
+			<p>We'll send you a text to confirm a call.</p>
+			<form id="form_product_call" action="GET">
+				<div class="product-call-form">
+					<div>
+						<label for="call_phone">Phone Number</label>
+						<input type="tel" name="call_phone" placeholder="+1" required>
+					</div>
+					<div>
+						<label for="call_name">Name</label>
+						<input type="text" name="call_name" placeholder="" required>
+					</div>
+					<div>
+						<label for="call_date">Date & Time</label>
+						<input type="text" name="call_date" placeholder="" required>
+					</div>
+					<input type="submit" value="Schedule a Call">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="toggle-row --static">
+	<div class="toggle-row__head">
+		<span>Call Now: 404-842-0266</span>
+    <div class="--flex_8">
+    <a href="tel:404-842-0266" data-tip="Call Now" class="icon-btn --lg --call"></a>
+    <button data-evt-copy="4048420266" data-tip="Copy Phone" class="icon-btn --lg --copy"></button>
+    </div>
+	</div>
+</div>

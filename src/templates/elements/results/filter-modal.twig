@@ -1,21 +1,13 @@
 <div class="filter-modal">
-	<div data-filter-evt="close" class="filter-modal__backdrop"></div>
-	<div class="filter-modal__container">
-		<div class="filter-modal__header">
-			<div class="filter-modal-title">Price Range</div>
-			<div data-filter-evt="close" class="filter-modal__close-btn">
-				<svg width="14" height="14" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M1 1L23 23" stroke="currentColor" stroke-width="2.5"></path>
-					<path d="M23 1L1 23" stroke="currentColor" stroke-width="2.5"></path>
-				</svg>
-			</div>
-		</div>
-		<div class="filter-modal__wrapper">
-			<div class="filter-modal__content"></div>
-		</div>
-		<div class="filter-modal__footer">
-			<button data-filter-evt="close" class="filter-modal__btn btn_sub">Cancel</button>
-			<button data-filter-evt="close" class="filter-modal__btn">Apply</button>
-		</div>
+	<div class="filter-modal__handler"></div>
+	<div class="filter-modal__header">Filters</div>
+	<div class="filter-modal__body">
+		<div class="filter-modal__filter-list"></div>
+		<div class="filter-modal__options"></div>
+	</div>
+	<div class="filter-modal__footer">
+		<button data-evt="closeFilterModal" class="filter-modal__btn --sub">Close</button>
+		{# <button class="filter-modal__btn --clear">Clear</button> #}
+		<button data-evt="closeFilterModal" onclick="submitMobileFilters()" class="filter-modal__btn">Apply</button>
 	</div>
 </div>

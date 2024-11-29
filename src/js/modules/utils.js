@@ -117,6 +117,7 @@ function showMessage(type, title, msg) {
   pageAlerts.showAlert(alert_type, title, msg);
 }
 
+<<<<<<< HEAD
 function removeItemFromCart(item_id) {
   $.ajax({
       url: '/json/remove-cart/item/' + item_id,
@@ -138,6 +139,130 @@ function removeItemFromCart(item_id) {
 
       }
   });
+=======
+function debounce(func, wait) {
+  let timeout
+  return function (...args) {
+    const later = () => {
+      clearTimeout(timeout)
+      func(...args)
+    }
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+  }
+}
+
+function showSkeleton() {
+  document.body.classList.add('--skeleton')
+}
+
+function hideSkeleton() {
+  document.body.classList.remove('--skeleton')
+}
+
+function openPriceModal(target, id) {
+  const card = target.closest('.product-card')
+  if (!card) return
+
+  window.signPriceModal = new window.priceModal(card, id)
+}
+
+function signupPrice() {
+  if (!window.signPriceModal) {
+    console.warn('No price modal found')
+    return
+  }
+
+  window.signPriceModal.signup()
+}
+
+/**
+ * Countdown timer
+ * Example of usage : 
+ *    createTimer({
+      daySelector: '#sale_timer_days',
+      hourSelector: '#sale_timer_hours',
+      minuteSelector: '#sale_timer_minutes',
+      secondSelector: '#sale_timer_seconds',
+      date: '2024-11-30 10:00:00'
+    })
+ */
+
+function createTimer(settings = {}) {
+  let { daySelector, hourSelector, minuteSelector, secondSelector, date } = settings
+
+  const dayElem = daySelector ? [...document.querySelectorAll(daySelector)] : null
+  const hourElem = hourSelector ? [...document.querySelectorAll(hourSelector)] : null
+  const minuteElem = minuteSelector ? [...document.querySelectorAll(minuteSelector)] : null
+  const secondElem = secondSelector ? [...document.querySelectorAll(secondSelector)] : null
+  const endDate = new Date(date)
+  let timer
+
+  if (!dayElem && !hourElem && !minuteElem && !secondElem) {
+    return
+  }
+
+  if (isNaN(endDate)) {
+    console.error('Incorrect date format passed to createTimer.')
+    return
+  }
+
+  const pad = (num) => num.toString().padStart(2, '0')
+
+  timer = setInterval(function () {
+    updateTimer()
+  }, 1000)
+
+  function updateTimer() {
+    const now = new Date().getTime()
+    let diff = endDate - now
+
+    if (diff <= 0) {
+      diff = 0
+      clearInterval(timer)
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+    
+    for (const elem of dayElem) {
+      if (elem !== null) {
+        elem.textContent = pad(days)
+      }
+    }
+    
+    for (const elem of hourElem) {
+      if (elem !== null) {
+        elem.textContent = pad(hours)
+      }
+    }
+    
+    for (const elem of minuteElem) {
+      if (elem !== null) {
+        elem.textContent = pad(minutes)
+      }
+    }
+    
+    for (const elem of secondElem) {
+      if (elem !== null) {
+        elem.textContent = pad(seconds)
+      }
+    }
+  }
+}
+
+function getFakeProduct() {
+  return {
+    title: "Crosses Lightning Bolt Diamond Pendant 14k Solid Gold .15ctw",
+    image: "https://cdn.prod.website-files.com/6631ecc8ac2b58c38761ff4a/67148792fc8b5f4949e7a59e_ap5.webp",
+    price: "$3,990",
+    show_discount: true,
+    original_price: "$4,990",
+    category: "Crosses"
+  }
+>>>>>>> ammar
 }
 
 module.exports = {
@@ -157,5 +282,15 @@ module.exports = {
   isEmail,
   saveCartEmail,
   showMessage,
+<<<<<<< HEAD
   removeItemFromCart
+=======
+  debounce,
+  showSkeleton,
+  hideSkeleton,
+  openPriceModal,
+  signupPrice,
+  createTimer,
+  getFakeProduct
+>>>>>>> ammar
 }

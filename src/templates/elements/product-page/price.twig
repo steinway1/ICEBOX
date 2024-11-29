@@ -1,0 +1,75 @@
+{% set price = product.item.price %}
+{% set sale_price = product.item.salePrice %}
+{% set sale_price_defined = product.item.salePrice is defined %}
+{% set call_for_price = product.call_for_price %}
+{% set call_for_price_text = product.call_for_price_text %}
+{% set sold = product.item.sold %}
+{% set is_watch = product.is_watch %}
+{% set msrp = product.item.msrp %}
+{% set msrp_percent = product.item.msrp_percentage %}
+
+{% if msrp and (price or sale_price) %}
+	{% set watch_price = price ?: sale_price %}
+	{% set lower_msrp = msrp|number_format(0) > watch_price|number_format(0) %}
+{% endif %}
+
+{# Not sold and not call for price #}
+{% if not sold and not call_for_price %}
+	<div
+		class="side-row__line_price">
+
+		{# Sale OR MSRP line #}
+		{% if sale_price_defined or msrp %}
+			<div class="flex_8 sub-price">
+				<span class="product__item-price old_price">{{ msrp ?: price }}</span>
+				<span>{{ msrp ? 'MSRP' : 'Original Price' }}</span>
+			</div>
+		{% endif %}
+
+		{# BASE Price #}
+		<div class="flex_8">
+			<span id="current_base_price" class="price_holder product__item-price">
+				{{sale_price_defined ? sale_price : price}}
+			</span>
+
+			{% if sale_price %}
+				<span class="price-tag --sale" id="discount_rate">SALE -{{product.item.discountRate}}%</span>
+			{% endif %}
+
+			{% if msrp %}
+				{% if lower_msrp %}
+					<span class="price-tag --sale" id="discount_rate">{{msrp_percent|number_format(0)}}% OFF</span>
+					<span class="price-tag --green" id="discount_rate">BELOW MSRP</span>
+				{% else %}
+					<span class="price-tag --grey" id="discount_rate">OUR PRICE</span>
+					<span class="price-tag --green" id="discount_rate">GOOD DEAL</span>
+				{% endif %}
+			{% endif %}
+
+			{% if not sale_price and not msrp %}
+				<span class="price-tag" id="discount_rate">OUR PRICE</span>
+			{% endif %}
+		</div>
+
+	</div>
+{% endif %}
+
+{# Sold or call for price #}
+{% if sold or call_for_price %}
+	<div class="side-row__line_price {{ call_for_price ? '--call' : '--out' }}">
+		<span class="product__item-price">{{call_for_price ? call_for_price_text : sold ? 'Sold' : ''}}</span>
+		{% if call_for_price %}
+			<a data-tip="Call Now" class="tel-link" href="tel:404-842-0266" target="_blank">
+				<span>404-842-0266</span>
+			</a>
+		{% endif %}
+	</div>
+{% endif %}
+
+{% if black_friday and product.item.discountRate is defined %}
+	<div class="ccb-btn --min --black-friday">Only one at this price!</div>
+{% endif %}
+
+{% if cyber_monday and product.item.discountRate is defined %}
+	<div class="ccb-btn --min --cm">Only one at this price!</div>
+{% endif %}

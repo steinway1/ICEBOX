@@ -8,7 +8,7 @@ const pageReviews = {
     try {
       let main = new Splide('.page-reviews', {
         type: "slider",
-        perPage: 2.2,
+        perPage: 3.4,
         perMove: 1,
         autoplay: 0,
         pauseOnHover: 1,
@@ -19,7 +19,10 @@ const pageReviews = {
         speed: 500,
         breakpoints: {
           991: {
-            perPage: 1.2
+            perPage: 2.2
+          },
+          620: {
+            perPage: 1.3
           }
         }
       })

@@ -1,18 +1,18 @@
 <div class="res-banner">
 	<div class="res-banner__main">
-		<div class="results-wrapper">
+		<div class="wrapper">
 			<div class="results__descriptive-wrap">
 				<div class="results__breadcrumbs">
 					<a href="/">Icebox</a>
-					<span>/</span>
+					<span>—</span>
 					<a href="{{category.href}}">{{category.caption}}</a>
 				</div>
 				<h1 class="results__heading">{{category.heading}}</h1>
-				<p class="results__subheading">{{category.subheading}}</p>
+				<p class="results__subheading">{{category.banner_text | raw}}</p>
 			</div>
 		</div>
 	</div>
-  <div class="smart-picture">
-  <img src="{{category.imgSrc}}" loading="lazy" sizes="100vw" alt="">
-  </div>
+	<div class="smart-picture">
+		<img src="{{category.big_banner}}" loading="lazy" sizes="100vw" alt="">
+	</div>
 </div>

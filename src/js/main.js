@@ -12,7 +12,6 @@ window.intlTelInput = require('./intlTelInput')
 window.zenscroll = require('./zenscroll')
 window.fancybox = require('./fancybox.min')
 
-
 /** -- Globals */
 /** Constants / Variables / Utils / Ajax */
 const constants = require('./modules/constants')
@@ -20,7 +19,6 @@ const variables = require('./modules/variables')
 const utils = require('./modules/utils')
 const ajax = require('./modules/ajax')
 Object.assign(window, constants, variables, utils, ajax)
-
 
 /** -- Append Elements */
 /* Page Tips */
@@ -33,6 +31,15 @@ window.PageConfetti = require('./modules/dynamic/page-confetti')
 window.AskModal = require('./modules/dynamic/ask-modal')
 /* Loader Root */
 window.rootLoader = require('./modules/dynamic/root-loader')
+<<<<<<< HEAD
+=======
+/* Sign Up price alerts */
+window.priceModal = require('./modules/dynamic/price-modal')
+
+/** -- Page Elements */
+// Login
+require('./modules/login')
+>>>>>>> ammar
 
 /** Header / Footer
  * @type Objects
@@ -47,7 +54,11 @@ window.pageEls = require('./modules/elements/page-elements')
 window.pageReviews = require('./modules/elements/page-reviews')
 window.heroSplide = require('./modules/elements/hero-splide')
 window.pageAlerts = require('./modules/elements/page-alerts')
+<<<<<<< HEAD
 window.sirvCards = require('./modules/elements/sirv-cards')
+=======
+window.sirvCards = require('./modules/elements/sirv')
+>>>>>>> ammar
 
 /** Modals
  * Currency / Cart / Menu / Mail / Quiz / Sign / Menu
@@ -59,13 +70,14 @@ window.bookModal = require('./modules/modals/book-modal')
 window.mailModal = require('./modules/modals/mail-modal')
 window.quizModal = require('./modules/modals/quiz-modal')
 window.salesModal = require('./modules/modals/sales-modal')
-const SignModal = require('./modules/modals/sign-modal')
+const noticeModal = require('./modules/modals/notice-modal')
 const Menu = require('./modules/modals/menu')
+const AddCartModal = require('./modules/dynamic/add-cart-modal')
+// const ShareButtons = require('./modules/elements/share-buttons')
 
 /** PG Filters/Select/Modal
  * @type Objects
  */
-window.pgFilter = require('./modules/elements/pg-filter')
 window.pgSelect = require('./modules/elements/pg-select')
 window.pgModal = require('./modules/elements/pg-modal')
 
@@ -82,8 +94,8 @@ const
   LooseDiamonds = require('./modules/pages/loose-diamonds'),
   /* Homepage : /index */
   Homepage = require('./modules/pages/homepage'),
-  /* Product Page : /product-page */
-  productPage = require('./modules/pages/product-page'),
+  ResultsPage = require('./modules/pages/results'),
+  ProductPage = require('./modules/pages/product'),
   /* My Bag : /cart */
   myBag = require('./modules/pages/my-bag'),
   /* Account Profile : /account */
@@ -100,17 +112,16 @@ const
   formPage = require('./modules/pages/form-page'),
   /* Tag Preview : /tag */
   tagPreview = require('./modules/pages/tag-preview')
+const sirvCards = require('./modules/elements/sirv')
 
 
 /** -- Initialize Page Objects */
 const
   pageObjectsArr = [
     header,
-    pgFilter,
     cartModal,
     currencyModal,
     pgModal,
-    productPage,
     footer,
     pageEls,
     myBag,
@@ -183,9 +194,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Homepage
   new Homepage()
+<<<<<<< HEAD
 })
 
 /** -- Page Elements */
 /** Login
  */
 require('./modules/login')
+=======
+
+  // Results
+  const resultsMain = document.querySelector('.main_results')
+  if (resultsMain) {
+    new ResultsPage()
+  }
+
+  const productMain = document.querySelector('.main_product')
+  if (productMain) {
+    new ProductPage()
+  }
+
+  // Notice modal
+  window.noticeModal = new noticeModal()
+
+  // Add to cart Modal
+  window.addCartModal = new AddCartModal()
+
+  // Share Buttons
+  // const shareButtons = new ShareButtons()
+})
+>>>>>>> ammar

@@ -1,0 +1,14 @@
+<div class="gold-option">
+	<div class="gold-option__title">Color
+		<span>—</span>
+		<span data-current-color>{{product.selected_color}}</span>
+	</div>
+	<div class="gold-option__list">
+		{% for optionBtn in option.set %}
+			<div data-color="{{optionBtn.color}}" data-select="color" class="color-pick{% if optionBtn.active %} --active{% endif %}">
+				<div class="color-gradient {{optionBtn.class}}"></div>
+			</div>
+		{% endfor %}
+	</div>
+	<input type="hidden" id="current_selected_color" class="custom-fields-fetch" name="customInputNew[color]" value="{{ product.selected_color }}">
+</div>

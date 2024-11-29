@@ -7,14 +7,9 @@
 </a>
 
 <div class="header-nav__group">
-	<a href="javascript:void(0);" data-evt="toggleMenu">
+	<a class="--large" href="javascript:void(0);" data-evt="toggleMenu">
 		<div>
-			{% include "components/svg/menu.svg" %}
-		</div>
-	</a>
-	<a href="javascript:void(0);" data-evt="toggleSearch">
-		<div>
-			{% include "components/svg/search.svg" %}
+			{% include "components/svg/menu_large.svg" %}
 		</div>
 	</a>
 	<a href="/locations" data-evt="locations">
@@ -29,13 +24,18 @@
 			<span>Valentine&#x27;s Sale</span>
 		</a>
 	{% endif %}
-	<a href="/sale" class="vday-nav-link --sale">
-		<img src="{{THEME_ASSETS_FOLDER}}sample_earrings.webp" loading="eager" alt="">
-		<span>Sale</span>
-	</a>
+	{# <a href="/sale" class="vday-nav-link --sale">
+			<img src="{{THEME_ASSETS_FOLDER}}sample_earrings.webp" loading="eager" alt="">
+			<span>Sale</span>
+		</a> #}
 </div>
 
 <div class="header-nav__group">
+	<a href="javascript:void(0);" data-evt="toggleSearch">
+		<div>
+			{% include "components/svg/search.svg" %}
+		</div>
+	</a>
 	<div data-evt="toggleAccountDropdown" data-sign-switch="phone_register" class="{% if user_logged == true %}js-login-dropdown{% else %}js-toggle-sign{% endif %}">
 		<div>
 			{% include "components/svg/account.svg" %}

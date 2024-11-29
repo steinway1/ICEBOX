@@ -1,4 +1,8 @@
+/**
+ * @typedef {Object} BackdropSettings
+ */
 class Backdrop {
+  /** @param {BackdropSettings} [settings] */
   constructor(settings = {}) {
     this.el = createElem('div', {
       className: 'page-backdrop',
@@ -7,6 +11,7 @@ class Backdrop {
     this.zIndex = settings.zIndex || undefined
     this.background = settings.background || undefined
     this.half = settings.half || false
+    this.opacity = settings.opacity || 1
     this.show()
     this.el.addEventListener('click', (e) => {
       if (e.target === this.el) {
@@ -25,7 +30,7 @@ class Backdrop {
     }
     this.el.style.display = 'block'
     setTimeout(() => {
-      this.el.style.opacity = '1'
+      this.el.style.opacity = this.opacity
     }, 1);
   }
 

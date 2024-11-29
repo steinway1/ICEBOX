@@ -1,7 +1,8 @@
-{% extends 'layouts/default.twig' %}
+{% set black_friday = true %}
 {% set pageBanner = false %}
-{% set pagePromo = 'black_friday' %}
-{% set mainClass = 'bfs_results' %}
+{% set mainClass = 'black_friday main_results' %}
+
+{% extends 'layouts/default.twig' %}
 
 {% block include_head %}
 	{# Styles / preload scripts / etc... #}
@@ -12,6 +13,5 @@
 {% endblock %}
 
 {% block include_script %}
-	<script src="./js/promo-min.js"></script>
 	{# Scripts / etc... #}
 {% endblock %}

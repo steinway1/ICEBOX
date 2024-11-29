@@ -1,0 +1,238 @@
+.care-modal {
+  z-index: 2000;
+  background-color: #fff;
+  border-radius: .8rem;
+  width: 460px;
+  transition: all .35s;
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  box-shadow: 0 12px 42px #161c2b40;
+  transform-origin: 50% 100%;
+  opacity: 0;
+  display: none;
+  transform: scale(.95);
+
+  @include maxWidthSm {
+    transform: scale(1) translateY(100%);
+    opacity: 1;
+  }
+
+  &.--visible {
+    opacity: 1;
+    transform: scale(1);
+
+    @include maxWidthSm {
+      transform: scale(1) translateY(0%);
+    }
+  }
+}
+
+.care-modal__header {
+  color: #fff;
+  background-color: #111114;
+  position: absolute;
+  inset: 0% 0% auto;
+
+  img {
+    opacity: .3;
+    object-fit: cover;
+    width: 100%;
+    height: 180px;
+    display: block;
+  }
+}
+
+.care-modal__content {
+  border-radius: .8rem;
+  position: relative;
+
+  &:not([data-care-content="cleaning"]) {
+    display: none;
+  }
+}
+
+.care-modal__content.to-show {
+  display: block;
+}
+
+.care-modal__heading {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 24px;
+
+  span {
+    opacity: .6;
+    margin-bottom: 2px;
+    font-size: 14px;
+    display: block;
+  }
+}
+
+.care-modal__row {
+  z-index: 2;
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  background-color: #fff;
+  border-radius: .7rem;
+  flex: none;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 120px;
+  padding: 24px;
+  display: flex;
+  position: relative;
+  box-shadow: 0 6px 38px #1111141c;
+}
+
+.care-modal__info {
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+
+  p {
+    padding-right: 20px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+
+    @include maxWidthXs {
+      padding: 0 16px 0 0;
+    }
+
+    &>span {
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 22px;
+      display: block;
+
+      @include maxWidthXs {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+
+.care-modal__wrapper {
+  border-radius: .8rem;
+  overflow: hidden;
+}
+
+.care-modal__body {
+  z-index: 4;
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  flex-flow: column;
+  padding: 68px 24px 24px;
+  display: flex;
+  position: relative;
+  overflow: auto;
+  max-height: clamp(20vh, calc(100vh - (8px + 10vh)), 960px);
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include maxWidthXs {
+    max-height: 70vh;
+  }
+}
+
+.care-modal__pic-wrap {
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+
+  img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 20rem;
+    width: 140px;
+
+    @include maxWidthXs {
+      width: 100%;
+    }
+  }
+
+  @include maxWidthXs {
+    justify-content: space-between;
+    width: 90px;
+    min-width: 35%;
+  }
+}
+
+.care-modal__close-btn {
+  z-index: 6;
+  color: #fff;
+  cursor: pointer;
+  background-color: #111114;
+  border-top-right-radius: .8rem;
+  border-bottom-left-radius: .8rem;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 16px;
+  display: flex;
+  position: absolute;
+  inset: 0% 0% auto auto;
+}
+
+@media screen and (max-width: 767px) {
+  .care-modal {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 100vw;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .care-modal__heading {
+    padding-left: 14px;
+    padding-right: 14px;
+    font-weight: 700;
+  }
+
+  .care-modal__row {
+    flex-flow: row;
+    padding: 24px 14px;
+  }
+
+  .care-modal__body {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .care-modal__close-btn {
+    width: 36px;
+    height: 36px;
+    padding: 10px;
+  }
+
+  .care-modal {
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+  }
+}
+
+.care-banner__soap {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  inset: 0;
+  width: 100vw;
+  height: 100%;
+
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,103 @@
+<div class="product-card{% if splideClass is defined %} splide__slide{% else %}{% endif %}" data-id="{{productItem.dataID}}">
+	{% if (productItem.inStock or productItem.force_sale) and productItem.is_discounted %}
+		{% if black_friday and cyber_monday == false and xmas == false and new_year == false and vday == false%}
+			<div class="bfs-card">
+				<div class="bfs-badges">
+					<span class="bfs-badge">BLACK FRIDAY</span>
+					<span class="bfs-badge --discount">{{productItem.discountRate}}%</span>
+				</div>
+			</div>
+		{% endif %}
+
+		{% if cyber_monday and black_friday and xmas == false %}
+			<div class="cm-card">
+				<div class="cm-badges">
+					<span class="cm-badge">CYBER WEEK</span>
+					<span class="cm-badge --discount">{{productItem.discountRate}}%</span>
+				</div>
+			</div>
+
+		{% endif %}
+
+		{% if xmas and black_friday and cyber_monday == false and  new_year == false %}
+			<div class="xmas-card">
+				<div class="xmas-badges">
+					<span>SALE</span>
+					<span>{{productItem.discountRate}}%</span>
+				</div>
+			</div>
+		{% endif %}
+		{% if black_friday == true and cyber_monday == false and xmas == false and new_year == false and vday == true%}
+			<div class="vday-card">
+				<div>
+					<img src="{{constant('THEME_ASSETS_FOLDER')}}/assets/vday/tag{{productItem.discountRate}}.svg" loading="lazy" alt="" class="">
+				</div>
+			</div>
+		{% endif %}
+
+		{% if black_friday == true and new_year == true and cyber_monday == false and xmas == false %}
+			<div class="ny-card">
+				<div>
+					<img src="{{ constant('THEME_ASSETS_FOLDER') }}/assets/new-year/tag{{productItem.discountRate}}.svg" loading="lazy" alt="" class="">
+				</div>
+			</div>
+		{% endif %}
+
+		{% if black_friday == false and cyber_monday == false and xmas == false and new_year == false %}
+			<span class="product-card__sale-badge discount_{{productItem.discountRate}}"></span>
+		{% endif %}
+
+	{% endif %}
+	{% if user.admin == true %}
+		{% include "elements/admin-card.twig" %}
+	{% endif %}
+	{% if productItem.is_discounted == false and productItem.is_watch_market == false %}
+		{% if productItem.inStock %}
+			<span class="product-card__shipping-tag">In Stock</span>
+		{% else %}
+			<span class="product-card__shipping-tag is-made-order">{{ productItem.stock_status }}</span>
+
+
+		{% endif %}
+	{% endif %}
+	<div class="product-card__wrapper">
+		<div class="product-card__media">
+			<a href="{{productItem.href}}">
+				<img src="{{productItem.cover}}" loading="lazy" alt="{{productItem.alt}}" class="product-card__img ">
+			</a>
+		</div>
+		<div class="product-card__details">
+
+			{# Title #}
+			<div class="product-card__title-wrap">
+				{% if productItem.details %}
+					<span class="product-card__sub-detail">{{productItem.details}}
+						{% if productItem.custom_tag %}
+							<span class="--blue">{{ productItem.custom_tag }}</span>
+						{% endif %}
+					</span>
+				{% endif %}
+				<h2>
+					<a href="{{productItem.href}}" class="product-card__name">{{productItem.main_name}}</a>
+				</h2>
+				<h2>
+					<a href="{{productItem.href}}" class="product-card__info">{{productItem.info}}</a>
+				</h2>
+			</div>
+
+			<div class="{% if productItem.salePrice is defined %}product-card__price-wrap is-sale{% else %}product-card__price-wrap{% endif %}">
+				{% if productItem.price_range  %}
+					<span class="product-card__price">{{productItem.price_range}}</span>
+				{% else %}
+					<span class="product-card__price">{{productItem.price}}</span>
+				{% endif %}
+				{% if productItem.salePrice %}
+					<span class="product-card__sale-price">{{productItem.salePrice}}</span>
+				{% endif %}
+			</div>
+		</div>
+		{% if user.admin %}
+			{{ productItem.extra_html | raw}}
+		{% endif %}
+	</div>
+</div>

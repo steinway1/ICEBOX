@@ -11,6 +11,113 @@ const pageEls = new Object({
     })
   },
   attachEvent: {
+    // Page Share Button
+    bindPageShareButton() {
+      const elemArr = [...document.querySelectorAll('[data-share-page]')]
+      for (const elem of elemArr) {
+        elem.addEventListener('click', () => {
+          const span = elem.querySelector('span')
+          navigator.clipboard.writeText(window.location.href)
+            .then(() => {
+              span.textContent = 'Share'
+              span.textContent= 'URL Copied!'
+              setTimeout(() => {
+                span.textContent = 'Share'
+              }, 800);
+            })
+            .catch(err => { throw new Error('Copying error occured', err) })
+        })
+      }
+    },
+    // Floating Whatsapp Button
+    observeFloatWhatsapp() {
+      const elem = document.querySelector('.wa-float')
+      const triggerElem = document.querySelector('.footer')
+      if (!elem || !triggerElem) return
+
+      let offset = 120
+      let observer = null
+
+      const callback = (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            elem.classList.add(__HIDDEN)
+          } else {
+            elem.classList.remove(__HIDDEN)
+          }
+        })
+      }
+
+      observer = new IntersectionObserver(callback, {
+        root: null,
+        rootMargin: `0px 0px -${offset}px 0px`,
+        threshold: 0
+      })
+
+      observer.observe(triggerElem)
+    },
+    // Copy Elements
+    copyEvents: () => {
+      const copyArr = [...document.querySelectorAll('[data-evt-copy]')]
+      if (copyArr.length) {
+        for (const btn of copyArr) {
+          btn.addEventListener('click', () => {
+            const textToCopy = btn.dataset.evtCopy
+            if (textToCopy) {
+              navigator.clipboard.writeText(textToCopy)
+            }
+          })
+        }
+      }
+    },
+    // Track Order
+    trackOrderSwitch: () => {
+      const arr = document.querySelectorAll('input[name="track_with"]')
+      if (arr.length) {
+
+        function toggleInput(value) {
+          const elements = {
+            phone: document.querySelector('#form_track_order .iti'),
+            email: document.querySelector('#input_track_email')
+          }
+
+          if (!elements.phone || !elements.email) {
+            console.error('phone or email not found')
+            return
+          }
+
+          if (elements[value]) {
+            Object.keys(elements).forEach(key => {
+              elements[key].style.display = key === value ? 'block' : 'none'
+            })
+          } else {
+            console.error(`Invalid value: ${value}`)
+          }
+        }
+
+        arr.forEach((input) => {
+          input.addEventListener('change', () => {
+            toggleInput(input.value)
+          })
+        })
+      }
+    },
+    resetTrackOrderForm: () => {
+      const elem = document.querySelector('[data-evt="reset_track_form"]')
+      if (elem) {
+        elem.addEventListener('click', (e) => {
+          e.preventDefault()
+          const form = document.querySelector('#form_track_order')
+          if (!form) {
+            console.error('form not found')
+            return
+          }
+
+          form.reset()
+        })
+      }
+    },
+    // Other
     filterDropdown: () => {
       let dropdownEls = Array.from($('.filter-dropdown'))
 
@@ -366,225 +473,6 @@ const pageEls = new Object({
             input.value = ''
             input.dispatchEvent(new Event('input'))
           })
-        }
-      }
-    },
-    formatGoldChainsSubheading: () => {
-      const subheading = document.querySelector('.results__subheading')
-      if (subheading) {
-        const text = 'Welcome to our collection of fine 14k solid gold chains, where luxury meets affordability'
-        if (subheading.innerHTML.includes(text)) {
-          const sentences = subheading.innerHTML.split('.').filter(sentence => sentence.trim() !== '')
-          if (sentences[0] === text) {
-            subheading.innerHTML = `
-            <strong>${text}.</strong>
-            ${sentences.slice(1).join('. ')}
-            `
-          }
-        }
-      }
-    },
-    setPageFilters: () => {
-      const filters = Array.from(document.querySelectorAll('.page-filter-box')).reduce((acc, box) => {
-        if (box.querySelector('.page-filter-drop') !== null && box.querySelector('.page-filter-btn') !== null) { acc.push(box) }
-        return acc
-      }, [])
-
-      if (filters.length !== 0) {
-        window.pageFilters = {}
-        window.filterModal = {}
-
-        filterModal = {
-          el: document.querySelector('.filter-modal'),
-          backdrop: document.querySelector('.filter-modal__backdrop'),
-          container: document.querySelector('.filter-modal__container'),
-          title: document.querySelector('.filter-modal-title'),
-          content: document.querySelector('.filter-modal__content'),
-          evtClose: document.querySelectorAll('[data-filter-evt="close"]'),
-          open: function () {
-            lockScroll()
-            if (this.el !== undefined) {
-              this.el.style.display = 'block'
-              setTimeout(() => {
-                this.backdrop.style.opacity = 1
-                this.container.classList.add(IS_VISIBLE)
-              }, 1);
-            }
-          },
-          close: function () {
-            unlockScroll()
-            if (this.el !== undefined) {
-              this.backdrop.style.opacity = 0
-              this.container.classList.remove(IS_VISIBLE)
-              setTimeout(() => {
-                this.el.style.display = 'none'
-              }, getTransitionTime(this.backdrop));
-            }
-          },
-          isHidden: function () {
-            return window.getComputedStyle(this.el).getPropertyValue('display') == 'none'
-          },
-          bindEvents: function () {
-            this.evtClose.forEach((el) => {
-              el.onclick = () => {
-                const labels = [...filterModal.content.querySelectorAll('label')]
-                const links = [...filterModal.content.querySelectorAll('a')]
-                const emptyBox = document.querySelector('.page-filter-drop.is-empty')
-                filterModal.close()
-                setTimeout(() => {
-                  if (emptyBox !== null) {
-                    const toMove = links.length !== 0 ? links : labels
-                    toMove.forEach((node) => { emptyBox.querySelector('div').appendChild(node) })
-                    emptyBox.classList.remove(IS_EMPTY)
-                    $('.filter-modal__content').empty()
-                  }
-                }, getTransitionTime(filterModal.container));
-              }
-            })
-          },
-          appendLabels: function (nodes) {
-            this.content.appendChild(nodes)
-          }
-        }
-        filterModal.bindEvents()
-
-
-        filters.forEach((filter, i) => {
-          const drop = filter.querySelector('.page-filter-drop')
-          const trigger = filter.querySelector('.page-filter-btn')
-          const labels = [...drop.querySelectorAll('label')]
-          const buttons = [...drop.querySelectorAll('label > div')]
-          const inputs = [...drop.querySelectorAll('input')]
-          const links = [...drop.querySelectorAll('a')]
-
-          pageFilters[i] = {
-            drop: drop,
-            trigger: trigger,
-            labels: labels,
-            buttons: buttons,
-            inputs: inputs,
-            links: links
-          }
-          pageFilters[i].drop.show = function () {
-            this.style.display = 'block'
-            setTimeout(() => {
-              this.style.opacity = 1
-              this.style.transform = 'translateY(0px)'
-            }, 1);
-          }
-          pageFilters[i].drop.hide = function () {
-            this.style.opacity = 0
-            this.style.transform = 'translateY(10px)'
-            setTimeout(() => {
-              this.style.display = 'none'
-            }, getTransitionTime(this));
-          }
-          pageFilters[i].drop.isHidden = function () {
-            return window.getComputedStyle(this).getPropertyValue('display') == 'none'
-          }
-        })
-
-        pageFilters.observeCheckState = function () {
-          for (const key in this) {
-            const obj = this[key]
-            if (typeof obj !== 'function') {
-              if (obj.inputs.some(input => input.checked)) {
-                obj.trigger.classList.add(IS_ACTIVE)
-              } else {
-                obj.trigger.classList.remove(IS_ACTIVE)
-              }
-            }
-          }
-        }
-        pageFilters.attachInputOnChange = function () {
-          for (const key in this) {
-            const obj = this[key]
-            if (typeof obj !== 'function') {
-              obj.inputs.forEach((input) => {
-                input.onchange = () => {
-                  pageFilters.observeCheckState()
-                }
-              })
-            }
-          }
-        }
-        pageFilters.atLeastOneVisible = function () {
-          for (const key in this) {
-            if (typeof this[key] !== 'function') {
-              if (!this[key].drop.isHidden()) return true
-            }
-          }
-        }
-        pageFilters.showAll = function () {
-          for (const key in this) {
-            const obj = this[key]
-            if (typeof obj !== 'function') {
-              obj.drop.show()
-            }
-          }
-        }
-        pageFilters.hideAll = function (node) {
-          for (const key in this) {
-            const obj = this[key]
-            if (typeof obj !== 'function') {
-              if (node !== null && node !== undefined) {
-                if (!obj.drop.isSameNode(node)) { obj.drop.hide() }
-              } else {
-                obj.drop.hide()
-              }
-            }
-          }
-        }
-        pageFilters.attachTriggerClick = function () {
-          for (const key in this) {
-            const obj = this[key]
-            if (typeof obj !== 'function') {
-              obj.trigger.onclick = () => {
-                if (window.innerWidth > 991) {
-                  if (obj.drop.isHidden()) {
-                    pageFilters.hideAll(obj.drop)
-                    obj.drop.show()
-                    const isIntersecting = obj.drop.getBoundingClientRect().right > window.innerWidth
-                    if (isIntersecting) obj.drop.style.right = 0
-                  } else {
-                    obj.drop.hide()
-                  }
-                } else {
-                  const title = obj.trigger.querySelector('span').innerHTML
-                  filterModal.open()
-                  filterModal.title.innerHTML = title
-                  obj.drop.classList.add(IS_EMPTY)
-                  const toMove = obj.links.length !== 0 ? obj.links : obj.labels
-                  toMove.forEach((node) => { filterModal.appendLabels(node) })
-                }
-              }
-            }
-          }
-        }
-        pageFilters.attachWindowEvents = function () {
-          document.addEventListener('click', function (event) {
-            const target = event.target
-            if (!target.closest('.page-filter-box') && pageFilters.atLeastOneVisible()) {
-              pageFilters.hideAll()
-            }
-          })
-          // window.addEventListener('scroll', function () {
-          //   if (pageFilters.atLeastOneVisible()) {
-          //     pageFilters.hideAll()
-          //   }
-          // })
-        }
-        pageFilters.init = function () {
-          pageFilters.observeCheckState()
-          pageFilters.attachInputOnChange()
-          pageFilters.attachTriggerClick()
-          pageFilters.attachWindowEvents()
-        }
-
-        try {
-          pageFilters.init()
-        } catch (err) {
-          console.log(err.message)
         }
       }
     },
@@ -975,21 +863,21 @@ const pageEls = new Object({
       })
     },
     observeSmartPictures: () => {
-      const arr = [...document.querySelectorAll('.smart-picture')]
-      for (const el of arr) {
+      const smartPictures = document.querySelectorAll('.smart-picture')
+      smartPictures.forEach(el => {
         const img = el.querySelector('img')
-        if (!img) {
-          el.classList.add(__LOADED)
-        } else {
-          if (img.complete || img.src.length === 0) {
-            el.classList.add(__LOADED)
-          } else {
-            img.addEventListener('load', () => {
-              el.classList.add(__LOADED)
-            })
+        if (img) {
+          img.addEventListener('load', () => {
+            el.classList.add('--loaded')
+          });
+
+          if (img.complete) {
+            el.classList.add('--loaded')
           }
+        } else {
+          el.classList.add('--loaded')
         }
-      }
+      })
     }
   }
 })
