@@ -84,11 +84,7 @@ class SignModal {
     this.adjustEl = rootEl.querySelector('.sign-modal__adjust')
     this.backdrop = rootEl.querySelector('.sign-modal__backdrop')
     this.container = rootEl.querySelector('.sign-modal__container')
-<<<<<<< HEAD
-    this.formsArr = [...rootEl.querySelectorAll('form')]
-=======
     this.formsArr = [...rootEl.querySelectorAll('.needs-validation')]
->>>>>>> ammar
     this.evtOpenArr = document.querySelectorAll('[data-evt="openSignModal"]')
     this.evtCloseArr = document.querySelectorAll('[data-evt="closeSignModal"]')
     this.evtJsToggleSign = document.querySelectorAll('.js-toggle-sign')
@@ -336,8 +332,6 @@ class SignModal {
       })
     })
   }
-<<<<<<< HEAD
-=======
   bindKeyPress() {
     document.addEventListener('keypress', (e) => {
       const isEnter = e.key === 'Enter' || e.keyCode === 13
@@ -353,7 +347,6 @@ class SignModal {
       }
     })
   }
->>>>>>> ammar
 
   /**
    * Initialize
@@ -371,10 +364,7 @@ class SignModal {
       this.bindTogglePassword()
       this.bindSubmit()
       this.initialSetup()
-<<<<<<< HEAD
-=======
       this.bindKeyPress()
->>>>>>> ammar
     }
   }
 }

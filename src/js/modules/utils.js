@@ -117,29 +117,6 @@ function showMessage(type, title, msg) {
   pageAlerts.showAlert(alert_type, title, msg);
 }
 
-<<<<<<< HEAD
-function removeItemFromCart(item_id) {
-  $.ajax({
-      url: '/json/remove-cart/item/' + item_id,
-      type: 'GET',
-      success: function(data) {
-          var result = $.parseJSON(data);
-          if (!result.error) {
-              $('.cart-modal').replaceWith(result.twig_cart_modal);
-              $('.added_items').html(result.count);
-              $('.cart-counter').each(function(){
-                  $(this).html(result.count);
-              });
-              $('.bag-counter').html(result.count);
-              unlockScroll()
-              //send_gtag_remove_from_cart_event(result.gtag_event);
-          } else {
-             showMessage('error','Error',result.msg);
-          }
-
-      }
-  });
-=======
 function debounce(func, wait) {
   let timeout
   return function (...args) {
@@ -262,7 +239,6 @@ function getFakeProduct() {
     original_price: "$4,990",
     category: "Crosses"
   }
->>>>>>> ammar
 }
 
 module.exports = {
@@ -282,9 +258,6 @@ module.exports = {
   isEmail,
   saveCartEmail,
   showMessage,
-<<<<<<< HEAD
-  removeItemFromCart
-=======
   debounce,
   showSkeleton,
   hideSkeleton,
@@ -292,5 +265,4 @@ module.exports = {
   signupPrice,
   createTimer,
   getFakeProduct
->>>>>>> ammar
 }

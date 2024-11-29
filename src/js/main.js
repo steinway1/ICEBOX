@@ -31,15 +31,12 @@ window.PageConfetti = require('./modules/dynamic/page-confetti')
 window.AskModal = require('./modules/dynamic/ask-modal')
 /* Loader Root */
 window.rootLoader = require('./modules/dynamic/root-loader')
-<<<<<<< HEAD
-=======
 /* Sign Up price alerts */
 window.priceModal = require('./modules/dynamic/price-modal')
 
 /** -- Page Elements */
 // Login
 require('./modules/login')
->>>>>>> ammar
 
 /** Header / Footer
  * @type Objects
@@ -54,11 +51,7 @@ window.pageEls = require('./modules/elements/page-elements')
 window.pageReviews = require('./modules/elements/page-reviews')
 window.heroSplide = require('./modules/elements/hero-splide')
 window.pageAlerts = require('./modules/elements/page-alerts')
-<<<<<<< HEAD
-window.sirvCards = require('./modules/elements/sirv-cards')
-=======
 window.sirvCards = require('./modules/elements/sirv')
->>>>>>> ammar
 
 /** Modals
  * Currency / Cart / Menu / Mail / Quiz / Sign / Menu
@@ -194,14 +187,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Homepage
   new Homepage()
-<<<<<<< HEAD
-})
-
-/** -- Page Elements */
-/** Login
- */
-require('./modules/login')
-=======
 
   // Results
   const resultsMain = document.querySelector('.main_results')
@@ -223,4 +208,3 @@ require('./modules/login')
   // Share Buttons
   // const shareButtons = new ShareButtons()
 })
->>>>>>> ammar
