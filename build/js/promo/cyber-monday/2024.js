@@ -8,7 +8,6 @@ class CyberMonday {
 
   init() {
     this.setupTimer()
-    this.pushConfetti()
     this.setupMatrixBackground()
   }
 
@@ -19,7 +18,7 @@ class CyberMonday {
       hourSelector: '[data-cyber-timer="hours"]',
       minuteSelector: '[data-cyber-timer="minutes"]',
       secondSelector: '[data-cyber-timer="seconds"]',
-      date: '2024-12-16 10:00:00'
+      date: '2024-12-03 10:00:00'
     })
   }
   // Confetti
@@ -109,6 +108,6 @@ class CyberMonday {
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('body.--cyber-monday')
   if (root) {
-    new CyberMonday(root)
+    window.cyberMonday = new CyberMonday(root)
   }
 })
