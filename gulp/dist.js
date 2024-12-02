@@ -56,6 +56,8 @@ const root = {
     html: './src/html/*.html',
     twig: './src/templates/*.twig',
     scss: './src/scss/*.scss',
+    scssPromo: './src/scss/modules/promo/**/*.scss',
+    scssPromoRoot: './src/js/promo',
     adminSCSS: './src/scss/admin/*.scss',
     adminJS: {
       _: './src/js/admin/*.js',
@@ -127,6 +129,7 @@ const root = {
     adminJS: './build/admin/js/',
     adminFonts: './build/admin/fonts/',
     css: './build/css/',
+    cssPromo: './build/css/promo',
     js: './build/js/',
     jsPromo: './build/js/promo',
     jsPlugins: './build/js/plugins/',
@@ -260,6 +263,21 @@ gulp.task('css:build',
       .pipe(groupMedia())
       .pipe(cleanCSS({ compatibility: 'ie8' }))
       .pipe(gulp.dest(root.build.css))
+  }
+)
+
+gulp.task('css-promo:build',
+  () => {
+    return gulp
+      .src(root.src.scssPromo)
+      .pipe(changed(root.build.cssPromo))
+      .pipe(plumber(setPlumberNotify('PROMO SCSS')))
+      .pipe(sourceMaps.init())
+      .pipe(sassGlob())
+      .pipe(sass())
+      // .pipe(groupMedia())
+      .pipe(sourceMaps.write())
+      .pipe(gulp.dest(root.build.cssPromo))
   }
 )
 

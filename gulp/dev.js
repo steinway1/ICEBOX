@@ -54,6 +54,8 @@ const root = {
     _: './src/',
     html: './src/html/*.html',
     scss: './src/scss/*.scss',
+    scssPromo: './src/scss/modules/promo/**/*.scss',
+    scssPromoRoot: './src/js/promo',
     assets: './src/assets/*',
     adminSCSS: './src/scss/admin/*.scss',
     adminJS: {
@@ -129,6 +131,7 @@ const root = {
     adminJSModules: './dev/admin/js/modules',
     adminFonts: './dev/admin/fonts/',
     css: './dev/css/',
+    cssPromo: './dev/css/promo',
     js: './dev/js/',
     jsPromo: './dev/js/promo',
     jsPlugins: './dev/js/plugins/',
@@ -285,6 +288,21 @@ gulp.task('css:dev',
       // .pipe(groupMedia())
       .pipe(sourceMaps.write())
       .pipe(gulp.dest(root.dev.css))
+  }
+)
+
+gulp.task('css-promo:dev',
+  () => {
+    return gulp
+      .src(root.src.scssPromo)
+      .pipe(changed(root.dev.cssPromo))
+      .pipe(plumber(setPlumberNotify('PROMO SCSS')))
+      .pipe(sourceMaps.init())
+      .pipe(sassGlob())
+      .pipe(sass())
+      // .pipe(groupMedia())
+      .pipe(sourceMaps.write())
+      .pipe(gulp.dest(root.dev.cssPromo))
   }
 )
 
@@ -458,7 +476,7 @@ gulp.task('watch:dev',
       gulp.watch('./src/templates/data/**', gulp.parallel('twig:dev', 'twig-admin:dev')),
       gulp.watch('./src/templates/admin/svg/**', gulp.parallel('twig-admin:dev')),
       gulp.watch('./src/templates/admin/assets/**/*', gulp.parallel('assets-admin:dev')),
-      gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev', 'css-admin:dev')),
+      gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev', 'css-admin:dev', 'css-promo:dev')),
       gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js2:dev', 'js-admin:dev', 'js-promo:dev')),
       gulp.watch('./src/js/**/*.ts', gulp.parallel('ts-admin:dev')),
       gulp.watch('./src/assets/**/*', gulp.parallel('assets:dev'))

@@ -1,0 +1,82 @@
+<div
+	class="xmas-banner">
+
+	{# Video #}
+	<div class="xmas-banner__video">
+		<video width="100%" autoplay="" loop="" style="background-image:url(../src/assets/promo/xmas/2024/snowfall-preview.jpg)" muted="" playsinline="">
+			<source src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/snowfall.mp4">
+			<source src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/snowfall.webm">
+		</video>
+	</div>
+
+	{# Main Content #}
+	<div class="xmas-banner__content">
+
+		<div class="xmas-banner__text">
+			<img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/bg-text-mobile.svg" alt="" class="for_mob">
+			<img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/bg-text-desktop.svg" alt="" class="for_desk">
+		</div>
+
+		<div class="xmas-banner__main">
+			<img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/main-img.avif" class="xmas-banner__main-img swing_5">
+			<div class="xmas-banner__img-drop"></div>
+			<div class="xmas-banner__horse c2 horse-2">
+				<img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/horse-1.avif" alt="">
+			</div>
+			<div class="xmas-banner__horse c1 horse-1">
+				<img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/horse-2.avif" alt="">
+			</div>
+		</div>
+
+		{# Over #}
+		<div class="xmas-banner__over">
+			<div class=""></div>
+			<div class="c1"></div>
+			<div class="c2"></div>
+			<div class="c3"></div>
+			<div class="c4"></div>
+		</div>
+
+		{# Side Decor #}
+		<div class="xmas-banner__sides">
+			<div class="xmas-banner__side">
+				<img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/side-1_desktop.avif" alt="">
+				<img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/side-1_mob.avif" alt="" class="for_mob">
+			</div>
+			<div class="xmas-banner__side is-flipped">
+				<img
+				loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/side-2_desktop.avif" alt="" class="flipped">
+			{# <img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/side-2_mob.avif" alt="" class="flipped for_mob"> #}
+			</div>
+		</div>
+
+		{# Balls #}
+		<div class="xmas-banner__balls">
+			<div class="xmas-ball swing_1">
+				<img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/ball-1.avif" alt="">
+			</div>
+			<div class="xmas-ball c2">
+				<img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/ball-2.avif" alt="" class="swing_2">
+			</div>
+			<div class="xmas-ball c3">
+				<img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/ball-3.avif" alt="" class="swing_2">
+			</div>
+			<div class="xmas-ball c4">
+				<img loading="eager" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/ball-4.avif" alt="" class="swing_4">
+			</div>
+		</div>
+	</div>
+
+	{# Ticker #}
+	<div class="xmas-banner__ticker">
+		{% for i in 0..2 %}
+			<div class="xmas-ticker">
+				{% for i in 0..3 %}
+					<span>UP TO 60% OFF!</span>
+					<span>LIMITED OFFERS ONLY!</span>
+				{% endfor %}
+			</div>
+		{% endfor %}
+	</div>
+
+</div>

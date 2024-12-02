@@ -1,9 +1,14 @@
 <a href="/" class="header-logo">
-	{% if main_logo is defined %}
-		<img src="{{ main_logo }}" loading="eager" alt="Icebox ">
+	{% if xmas %}
+		<img src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/logo.avif" loading="eager" alt="Icebox ">
 	{% else %}
-		<img src="{{THEME_ASSETS_FOLDER}}/assets/logo.svg" loading="eager" alt="Icebox ">
+		{% if main_logo is defined %}
+			<img src="{{ main_logo }}" loading="eager" alt="Icebox ">
+		{% else %}
+			<img src="{{THEME_ASSETS_FOLDER}}/assets/logo.svg" loading="eager" alt="Icebox ">
+		{% endif %}
 	{% endif %}
+
 </a>
 
 <div class="header-nav__group">
@@ -25,9 +30,9 @@
 		</a>
 	{% endif %}
 	{# <a href="/sale" class="vday-nav-link --sale">
-			<img src="{{THEME_ASSETS_FOLDER}}sample_earrings.webp" loading="eager" alt="">
-			<span>Sale</span>
-		</a> #}
+					<img src="{{THEME_ASSETS_FOLDER}}sample_earrings.webp" loading="eager" alt="">
+					<span>Sale</span>
+				</a> #}
 </div>
 
 <div class="header-nav__group">
