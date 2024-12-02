@@ -8,7 +8,7 @@
 	{% set classes = classes|merge(['--black-friday']) %}
 {% endif %}
 
-{% if cyber_monday %}
+{% if cyber_monday or cyber_week %}
 	{% set classes = classes|merge(['--cm']) %}
 {% endif %}
 
@@ -40,7 +40,7 @@
 				</div>
 			{% endif %}
 
-			{% if cyber_monday %}
+			{% if cyber_monday or cyber_week %}
 				<div class="cm-badge">
 					<span data-text="{{productItem.discountRate}}%" class="glitch is-glitching">{{productItem.discountRate}}%</span>
 					<span data-text="OFF" class="glitch is-glitching">OFF</span>
@@ -78,7 +78,7 @@
 
 				{% if (productItem.inStock or productItem.force_sale) and productItem.is_discounted %}
 
-					{% if global_sales and black_friday == false and cyber_monday == false and xmas == false and new_year == false %}
+					{% if global_sales and black_friday == false and cyber_monday == false and cyber_week == false and xmas == false and new_year == false %}
 						<span class="product-card__sale-badge discount_{{productItem.discountRate}}"></span>
 					{% endif %}
 
@@ -103,7 +103,7 @@
 				<div class="ccb-btn --min --black-friday">Only one at this price!</div>
 			{% endif %}
 
-			{% if cyber_monday %}
+			{% if (cyber_monday or cyber_week) %}
 				<div class="ccb-btn --min --cm">
 					<span data-text="ONLY FEW LEFT">ONLY ONE AT THIS PRICE</span>
 				</div>

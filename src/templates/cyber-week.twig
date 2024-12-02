@@ -1,0 +1,18 @@
+{% set cyber_week = true %}
+{% set pageBanner = false %}
+{% set mainClass = 'cyber_week cyber_monday main_results' %}
+
+{% extends 'layouts/default.twig' %}
+
+{% block include_head %}
+	{# Styles / preload scripts / etc... #}
+{% endblock %}
+
+{% block content %}
+	{% include "./page-content/cyber-week.twig" %}
+{% endblock %}
+
+{% block include_script %}
+	<script src="./js/promo-min.js"></script>
+	{# Scripts / etc... #}
+{% endblock %}
