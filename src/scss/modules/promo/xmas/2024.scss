@@ -1,0 +1,1121 @@
+@import '../mixin.scss';
+
+body.--xmas {
+  .top-banner {
+    display: none;
+  }
+
+  .product-card__shipping-tag {
+    display: none !important;
+  }
+
+  .product-card__colors {
+    display: none !important;
+  }
+
+  // .product-card__sale-price {
+  //   color: #cb0c1e !important;
+  // }
+
+  // .product-card__price {
+  //   font-size: 15px !important;
+  // }
+<<<<<<< HEAD
+
+  .main_product {
+    .xmas-banner__ticker {
+      height: 38px;
+      font-size: 10px;
+    }
+
+    .xmas-ticker {
+      animation-duration: 58s;
+    }
+
+    .xmas-timer__wrapper {
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+
+  .buy-btn {
+    background-image: linear-gradient(45deg, var(--black) 40%, rgba(237, 49, 74, 0.85));
+  }
+=======
+>>>>>>> 5f15c58b6ae73f2f491f51811613a1eefba264e1
+}
+
+.xmas-top-banner {
+  color: #fff;
+  background-color: #db203a;
+  background-image: linear-gradient(75deg, #b40a2e, #ed314b);
+  // background-image: linear-gradient(75deg, #b40a0a, #ed314b);
+  // background-image: linear-gradient(90deg, #9d2423, #ed314b);
+  justify-content: flex-end;
+  align-items: center;
+  width: 100vw;
+  padding-right: 22px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  line-height: 18px;
+
+  // &>div {
+  //   position: relative;
+  //   z-index: 2;
+  // }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #ffe8e8 25%, #ed314b 25%, #ed314b 50%, #ffe8e8 50%, #ffe8e8 75%, #ed314b 75%, #ed314b 100%);
+    background-size: 6px 6px;
+    opacity: .1;
+    animation: xmasDash 0.75s linear infinite;
+  }
+}
+
+@keyframes xmasDash {
+  to {
+    background-position: 12px 0;
+  }
+}
+
+.xmas-top-banner__timer {
+  z-index: 2;
+  text-align: right;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 4px;
+  padding-bottom: 2px;
+  display: flex;
+  position: relative;
+  font-family: Oscan, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-transform: uppercase;
+
+  h4 {
+    text-transform: uppercase;
+    font-size: 8px;
+    font-weight: 600;
+    line-height: 12px;
+    color: #ffeeca;
+  }
+
+  &>div {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+
+    &>div {
+      font-size: 12px;
+
+      &>span {
+        &:last-child {
+          opacity: .75;
+          font-size: 8px;
+        }
+      }
+    }
+  }
+}
+
+.xmas-top-banner__pic-wrap {
+  z-index: 2;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  transition: all .2s;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+
+  &:hover {
+    opacity: .5;
+  }
+
+  img {
+    height: 52px;
+
+    @include maxWidthXs {
+      flex: none;
+      width: 220px;
+      height: 36px;
+      margin-left: -48px;
+    }
+  }
+}
+
+@media screen and (max-width: 479px) {
+
+  .xmas-top-banner__timer {
+    flex: none;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .xmas-top-banner {
+    justify-content: space-between;
+    align-items: stretch;
+    padding-right: 12px;
+  }
+
+  .xmas-top-banner__pic-wrap {
+    padding-left: 12px;
+    position: static;
+    left: auto;
+    transform: none;
+  }
+}
+
+/* #region Banner */
+.xmas-ball {
+  width: 12vw;
+  height: 12vw;
+  position: absolute;
+  top: 20%;
+  left: 6%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+.xmas-ball.c4 {
+  width: 13vw;
+  max-width: 102px;
+  height: 13vw;
+  max-height: 102px;
+  inset: 0% 16% auto auto;
+}
+
+.xmas-ball.c3 {
+  justify-content: center;
+  align-items: center;
+  width: 11vw;
+  max-width: 106px;
+  height: 11vw;
+  max-height: 106px;
+  display: flex;
+  top: auto;
+  bottom: -2vw;
+  left: 45%;
+  transform: translate(-50%);
+}
+
+.xmas-ball.swing_1 {
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.xmas-ball.c2 {
+  width: 7vw;
+  max-width: 68px;
+  height: 7vw;
+  max-height: 68px;
+  top: auto;
+  bottom: -2vw;
+  left: 20%;
+  transform: translate(-50%);
+}
+
+.xmas-banner__sides {
+  z-index: 2;
+  pointer-events: none;
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  inset: 0%;
+}
+
+.xmas-ticker {
+  color: #fff;
+  text-transform: uppercase;
+  flex: none;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+
+  span {
+    font-family: Oscan, ProximaNova, sans-serif;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::after {
+      content: '•';
+      font-size: 26px;
+      padding: 0 20px;
+      color: white !important;
+    }
+
+    &:nth-of-type(2n) {
+      color: #ffe5a9;
+    }
+  }
+}
+
+.xmas-banner__side {
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 100%;
+  display: flex;
+
+  img {
+    height: 95%;
+    margin-bottom: -10%;
+    margin-left: -10%;
+
+    &.for_mob {
+      width: 30vw;
+      height: auto;
+      display: none;
+    }
+
+    &.flipped {
+      margin: -10% -10% auto auto;
+      transform: rotate(180deg);
+    }
+
+    @media screen and (min-width: 1440px) {
+      &.for_mob {
+        width: 25vw;
+      }
+    }
+
+    @include maxWidthXs {
+      display: none;
+
+      &.for_mob {
+        width: 60vw;
+        margin-left: 0;
+        display: block;
+      }
+    }
+  }
+}
+
+.xmas-banner__side.is-flipped {
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.xmas-banner__horse {
+  z-index: 4;
+  width: 180px;
+  position: absolute;
+  bottom: 0%;
+  left: 60%;
+
+  img {
+    display: block;
+  }
+}
+
+.xmas-banner__horse.c2 {
+  width: 140px;
+  left: 30%;
+}
+
+.xmas-banner__horse.c2.horse-2 {
+  perspective-origin: 100% 100%;
+}
+
+.xmas-banner__horse.c1.horse-1 {
+  perspective-origin: 40% 100%;
+  transition: all .6s;
+  transform: translate(0)rotate(0);
+}
+
+.xmas-banner__ticker {
+  background-color: #df2e44;
+  border-top: 1px solid #f9e8a5;
+  width: 100vw;
+  height: 46px;
+  display: flex;
+  overflow: hidden;
+}
+
+.xmas-banner {
+  flex-flow: column;
+  width: 100vw;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.xmas-banner__content {
+  background-image: radial-gradient(circle, #ee1d4f, #550014);
+  width: 100vw;
+  height: 420px;
+  position: relative;
+  overflow: hidden;
+}
+
+.xmas-banner__video {
+  z-index: 10;
+  filter: blur(1px);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0%;
+
+  video {
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+.xmas-banner__over {
+  &>div {
+    z-index: 12;
+    opacity: .35;
+    background-image: radial-gradient(circle farthest-side, #ffd644, #ffd64400);
+    // background-image: radial-gradient(circle farthest-side, #ff9244, #ffd64400);
+    border-radius: 500rem;
+    width: 40vw;
+    height: 40vw;
+    position: absolute;
+    top: -50%;
+    right: 10%;
+
+    &.c1 {
+      inset: auto auto -50% 10%;
+    }
+
+    &.c2 {
+      width: 60vw;
+      height: 60vw;
+      inset: auto auto auto -30%;
+    }
+
+    &.c3 {
+      width: 60vw;
+      height: 60vw;
+      inset: auto -30% auto auto;
+    }
+
+    &.c4 {
+      opacity: .2;
+      width: 60vw;
+      height: 60vw;
+      inset: auto;
+    }
+
+    @include maxWidthXs {
+      width: 180vw;
+      height: 180vw;
+      inset: -90vw -60vw auto auto;
+
+      &.c3,
+      &.c4 {
+        display: none;
+      }
+
+      &.c1 {
+        bottom: -90vw;
+        left: -60vw;
+      }
+
+      &.c2 {
+        display: none;
+      }
+    }
+  }
+}
+
+.xmas-banner__img-drop {
+  z-index: 1;
+  opacity: .7;
+  background-image: radial-gradient(circle farthest-side, #58000d, #0000);
+  width: 50vw;
+  height: 50vw;
+  position: absolute;
+}
+
+.xmas-banner__main {
+  z-index: 4;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+.xmas-banner__main-img {
+  transform-origin: 50%;
+  height: 150%;
+  margin-top: -5%;
+}
+
+.xmas-banner__main-img.swing_5 {
+  z-index: 2;
+  max-width: none;
+  height: 150%;
+  margin-top: -7%;
+  margin-right: -3%;
+  position: relative;
+}
+
+.xmas-banner__text {
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  inset: 0%;
+
+  img {
+    opacity: .1;
+    width: 92%;
+
+    &.for_desk {
+      width: 80%;
+      display: block;
+
+      @include maxWidthSm {
+        display: none;
+      }
+    }
+
+    &.for_mob {
+      display: none;
+
+      @include maxWidthSm {
+        display: block;
+        width: auto;
+        height: 90%;
+      }
+
+      @include maxWidthXs {
+        width: 95%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.xmas-banner__over {
+  z-index: 7;
+  opacity: .6;
+  pointer-events: none;
+  transform-origin: 50%;
+  mix-blend-mode: hard-light;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s cubic-bezier(.39, .575, .565, 1);
+  display: flex;
+  position: absolute;
+  inset: 0%;
+  transform: scale(1);
+}
+
+.xmas-banner__balls {
+  z-index: 5;
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  inset: 0%;
+}
+
+@media screen and (min-width: 1440px) {
+
+  .xmas-banner__main-img {
+    width: 880px;
+  }
+
+  .xmas-banner__main-img.swing_5 {
+    width: auto;
+    height: 165%;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .xmas-banner__main-img.swing_5 {
+    height: 200%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .xmas-banner__main-img.swing_5 {
+    height: 130%;
+    margin-top: -10%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .xmas-banner__main {
+    padding-top: 38px;
+    padding-bottom: 38px;
+  }
+
+  .xmas-banner__main-img {
+    width: 80%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: -4vw;
+  }
+
+  .xmas-banner__main-img.swing_5 {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .xmas-ball {
+    width: 28vw;
+    height: 28vw;
+    top: 2%;
+  }
+
+  .xmas-ball.c4 {
+    display: none;
+  }
+
+  .xmas-ball.c3 {
+    width: 18vw;
+    height: 18vw;
+    bottom: 8%;
+    left: auto;
+    right: 8%;
+  }
+
+  .xmas-ball.swing_1 {
+    max-width: 70px;
+    max-height: 70px;
+    left: auto;
+    right: 8%;
+  }
+
+  .xmas-ball.c2 {
+    width: 9vw;
+    height: 9vw;
+    bottom: 5%;
+    left: 20%;
+  }
+
+  .xmas-banner__sides {
+    flex-flow: column;
+  }
+
+  .xmas-banner__side {
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+  }
+
+  .xmas-banner__side.is-flipped {
+    justify-content: flex-end;
+    align-items: flex-end;
+    display: none;
+  }
+
+  .xmas-banner__horse.c2 {
+    width: 40vw;
+    left: 6vw;
+  }
+
+  .xmas-banner__horse.c1 {
+    width: 45vw;
+    left: auto;
+    right: 4%;
+  }
+
+  .xmas-banner__content {
+    aspect-ratio: 2 / 2.1;
+    height: auto;
+  }
+
+  .xmas-banner__video {
+    width: 200%;
+    margin-left: 50%;
+    transform: translate(-50%);
+  }
+
+  .xmas-banner__main-img {
+    width: 1200px;
+    max-width: 1200px;
+  }
+
+  .xmas-banner__main-img.swing_5 {
+    flex: none;
+    width: 135%;
+    height: auto;
+    margin-top: -24vw;
+    margin-right: -6vw;
+  }
+}
+
+/* #endregion */
+
+.swing_1 {
+  animation: swing_1 2s ease-in-out infinite;
+}
+
+@keyframes swing_1 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(8deg);
+  }
+}
+
+.swing_2 {
+  animation: swing_2 2s ease-in-out infinite;
+}
+
+@keyframes swing_2 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-24px) rotate(-16deg);
+  }
+}
+
+.swing_3 {
+  animation: swing_3 2s ease-in-out infinite;
+}
+
+@keyframes swing_3 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-16px) rotate(12deg);
+  }
+}
+
+.swing_4 {
+  animation: swing_4 2s ease-in-out infinite;
+}
+
+@keyframes swing_4 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(14px) rotate(-10deg);
+  }
+}
+
+.swing_5 {
+  animation: swing_5 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes swing_5 {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  20% {
+    transform: translateY(0px) rotate(6deg);
+  }
+
+  40% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+
+  60% {
+    transform: translateY(0px) rotate(2deg);
+  }
+
+  80% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes line_tape {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.xmas-banner__over {
+  animation: chrisBannerOver 4s ease-in-out infinite;
+}
+
+@keyframes chrisBannerOver {
+
+  0%,
+  100% {
+    opacity: 45%;
+  }
+
+  50% {
+    opacity: 70%;
+  }
+}
+
+.horse-1 {
+  animation: horse-1 2.8s ease-in-out infinite;
+}
+
+@keyframes horse-1 {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+
+.horse-2 {
+  animation: horse-2 2.8s ease-in-out infinite;
+}
+
+@keyframes horse-2 {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+.xmas-ticker {
+  animation: xmas-ticker 27s linear infinite;
+}
+
+// @media screen and (max-width: 479px) {
+//   .xmas-ticker {
+//     animation: xmas-ticker 14s linear infinite;
+//   }
+// }
+
+@keyframes xmas-ticker {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+
+.candy-text {
+  position: relative;
+  border-radius: .4rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 2px;
+  display: flex;
+  overflow: hidden;
+<<<<<<< HEAD
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(135deg, red 25%, #ffc2c6 25%, #ffc2c6 50%, red 50%, red 75%, #ffc2c6 75%, #ffc2c6 100%);
+    background-size: 20px 20px;
+    animation: candy-stripe 2.4s linear infinite;
+  }
+=======
+>>>>>>> 5f15c58b6ae73f2f491f51811613a1eefba264e1
+
+  span {
+    color: #ec0408;
+    text-align: center;
+    background-color: #fff;
+    border-radius: .35rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+<<<<<<< HEAD
+    position: relative;
+    z-index: 1;
+=======
+>>>>>>> 5f15c58b6ae73f2f491f51811613a1eefba264e1
+
+    @include maxWidthXs {
+      padding-top: 2px;
+      padding-bottom: 2px;
+      font-size: 2.8vw;
+      font-weight: 800;
+    }
+  }
+}
+
+<<<<<<< HEAD
+=======
+.candy-text::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(135deg, red 25%, #ffc2c6 25%, #ffc2c6 50%, red 50%, red 75%, #ffc2c6 75%, #ffc2c6 100%);
+  background-size: 20px 20px;
+  z-index: -1;
+  animation: candy-stripe 2.4s linear infinite;
+}
+
+>>>>>>> 5f15c58b6ae73f2f491f51811613a1eefba264e1
+@keyframes candy-stripe {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 40px 0;
+  }
+}
+
+@font-face {
+  font-family: 'Oscan';
+  src: url('../fonts/Oscan.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oscan';
+  src: url('../fonts/Oscan-Outline.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+.xmas-timer {
+  font-family: Oscan, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding-bottom: 10px;
+}
+
+.xmas-timer__wrapper {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 16px;
+  display: flex;
+}
+
+.xmas-timer__col {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  @include maxWidthXs {
+    gap: 3px;
+  }
+}
+
+.xmas-timer__pic {
+  width: 120px;
+}
+
+.xmas-timer__time {
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  padding-top: 12px;
+  display: flex;
+
+  @include maxWidthXs {
+    gap: 16px;
+  }
+}
+
+.xmas-timer__sub-typo {
+  opacity: .4;
+  font-size: 10px;
+
+  @include maxWidthXs {
+    font-size: 9px;
+  }
+}
+
+.xmas-timer__typo {
+  font-size: 24px;
+
+  @include maxWidthXs {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .xmas-timer__wrapper {
+    flex-flow: column;
+  }
+
+  .xmas-timer__pic.swing_5 {
+    width: 160px;
+  }
+}
+
+.xmas-card-over {
+  z-index: 2;
+  position: absolute;
+  inset: 0% 0% auto;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+
+  img {
+    width: 100%;
+    display: block;
+    transform: translate(0, -30%) rotate(180deg);
+
+    @include maxWidthXs {
+      transform: translate(0, -15%) rotate(180deg);
+    }
+  }
+}
+
+.xmas-badge {
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: 8px;
+  left: 0;
+
+  img {
+    width: 56px;
+  }
+
+  &>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    color: #fff;
+    margin-bottom: -4px;
+    margin-left: -6px;
+    font-family: Bebas Neue, sans-serif;
+    font-size: 20px;
+    position: absolute;
+    font-weight: 500;
+    line-height: 17px;
+
+    span {
+      &:first-child {
+        opacity: .7;
+        font-size: 13px;
+      }
+
+      &:last-child {
+        font-size: 22px;
+      }
+    }
+  }
+<<<<<<< HEAD
+}
+
+.xmas-float-badge {
+  position: absolute;
+  z-index: 2;
+  inset: 6px auto auto 6px;
+  color: #fff;
+  background-image: linear-gradient(75deg, #b40a2e, #ed314b);
+  border-top-left-radius: .35rem;
+  border-bottom-right-radius: .35rem;
+  padding: 6px 12px 5px;
+  font-family: Oscan, sans-serif;
+  font-size: 13px;
+  display: flex;
+  gap: 6px;
+  overflow: hidden;
+
+  &.--inline {
+    inset: -2px auto auto auto;
+    font-family: ProximaNova, sans-serif;
+    font-weight: 800;
+    font-size: 12px !important;
+    position: relative;
+    height: auto !important;
+    line-height: 22px !important;
+    display: inline-flex;
+    inset: -2px auto auto auto !important;
+    border-radius: .4rem !important;
+    padding: 2px 6px;
+  }
+
+  &::after {
+    content: '';
+    z-index: 2;
+    opacity: .25;
+    background-image: linear-gradient(90deg, #fff0, #ffeef2bf 40%, #ffeef2 50%, #ffeef2bf 60%, #fff0);
+    width: 30%;
+    height: 98px;
+    transition: all .8s cubic-bezier(.39, .575, .565, 1);
+    position: absolute;
+    left: -68px;
+    transform: skew(25deg);
+    animation: saleBlink 2.8s ease-in-out infinite;
+  }
+
+  @include maxWidthXs {
+    padding: 4px 8px 3px;
+    font-size: 10px;
+  }
+}
+
+@keyframes saleBlink {
+
+  0%,
+  100% {
+    left: -68px;
+  }
+
+  50% {
+    left: 100%;
+  }
+=======
+>>>>>>> 5f15c58b6ae73f2f491f51811613a1eefba264e1
+}

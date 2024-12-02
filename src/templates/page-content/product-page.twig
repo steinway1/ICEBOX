@@ -1,8 +1,21 @@
 {% include 'elements/product-page/general-js-vars.twig' %}
-<div
-	class="product__main">
+<div class="product__main">
 
-	{# Ticker Black Friday#}
+	{% if xmas and product.item.discountRate is defined %}
+		<div class="xmas-banner__ticker">
+			{% for i in 0..2 %}
+				<div class="xmas-ticker">
+					{% for i in 0..3 %}
+						<span>UP TO 60% OFF!</span>
+						<span>LIMITED OFFERS ONLY!</span>
+					{% endfor %}
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+
+	{# Ticker Black Friday #}
 	{% if black_friday and product.item.discountRate is defined %}
 		<div class="black-banner__ticker-row --static">
 			{% for i in 0..4 %}

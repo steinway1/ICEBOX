@@ -12,6 +12,10 @@
 	{% set classes = classes|merge(['--cm']) %}
 {% endif %}
 
+{% if xmas %}
+	{% set classes = classes|merge(['--xmas']) %}
+{% endif %}
+
 {% if splideClass is defined %}
 	{% set classes = classes|merge(['splide__slide']) %}
 {% endif %}
@@ -46,6 +50,20 @@
 					<span data-text="OFF" class="glitch is-glitching">OFF</span>
 				</div>
 			{% endif %}
+
+			{% if xmas %}
+				<div class="xmas-card-over">
+					<img src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/snow.avif" alt="">
+				</div>
+				<div class="xmas-badge">
+					<img src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/badge.avif" class="xmas-badge__img" alt="">
+					<div>
+						<span>SALE</span>
+						<span>{{productItem.discountRate}}%</span>
+					</div>
+				</div>
+			{% endif %}
+
 
 			<div class="product-card__media">
 				<a href="{{productItem.href}}">
@@ -103,6 +121,7 @@
 				<div class="ccb-btn --min --black-friday">Only one at this price!</div>
 			{% endif %}
 
+
 			{% if (cyber_monday or cyber_week) %}
 				<div class="ccb-btn --min --cm">
 					<span data-text="ONLY FEW LEFT">ONLY ONE AT THIS PRICE</span>
@@ -111,6 +130,12 @@
 
 
 			<div class="product-card__details">
+				{% if xmas %}
+					<div class="candy-text">
+						<span>Only One At This Price!</span>
+					</div>
+				{% endif %}
+
 				<div class="product-card__title-wrap">
 					{% if productItem.details %}
 						<span class="product-card__sub-detail">{{productItem.details}}
