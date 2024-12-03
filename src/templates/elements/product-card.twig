@@ -104,9 +104,14 @@
 				<!-- #endregion -->
 
 				{# Play button #}
-				{% if productItem.video == true %}
+				{% if productItem.video == true and productItem.no_photo is not defined %}
 					<button class="product-card__play-btn"></button>
 				{% endif %}
+				{% if productItem.no_photo and productItem.video %}
+					<div class="product-card__empty"></div>
+					<button class="product-card__play-btn --inline"></button>
+				{% endif %}
+
 			</div>
 
 			{% if  (productItem.inStock or productItem.force_sale) and productItem.is_discounted and productItem.is_gold_chain == false and global_sales %}
