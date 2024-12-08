@@ -39,6 +39,16 @@
 			{% if sale_page is not defined %}
 				{% include "elements/results/results-bar.twig" %}
 			{% endif %}
+			{% if category.is_watches %}
+				<div class="results__sub-bar">
+					<div class="wrapper">
+						<label class="custom-checkbox --raw">
+							<input type="checkbox" value="with_price_only">
+							<span>Hide items w/o price</span>
+						</label>
+					</div>
+				</div>
+			{% endif %}
 			<div class="results-cards-content">
 				<div class="wrapper">
 					<div class="results__main-wrapper">
