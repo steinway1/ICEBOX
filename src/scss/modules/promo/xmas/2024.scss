@@ -1091,3 +1091,27 @@ body.--xmas {
     left: 100%;
   }
 }
+
+.menu__item.--xmas {
+  background-color: #df2e44;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 6px;
+  background-image: linear-gradient(75deg, #b40a2e, #ed314b);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #ffe8e8 25%, #ed314b 25%, #ed314b 50%, #ffe8e8 50%, #ffe8e8 75%, #ed314b 75%, #ed314b 100%);
+    background-size: 6px 6px;
+    opacity: 0.05;
+    animation: xmasDash 0.75s linear infinite;
+  }
+
+  img {
+    margin-left: -4px;
+    position: relative;
+    z-index: 3;
+  }
+}
