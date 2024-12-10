@@ -13,6 +13,8 @@
 	{% set lower_msrp = msrp|number_format(0) > watch_price|number_format(0) %}
 {% endif %}
 
+{% include 'elements/product-page/stock-availability.twig'  %}
+
 {# Not sold and not call for price #}
 {% if not sold and not call_for_price %}
 	<div

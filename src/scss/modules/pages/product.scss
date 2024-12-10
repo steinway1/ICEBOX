@@ -334,7 +334,6 @@
 .side-row__ship-line {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 2px;
 }
 
@@ -1279,6 +1278,7 @@
 }
 
 .side-row__line_price {
+  position: relative;
   border: 1px solid #e0e5ee;
   border-radius: .9rem;
   flex-flow: column;
@@ -1286,6 +1286,8 @@
   padding: 18px;
   gap: 14px;
   display: flex;
+  background-color: white;
+  z-index: 3;
 
   &.--out {
     padding: 0;
@@ -3824,6 +3826,8 @@
 
 .side-row__margin-row {
   margin: 28px 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .side-row__border-row {
@@ -4651,26 +4655,28 @@
   justify-content: center;
   align-items: center;
   gap: 6px;
-  padding: 9px 14px;
+  padding: 9px 8px 26px 8px;
   background-color: #f7f8fa;
-  border-radius: 0.7rem;
-  width: 100%;
+  border-radius: 0.8rem 0.8rem 0 0;
   font-weight: 600;
   font-size: 13px;
+  line-height: 18px;
   text-align: center;
+  margin: 0 12px -18px 12px;
 
   &.in_stock_msg {
-    color: #00ac9e;
+    background-color: #00ac9e;
+    color: white;
     font-weight: 700;
     // background-color: rgba(0, 172, 158, 0.07);
-    background-color: white;
-    border: 1px solid #00ac9e;
-    font-size: 15px;
-    padding: 7px 14px;
+    // background-color: white;
+    // border: 1px solid #00ac9e;
+  }
 
-    @include maxWidthXs {
-      width: 100%;
-    }
+  @include maxWidthXs {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
