@@ -589,88 +589,120 @@ form button {
 
 .content-preloader {
   width: 100%;
-  height: 74px;
   justify-content: center;
   align-items: center;
-  margin: 48px 0;
+  margin: 24px 0;
   display: flex;
   position: relative;
   pointer-events: none;
 
   span {
-    position: relative;
-    margin: auto;
-    box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0);
-    -webkit-animation: preloaderSpinner 1s linear infinite;
-    animation: preloaderSpinner 1s linear infinite;
     display: block;
-    padding: 0;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    box-sizing: border-box;
-    -webkit-backface-visibility: none;
-    backface-visibility: none;
-
-    &::after,
-    &::before {
-      content: "";
-      position: absolute;
-      margin: 0;
-      border: 2px solid transparent;
-      left: 0;
-      top: 0;
-      display: block;
-      padding: 0;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      box-sizing: border-box;
-      -webkit-backface-visibility: none;
-      backface-visibility: none;
-    }
-
-    &::after {
-      border-right-color: #131317;
-      -webkit-animation: preloaderSpinner 2s linear 0.6s infinite;
-      animation: preloaderSpinner 2s linear 0.6s infinite;
-    }
+    width: fit-content;
+    padding: 0 0px 12px 0px;
+    overflow: hidden;
+    font-weight: 600;
+    color: #0000;
+    text-shadow: 0 0 0 #5aa9c4,21ch 0 0 #5aa9c4;
+    background: linear-gradient(#0095c6 0 0) bottom left/0% 1.5px no-repeat;
+    animation: cardsPreloaderText 0.9s ease infinite;
+    transition: all 0.9s ease;
 
     &::before {
-      border-top-color: #131317;
-      -webkit-animation: preloaderSpinner 2s linear infinite;
-      animation: preloaderSpinner 2s linear infinite;
+      content: "Loading more cards...";
     }
   }
 }
 
-@-webkit-keyframes preloaderSpinner {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  30% {
-    transform: rotate(180deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+@keyframes cardsPreloaderText {
+  80%  {text-shadow:    0  0 0 #01779e,21ch 0 0 #01779e;background-size:100% 1.5px}
+  100% {text-shadow: -21ch 0 0 #01779e,0    0 0 #01779e}
 }
 
-@keyframes preloaderSpinner {
-  0% {
-    transform: rotate(0deg);
-  }
+// .content-preloader {
+//   width: 100%;
+//   // height: 74px;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 24px 0;
+//   display: flex;
+//   position: relative;
+//   pointer-events: none;
 
-  30% {
-    transform: rotate(180deg);
-  }
+//   span {
+//     position: relative;
+//     margin: auto;
+//     box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0);
+//     -webkit-animation: preloaderSpinner 1s linear infinite;
+//     animation: preloaderSpinner 1s linear infinite;
+//     display: block;
+//     padding: 0;
+//     width: 24px;
+//     height: 24px;
+//     border-radius: 50%;
+//     box-sizing: border-box;
+//     -webkit-backface-visibility: none;
+//     backface-visibility: none;
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
+//     &::after,
+//     &::before {
+//       content: "";
+//       position: absolute;
+//       margin: 0;
+//       border: 2px solid transparent;
+//       left: 0;
+//       top: 0;
+//       display: block;
+//       padding: 0;
+//       width: 24px;
+//       height: 24px;
+//       border-radius: 50%;
+//       box-sizing: border-box;
+//       -webkit-backface-visibility: none;
+//       backface-visibility: none;
+//     }
+
+//     &::after {
+//       border-right-color: #131317;
+//       -webkit-animation: preloaderSpinner 2s linear 0.6s infinite;
+//       animation: preloaderSpinner 2s linear 0.6s infinite;
+//     }
+
+//     &::before {
+//       border-top-color: #131317;
+//       -webkit-animation: preloaderSpinner 2s linear infinite;
+//       animation: preloaderSpinner 2s linear infinite;
+//     }
+//   }
+// }
+
+// @-webkit-keyframes preloaderSpinner {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+
+//   30% {
+//     transform: rotate(180deg);
+//   }
+
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
+
+// @keyframes preloaderSpinner {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+
+//   30% {
+//     transform: rotate(180deg);
+//   }
+
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
 
 .unedited_tag {
   position: absolute !important;
@@ -3066,7 +3098,7 @@ input.custom-range__output {
   &:nth-child(2n) {
     border-right: none;
   }
-  
+
   &:nth-last-child(-n+2) {
     border-bottom: none;
   }
@@ -3096,7 +3128,7 @@ input.custom-range__output {
 
   &.--wa {
     &::before {
-          background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M0.060318 47.5867L3.40682 35.3678C1.34282 31.792 0.256912 27.7351 0.258236 23.5793C0.263526 10.5776 10.8442 0 23.8463 0C30.1559 0.00307765 36.078 2.45852 40.532 6.91567C44.9848 11.3728 47.4367 17.2971 47.4345 23.5983C47.4287 36.5991 36.8462 47.1785 23.8463 47.1785C23.8454 47.1785 23.8473 47.1785 23.8463 47.1785H23.8362C19.8889 47.1769 16.01 46.1867 12.5645 44.3078L0.060318 47.5867Z" fill="%233BB247"/><path d="M23.8539 3.98309C13.0395 3.98309 4.2449 12.7745 4.24092 23.5805C4.23932 27.2836 5.27563 30.8903 7.23803 34.011L7.70455 34.7524L5.72349 41.9843L13.1438 40.0387L13.8603 40.4633C16.8697 42.2495 20.32 43.1939 23.8388 43.1957H23.8463C34.6523 43.1957 43.4469 34.4033 43.4513 23.5964C43.4533 18.3595 41.4161 13.435 37.7144 9.73063C34.0127 6.02628 29.0908 3.9853 23.8539 3.98309Z" fill="url(%23paint0_linear_147648_1354)"/><path fill-rule="evenodd" clip-rule="evenodd" d="M17.9512 13.7213C17.5094 12.7401 17.0447 12.7203 16.625 12.703C16.2813 12.6885 15.8881 12.6893 15.4954 12.6893C15.1022 12.6893 14.4638 12.8369 13.9239 13.4267C13.3836 14.0165 11.8608 15.4421 11.8608 18.342C11.8608 21.2418 13.973 24.0436 14.2672 24.4372C14.5619 24.8304 18.3444 30.9712 24.3354 33.3334C29.3139 35.2967 30.3269 34.9062 31.4079 34.8081C32.4885 34.71 34.8949 33.3825 35.3857 32.0063C35.877 30.6302 35.877 29.451 35.7299 29.2045C35.5823 28.9584 35.1896 28.8113 34.5998 28.5167C34.0105 28.222 31.1128 26.7959 30.5725 26.5993C30.0322 26.4027 29.6395 26.3047 29.2463 26.8944C28.8535 27.4842 27.7248 28.8113 27.3806 29.2045C27.0369 29.5981 26.6932 29.6472 26.1034 29.3525C25.5141 29.057 23.6158 28.4354 21.364 26.4275C19.6119 24.8653 18.4292 22.9361 18.0851 22.3463C17.7414 21.7565 18.0484 21.4375 18.344 21.1437C18.6086 20.8796 18.9333 20.4554 19.2284 20.1113C19.5222 19.7671 19.6207 19.5215 19.8169 19.1288C20.0135 18.7351 19.9154 18.391 19.7678 18.0963C19.6207 17.8017 18.4752 14.8868 17.9512 13.7213" fill="white"/><defs><linearGradient id="paint0_linear_147648_1354" x1="23.447" y1="6.33627" x2="23.6459" y2="39.8457" gradientUnits="userSpaceOnUse"><stop stop-color="%233BB247"/><stop offset="1" stop-color="%233BB247"/></linearGradient></defs></svg>');
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M0.060318 47.5867L3.40682 35.3678C1.34282 31.792 0.256912 27.7351 0.258236 23.5793C0.263526 10.5776 10.8442 0 23.8463 0C30.1559 0.00307765 36.078 2.45852 40.532 6.91567C44.9848 11.3728 47.4367 17.2971 47.4345 23.5983C47.4287 36.5991 36.8462 47.1785 23.8463 47.1785C23.8454 47.1785 23.8473 47.1785 23.8463 47.1785H23.8362C19.8889 47.1769 16.01 46.1867 12.5645 44.3078L0.060318 47.5867Z" fill="%233BB247"/><path d="M23.8539 3.98309C13.0395 3.98309 4.2449 12.7745 4.24092 23.5805C4.23932 27.2836 5.27563 30.8903 7.23803 34.011L7.70455 34.7524L5.72349 41.9843L13.1438 40.0387L13.8603 40.4633C16.8697 42.2495 20.32 43.1939 23.8388 43.1957H23.8463C34.6523 43.1957 43.4469 34.4033 43.4513 23.5964C43.4533 18.3595 41.4161 13.435 37.7144 9.73063C34.0127 6.02628 29.0908 3.9853 23.8539 3.98309Z" fill="url(%23paint0_linear_147648_1354)"/><path fill-rule="evenodd" clip-rule="evenodd" d="M17.9512 13.7213C17.5094 12.7401 17.0447 12.7203 16.625 12.703C16.2813 12.6885 15.8881 12.6893 15.4954 12.6893C15.1022 12.6893 14.4638 12.8369 13.9239 13.4267C13.3836 14.0165 11.8608 15.4421 11.8608 18.342C11.8608 21.2418 13.973 24.0436 14.2672 24.4372C14.5619 24.8304 18.3444 30.9712 24.3354 33.3334C29.3139 35.2967 30.3269 34.9062 31.4079 34.8081C32.4885 34.71 34.8949 33.3825 35.3857 32.0063C35.877 30.6302 35.877 29.451 35.7299 29.2045C35.5823 28.9584 35.1896 28.8113 34.5998 28.5167C34.0105 28.222 31.1128 26.7959 30.5725 26.5993C30.0322 26.4027 29.6395 26.3047 29.2463 26.8944C28.8535 27.4842 27.7248 28.8113 27.3806 29.2045C27.0369 29.5981 26.6932 29.6472 26.1034 29.3525C25.5141 29.057 23.6158 28.4354 21.364 26.4275C19.6119 24.8653 18.4292 22.9361 18.0851 22.3463C17.7414 21.7565 18.0484 21.4375 18.344 21.1437C18.6086 20.8796 18.9333 20.4554 19.2284 20.1113C19.5222 19.7671 19.6207 19.5215 19.8169 19.1288C20.0135 18.7351 19.9154 18.391 19.7678 18.0963C19.6207 17.8017 18.4752 14.8868 17.9512 13.7213" fill="white"/><defs><linearGradient id="paint0_linear_147648_1354" x1="23.447" y1="6.33627" x2="23.6459" y2="39.8457" gradientUnits="userSpaceOnUse"><stop stop-color="%233BB247"/><stop offset="1" stop-color="%233BB247"/></linearGradient></defs></svg>');
     }
   }
 }
@@ -3110,4 +3142,5 @@ input.custom-range__output {
     }
   }
 }
+
 /* #endregion */
