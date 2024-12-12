@@ -12,6 +12,8 @@
   PageTip.prototype.handleHover = function() {
     document.querySelectorAll('[data-tip]').forEach(elem => {
       elem.addEventListener('mouseenter', e => {
+        if (window.innerWidth < 992) return;
+        
         this.createTip(elem);
         this.tipElem.textContent = elem.dataset.tip;
         this.setTipPosition(elem);

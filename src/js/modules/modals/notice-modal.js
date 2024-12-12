@@ -17,6 +17,8 @@ class NoticeModal {
   // Events
   _bindDocumentClick() {
     document.addEventListener('click', (e) => {
+      if (window.innerWidth > 991) return;
+      
       const elem = e.target.closest('[data-notice]');
       if (!elem) return;
 
