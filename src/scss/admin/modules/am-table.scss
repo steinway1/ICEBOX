@@ -494,6 +494,14 @@
     grid-row-gap: 24px;
   }
 
+  &.--inventory {
+    @include maxWidthXs {
+      grid-template-columns: 1fr 1fr !important;
+      column-gap: 4px;
+      row-gap: 32px;
+    }
+  }
+
   &.--highlight {
     .whale-card {
       &:not(.--highlight) {

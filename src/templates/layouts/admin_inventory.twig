@@ -9,12 +9,19 @@
 
 
 	<body {% if bodyClass is defined %} class="{{bodyClass}}" {% endif %}>
+		{% include "admin/components/header-whales.twig" %}
 
 		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}>{% block content %}{% endblock %}
 			</main>
+
+			{% include "admin/components/sidebar.twig" %}
+			{% include "page-components/scripts_admin.twig" %}
 			{{ block('include_script') }}
+			{% include "admin/components/back-backdrop.twig" %}
 			{% include "admin/components/toolbar_inventory.twig" %}
-      {% include "page-components/scripts_admin.twig" %}
+			{% include "admin/components/g-tip.twig" %}
+      
+      	<script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.11.0/tsparticles.confetti.bundle.min.js"></script>
 		</body>
 
 	</html>

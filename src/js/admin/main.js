@@ -4886,3 +4886,38 @@ document.addEventListener('DOMContentLoaded', () => {
   bindToggleCustomerRows()
   bindFingerSizeInput()
 })
+
+/**
+ * Inventory
+ * @type {class}
+ */
+class Inventory {
+  constructor() { 
+    this.rootEl = document.querySelector('.main_inventory')
+    if (!this.rootEl) return
+
+    this.init()
+   }
+
+   init() {
+    this.initSplide()
+   }
+
+  // Methods
+  initSplide() {
+    const splideArr = [...document.querySelectorAll('.i-card__media-splide')]
+    for (const splide of splideArr) {
+      const slider = new Splide(splide, {
+        type: 'loop',
+        rewind: true,
+        pagination: false,
+        arrows: true
+      })
+      slider.mount()
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  new Inventory()
+})

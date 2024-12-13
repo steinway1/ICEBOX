@@ -1,0 +1,223 @@
+<div class="i-card">
+
+	<div class="i-card__top">
+		<div
+			class="i-card__tags">
+			{# Stock Tag #}
+			{% set stock_class = "" %}
+			{% set stock_text = "" %}
+			{% if item.in_stock == true %}
+				{% set stock_class = "--stock" %}
+				{% set stock_text = "In Stock" %}
+			{% endif %}
+			{% if item.in_stock == false %}
+				{% set stock_class = "--out" %}
+				{% set stock_text = "Out of Stock" %}
+			{% endif %}
+
+			<div class="i-card-tag {{ stock_class }}">
+				<button onclick="recheckStock({{ item.dataID }});">
+					<svg width="100%" height="100%" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M38.6364 15.5L30.2727 24H36.5455C36.5455 31.0444 30.9314 36.75 24 36.75C21.8777 36.75 19.8914 36.2081 18.135 35.2731L15.0823 38.3756C17.675 40.0225 20.7173 41 24 41C33.2418 41 40.7273 33.3925 40.7273 24H47L38.6364 15.5ZM11.4545 24C11.4545 16.9556 17.0686 11.25 24 11.25C26.1223 11.25 28.1086 11.7919 29.865 12.7269L32.9177 9.62438C30.325 7.9775 27.2827 7 24 7C14.7582 7 7.27273 14.6075 7.27273 24H1L9.36364 32.5L17.7273 24H11.4545Z" fill="currentColor"></path>
+					</svg>
+				</button>
+				<span>
+					{% if stock_text != ""%}
+						{{ stock_text }}
+						-
+					{% endif %}
+					{{ item.stock_id }}
+				</span>
+			</div>
+			{# Store Tag #}
+			<div class="i-card-tag --store">Store 1</div>
+
+			{# Controls #}
+			<div
+				class="i-card__controls">
+				{# Store Select #}
+				<select id="store_select_{{ item.dataID }}" onchange="UpdateStore({{ item.dataID }});">
+					<option value="">Select Store</option>
+					<option value="1" {% if item.store_id == 1 %} selected {% endif %}>Store 1</option>
+					<option value="2" {% if item.store_id == 2 %} selected {% endif %}>Store 2</option>
+					<option value="3" {% if item.store_id == 3 %} selected {% endif %}>Store 3</option>
+				</select>
+				{# CTW Input #}
+				<input
+				type="text" placeholder="CTW" id="ctw_field_{{ item.dataID }}" value="" onchange="UpdateCtw({{ item.dataID }});">
+				{# NFW Select #}
+				<select id="nfw_select_{{ item.dataID }}" onchange="UpdateNFW({{ item.dataID }});">
+					<option value="0" {% if item.nfw == 0 %} selected {% endif %}>FW</option>
+					<option value="1" {% if item.nfw == 1 %} selected {% endif %}>NFW</option>
+					<option value="2" {% if item.nfw == 2 %} selected {% endif %}>NP</option>
+					<option value="8" {% if item.nfw == 8 %} selected {% endif %}>IVAN</option>
+					<option value="9" {% if item.nfw == 9 %} selected {% endif %}>RYAN</option>
+					<option value="10" {% if item.nfw == 10 %} selected {% endif %}>SKY</option>
+					<option value="11" {% if item.nfw == 11 %} selected {% endif %}>ZAH</option>
+					<option value="3" {% if item.nfw == 3 %} selected {% endif %}>H</option>
+					<option value="4" {% if item.nfw == 4 %} selected {% endif %}>LNK</option>
+					<option value="5" {% if item.nfw == 5 %} selected {% endif %}>DLT</option>
+					<option value="6" {% if item.nfw == 6 %} selected {% endif %}>LTR</option>
+					<option value="7" {% if item.nfw == 7 %} selected {% endif %}>CST</option>
+					<option value="13" {% if item.nfw == 13 %} selected {% endif %}>FLM</option>
+					<option value="14" {% if item.nfw == 14 %} selected {% endif %}>BZL</option>
+					<option value="16" {% if item.nfw == 16 %} selected {% endif %}>MEM</option>
+					<option value="17" {% if item.nfw == 17 %} selected {% endif %}>PRT</option>
+				</select>
+				{# DQ Select #}
+				<select id="dq_select_{{ item.dataID }}" onchange="UpdateDQ({{ item.dataID }});">
+					<option value="" {% if item.dq == "" %} selected {% endif %}>DQ</option>
+					<option value="SI" {% if item.dq == "SI" %} selected {% endif %}>SI</option>
+					<option value="VS" {% if item.dq == "VS" %} selected {% endif %}>VS</option>
+					<option value="VVS" {% if item.dq == "VVS" %} selected {% endif %}>VVS</option>
+					<option value="SIVS" {% if item.dq == "SIVS" %} selected {% endif %}>SI/VS</option>
+					<option value="I1-I3" {% if item.dq == "I1-I3" %} selected {% endif %}>I1-I3</option>
+					<option value="PG" {% if item.dq == "PG" %} selected {% endif %}>PG</option>
+				</select>
+				{# Color #}
+				<select id="color_select_{{ item.dataID }}" onchange="UpdateColor({{ item.dataID }});">
+					<option value="" {% if item.color == "" %} selected {% endif %}>Color</option>
+					<option value="Yellow" {% if item.color == "Yellow" %} selected {% endif %}>Yellow</option>
+					<option value="White" {% if item.color == "White" %} selected {% endif %}>White</option>
+					<option value="Rose" {% if item.color == "Rose" %} selected {% endif %}>Rose</option>
+					<option value="Red" {% if item.color == "Red" %} selected {% endif %}>Red</option>
+					<option value="Steel" {% if item.color == "Steel" %} selected {% endif %}>Steel</option>
+					<option value="Blue" {% if item.color == "Blue" %} selected {% endif %}>Blue</option>
+					<option value="Black" {% if item.color == "Black" %} selected {% endif %}>Black</option>
+					<option value="Two-Tone" {% if item.color == "Two-Tone" %} selected {% endif %}>Two-Tone</option>
+					<option value="Two-Tone-Rose" {% if item.color == "Two-Tone-Rose" %} selected {% endif %}>Two-Tone-Rose</option>
+					<option value="Tri-Tone" {% if item.color == "Tri-Tone" %} selected {% endif %}>Tri-Tone</option>
+					<option value="Blue-Gold" {% if item.color == "Blue-Gold" %} selected {% endif %}>Blue-Gold</option>
+					<option value="Navy-Blue" {% if item.color == "Navy-Blue" %} selected {% endif %}>Navy-Blue</option>
+					<option value="Tri-Tone-Rose" {% if item.color == "Tri-Tone-Rose" %} selected {% endif %}>Tri-Tone-Rose</option>
+					<option value="Platinum" {% if item.color == "Platinum" %} selected {% endif %}>Platinum</option>
+				</select>
+				{# Watch Model #}
+				{% if item.is_watch %}
+					<select id="model_select_{{ item.dataID }}" onchange="UpdateModel({{item.dataID}});">
+						<option value="">Model</option>
+					</select>
+				{% endif %}
+				{# Ring Size #}
+				{% if item.is_ring %}
+					<select id="size_select_{{ item.dataID }}" onchange="UpdateSize({{item.dataID}});">
+						<option value="" {% if item.size == "" %} selected {% endif %}>Size</option>
+						<option value="4" {% if item.size == "4" %} selected {% endif %}>4</option>
+						<option value="4.5" {% if item.size == "4.5" %} selected {% endif %}>4.5</option>
+						<option value="5" {% if item.size == "5" %} selected {% endif %}>5</option>
+						<option value="5.5" {% if item.size == "5.5" %} selected {% endif %}>5.5</option>
+						<option value="6" {% if item.size == "6" %} selected {% endif %}>6</option>
+						<option value="6.5" {% if item.size == "6.5" %} selected {% endif %}>6.5</option>
+						<option value="7" {% if item.size == "7" %} selected {% endif %}>7</option>
+						<option value="7.5" {% if item.size == "7.5" %} selected {% endif %}>7.5</option>
+						<option value="8" {% if item.size == "8" %} selected {% endif %}>8</option>
+						<option value="8.5" {% if item.size == "8.5" %} selected {% endif %}>8.5</option>
+						<option value="9" {% if item.size == "9" %} selected {% endif %}>9</option>
+						<option value="9.5" {% if item.size == "9.5" %} selected {% endif %}>9.5</option>
+						<option value="10" {% if item.size == "10" %} selected {% endif %}>10</option>
+						<option value="10.5" {% if item.size == "10.5" %} selected {% endif %}>10.5</option>
+						<option value="11" {% if item.size == "11" %} selected {% endif %}>11</option>
+						<option value="11.5" {% if item.size == "11.5" %} selected {% endif %}>11.5</option>
+						<option value="12" {% if item.size == "12" %} selected {% endif %}>12</option>
+						<option value="12.5" {% if item.size == "12.5" %} selected {% endif %}>12.5</option>
+						<option value="13" {% if item.size == "13" %} selected {% endif %}>13</option>
+					</select>
+				{% endif %}
+				{# Bracelet Size #}
+				{% if item.is_bracelet %}
+					<select id="size_select_{{ item.dataID }}" onchange="UpdateSize({{item.dataID}});">
+						<option value="" {% if item.size == "" %} selected {% endif %}>Size</option>
+						<option value="Small" {% if item.size == "Small" %} selected {% endif %}>Small</option>
+						<option value="Medium" {% if item.size == "Medium" %} selected {% endif %}>Medium</option>
+						<option value="Large" {% if item.size == "Large" %} selected {% endif %}>Large</option>
+						<option value="Extra Large" {% if item.size == "Extra Large" %} selected {% endif %}>Extra Large</option>
+						<option value="Ladies" {% if item.size == "Ladies" %} selected {% endif %}>Ladies</option>
+						<option value="Mens" {% if item.size == "Mens" %} selected {% endif %}>Mens</option>
+					</select>
+				{% endif %}
+				{# Bracelet Length #}
+				{% if item.is_bracelet %}
+					<select id="size_select_{{ item.dataID }}" onchange="UpdateSize({{item.dataID}});">
+						<option value="" {% if item.size == "" %} selected {% endif %}>Length</option>
+						<option value="6" {% if item.size == "6" %} selected {% endif %}>6</option>
+						<option value="6.5" {% if item.size == "6.5" %} selected {% endif %}>6.5</option>
+						<option value="7" {% if item.size == "7" %} selected {% endif %}>7</option>
+						<option value="7.5" {% if item.size == "7.5" %} selected {% endif %}>7.5</option>
+						<option value="8" {% if item.size == "8" %} selected {% endif %}>8</option>
+						<option value="8.5" {% if item.size == "8.5" %} selected {% endif %}>8.5</option>
+						<option value="9" {% if item.size == "9" %} selected {% endif %}>9</option>
+						<option value="9.5" {% if item.size == "9.5" %} selected {% endif %}>9.5</option>
+						<option value="10" {% if item.size == "10" %} selected {% endif %}>10</option>
+					</select>
+				{% endif %}
+				{# Earrings Pair #}
+				{% if item.is_earrings %}
+					<select id="earring_select_{{ item.dataID }}" onchange="UpdateEarringPair({{item.dataID}});">
+						<option value="" {% if item.earrings == "" %} selected {% endif %}>E.RING</option>
+						<option value="PAIR" {% if item.earrings == "PAIR" %} selected {% endif %}>PAIR</option>
+						<option value="SINGLE" {% if item.earrings == "SINGLE" %} selected {% endif %}>SINGLE</option>
+					</select>
+				{% endif %}
+			</div>
+		</div>
+
+		{# Media #}
+		{% if item.media | length > 1 %}
+			<div class="i-card__media splide i-card__media-splide">
+				<div class="splide__track">
+					<div class="splide__list">
+						{% for media in item.media %}
+							<div class="splide__slide">
+								<div class="i-card__pic-wrap">
+									<img src="{{media.src}}" loading="lazy" alt="{{media.alt}}" class="i-card__img">
+									{% if loop.index > 1 %}
+										<button class="i-card__pic-delete">Remove image</button>
+									{% endif %}
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<div class="i-card__media">
+				<div class="i-card__pic-wrap">
+					<img src="{{item.media[0].src}}" loading="lazy" alt="{{media.alt}}" class="i-card__img">
+				</div>
+			</div>
+		{% endif %}
+	</div>
+
+	<div class="i-card__main">
+		<div class="i-card__details">
+			<div class="i-card__ct-group">
+				<button class="i-card__ct-btn">More Actions</button>
+				<div class="i-card__ct-drop">
+					{% if item.url and item.url != "" %}
+						<a href="{{ item.link }}" id="item_link_{{ item.dataID }}" target="_blank">View Item</a>
+					{% endif %}
+					{% if item.appraisal_url and item.appraisal_url != "" %}
+						<a href="/inventory-to-appraisal/{{item.appraisal_url}}" id="item_link_{{ item.dataID }}" class="--appraisal" target="_blank">Appraisal</a>
+					{% endif %}
+					<button id="manual_link_{{ item.dataID }}" onclick="AddLink({{item.dataID}});">Add Link</button>
+					{% if item.allow_remove_link %}
+						<button id="remove_link_{{ item.dataID }}" class="--red" target="_blank">Remove Link</button>
+					{% endif %}
+				</div>
+			</div>
+			<div class="i-card__main-info">
+				<a href="{{ item.style.url }}" class="i-card__style-link">{{ item.style.name }}
+					({{ item.style.count }})</a>
+				<h2>{{ item.title }}</h2>
+				<span class="xs-typo">Added
+					{{ item.date }}
+					days ago</span>
+			</div>
+		</div>
+
+		<div class="i-card__footer">
+			<span class="i-card__price">{{ item.price }}</span>
+		</div>
+	</div>
+
+</div>

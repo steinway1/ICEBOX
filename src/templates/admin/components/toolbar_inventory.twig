@@ -1,9 +1,64 @@
 <div class="toolbar">
 	<div class="toolbar__wrapper">
 		<div class="toolbar__container">
-
 			<div class="toolbar-menu">
-				<div class="toolbar-menu__wrapper">
+
+				<div
+					class="toolbar-menu__wrapper">
+					{# SORT #}
+					<div id="toolbarSort" class="toolbar-content">
+						<div class="toolbar-form">
+							<button data-evt="resetToolbarForm" class="toolbar-form-reset">Reset</button>
+							<label>
+								<input type="radio" id="inventory_sort_newest_first" name="inventory_sort" value="newest_first"/>
+								<div>
+									<span>Newest First</span>
+									<span></span>
+								</div>
+							</label>
+							<label>
+								<input type="radio" id="inventory_sort_oldest_first" name="inventory_sort" value="oldest_first"/>
+								<div>
+									<span>Oldest First</span>
+									<span></span>
+								</div>
+							</label>
+							<label>
+								<input type="radio" id="inventory_sort_high_to_low" name="inventory_sort" value="high_to_low"/>
+								<div>
+									<span>Price High to Low</span>
+									<span></span>
+								</div>
+							</label>
+							<label>
+								<input type="radio" id="inventory_sort_low_to_high" name="inventory_sort" value="low_to_high"/>
+								<div>
+									<span>Price Low to High</span>
+									<span></span>
+								</div>
+							</label>
+						</div>
+					</div>
+
+					{# FILTERS #}
+					<div id="toolbarFilter" class="toolbar-content">
+						<div class="toolbar-form">
+							<button data-evt="resetToolbarForm" class="toolbar-form-reset">Reset</button>
+							{% for filter_item in inventory_filters %}
+								<label>
+									<input type="radio" id="{{ filter_item.id }}" name="inventory_filter" value="{{ filter_item.value }}"/>
+									<div>
+										<span>{{ filter_item.name }}<span>
+												— {{ filter_item.count }}</span>
+										</span>
+										<span></span>
+									</div>
+								</label>
+							{% endfor %}
+						</div>
+					</div>
+
+					{# LEADERBOARD #}
 					<div id="toolbarPoints" class="toolbar-content">
 						<div class="toolbar-form">
 							{% for user in users %}
@@ -26,6 +81,14 @@
 			</div>
 
 			<div class="toolbar__btn-group">
+				<button data-evt="toggleSortMenu" class="toolbar-btn">
+					{% include "admin/svg/icon_sort.svg" %}
+					<span>Sort</span>
+				</button>
+				<button data-evt="toggleFilterMenu" class="toolbar-btn">
+					{% include "admin/svg/icon_filter.svg" %}
+					<span>Filter</span>
+				</button>
 				<button data-evt="togglePoints" class="toolbar-btn">
 					<div data-lottie="diamondSpin"></div>
 					<span>
@@ -33,7 +96,6 @@
 						POINTS</span>
 				</button>
 			</div>
-
 		</div>
 	</div>
 </div>
