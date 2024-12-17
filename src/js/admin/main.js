@@ -3734,8 +3734,8 @@ class ToolBar {
           this.opened = true
           menu.style.display = 'block'
           setTimeout(() => {
-            const height = menu.querySelector('.toolbar-form').scrollHeight
-            console.log(height)
+            const height = menu.querySelector('.toolbar-form').offsetHeight
+            menu.querySelector('.toolbar-form').scrollTop = 0
             this.menu.style.height = `${height + 4}px`
             this.rootEl.classList.add(IS_ACTIVE)
             this.toggleLocked(true, this.menu)
@@ -3750,7 +3750,8 @@ class ToolBar {
             setTimeout(() => {
               this.observeInputsCheckedState()
               menu.style.display = 'block'
-              const height = menu.scrollHeight
+              menu.querySelector('.toolbar-form').scrollTop = 0
+              const height = menu.offsetHeight
               this.menu.style.height = `${height + 4}px`
               this.toggleLocked(true, this.menu)
             }, 2);
