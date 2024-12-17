@@ -14,6 +14,18 @@
 				{% set stock_class = "--out" %}
 				{% set stock_text = "Out of Stock" %}
 			{% endif %}
+      {% if item.layaway %}
+        {% set stock_class = "--layaway" %}
+        {% set stock_text = "Layaway" %}
+      {% endif %}
+      {% if item.sold %}
+        {% set stock_class = "--sold" %}
+        {% set stock_text = "Sold" %}
+      {% endif %}
+      {% if item.on_hold %}
+        {% set stock_class = "--hold" %}
+        {% set stock_text = "On Hold" %}
+      {% endif %}
 
 			<div class="i-card-tag {{ stock_class }}">
 				<button onclick="recheckStock({{ item.dataID }});">
