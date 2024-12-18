@@ -6,10 +6,33 @@ class ResultsPage {
     this.filterBoxArr = [...document.querySelectorAll('.page-filter-box')];
     this.filterModal = document.querySelector('.filter-modal');
     this.cardsGrid = document.querySelector('.cards-grid');
+    this.stickySearch = document.querySelector('.results__sticky-search')
     this.filterModalActive = false;
     this.filters = {};
     this.careModalInstance = null
     this.init();
+  }
+
+  init() {
+    this.setupDesktopFilters();
+    this.bindTouchEvents();
+    this.bindClickEvents();
+    this.setupMobileFilters()
+
+    // if (window.innerWidth > 991) {
+    // } else {
+    //   this.setupMobileFilters();
+    //   this.unwrapFilters();
+    // }
+
+    this.observeFilters();
+    this.formatGoldChainsSubheading()
+    this.setStickyBar()
+    this.bindStickySearch()
+    this.adjustStickyBarOnResize()
+    this.formatFilterTitles()
+    this.bindViewSwitch()
+    this.bindCareModal()
   }
 
   // Methods
@@ -49,7 +72,6 @@ class ResultsPage {
     };
   }
 
-
   observeFilters() {
     for (const filter in this.filters) {
       if (this.filters.hasOwnProperty(filter)) {
@@ -75,7 +97,7 @@ class ResultsPage {
       const drop = box.querySelector('.page-filter-drop');
 
       if (!btn || !drop) { return false }
-      
+
       const optionsArr = drop.querySelector('a') ? [...drop.querySelectorAll('a')] : [...drop.querySelectorAll('label')];
 
       if (optionsArr.length) {
@@ -111,39 +133,17 @@ class ResultsPage {
 
   // Mobile
   setupMobileFilters() {
-    const filterList = document.querySelector('.filter-modal__filter-list');
-    const optionsHolder = document.querySelector('.filter-modal__options');
-    let filterBtnArr = [];
-    let listsArr = [];
+    const filterButtonArr = [...this.filterModal.querySelectorAll('.filter-modal__filter-btn')]
+    const filterListArr = [...this.filterModal.querySelectorAll('.filter-modal__options-list')]
 
-    this.filterBoxArr.forEach((filter, index) => {
-      const btn = filter.querySelector('.page-filter-btn');
-      const drop = filter.querySelector('.page-filter-drop');
+    filterButtonArr.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        filterButtonArr.forEach(el => el.classList.toggle('--active', el === btn));
+        filterListArr.forEach(l => l.style.display = (l === filterListArr[index]) ? 'block' : 'none');
+      })
+    })
 
-      if (!btn || !drop) { return false }
-
-      const optionsArr = drop.querySelector('a') ? [...drop.querySelectorAll('a')] : [...drop.querySelectorAll('label')];
-
-      if (!optionsArr.length) return;
-
-      optionsArr.forEach(option => {
-        option.addEventListener('change', () => this.observeFilters());
-      });
-
-      const displayName = this.getFilterDisplayName(btn, filter);
-      const filterModalButton = this.createFilterButton(displayName);
-      const list = this.createFilterList(optionsArr);
-
-      filterList.appendChild(filterModalButton);
-      optionsHolder.appendChild(list);
-
-      filterBtnArr.push(filterModalButton);
-      listsArr.push(list);
-
-      this.setupFilterModalButtonBehavior(filterModalButton, list, filterBtnArr, listsArr);
-      this.setupFilterObject(index, btn, filterModalButton, list);
-      this.bindFilterButtonClick(btn, filterModalButton, list, filterBtnArr, listsArr);
-    });
+    filterButtonArr[0].dispatchEvent(new Event('click'));
   }
 
   getFilterDisplayName(btn, filter) {
@@ -246,6 +246,24 @@ class ResultsPage {
     closeArr.forEach(close => {
       close.addEventListener('click', () => this.hideFilterModal());
     });
+
+    const openArr = [...document.querySelectorAll('[data-evt="openFilterModal"]')];
+    openArr.forEach(open => {
+      open.addEventListener('click', () => {
+        this.showFilterModal();
+
+        const buttons = this.filterModal.querySelectorAll('.filter-modal__filter-btn');
+        buttons[0].click();
+
+        if (open.innerHTML.toLowerCase().includes('sort')) {
+          buttons.forEach(btn => {
+            if (btn.innerHTML.toLowerCase().includes('sort')) {
+              btn.click();
+            }
+          });
+        }
+      });
+    });
   }
 
   formatGoldChainsSubheading() {
@@ -265,30 +283,70 @@ class ResultsPage {
   }
 
   setStickyBar() {
-    const bar = document.querySelector('.page-filters');
-    if (!bar) return;
+    const bar = document.querySelector('.page-filters')
+    const stickySearch = document.querySelector('.results__sticky-search')
+    const topBanner = document.querySelector('.top-banner')
+    const header = document.querySelector('.header')
 
-    let topOffset = 0;
-
-    const topBanner = document.querySelector('.top-banner');
-    const header = document.querySelector('.header');
+    let searchOffset = 0
+    let barOffset = 0
 
     if (topBanner) {
       if (window.getComputedStyle(topBanner).position === 'sticky') {
         const bannerHeight = topBanner.offsetHeight;
-        if (bannerHeight > 0) {
-          topOffset += bannerHeight;
-        }
+        searchOffset += bannerHeight;
+        barOffset += bannerHeight;
       }
     }
 
     if (header) {
-      topOffset += header.offsetHeight;
+      const headerHeight = header.offsetHeight;
+      searchOffset += headerHeight;
+      barOffset += headerHeight;
     }
 
-    if (topOffset > 0) {
+    if (stickySearch && window.innerWidth < 991) {
+      const stickySearchHeight = stickySearch.offsetHeight;
+      barOffset += (stickySearchHeight - 1);
+    }
+
+    const adjustStickySearch = () => {
+      if (!stickySearch) return
+      stickySearch.style.top = `${searchOffset}px`;
+      stickySearch.style.position = 'sticky';
+    }
+
+    const adjustBar = () => {
+      if (!bar) return
+      bar.style.top = `${barOffset}px`;
       bar.style.position = 'sticky';
-      bar.style.top = `${topOffset}px`;
+    }
+
+    adjustStickySearch()
+    adjustBar()
+  }
+  bindStickySearch() {
+    if (this.stickySearch) {
+      const input = this.stickySearch.querySelector('input')
+      if (input) {
+
+        input.addEventListener('focus', () => {
+          lockScroll();
+          window.stickySearchBackdrop = new Backdrop({
+            half: true,
+            zIndex: 9,
+            callback: () => { input.blur() }
+          });
+        })
+
+        input.addEventListener('blur', () => {
+          unlockScroll();
+          if (window.stickySearchBackdrop) {
+            window.stickySearchBackdrop.hide(true);
+          }
+        })
+
+      }
     }
   }
 
@@ -299,7 +357,7 @@ class ResultsPage {
   }
 
   formatFilterTitles() {
-    const arr = [...document.querySelectorAll('.page-filter-btn')]
+    const arr = [...document.querySelectorAll('.page-filter-btn'), ...document.querySelectorAll('.filter-modal__filter-btn')]
     for (const btn of arr) {
       const span = btn.querySelector('span:first-child')
       if (span) {
@@ -354,24 +412,6 @@ class ResultsPage {
     if (document.querySelector('.care-modal')) {
       this.careModalInstance = new CareModal()
     }
-  }
-
-  init() {
-    if (window.innerWidth > 991) {
-      this.setupDesktopFilters();
-    } else {
-      this.setupMobileFilters();
-      this.unwrapFilters();
-      this.bindTouchEvents();
-      this.bindClickEvents();
-    }
-    this.observeFilters();
-    this.formatGoldChainsSubheading()
-    this.setStickyBar()
-    this.adjustStickyBarOnResize()
-    this.formatFilterTitles()
-    this.bindViewSwitch()
-    this.bindCareModal()
   }
 }
 

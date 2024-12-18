@@ -1,8 +1,8 @@
 <div class="page-filters">
 	<form id="" class="wrapper">
 		<div class="page-filters__wrapper">
-			<div class="page-filters__group">
 
+			<div class="page-filters__group">
 				{% if black_friday or cyber_monday %}
 					<div data-share-page data-tip="Copy Url to this page with current selected filters" class="page-filter-box">
 						<div class="page-filter-btn --share">
@@ -42,8 +42,8 @@
 						{% endif %}
 					</div>
 				{% endfor %}
-
 			</div>
+
 			<div class="page-filters__group">
 				<div class="page-filter-box">
 					<div class="page-filter-btn">
@@ -60,6 +60,10 @@
 					</div>
 				</div>
 			</div>
+
+      <div class="mobile-filter-btn --filter" data-evt="openFilterModal">Filters</div>
+      <div class="mobile-filter-btn --sort" data-evt="openFilterModal">Sort</div>
+
 		</div>
 	</form>
 </div>

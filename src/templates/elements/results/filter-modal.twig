@@ -1,13 +1,59 @@
 <div class="filter-modal">
 	<div class="filter-modal__handler"></div>
-	<div class="filter-modal__header">Filters</div>
+	<div class="filter-modal__header">Filters & Sort</div>
 	<div class="filter-modal__body">
-		<div class="filter-modal__filter-list"></div>
-		<div class="filter-modal__options"></div>
+		<div
+			class="filter-modal__filter-list">
+
+			{# Filters #}
+			{% for pageFilter in pageFilters %}
+				<button class="filter-modal__filter-btn">
+					<span>{{pageFilter.title}}</span>
+				</button>
+			{% endfor %}
+
+			{# Sort By #}
+			<button class="filter-modal__filter-btn">
+				<span>Sort By</span>
+			</button>
+
+		</div>
+		<div
+			class="filter-modal__options">
+
+			{# Filters #}
+			{% for pageFilter in pageFilters %}
+				<div class="div filter-modal__options-list">
+					{% for option in pageFilter.options %}
+						<label>
+							<input type="{% if pageFilter.radio == true %}radio{% else %}checkbox{% endif %}" name="{{option.name}}" value="{{option.value}}" {% if option.checked == true %} checked {% endif %}>
+							<div>
+								<span>
+									{% if option.extraClass is defined %}
+										<span class="color-gradient {{option.extraClass}}"></span>
+									{% endif %}
+									{{option.caption}}
+									{% if user_admin == true %}
+										({{option.count}})
+									{% endif %}
+								</span>
+							</div>
+						</label>
+					{% endfor %}
+				</div>
+			{% endfor %}
+
+			{# Sort #}
+			<div class="div filter-modal__options-list">
+				{% for sort in pageSort %}
+					<a {% if sort.active == true %} class="is-active" {% endif %} onclick="{{sort.onclick}}">{{sort.title}}</a>
+				{% endfor %}
+			</div>
+
+		</div>
 	</div>
 	<div class="filter-modal__footer">
 		<button data-evt="closeFilterModal" class="filter-modal__btn --sub">Close</button>
-		{# <button class="filter-modal__btn --clear">Clear</button> #}
 		<button data-evt="closeFilterModal" onclick="submitMobileFilters()" class="filter-modal__btn">Apply</button>
 	</div>
 </div>
