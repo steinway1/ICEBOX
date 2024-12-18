@@ -144,13 +144,18 @@ function openPriceModal(target, id) {
   window.signPriceModal = new window.priceModal(card, id)
 }
 
-function signupPrice() {
-  if (!window.signPriceModal) {
+function signupPrice(e) {
+  if (!window.priceModal) {
     console.warn('No price modal found')
     return
   }
 
-  window.signPriceModal.signup()
+  const card = e.target.closest('.product-card')
+  const id = card.dataset.id
+
+  if (card && id) {
+    window.signPriceModal = new window.priceModal(card, id)
+  }
 }
 
 /**

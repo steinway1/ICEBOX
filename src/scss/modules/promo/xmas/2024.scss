@@ -828,7 +828,7 @@ body.--xmas {
 
 .candy-text {
   position: relative;
-  border-radius: .4rem;
+  border-radius: .5rem;
   justify-content: center;
   align-items: center;
   margin-bottom: 12px;
@@ -846,35 +846,33 @@ body.--xmas {
     bottom: -5px;
     background: linear-gradient(135deg, #ed1f37 25%, #ffa49f 25%, #ffa49f 50%, #ed1f37 50%, #ed1f37 75%, #ffa49f 75%, #ffa49f 100%);
     background-size: 12px 12px;
-    animation: candy-stripe 2.4s linear infinite;
+    animation: candy-stripe 1.8s linear infinite;
   }
 
   span {
     color: #ec0408;
     text-align: center;
     background-color: #fff;
-    border-radius: .35rem;
+    border-radius: .42rem;
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    font-size: 13px;
+    padding: 2px 5px;
+    font-size: 10px;
+    letter-spacing: 0.8px;
     font-weight: 700;
     display: flex;
     position: relative;
     z-index: 1;
-
-    @media screen and (min-width: 992px) {
-      font-size: 11px !important;
-      letter-spacing: 0.8px !important;
-    }
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
 
     @include maxWidthXs {
-      padding-top: 2px;
-      padding-bottom: 2px;
-      font-size: 2.8vw;
+      letter-spacing: 0;
       font-weight: 800;
+      font-size: 9px;
     }
   }
 }
@@ -976,7 +974,6 @@ body.--xmas {
 }
 
 .xmas-card-over {
-  z-index: 2;
   position: absolute;
   inset: 0% 0% auto;
   overflow: hidden;

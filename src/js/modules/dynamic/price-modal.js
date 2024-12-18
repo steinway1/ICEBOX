@@ -1,5 +1,3 @@
-const Backdrop = require("./backdrop")
-
 class PriceModal {
   constructor(card, id) {
     if (!card) {
