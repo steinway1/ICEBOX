@@ -116,7 +116,7 @@
 					</h2>
 
 					{# Watch market item MSRP labels #}
-					{% if productItem.msrp_price != '' and productItem.is_watch and productItem.call_for_price == false and productItem.price_range %}
+					{% if productItem.msrp != '' and productItem.is_watch and productItem.call_for_price == false and productItem.price_range %}
 
 						{% set msrp_num = productItem.msrp_unformatted %}
 						{% set price_num = productItem.price_range_unformatted %}
@@ -137,12 +137,11 @@
 			</div>
 
 			{# Price Elements #}
-			<div class="product-card__sub">
+			<div class="product-card__sub{% if productItem.call_for_price %} is-call-for-price{% endif %}">
 				{% if not productItem.is_watch or productItem.call_for_price == true %}
-
 					{# NOT Watch Market item #}
 					<div class="product-card__single-price{% if productItem.call_for_price %} is-call-for-price{% endif %}">
-						<div class="product-card__price-wrap{% if productItem.salePrice is defined and global_sales %} is-sale{% endif %}">
+						<div class="product-card__price-wrap{% if productItem.salePrice and (global_sales or black_friday) %} is-sale{% endif %}">
 							{% if productItem.price_range  %}
 								<span class="product-card__price">{{productItem.price_range}}</span>
 							{% else %}
@@ -154,13 +153,15 @@
 						</div>
 					</div>
 				{% else %}
-
 					{# Watch Market item #}
 					<div class="row-price{% if productItem.salePrice and global_sales %} --sale{% endif %}">
-						<div>
-							<span>PRICE</span>
-							<span>{{ productItem.price }}</span>
-						</div>
+
+						{% if productItem.price_range  %}
+							<div>
+								<span>PRICE</span>
+								<span>{{ productItem.price_range }}</span>
+							</div>
+						{% endif %}
 
 						{# SALE Price #}
 						{% if productItem.salePrice and global_sales %}
@@ -174,7 +175,7 @@
 						{% if productItem.msrp %}
 							<div>
 								<span>MSRP</span>
-								<span>{{productItem.msrp_price ?: 'Unknown'}}</span>
+								<span>{{productItem.msrp ?: 'Unknown'}}</span>
 							</div>
 						{% else %}
 							<div class="--empty">
