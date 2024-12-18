@@ -361,12 +361,12 @@
                     <div class="page-filters">
                         <form id="" class="wrapper">
                             <div class="page-filters__wrapper">
+
                                 <div class="page-filters__group">
 
 
-
-
                                 </div>
+
                                 <div class="page-filters__group">
                                     <div class="page-filter-box">
                                         <div class="page-filter-btn">
@@ -383,19 +383,39 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="mobile-filter-btn --filter" data-evt="openFilterModal">Filters</div>
+                                <div class="mobile-filter-btn --sort" data-evt="openFilterModal">Sort</div>
+
                             </div>
                         </form>
                     </div>
                     <div class="filter-modal">
                         <div class="filter-modal__handler"></div>
-                        <div class="filter-modal__header">Filters</div>
+                        <div class="filter-modal__header">Filters & Sort</div>
                         <div class="filter-modal__body">
-                            <div class="filter-modal__filter-list"></div>
-                            <div class="filter-modal__options"></div>
+                            <div class="filter-modal__filter-list">
+
+
+
+
+                                <button class="filter-modal__filter-btn">
+                                    <span>Sort By</span>
+                                </button>
+
+                            </div>
+                            <div class="filter-modal__options">
+
+
+
+
+                                <div class="div filter-modal__options-list">
+                                </div>
+
+                            </div>
                         </div>
                         <div class="filter-modal__footer">
                             <button data-evt="closeFilterModal" class="filter-modal__btn --sub">Close</button>
-
                             <button data-evt="closeFilterModal" onclick="submitMobileFilters()" class="filter-modal__btn">Apply</button>
                         </div>
                     </div>

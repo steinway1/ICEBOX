@@ -41,6 +41,14 @@
       top: 14px;
     }
 
+    .xmas-badge {
+      display: none;
+    }
+
+    .xmas-card-over {
+      display: none;
+    }
+
     @include maxWidthXs {
       &::before {
         font-size: 16px;
@@ -248,9 +256,9 @@
 
   &::after {
     content: "";
-    opacity: 0.05;
+    opacity: 0.04;
     pointer-events: none;
-    background-color: #283a69;
+    background-color: #022242;
     position: absolute;
     top: 0%;
     bottom: 0%;
@@ -1122,13 +1130,14 @@
   color: #7d8490;
   max-width: 80%;
   user-select: none;
+  opacity: 0.8;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
 
   &:hover {
-    opacity: .8;
+    opacity: .6;
   }
 
   &::before {
@@ -1149,14 +1158,6 @@
     -webkit-line-clamp: 1;
     overflow: hidden;
   }
-
-  @include maxWidthXs {
-    color: #a9afba;
-
-    &::before {
-      background-image: url('data:image/svg+xml,<svg width="100%" height="100%" viewBox="0 0 72 53" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 0L0 18.9286L36 53L72 18.9286L56 0H16Z" fill="%23a9afba"></path></svg>');
-    }
-  }
 }
 
 /* #endregion */
@@ -1167,7 +1168,7 @@
   color: #fff;
   cursor: pointer;
   background-color: var(--blue);
-  border-radius: 50px;
+  border-radius: 0.4rem;
   justify-content: center;
   align-items: center;
   width: 28px;
