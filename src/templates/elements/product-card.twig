@@ -122,7 +122,7 @@
 						{% set price_num = productItem.price_range_unformatted %}
 						{% set diff = (((price_num - msrp_num) / msrp_num) * 100)%}
 						{% set class = diff > 0 ? '--red' : diff < 0 ? '--green' : '' %}
-						{% set diff_text = diff > 0 ? 'Above' : diff < 0 ? 'Lower' : '' %}
+						{% set diff_text = diff > 0 ? 'above' : diff < 0 ? 'below' : '' %}
 
 						{% if class != '' %}
 							<div class="product-card__labels">
