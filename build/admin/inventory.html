@@ -202,6 +202,141 @@
                 <!-- #endregion -->
                 <!-- #region Main Content -->
                 <div class="am-main__flow">
+
+                    <div class="ps-grid --mg-bottom">
+
+
+                        <div class="ps">
+                            <div class="ps-btn">
+                                <span data-ps-current>No filters</span>
+                            </div>
+                            <div class="ps-drop">
+                                <div class="ps-drop__scroller">
+                                    <label>
+                                        <input type="radio" name="inventory_filter" onchange="updateURL('stock','');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">No Filters</span>
+                                            <span class="ps-counter">329</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="inventory_filter" onchange="updateURL('stock','');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">In Stock</span>
+                                            <span class="ps-counter">120</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="inventory_filter" onchange="updateURL('stock','');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Out of Stock</span>
+                                            <span class="ps-counter">85</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="inventory_filter" onchange="updateURL('stock','');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Backorder</span>
+                                            <span class="ps-counter">45</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="inventory_filter" onchange="updateURL('stock','');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Pre-order</span>
+                                            <span class="ps-counter">25</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="inventory_filter" onchange="updateURL('stock','');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Discontinued</span>
+                                            <span class="ps-counter">15</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="inventory_filter" checked onchange="updateURL('stock','150');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Clearance</span>
+                                            <span class="ps-counter">10</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="inventory_filter" onchange="updateURL('stock','');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">New Arrival</span>
+                                            <span class="ps-counter">50</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="inventory_filter" onchange="updateURL('stock','');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Limited Stock</span>
+                                            <span class="ps-counter">30</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="inventory_filter" onchange="updateURL('stock','');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Reserved</span>
+                                            <span class="ps-counter">5</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="inventory_filter" onchange="updateURL('stock','');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Exclusive</span>
+                                            <span class="ps-counter">8</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="inventory_filter" onchange="updateURL('stock','');location.reload();" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Coming Soon</span>
+                                            <span class="ps-counter">22</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="ps">
+                            <div class="ps-btn">
+                                <span data-ps-current>No sorting</span>
+                            </div>
+                            <div class="ps-drop">
+                                <div class="ps-drop__scroller">
+                                    <label>
+                                        <input type="radio" id="inventory_sort_newest_first" onchange="updateURL('sort','new');location.reload();" name="inventory_sort" value="newest_first" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Newest First</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" id="inventory_sort_oldest_first" checked onchange="updateURL('sort','old');location.reload();" name="inventory_sort" value="oldest_first" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Oldest First</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" id="inventory_sort_high_to_low" onchange="updateURL('sort','high');location.reload();" name="inventory_sort" value="high_to_low" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Price High to Low</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" id="inventory_sort_low_to_high" onchange="updateURL('sort','low');location.reload();" name="inventory_sort" value="low_to_high" />
+                                        <div class="ps-drop-btn">
+                                            <span class="ps-caption">Price Low to High</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                     <div class="am-container">
                         <div class="am-main__content">
 
@@ -3056,155 +3191,6 @@
 
                     <div class="toolbar-menu__wrapper">
 
-                        <div id="toolbarSort" class="toolbar-content">
-                            <div class="toolbar-form">
-                                <button data-evt="resetToolbarForm" class="toolbar-form-reset">Reset</button>
-                                <label>
-                                    <input type="radio" id="inventory_sort_newest_first" name="inventory_sort" value="newest_first" />
-                                    <div>
-                                        <span>Newest First</span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_sort_oldest_first" name="inventory_sort" value="oldest_first" />
-                                    <div>
-                                        <span>Oldest First</span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_sort_high_to_low" name="inventory_sort" value="high_to_low" />
-                                    <div>
-                                        <span>Price High to Low</span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_sort_low_to_high" name="inventory_sort" value="low_to_high" />
-                                    <div>
-                                        <span>Price Low to High</span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-
-                        <div id="toolbarFilter" class="toolbar-content">
-                            <div class="toolbar-form">
-                                <button data-evt="resetToolbarForm" class="toolbar-form-reset">Reset</button>
-                                <label>
-                                    <input type="radio" id="inventory_filter_no" name="inventory_filter" value="no" />
-                                    <div>
-                                        <span>No Filters<span>
-												— 329</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_filter_in_stock" name="inventory_filter" value="in-stock" />
-                                    <div>
-                                        <span>In Stock<span>
-												— 120</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_filter_out_of_stock" name="inventory_filter" value="out-of-stock" />
-                                    <div>
-                                        <span>Out of Stock<span>
-												— 85</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_filter_backorder" name="inventory_filter" value="backorder" />
-                                    <div>
-                                        <span>Backorder<span>
-												— 45</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_filter_pre_order" name="inventory_filter" value="pre-order" />
-                                    <div>
-                                        <span>Pre-order<span>
-												— 25</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_filter_discontinued" name="inventory_filter" value="discontinued" />
-                                    <div>
-                                        <span>Discontinued<span>
-												— 15</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_filter_clearance" name="inventory_filter" value="clearance" />
-                                    <div>
-                                        <span>Clearance<span>
-												— 10</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_filter_new_arrival" name="inventory_filter" value="new-arrival" />
-                                    <div>
-                                        <span>New Arrival<span>
-												— 50</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_filter_limited_stock" name="inventory_filter" value="limited-stock" />
-                                    <div>
-                                        <span>Limited Stock<span>
-												— 30</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_filter_reserved" name="inventory_filter" value="reserved" />
-                                    <div>
-                                        <span>Reserved<span>
-												— 5</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_filter_exclusive" name="inventory_filter" value="exclusive" />
-                                    <div>
-                                        <span>Exclusive<span>
-												— 8</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input type="radio" id="inventory_filter_coming_soon" name="inventory_filter" value="coming-soon" />
-                                    <div>
-                                        <span>Coming Soon<span>
-												— 22</span>
-                                        </span>
-                                        <span></span>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
 
                         <div id="toolbarPoints" class="toolbar-content">
                             <div class="toolbar-form">
@@ -3274,22 +3260,6 @@
                 </div>
 
                 <div class="toolbar__btn-group">
-                    <button data-evt="toggleSortMenu" class="toolbar-btn">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 20H8V17.3333H0V20ZM0 4V6.66667H24V4H0ZM0 13.3333H16V10.6667H0V13.3333Z" fill="currentColor"></path>
-                        </svg> <span>Sort</span>
-                    </button>
-                    <button data-evt="toggleFilterMenu" class="toolbar-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="0 0 22 20" id="filter">
-                            <g fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-                                <g stroke="currentColor" stroke-width="2" transform="translate(-1614 -1629)">
-                                    <g transform="translate(1615 1630)">
-                                        <path d="M20 0H0l8 9.46V16l4 2V9.46z"></path>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg> <span>Filter</span>
-                    </button>
                     <button data-evt="togglePoints" class="toolbar-btn">
                         <div data-lottie="diamondSpin"></div>
                         <span>

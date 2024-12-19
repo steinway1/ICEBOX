@@ -16041,6 +16041,190 @@ select.sms-tag:hover {
   line-height: 24px;
 }
 
+.ps-grid {
+  display: flex;
+  gap: 8px;
+  flex-flow: wrap;
+}
+
+.ps-grid.--mg-bottom {
+  margin-bottom: 12px;
+}
+
+.ps {
+  position: relative;
+  z-index: 3;
+  --ps-box-shadow: 0 3px 6px rgba(81, 86, 94, 0.1);
+  --ps-box-shadow-opened: 0 12px 58px rgba(81, 86, 94, 0.35);
+  --ps-radius: 0.6rem;
+  --ps-border-color: #e0e4f0;
+  --ps-padding: 18px;
+}
+
+.ps.--active {
+  z-index: 4;
+}
+
+.ps.--active .ps-drop {
+  display: block;
+  box-shadow: var(--ps-box-shadow-opened);
+}
+
+.ps.--active .ps-btn {
+  transition: all 0ms !important;
+  min-width: 240px;
+  box-shadow: none;
+  border-color: var(--ps-border-color) !important;
+  border-radius: var(--ps-radius) var(--ps-radius) 0 0 !important;
+}
+
+.ps.--active .ps-btn::after {
+  transform: rotate(225deg) translateY(-2px) !important;
+}
+
+.ps input {
+  pointer-events: none;
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.ps input:checked + .ps-drop-btn {
+  font-weight: 700;
+  background-color: #f1f3f7;
+  padding-left: 38px;
+}
+
+.ps input:checked + .ps-drop-btn span.ps-counter {
+  background-color: var(--royal_blue) !important;
+  color: white;
+}
+
+.ps input:checked + .ps-drop-btn::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  left: var(--ps-padding);
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M2 12.4118L8.4 19L22 5" stroke="black" stroke-width="4"/></svg>');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  transition: all 0.15s ease;
+  position: absolute;
+}
+
+.ps-btn {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  padding: 12px var(--ps-padding);
+  background-color: #fff;
+  border-radius: var(--ps-radius);
+  border: 1px solid var(--ps-border-color);
+  box-shadow: var(--ps-box-shadow);
+  gap: 12px;
+  transition: all 100ms ease;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.ps-btn::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg) translateY(-2px);
+  border-bottom: 2px solid var(--black);
+  border-right: 2px solid var(--black);
+}
+
+.ps-btn:hover {
+  border-color: var(--royal_blue);
+  box-shadow: 0 3px 6px rgba(50, 121, 218, 0.2);
+}
+
+.ps-btn:active {
+  border-color: #e0e4f0;
+  color: #5f5f65;
+  box-shadow: 0 3px 6px rgba(81, 86, 94, 0.03);
+}
+
+.ps-btn:active::after {
+  border-color: #5f5f65;
+}
+
+.ps-drop {
+  position: absolute;
+  inset: 100% 0 auto 0;
+  z-index: 1;
+  background-color: white;
+  border: 1px solid var(--ps-border-color);
+  border-top: none;
+  border-radius: 0 0 var(--ps-radius) var(--ps-radius);
+  box-shadow: var(--ps-box-shadow);
+  overflow: hidden;
+  display: none;
+}
+
+.ps-drop::-webkit-scrollbar {
+  display: none;
+}
+
+.ps-drop__scroller {
+  max-height: 260px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  transition: all 150ms ease-in-out;
+}
+
+.ps-drop-btn {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 10px var(--ps-padding);
+  gap: 8px;
+  transition: all 100ms ease;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.ps-drop-btn:hover {
+  background-color: #f1f3f7;
+}
+
+.ps-drop-btn span.ps-counter {
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 0.4rem;
+  background-color: #e0e4f0;
+  color: #5f5f65;
+}
+
+.ps-drop-btn span:first-child {
+  max-width: 80%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
 @font-face {
   font-family: "ProximaNova";
   src: url("../fonts/Proxima-Regular.woff") format("woff");
@@ -16521,6 +16705,11 @@ select.sms-tag:hover {
 
   .board-toolbar {
     display: flex;
+  }
+
+  .ps {
+    width: 100%;
+    flex-flow: column;
   }
 }
 

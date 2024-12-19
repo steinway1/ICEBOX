@@ -21,9 +21,69 @@
 		<!-- #endregion -->
 		<!-- #region Main Content -->
 		<div class="am-main__flow">
+
+			<div
+				class="ps-grid --mg-bottom">
+
+				{# Filters #}
+				<div class="ps">
+					<div class="ps-btn">
+						<span data-ps-current>No filters</span>
+					</div>
+					<div class="ps-drop">
+						<div class="ps-drop__scroller">
+							{% for filter in filters %}
+								<label>
+									<input type="radio" name="inventory_filter" {% if selected_stock == filter.stock %} checked {% endif %} onchange="updateURL('stock','{{ filter.stock }}');location.reload();"/>
+									<div class="ps-drop-btn">
+										<span class="ps-caption">{{ filter.caption }}</span>
+										<span class="ps-counter">{{ filter.count }}</span>
+									</div>
+								</label>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+				{# Sort #}
+				<div class="ps">
+					<div class="ps-btn">
+						<span data-ps-current>No sorting</span>
+					</div>
+					<div class="ps-drop">
+						<div class="ps-drop__scroller">
+							<label>
+								<input type="radio" id="inventory_sort_newest_first" {% if sort_by == 'new' %} checked {% endif %} onchange="updateURL('sort','new');location.reload();" name="inventory_sort" value="newest_first"/>
+								<div class="ps-drop-btn">
+									<span class="ps-caption">Newest First</span>
+								</div>
+							</label>
+							<label>
+								<input type="radio" id="inventory_sort_oldest_first" {% if sort_by == 'old' %} checked {% endif %} onchange="updateURL('sort','old');location.reload();" name="inventory_sort" value="oldest_first"/>
+								<div class="ps-drop-btn">
+									<span class="ps-caption">Oldest First</span>
+								</div>
+							</label>
+							<label>
+								<input type="radio" id="inventory_sort_high_to_low" {% if sort_by == 'high' %} checked {% endif %} onchange="updateURL('sort','high');location.reload();" name="inventory_sort" value="high_to_low"/>
+								<div class="ps-drop-btn">
+									<span class="ps-caption">Price High to Low</span>
+								</div>
+							</label>
+							<label>
+								<input type="radio" id="inventory_sort_low_to_high" {% if sort_by == 'low' %} checked {% endif %} onchange="updateURL('sort','low');location.reload();" name="inventory_sort" value="low_to_high"/>
+								<div class="ps-drop-btn">
+									<span class="ps-caption">Price Low to High</span>
+								</div>
+							</label>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
 			<div class="am-container">
-				<div
-					class="am-main__content">
+				<div class="am-main__content">
 
 					{% if empty_search %}
 						<div class="empty-search-box">
