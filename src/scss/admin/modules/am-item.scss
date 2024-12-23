@@ -104,8 +104,12 @@
 
   &>div {
     position: sticky;
-    top: 68px;
+    top: 116px;
     display: flex;
+
+    @include maxWidthMd {
+      top: 68px;
+    }
 
     &>span {
       color: #fff;
@@ -116,6 +120,10 @@
       padding: 6px 12px;
       font-size: 11px;
       font-weight: 700;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
 
       &:nth-child(2) {
         background-color: #3b6297;
@@ -1020,5 +1028,23 @@
 
   .am-item__note-form {
     display: flex;
+  }
+}
+
+.am-item__sale-btn {
+  background-color: var(--royal_blue);
+  color: white;
+  padding: 8px 16px;
+  font-weight: 700;
+  box-shadow: 0 3px 6px var(--royal_blue-shadow);
+  font-size: 13px;
+  transition: all 200ms ease;
+
+  &:hover {
+    background-color: var(--royal_blue_hover);
+  }
+
+  &:active {
+    opacity: .6;
   }
 }

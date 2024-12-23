@@ -1,0 +1,67 @@
+<div class="m-popup">
+	<div class="m-popup__handler"></div>
+	<div class="m-popup__title">
+		<h3>Add sale</h3>
+		<span>You're adding sale to the item.</span>
+	</div>
+	<div class="m-popup__content">
+		<form id="addSaleForm" method="post" onsubmit="Today.addSale(event);">
+			<div class="m-popup__wrapper">
+				<div class="m-popup__main">
+					<div class="m-popup__input-grid">
+						<div class="m-popup__input-row --hor">
+							<label class="custom-checkbox --n">
+								<input id="addSalePercent" name="saleType" type="radio" value="percent" onchange="Today.switchAddSale('percent')" checked>
+								<span>Set percent</span>
+							</label>
+							<label class="custom-checkbox --n">
+								<input id="addSaleAmount" name="saleType" type="radio" value="amount" onchange="Today.switchAddSale('amount')">
+								<span>Set amount</span>
+							</label>
+							<label class="custom-checkbox --n">
+								<input id="addSaleManual" name="saleType" type="radio" value="manual" onchange="Today.switchAddSale('manual')">
+								<span>Enter manual price</span>
+							</label>
+						</div>
+						<div class="m-popup__input-row">
+							<label class="m-popup__label" for="salePercentValue">Percent</label>
+							<div class="m-popup__input-wrap">
+								<input class="m-popup__input" name="saleValue" data-sale-type="percent" data-allow-decimals placeholder="How much % sale?" type="text" pattern="[0-9]*" id="salePercentValue" required>
+							</div>
+						</div>
+						<div class="m-popup__input-row --hidden">
+							<label class="m-popup__label" for="saleAmountValue">Amount</label>
+							<div class="m-popup__input-wrap">
+								<input class="m-popup__input" name="saleValue" data-sale-type="amount" data-allow-decimals placeholder="How much sale?" type="text" pattern="[0-9]*" id="saleAmountValue" required disabled>
+							</div>
+						</div>
+						<div class="m-popup__input-row --hidden">
+							<label class="m-popup__label" for="saleManualPrice">Manual Sale Price</label>
+							<div class="m-popup__input-wrap">
+								<input class="m-popup__input" name="saleValue" data-sale-type="manual" data-allow-decimals placeholder="Enter sale price manually" type="text" id="saleManualPrice" required disabled>
+							</div>
+						</div>
+						<div class="m-popup__input-row">
+							<label class="m-popup__label">Store number</label>
+							<div class="m-popup__input-wrap">
+								<div class="am-select-wrap">
+									<select class="am-select" id="saleStore" name="saleStore">
+										<option value="" selected>Select store...</option>
+										<option value="store_1">Store 1</option>
+										<option value="store_2">Store 2</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="m-popup__btn-group">
+						<div data-m-popup="close" class="m-popup__btn is-dim">
+							<span>Close</span>
+						</div>
+						<input type="submit" class="m-popup__btn" value="Add Sale">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

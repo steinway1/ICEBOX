@@ -22,6 +22,19 @@ const
   __REVEALED = '--revealed',
   __EDIT = '--edit'
 
+function inputAllowOnlyDecimals(input) {
+  input.oninput = function () {
+    this.value = this.value.replace(/[^0-9.]/g, '');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const onlyDecimalsInputs = document.querySelectorAll('input[data-allow-decimals]')
+  for (const input of onlyDecimalsInputs) {
+    inputAllowOnlyDecimals(input)
+  }
+})
+
 function createElem(tagName, options) {
   const { className, id, innerHTML, style, attributes, toAppend } = options
   const elem = document.createElement(tagName)
@@ -452,6 +465,7 @@ function pageMsg(settings = {}) {
   this.hideCallback = settings.hideCallback || null
   this.type = settings.type || ''
   this.id = settings.id || null
+  this.zIndex = settings.zIndex || null
   /**
    * Types:
    * 'error'
@@ -507,6 +521,10 @@ function pageMsg(settings = {}) {
 
   if (this.callback) {
     callback()
+  }
+
+  if (this.zIndex) {
+    msgElem.style.zIndex = this.zIndex
   }
 }
 
@@ -5052,3 +5070,265 @@ class PsSelect {
 document.addEventListener('DOMContentLoaded', () => {
   window.psSelect = new PsSelect()
 })
+
+/* #region  M Popup - .m-popup */
+class MPopup {
+  constructor() {
+    this.rootEl = document.querySelector('.m-popup')
+    if (!this.rootEl) return
+
+    this.handler = this.rootEl.querySelector('.m-popup__handler')
+
+    this.opened = false
+    this.init()
+  }
+
+  get getInstance() {
+    return this.rootEl
+  }
+
+  init() {
+    this.attachEvents()
+    this.bindEvents()
+    this.bindDragEvents()
+  }
+
+  attachEvents() {
+    this.rootEl.reset = () => {
+      const inputArr = [...this.rootEl.querySelectorAll('input[type="text"]')]
+      for (const input of inputArr) {
+        input.value = ''
+      }
+    }
+
+    this.rootEl.open = () => {
+      if (this.opened) {
+        return
+      }
+
+      lockScroll()
+      this.opened = true
+      this.rootEl.style.display = 'block'
+
+      if (window.innerWidth > 991) {
+        this.rootEl.querySelector('input[type="text"]').focus()
+      }
+
+      requestAnimationFrame(() => {
+        this.rootEl.classList.add(__VISIBLE)
+      })
+      window.MPopupBackdrop = new PopupBackdrop({
+        callback: () => { this.rootEl.close() }
+      })
+    }
+
+    this.rootEl.close = () => {
+      if (!this.opened) {
+        return
+      }
+
+      unlockScroll()
+      this.opened = false
+      this.rootEl.classList.remove(__VISIBLE)
+      this.rootEl.classList.add(__HIDDEN)
+      if (window.MPopupBackdrop) {
+        window.MPopupBackdrop.hide(true)
+        delete window.MPopupBackdrop
+      }
+      setTimeout(() => {
+        this.rootEl.removeAttribute('style')
+        this.rootEl.classList.remove(__HIDDEN)
+        this.rootEl.reset()
+      }, getTransitionTime(this.rootEl))
+    }
+
+    this.rootEl
+  }
+
+  bindEvents() {
+    document.addEventListener('click', (e) => {
+      const target = e.target
+
+      // Close
+      if (target.closest('[data-m-popup="close"]')) {
+        this.rootEl.close()
+      }
+
+      // Submit
+      if (target.closest('[data-m-popup="submit"]')) {
+        this.rootEl.submit()
+      }
+    })
+  }
+
+  bindDragEvents() {
+    if (window.innerWidth < 992) {
+      const handler = this.handler
+      const container = this.rootEl
+
+      let startY = 0
+      let currentY = 0
+      // let containerHeight = container.offsetHeight
+      let isDragging = false
+
+      container.addEventListener('touchstart', (e) => {
+        startY = e.touches[0].clientY
+        isDragging = true
+        container.style.transition = 'none'
+      })
+
+      container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return
+
+        currentY = e.touches[0].clientY
+        let diffY = currentY - startY
+
+        if (diffY > 0) {
+          container.style.transform = `translateY(${diffY}px)`
+        }
+      })
+
+      container.addEventListener('touchend', (e) => {
+        if (!isDragging) return
+        isDragging = false
+
+        let diffY = currentY - startY
+        let hideOffset = container.offsetHeight * 0.5
+        container.style.transition = 'all .3s cubic-bezier(.39, .575, .565, 1)'
+
+        if (diffY > hideOffset) {
+          this.rootEl.close()
+        } else {
+          container.style.transform = `translateY(0%)`
+        }
+      })
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.mPopup = new MPopup()
+})
+/* #endregion */
+
+/* #region  Today Page */
+class TodayPage {
+  constructor() {
+    const rootMain = document.querySelector('.main_today')
+    if (!rootMain) return
+
+    this.addSaleForm = document.querySelector('#addSaleForm')
+    this.addSaleId = undefined
+    this.mPopupInstance = window.mPopup
+  }
+
+  // Methods
+  openAddSale(id) {
+    if (this.mPopupInstance) {
+      this.addSaleId = id
+      const instance = this.mPopupInstance.getInstance
+      instance.open()
+    }
+  }
+  closeAddSale() {
+    if (this.mPopupInstance) {
+      const instance = this.mPopupInstance.getInstance
+      instance.close()
+    }
+  }
+  switchAddSale(type) {
+    if (this.addSaleForm) {
+      const saleTypes = [...this.addSaleForm.querySelectorAll('[data-sale-type]')]
+      const typeInput = saleTypes.find((input) => input.dataset.saleType === type)
+
+      if (saleTypes.length && typeInput) {
+        for (const input of saleTypes) {
+          const parent = input.closest('.m-popup__input-row')
+
+          if (parent) {
+            input.value = ''
+            if (input === typeInput) {
+              parent.classList.remove('--hidden')
+              input.disabled = false
+            } else {
+              parent.classList.add('--hidden')
+              input.disabled = true
+            }
+          }
+        }
+      }
+    }
+  }
+  addSale(event) {
+    const id = this.addSaleId
+
+    if (id) {
+      const form = event.target
+      const formData = new FormData(form)
+
+      const obj = {}
+      formData.forEach((value, key) => (obj[key] = value))
+      const saleType = Object.keys(obj).find(key => key === 'saleType')
+      const saleValue = Object.keys(obj).find(key => key === 'saleValue')
+
+      if (saleType && saleValue && this.mPopupInstance) {
+        const validateValue = this.validateAddSale(obj[saleValue], obj[saleType])
+        if (!validateValue.result) {
+          new pageMsg({
+            heading: 'Something went wrong',
+            msg: validateValue.message,
+            type: 'error',
+            zIndex: 2000
+          })
+          event.preventDefault()
+          return
+        }
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            if (data.error) {
+              new pageMsg({
+                heading: 'Something went wrong',
+                msg: data.msg,
+                type: 'error',
+                zIndex: 2000
+              })
+            } else {
+              this.closeAddSale()
+              window.location.reload()
+            }
+          })
+        }
+      })
+    }
+  }
+  validateAddSale(value, saleType) {
+    if (saleType !== 'percent' && saleType !== 'manual' && saleType !== 'amount') {
+      return { result: false, message: 'Sale type is not valid' }
+    }
+
+    if (isNaN(value)) {
+      return { result: false, message: 'Sale value should be number' }
+    }
+
+    if (value < 0) {
+      return { result: false, message: 'Sale value should be more than 0' }
+    }
+
+    if (saleType === 'percent' && (value < 0 || value > 100)) {
+      return { result: false, message: 'Percent sale value should be between 0 and 100' }
+    }
+
+    return { result: true }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.Today = new TodayPage()
+})
+/* #endregion */
