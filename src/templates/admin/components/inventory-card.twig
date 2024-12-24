@@ -14,18 +14,18 @@
 				{% set stock_class = "--out" %}
 				{% set stock_text = "Out of Stock" %}
 			{% endif %}
-      {% if item.layaway %}
-        {% set stock_class = "--layaway" %}
-        {% set stock_text = "Layaway" %}
-      {% endif %}
-      {% if item.sold %}
-        {% set stock_class = "--sold" %}
-        {% set stock_text = "Sold" %}
-      {% endif %}
-      {% if item.on_hold %}
-        {% set stock_class = "--hold" %}
-        {% set stock_text = "On Hold" %}
-      {% endif %}
+			{% if item.layaway %}
+				{% set stock_class = "--layaway" %}
+				{% set stock_text = "Layaway" %}
+			{% endif %}
+			{% if item.sold %}
+				{% set stock_class = "--sold" %}
+				{% set stock_text = "Sold" %}
+			{% endif %}
+			{% if item.on_hold %}
+				{% set stock_class = "--hold" %}
+				{% set stock_text = "On Hold" %}
+			{% endif %}
 
 			<div class="i-card-tag {{ stock_class }}">
 				<button onclick="recheckStock({{ item.dataID }});">
@@ -229,6 +229,24 @@
 
 		<div class="i-card__footer">
 			<span class="i-card__price">{{ item.price }}</span>
+
+      {# Notes #}
+			<div class="am-item__note-wrap" id="note_box_{{ item.id }}">
+				<div class="am-item__note-form">
+					<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_{{item.id}}">
+					<button onclick="addNotes({{item.id}})">Add</button>
+				</div>
+				{% for note in item.notes %}
+					<div class="am-item-note" id="note_{{note.id}}">
+						<div>
+							<span>{{note.author}}</span>:
+							{{note.comment}}
+						</div>
+						<div>{{note.date}}</div>
+					</div>
+				{% endfor %}
+			</div>
+
 		</div>
 	</div>
 

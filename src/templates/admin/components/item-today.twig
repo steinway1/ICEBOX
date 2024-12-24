@@ -107,6 +107,7 @@
 						<button class="am-item__sale-btn" onclick="Today.openAddSale({{item.id}})">Add Sale</button>
 					</div>
 
+          {# Notes #}
 					<div class="am-item__details-row">
 						<div class="am-item__note-wrap" id="note_box_{{ item.id }}">
 							<div class="am-item__note-form">
@@ -114,7 +115,7 @@
 								<button onclick="addNotes({{item.id}})">Add</button>
 							</div>
 							{% for note in item.notes %}
-								<div class="am-item-note" id="item_note_'.$note->id.'">
+								<div class="am-item-note" id="note_{{note.id}}">
 									<div>
 										<span>{{note.author}}</span>:
 										{{note.comment}}

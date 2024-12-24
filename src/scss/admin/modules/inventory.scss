@@ -18,6 +18,69 @@
   @include maxWidthXs {
     --side-padding: 12px;
   }
+
+  .am-item__note-form {
+    height: 38px;
+
+    button {
+      border-radius: 0 0.4rem 0.4rem 0 !important;
+      background-color: transparent;
+      box-shadow: none;
+      border-left: 1px solid var(--b-grey);
+      inset: 0 0 0 auto;
+
+      &:hover {
+        background-color: var(--royal_blue);
+      }
+    }
+  }
+
+  .am-note-input {
+    border-radius: 0.6rem;
+    border-color: var(--b-grey);
+    background-color: #fff;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    padding-right: 62px;
+    box-shadow: var(--b-shadow);
+
+    &::placeholder {
+      color: #898b97;
+    }
+
+    &:hover {
+      background-color: white;
+    }
+
+    &:focus {
+      border-color: var(--royal_blue);
+      background-color: white;
+
+      &::placeholder {
+        color: #898b97;
+        opacity: 0.5 !important;
+      }
+    }
+  }
+
+  .am-item-note {
+    border-radius: 0.6rem;
+  }
+
+  .am-item-note {
+    div {
+      &:first-child {
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 16px
+      }
+
+      &:last-child {
+        display: none;
+      }
+    }
+  }
 }
 
 .i-card__top {
