@@ -10,6 +10,9 @@
 		{% if xmas and product.item.discountRate is defined %}
 			<span class="xmas-float-badge --inline">{{product.item.discountRate}}% OFF</span>
 		{% endif %}
+		{% if new_year and product.item.discountRate is defined %}
+			<span class="ny-float-badge --inline">{{product.item.discountRate}}% OFF</span>
+		{% endif %}
 	</h1>
 	<div class="product__add-fav {% if product.is_in_wishlist %}is-active{% endif %}" id="wishlist_btn_{{product.item.id}}" {% if (product.is_in_wishlist == false) and (user) %} onclick="addToWishlist({{product.item.id}});" {% endif %}>
 		{% include "elements/product-page/svg/heart.svg" %}

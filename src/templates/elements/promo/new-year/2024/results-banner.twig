@@ -1,0 +1,69 @@
+<div class="ny-banner">
+	<div
+		class="ny-banner__wrapper">
+
+    {# Background Pattern #}
+    <img class="ny-banner__pattern" src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/big-pattern.svg" alt="">
+
+		{# Garland #}
+		<div class="ny-banner__garland">
+			<img loading="eager" src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/garland.webp" alt="" class="ny-banner__garland-item to-reverse">
+			<img loading="eager" src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/garland.webp" alt="" class="ny-banner__garland-item">
+		</div>
+
+		{# Snow Video #}
+		<div class="ny-banner__snow-video">
+			<div class="ny-banner__snow-video-over"></div>
+			<div class="ny-banner__snow-video-item">
+				<video autoplay="" loop="" style="background-image:url(&quot;{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/snow-pic.jpg&quot;)" muted="" playsinline="" data-object-fit="cover">
+        <source src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/snow-mp4.mp4">
+					<source src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/snow-webm.webm">
+				</video>
+			</div>
+		</div>
+
+		{# Sparkle Video Flipped #}
+		<div class="ny-banner__sparkle is-flipped">
+			<video autoplay="" loop="" style="background-image:url(&quot;{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/sparkle-pic.jpg&quot;)" muted="" playsinline="">
+				<source src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/sparkle-webm.mp4">
+				<source src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/sparkle-webm.webm">
+			</video>
+		</div>
+
+		{# Sparkle Video #}
+		<div class="ny-banner__sparkle">
+			<video autoplay="" loop="" style="background-image:url(&quot;{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/sparkle-pic.jpg&quot;)" muted="" playsinline="">
+				<source src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/sparkle-webm.mp4">
+				<source src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/sparkle-webm.webm">
+			</video>
+		</div>
+
+		{# Main Content #}
+		<div class="ny-banner__main">
+			<div class="ny-banner__top-text">UP TO 70% OFF</div>
+			<img alt="" src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/main-desktop-text.avif" loading="eager" class="ny-banner__desktop-img">
+			<img src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/main-mob-text.avif" loading="eager" class="ny-banner__mob-img">
+			<div class="ny-banner__sub-title">All orders will be processed on
+				<span class="ny-banner__y-typo">January 5th</span>when we return from holiday break.
+			</div>
+		</div>
+		<img loading="eager" src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/grass.webp" alt="" class="ny-banner__tree-pic">
+		<img loading="eager" src="{{ THEME_ASSETS_FOLDER }}promo/new-year/2024/grass.webp" alt="" class="ny-banner__tree-pic to-reverse">
+	</div>
+
+	{# Ticker #}
+	<div class="ny-banner__ticker">
+		{% for i in 0..5 %}
+			<div class="ny-ticker">
+				<div class="ny-ticker__typo">UP TO 60% OFF<span class="ny-ticker__typo-dot">•</span>
+					<span class="ny-ticker__spot-typo">LIMITED OFFERS ONLY!</span>
+					<span class="ny-ticker__typo-dot">•</span>
+				</div>
+				<div class="ny-ticker__typo">UP TO 60% OFF<span class="ny-ticker__typo-dot">•</span>
+					<span class="ny-ticker__spot-typo">LIMITED OFFERS ONLY!</span>
+					<span class="ny-ticker__typo-dot">•</span>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>

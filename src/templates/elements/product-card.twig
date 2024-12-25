@@ -12,8 +12,12 @@
 	{% set classes = classes|merge(['--cm']) %}
 {% endif %}
 
-{% if xmas %}
+{% if xmas == true %}
 	{% set classes = classes|merge(['--xmas']) %}
+{% endif %}
+
+{% if new_year == true %}
+	{% set classes = classes|merge(['--new-year']) %}
 {% endif %}
 
 {% if splideClass is defined %}
@@ -35,8 +39,14 @@
 	{% endif %}
 
 	<div class="product-card__wrapper">
-		<div
-			class="product-card__top">
+		<div class="product-card__top">
+
+			{% if new_year == true %}
+				<div class="ny-card-over">
+					<img src="{{THEME_ASSETS_FOLDER}}promo/new-year/2024/garland.webp" alt="">
+				</div>
+			{% endif %}
+
 
 			{# Product Tags #}
 			{% if productItem.inStock or productItem.is_discounted %}

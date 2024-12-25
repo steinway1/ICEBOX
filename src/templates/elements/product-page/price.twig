@@ -75,3 +75,7 @@
 {% if (cyber_monday or cyber_week) and product.item.discountRate is defined %}
 	<div class="ccb-btn --min --cm">Only one at this price!</div>
 {% endif %}
+
+{% if new_year and product.item.discountRate is defined %}
+	<div class="ccb-btn --new-year">Only one at this price!</div>
+{% endif %}

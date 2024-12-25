@@ -1,0 +1,566 @@
+body.--new-year {
+  .top-banner {
+    display: none;
+  }
+
+  .product__main {
+    .ny-banner__ticker {
+      height: 38px;
+    }
+
+    .ny-ticker__typo {
+      font-size: 13px;
+    }
+
+    .price-tag.--sale {
+      background-color: #16549b;
+    }
+
+    .side-row__payments {
+      .buy-btn {
+        background-image: linear-gradient(45deg, var(--black) 40%, #16549b);
+      }
+    }
+  }
+
+  .header__sub-link {
+    &.--new-year {
+      font-weight: 700;
+      color: #16549b !important;
+      background-image: linear-gradient(0deg, rgba(22, 84, 155, 0.0901960784), transparent);
+    }
+  }
+}
+
+.ny-banner {
+  flex-flow: column;
+  display: flex;
+  position: relative;
+
+  video {
+    width: 100%;
+  }
+}
+
+.ny-banner__sub-title {
+  color: #fffcf5;
+  text-transform: uppercase;
+  max-width: 420px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.ny-ticker__typo-dot {
+  opacity: .6;
+  color: #ffe5a9;
+  margin-top: -7px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 32px;
+}
+
+.ny-ticker__typo {
+  color: #fff;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+}
+
+.ny-banner__ticker {
+  z-index: 3;
+  background-color: #0d3e63;
+  border-top: 1px solid #d3b162;
+  width: 100vw;
+  height: 46px;
+  display: flex;
+  overflow: hidden;
+}
+
+.ny-banner__snow-video-over {
+  z-index: 2;
+  background-image: linear-gradient(#0000, #000);
+  height: 65%;
+  position: absolute;
+  inset: auto 0% 0%;
+}
+
+.ny-ticker {
+  flex: none;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.ny-banner__snow-video-item {
+  z-index: 1;
+  position: absolute;
+  inset: 0% 0% auto;
+}
+
+.ny-banner__tree-pic {
+  width: 100%;
+  max-width: 800px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 30%);
+}
+
+.ny-banner__tree-pic.to-reverse {
+  transform-style: preserve-3d;
+  top: -12px;
+  bottom: auto;
+  transform: translate(-50%)rotateX(180deg)rotateY(0)rotateZ(0);
+}
+
+.ny-banner__wrapper {
+  background-color: #03172f;
+  background-image: url('../'), radial-gradient(circle farthest-side at 50% 0, #ffc62e66, #03172f 58%);
+  background-position: 0 0, 0 0;
+  background-size: 50%, auto;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.ny-banner__garland-item {
+  width: 40%;
+  position: absolute;
+  inset: 0% auto auto 0%;
+}
+
+.ny-banner__garland-item.to-reverse {
+  transform-style: preserve-3d;
+  left: auto;
+  right: 0;
+  transform: rotateX(0)rotateY(180deg)rotateZ(0);
+}
+
+.ny-banner__desktop-img {
+  filter: saturate(95%);
+  background-image: none;
+  width: 65vw;
+}
+
+.ny-banner__garland {
+  z-index: 3;
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  inset: 0% 0% auto 50%;
+  transform: translate(-50%);
+}
+
+.ny-banner__main {
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 380px;
+  padding-top: 38px;
+  padding-bottom: 38px;
+  display: flex;
+  position: relative;
+}
+
+.ny-banner__mob-img {
+  width: 100%;
+  display: none;
+}
+
+.ny-banner__top-text {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  box-shadow: none;
+  outline-offset: 3px;
+  color: #ffd234;
+  background-color: #093657e6;
+  border: 1px solid #d3b162;
+  border-radius: 500px;
+  outline: 3px dotted #ffedad;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 6px 16px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 36px;
+  transition: all .2s;
+  display: flex;
+}
+
+.ny-banner__sparkle {
+  z-index: 6;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  position: absolute;
+  inset: auto 0% 0%;
+}
+
+.ny-banner__sparkle.is-flipped {
+  inset: 0% 0% auto;
+  transform: rotate(180deg);
+}
+
+.ny-banner__y-typo {
+  color: #ffd234;
+}
+
+.ny-ticker__spot-typo {
+  color: #ffd137;
+}
+
+.ny-banner__snow-video {
+  z-index: 8;
+  opacity: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  position: absolute;
+  inset: 0%;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 1440px) {
+  .ny-banner__desktop-img {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .ny-banner__garland-item {
+    width: 80%;
+  }
+
+  .ny-banner__garland-item.to-reverse {
+    display: none;
+  }
+
+  .ny-banner__desktop-img {
+    width: 80vw;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .ny-banner__tree-pic {
+    width: 100%;
+  }
+
+  .ny-banner__garland-item {
+    z-index: 4;
+    width: 100%;
+  }
+
+  .ny-banner__desktop-img {
+    width: 100vw;
+  }
+
+  .ny-banner__garland {
+    z-index: 4;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .ny-banner__sub-title {
+    margin-top: -4vw;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .ny-banner__tree-pic {
+    transform: translate(-50%);
+  }
+
+  .ny-banner__tree-pic.to-reverse {
+    top: 0;
+  }
+
+  .ny-banner__wrapper {
+    background-image: url('../images/Group-2.svg'), radial-gradient(circle farthest-side at 50% 0, #f7cc5a66, #03172f 40%);
+    background-position: 50%, 0 0;
+    background-size: 150%, auto;
+  }
+
+  .ny-banner__garland-item {
+    max-width: none;
+    transform: translate(-50%);
+  }
+
+  .ny-banner__garland-item.to-reverse {
+    display: block;
+    transform: translate(50%)rotateX(0)rotateY(180deg)rotateZ(0);
+  }
+
+  .ny-banner__desktop-img {
+    display: none;
+  }
+
+  .ny-banner__mob-img {
+    height: 74vw;
+    display: block;
+  }
+
+  .ny-banner__top-text {
+    margin-top: 2vw;
+    margin-bottom: -3vw;
+    padding: 1.5vw 4vw;
+    font-size: 5vw;
+    line-height: 7vw;
+  }
+}
+
+.ny-ticker {
+  animation: ny-ticker 35s linear infinite;
+}
+
+@media screen and (max-width: 479px) {
+  .ny-ticker {
+    animation: ny-ticker 14s linear infinite;
+  }  
+}
+
+@keyframes ny-ticker {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.ny-banner__pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+
+.ny-top-banner {
+  color: #fff;
+  background-color: #021327;
+  background-image: url("https://cdn.prod.website-files.com/673973a838958256e22d8612/676400343728fcd659696700_Group%20(2).svg"), linear-gradient(0deg, #aad3ff57, #082242 84%);
+  background-position: 0 0, 0 0;
+  background-size: 170px, auto;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100vw;
+  padding-right: 22px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  line-height: 18px;
+
+  // &>div {
+  //   position: relative;
+  //   z-index: 2;
+  // }
+}
+
+@keyframes nyDash {
+  to {
+    background-position: 24px 0;
+  }
+}
+
+.ny-top-banner__timer {
+  z-index: 2;
+  text-align: right;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 4px;
+  padding-bottom: 2px;
+  display: flex;
+  position: relative;
+  text-transform: uppercase;
+  font-family: "Bebas Neue", sans-serif;
+
+  h4 {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 14px;
+    color: #ffd234;
+    margin-bottom: 4px;
+  }
+
+  &>div {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+
+    &>div {
+      font-size: 20px;
+      font-weight: 600;
+
+      &>span {
+        &:last-child {
+          font-size: 14px
+        }
+      }
+    }
+  }
+}
+
+.ny-top-banner__pic-wrap {
+  z-index: 2;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  transition: all .2s;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+
+  &:hover {
+    opacity: .5;
+  }
+
+  img {
+    width: 280px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    filter: brightness(1.3);
+
+    @media screen and (max-width: 480px) {
+      width: 220px;
+    }
+  }
+}
+
+@media screen and (max-width: 479px) {
+
+  .ny-top-banner__timer {
+    flex: none;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .ny-top-banner {
+    justify-content: space-between;
+    padding-right: 12px;
+  }
+
+  .ny-top-banner__pic-wrap {
+    padding-left: 12px;
+    position: static;
+    left: auto;
+    transform: none;
+  }
+}
+
+.product-card.--new-year {
+  .xmas-card-over {
+    display: none !important;
+  }
+
+  .product-tag.--red {
+    background-color: #0b3564;
+    background-image: url(https://cdn.prod.website-files.com/673973a…/6764e1f…_Mask%20group%20-%202024-12-20T131808.272.png), linear-gradient(#195599, #0b3564);
+    box-shadow: 0 1px 3px #1e6dc533;
+  }
+}
+
+.ny-card-over {
+  z-index: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  position: absolute;
+  inset: 0% 0% auto;
+  overflow: hidden;
+  pointer-events: none;
+
+  img {
+    width: 90%;
+    max-width: none;
+    position: static;
+    inset: 0% auto auto 0%;
+
+    @media screen and (max-width: 479px) {
+      width: 150%;      
+    }
+  }
+}
+
+.ny-float-badge {
+  position: absolute;
+  z-index: 2;
+  inset: 6px auto auto 6px;
+  color: #fff;
+  background-color: #0b3564;
+    background-image: url(https://cdn.prod.website-files.com/673973a…/6764e1f…_Mask%20group%20-%202024-12-20T131808.272.png), linear-gradient(#195599, #0b3564);
+  border-top-left-radius: .35rem;
+  border-bottom-right-radius: .35rem;
+  padding: 6px 12px 5px;
+  font-family: Oscan, sans-serif;
+  font-size: 13px;
+  display: flex;
+  gap: 6px;
+  overflow: hidden;
+
+  &.--inline {
+    inset: -2px auto auto auto;
+    font-family: ProximaNova, sans-serif;
+    font-weight: 800;
+    font-size: 12px !important;
+    position: relative;
+    height: auto !important;
+    line-height: 22px !important;
+    display: inline-flex;
+    inset: -2px auto auto auto !important;
+    border-radius: .4rem !important;
+    padding: 2px 6px;
+  }
+
+  &::after {
+    content: '';
+    z-index: 2;
+    opacity: .25;
+    background-image: linear-gradient(90deg, #fff0, #ffeef2bf 40%, #ffeef2 50%, #ffeef2bf 60%, #fff0);
+    width: 30%;
+    height: 98px;
+    transition: all .8s cubic-bezier(.39, .575, .565, 1);
+    position: absolute;
+    left: -68px;
+    transform: skew(25deg);
+    animation: saleBlink 2.8s ease-in-out infinite;
+  }
+
+  @media screen and (max-width: 479px) {
+    padding: 4px 8px 3px;
+    font-size: 10px;
+  }
+}
+
+.ccb-btn.--new-year {
+  margin-top: 8px;
+  font-weight: 700;
+  box-shadow: none;
+  border: none;
+  background-color: #16549b;
+  color: white;
+  border-radius: 0.7rem;
+}
+
+.menu__item.--new-year {
+  background-color: #021327;
+  background-image: url("https://cdn.prod.website-files.com/673973a838958256e22d8612/676400343728fcd659696700_Group%20(2).svg"), linear-gradient(0deg, #aad3ff57, #082242 84%);
+  background-position: 0 0, 0 0;
+  background-size: 170px, auto;
+
+  img {
+    filter: brightness(1.3);
+  }
+}
