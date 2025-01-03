@@ -521,16 +521,35 @@ class ProductPage {
       const wrapper = row.querySelector('.toggle-row__wrapper')
 
       if (head && body && wrapper) {
-        head.addEventListener('click', () => {
+        let timeoutTimer = null
+
+        head.addEventListener('click', (e) => {
+          if (timeoutTimer) {
+            clearTimeout(timeoutTimer)
+          }
+
+          const target = e.target
+          if (target.classList.contains('editable') || target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+            return
+          }
           const scrollHeight = wrapper.scrollHeight
           const isActive = body.offsetHeight > 0 && row.classList.contains('--active')
 
           if (isActive) {
-            body.style.height = `0px`
-            row.classList.remove('--active')
+            const currentHeight = body.offsetHeight
+            body.style.height = `${currentHeight}px`
+
+            setTimeout(() => {
+              body.style.height = `0px`
+              row.classList.remove('--active')
+            }, 3);
           } else {
             body.style.height = `${scrollHeight}px`
             row.classList.add('--active')
+
+            timeoutTimer = window.setTimeout(() => {
+              body.style.height = 'auto'
+            }, getTransitionTime(body));
           }
         })
       }

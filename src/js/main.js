@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const productMain = document.querySelector('.main_product')
   if (productMain) {
-    new ProductPage()
+    window.productPage = new ProductPage()
   }
 
   // Notice modal
