@@ -16,7 +16,7 @@ class NewYear {
       hourSelector: '[data-new-year-timer="hours"]',
       minuteSelector: '[data-new-year-timer="minutes"]',
       secondSelector: '[data-new-year-timer="seconds"]',
-      date: '2025-01-07 10:00:00'
+      date: '2025-01-13 10:00:00'
     })
   }
 }
