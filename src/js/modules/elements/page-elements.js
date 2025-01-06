@@ -11,6 +11,60 @@ const pageEls = new Object({
     })
   },
   attachEvent: {
+    // Youtube videos / Youtube row
+    bindYoutubeVideos() {
+      // Create Player
+      const createPlayer = (url) => {
+        const render = () => {
+          return `
+  <div class="yt-controls">
+    <button data-evt="closeYoutube" class="yt-float__btn"></button>
+  </div>
+  <div class="yt-float__video-box">
+    <div style="padding-top:56.17021276595745%" class="yt-float__video">
+      <iframe src="${url}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
+      </iframe>
+    </div>
+  </div>
+          `
+        }
+
+        const player = createElem('div', {
+          className: 'yt-float',
+          innerHTML: render()
+        })
+        document.body.appendChild(player)
+        player.addEventListener('click', (e) => {
+          if (e.target.closest('.yt-float__btn')) {
+            player.remove()
+          }
+        })
+      }
+      document.addEventListener('click', (e) => {
+        const target = e.target
+        if (target.closest('.yt-item') && target.closest('[data-url]')) {
+          const ytElement = document.querySelector('.yt-float')
+          if (ytElement) {
+            ytElement.remove()
+          }
+          const url = target.closest('[data-url]').dataset.url
+          createPlayer(url)
+        }
+      })
+
+      // Expand Youtube row
+      const expandArr = [...document.querySelectorAll('[data-evt="expandYoutubeRow"]')]
+      const ytRow = document.querySelector('.yt-row')
+      if (ytRow) {
+        for (const elem of expandArr) {
+          elem.addEventListener('click', () => {
+            ytRow.classList.add('--expanded')
+            elem.innerHTML = 'No more videos...'
+            elem.disabled = true
+          })
+        }
+      }
+    },
     // Page Share Button
     bindPageShareButton() {
       const elemArr = [...document.querySelectorAll('[data-share-page]')]
@@ -20,7 +74,7 @@ const pageEls = new Object({
           navigator.clipboard.writeText(window.location.href)
             .then(() => {
               span.textContent = 'Share'
-              span.textContent= 'URL Copied!'
+              span.textContent = 'URL Copied!'
               setTimeout(() => {
                 span.textContent = 'Share'
               }, 800);
