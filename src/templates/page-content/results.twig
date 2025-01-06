@@ -6,7 +6,7 @@
 	{% set is_watch_market_page = true %}
 {% endif %}
 
-<div class="results-content {% if category.id == 25  %} --watch-market {% endif %}">
+<div class="results-content {% if category.id == 25  %} --watch-market {% endif %}{% if user.admin %} --admin{% endif %}">
 
 	<div class="results__sticky-search">
 		<form method="get" action="/search-products">
