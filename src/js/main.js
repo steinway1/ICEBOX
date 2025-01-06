@@ -32,7 +32,7 @@ window.AskModal = require('./modules/dynamic/ask-modal')
 /* Loader Root */
 window.rootLoader = require('./modules/dynamic/root-loader')
 /* Sign Up price alerts */
-window.priceModal = require('./modules/dynamic/price-modal')
+require('./modules/dynamic/price-modal')
 
 /** -- Page Elements */
 // Login

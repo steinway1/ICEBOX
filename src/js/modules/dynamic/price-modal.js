@@ -12,6 +12,7 @@ class PriceModal {
     this.elem = undefined
     this.input = undefined
     this.closeArr = []
+    this.submitArr = []
 
     this.setup()
     this.show()
@@ -30,20 +31,8 @@ class PriceModal {
 
     this.elem.classList.add('--loading')
 
-    const reset = this.reset.bind(this)
     const error = this.error.bind(this)
-    const destroy = this.destroy.bind(this)
-
-    const success = () => {
-      const elem = this.elem
-
-      setTimeout(() => {
-        elem.classList.remove('--loading')
-        setTimeout(() => {
-          destroy()
-        }, getTransitionTime(elem));
-      }, 2000);
-    }
+    const success = this.success.bind(this)
 
     $.ajax({
       url: '/json/signup-price',
@@ -55,15 +44,26 @@ class PriceModal {
         }
       },
       error: function () {
-        reset()
         error('Something went wrong')
       }
     })
   }
 
   error(msg) {
+    this.reset()
     this.elem.classList.add('--error')
     this.elem.querySelector('.price-modal__error').textContent = msg
+  }
+
+  success(msg = 'Great! You are signed up!') {
+    this.reset()
+    this.elem.classList.add('--success')
+    this.elem.querySelector('.price-modal__error').textContent = msg
+    setTimeout(() => {
+      if (window.priceModal) {
+        this.destroy()
+      }
+    }, 1300);
   }
 
   reset() {
@@ -99,7 +99,7 @@ class PriceModal {
         <div class="price-modal__error">Something went wrong</div>
 				<div class="price-modal__footer">
 					<button class="--sub">Close</button>
-					<button onclick="window.signupPrice()">Submit</button>
+					<button data-evt="submit">Submit</button>
 				</div>
 			</div>
     `
@@ -136,10 +136,17 @@ class PriceModal {
     document.body.appendChild(this.elem)
     this.input.focus()
     this.closeArr.push(this.elem.querySelector('.--sub'))
+    this.submitArr.push(this.elem.querySelector('[data-evt="submit"]'))
 
     for (const elem of this.closeArr) {
       elem.addEventListener('click', () => {
         this.destroy()
+      })
+    }
+
+    for (const elem of this.submitArr) {
+      elem.addEventListener('click', () => {
+        this.signup()
       })
     }
 
@@ -150,6 +157,14 @@ class PriceModal {
         this.elem.classList.add('--unlocked')
       } else {
         this.elem.classList.remove('--unlocked')
+      }
+    })
+
+    this.input.addEventListener('keydown', (e) => {
+      const keyIsEnter = e.key === 'Enter'
+      if (keyIsEnter && this.input.value) {
+        e.preventDefault()
+        this.submitArr[0].click()
       }
     })
 

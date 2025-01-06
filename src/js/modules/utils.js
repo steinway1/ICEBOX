@@ -1,3 +1,5 @@
+const PriceModal = require("./dynamic/price-modal");
+
 function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
@@ -144,17 +146,13 @@ function openPriceModal(target, id) {
   window.signPriceModal = new window.priceModal(card, id)
 }
 
-function signupPrice(e) {
-  if (!window.priceModal) {
-    console.warn('No price modal found')
-    return
-  }
+function openPriceModal(e) {
 
   const card = e.target.closest('.product-card')
   const id = card.dataset.id
 
   if (card && id) {
-    window.signPriceModal = new window.priceModal(card, id)
+    window.priceModal = new PriceModal(card, id)
   }
 }
 
@@ -267,7 +265,6 @@ module.exports = {
   showSkeleton,
   hideSkeleton,
   openPriceModal,
-  signupPrice,
   createTimer,
   getFakeProduct
 }
