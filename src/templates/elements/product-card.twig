@@ -68,12 +68,17 @@
 			<div class="product-card__media">
 				<a href="{{productItem.href}}">
 					{% if productItem.no_photo == false or productItem.no_photo is not defined %}
-						<img src="{{productItem.cover}}" {% if productItem.extra_classes == '' %} loading="lazy" {% endif %} alt="{{productItem.alt}}" class="product-card__img {% if disableZoom is not defined %}{{ productItem.extra_classes }} {% endif %}">
+						<img data-src="{{productItem.cover}}" {% if productItem.extra_classes == '' %} loading="lazy" {% endif %} alt="{{productItem.alt}}" class="product-card__img {% if disableZoom is not defined %}{{ productItem.extra_classes }} {% endif %}">
 					{% endif %}
 					{% if productItem.sirv_html is defined %}
 						{{ productItem.sirv_html | raw }}
 					{% endif %}
 				</a>
+				<span class="card-loader">
+					<svg viewbox="0 0 40 40" focusable="false" aria-hidden="true">
+						<circle stroke-width="3" stroke-linejoin="round" fill="none" cx="20" cy="20" r="18"></circle>
+					</svg>
+				</span>
 			</div>
 
 			{# Xmas Snow #}

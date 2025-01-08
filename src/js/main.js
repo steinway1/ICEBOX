@@ -108,6 +108,12 @@ const
 const sirvCards = require('./modules/elements/sirv')
 
 
+// Product Cards media loader
+document.addEventListener('DOMContentLoaded', () => {
+  initLazyLoadForProductCards()
+})
+
+
 /** -- Initialize Page Objects */
 const
   pageObjectsArr = [

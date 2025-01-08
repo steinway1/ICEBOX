@@ -168,69 +168,69 @@ function openPriceModal(e) {
     })
  */
 
-    function createTimer(settings = {}) {
-      let { daySelector, hourSelector, minuteSelector, secondSelector, date } = settings;
-      
-      const dayElem = daySelector ? [...document.querySelectorAll(daySelector)] : [];
-      const hourElem = hourSelector ? [...document.querySelectorAll(hourSelector)] : [];
-      const minuteElem = minuteSelector ? [...document.querySelectorAll(minuteSelector)] : [];
-      const secondElem = secondSelector ? [...document.querySelectorAll(secondSelector)] : [];
-      
-      // Предположим, что date = '2025-01-12 16:00:00' (без смещения)
-      // или вообще любой формат, который корректно парсится new Date(...)
-      const endDate = new Date(date);
-      let timer;
-    
-      if (!dayElem.length && !hourElem.length && !minuteElem.length && !secondElem.length) {
-        return;
-      }
-    
-      if (isNaN(endDate)) {
-        console.error('Incorrect date format passed to createTimer.');
-        return;
-      }
-    
-      // Функция, которая возвращает "сейчас в Атланте" как объект Date
-      function getAtlantaTime() {
-        // Получаем строку локального времени в формате "MM/DD/YYYY, HH:MM:SS" (или близком), но для таймзоны America/New_York
-        const atlantaTimeString = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
-        // Превращаем строку обратно в Date
-        return new Date(atlantaTimeString);
-      }
-    
-      // Для красивого отображения (добавляем ведущий 0)
-      const pad = (num) => num.toString().padStart(2, '0');
-    
-      timer = setInterval(updateTimer, 1000);
-      
-      function updateTimer() {
-        const nowAtlanta = getAtlantaTime().getTime(); // Текущее время в мс (Атланта)
-        let diff = endDate - nowAtlanta;
-        
-        if (diff <= 0) {
-          diff = 0;
-          clearInterval(timer);
-        }
-      
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-        
-        for (const elem of dayElem) {
-          elem.textContent = pad(days);
-        }
-        for (const elem of hourElem) {
-          elem.textContent = pad(hours);
-        }
-        for (const elem of minuteElem) {
-          elem.textContent = pad(minutes);
-        }
-        for (const elem of secondElem) {
-          elem.textContent = pad(seconds);
-        }
-      }
+function createTimer(settings = {}) {
+  let { daySelector, hourSelector, minuteSelector, secondSelector, date } = settings;
+
+  const dayElem = daySelector ? [...document.querySelectorAll(daySelector)] : [];
+  const hourElem = hourSelector ? [...document.querySelectorAll(hourSelector)] : [];
+  const minuteElem = minuteSelector ? [...document.querySelectorAll(minuteSelector)] : [];
+  const secondElem = secondSelector ? [...document.querySelectorAll(secondSelector)] : [];
+
+  // Предположим, что date = '2025-01-12 16:00:00' (без смещения)
+  // или вообще любой формат, который корректно парсится new Date(...)
+  const endDate = new Date(date);
+  let timer;
+
+  if (!dayElem.length && !hourElem.length && !minuteElem.length && !secondElem.length) {
+    return;
+  }
+
+  if (isNaN(endDate)) {
+    console.error('Incorrect date format passed to createTimer.');
+    return;
+  }
+
+  // Функция, которая возвращает "сейчас в Атланте" как объект Date
+  function getAtlantaTime() {
+    // Получаем строку локального времени в формате "MM/DD/YYYY, HH:MM:SS" (или близком), но для таймзоны America/New_York
+    const atlantaTimeString = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+    // Превращаем строку обратно в Date
+    return new Date(atlantaTimeString);
+  }
+
+  // Для красивого отображения (добавляем ведущий 0)
+  const pad = (num) => num.toString().padStart(2, '0');
+
+  timer = setInterval(updateTimer, 1000);
+
+  function updateTimer() {
+    const nowAtlanta = getAtlantaTime().getTime(); // Текущее время в мс (Атланта)
+    let diff = endDate - nowAtlanta;
+
+    if (diff <= 0) {
+      diff = 0;
+      clearInterval(timer);
     }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    for (const elem of dayElem) {
+      elem.textContent = pad(days);
+    }
+    for (const elem of hourElem) {
+      elem.textContent = pad(hours);
+    }
+    for (const elem of minuteElem) {
+      elem.textContent = pad(minutes);
+    }
+    for (const elem of secondElem) {
+      elem.textContent = pad(seconds);
+    }
+  }
+}
 
 function getFakeProduct() {
   return {
@@ -241,6 +241,39 @@ function getFakeProduct() {
     original_price: "$4,990",
     category: "Crosses"
   }
+}
+
+function initLazyLoadForProductCards() {
+  const images = document.querySelectorAll('.product-card__img[data-src]');
+
+  const observer = new IntersectionObserver((entries, observerInstance) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+
+        img.addEventListener(
+          'load',
+          () => {
+            const parent = img.closest('.product-card__media');
+            if (parent) {
+              parent.classList.add('--loaded')
+            }
+          },
+          { once: true }
+        );
+
+        observerInstance.unobserve(img);
+      }
+    });
+  }, {
+    rootMargin: '100px 0px',
+    threshold: 0
+  });
+
+  images.forEach(img => observer.observe(img));
 }
 
 module.exports = {
@@ -265,5 +298,6 @@ module.exports = {
   hideSkeleton,
   openPriceModal,
   createTimer,
-  getFakeProduct
+  getFakeProduct,
+  initLazyLoadForProductCards
 }
