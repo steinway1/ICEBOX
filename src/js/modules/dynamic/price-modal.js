@@ -39,8 +39,11 @@ class PriceModal {
       type: 'POST',
       data: { id: this.id, email: email },
       success: function (data) {
-        if (!data.error) {
+        var r = $.parseJSON(data);
+        if (!r.error) {
           success()
+        }else{
+          error(r.msg);
         }
       },
       error: function () {
