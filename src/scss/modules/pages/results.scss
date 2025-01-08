@@ -2393,3 +2393,74 @@ body.--controls-visible {
     display: block;
   }
 }
+
+/* #region  Subcategories */
+.results__subcategories {
+  border-top: 1px solid var(--t-border);
+}
+
+.results__subcategories-wrap {
+  padding-right: 0 !important;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--padding);
+  overflow: auto hidden;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .custom-checkbox {
+    scroll-snap-align: start;
+    flex: none;
+
+    input {
+      &:checked {
+        &+span {
+          border-color: var(--blue);
+          background-color: white;
+        }
+      }
+    }
+
+    span {
+      cursor: pointer;
+      background-color: #f4f5f7;
+      border: 1px solid #f4f5f7;
+      border-radius: 50rem;
+      padding: 9px 20px 8px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 200ms ease;
+      user-select: none;
+
+      &:active {
+        opacity: 0.5;
+      }
+    
+      @include minWidthMd {
+        &:hover {
+          border-color: #eaecf0;
+          background-color: #eaecf0;
+        }
+      }
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
+
+/* #endregion */

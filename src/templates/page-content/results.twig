@@ -41,9 +41,20 @@
 
 	<div class="results__wrap">
 		<div class="results__main">
-			{% if (gender is defined) or (sub_nav is defined) or (category_page is defined) or (gia_page is defined) or (watch_market_brands == true) %}
-				{% include "elements/results/results-sub.twig" %}
+
+			{% if category.has_subcategories %}
+				<div class="results__subcategories">
+					<div class="results__subcategories-wrap wrapper">
+						{% for option in subcategories %}
+							<label class="custom-checkbox">
+								<input type="checkbox" value="pendants" {% if option.checked == true %} checked {% endif %}>
+								<span>{{ option.caption }}</span>
+							</label>
+						{% endfor %}
+					</div>
+				</div>
 			{% endif %}
+
 
 			{% include "elements/results/page-filters.twig" %}
 			{% include "elements/results/filter-modal.twig" %}
