@@ -65,6 +65,23 @@ const pageEls = new Object({
         }
       }
     },
+    // Set capitalize for all subcategories tabs
+    changeToLowerCaseSubcategories() {
+      const tabs = [...document.querySelectorAll('.results__subcategories-wrap .custom-checkbox')]
+      for (const tab of tabs) {
+        const span = tab.querySelector('span')
+        if (span) {
+          const text = span.textContent
+          const toUpperCase = (str) => str[0].toUpperCase() + str.slice(1)
+          const correctText = text
+            .toLowerCase()
+            .split(' ')
+            .map(toUpperCase)
+            .join(' ')
+          span.textContent = correctText
+        }
+      }
+    },
     // Page Share Button
     bindPageShareButton() {
       const elemArr = [...document.querySelectorAll('[data-share-page]')]

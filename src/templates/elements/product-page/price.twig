@@ -79,3 +79,7 @@
 {% if new_year and product.item.discountRate is defined %}
 	<div class="ccb-btn --new-year">Only one at this price!</div>
 {% endif %}
+
+{% if not productItem.is_watch and vday and productItem.discountRate %}
+	<div class="vday-subtext">EXCLUSIVE OFFER. ONLY ONE AVAILABLE</div>
+{% endif %}

@@ -31,6 +31,25 @@
 		</div>
 	{% endif %}
 
+	{% if vday %}
+		<div class="vday-ticker-row">
+			{% for i in 0..9 %}
+				<div class="vday-ticker">
+					{% if product.item.discountRate is defined %}
+						<div>ONLY ONE AT THIS PRICE</div>
+						<div class="vday-ticker__divider"></div>
+						<div>{{product.item.discountRate}}% OFF THIS ITEM</div>
+					{% else %}
+						<div>LIMITED OFFERS!</div>
+						<div class="vday-ticker__divider"></div>
+						<div>SALE UP TO 70% OFF</div>
+					{% endif %}
+					<div class="vday-ticker__divider"></div>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+
 
 	{# Ticker Black Friday #}
 	{% if black_friday and product.item.discountRate is defined %}
@@ -88,7 +107,7 @@
 				<div class="product__mob-details">
 					<div class="side-row__category">{{product.subcategory.caption}}</div>
 					{% include "elements/product-page/title.twig" %}
-					{% include "elements/product-page/share-row.twig" %}
+					{# {% include "elements/product-page/share-row.twig" %} #}
 				</div>
 
 				{# -- Gallery #}
@@ -107,7 +126,7 @@
 					{% if userIsAdmin %}
 						{% include "elements/product-page/reviews-bar.twig" %}
 					{% endif %}
-					{% include "elements/product-page/share-row.twig" %}
+					{# {% include "elements/product-page/share-row.twig" %} #}
 
 					{# Gold Option #}
 					{% for option in product.options %}

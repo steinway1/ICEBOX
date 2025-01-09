@@ -8,6 +8,22 @@
 
 <div class="results-content {% if category.id == 25  %} --watch-market {% endif %}{% if user.admin %} --admin{% endif %}">
 
+	{% if vday %}
+		<div class="vday-ticker-row --static">
+			{% for i in 0..9 %}
+				<div class="vday-ticker">
+					<div>LIMITED OFFERS!</div>
+					<div class="vday-ticker__divider"></div>
+					<div>SALE UP TO 70% OFF</div>
+					<div class="vday-ticker__divider"></div>
+					<div>FOR HIM &amp; HER</div>
+					<div class="vday-ticker__divider"></div>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+
 	<div class="results__sticky-search">
 		<form method="get" action="/search-products">
 			<div class="header-search__input-wrap">

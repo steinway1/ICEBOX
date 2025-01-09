@@ -5,10 +5,14 @@
 		{% if new_year %}
 			<img src="{{THEME_ASSETS_FOLDER}}promo/new-year/2024/logo.png" loading="eager" alt="Icebox ">
 		{% else %}
-			{% if main_logo is defined %}
-				<img src="{{ main_logo }}" loading="eager" alt="Icebox ">
+			{% if vday %}
+				<img src="{{THEME_ASSETS_FOLDER}}promo/vday/2024/logo.avif" loading="eager" alt="Icebox valentine's logo">
 			{% else %}
-				<img src="{{THEME_ASSETS_FOLDER}}/assets/logo.svg" loading="eager" alt="Icebox ">
+				{% if main_logo is defined %}
+					<img src="{{ main_logo }}" loading="eager" alt="Icebox ">
+				{% else %}
+					<img src="{{THEME_ASSETS_FOLDER}}/assets/logo.svg" loading="eager" alt="Icebox ">
+				{% endif %}
 			{% endif %}
 		{% endif %}
 	{% endif %}
@@ -27,16 +31,10 @@
 			<span>Our Locations</span>
 		</div>
 	</a>
-	{% if vday == true %}
-		<a href="/valentines-day" class="vday-nav-link is-valentine">
-			<img src="{{THEME_ASSETS_FOLDER}}/assets/vday/link-ring.webp" loading="eager" alt="">
-			<span>Valentine&#x27;s Sale</span>
-		</a>
-	{% endif %}
 	{# <a href="/sale" class="vday-nav-link --sale">
-								<img src="{{THEME_ASSETS_FOLDER}}sample_earrings.webp" loading="eager" alt="">
-								<span>Sale</span>
-							</a> #}
+											<img src="{{THEME_ASSETS_FOLDER}}sample_earrings.webp" loading="eager" alt="">
+											<span>Sale</span>
+										</a> #}
 </div>
 
 <div class="header-nav__group">

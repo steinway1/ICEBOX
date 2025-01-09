@@ -25,6 +25,20 @@
 		<img src="{{THEME_ASSETS_FOLDER}}promo/new-year/2024/top-banner-pic.png" loading="eager" alt="">
 	</a>
 {% endif %}
+{% if vday %}
+	<a href="/" class="menu__item --vday">
+		<div class="vday-ticker-row">
+			{% for i in 0..2 %}
+				<div class="vday-ticker">
+					<div>JOIN VALENTINE'S DAY SALE!</div>
+					<div class="vday-ticker__divider"></div>
+					<div>JOIN VALENTINE'S DAY SALE!</div>
+					<div class="vday-ticker__divider"></div>
+				</div>
+			{% endfor %}
+		</div>
+	</a>
+{% endif %}
 <div data-menu-nav="men" class="menu__item --more">
 	<span>Men's</span>
 </div>

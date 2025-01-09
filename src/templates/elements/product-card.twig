@@ -20,6 +20,10 @@
 	{% set classes = classes|merge(['--new-year']) %}
 {% endif %}
 
+{% if vday == true %}
+	{% set classes = classes|merge(['--vday']) %}
+{% endif %}
+
 {% if splideClass is defined %}
 	{% set classes = classes|merge(['splide__slide']) %}
 {% endif %}
@@ -40,6 +44,12 @@
 
 	<div class="product-card__wrapper">
 		<div class="product-card__top">
+
+			{% if vday == true and productItem.discountRate %}
+				<div class="vday-tag">
+					<img src="{{THEME_ASSETS_FOLDER}}promo/vday/2024/tag_{{ productItem.discountRate }}.svg" alt="">
+				</div>
+			{% endif %}
 
 			{% if new_year == true %}
 				<div class="ny-card-over">
@@ -110,7 +120,7 @@
 					{% endif %}
 
 					{# Only One At This Price #}
-					{% if xmas and productItem.is_discounted and (productItem.inStock or productItem.force_sale) %}
+					{% if xmas and productItem.is_discounted and (productItem.inStock or productItem.force_sale) and not vday %}
 						<div class="candy-text">
 							<span>Only One At This Price!</span>
 						</div>
@@ -200,6 +210,11 @@
 					</div>
 				{% endif %}
 			</div>
+
+			{# Exclusive Offer Vday #}
+			{% if not productItem.is_watch and vday and productItem.discountRate %}
+				<div class="vday-subtext">EXCLUSIVE OFFER. ONLY ONE AVAILABLE</div>
+			{% endif %}
 		</div>
 
 

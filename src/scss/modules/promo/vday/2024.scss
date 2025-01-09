@@ -1,0 +1,526 @@
+@import '../mixin.scss';
+
+body.--vday {
+  .top-banner {
+    display: none;
+  }
+}
+
+.vday-top-banner {
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  background-color: #a82f48;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-family: Staatliches, sans-serif;
+  font-size: 18px;
+  display: flex;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @include maxWidthXs {
+    font-size: 16px;
+  }
+
+  span {
+    &>span {
+      &:first-child {
+        color: #ffa5b3;
+      }
+
+      &:last-child {
+        color: #ffa5b3;
+      }
+    }
+  }
+}
+
+/* #region  Banner */
+.vday-main {
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.vday-ribbon-img {
+  width: 14vw;
+  max-width: 200px;
+}
+
+.vday-heart-img {
+  filter: saturate(84%) hue-rotate(349deg);
+  display: block;
+}
+
+.vday-canvas-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.vday-banner__pattern {
+  opacity: .1;
+  background-image: url('https://cdn.prod.website-files.com/673973a838958256e22d8612/677e78e43f6f55f7aa0f4a5c_Mask%20group%20-%202025-01-08T230837.470.png');
+  background-position: 0 0;
+  background-size: 200px;
+  position: absolute;
+  inset: 0%;
+}
+
+.vday-banner__content {
+  background-color: #2c2b3e;
+  background-image: radial-gradient(circle farthest-side, #b41636a3, #242a3a00 84%), radial-gradient(circle at 75% 15%, #242a3a7d, #242a3a00 45%), radial-gradient(circle farthest-side at 0 0, #b11c3a69, #242a3a00 23%), radial-gradient(circle farthest-side at 70% 100%, #242a3a9c, #242a3a00 52%), radial-gradient(circle farthest-side at 25% 0, #242a3a99, #242a3a00 59%), radial-gradient(circle farthest-side, #b11c3a, #2f2b3e00);
+  position: relative;
+  overflow: hidden;
+}
+
+.vday-hearts {
+  z-index: 9;
+  opacity: .9;
+  pointer-events: none;
+  mix-blend-mode: lighten;
+  position: absolute;
+  inset: 0%;
+}
+
+.vday-img {
+  z-index: 20;
+  filter: hue-rotate(352deg);
+  width: 46%;
+  max-width: 640px;
+  margin-top: -4%;
+  margin-bottom: -2%;
+  display: block;
+  position: relative;
+  aspect-ratio: 1.2;
+}
+
+.vday-heart {
+  width: 10vw;
+  position: absolute;
+  bottom: 14%;
+  right: 20%;
+}
+
+.vday-heart.vh2 {
+  inset: 10% auto auto 20%;
+}
+
+.vday-ticker-row {
+  z-index: 2;
+  color: #fff;
+  background-color: #a82f48;
+  border-top: 1px solid #df4c67;
+  width: 100vw;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  position: absolute;
+  inset: auto 0% 0%;
+  overflow: hidden;
+  box-shadow: 0 2px 5px #0003;
+
+  &.--static {
+    position: static;
+
+    .vday-ticker {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+}
+
+.vday-ticker {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  text-transform: uppercase;
+  flex: none;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 16px;
+  font-size: 20px;
+  display: flex;
+  font-family: Staatliches, sans-serif;
+}
+
+.vday-banner {
+  flex-flow: column;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.vday-ticker__divider {
+  background-color: #d3798c;
+  width: 6px;
+  height: 6px;
+  transform: rotate(-45deg);
+}
+
+.vday-top-ribbon {
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: -1%;
+  left: 64%;
+}
+
+.vday-top-ribbon.flipped {
+  inset: auto 66% -2% auto;
+}
+
+.vday-banner__video {
+  z-index: 10;
+  mix-blend-mode: screen;
+  height: 100%;
+  position: absolute;
+  inset: 0%;
+  pointer-events: none;
+
+  video {
+    width: 100%;
+    inset: 0;
+    object-fit: cover;
+    z-index: -100;
+    background-position: 50%;
+    background-size: cover;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    inset: -100%;
+  }
+}
+
+.vday-banner__video.is-flipped {
+  transform-style: preserve-3d;
+  transform: rotateX(180deg)rotateY(180deg)rotateZ(0);
+}
+
+@media screen and (max-width: 991px) {
+  .vday-img {
+    width: 60%;
+    margin-top: -4.2%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .vday-banner__content {
+    background-image: radial-gradient(circle farthest-side at 20% 24%, #2c2b3e36, #2c2b3e00 37%), radial-gradient(circle at 100% 12%, #2c2b3ea8, #2c2b3e00 60%), radial-gradient(circle farthest-side at 12% 100%, #b11c3a8f, #b11c3a00), radial-gradient(circle at 100% 0, #b11c3a61, #b11c3a00), radial-gradient(circle at 75% 100%, #2c2b3e80, #2c2b3e00 40%), radial-gradient(circle at 30% 0, #2c2b3e80, #2c2b3e00 40%), radial-gradient(circle farthest-side, #b11c3a, #2f2b3e00);
+  }
+
+  .vday-img {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .vday-main {
+    padding-top: 4vw;
+    padding-bottom: 35px;
+  }
+
+  .vday-ribbon-img {
+    width: 32vw;
+  }
+
+  .vday-banner__content {
+    height: auto;
+  }
+
+  .vday-img {
+    width: 116%;
+    height: auto;
+    margin-top: 0;
+    margin-left: -8vw;
+    margin-right: -8vw;
+  }
+
+  .vday-heart.vh2 {
+    width: 24vw;
+    inset: -9% auto auto 10%;
+  }
+
+  .vday-heart.vh1 {
+    width: 30vw;
+    bottom: -3%;
+    right: 2%;
+  }
+
+  .vday-top-ribbon.rb1 {
+    top: -2%;
+    left: auto;
+    right: 4%;
+  }
+
+  .vday-top-ribbon.flipped.rb2 {
+    bottom: 2%;
+  }
+}
+
+.vday-ticker {
+  animation: xmas-ticker 20s linear infinite;
+}
+
+@keyframes xmas-ticker {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.vday-img {
+  animation: vdayImg 4.4s ease-in-out infinite;
+}
+
+@keyframes vdayImg {
+
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0px);
+  }
+
+  50% {
+    transform: rotate(-2deg) translateY(-1.1%);
+  }
+}
+
+.rb1 {
+  animation: rb1 2.2s ease-in-out infinite;
+}
+
+@keyframes rb1 {
+
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0%);
+  }
+
+  50% {
+    transform: rotate(3deg) translateY(-7%);
+  }
+}
+
+.rb2 {
+  animation: rb2 2.2s ease-in-out infinite;
+}
+
+@keyframes rb2 {
+
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0%);
+  }
+
+  50% {
+    transform: rotate(-3deg) translateY(7%);
+  }
+}
+
+.vh1 {
+  animation: vh1 2.3s ease-in-out infinite;
+}
+
+@keyframes vh1 {
+
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0%);
+  }
+
+  50% {
+    transform: rotate(3deg) translateY(-6%);
+  }
+}
+
+.vh2 {
+  animation: vh2 2.2s ease-in-out infinite;
+}
+
+@keyframes vh2 {
+
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0%);
+  }
+
+  50% {
+    transform: rotate(-3deg) translateY(6%);
+  }
+}
+
+/* #endregion */
+
+/* #region  Product card */
+.product-card {
+  &.--vday {
+    .xmas-card-over {
+      display: none !important;
+    }
+
+    .product-card__tags {
+      display: none !important;
+    }
+
+    .product-card__top {
+      padding-top: 24px;
+    }
+  }
+}
+
+.vday-tag {
+  z-index: 1;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+
+  img {
+    width: 52px;
+  }
+}
+
+.vday-subtext {
+  color: #e2546e;
+  text-align: center;
+  background-color: #fb48680f;
+  border-radius: .4rem;
+  margin: 0 4px 4px;
+  padding: 6px 12px;
+  line-height: 18px;
+  font-family: Staatliches, sans-serif;
+}
+
+/* #endregion */
+
+.main_product {
+  .vday-ticker-row {
+    position: static;
+    box-shadow: none;
+  }
+
+  .vday-ticker {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .price-tag.--sale {
+    background-color: #cb3453;
+  }
+
+  .buy-btn {
+    background-image: linear-gradient(45deg, var(--black) 40%, #cb345283);
+  }
+
+  .vday-subtext {
+    margin: 8px 0;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 0.7rem;
+  }
+}
+
+.vday-float-badge {
+  position: absolute;
+  z-index: 2;
+  inset: 6px auto auto 6px;
+  color: #fff;
+  background-color: #a82f48;
+  background-image: linear-gradient(#d14461, #a82f48);
+  border-top-left-radius: .35rem;
+  border-bottom-right-radius: .35rem;
+  padding: 6px 12px 5px;
+  font-family: Oscan, sans-serif;
+  font-size: 13px;
+  display: flex;
+  gap: 6px;
+  overflow: hidden;
+
+  &.--inline {
+    inset: -2px auto auto auto;
+    font-family: ProximaNova, sans-serif;
+    font-weight: 800;
+    font-size: 11px !important;
+    position: relative;
+    height: auto !important;
+    line-height: 22px !important;
+    display: inline-flex;
+    inset: -2px auto auto auto !important;
+    border-radius: .4rem !important;
+    padding: 1px 6px 1px;
+  }
+
+  &::after {
+    content: '';
+    z-index: 2;
+    opacity: .25;
+    background-image: linear-gradient(90deg, #fff0, #ffeef2bf 40%, #ffeef2 50%, #ffeef2bf 60%, #fff0);
+    width: 65%;
+    height: 98px;
+    transition: all .8s cubic-bezier(.39, .575, .565, 1);
+    position: absolute;
+    left: -68px;
+    transform: skew(25deg);
+    animation: saleBlink 2.2s ease-in-out infinite;
+  }
+
+  @media screen and (max-width: 479px) {
+    padding: 4px 8px 3px;
+    font-size: 10px;
+  }
+}
+
+@keyframes saleBlink {
+
+  0%,
+  100% {
+    left: -68px;
+  }
+
+  50% {
+    left: 160%;
+  }
+}
+
+.header__sub-link.--vday {
+  font-weight: 700;
+  color: #b5475d !important;
+  background-image: linear-gradient(0deg, #e2546e17, transparent);
+
+  &::after {
+    background-color: #cb4661 !important;
+  }
+}
+
+.menu__item.--vday {
+  padding: 0;
+  justify-content: flex-start;
+  margin-bottom: 12px;
+
+  .vday-ticker-row {
+    position: static;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    white-space: nowrap;
+
+    .vday-ticker {
+      div {
+        white-space: nowrap;
+      }
+      span {
+        color: #ffa5b3
+      }
+    }
+  }
+}
