@@ -179,6 +179,10 @@
 {% include "elements/product-page/youtube.twig" %}
 {# FAQ #}
 {% include "elements/product-page/faq.twig" %}
+{% if product.is_watch and user.admin == true %}
+	{# Review #}
+	{% include "elements/product-page/watch-reviews.twig" %}
+{% endif %}
 {# More Items #}
 {% for Productslider in product.bottom_sliders %}
 	{% include "elements/product-page/items-slider.twig" with {slider:Productslider}%}

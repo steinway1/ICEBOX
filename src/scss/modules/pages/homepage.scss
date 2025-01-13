@@ -253,7 +253,7 @@
   order: -1;
 
   @media screen and (min-width: 992px) {
-  border-radius: 0 0.5rem 0.5rem 0;
+    border-radius: 0 0.5rem 0.5rem 0;
   }
 
   &::after {
@@ -403,7 +403,7 @@
   max-width: 360px;
 
   @include maxWidthSm {
-  min-width: 40%;
+    min-width: 40%;
   }
 
   @include maxWidthXs {
@@ -938,22 +938,23 @@
 
 .home-row__slider-btn,
 .page-reviews__splide-arrow {
-  height: 42px;
-  width: 42px;
   // padding: 6px 18px;
-  border-radius: 50px;
-  border: 1px solid #dee0e8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   left: 0;
   right: 0;
   transition: all 150ms ease;
-  cursor: pointer;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 27" fill="none"><path d="M0.5 13.5H20.5" stroke="currentColor" stroke-width="4"></path><path d="M8.5 1.5L20.5 13.5L8.5 25.5" stroke="currentColor" stroke-width="4"></path></svg>');
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 27" fill="none"><path d="M0.5 13.5H20.5" stroke="currentColor" stroke-width="3"></path><path d="M8.5 1.5L20.5 13.5L8.5 25.5" stroke="currentColor" stroke-width="3"></path></svg>');
   background-size: 14px 14px;
   background-position: center center;
   background-repeat: no-repeat;
+  cursor: pointer;
+  border: 1px solid #131317;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 42px;
+  padding: 14px;
+  display: flex;
 
   &.splide__arrow--prev {
     transform: rotate(180deg);
@@ -969,5 +970,5 @@
 .home-content .splide__arrows,
 .home-row__arrows-wrap {
   display: flex;
-  gap: 8px;
+  gap: 0;
 }

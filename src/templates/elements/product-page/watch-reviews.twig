@@ -1,0 +1,61 @@
+<div class="product__sub-row">
+	<div
+		class="more-row__reviews splide">
+		{# Heading #}
+		<div class="wrapper">
+			<div class="more-row__header">
+				<h3 class="product__heading">100,000+ Watch Buyers Trust Us Worldwide</h3>
+				<p class="product__typo">Icebox receive ratings:
+					<strong>4.8 out of 5
+						<span class="i-text --star"></span>
+					</strong>
+				</p>
+			</div>
+		</div>
+
+		{# Content #}
+		<div class="more-row__reviews-wrap">
+			<div class="wrapper">
+				<div class="splide__track">
+					<div class="splide__list">
+						{% for i in 0..7 %}
+							<div class="w-review splide__slide">
+								<div class="w-review__media">
+									<img alt="" src="https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/fbf03ba234e256c45e8387991d0d7c23.png" loading="lazy" class="w-review__pic">
+								</div>
+								<div class="w-review__content">
+									<div class="w-review__rating-row">
+										<div class="w-review__stars-row">
+											{% for i in 0..4 %}
+												<span class="i-text --star"></span>
+											{% endfor %}
+										</div>
+										<div class="w-review__date">21 Dec, 2024</div>
+									</div>
+									<div class="w-review__title">
+										<h6>Audemars Piguet</h6>
+										<span>Perpetual Calendar. 26579cb.oo.1225cb.01 - Ceramic (rb1861)</span>
+									</div>
+									<p class="w-review__typo">Great experience and clear, prompt communication—watch was as advertised and in excellent condition.</p>
+									<div class="w-review__author">
+										<div class="w-review__author-pic">CD</div>
+										<div class="w-review__author-name">Carmine D.<br><span>United States of America</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="home-row__arrows-wrap splide__arrows">
+					<button class="home-row__slider-btn splide__arrow--prev">
+						{% include "components/svg/slider-prev.svg" %}
+					</button>
+					<button class="home-row__slider-btn splide__arrow--next">
+						{% include "components/svg/slider-next.svg" %}
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

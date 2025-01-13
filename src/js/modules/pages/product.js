@@ -43,6 +43,7 @@ class ProductPage {
     this.bindToggleFav()
     this.setupDescription()
     this.setupSplide()
+    this.setupReviewsSplide()
     this.setupGallery()
     this.observeFixedBar()
     this.positionFixedBar()
@@ -227,6 +228,37 @@ class ProductPage {
           },
         },
       }).mount(window.splide.Extensions)
+    }
+  }
+  setupReviewsSplide() {
+    const reviewsSplide = document.querySelector('.more-row__reviews')
+    if (reviewsSplide && reviewsSplide.classList.contains('splide')) {
+      const splide = new Splide(reviewsSplide, {
+        perPage: 4,
+        perMove: 1,
+        autoplay: 1,
+        gap: "8px",
+        arrows: 1,
+        pagination: 0,
+        speed: 750,
+        breakpoints: {
+          2800: {
+            perPage: 5
+          },
+          1980: {
+            perPage: 4
+          },
+          992: {
+            perPage: 3
+          },
+          767: {
+            perPage: 2
+          },
+          479: {
+            perPage: 1.2
+          }
+        }
+      }).mount()
     }
   }
 

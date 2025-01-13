@@ -3731,3 +3731,159 @@ button {
     padding: 14px 20px;
   }
 }
+
+.i-text {
+  width: 1em;
+  height: 1em;
+  vertical-align: text-top;
+  display: inline-flex;
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  &.--star {
+    background-image: url('data:image/svg+xml,<svg width="100%" height="100%" viewBox="0 0 40 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.9995 0L26.1713 12.5053L39.9717 14.5106L29.9856 24.2447L32.343 37.9894L19.9995 31.5L7.65604 37.9894L10.0134 24.2447L0.0273438 14.5106L13.8278 12.5053L19.9995 0Z" fill="%230388b4"></path></svg>');
+  }
+}
+
+/* #region Watch Review Card */
+.w-review {
+  background-color: #f7f7f9;
+  border-radius: .7rem;
+  flex-flow: column;
+  display: flex;
+  flex: none;
+
+  &:nth-child(2n) {
+    .w-review__author-pic {
+      background-color: #dfc6a5;
+    }
+  }
+
+  &:nth-child(3n) {
+    .w-review__author-pic {
+      background-color: #a5c6df;
+    }
+  }
+
+  &:nth-child(4n) {
+    .w-review__author-pic {
+      background-color: #a5dfcc;
+    }
+  }
+
+  &:nth-child(5n) {
+    .w-review__author-pic {
+      background-color: #d3a5df;
+    }
+  }
+}
+
+.w-review__date {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.w-review__author {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.w-review__typo {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 24px;
+}
+
+.w-review__rating-row {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.w-review__pic {
+  box-shadow: none;
+  background-color: #fff;
+  border-radius: .6rem;
+  width: 100%;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  display: block;
+}
+
+.w-review__media {
+  width: 100%;
+  padding: 4px;
+}
+
+.w-review__author-pic {
+  text-align: center;
+  background-color: #cedfa5;
+  border-radius: 500px;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  font-weight: 700;
+  display: flex;
+  flex: none;
+}
+
+.w-review__author-name {
+  font-weight: 600;
+  line-height: 18px;
+
+  span {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+}
+
+.w-review__stars-row {
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+  display: flex;
+}
+
+.w-review__title {
+  flex-flow: column;
+  margin-top: 16px;
+  display: flex;
+
+  h6 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+
+  span {
+    opacity: .6;
+    margin-top: 2px;
+    font-size: 13px;
+    line-height: 18px;
+  }
+}
+
+.w-review__content {
+  flex-flow: column;
+  padding: 16px 32px 32px;
+  display: flex;
+}
+
+@media screen and (max-width: 479px) {
+  .w-review__content {
+    padding: 16px 24px 24px;
+  }
+}
+
+/* #endregion */
