@@ -22,6 +22,22 @@ body.--skeleton {
   --skeleton-bg: #eff2f5;
 
   .product-card__top {
+    padding: 0 !important;
+  }
+
+  .vday-tag {
+    display: none !important;
+  }
+
+  .product-card__over {
+    display: none !important;
+  }
+
+  .vday-subtext {
+    display: none;
+  }
+
+  .product-card__top {
     padding: 0;
   }
 
@@ -64,7 +80,7 @@ body.--skeleton {
     position: relative;
 
     &::before {
-      content: '';
+      // content: '';
       z-index: 4;
       opacity: .35;
       background-image: linear-gradient(90deg, #fff0, #fff 50%, #0000);
@@ -85,6 +101,16 @@ body.--skeleton {
       opacity: 0;
       color: transparent;
       pointer-events: none;
+    }
+
+    &.--loaded,
+    & {
+      .card-loader,
+      svg,
+      circle {
+        display: block !important;
+        opacity: 1 !important;
+      }
     }
   }
 

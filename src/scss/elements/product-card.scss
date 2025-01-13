@@ -51,7 +51,8 @@
       top: 14px;
     }
 
-    .xmas-badge, .vday-tag {
+    .xmas-badge,
+    .vday-tag {
       display: none;
     }
 
@@ -255,6 +256,7 @@
   background-color: #f7f8f9;
   position: relative;
   padding-top: 14px;
+  padding-bottom: 14px;
   overflow: hidden;
 }
 
@@ -1143,19 +1145,39 @@
 
 /* #endregion NEW Card Item */
 
+.product-card__over {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+  position: absolute;
+  inset: auto 6px 6px 6px;
+  z-index: 1;
+
+  .typo_xs {
+    font-weight: 600;
+    margin: 0 0 0 4px;
+    font-size: 10px;
+    opacity: 0.65;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+}
+
 /* #region VS Diamonds */
 .product-card__vs-btn {
   grid-column-gap: 6px;
   grid-row-gap: 6px;
   justify-content: center;
   align-items: center;
-  padding: 4px 10px;
-  font-size: 11px;
+  padding: 3px 8px;
+  font-size: 10px;
   font-weight: 700;
   transition: all .2s cubic-bezier(.39, .575, .565, 1);
   display: flex;
-  position: absolute;
-  inset: auto auto 6px 6px;
   cursor: pointer;
   background-color: white;
   border-radius: 0.4rem;
@@ -1163,7 +1185,6 @@
   box-shadow: 0 3px 6px rgba(81, 86, 94, 0.05);
   max-width: 80%;
   user-select: none;
-  z-index: 1;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;

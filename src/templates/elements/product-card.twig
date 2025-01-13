@@ -103,10 +103,17 @@
 				<button onclick="window.location.href='{{ productItem.href}}';" class="product-card__play-btn"></button>
 			{% endif %}
 
-			{# Natural Diamonds #}
-			{% if productItem.have_diamonds %}
-				<div data-tip="This product features only natural diamonds in VS quality, offering unmatched quality and rarity." data-notice="This product features only natural diamonds in VS quality, offering unmatched quality and rarity." class="product-card__vs-btn"></div>
-			{% endif %}
+			{# Natural Diamonds & Last price update #}
+			<div class="product-card__over">
+				{% if user.admin == true %}
+					<span class="typo_xs">Price updated:
+						{{ productItem.updated_at }}</span>
+				{% endif %}
+				{% if productItem.have_diamonds %}
+					<div data-tip="This product features only natural diamonds in VS quality, offering unmatched quality and rarity." data-notice="This product features only natural diamonds in VS quality, offering unmatched quality and rarity." class="product-card__vs-btn"></div>
+				{% endif %}
+			</div>
+
 		</div>
 
 		<div class="product-card__details">
