@@ -1,11 +1,11 @@
 .am-item {
   min-height: 42px;
   background-color: #fff;
-  border-radius: 0;
   flex-direction: column;
   display: flex;
   position: relative;
-  box-shadow: 0 14px 38px rgba(23, 28, 41, .04);
+  border-radius: 0.8rem;
+  box-shadow: 0 24px 62px rgba(34, 43, 104, 0.09);
 
   @include maxWidthXs {
     margin-left: 6px;
@@ -90,12 +90,8 @@
 }
 
 .am-item__over {
-  pointer-events: none;
-  border: 2px solid #408cf1;
-  border-radius: 0;
   align-items: flex-start;
   display: flex;
-  position: absolute;
   top: 0%;
   bottom: 0%;
   left: 0%;
@@ -103,30 +99,27 @@
   z-index: 5;
 
   &>div {
-    position: sticky;
-    top: 116px;
     display: flex;
-
-    @include maxWidthMd {
-      top: 68px;
-    }
+    flex-flow: wrap;
+    padding: 6px;
+    gap: 6px;
 
     &>span {
       color: #fff;
-      letter-spacing: 1px;
       text-transform: uppercase;
-      background-color: #408cf1;
+      background-color: #376098;
       border-bottom-right-radius: 0;
-      padding: 6px 12px;
+      padding: 5px 12px;
       font-size: 11px;
       font-weight: 700;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
       overflow: hidden;
+      border-radius: 0.5rem;
 
-      &:nth-child(2) {
-        background-color: #3b6297;
+      &:first-child {
+        background-color: #368cfc;
       }
     }
   }
@@ -146,13 +139,13 @@
 }
 
 .am-item__td-btn {
-  height: 30px;
+  height: 32px;
   text-align: center;
   letter-spacing: .6px;
   text-transform: uppercase;
   cursor: pointer;
-  border: 1px solid #7e8490;
-  border-radius: 0;
+  border: 1px solid #cedbe7;
+  border-radius: 0.3rem;
   justify-content: center;
   align-items: center;
   padding-left: 7px;
@@ -170,8 +163,11 @@
 }
 
 .am-item__row {
-  padding-top: 56px;
-  padding-bottom: 26px;
+  padding: 18px 24px 24px;
+
+  @include maxWidthXs {
+    padding: 18px;
+  }
 }
 
 .am-item__details {
@@ -194,10 +190,10 @@
 .am-item__title {
   cursor: pointer;
   align-items: center;
-  margin-bottom: 4px;
-  font-size: 16px;
+  margin-bottom: 8px;
+  font-size: 15px;
   font-weight: 600;
-  line-height: 22px;
+  line-height: 19px;
 }
 
 .am-item__title:hover {
@@ -206,18 +202,17 @@
 
 .am-zoom-btn {
   z-index: 2;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   cursor: pointer;
-  background-color: rgba(255, 255, 255, .75);
+  background-color: rgba(255, 255, 255, .85);
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M11 20C15.9706 20 20 15.9706 20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20Z" stroke="%23171C29" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 11H13.5" stroke="%23171C29" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 13.5V8.5" stroke="%23171C29" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.9299 20.6898C19.4599 22.2898 20.6699 22.4498 21.5999 21.0498C22.4499 19.7698 21.8899 18.7198 20.3499 18.7198C19.2099 18.7098 18.5699 19.5998 18.9299 20.6898Z" stroke="%23171C29" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: 60% 60%;
   border: 1px solid #fff;
-  border-radius: 0;
   justify-content: center;
   align-items: center;
   padding: 0;
@@ -225,6 +220,7 @@
   bottom: 4px;
   right: 4px;
   box-shadow: 0 4px 12px rgba(23, 28, 41, .15);
+  border-radius: 0.3rem;
 }
 
 .am-zoom-btn:hover {
@@ -236,7 +232,7 @@
   grid-row-gap: 6px;
   text-transform: uppercase;
   border: 1px solid #d1d8e0;
-  border-radius: 0;
+  border-radius: 0.3rem;
   justify-content: center;
   align-items: center;
   padding: 5px 12px;
@@ -261,14 +257,27 @@
 .am-item__pic-wrap {
   width: 120px;
   aspect-ratio: 1 / 1;
-  border: 1px solid #e2e7ee;
-  border-radius: 0;
+  border-radius: 0.6rem;
   justify-content: center;
   align-items: center;
   padding: 8px;
   display: flex;
   position: relative;
   overflow: hidden;
+
+  &::after {
+    content: "";
+    opacity: 0.05;
+    pointer-events: none;
+    background-color: #284469;
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    z-index: 1;
+    transition: all 200ms ease;
+  }
 
   img {
     width: 100%;
@@ -282,7 +291,7 @@
   grid-row-gap: 5px;
   text-transform: uppercase;
   background-color: #eff2f6;
-  border-radius: 0;
+  border-radius: 0.3rem;
   justify-content: center;
   align-items: center;
   padding: 5px 12px;
@@ -301,8 +310,9 @@
   grid-column-gap: 8px;
   grid-row-gap: 8px;
   color: #037a6f;
-  background-color: rgba(5, 184, 124, .12);
-  border-radius: 0;
+  background-color: rgba(5, 184, 124, .08);
+  border: 1px solid rgba(5, 184, 124, .24);
+  border-radius: 0.3rem;
   justify-content: center;
   align-items: center;
   padding: 5px 12px;
@@ -352,8 +362,6 @@
   grid-row-gap: 10px;
   flex-wrap: wrap;
   align-items: flex-start;
-  padding-left: 26px;
-  padding-right: 26px;
   display: flex;
 }
 
@@ -373,6 +381,8 @@
   align-items: flex-start;
   margin-top: 2px;
   font-size: 12px;
+  font-weight: 600;
+  opacity: 0.6;
   display: flex;
 }
 
@@ -387,17 +397,6 @@
 
 .am-item__body {
   position: relative;
-
-  &>div.am-item__row {
-    &:not(:first-child) {
-      padding-top: 26px;
-      border-top: 2px solid rgba(64, 141, 241, 0.3);
-
-      @include maxWidthXs {
-        padding-top: 20px;
-      }
-    }
-  }
 }
 
 .am-item__btn {
@@ -580,8 +579,6 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-end;
-  padding-left: 26px;
-  padding-right: 26px;
   display: flex;
 
   &.to_wrap {
@@ -599,8 +596,7 @@
 }
 
 .am-item__details-row.to_space {
-  grid-column-gap: 18px;
-  flex-wrap: nowrap;
+  gap: 14px;
   justify-content: space-between;
 
   @include maxWidthXs {
@@ -675,9 +671,6 @@
 }
 
 @media screen and (max-width: 479px) {
-  .am-item__row {
-    padding-bottom: 20px;
-  }
 
   .am-zoom-btn {
     width: 28px;
@@ -696,12 +689,6 @@
     display: flex;
   }
 
-  .am-item__main,
-  .am-item__sub-row {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
   .am-item__btn {
     padding-left: 12px;
     padding-right: 12px;
@@ -713,11 +700,6 @@
 
   .am-item__saks-tag {
     justify-content: flex-start;
-  }
-
-  .am-item__details-row {
-    padding-left: 20px;
-    padding-right: 20px;
   }
 
   .off-price {
@@ -738,15 +720,15 @@
   height: 50px;
 
   button {
-    color: #202124;
     text-align: center;
-    background-color: #fff;
-    border-radius: 0;
+    background-color: #368cfc;
+    color: white;
+    border-radius: 0.45rem;
     justify-content: center;
     align-items: center;
-    padding: 0 12px;
-    font-size: 13px;
-    font-weight: 600;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
     transition: all .2s cubic-bezier(.39, .575, .565, 1);
     display: flex;
     position: absolute;
@@ -765,28 +747,27 @@
 .am-note-input {
   height: 100%;
   text-align: left;
-  background-color: #f5f7f9;
-  border: 1px solid #ebeff4;
-  border-radius: 0;
+  background-color: white;
+  border: 1px solid #cedbe7;
+  border-radius: 0.6rem;
   margin-bottom: 0;
   transition: all .2s cubic-bezier(.39, .575, .565, 1);
   width: 100%;
-  padding: 8px 12px;
+  padding: 6px 12px;
   font-size: 13px;
   outline: none;
 
   &:hover {
-    background-color: rgba(64, 141, 241, 0.04);
-    border-color: var(--bright_blue);
+    border-color: #6caafc;
   }
 
   &:focus {
-    background-color: white;
+    background-color: #eff2f600;
     border-color: var(--bright_blue);
-    box-shadow: 0 0 0 3px rgba(64, 141, 241, 0.18);
+    box-shadow: 0 0 0 2px #6caafc2b;
 
     &::placeholder {
-      color: transparent
+      opacity: 0.4;
     }
   }
 
@@ -798,15 +779,12 @@
 
 
 .am-item-note {
-  grid-column-gap: 16px;
-  grid-row-gap: 8px;
-  background-color: #f5f7f9;
-  border-radius: 0;
+  row-gap: 6px;
+  column-gap: 12px;
   flex-flow: wrap;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 12px;
-  padding: 12px;
+  align-items: flex-start;
+  margin-top: 14px;
   display: flex;
 
   &>div {
@@ -815,6 +793,8 @@
       grid-column-gap: 16px;
       grid-row-gap: 8px;
       border-radius: 0;
+      font-size: 13px;
+      line-height: 18px;
       flex-flow: wrap;
       flex: 1;
       justify-content: space-between;
@@ -853,10 +833,6 @@
   justify-content: space-between;
   gap: 12px;
   flex-wrap: nowrap;
-
-  .am-item__details-row {
-    padding-right: 0px;
-  }
 
   &>.am-item__price-wrap {
     padding-top: 20px;

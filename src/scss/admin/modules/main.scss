@@ -324,7 +324,7 @@ body {
 }
 
 .w_max_1080 .am-container {
-  max-width: 1080px;
+  max-width: 1210px;
 }
 
 .am-backdrop {
@@ -1162,25 +1162,46 @@ body {
 
 /* #region MAIN Content */
 .am__dbl-wrap {
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
+  gap: 32px;
   align-items: flex-start;
   display: flex;
 }
 
 .am-side-box__icon {
-  background-color: #eff2f6;
-  border-radius: 8px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding: 7px;
-  display: flex;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .am-side-box__row {
-  border: 2px solid #ecf2f8;
-  margin-bottom: -2px;
-  padding: 18px 26px;
+  border-bottom: 1px solid #edf3fa;
+  padding: 14px 20px;
+
+  @include maxWidthMd {
+    min-width: 50%;
+    border-bottom-style: none;
+    flex: 1;
+    margin-right: -2px;
+  }
+
+  @include maxWidthSm {
+    min-width: 50%;
+  }
+
+  @include maxWidthXs {
+    width: 100%;
+    background-color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 0;
+    padding: 16px 20px;
+    display: flex;
+  }
 }
 
 .am-main__content {
@@ -1222,13 +1243,15 @@ body {
 }
 
 .am-side-box__title {
-  color: #7e8490;
-  letter-spacing: .6px;
-  text-transform: uppercase;
+  opacity: .6;
   margin-bottom: 3px;
   font-size: 10px;
   font-weight: 600;
-  line-height: 16px;
+  line-height: 14px;
+
+  @include maxWidthXs {
+    opacity: 1;
+  }
 }
 
 .am-main__flow {
@@ -1238,11 +1261,10 @@ body {
 }
 
 .am-content-divider {
-  letter-spacing: 1px;
-  text-transform: uppercase;
   align-items: center;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: capitalize;
   display: flex;
 
   span {
@@ -1252,15 +1274,16 @@ body {
     flex: 1;
     margin-left: 14px;
     line-height: 0;
-    opacity: 0;
   }
 }
 
 .am-side-box {
   min-height: 80px;
   background-color: #fff;
-  border-radius: 0;
-  box-shadow: 0 12px 28px rgba(23, 28, 41, .03);
+  box-shadow: 0 24px 62px #12152912;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.6rem;
 }
 
 .stat-content {
@@ -1281,8 +1304,7 @@ body {
 }
 
 .am-main__orders {
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  gap: 32px;
   flex-direction: column;
   flex: 1;
   display: flex;
@@ -1290,10 +1312,13 @@ body {
 
 .am-side-box__stat {
   width: 100%;
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
+  gap: 16px;
   align-items: center;
   display: flex;
+
+  @include maxWidthXs {
+    gap: 8px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -1313,13 +1338,6 @@ body {
     align-items: stretch;
   }
 
-  .am-side-box__row {
-    min-width: 50%;
-    border-bottom-style: none;
-    flex: 1;
-    margin-right: -2px;
-  }
-
   .am-today__side {
     width: 100%;
     max-width: none;
@@ -1334,43 +1352,13 @@ body {
     padding-left: 36px;
     padding-right: 36px;
   }
-
-  .am-side-box {
-    flex-wrap: wrap;
-    display: flex;
-  }
 }
 
-@media screen and (max-width: 767px) {
-  .am-side-box__row {
-    min-width: 50%;
-  }
-}
 
 @media screen and (max-width: 479px) {
-  .am-side-box__icon {
-    display: none;
-  }
-
-  .am-side-box__row {
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid #eaeff5;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 0;
-    padding: 12px 20px;
-    display: flex;
-  }
 
   .am-today__side {
     padding-bottom: 20px;
-  }
-
-  .am-side-box__title {
-    color: #202124;
-    margin-bottom: 0;
-    font-size: 11px;
   }
 
   .am-main__flow {
@@ -1378,14 +1366,6 @@ body {
   }
 
   .am-content-divider {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .am-side-box {
-    box-shadow: none;
-    background-color: rgba(255, 255, 255, 0);
-    flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -1999,6 +1979,10 @@ body {
           padding-bottom: 38px !important;
         }
       }
+
+      select {
+        color: white;
+      }
     }
 
     .am-main__header-title {
@@ -2072,10 +2056,6 @@ body {
         padding-left: 0;
         padding-right: 0;
       }
-    }
-
-    .am-item__over {
-      border-width: 1px;
     }
 
     .for_today {
@@ -2163,14 +2143,6 @@ body {
 
     .am-item__row {
       border-color: var(--body_color) !important;
-    }
-  }
-
-  .am-item__over {
-    border: 4px solid white;
-
-    &>div {
-      position: static;
     }
   }
 }
