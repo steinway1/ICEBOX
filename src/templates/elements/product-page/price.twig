@@ -43,13 +43,17 @@
 					<span class="price-tag --sale" id="discount_rate">{{msrp_percent|number_format(0)}}% OFF</span>
 					<span class="price-tag --green" id="discount_rate">BELOW MSRP</span>
 				{% else %}
-					<span class="price-tag --grey" id="discount_rate">OUR PRICE</span>
-					<span class="price-tag --green" id="discount_rate">GOOD DEAL</span>
+					<a href="javascript:void(0);" class="buy-btn_xs" onclick="addToCart()">
+						<span>Add to cart</span>
+					</a>
 				{% endif %}
 			{% endif %}
 
 			{% if not sale_price and not msrp %}
-				<span class="price-tag" id="discount_rate">OUR PRICE</span>
+				{# <span class="price-tag" id="discount_rate">OUR PRICE</span> #}
+				<a href="javascript:void(0);" class="buy-btn_xs" onclick="addToCart()">
+					<span>Add to cart</span>
+				</a>
 			{% endif %}
 		</div>
 

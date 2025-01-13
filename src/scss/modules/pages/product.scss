@@ -5110,7 +5110,10 @@
       margin-bottom: 10px;
     }
 
-    label,span,p,h2 {
+    label,
+    span,
+    p,
+    h2 {
       color: var(--black)
     }
 
@@ -5128,7 +5131,7 @@
       font-size: 14px;
 
       &::placeholder {
-        color: #a7a8ad; 
+        color: #a7a8ad;
         transition: all 200ms ease;
       }
 
@@ -5200,7 +5203,7 @@
       }
     }
   }
-  
+
   .input-large {
     width: 100%;
     height: 64px !important;
@@ -5214,5 +5217,45 @@
     &:focus {
       border-color: var(--blue) !important;
     }
+  }
+}
+
+.buy-btn_xs {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  cursor: pointer;
+  border: 1px solid #111114;
+  border-radius: 500px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all .25s;
+  display: flex;
+  user-select: none;
+
+  &::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    background-image: url('data:image/svg+xml,<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.5 19.1666V5.83325H2.5V19.1666H17.5Z" stroke="%23111114" stroke-width="2"></path><path d="M6.6665 7.91658V4.30717C6.6665 2.38856 8.22185 0.833252 10.1404 0.833252C12.0591 0.833252 13.6144 2.38856 13.6144 4.30717V7.91658" stroke="%23111114" stroke-width="2"></path></svg>');
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat
+  }
+
+  &:hover {
+    background-color: var(--black);
+    color: white;
+
+    &::before {
+      filter: invert(1);
+    }
+  }
+
+  &:active {
+    background-color: #525257;
   }
 }
