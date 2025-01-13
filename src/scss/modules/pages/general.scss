@@ -3655,7 +3655,7 @@ button {
     background-color: white;
     border-color: #0094c668;
 
-    &~ .tip-row__drop {
+    &~.tip-row__drop {
       opacity: 1;
       filter: blur(0);
       transform: translate(0, 0);
@@ -3699,4 +3699,35 @@ button {
   line-height: 20px;
   display: flex;
   box-shadow: 0 18px 68px #0095c64d;
+}
+
+.info-box {
+  background-image: radial-gradient(circle farthest-side at 0 0, #33cbfc0d, #fff);
+  border: 1.5px solid #13b9ee;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  display: flex;
+  border-radius: .8rem;
+  padding: 26px;
+
+  h4 {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  p {
+    margin-top: 4px;
+    line-height: 22px;
+
+    a {
+      font-weight: 600;
+      text-decoration: underline;
+    }
+  }
+
+  @include maxWidthXs {
+    padding: 14px 20px;
+  }
 }
