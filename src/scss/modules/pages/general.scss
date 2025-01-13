@@ -1709,18 +1709,21 @@ input.custom-range__output {
 
 .listing-btn {
   cursor: pointer;
-  border: 1px solid #dfe3e9;
+  border: 1.5px solid #dfe3e9;
   padding: 14px;
   transition: all .2s var(--cubic);
   user-select: none;
   font-weight: 600;
+  border-radius: 0.7rem;
 
   &:hover {
-    border-color: #079fd1;
+    border-color: var(--blue);
   }
 
   &.is-active {
-    border-color: #079fd1;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(9, 168, 221, 0.1);
+    background-color: rgba(9, 168, 221, 0.03);
   }
 
   &:not(.--dsiabled):active {
