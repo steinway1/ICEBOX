@@ -1,6 +1,18 @@
 @import '../mixin.scss';
 
 body.--vday {
+  .product-card__price-wrap {
+    &.is-sale {
+      .product-card__price {
+        color: #b92d56;
+  
+        &::after {
+          background-color: #b92d56;
+        }
+      }
+    }
+  }
+  
   .top-banner {
     display: none;
   }

@@ -390,18 +390,19 @@
 
   &.is-sale {
     .product-card__price {
-      color: #999eaa;
+      // color: #999eaa;
       position: relative;
       padding: 0 4px;
       font-size: 15px;
+      color: var(--red);
 
       &::after {
-        // content: '';
+        content: '';
         display: block;
         position: absolute;
         height: 1px;
-        inset: 50% 0 auto 0;
-        background-color: #999eaa;
+        inset: 50% 2px auto 2px;
+        background-color: var(--red);
         transform: translateY(-50%);
       }
     }
@@ -1455,10 +1456,7 @@
     span.product-card__price,
     span.product-card__sale-price {
       &::first-letter {
-        font-size: 13px;
         margin-right: 2px;
-        line-height: 12px;
-        vertical-align: top;
       }
     }
   }

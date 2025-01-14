@@ -5226,10 +5226,6 @@ class MPopup {
     }
   }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  window.mPopup = new MPopup()
-})
 /* #endregion */
 
 /* #region  Today Page */
@@ -5350,6 +5346,7 @@ class TodayPage {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  window.mPopup = new MPopup()
   window.Today = new TodayPage()
 })
 /* #endregion */

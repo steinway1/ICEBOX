@@ -15,7 +15,7 @@ class VDay {
     createTimer({
       daySelector: '[data-vday-timer="days"]',
       hourSelector: '[data-vday-timer="hours"]',
-      date: '2025-02-15 00:00:00'
+      date: '2025-01-24 00:00:00'
     })
   }
 
