@@ -1,4 +1,5 @@
 const mailModal = new Object({
+  object_to_render: null,
   init: function () {
     this.renderDOM()
     if (this.modal.length) {
@@ -14,13 +15,17 @@ const mailModal = new Object({
   bindEvents: function () {
     this.evtClose.on('click', function () { mailModal.close() })
   },
-  open: function () {
+  open: function (object) {
     lockScroll()
     this.modal.show()
     this.modal.find('input').focus()
     setTimeout(() => {
       this.modal.addClass(__ACTIVE)
     }, 5);
+
+    if (object) {
+      this.object_to_render = object
+    }
   },
   close: function () {
     unlockScroll()
@@ -28,6 +33,10 @@ const mailModal = new Object({
     setTimeout(() => {
       this.modal.hide()
     }, getTransitionTime(this.container));
+
+    if (this.object_to_render) {
+      window.addCartModal.create(this.object_to_render)
+    }
   }
 })
 

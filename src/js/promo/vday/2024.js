@@ -21,6 +21,7 @@ class VDay {
 
   setupCanvas() {
     const canvas = document.getElementById('heartsCanvas');
+    if (!canvas) return
     const ctx = canvas.getContext('2d');
 
     // Массив для хранения «сердечек»
