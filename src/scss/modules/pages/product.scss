@@ -1321,7 +1321,8 @@
   flex-flow: column;
   min-height: 48px;
   padding: 18px;
-  gap: 14px;
+  column-gap: 14px;
+  row-gap: 8px;
   display: flex;
   background-color: white;
   z-index: 3;
@@ -1355,15 +1356,76 @@
 .product__item-price {
   justify-content: flex-start;
   align-items: flex-start;
-  // font-family: Montserrat, sans-serif;
-  font-size: 24px;
+  font-family: Montserrat, ProximaNova, sans-serif;
+  font-size: 22px;
   font-weight: 600;
-  line-height: 28px;
+  line-height: 24px;
   display: flex;
+  position: relative;
+
+  &.--strike {
+    --strike-color: #8d91a2;
+    font-size: 16px;
+    padding: 0 1px;
+    color: var(--strike-color);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--strike-color);
+    }
+  }
+}
+
+.price-tag {
+  border-radius: 50rem;
+  padding: 4px 8px;
+  font-weight: 700;
+  color: #8c939d;
+  background-color: #f0f1f4;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+
+  &.--msrp-msg {
+    padding: 6px 12px;
+    text-align: center;
+    border-radius: 0.7rem;
+    margin: 14px -14px -14px;
+
+    &.--green {
+      background-color: var(--green-20);
+      color: var(--green);
+      border: 1px solid var(--green-10);
+    }
+
+    &.--grey {
+      margin-top: 8px;
+    }
+  }
+
+  &.--sale {
+    background-color: var(--red);
+    color: white;
+  }
+
+  &.--green {
+    background-color: var(--green);
+    color: white;
+  }
+
+  &.--grey {
+    background-color: #f7f8fa;
+  }
 }
 
 .sub-price {
-  color: #989ca5;
+  color: #8d91a2;
   text-transform: uppercase;
 
   &>span {
@@ -1386,39 +1448,9 @@
     }
 
     &:last-child {
+      font-weight: 700;
       font-size: 12px;
     }
-  }
-
-  .dollar-symbol {
-    font-size: 14px;
-    line-height: 14px;
-  }
-}
-
-.price-tag {
-  border-radius: .5rem;
-  padding: 4px 10px;
-  font-weight: 700;
-  color: #8c939d;
-  background-color: #f0f1f4;
-  font-size: 12px;
-  line-height: 20px;
-
-  &.--sale {
-    background-color: #e52d2d;
-    color: white;
-    font-size: 13px;
-  }
-
-  &.--green {
-    background-color: var(--green);
-    color: white;
-  }
-
-  &.--grey {
-    background-color: #f7f8fa;
-    font-size: 12px;
   }
 }
 
@@ -4717,7 +4749,7 @@
   gap: 6px;
   padding: 9px 8px 26px 8px;
   background-color: #f7f8fa;
-  border-radius: 0.8rem 0.8rem 0 0;
+  border-radius: 0.9rem 0.9rem 0 0;
   font-weight: 600;
   font-size: 13px;
   line-height: 18px;
@@ -5267,5 +5299,10 @@
 
   &:active {
     background-color: #525257;
+  }
+
+  &.--tag {
+    border-radius: 0.7rem;
+    margin: 10px -14px -14px;
   }
 }
