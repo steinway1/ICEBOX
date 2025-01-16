@@ -581,10 +581,13 @@
 .am-item__details-row {
   grid-column-gap: 8px;
   grid-row-gap: 8px;
-  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-end;
   display: flex;
+
+  @include maxWidthMd {
+    flex-wrap: wrap;
+  }
 
   &.to_wrap {
     flex-wrap: wrap !important;

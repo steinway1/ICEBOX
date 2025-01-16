@@ -1261,11 +1261,11 @@ body {
 }
 
 .am-content-divider {
+  display: none;
   align-items: center;
   font-size: 13px;
   font-weight: 700;
   text-transform: capitalize;
-  display: flex;
 
   span {
     height: 1px;
@@ -2209,4 +2209,27 @@ body {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.ghost-btn {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  color: #3b6297;
+  cursor: pointer;
+  background-color: #dfecfa;
+  border-radius: .7rem;
+  justify-content: center;
+  align-items: center;
+  height: 46px;
+  font-weight: 600;
+  transition: all .2s;
+  display: flex;
+
+  span {
+    font-size: 24px;
+  }
+
+  &:hover {
+    background-color: #cfe3fc;
+  }
 }

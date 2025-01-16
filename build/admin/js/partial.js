@@ -56,6 +56,238 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
+// Fake data
+function getFakeCustomersArr() {
+  return [
+    {
+      id: 2052,
+      last_name: "Smith",
+      email: "8n0X0@example.com",
+      phone: "404-555-1212",
+    },
+    {
+      id: 2053,
+      first_name: "John",
+      last_name: "Green",
+      email: "johngreeen01@gmail.com",
+    },
+    {
+      id: 2054,
+      first_name: "John",
+      last_name: "Doe"
+    },
+    {
+      id: 2052,
+      first_name: "Andrew",
+      last_name: "Smith",
+      email: "8n0X0@example.com",
+      phone: "404-555-1212",
+    },
+    {
+      id: 2053,
+      first_name: "John",
+      last_name: "Green",
+      email: "johngreeen01@gmail.com",
+      phone: "250-014-0022",
+    },
+    {
+      id: 2054,
+      first_name: "John",
+      last_name: "Doe",
+      email: "johndoe01@gmail.com",
+      phone: "250-014-0022",
+    },
+    {
+      id: 2052,
+      first_name: "Andrew",
+      last_name: "Smith",
+      email: "8n0X0@example.com",
+      phone: "404-555-1212",
+    },
+    {
+      id: 2053,
+      first_name: "John",
+      last_name: "Green",
+      email: "johngreeen01@gmail.com",
+      phone: "250-014-0022",
+    },
+    {
+      id: 2054,
+      first_name: "John",
+      last_name: "Doe",
+      email: "johndoe01@gmail.com",
+      phone: "250-014-0022",
+    }
+  ]
+}
+
+function getFakeCustomer(id) {
+  return getFakeCustomersArr()[0]
+}
+
+function getFakeItemsArr() {
+  return [
+    {
+      title: 'Jesus Of Nazareth Diamond Pendant 14k Solid Gold 9.25ctw',
+      img_src: 'https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/4d230c2794eea92434c287905a3da1ef.jpg',
+      id: 23721
+    },
+    {
+      title: '0.55ctw Double Halo Round Solitaire Miracle - Diamond Engagement Ring - All Natural',
+      img_src: 'https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/24847fddc2e5b43a51764b6266009e7a.jpg',
+      id: 23721
+    },
+    {
+      title: "Double Baguette Square Halo Diamond Engagement Ring 14k Solid Gold - All Natural - 1.10ctw",
+      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/e662310abce6eff77ed5f31c8519662d.jpg",
+      id: 23721
+    },
+    {
+      title: "Goat Head Diamond Pendant 14k Solid Gold 1.25ctw",
+      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/7998fbdc0f99db2654ff77aa1c21fa81.jpg",
+      id: 23721
+    },
+    {
+      title: "Gypsy Set Diamond Cluster Band Ring 14k Solid Gold 0.33ctw",
+      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/6466b54ad54d1daf8a549aca989417bc.jpg",
+      id: 23721
+    },
+    {
+      title: "Graduated Border Scattered Gypset Set Diamond Band 14k Solid Gold 0.75ctw",
+      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/419cc1fd99d75e6b92dd2d9ed59302cc.jpg",
+      id: 23721
+    }
+  ]
+}
+
+function getFakeItem() {
+  return {
+    title: 'Jesus Of Nazareth Diamond Pendant 14k Solid Gold 9.25ctw',
+    img_src: 'https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/4d230c2794eea92434c287905a3da1ef.jpg',
+    id: 23721,
+    options: [
+      {
+        "name": "Color",
+        "type": "goldColor",
+        "hidden": false,
+        "set": [
+          {
+            "color": "Yellow",
+            "active": true,
+            "caption": "Yellow",
+            "class": "Yellow"
+          },
+          {
+            "color": "White",
+            "active": false,
+            "caption": "White",
+            "class": "White"
+          },
+          {
+            "color": "Rose",
+            "active": false,
+            "caption": "Rose",
+            "class": "Rose"
+          }]
+      },
+      {
+        "name": "Diamonds",
+        "type": "diamonds_quality",
+        "default_value": "VS",
+        "set": [
+          {
+            "value": "VS",
+            "caption": "VS",
+            "active": true
+          }]
+      },
+      {
+        "id": "97",
+        "name": "Length",
+        "type": "dropdown",
+        "selected_value": "8.5",
+        "show_inches": true,
+        "set": [
+          {
+            "value": "6.5",
+            "caption": "6.5"
+          },
+          {
+            "value": "7",
+            "caption": "7"
+          },
+          {
+            "value": "7.5",
+            "caption": "7.5"
+          },
+          {
+            "value": "8",
+            "caption": "8"
+          },
+          {
+            "value": "8.5",
+            "caption": "8.5",
+            "active": true
+          }],
+        "chuncks": false
+      }
+    ]
+  }
+}
+
+function fakeAjaxGetCustomer(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = getFakeCustomer(id)
+      // const data = false
+      resolve(data)
+    }, 1500)
+  })
+}
+
+function fakeAjaxGetCustomers(query) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = getFakeCustomersArr(query)
+      // const data = false
+      resolve(data)
+    }, 1500)
+  })
+}
+
+function fakeAjaxGetItemsArray(query) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = getFakeItemsArr()
+      // const data = []
+      resolve(data)
+    }, 2000)
+  })
+}
+
+function fakeAjaxGetItem(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = getFakeItem()
+      // const data = false
+      resolve(data)
+    }, 1500)
+  })
+}
+
+function fakeFetchPost(url, options) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const fakeResponse = {
+        ok: true,
+        statusText: 'OK',
+        json: async () => ({}),
+      };
+      resolve(fakeResponse);
+    }, 1500);
+  });
+}
+
 function createElem(tagName, options) {
   const { className, id, innerHTML, style, attributes, toAppend } = options
   const elem = document.createElement(tagName)
@@ -72,6 +304,10 @@ function createElem(tagName, options) {
     for (const child of toArray(toAppend)) { elem.appendChild(child) }
   }
   return elem
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function lockScroll() {
@@ -3113,17 +3349,6 @@ class PosPage {
       }
     }
   }
-  attachDatePickers() {
-    const arr = [...this.main.querySelectorAll('[data-datepicker]')]
-    for (const input of arr) {
-      new AirDatepicker(input, {
-        autoClose: false,
-        dateFormat(date) {
-          return date.toLocaleString('en', { month: 'numeric', day: 'numeric', year: 'numeric' })
-        }
-      })
-    }
-  }
   attachDocumentClick() {
     document.addEventListener('click', (e) => {
       const target = e.target
@@ -3229,7 +3454,6 @@ class PosPage {
       this.attachAllowElements()
       this.attachChangeCurrency()
       this.attachChangeBillFrom()
-      this.attachDatePickers()
       this.attachSave()
 
       // Attach calculations
@@ -4876,8 +5100,23 @@ document.addEventListener('DOMContentLoaded', () => {
     for (const input of arr) {
       new AirDatepicker(input, {
         autoClose: false,
-        dateFormat(date) {
-          return date.toLocaleString('en', { month: 'numeric', day: 'numeric', year: 'numeric' })
+        timepicker: true,
+        onSelect({ date }) {
+          const datePart = date.toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+          });
+
+          let timePart = date.toLocaleTimeString('en-GB', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+          });
+
+          timePart = timePart.replace('am', 'AM').replace('pm', 'PM');
+
+          input.value = `${datePart} ${timePart}`;
         }
       })
     }
@@ -5087,101 +5326,218 @@ class PsSelect {
     })
   }
 }
-
 document.addEventListener('DOMContentLoaded', () => {
   window.psSelect = new PsSelect()
 })
 
-/* #region  M Popup - .m-popup */
-class MPopup {
+/** Add Manual Order */
+
+class ItemValidator {
+  constructor(contentElem) {
+    this.contentElem = contentElem;
+  }
+  validate() {
+    const itemTitleInput = this.contentElem.querySelector('input[name="item_title"]')
+    const selectArr = [...this.contentElem.querySelectorAll('select[required]')]
+
+    if (itemTitleInput) {
+      if (!itemTitleInput.value) {
+        return { result: false, msg: 'Item title is required.' };
+      }
+    } else {
+      return { result: false, msg: 'No item. Please use search field to find an item.' };
+    }
+
+    if (selectArr && selectArr.length) {
+      if (selectArr.every(select => !select.value)) {
+        return {
+          result: false,
+          msg: 'Select product options...'
+        }
+      }
+      const firstNotSelected = selectArr.find(select => !select.value)
+      if (firstNotSelected) {
+        return {
+          result: false,
+          msg: `Select option: ${firstNotSelected.getAttribute('name')}`
+        }
+      }
+    }
+
+    return { result: true, msg: '' };
+  }
+}
+class CustomerValidator {
+  constructor(contentElem) {
+    this.contentElem = contentElem;
+  }
+  _validateEmail(emailString) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(emailString);
+  }
+
+  validate() {
+    const customerInputArr = [...this.contentElem.querySelectorAll('input[required][data-customer-input]')]
+    const emailInput = this.contentElem.querySelector('input[name="email"][required][data-customer-input]')
+
+    if (!customerInputArr || !customerInputArr.length) {
+      return { result: false, msg: 'Something went wrong. ERR CODE: VMO79' };
+    }
+
+    if (customerInputArr.every(input => !input.value)) {
+      return { result: false, msg: 'Enter customer details or use search field to find a customer.' };
+    }
+
+    const firstNotFilled = customerInputArr.find(input => !input.value)
+    if (firstNotFilled) {
+      return { result: false, msg: `Enter customer ${firstNotFilled.getAttribute('placeholder')}.` };
+    }
+
+    if (emailInput) {
+      if (!this._validateEmail(emailInput.value)) {
+        return { result: false, msg: 'Enter a valid email address.' };
+      }
+    }
+
+    return { result: true, msg: '' };
+  }
+}
+class OtherDetailsValidator {
+  constructor(contentElem) {
+    this.contentElem = contentElem;
+  }
+
+  validate() {
+    const requiredSelectArr = [...this.contentElem.querySelectorAll('select[required]')]
+    const requiredInputArr = [...this.contentElem.querySelectorAll('input[required]')]
+    const dateInput = this.contentElem.querySelector('input[name="order_date"][required]')
+
+    if (requiredSelectArr.every(select => !select.value) && requiredInputArr.every(input => !input.value)) {
+      return { result: false, msg: 'Enter order details.' };
+    }
+
+    if (dateInput && !dateInput.value) {
+      return { result: false, msg: 'Order date is not filled.' };
+    }
+
+    const firstNotSelected = requiredSelectArr.find(select => !select.value)
+    if (firstNotSelected) {
+      return { result: false, msg: `Select option: ${firstNotSelected.getAttribute('name')}` };
+    }
+
+    const firstNotFilled = requiredInputArr.find(input => !input.value)
+    if (firstNotFilled) {
+      return { result: false, msg: `Enter ${firstNotFilled.getAttribute('placeholder')}` };
+    }
+
+    return { result: true, msg: '' };
+  }
+}
+class ManualOrderValidator {
+  constructor(contentType, contentElem) {
+    this.validatorStrategy = this.getValidatorStrategy(contentType, contentElem)
+  }
+  getValidatorStrategy(contentType, contentElem) {
+    const strategies = {
+      item: new ItemValidator(contentElem),
+      customer: new CustomerValidator(contentElem),
+      other: new OtherDetailsValidator(contentElem)
+    }
+    return strategies[contentType] || null
+  }
+  run() {
+    if (!this.validatorStrategy) {
+      return { result: false, msg: 'ERR: VMO76. Invalid content type' }
+    }
+    return this.validatorStrategy.validate()
+  }
+}
+
+class ManualOrderPopup {
   constructor() {
-    this.rootEl = document.querySelector('.m-popup')
+    this.rootEl = document.querySelector('#addManulOrderPopup')
     if (!this.rootEl) return
 
     this.handler = this.rootEl.querySelector('.m-popup__handler')
-
     this.opened = false
+    this.formInstance = null
     this.init()
+  }
+  init() {
+    this.formInstance = new ManualOrderForm(this.rootEl, this)
+    this.bindEvents()
+    this.bindDragEvents()
+    this.show()
   }
 
   get getInstance() {
     return this.rootEl
   }
 
-  init() {
-    this.attachEvents()
-    this.bindEvents()
-    this.bindDragEvents()
+  // Methods
+  reset() {
+    return
+  }
+  async show() {
+    if (this.opened) {
+      return
+    }
+
+    lockScroll()
+    this.opened = true
+    this.rootEl.style.display = 'block'
+    this.formInstance._bindDocumentClick()
+
+    await delay(1)
+
+    this.rootEl.classList.add(__VISIBLE)
+    window.MPopupBackdrop = new PopupBackdrop({
+      callback: () => { this.close() }
+    })
+  }
+  async close() {
+    if (!this.opened) {
+      return
+    }
+
+    unlockScroll()
+    this.opened = false
+    this.rootEl.classList.remove(__VISIBLE)
+    this.rootEl.classList.add(__HIDDEN)
+    this.formInstance._unbindDocumentClick()
+
+    if (window.MPopupBackdrop) {
+      window.MPopupBackdrop.hide(true)
+      delete window.MPopupBackdrop
+    }
+
+    if (window.manualOrderPopup) {
+      delete window.manualOrderPopup
+    }
+
+    await delay(getTransitionTime(this.rootEl))
+
+    this.rootEl.removeAttribute('style')
+    this.rootEl.classList.remove(__HIDDEN)
+    this.formInstance.fullReset()
   }
 
-  attachEvents() {
-    this.rootEl.reset = () => {
-      const inputArr = [...this.rootEl.querySelectorAll('input[type="text"]')]
-      for (const input of inputArr) {
-        input.value = ''
-      }
-    }
-
-    this.rootEl.open = () => {
-      if (this.opened) {
-        return
-      }
-
-      lockScroll()
-      this.opened = true
-      this.rootEl.style.display = 'block'
-
-      if (window.innerWidth > 991) {
-        this.rootEl.querySelector('input[type="text"]').focus()
-      }
-
-      requestAnimationFrame(() => {
-        this.rootEl.classList.add(__VISIBLE)
-      })
-      window.MPopupBackdrop = new PopupBackdrop({
-        callback: () => { this.rootEl.close() }
-      })
-    }
-
-    this.rootEl.close = () => {
-      if (!this.opened) {
-        return
-      }
-
-      unlockScroll()
-      this.opened = false
-      this.rootEl.classList.remove(__VISIBLE)
-      this.rootEl.classList.add(__HIDDEN)
-      if (window.MPopupBackdrop) {
-        window.MPopupBackdrop.hide(true)
-        delete window.MPopupBackdrop
-      }
-      setTimeout(() => {
-        this.rootEl.removeAttribute('style')
-        this.rootEl.classList.remove(__HIDDEN)
-        this.rootEl.reset()
-      }, getTransitionTime(this.rootEl))
-    }
-
-    this.rootEl
-  }
-
+  // Events
   bindEvents() {
     document.addEventListener('click', (e) => {
       const target = e.target
 
       // Close
       if (target.closest('[data-m-popup="close"]')) {
-        this.rootEl.close()
+        this.hide()
       }
 
       // Submit
       if (target.closest('[data-m-popup="submit"]')) {
-        this.rootEl.submit()
+        this.submit()
       }
     })
   }
-
   bindDragEvents() {
     if (window.innerWidth < 992) {
       const handler = this.handler
@@ -5226,127 +5582,767 @@ class MPopup {
     }
   }
 }
-/* #endregion */
-
-/* #region  Today Page */
-class TodayPage {
-  constructor() {
-    const rootMain = document.querySelector('.main_today')
-    if (!rootMain) return
-
-    this.addSaleForm = document.querySelector('#addSaleForm')
-    this.addSaleId = undefined
-    this.mPopupInstance = window.mPopup
-  }
-
-  // Methods
-  openAddSale(id) {
-    if (this.mPopupInstance) {
-      this.addSaleId = id
-      const instance = this.mPopupInstance.getInstance
-      instance.open()
+class ManualOrderProductSearch {
+  /**
+   * @param {HTMLElement} container — Root element contains input & list container
+   * @returns
+   */
+  constructor(container, formInstance) {
+    this.container = container
+    this.input = document.querySelector('#itemSearchInput')
+    this.resultsList = this.container.querySelector('.m-popup__search-list')
+    this.msgElement = this.container.querySelector('.m-popup__msg')
+    this.formInstance = formInstance
+    if (!this.resultsList || !this.input) {
+      console.warn('ERR: MPS01. Results list or input not found')
+      return
     }
-  }
-  closeAddSale() {
-    if (this.mPopupInstance) {
-      const instance = this.mPopupInstance.getInstance
-      instance.close()
-    }
-  }
-  switchAddSale(type) {
-    if (this.addSaleForm) {
-      const saleTypes = [...this.addSaleForm.querySelectorAll('[data-sale-type]')]
-      const typeInput = saleTypes.find((input) => input.dataset.saleType === type)
 
-      if (saleTypes.length && typeInput) {
-        for (const input of saleTypes) {
-          const parent = input.closest('.m-popup__input-row')
+    this.selectedItem = null
 
-          if (parent) {
-            input.value = ''
-            if (input === typeInput) {
-              parent.classList.remove('--hidden')
-              input.disabled = false
-            } else {
-              parent.classList.add('--hidden')
-              input.disabled = true
-            }
-          }
-        }
+    this.searchDelay = 1000
+    this.searchTimeout = null
+    this.init()
+  }
+
+  init() {
+    this.bindEvents()
+  }
+  bindEvents() {
+    this.input.addEventListener('focus', () => {
+      if (this.formInstance) {
+        this.formInstance.clearMsg()
       }
-    }
-  }
-  addSale(event) {
-    const id = this.addSaleId
-
-    if (id) {
-      const form = event.target
-      const formData = new FormData(form)
-
-      const obj = {}
-      formData.forEach((value, key) => (obj[key] = value))
-      const saleType = Object.keys(obj).find(key => key === 'saleType')
-      const saleValue = Object.keys(obj).find(key => key === 'saleValue')
-
-      if (saleType && saleValue && this.mPopupInstance) {
-        const validateValue = this.validateAddSale(obj[saleValue], obj[saleType])
-        if (!validateValue.result) {
-          new pageMsg({
-            heading: 'Something went wrong',
-            msg: validateValue.message,
-            type: 'error',
-            zIndex: 2000
-          })
-          event.preventDefault()
-          return
-        }
+    })
+    this.input.addEventListener('input', (e) => {
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout)
       }
 
-      fetch(form.action, {
-        method: 'POST',
-        body: formData
-      }).then((res) => {
-        if (res.ok) {
-          res.json().then((data) => {
-            if (data.error) {
-              new pageMsg({
-                heading: 'Something went wrong',
-                msg: data.msg,
-                type: 'error',
-                zIndex: 2000
-              })
-            } else {
-              this.closeAddSale()
-              window.location.reload()
-            }
-          })
-        }
+      if (this.formInstance) {
+        this.formInstance.clearMsg()
+      }
+
+      const val = e.target.value.trim()
+
+      this.resultsList.classList.add('--o-loading')
+      this.resultsList.classList.remove('--filled')
+      this.resultsList.classList.remove('--empty')
+
+      if (!val) {
+        this.resultsList.classList.remove('--o-loading')
+        this.clearResults()
+        return
+      }
+
+      this.searchTimeout = setTimeout(() => {
+        this.performSearch(val)
+      }, this.searchDelay)
+    })
+  }
+
+  async performSearch(query) {
+    this.disable()
+    try {
+      /** 
+       * @CHOU Setup here
+       * @anchor { Get an array of products }
+       * We need to get an array of items based on the query.
+       * 
+       * @see {getFakeItemsArr}
+       * This function uses {@link getFakeItemsArr} to retrieve data.
+       * This function uses {@link fakeAjaxGetItemsArray} to simulate an AJAX request to fetch items array based on the given query.
+       * 
+       * @param {string} query - The search query for fetching items.
+       */
+      const results = await fakeAjaxGetItemsArray(query)
+
+      if (Array.isArray(results) && !results.length) {
+        this.showEmptyResult()
+        return
+      }
+
+      if (!results) {
+        this.formInstance.showMsg('error', 'Something went wrong...')
+        this.clearResults()
+        return
+      }
+
+      this.renderResults(results);
+      this.resultsList.classList.add('--filled');
+    } catch (error) {
+      console.warn('ERR: MPS03. Search error', error);
+    } finally {
+      this.enable()
+      this.formInstance.clearMsg()
+      this.resultsList.classList.remove('--o-loading');
+    }
+  }
+
+  renderResults(items) {
+    this.resultsList.innerHTML = items.map(item => `
+      <div data-evt="setupManualItem" data-id="${item.id}" class="m-popup__list-item">
+        <img src="${item.img_src}" alt="">
+        <h6>${item.title}</h6>
+      </div>
+    `).join('')
+  }
+  clearResults() {
+    this.resultsList.innerHTML = ''
+    this.resultsList.className = 'm-popup__search-list'
+  }
+  disable() {
+    this.input.disabled = true
+    this.container.classList.add('--disabled')
+  }
+  enable() {
+    this.input.disabled = false
+    this.container.classList.remove('--disabled')
+  }
+  showEmptyResult() {
+    this.resultsList.className = 'm-popup__search-list --empty'
+  }
+  reset() {
+    this.clearResults()
+    this.input.value = ''
+  }
+}
+class ManualOrderCustomerSearch {
+  /**
+   * @param {HTMLElement} container — Root element contains input & list container
+   * @returns
+   */
+  constructor(container, formInstance) {
+    this.container = container
+    this.input = document.querySelector('#customerSearchInput')
+    this.resultsList = this.container.querySelector('.m-popup__search-list')
+    this.msgElement = this.container.querySelector('.m-popup__msg')
+    this.formInstance = formInstance
+    if (!this.resultsList || !this.input) {
+      console.warn('ERR: MPS001. Results list or input not found')
+      return
+    }
+
+    this.selectedCustomer = null
+
+    this.searchDelay = 1000
+    this.searchTimeout = null
+    this.init()
+  }
+
+  init() {
+    this.bindEvents()
+  }
+  bindEvents() {
+    this.input.addEventListener('focus', () => {
+      if (this.formInstance) {
+        this.formInstance.clearMsg()
+      }
+    })
+    this.input.addEventListener('input', (e) => {
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout)
+      }
+
+      if (this.formInstance) {
+        this.formInstance.clearMsg()
+      }
+
+      const val = e.target.value.trim()
+
+      this.resultsList.classList.add('--o-loading')
+      this.resultsList.classList.remove('--filled')
+      this.resultsList.classList.remove('--empty')
+
+      if (!val) {
+        this.resultsList.classList.remove('--o-loading')
+        this.clearResults()
+        return
+      }
+
+      this.searchTimeout = setTimeout(() => {
+        this.performSearch(val)
+      }, this.searchDelay)
+    })
+  }
+
+  async performSearch(query) {
+    this.disable()
+    this.toggleCheckboxVisibiltiy(false)
+    try {
+      /** 
+       * @CHOU Setup here 
+       * @anchor { Get an array of customers }
+       * We need to get an array of customers based on the query.
+       * 
+       * @see {getFakeCustomersArr}
+       * This function uses {@link getFakeCustomersArr} to retrieve data.
+       * This function uses {@link fakeAjaxGetCustomers} to simulate an AJAX request to fetch customer data based on the given query.
+       * 
+       * @param {string} query - The search query for fetching customers.
+       */
+      const results = await fakeAjaxGetCustomers(query)
+      this.toggleCheckboxVisibiltiy(true)
+
+      if (Array.isArray(results) && !results.length) {
+        this.showEmptyResult()
+        return
+      }
+
+      if (!results) {
+        this.formInstance.showMsg('error', 'Something went wrong...')
+        this.clearResults()
+        return
+      }
+
+      this.renderResults(results);
+      this.resultsList.classList.add('--filled');
+    } catch (error) {
+      console.warn('ERR: MPS003. Search error', error);
+    } finally {
+      this.enable()
+      this.formInstance.clearMsg()
+      this.resultsList.classList.remove('--o-loading');
+    }
+  }
+
+  renderResults(customers) {
+    this.resultsList.innerHTML = customers.map(customer => `
+      <div data-evt="setupManualCustomer" data-id="${customer.id}" class="m-popup__list-item --customer">
+        <h6>${customer.first_name ? `${customer.first_name} ` : ''}${customer.last_name ? `${customer.last_name}` : ''}</h6>
+        <div class="am_flex8">
+          ${customer.first_name ? `<span>First name: ${customer.first_name}</span>` : ''}
+          ${customer.last_name ? `<span>Last name: ${customer.last_name}</span>` : ''}
+          ${customer.email ? `<span>Email: ${customer.email}</span>` : ''}
+          ${customer.phone ? `<span>Phone: ${customer.phone}</span>` : ''}
+        </div>
+      </div>
+    `).join('')
+  }
+  clearResults() {
+    this.resultsList.innerHTML = ''
+    this.resultsList.className = 'm-popup__search-list'
+  }
+  disable() {
+    this.input.disabled = true
+    this.container.classList.add('--disabled')
+  }
+  enable() {
+    this.input.disabled = false
+    this.container.classList.remove('--disabled')
+  }
+  showEmptyResult() {
+    this.resultsList.className = 'm-popup__search-list --empty'
+  }
+  reset() {
+    this.clearResults()
+    this.input.value = ''
+  }
+  fullReset() {
+    this.formInstance.resetSelectedCustomer()
+    this.reset()
+    clearTimeout(this.searchTimeout)
+    this.clearResults()
+  }
+  toggleCheckboxVisibiltiy(cond) {
+    const elem = document.querySelector('input[value="addCustomerManually"]')
+    if (elem) {
+      const label = elem.parentElement
+      if (cond) {
+        label.style.display = 'flex'
+        return
+      }
+      label.style.display = 'none'
+    }
+  }
+
+}
+
+class ManualOrderForm {
+  constructor(rootEl, popupInstance) {
+    this.rootEl = rootEl
+    if (!this.rootEl) {
+      return
+    }
+
+    this._onDocumentClick = this._onDocumentClick.bind(this)
+
+    this.popupInstance = popupInstance
+    this.form = document.querySelector('#addManulOrderForm')
+
+    this.selectedItem = null
+    this.selectedItemElem = null
+
+    this.selectedCustomer = null
+    this.selectedCustomerElem = null
+
+    this.contentItem = document.querySelector('#contentItem')
+    this.contentCustomer = document.querySelector('#contentCustomer')
+
+    this.customerInputArr = [...document.querySelectorAll('[data-customer-input]')]
+    this.customerInputFirstName = document.querySelector('#customerFirstName')
+    this.customerInputLastName = document.querySelector('#customerLastName')
+    this.customerInputEmail = document.querySelector('#customerEmail')
+    this.customerInputPhone = document.querySelector('#customerPhone')
+
+    this.steps = [...this.rootEl.querySelectorAll('.m-popup__step')]
+    this.searchProductContainer = document.querySelector('#searchListItems')
+    this.searchCustomerContainer = document.querySelector('#searchListCustomers')
+    this.selectedItemContainer = document.querySelector('#selectedItemContainer')
+    this.msgEl = this.rootEl.querySelector('.m-popup__msg')
+    this.init()
+  }
+
+  init() {
+    if (!this.searchProductContainer) {
+      console.warn('ERR: MPS02. Search product container not found')
+    }
+
+    this.productSearch = new ManualOrderProductSearch(this.searchProductContainer, this)
+    this.customerSearch = new ManualOrderCustomerSearch(this.searchCustomerContainer, this)
+
+    this.setupInitialSteps()
+    this.goStep(1)
+  }
+
+  // Utils
+  disable() {
+    this.rootEl.querySelectorAll('input').forEach(input => {
+      input.disabled = true
+    })
+    this.rootEl.classList.add('--o-loading')
+    this.rootEl.classList.add('--disabled')
+  }
+  enable() {
+    this.rootEl.querySelectorAll('input').forEach(input => {
+      input.disabled = false
+    })
+    this.rootEl.classList.remove('--o-loading')
+    this.rootEl.classList.remove('--disabled')
+  }
+  resetSelectedItem() {
+    this.contentItem.classList.remove('--show-selected')
+    this.productSearch.reset()
+    this.selectedItemContainer.innerHTML = ''
+    this.selectedItem = null
+    this.selectedItemElem = null
+  }
+  resetSelectedCustomer() {
+    const container = document.querySelector('#selectedCustomerInputs')
+    if (container) {
+      const inputArr = [...container.querySelectorAll('input')]
+      inputArr.forEach(input => {
+        input.value = ''
+      })
+    }
+
+    if (this.customerSearch) {
+      this.customerSearch.reset()
+    }
+  }
+  resetOtherDetails() {
+    const otherDetails = this.rootEl.querySelector('#otherDetails')
+    if (otherDetails) {
+      const textInputArr = [...otherDetails.querySelectorAll('input[type="text"]')]
+      textInputArr.forEach(input => {
+        input.value = ''
+      })
+
+      const selectArr = [...otherDetails.querySelectorAll('select')]
+      selectArr.forEach(select => {
+        select.value = ''
       })
     }
   }
-  validateAddSale(value, saleType) {
-    if (saleType !== 'percent' && saleType !== 'manual' && saleType !== 'amount') {
-      return { result: false, message: 'Sale type is not valid' }
+  fullReset() {
+    this.enable()
+    this.resetSelectedItem()
+    this.resetOtherDetails()
+    this.resetSelectedCustomer()
+    this.goStep(1)
+    this.clearMsg()
+  }
+
+  // General Methods
+  showMsg(type, msg = 'Something went wrong...') {
+    this.rootEl.classList.add('--show-msg')
+    this.rootEl.classList.add(`--${type}`)
+    this.msgEl.textContent = msg
+  }
+  clearMsg() {
+    this.rootEl.classList.remove('--show-msg')
+    this.rootEl.classList.remove('--error')
+    this.rootEl.classList.remove('--success')
+  }
+
+  // Events
+  _bindDocumentClick() {
+    document.addEventListener('click', this._onDocumentClick)
+  }
+  _unbindDocumentClick() {
+    document.removeEventListener('click', this._onDocumentClick)
+  }
+  _onDocumentClick(e) {
+    /** General Events */
+    if (e.target.closest('[data-manual-close]')) {
+      this.popupInstance.close()
     }
 
-    if (isNaN(value)) {
-      return { result: false, message: 'Sale value should be number' }
+    if (e.target.closest('.m-popup__input-row')) {
+      this.clearMsg()
     }
 
-    if (value < 0) {
-      return { result: false, message: 'Sale value should be more than 0' }
+    /** Items */
+    if (e.target.closest('[data-evt="resetManualItem"]')) {
+      this.resetSelectedItem();
+    }
+    if (e.target.closest('[data-evt="setupManualItem"]')) {
+      let id = e.target.closest('[data-id]').getAttribute('data-id');
+      if (!id) {
+        console.warn('ERR: MOF03. Item ID not found');
+        new pageMsg({
+          type: 'error',
+          heading: 'Invalid Item',
+          msg: 'ERR: MOF03. Item ID not found. Reference data-id attribute'
+        });
+        return;
+      }
+      this.setupManualItem(id);
     }
 
-    if (saleType === 'percent' && (value < 0 || value > 100)) {
-      return { result: false, message: 'Percent sale value should be between 0 and 100' }
+    /** Customer */
+    if (e.target.closest('[data-evt="resetManualCustomer"]')) {
+      this.resetSelectedCustomer()
     }
 
-    return { result: true }
+    if (e.target.closest('[data-evt="setupManualCustomer"]')) {
+      let id = e.target.closest('[data-id]').getAttribute('data-id')
+      if (!id) {
+        console.warn('ERR: MOF07. Customer ID not found')
+        new pageMsg({
+          type: 'error',
+          heading: 'Invalid Customer',
+          msg: 'ERR: MOF07. Customer ID not found. Reference data-id attribute'
+        })
+        return
+      }
+
+      this.setupManualCustomer(id)
+    }
+
+    /** Step Switch */
+    if (e.target.closest('[data-next-step]')) {
+      this.clearMsg()
+      this.go()
+    }
+    if (e.target.closest('[data-prev-step]')) {
+      this.clearMsg()
+      this.goStep(this.currentStep - 1)
+    }
+  }
+
+  // Select item methods
+  async setupManualItem(id) {
+    this.disable()
+
+    try {
+      /**
+       * @CHOU Setup here
+       * @anchor { Get an item }
+       * We need to get an item based on the ID.
+       * 
+       * @see {getFakeItem}
+       * This function uses {@link getFakeItem} to retrieve data.
+       * This function uses {@link fakeAjaxGetItem} to simulate an AJAX request to fetch item data based on the given ID.
+       * 
+       * @param {string} id - The ID of the item to fetch.
+       */
+      const item = await fakeAjaxGetItem(id)
+
+      if (!item) {
+        this.showMsg('error', 'Item not found')
+        return
+      }
+
+      this.selectedItem = item
+      this.renderManualItem(item)
+
+      this.contentItem.classList.add('--show-selected')
+      this.productSearch.reset()
+
+    } catch (error) {
+      console.error('ERR: MOF04. Fetch item failed', error)
+    } finally {
+      this.enable()
+    }
+  }
+  renderManualItem(item) {
+    // Create main element of selected item
+    const elem = createElem('div', {
+      className: 'm-popup__list-item --selected',
+      innerHTML: `
+        <img src="${item.img_src}" alt="">
+        <input type="text" name="item_title" class="m-popup__input --bold" value="${item.title}" disabled>
+      `
+    });
+
+    // Create reset button
+    const resetButton = createElem('div', {
+      className: 'blank-btn',
+      attributes: { 'data-evt': 'resetManualItem' },
+      innerHTML: 'Select another item'
+    });
+
+    // Function for creating dropdown (select) for each option
+    const createSelectFields = () => {
+      const options = item.options;
+      if (!options || !options.length) return null;
+
+      const gridElement = document.createElement('div');
+      gridElement.classList.add('m-popop__manual-options-grid');
+
+      const selectElementsHTML = options.map(option => {
+        const optionsHTML = option.set.map(select =>
+          `<option value="${select.caption}">${select.caption}</option>`
+        ).join('');
+
+        return `
+          <div class="m-popup__input-row">
+            <div class="m-popup__input-wrap">
+              <div class="am-select-wrap">
+                <select class="am-select" name="${option.name}" required>
+                  <option value="" selected disabled>${option.name}</option>
+                  ${optionsHTML}
+                </select>
+              </div>
+            </div>
+          </div>
+        `
+      }).join('')
+
+      gridElement.innerHTML = selectElementsHTML
+      return gridElement
+    }
+
+    const selectFields = createSelectFields()
+
+    // Add elements to container
+    this.selectedItemElem = elem
+    this.selectedItemContainer.appendChild(elem)
+    if (selectFields) {
+      this.selectedItemContainer.appendChild(selectFields)
+    }
+    this.selectedItemContainer.appendChild(resetButton)
+  }
+
+  // Select customer methods
+  async setupManualCustomer(id) {
+    this.disable()
+
+    try {
+      /**
+       * @CHOU Setup here
+       * @anchor { Get a customer }
+       * We need to get a customer based on the ID.
+       * 
+       * @see {getFakeCustomer}
+       * This function uses {@link getFakeCustomer} to retrieve data.
+       * This function uses {@link fakeAjaxGetCustomer} to simulate an AJAX request to fetch customer data based on the given ID.
+       * 
+       * @param {string} id - The ID of the customer to fetch.
+       */
+      const customer = await fakeAjaxGetCustomer(id)
+
+      if (!customer) {
+        this.showMsg('error', 'Customer not found')
+        return
+      }
+
+      this.selectedCustomer = customer
+      this.fillCustomerInputs(customer)
+      this.customerSearch.reset()
+
+    } catch (error) {
+      console.error('ERR: MOF12. Fetch customer failed', error)
+    } finally {
+      this.enable()
+    }
+  }
+  fillCustomerInputs(customer) {
+    const { first_name, last_name, email, phone } = customer
+    const resetButton = createElem('div', {
+      className: 'blank-btn',
+      attributes: { 'data-evt': 'resetManualCustomer' },
+      innerHTML: 'Reset customer'
+    })
+
+    const warnMsg = (msg) => {
+      new pageMsg({
+        type: 'error',
+        heading: 'Warning',
+        msg: msg
+      })
+    }
+
+    if (first_name) this.customerInputFirstName.value = first_name
+    if (last_name) this.customerInputLastName.value = last_name
+    if (email) this.customerInputEmail.value = email
+    if (phone) this.customerInputPhone.value = phone
+  }
+
+  // Switch steps
+  setupInitialSteps() {
+    const steps = [...this.rootEl.querySelectorAll('[data-step]')]
+    const bar = this.rootEl.querySelector('.m-popup__progress-bar span')
+    const title = this.rootEl.querySelector('.m-popup__progress-title')
+    const nextStepBtn = this.rootEl.querySelector('[data-next-step]')
+    const prevStepBtn = this.rootEl.querySelector('[data-prev-step]') || this.rootEl.querySelector('[data-manual-close]')
+
+    if (!steps || !title || !bar) return
+
+    this.steps = steps
+    this.progressTitle = title
+    this.progressBar = bar
+    this.currentStep = 1
+    this.stepTitles = [
+      'Step 1. Item details.',
+      'Step 2. Client info.',
+      'Step 3. Other details.'
+    ]
+    if (nextStepBtn && prevStepBtn) {
+      this.nextStepBtn = nextStepBtn
+      this.prevStepBtn = prevStepBtn
+    }
+  }
+  goStep(step = 1) {
+    if (step < 1) {
+      new pageMsg({ msg: "ERR: MOF88. Step can't be less than 1" })
+      step = 1
+    }
+
+    if (step > this.steps.length) {
+      new pageMsg({ msg: "ERR: MOF89. Step can't be more than " + this.steps.length })
+      step = this.steps.length
+    }
+
+    this.currentStep = step
+    const container = this.steps[step - 1]
+    const isLastStep = this.currentStep === this.steps.length;
+    const isFirstStep = this.currentStep === 1;
+
+    this.progressTitle.textContent = this.stepTitles[step - 1]
+    this.progressBar.style.width = `${(step / this.steps.length) * 100}%`
+    this.steps.forEach((elem) => {
+      if (elem === container) {
+        elem.style.display = 'block'
+      } else {
+        elem.style.display = 'none'
+      }
+    })
+
+    if (this.nextStepBtn) {
+      const text = step === this.steps.length ? 'Finish' : 'Next Step'
+      this.nextStepBtn.textContent = text
+
+      // this.nextStepBtn.toggleAttribute('data-next-step', !isLastStep);
+      // this.nextStepBtn.toggleAttribute('data-manual-submit', isLastStep);
+    }
+
+    if (this.prevStepBtn) {
+      const text = step === 1 ? 'Close' : 'Previous Step'
+      this.prevStepBtn.textContent = text
+
+      this.prevStepBtn.toggleAttribute('data-prev-step', !isFirstStep);
+      this.prevStepBtn.toggleAttribute('data-manual-close', isFirstStep);
+    }
+  }
+  go() {
+    let contentType = this.currentStep === 1 ? 'item' : this.currentStep === 2 ? 'customer' : 'other';
+    const validator = new ManualOrderValidator(contentType, this.steps[this.currentStep - 1]);
+    const validate = validator.run();
+
+    if (!validate.result) {
+      this.showMsg('error', validate.msg);
+      return;
+    }
+
+    if (this.currentStep === this.steps.length) {
+      this.submit();
+    } else {
+      this.goStep(this.currentStep + 1);
+    }
+  }
+
+  // Close & Submit
+  getFormData() {
+    const form = this.form
+    const formData = new FormData(form)
+
+    const ignoreFields = ['itemSearch', 'customerSearch']
+
+    const data = {}
+    for (let [key, value] of formData.entries()) {
+      if (ignoreFields.includes(key)) {
+        continue
+      }
+      data[key] = value
+    }
+
+    return data
+  }
+  async submit() {
+    this.disable()
+    const data = this.getFormData()
+
+    if (!data || Object.keys(data).length === 0) {
+      this.enable()
+      this.showMsg('error', 'ERR: MOF99. Form data is empty')
+      return
+    }
+
+    try {
+      /**
+       * @CHOU Send data here
+       * @anchor { Send form data }
+       * We need to send form data to a server.
+       * 
+       * @see {fakeFetchPost}
+       * This function uses {@link fakeFetchPost} to simulate a POST request to send form data to a server.
+       * 
+       * @param {string} url - The URL to send the form data to.
+       * @param {object} options - An object containing the request options.
+       */
+      const response = await fakeFetchPost('/url', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+
+      if (!response.ok) {
+        throw new Error(`${response.statusText}`)
+      }
+
+      this.popupInstance.close()
+      this.fullReset()
+    } catch (error) {
+      this.showMsg('error', `Something went wrong: ${error.message}`)
+    } finally {
+      /**
+       * @CHOU Revise Here
+       * @todo { Reload the page or ??}
+       * After submitting the form, reload the page or ??
+       */
+      this.enable()
+      location.reload()
+    }
   }
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
-  window.mPopup = new MPopup()
-  window.Today = new TodayPage()
+  window.addManualOrder = () => {
+    new ManualOrderPopup()
+  }
 })
-/* #endregion */

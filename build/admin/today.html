@@ -280,6 +280,11 @@
                         <div class="am-main__content">
                             <div class="am__dbl-wrap">
                                 <div class="am-main__orders">
+
+                                    <button onclick="addManualOrder()" class="button ghost-btn">
+                                        <span>+</span>Add Order Manually
+                                    </button>
+
                                     <div class="am-content-divider">14
                                         Orders total<span></span>
                                     </div>
@@ -386,9 +391,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="am-item__details-row">
-                                                        <button class="am-item__sale-btn" onclick="Today.openAddSale(132743)">Add Sale</button>
-                                                    </div>
+
 
 
                                                     <div class="am-item__details-row">
@@ -516,9 +519,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="am-item__details-row">
-                                                        <button class="am-item__sale-btn" onclick="Today.openAddSale(132743)">Add Sale</button>
-                                                    </div>
+
 
 
                                                     <div class="am-item__details-row">
@@ -646,9 +647,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="am-item__details-row">
-                                                        <button class="am-item__sale-btn" onclick="Today.openAddSale(132743)">Add Sale</button>
-                                                    </div>
+
 
 
                                                     <div class="am-item__details-row">
@@ -769,69 +768,152 @@
             </div>
         </div>
 
-        <div class="m-popup">
+        <div id="addManulOrderPopup" class="m-popup">
             <div class="m-popup__handler"></div>
+
+
             <div class="m-popup__title">
-                <h3>Add sale</h3>
-                <span>You're adding sale to the item.</span>
+                <h3>Manual Order</h3>
+                <span>You're adding new order to the page.</span>
             </div>
-            <div class="m-popup__content">
-                <form id="addSaleForm" method="post" onsubmit="Today.addSale(event);">
+
+
+
+            <div class="m-popup__progress">
+                <h6 class="m-popup__progress-title">Step 1. Item details.</h6>
+                <div class="m-popup__progress-bar">
+                    <span></span>
+                </div>
+            </div>
+
+
+
+            <div class="m-popup__main">
+                <form id="addManulOrderForm" method="post" onsubmit="">
                     <div class="m-popup__wrapper">
+
                         <div class="m-popup__main">
-                            <div class="m-popup__input-grid">
-                                <div class="m-popup__input-row --hor">
-                                    <label class="custom-checkbox --n">
-                                        <input id="addSalePercent" name="saleType" type="radio" value="percent" onchange="Today.switchAddSale('percent')" checked>
-                                        <span>Set percent</span>
-                                    </label>
-                                    <label class="custom-checkbox --n">
-                                        <input id="addSaleAmount" name="saleType" type="radio" value="amount" onchange="Today.switchAddSale('amount')">
-                                        <span>Set amount</span>
-                                    </label>
-                                    <label class="custom-checkbox --n">
-                                        <input id="addSaleManual" name="saleType" type="radio" value="manual" onchange="Today.switchAddSale('manual')">
-                                        <span>Enter manual price</span>
-                                    </label>
+
+
+                            <div data-step id="contentItem" class="m-popup__content">
+                                <div class="m-popup__input-grid">
+                                    <div id="searchListItems" class="m-popup__input-row">
+                                        <div class="m-popup__input-wrap">
+                                            <input class="m-popup__input --bold" id="itemSearchInput" name="itemSearch" placeholder="Find an item..." type="text" autocomplete="off" required>
+                                        </div>
+                                        <div class="m-popup__search-list"></div>
+                                    </div>
+                                    <div id="selectedItemContainer" class="m-popup__input-row"></div>
                                 </div>
-                                <div class="m-popup__input-row">
-                                    <label class="m-popup__label" for="salePercentValue">Percent</label>
-                                    <div class="m-popup__input-wrap">
-                                        <input class="m-popup__input" name="saleValue" data-sale-type="percent" data-allow-decimals placeholder="How much % sale?" type="text" pattern="[0-9]*" id="salePercentValue" required>
+                            </div>
+
+
+                            <div data-step id="contentCustomer" class="m-popup__content --step-2">
+                                <div class="m-popup__input-grid">
+                                    <div id="selectedCustomerInputs" class="m-popup__input-row">
+                                        <div class="m-popop__manual-options-grid">
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label" for="customerFirstName">First Name</label>
+                                                <input class="m-popup__input" data-customer-input id="customerFirstName" type="text" name="first_name" placeholder="First name" autocomplete="off" required>
+                                            </div>
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label" for="customerLastName">Last Name</label>
+                                                <input class="m-popup__input" data-customer-input id="customerLastName" type="text" name="last_name" placeholder="Last name" autocomplete="off" required>
+                                            </div>
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label" for="customerEmail">Email</label>
+                                                <input class="m-popup__input" data-customer-input id="customerEmail" type="email" name="email" placeholder="Email" autocomplete="off" required>
+                                            </div>
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label" for="customerPhone">Phone</label>
+                                                <input class="m-popup__input" data-customer-input id="customerPhone" type="text" name="phone" placeholder="Phone" autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="searchListCustomers" class="m-popup__input-row">
+                                        <div class="m-popup__input-wrap">
+                                            <input class="m-popup__input --bold" id="customerSearchInput" name="customerSearch" placeholder="Find a customer..." type="text" autocomplete="off" required>
+                                        </div>
+                                        <div class="m-popup__search-list"></div>
                                     </div>
                                 </div>
-                                <div class="m-popup__input-row --hidden">
-                                    <label class="m-popup__label" for="saleAmountValue">Amount</label>
-                                    <div class="m-popup__input-wrap">
-                                        <input class="m-popup__input" name="saleValue" data-sale-type="amount" data-allow-decimals placeholder="How much sale?" type="text" pattern="[0-9]*" id="saleAmountValue" required disabled>
-                                    </div>
-                                </div>
-                                <div class="m-popup__input-row --hidden">
-                                    <label class="m-popup__label" for="saleManualPrice">Manual Sale Price</label>
-                                    <div class="m-popup__input-wrap">
-                                        <input class="m-popup__input" name="saleValue" data-sale-type="manual" data-allow-decimals placeholder="Enter sale price manually" type="text" id="saleManualPrice" required disabled>
-                                    </div>
-                                </div>
-                                <div class="m-popup__input-row">
-                                    <label class="m-popup__label">Store number</label>
-                                    <div class="m-popup__input-wrap">
-                                        <div class="am-select-wrap">
-                                            <select class="am-select" id="saleStore" name="saleStore">
-                                                <option value="" selected>Select store...</option>
-                                                <option value="store_1">Store 1</option>
-                                                <option value="store_2">Store 2</option>
-                                            </select>
+                            </div>
+
+
+                            <div data-step id="contentOther" class="m-popup__content --step-3">
+                                <div class="m-popup__input-grid">
+                                    <div id="otherDetails" class="m-popup__input-row">
+                                        <div class="m-popop__manual-options-grid --dbl">
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label">Store</label>
+                                                <div class="m-popup__input-wrap">
+                                                    <div class="am-select-wrap">
+                                                        <select class="am-select" id="saleStore" name="sale_store" required>
+                                                            <option value="" selected="">Select store...</option>
+                                                            <option value="flagship">ATL Flagship</option>
+                                                            <option value="miami">Miami</option>
+                                                            <option value="online">Online</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label">Paid with</label>
+                                                <div class="m-popup__input-wrap">
+                                                    <div class="am-select-wrap">
+                                                        <select class="am-select" id="paidWith" name="paid_with" required>
+                                                            <option value="cash" selected>Cash</option>
+                                                            <option value="credit">Credit Card</option>
+                                                            <option value="debit">Debit Card</option>
+                                                            <option value="wire">Wire Transfer</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label">Order Date</label>
+                                                <div class="m-popup__input-wrap">
+                                                    <input data-datepicker type="text" class="m-popup__input" name="order_date" placeholder="Order Date" required>
+                                                </div>
+                                            </div>
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label">Edge Sync</label>
+                                                <div class="m-popup__input-wrap">
+                                                    <div class="am-select-wrap">
+                                                        <select class="am-select" id="edgeSync" name="edge_sync">
+                                                            <option value="yes" selected="">Yes</option>
+                                                            <option value="no">No</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label">Gift Wrap</label>
+                                                <div class="m-popup__input-wrap">
+                                                    <div class="am-select-wrap">
+                                                        <select class="am-select" id="giftWrap" name="gift_wrap">
+                                                            <option value="yes">Yes</option>
+                                                            <option value="no" selected>No</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
+
                             <div class="m-popup__btn-group">
-                                <div data-m-popup="close" class="m-popup__btn is-dim">
-                                    <span>Close</span>
-                                </div>
-                                <input type="submit" class="m-popup__btn" value="Add Sale">
+                                <div data-prev-step class="m-popup__btn is-dim">Close</div>
+                                <div data-next-step class="m-popup__btn">Next Step</div>
                             </div>
+
+
+                            <div class="m-popup__msg">Something went wrong...</div>
                         </div>
+
                     </div>
                 </form>
             </div>
