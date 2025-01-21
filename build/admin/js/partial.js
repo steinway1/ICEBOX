@@ -56,235 +56,121 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-// Fake data
-function getFakeCustomersArr() {
-  return [
-    {
-      id: 2052,
-      last_name: "Smith",
-      email: "8n0X0@example.com",
-      phone: "404-555-1212",
-    },
-    {
-      id: 2053,
-      first_name: "John",
-      last_name: "Green",
-      email: "johngreeen01@gmail.com",
-    },
-    {
-      id: 2054,
-      first_name: "John",
-      last_name: "Doe"
-    },
-    {
-      id: 2052,
-      first_name: "Andrew",
-      last_name: "Smith",
-      email: "8n0X0@example.com",
-      phone: "404-555-1212",
-    },
-    {
-      id: 2053,
-      first_name: "John",
-      last_name: "Green",
-      email: "johngreeen01@gmail.com",
-      phone: "250-014-0022",
-    },
-    {
-      id: 2054,
-      first_name: "John",
-      last_name: "Doe",
-      email: "johndoe01@gmail.com",
-      phone: "250-014-0022",
-    },
-    {
-      id: 2052,
-      first_name: "Andrew",
-      last_name: "Smith",
-      email: "8n0X0@example.com",
-      phone: "404-555-1212",
-    },
-    {
-      id: 2053,
-      first_name: "John",
-      last_name: "Green",
-      email: "johngreeen01@gmail.com",
-      phone: "250-014-0022",
-    },
-    {
-      id: 2054,
-      first_name: "John",
-      last_name: "Doe",
-      email: "johndoe01@gmail.com",
-      phone: "250-014-0022",
-    }
-  ]
-}
 
-function getFakeCustomer(id) {
-  return getFakeCustomersArr()[0]
-}
 
-function getFakeItemsArr() {
-  return [
-    {
-      title: 'Jesus Of Nazareth Diamond Pendant 14k Solid Gold 9.25ctw',
-      img_src: 'https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/4d230c2794eea92434c287905a3da1ef.jpg',
-      id: 23721
-    },
-    {
-      title: '0.55ctw Double Halo Round Solitaire Miracle - Diamond Engagement Ring - All Natural',
-      img_src: 'https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/24847fddc2e5b43a51764b6266009e7a.jpg',
-      id: 23721
-    },
-    {
-      title: "Double Baguette Square Halo Diamond Engagement Ring 14k Solid Gold - All Natural - 1.10ctw",
-      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/e662310abce6eff77ed5f31c8519662d.jpg",
-      id: 23721
-    },
-    {
-      title: "Goat Head Diamond Pendant 14k Solid Gold 1.25ctw",
-      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/7998fbdc0f99db2654ff77aa1c21fa81.jpg",
-      id: 23721
-    },
-    {
-      title: "Gypsy Set Diamond Cluster Band Ring 14k Solid Gold 0.33ctw",
-      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/6466b54ad54d1daf8a549aca989417bc.jpg",
-      id: 23721
-    },
-    {
-      title: "Graduated Border Scattered Gypset Set Diamond Band 14k Solid Gold 0.75ctw",
-      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/419cc1fd99d75e6b92dd2d9ed59302cc.jpg",
-      id: 23721
-    }
-  ]
-}
 
-function getFakeItem() {
-  return {
-    title: 'Jesus Of Nazareth Diamond Pendant 14k Solid Gold 9.25ctw',
-    img_src: 'https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/4d230c2794eea92434c287905a3da1ef.jpg',
-    id: 23721,
-    options: [
-      {
-        "name": "Color",
-        "type": "goldColor",
-        "hidden": false,
-        "set": [
-          {
-            "color": "Yellow",
-            "active": true,
-            "caption": "Yellow",
-            "class": "Yellow"
-          },
-          {
-            "color": "White",
-            "active": false,
-            "caption": "White",
-            "class": "White"
-          },
-          {
-            "color": "Rose",
-            "active": false,
-            "caption": "Rose",
-            "class": "Rose"
-          }]
+
+
+function AjaxGetCustomer(id) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: '/admin/ajax/get-customer/'+id,
+      method: 'GET', // HTTP method
+      dataType: 'json', // Expected data type of the response
+      success: function (data) {
+        if(!data.error){
+          resolve(data.item);
+        }else{
+          showMessage('error','Error',data.msg);
+          resolve([]);
+        }
+
       },
-      {
-        "name": "Diamonds",
-        "type": "diamonds_quality",
-        "default_value": "VS",
-        "set": [
-          {
-            "value": "VS",
-            "caption": "VS",
-            "active": true
-          }]
-      },
-      {
-        "id": "97",
-        "name": "Length",
-        "type": "dropdown",
-        "selected_value": "8.5",
-        "show_inches": true,
-        "set": [
-          {
-            "value": "6.5",
-            "caption": "6.5"
-          },
-          {
-            "value": "7",
-            "caption": "7"
-          },
-          {
-            "value": "7.5",
-            "caption": "7.5"
-          },
-          {
-            "value": "8",
-            "caption": "8"
-          },
-          {
-            "value": "8.5",
-            "caption": "8.5",
-            "active": true
-          }],
-        "chuncks": false
+      error: function (xhr, status, error) {
+        console.error('Error occurred:', error);
+        reject(error); // Reject the promise if an error occurs
       }
-    ]
-  }
+    });
+  });
 }
 
-function fakeAjaxGetCustomer(id) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const data = getFakeCustomer(id)
-      // const data = false
-      resolve(data)
-    }, 1500)
-  })
+function AjaxGetCustomersArray(query) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: '/admin/ajax/search-customers',
+      method: 'GET', // HTTP method
+      data: { query: query }, // Data sent to the server
+      dataType: 'json', // Expected data type of the response
+      success: function (data) {
+        if(!data.error){
+          resolve(data.customers);
+        }else{
+          showMessage('error','Error',data.msg);
+          resolve([]);
+        }
+
+      },
+      error: function (xhr, status, error) {
+        console.error('Error occurred:', error);
+        reject(error); // Reject the promise if an error occurs
+      }
+    });
+  });
+}
+function AjaxGetItemsArray(query) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: '/admin/ajax/search-product',
+      method: 'GET', // HTTP method
+      data: { query: query }, // Data sent to the server
+      dataType: 'json', // Expected data type of the response
+      success: function (data) {
+        if(!data.error){
+          resolve(data.items);
+        }else{
+          showMessage('error','Error',data.msg);
+          resolve([]);
+        }
+
+      },
+      error: function (xhr, status, error) {
+        console.error('Error occurred:', error);
+        reject(error); // Reject the promise if an error occurs
+      }
+    });
+  });
 }
 
-function fakeAjaxGetCustomers(query) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const data = getFakeCustomersArr(query)
-      // const data = false
-      resolve(data)
-    }, 1500)
-  })
+function AjaxGetItem(id) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: '/admin/ajax/get-item/'+id,
+      method: 'GET', // HTTP method
+      dataType: 'json', // Expected data type of the response
+      success: function (data) {
+        if(!data.error){
+          resolve(data.item);
+        }else{
+          showMessage('error','Error',data.msg);
+          resolve([]);
+        }
+
+      },
+      error: function (xhr, status, error) {
+        console.error('Error occurred:', error);
+        reject(error); // Reject the promise if an error occurs
+      }
+    });
+  });
 }
 
-function fakeAjaxGetItemsArray(query) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const data = getFakeItemsArr()
-      // const data = []
-      resolve(data)
-    }, 2000)
-  })
-}
 
-function fakeAjaxGetItem(id) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const data = getFakeItem()
-      // const data = false
-      resolve(data)
-    }, 1500)
-  })
-}
 
-function fakeFetchPost(url, options) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const fakeResponse = {
-        ok: true,
-        statusText: 'OK',
-        json: async () => ({}),
-      };
-      resolve(fakeResponse);
-    }, 1500);
+function submitOrderData(data) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: '/admin/ajax/submit-order',
+      method: 'POST',
+      data:data,
+      dataType: 'json',
+      success: function (data) {
+        resolve(data)
+      },
+      error: function (xhr, status, error) {
+        console.error('Error occurred:', error);
+        reject(error); // Reject the promise if an error occurs
+      }
+    });
   });
 }
 
@@ -5644,18 +5530,8 @@ class ManualOrderProductSearch {
   async performSearch(query) {
     this.disable()
     try {
-      /** 
-       * @CHOU Setup here
-       * @anchor { Get an array of products }
-       * We need to get an array of items based on the query.
-       * 
-       * @see {getFakeItemsArr}
-       * This function uses {@link getFakeItemsArr} to retrieve data.
-       * This function uses {@link fakeAjaxGetItemsArray} to simulate an AJAX request to fetch items array based on the given query.
-       * 
-       * @param {string} query - The search query for fetching items.
-       */
-      const results = await fakeAjaxGetItemsArray(query)
+
+      const results = await AjaxGetItemsArray(query)
 
       if (Array.isArray(results) && !results.length) {
         this.showEmptyResult()
@@ -5770,18 +5646,7 @@ class ManualOrderCustomerSearch {
     this.disable()
     this.toggleCheckboxVisibiltiy(false)
     try {
-      /** 
-       * @CHOU Setup here 
-       * @anchor { Get an array of customers }
-       * We need to get an array of customers based on the query.
-       * 
-       * @see {getFakeCustomersArr}
-       * This function uses {@link getFakeCustomersArr} to retrieve data.
-       * This function uses {@link fakeAjaxGetCustomers} to simulate an AJAX request to fetch customer data based on the given query.
-       * 
-       * @param {string} query - The search query for fetching customers.
-       */
-      const results = await fakeAjaxGetCustomers(query)
+      const results = await AjaxGetCustomersArray(query)
       this.toggleCheckboxVisibiltiy(true)
 
       if (Array.isArray(results) && !results.length) {
@@ -5881,6 +5746,7 @@ class ManualOrderForm {
 
     this.customerInputArr = [...document.querySelectorAll('[data-customer-input]')]
     this.customerInputFirstName = document.querySelector('#customerFirstName')
+    this.customerInputId  = document.querySelector('#customer_id_input')
     this.customerInputLastName = document.querySelector('#customerLastName')
     this.customerInputEmail = document.querySelector('#customerEmail')
     this.customerInputPhone = document.querySelector('#customerPhone')
@@ -6046,18 +5912,7 @@ class ManualOrderForm {
     this.disable()
 
     try {
-      /**
-       * @CHOU Setup here
-       * @anchor { Get an item }
-       * We need to get an item based on the ID.
-       * 
-       * @see {getFakeItem}
-       * This function uses {@link getFakeItem} to retrieve data.
-       * This function uses {@link fakeAjaxGetItem} to simulate an AJAX request to fetch item data based on the given ID.
-       * 
-       * @param {string} id - The ID of the item to fetch.
-       */
-      const item = await fakeAjaxGetItem(id)
+      const item = await AjaxGetItem(id)
 
       if (!item) {
         this.showMsg('error', 'Item not found')
@@ -6081,6 +5936,7 @@ class ManualOrderForm {
     const elem = createElem('div', {
       className: 'm-popup__list-item --selected',
       innerHTML: `
+        <input type="hidden" name="product_id" value="${item.id}"/>
         <img src="${item.img_src}" alt="">
         <input type="text" name="item_title" class="m-popup__input --bold" value="${item.title}" disabled>
       `
@@ -6110,7 +5966,7 @@ class ManualOrderForm {
           <div class="m-popup__input-row">
             <div class="m-popup__input-wrap">
               <div class="am-select-wrap">
-                <select class="am-select" name="${option.name}" required>
+                <select class="am-select" name="${option.input_name}" required>
                   <option value="" selected disabled>${option.name}</option>
                   ${optionsHTML}
                 </select>
@@ -6140,18 +5996,8 @@ class ManualOrderForm {
     this.disable()
 
     try {
-      /**
-       * @CHOU Setup here
-       * @anchor { Get a customer }
-       * We need to get a customer based on the ID.
-       * 
-       * @see {getFakeCustomer}
-       * This function uses {@link getFakeCustomer} to retrieve data.
-       * This function uses {@link fakeAjaxGetCustomer} to simulate an AJAX request to fetch customer data based on the given ID.
-       * 
-       * @param {string} id - The ID of the customer to fetch.
-       */
-      const customer = await fakeAjaxGetCustomer(id)
+
+      const customer = await AjaxGetCustomer(id)
 
       if (!customer) {
         this.showMsg('error', 'Customer not found')
@@ -6169,7 +6015,7 @@ class ManualOrderForm {
     }
   }
   fillCustomerInputs(customer) {
-    const { first_name, last_name, email, phone } = customer
+    const { id,first_name, last_name, email, phone } = customer
     const resetButton = createElem('div', {
       className: 'blank-btn',
       attributes: { 'data-evt': 'resetManualCustomer' },
@@ -6183,7 +6029,7 @@ class ManualOrderForm {
         msg: msg
       })
     }
-
+    if (id) this.customerInputId.value = id
     if (first_name) this.customerInputFirstName.value = first_name
     if (last_name) this.customerInputLastName.value = last_name
     if (email) this.customerInputEmail.value = email
@@ -6278,7 +6124,7 @@ class ManualOrderForm {
     const form = this.form
     const formData = new FormData(form)
 
-    const ignoreFields = ['itemSearch', 'customerSearch']
+    const ignoreFields = ['itemSearch','customerSearch']
 
     const data = {}
     for (let [key, value] of formData.entries()) {
@@ -6291,37 +6137,21 @@ class ManualOrderForm {
     return data
   }
   async submit() {
-    this.disable()
-    const data = this.getFormData()
 
+    const data = this.getFormData()
+    this.disable()
     if (!data || Object.keys(data).length === 0) {
       this.enable()
       this.showMsg('error', 'ERR: MOF99. Form data is empty')
       return
     }
-
+    let response = null;
     try {
-      /**
-       * @CHOU Send data here
-       * @anchor { Send form data }
-       * We need to send form data to a server.
-       * 
-       * @see {fakeFetchPost}
-       * This function uses {@link fakeFetchPost} to simulate a POST request to send form data to a server.
-       * 
-       * @param {string} url - The URL to send the form data to.
-       * @param {object} options - An object containing the request options.
-       */
-      const response = await fakeFetchPost('/url', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-      })
 
-      if (!response.ok) {
-        throw new Error(`${response.statusText}`)
+      response = await submitOrderData(data);
+
+      if (response.error) {
+        throw new Error(`${response.msg}`)
       }
 
       this.popupInstance.close()
@@ -6329,13 +6159,13 @@ class ManualOrderForm {
     } catch (error) {
       this.showMsg('error', `Something went wrong: ${error.message}`)
     } finally {
-      /**
-       * @CHOU Revise Here
-       * @todo { Reload the page or ??}
-       * After submitting the form, reload the page or ??
-       */
       this.enable()
-      location.reload()
+      if (response && response.order_link) {
+        window.location.href = response.order_link;
+      } else {
+        this.showMsg('error', 'Order link is unavailable.')
+        window.location.reload();
+      }
     }
   }
 }

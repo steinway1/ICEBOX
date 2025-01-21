@@ -107,7 +107,7 @@ function saveCartEmail() {
         klaviyo.identify({ '$email': email });
         mailModal.close();
         showMessage('success', 'Thank you', 'Item was added to your cart.');
-        $('.cart_trigger').click();
+        //$('.cart_trigger').click();
       }
     });
   } else {
