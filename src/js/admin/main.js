@@ -28,29 +28,51 @@ function inputAllowOnlyDecimals(input) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function updateInputAllowOnlyDecimals() {
   const onlyDecimalsInputs = document.querySelectorAll('input[data-allow-decimals]')
   for (const input of onlyDecimalsInputs) {
     inputAllowOnlyDecimals(input)
   }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateInputAllowOnlyDecimals()
 })
 
+// Locked inputs (data-locked-input)
+function unlockDataLockedInput(input) {
+  const callback = () => {
+    input.removeAttribute('data-locked-input')
+    input.disabled = false
+    input.classList.remove('--disabled')
+  }
 
-
-
-
+  const pin = new LockPin({
+    code: 3256,
+    callback: callback
+  })
+  pin.push()
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('click', (e) => {
+    const target = e.target
+    if (target.hasAttribute('data-locked-input')) {
+      unlockDataLockedInput(target)
+    }
+  })
+})
 
 function AjaxGetCustomer(id) {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: '/admin/ajax/get-customer/'+id,
+      url: '/admin/ajax/get-customer/' + id,
       method: 'GET', // HTTP method
       dataType: 'json', // Expected data type of the response
       success: function (data) {
-        if(!data.error){
+        if (!data.error) {
           resolve(data.item);
-        }else{
-          showMessage('error','Error',data.msg);
+        } else {
+          showMessage('error', 'Error', data.msg);
           resolve([]);
         }
 
@@ -71,10 +93,10 @@ function AjaxGetCustomersArray(query) {
       data: { query: query }, // Data sent to the server
       dataType: 'json', // Expected data type of the response
       success: function (data) {
-        if(!data.error){
+        if (!data.error) {
           resolve(data.customers);
-        }else{
-          showMessage('error','Error',data.msg);
+        } else {
+          showMessage('error', 'Error', data.msg);
           resolve([]);
         }
 
@@ -86,6 +108,7 @@ function AjaxGetCustomersArray(query) {
     });
   });
 }
+
 function AjaxGetItemsArray(query) {
   return new Promise((resolve, reject) => {
     $.ajax({
@@ -94,10 +117,10 @@ function AjaxGetItemsArray(query) {
       data: { query: query }, // Data sent to the server
       dataType: 'json', // Expected data type of the response
       success: function (data) {
-        if(!data.error){
+        if (!data.error) {
           resolve(data.items);
-        }else{
-          showMessage('error','Error',data.msg);
+        } else {
+          showMessage('error', 'Error', data.msg);
           resolve([]);
         }
 
@@ -113,14 +136,14 @@ function AjaxGetItemsArray(query) {
 function AjaxGetItem(id) {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: '/admin/ajax/get-item/'+id,
+      url: '/admin/ajax/get-item/' + id,
       method: 'GET', // HTTP method
       dataType: 'json', // Expected data type of the response
       success: function (data) {
-        if(!data.error){
+        if (!data.error) {
           resolve(data.item);
-        }else{
-          showMessage('error','Error',data.msg);
+        } else {
+          showMessage('error', 'Error', data.msg);
           resolve([]);
         }
 
@@ -133,14 +156,12 @@ function AjaxGetItem(id) {
   });
 }
 
-
-
 function submitOrderData(data) {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: '/admin/ajax/submit-order',
       method: 'POST',
-      data:data,
+      data: data,
       dataType: 'json',
       success: function (data) {
         resolve(data)
@@ -300,13 +321,19 @@ function onContentLoaded(callback) {
  */
 class LockPin {
   constructor(settings = {}) {
-    this.code = settings.code || 1234
-    this.callback = settings.callback || undefined
-    this.maxLength = this.code.toString().length
-    this.unlockTime = settings.unlockTime || 600
-    this.allowClose = settings.allowClose || false
-    this.currentPin = []
-    this.isLocked = false
+    this.code = settings.code || 1234;
+    this.callback = settings.callback || undefined;
+    this.maxLength = this.code.toString().length;
+    this.unlockTime = settings.unlockTime || 600;
+    this.allowClose = settings.allowClose || false;
+    this.currentPin = [];
+    this.isLocked = false;
+
+    // Handlers storage for removing event listeners later
+    this.buttonHandlers = new Map();
+    this.closeHandler = null;
+    this.submitHandler = null;
+    this.keydownHandler = null;
   }
 
   /**
@@ -315,112 +342,124 @@ class LockPin {
   renderHTML() {
     let html = `
     <div class="pin-lock">
-	<div class="pin-lock__wrapper">
-		<div class="pin-lock__holder">
-			<div class="pin-lock__title-group">
-				<h3>Enter PIN Code</h3>
-				<span>This page is locked with pin.</span>
-			</div>
-			<div data-pin-output class="pin-lock__output">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-			<div class="pin-lock__btn-grid">
-				<button>1</button>
-				<button>2</button>
-				<button>3</button>
-				<button>4</button>
-				<button>5</button>
-				<button>6</button>
-				<button>7</button>
-				<button>8</button>
-				<button>9</button>
-				<button data-pin-evt="clear">Clear</button>
-				<button>0</button>
-				<button data-pin-evt="submit">Enter</button>
-			</div>
-		</div>
-	</div>
-</div>
-    `
-    return html
+      <div class="pin-lock__wrapper">
+        <div class="pin-lock__holder">
+          <div class="pin-lock__title-group">
+            <h3>Enter PIN Code</h3>
+            <span>This page is locked with pin.</span>
+          </div>
+          <div data-pin-output class="pin-lock__output">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="pin-lock__btn-grid">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button data-pin-evt="close">Close</button>
+            <button>0</button>
+            <button data-pin-evt="submit">Enter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
+    return html;
   }
+
   appendScreen() {
-    document.body.insertAdjacentHTML('beforeend', this.renderHTML())
+    document.body.insertAdjacentHTML('beforeend', this.renderHTML());
   }
+
   setElements() {
-    this.holder = document.querySelector('.pin-lock')
-    this.btnArr = [...this.holder.querySelectorAll('button')]
-    this.output = this.holder.querySelector('[data-pin-output]')
-    this.outputSpanArr = [...this.output.querySelectorAll('span')]
-    this.evtClear = this.holder.querySelector('[data-pin-evt="clear"]')
-    this.evtSubmit = this.holder.querySelector('[data-pin-evt="submit"]')
+    this.holder = document.querySelector('.pin-lock');
+    this.btnArr = [...this.holder.querySelectorAll('button')];
+    this.output = this.holder.querySelector('[data-pin-output]');
+    this.outputSpanArr = [...this.output.querySelectorAll('span')];
+    this.evtClose = this.holder.querySelector('[data-pin-evt="close"]');
+    this.evtSubmit = this.holder.querySelector('[data-pin-evt="submit"]');
     this.btnArrFiltered = this.btnArr.filter((btn) => {
-      if (!btn.dataset.pinEvt) { return btn }
-    })
+      return !btn.dataset.pinEvt;
+    });
   }
 
   /**
    * Methods
    */
   unlock() {
-    unlockScroll()
-    this.output.classList.remove(__FALSE)
-    this.output.classList.add(__TRUE)
+    unlockScroll();
+    this.output.classList.remove(__FALSE);
+    this.output.classList.add(__TRUE);
     setTimeout(() => {
-      this.holder.classList.add(__FADE)
+      this.holder.classList.add(__FADE);
       setTimeout(() => {
-        this.destroy()
+        this.destroy();
       }, getTransitionTime(this.holder));
-    }, this.unlockTime)
+    }, this.unlockTime);
 
     if (this.callback !== undefined) {
-      this.callback()
+      this.callback();
     }
   }
+
   reset() {
-    this.currentPin = []
-    this.update()
-    this.isLocked = false
-    removeClasses(this.output, __FALSE, __TRUE)
+    this.currentPin = [];
+    this.update();
+    this.isLocked = false;
+    removeClasses(this.output, __FALSE, __TRUE);
   }
+
   update() {
-    const pin = this.currentPin
-    const length = pin.length
-    if (length == 0) {
+    const pin = this.currentPin;
+    const length = pin.length;
+    if (length === 0) {
       this.outputSpanArr.forEach((span) => {
-        span.innerHTML = ''
-      })
-    } else if ((length - 1) < this.maxLength) {
+        span.innerHTML = '';
+      });
+    } else if (length <= this.maxLength) {
       this.outputSpanArr.forEach((span, i) => {
         if (i < length) {
-          span.innerHTML = pin[i]
+          span.innerHTML = pin[i];
         } else {
-          span.innerHTML = ''
+          span.innerHTML = '';
         }
-      })
+      });
     }
     if (length === this.maxLength) {
-      this.submit()
+      this.submit();
     }
   }
+
   submit() {
     if (this.currentPin.length > 0) {
-      this.isLocked = true
+      this.isLocked = true;
       if (this.currentPin.join('') == this.code) {
-        this.unlock()
+        this.unlock();
       } else {
-        this.output.classList.add(__FALSE)
+        this.output.classList.add(__FALSE);
         setTimeout(() => {
-          this.reset()
+          this.reset();
         }, 700);
       }
     }
   }
+
   destroy() {
-    this.holder.remove()
+    // Remove event listeners
+    this.removeEventListeners();
+
+    // Remove the holder from the DOM
+    if (this.holder) {
+      this.holder.remove();
+    }
   }
 
   /**
@@ -428,65 +467,101 @@ class LockPin {
    */
   attachButtonClick() {
     for (const btn of this.btnArrFiltered) {
-      btn.addEventListener('click', (e) => {
+      const handler = (e) => {
         if (!this.isLocked) {
-          const num = Number(e.target.innerHTML)
-          this.currentPin.push(num)
-          this.update()
+          const num = Number(e.target.innerHTML);
+          this.currentPin.push(num);
+          this.update();
         }
-      })
+      };
+      btn.addEventListener('click', handler);
+      this.buttonHandlers.set(btn, handler);
     }
-    this.evtClear.addEventListener('click', () => {
-      if (!this.isLocked) {
-        this.reset()
-      }
-    })
-    this.evtSubmit.addEventListener('click', () => {
-      if (!this.isLocked) {
-        this.submit()
-      }
-    })
+
+    // Close button handler
+    if (this.evtClose) {
+      this.closeHandler = () => {
+        if (!this.isLocked) {
+          this.destroy();
+          unlockScroll();
+        }
+      };
+      this.evtClose.addEventListener('click', this.closeHandler);
+    }
+
+    // Submit button handler
+    if (this.evtSubmit) {
+      this.submitHandler = () => {
+        if (!this.isLocked) {
+          this.submit();
+        }
+      };
+      this.evtSubmit.addEventListener('click', this.submitHandler);
+    }
   }
+
   attachDocEvents() {
-    document.addEventListener('keydown', (e) => {
+    this.keydownHandler = (e) => {
       if (this.holder) {
         if (!this.isLocked) {
-          e.preventDefault()
-          const key = e.key
+          // e.preventDefault(); // Be cautious with preventDefault
+          const key = e.key;
 
           if (key === 'Escape' && this.allowClose) {
-            this.destroy()
-            unlockScroll()
+            this.destroy();
+            unlockScroll();
+            return;
           }
 
           if (key === 'Backspace') {
             if (this.currentPin.length > 0) {
-              this.currentPin.pop()
-              this.update()
+              this.currentPin.pop();
+              this.update();
             }
           } else if (key === 'Enter') {
-            this.submit()
-          } else if (key === 'Escape') {
-            this.reset()
-          } else if (key >= 0 && key <= 9) {
-            for (const btn of this.btnArrFiltered) {
-              if (btn.innerHTML === key && this.currentPin.length < this.maxLength) {
-                btn.click()
-                break
-              }
+            this.submit();
+          } else if (key >= '0' && key <= '9') {
+            if (this.currentPin.length < this.maxLength) {
+              this.currentPin.push(Number(key));
+              this.update();
             }
           }
         }
       }
-    })
+    };
+    document.addEventListener('keydown', this.keydownHandler);
+  }
+
+  removeEventListeners() {
+    // Remove button click handlers
+    for (const [btn, handler] of this.buttonHandlers) {
+      btn.removeEventListener('click', handler);
+    }
+    this.buttonHandlers.clear();
+
+    // Remove close and submit handlers
+    if (this.evtClose && this.closeHandler) {
+      this.evtClose.removeEventListener('click', this.closeHandler);
+      this.closeHandler = null;
+    }
+    if (this.evtSubmit && this.submitHandler) {
+      this.evtSubmit.removeEventListener('click', this.submitHandler);
+      this.submitHandler = null;
+    }
+
+    // Remove document keydown handler
+    if (this.keydownHandler) {
+      document.removeEventListener('keydown', this.keydownHandler);
+      this.keydownHandler = null;
+    }
   }
 
   push() {
-    lockScroll()
-    this.appendScreen()
-    this.setElements()
-    this.attachButtonClick()
-    this.attachDocEvents()
+    lockScroll();
+    this.appendScreen();
+    this.setElements();
+    this.attachButtonClick();
+    this.attachDocEvents();
   }
 }
 
@@ -4961,9 +5036,9 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 document.addEventListener('DOMContentLoaded', () => {
   function attachDatePickers() {
-    const arr = [...document.querySelectorAll('[data-datepicker]')]
+    const arr = [...document.querySelectorAll('[data-datepicker]')];
     for (const input of arr) {
-      new AirDatepicker(input, {
+      const options = {
         autoClose: false,
         timepicker: true,
         onSelect({ date }) {
@@ -4980,10 +5055,33 @@ document.addEventListener('DOMContentLoaded', () => {
           });
 
           timePart = timePart.replace('am', 'AM').replace('pm', 'PM');
-
           input.value = `${datePart} ${timePart}`;
         }
-      })
+      };
+
+      // Если есть атрибут data-date-today, устанавливаем текущую дату
+      if (input.hasAttribute('data-date-today')) {
+        options.date = new Date(); // Устанавливаем текущую дату как выбранную
+
+        // Форматируем дату сразу для input.value
+        const today = new Date();
+        const datePart = today.toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        });
+
+        let timePart = today.toLocaleTimeString('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true
+        });
+
+        timePart = timePart.replace('am', 'AM').replace('pm', 'PM');
+        input.value = `${datePart}`;
+      }
+
+      new AirDatepicker(input, options);
     }
   }
 
@@ -5653,13 +5751,18 @@ class ManualOrderCustomerSearch {
   renderResults(customers) {
     this.resultsList.innerHTML = customers.map(customer => `
       <div data-evt="setupManualCustomer" data-id="${customer.id}" class="m-popup__list-item --customer">
-        <h6>${customer.first_name ? `${customer.first_name} ` : ''}${customer.last_name ? `${customer.last_name}` : ''}</h6>
-        <div class="am_flex8">
-          ${customer.first_name ? `<span>First name: ${customer.first_name}</span>` : ''}
-          ${customer.last_name ? `<span>Last name: ${customer.last_name}</span>` : ''}
-          ${customer.email ? `<span>Email: ${customer.email}</span>` : ''}
-          ${customer.phone ? `<span>Phone: ${customer.phone}</span>` : ''}
+      <div class="am_flex8 --def">
+        ${customer.img_src ? `<img src="${customer.img_src}" alt="">` : ''}
+        <div>
+          <h6>${customer.first_name ? `${customer.first_name} ` : ''}${customer.last_name ? `${customer.last_name}` : ''}</h6>
+          <div class="am_flex8">
+            ${customer.first_name ? `<span>First name: ${customer.first_name}</span>` : ''}
+            ${customer.last_name ? `<span>Last name: ${customer.last_name}</span>` : ''}
+            ${customer.email ? `<span>Email: ${customer.email}</span>` : ''}
+            ${customer.phone ? `<span>Phone: ${customer.phone}</span>` : ''}
+          </div>
         </div>
+      </div>
       </div>
     `).join('')
   }
@@ -5725,7 +5828,7 @@ class ManualOrderForm {
 
     this.customerInputArr = [...document.querySelectorAll('[data-customer-input]')]
     this.customerInputFirstName = document.querySelector('#customerFirstName')
-    this.customerInputId  = document.querySelector('#customer_id_input')
+    this.customerInputId = document.querySelector('#customer_id_input')
     this.customerInputLastName = document.querySelector('#customerLastName')
     this.customerInputEmail = document.querySelector('#customerEmail')
     this.customerInputPhone = document.querySelector('#customerPhone')
@@ -5760,6 +5863,9 @@ class ManualOrderForm {
   }
   enable() {
     this.rootEl.querySelectorAll('input').forEach(input => {
+      if (input.hasAttribute('data-locked-input')) {
+        return
+      }
       input.disabled = false
     })
     this.rootEl.classList.remove('--o-loading')
@@ -5884,6 +5990,41 @@ class ManualOrderForm {
       this.clearMsg()
       this.goStep(this.currentStep - 1)
     }
+
+    /** Remove Sale */
+    if (e.target.closest('[data-evt="removeManualSale"]')) {
+      const callback = () => {
+        const inputArr = e.target.parentNode.querySelectorAll('input')
+        const hiddenInput = inputArr[0]
+        const saleInput = inputArr[1]
+        hiddenInput.hidden = !hiddenInput.hidden
+        saleInput.hidden = !saleInput.hidden
+
+        if (hiddenInput.hidden) {
+          e.target.textContent = 'Remove Sale'
+        } else {
+          e.target.textContent = 'Add Sale'
+        }
+      }
+
+      const pin = new LockPin({
+        code: 9999,
+        callback: callback
+      })
+      pin.push()
+    }
+
+    /** Delete Item */
+    if (e.target.closest('[data-evt="deleteManualItem"]')) {
+      const item = e.target.closest('.m-popup__list-item')
+      if (item) {
+        const grid = item.nextElementSibling
+        if (grid) {
+          grid.remove()
+          item.remove()
+        }
+      }
+    }
   }
 
   // Select item methods
@@ -5912,20 +6053,43 @@ class ManualOrderForm {
   }
   renderManualItem(item) {
     // Create main element of selected item
+    const createPriceElem = (() => {
+      let html = ''
+
+      if (item.salePrice) {
+        html = `
+            <input type="text" data-locked-input data-allow-decimals name="item_price" data-old-price class="m-popup__input --bold --disabled --auto" value="${item.price}" hidden>
+            <input type="text" data-sale-price data-allow-decimals name="item_price_sale" class="m-popup__input --bold --disabled --auto" value="${item.salePrice}">
+            <div class="button ghost-btn --auto --red" data-evt="removeManualSale">Remove Sale</div>
+            `
+      } else {
+        html = `
+            <input type="text" data-locked-input data-allow-decimals name="item_price" class="m-popup__input --bold --disabled --auto" value="${item.price}">
+            `
+      }
+
+      return html
+    })
+
     const elem = createElem('div', {
       className: 'm-popup__list-item --selected',
       innerHTML: `
-        <input type="hidden" name="product_id" value="${item.id}"/>
+        <div class="m-popup__list-item-remove" data-evt="deleteManualItem"></div>
         <img src="${item.img_src}" alt="">
-        <input type="text" name="item_title" class="m-popup__input --bold" value="${item.title}" disabled>
+        <div class="m-popup__list-item-col">
+          <input type="text" name="item_title" class="m-popup__input --bold" value="${item.title}">
+          <div class="am_flex8 m-popup__list-item-price">
+            ${createPriceElem()}
+          </div>
+        </div>
       `
     });
 
     // Create reset button
     const resetButton = createElem('div', {
-      className: 'blank-btn',
+      className: 'blank-btn --red',
       attributes: { 'data-evt': 'resetManualItem' },
-      innerHTML: 'Select another item'
+      innerHTML: 'Delete item'
     });
 
     // Function for creating dropdown (select) for each option
@@ -5937,27 +6101,39 @@ class ManualOrderForm {
       gridElement.classList.add('m-popop__manual-options-grid');
 
       const selectElementsHTML = options.map(option => {
-        const optionsHTML = option.set.map(select =>
-          `<option value="${select.caption}">${select.caption}</option>`
-        ).join('');
+        // Определяем содержимое для тега select
+        let selectContent;
+
+        if (option.set.length === 1) {
+          // Если только один элемент - выбираем его по умолчанию
+          const singleOption = option.set[0];
+          selectContent = `<option value="${singleOption.caption}" selected>${singleOption.caption}</option>`;
+        } else {
+          // Для нескольких элементов добавляем заглушку
+          selectContent = `
+            <option value="" selected disabled>${option.name}</option>
+            ${option.set.map(select =>
+            `<option value="${select.caption}">${select.caption}</option>`
+          ).join('')}
+          `;
+        }
 
         return `
           <div class="m-popup__input-row">
             <div class="m-popup__input-wrap">
               <div class="am-select-wrap">
-                <select class="am-select" name="${option.input_name}" required>
-                  <option value="" selected disabled>${option.name}</option>
-                  ${optionsHTML}
+                <select class="am-select" name="${option.name}" required>
+                  ${selectContent}
                 </select>
               </div>
             </div>
           </div>
-        `
-      }).join('')
+        `;
+      }).join('');
 
-      gridElement.innerHTML = selectElementsHTML
-      return gridElement
-    }
+      gridElement.innerHTML = selectElementsHTML;
+      return gridElement;
+    };
 
     const selectFields = createSelectFields()
 
@@ -5967,7 +6143,8 @@ class ManualOrderForm {
     if (selectFields) {
       this.selectedItemContainer.appendChild(selectFields)
     }
-    this.selectedItemContainer.appendChild(resetButton)
+    updateInputAllowOnlyDecimals()
+    // this.selectedItemContainer.appendChild(resetButton)
   }
 
   // Select customer methods
@@ -5994,7 +6171,7 @@ class ManualOrderForm {
     }
   }
   fillCustomerInputs(customer) {
-    const { id,first_name, last_name, email, phone } = customer
+    const { id, first_name, last_name, email, phone } = customer
     const resetButton = createElem('div', {
       className: 'blank-btn',
       attributes: { 'data-evt': 'resetManualCustomer' },
@@ -6030,8 +6207,8 @@ class ManualOrderForm {
     this.progressBar = bar
     this.currentStep = 1
     this.stepTitles = [
-      'Step 1. Item details.',
-      'Step 2. Client info.',
+      'Step 1. Client info.',
+      'Step 2. Item details.',
       'Step 3. Other details.'
     ]
     if (nextStepBtn && prevStepBtn) {
@@ -6082,7 +6259,8 @@ class ManualOrderForm {
     }
   }
   go() {
-    let contentType = this.currentStep === 1 ? 'item' : this.currentStep === 2 ? 'customer' : 'other';
+    let contentType = this.currentStep === 1 ? 'customer' : this.currentStep === 2 ? 'item' : 'other';
+    alert(contentType)
     const validator = new ManualOrderValidator(contentType, this.steps[this.currentStep - 1]);
     const validate = validator.run();
 
@@ -6103,7 +6281,7 @@ class ManualOrderForm {
     const form = this.form
     const formData = new FormData(form)
 
-    const ignoreFields = ['itemSearch','customerSearch']
+    const ignoreFields = ['itemSearch', 'customerSearch']
 
     const data = {}
     for (let [key, value] of formData.entries()) {

@@ -795,20 +795,8 @@
                         <div class="m-popup__main">
 
 
-                            <div data-step id="contentItem" class="m-popup__content">
-                                <div class="m-popup__input-grid">
-                                    <div id="searchListItems" class="m-popup__input-row">
-                                        <div class="m-popup__input-wrap">
-                                            <input class="m-popup__input --bold" id="itemSearchInput" name="itemSearch" placeholder="Find an item..." type="text" autocomplete="off" required>
-                                        </div>
-                                        <div class="m-popup__search-list"></div>
-                                    </div>
-                                    <div id="selectedItemContainer" class="m-popup__input-row"></div>
-                                </div>
-                            </div>
 
-
-                            <div data-step id="contentCustomer" class="m-popup__content --step-2">
+                            <div data-step id="contentCustomer" class="m-popup__content --step-1">
                                 <div class="m-popup__input-grid">
                                     <div id="selectedCustomerInputs" class="m-popup__input-row">
                                         <div class="m-popop__manual-options-grid">
@@ -840,6 +828,21 @@
                             </div>
 
 
+
+                            <div data-step id="contentItem" class="m-popup__content --step-2">
+                                <div class="m-popup__input-grid">
+                                    <div id="searchListItems" class="m-popup__input-row">
+                                        <div class="m-popup__input-wrap">
+                                            <input class="m-popup__input --bold" id="itemSearchInput" name="itemSearch" placeholder="Find an item..." type="text" autocomplete="off" required>
+                                        </div>
+                                        <div class="m-popup__search-list"></div>
+                                    </div>
+                                    <div id="selectedItemContainer" class="m-popup__input-row"></div>
+                                </div>
+                            </div>
+
+
+
                             <div data-step id="contentOther" class="m-popup__content --step-3">
                                 <div class="m-popup__input-grid">
                                     <div id="otherDetails" class="m-popup__input-row">
@@ -849,8 +852,7 @@
                                                 <div class="m-popup__input-wrap">
                                                     <div class="am-select-wrap">
                                                         <select class="am-select" id="saleStore" name="sale_store" required>
-                                                            <option value="" selected="">Select store...</option>
-                                                            <option value="flagship">ATL Flagship</option>
+                                                            <option value="flagship" selected>ATL Flagship</option>
                                                             <option value="miami">Miami</option>
                                                             <option value="online">Online</option>
                                                         </select>
@@ -862,7 +864,8 @@
                                                 <div class="m-popup__input-wrap">
                                                     <div class="am-select-wrap">
                                                         <select class="am-select" id="paidWith" name="paid_with" required>
-                                                            <option value="cash" selected>Cash</option>
+                                                            <option value="" selected>Choose...</option>
+                                                            <option value="cash">Cash</option>
                                                             <option value="credit">Credit Card</option>
                                                             <option value="debit">Debit Card</option>
                                                             <option value="wire">Wire Transfer</option>
@@ -873,7 +876,7 @@
                                             <div class="m-popup__input-row">
                                                 <label class="m-popup__label">Order Date</label>
                                                 <div class="m-popup__input-wrap">
-                                                    <input data-datepicker type="text" class="m-popup__input" name="order_date" placeholder="Order Date" required>
+                                                    <input data-datepicker data-date-today type="text" class="m-popup__input" name="order_date" placeholder="Order Date" required>
                                                 </div>
                                             </div>
                                             <div class="m-popup__input-row">
@@ -898,11 +901,42 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label">Picked Up Today</label>
+                                                <div class="m-popup__input-wrap">
+                                                    <div class="am-select-wrap">
+                                                        <select class="am-select" id="pickedUpToday" name="picked_up_today">
+                                                            <option value="" selected>Select...</option>
+                                                            <option value="yes">Yes</option>
+                                                            <option value="no">No</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label">Paid In Full</label>
+                                                <div class="m-popup__input-wrap">
+                                                    <div class="am-select-wrap">
+                                                        <select class="am-select" id="paidInFull" name="paid_in_full">
+                                                            <option value="" selected>Select...</option>
+                                                            <option value="yes">Yes</option>
+                                                            <option value="no">No</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label" for="customerFirstName">Tracking</label>
+                                                <input class="m-popup__input" data-customer-input id="orderTracking" type="text" name="tracking" placeholder="Tracking" autocomplete="off">
+                                            </div>
+                                            <div class="m-popup__input-row">
+                                                <label class="m-popup__label" for="customerFirstName">Today's Payment</label>
+                                                <input class="m-popup__input" data-customer-input id="orderTodayPayment" type="text" name="today_payment" placeholder="Today's Payment" autocomplete="off">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
 
 
                             <div class="m-popup__btn-group">

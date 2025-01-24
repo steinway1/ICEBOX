@@ -4963,6 +4963,20 @@ body.blue_head .am-select:hover {
   background-color: #cfe3fc;
 }
 
+.ghost-btn.--auto {
+  height: auto;
+  flex: 0 1 auto;
+  padding: 2px 18px;
+  font-size: 13px;
+  border-radius: 0.3rem;
+}
+
+.ghost-btn.--red {
+  border-color: #e3ccd0;
+  background-color: #fff;
+  color: var(--red);
+}
+
 .am-sidebar__nav {
   flex: 1;
   padding: 0;
@@ -8766,6 +8780,12 @@ span.--warn {
 
 .blank-btn:hover {
   background-color: #ecf3fd;
+}
+
+.blank-btn.--red {
+  background-color: var(--ghost-red);
+  border-color: var(--ghost-red);
+  color: var(--red);
 }
 
 :root {
@@ -16389,6 +16409,19 @@ select.sms-tag:hover {
   overflow: hidden;
 }
 
+[data-locked-input] {
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  color: var(--dark_grey) !important;
+}
+
+[data-locked-input]::placeholder {
+  color: var(--dark_grey) !important;
+}
+
 .m-popup {
   --m-padding: 38px;
   background-color: #fff;
@@ -16455,6 +16488,7 @@ select.sms-tag:hover {
 }
 
 #selectedItemContainer {
+  order: -1 !important;
   display: none;
 }
 
@@ -16684,14 +16718,29 @@ select.sms-tag:hover {
 
 .m-popup__input:disabled,
 .m-popup .am-select:disabled {
-  pointer-events: none;
-  filter: grayscale(1);
   user-select: none;
+  color: var(--dark_grey);
+}
+
+.m-popup__input:disabled::placeholder,
+.m-popup .am-select:disabled::placeholder {
+  color: var(--dark_grey);
 }
 
 .m-popup__input.--bold,
 .m-popup .am-select.--bold {
   font-weight: 600 !important;
+}
+
+.m-popup__input.--auto,
+.m-popup .am-select.--auto {
+  width: auto;
+  flex: 1;
+}
+
+.m-popup__input.--disabled,
+.m-popup .am-select.--disabled {
+  user-select: none;
 }
 
 .m-popup__input:hover,
@@ -16782,6 +16831,7 @@ select.sms-tag:hover {
   cursor: pointer;
   user-select: none;
   transition: all 150ms ease;
+  position: relative;
 }
 
 .m-popup__list-item.--customer {
@@ -16796,13 +16846,13 @@ select.sms-tag:hover {
   line-height: 18px;
 }
 
-.m-popup__list-item.--customer .am_flex8 {
+.m-popup__list-item.--customer .am_flex8:not(.--def) {
   flex-flow: wrap;
   row-gap: 0;
   column-gap: 12px;
 }
 
-.m-popup__list-item.--customer .am_flex8 span {
+.m-popup__list-item.--customer .am_flex8:not(.--def) span {
   font-size: 13px;
   opacity: 0.7;
 }
@@ -16816,11 +16866,12 @@ select.sms-tag:hover {
 }
 
 .m-popup__list-item.--selected img {
-  width: 48px !important;
+  width: 64px !important;
 }
 
 .m-popup__list-item.--selected input {
-  font-size: 13px;
+  font-size: 13px !important;
+  height: 36px;
 }
 
 .m-popup__list-item img {
@@ -16850,8 +16901,19 @@ select.sms-tag:hover {
   background-color: #e6e8ec;
 }
 
-.m-popup__list-item:active {
+.m-popup__list-item:not(.--selected):active {
   opacity: 0.3;
+}
+
+.m-popup__list-item-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.m-popup__list-item-col .am_flex8 {
+  gap: 4px;
 }
 
 .m-popup__msg {
@@ -16882,7 +16944,10 @@ select.sms-tag:hover {
 }
 
 .m-popop__manual-options-grid .am-select {
-  height: 36px;
+  height: 32px;
+  min-height: unset;
+  padding: 0px 12px !important;
+  font-size: 13px !important;
 }
 
 #searchListCustomers .m-popup__search-list:not(.--empty)::after {
@@ -16892,11 +16957,6 @@ select.sms-tag:hover {
 .m-popup__content.--show-selected #selectedItemContainer,
 .m-popup__content.--show-selected #selectedCustomerContainer {
   display: flex;
-}
-
-.m-popup__content.--show-selected #searchListItems,
-.m-popup__content.--show-selected #searchListCustomers {
-  display: none;
 }
 
 .m-popup__content:not(:first-child) {
@@ -16946,6 +17006,22 @@ select.sms-tag:hover {
   height: 100%;
   border-radius: 50px;
   transition: all 800ms ease;
+}
+
+.m-popup__list-item-remove {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  inset: 4px auto auto 4px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 0.2rem;
+  background-color: var(--red);
+  background-image: url('data:image/svg+xml,<svg width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 2L25.5 26" stroke="white" stroke-width="4"/><path d="M25.5 2L1.5 26" stroke="white" stroke-width="6"/></svg>');
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  user-select: none;
 }
 
 @font-face {

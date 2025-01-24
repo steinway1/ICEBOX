@@ -1,4 +1,16 @@
 // M popup
+[data-locked-input] {
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  color: var(--dark_grey) !important;
+
+  &::placeholder {
+    color: var(--dark_grey) !important;
+  }
+}
 .m-popup {
   --m-padding: 38px;
   background-color: #fff;
@@ -94,6 +106,7 @@
 }
 
 #selectedItemContainer {
+  order: -1 !important;
   display: none;
 }
 
@@ -366,13 +379,28 @@
   font-size: 14px !important;
 
   &:disabled {
-    pointer-events: none;
-    filter: grayscale(1);
+    // pointer-events: none;
+    // filter: grayscale(1);
     user-select: none;
+    color: var(--dark_grey);
+
+    &::placeholder {
+      color: var(--dark_grey);
+    }
   }
 
   &.--bold {
     font-weight: 600 !important;
+  }
+
+  &.--auto {
+    width: auto;
+    flex: 1;
+  }
+
+  &.--disabled {
+    // pointer-events: none;
+    user-select: none;
   }
 
   &:hover {
@@ -461,6 +489,7 @@
   cursor: pointer;
   user-select: none;
   transition: all 150ms ease;
+  position: relative;
 
   &.--customer {
     flex-direction: column;
@@ -473,7 +502,7 @@
       line-height: 18px;
     }
 
-    .am_flex8 {
+    .am_flex8:not(.--def) {
       flex-flow: wrap;
       row-gap: 0;
       column-gap: 12px;
@@ -493,11 +522,12 @@
     gap: 14px !important;
 
     img {
-      width: 48px !important;
+      width: 64px !important;
     }
 
     input {
-      font-size: 13px;
+      font-size: 13px !important;
+      height: 36px;
     }
   }
 
@@ -528,8 +558,19 @@
     background-color: #e6e8ec;
   }
 
-  &:active {
+  &:not(.--selected):active {
     opacity: 0.3;
+  }
+}
+
+.m-popup__list-item-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+
+  .am_flex8 {
+    gap: 4px;
   }
 }
 
@@ -568,7 +609,10 @@
   }
 
   .am-select {
-    height: 36px;
+    height: 32px;
+    min-height: unset;
+    padding: 0px 12px !important;
+    font-size: 13px !important;
   }
 }
 
@@ -593,7 +637,7 @@
 
     #searchListItems,
     #searchListCustomers {
-      display: none;
+      // display: none;
     }
   }
 
@@ -649,4 +693,20 @@
     border-radius: 50px;
     transition: all 800ms ease;
   }
+}
+
+.m-popup__list-item-remove {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  inset: 4px auto auto 4px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 0.2rem;
+  background-color: var(--red);
+  background-image: url('data:image/svg+xml,<svg width="27" height="28" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 2L25.5 26" stroke="white" stroke-width="4"/><path d="M25.5 2L1.5 26" stroke="white" stroke-width="6"/></svg>');
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  user-select: none;
 }
