@@ -4,10 +4,10 @@ body.--vday {
   .product-card__price-wrap {
     &.is-sale {
       .product-card__price {
-        color: #b92d56;
+        color: var(--vday-color);
   
         &::after {
-          background-color: #b92d56;
+          background-color: var(--vday-color);
         }
       }
     }
@@ -33,7 +33,7 @@ body.--vday {
     }
   
     .buy-btn {
-      background-image: linear-gradient(45deg, var(--black) 40%, #cb345283);
+      // background-image: linear-gradient(45deg, var(--black) 40%, #cb345283);
     }
   
     .side-row__margin-row {
@@ -53,7 +53,7 @@ body.--vday {
   color: #fff;
   text-align: center;
   cursor: pointer;
-  background-color: #a82f48;
+  background-color: #c22e5b;
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -164,7 +164,7 @@ body.--vday {
 .vday-ticker-row {
   z-index: 2;
   color: #fff;
-  background-color: #a82f48;
+  background-color: #c22e5b;
   border-top: 1px solid #df4c67;
   width: 100vw;
   padding-top: 8px;
@@ -423,26 +423,37 @@ body.--vday {
   }
 }
 
+.vday-tag-2 {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 10px;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 850;
+  color: white;
+  padding: 6px 8px;
+  background-color: var(--vday-color);
+}
+
 .vday-tag {
   z-index: 1;
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: 12px;
+  left: 12px;
+  display: none;
 
   img {
-    width: 52px;
+    width: 44px;
   }
 }
 
 .vday-subtext {
-  color: #e2546e;
-  text-align: center;
-  background-color: #fb48680f;
-  border-radius: .4rem;
-  margin: 0 4px 4px;
-  padding: 6px 12px;
-  line-height: 18px;
-  font-family: Staatliches, sans-serif;
+  color: var(--vday-color);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  font-size: 11px;
+  margin-top: 4px;
 }
 
 /* #endregion */

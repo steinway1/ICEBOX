@@ -191,7 +191,7 @@ class ProductPage {
         perPage: 4,
         perMove: 1,
         autoplay: 0,
-        gap: "8px",
+        gap: "0px",
         arrows: 1,
         pagination: 0,
         speed: 750,
@@ -213,19 +213,27 @@ class ProductPage {
             perMove: 1,
           },
           767: {
-            grid: {
-              rows: 2,
-              cols: 3,
-              gap: { row: "10px", col: "8px" },
-            },
+            perPage: 3,
+            perMove: 2,
           },
           478: {
-            grid: {
-              rows: 2,
-              cols: 2,
-              gap: { row: "24px", col: "8px" },
-            },
+            perPage: 2,
+            perMove: 1,
           },
+          // 767: {
+          //   grid: {
+          //     rows: 2,
+          //     cols: 3,
+          //     gap: { row: "10px", col: "0px" },
+          //   },
+          // },
+          // 478: {
+          //   grid: {
+          //     rows: 2,
+          //     cols: 2,
+          //     gap: { row: "24px", col: "0px" },
+          //   },
+          // },
         },
       }).mount(window.splide.Extensions)
     }
