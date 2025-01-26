@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* Reset and base styles  */
 
 * {
@@ -447,11 +449,13 @@ legend {
 }
 
 body {
-  font-family: "ProximaNova", sans-serif;
+  font-family: "TSans", sans-serif;
   font-size: 14px;
   color: var(--black);
   line-height: 22px;
   overflow-x: hidden;
+  font-weight: 500;
+  letter-spacing: -0.1px;
 }
 
 input,
@@ -1818,7 +1822,7 @@ a {
 }
 
 .air-datepicker {
-  --adp-font-family: "ProximaNova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --adp-font-family: "TSans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --adp-font-size: 14px;
   --adp-width: 246px;
   --adp-z-index: 100;
@@ -16363,7 +16367,7 @@ select.sms-tag:hover {
 }
 
 .ps-drop__scroller {
-  max-height: 260px;
+  max-height: 58vh;
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: none;
@@ -17025,43 +17029,16 @@ select.sms-tag:hover {
 }
 
 @font-face {
-  font-family: "ProximaNova";
-  src: url("../fonts/Proxima-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
+  font-family: "TSans";
+  src: url("../fonts/TSans.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  /* Диапазон весов */
+  font-style: oblique 0deg 10deg;
+  /* Для вариативного наклона */
   font-display: swap;
-}
-
-@font-face {
-  font-family: "ProximaNova";
-  src: url("../fonts/Proxima-Semibold.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "ProximaNova";
-  src: url("../fonts/Proxima-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat-Semibold.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
+  /* Для расширенной совместимости */
+  font-variation-settings: "wght" 600, "slnt" 0;
+  /* Базовая наклонность */
 }
 
 @media screen and (min-width: 768px) {
@@ -18750,6 +18727,10 @@ select.sms-tag:hover {
 
   .i-card__controls {
     display: flex !important;
+  }
+
+  .ps-drop__scroller {
+    max-height: 260px;
   }
 
   .m-popup {
