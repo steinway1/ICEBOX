@@ -1,4 +1,4 @@
-<div class="side-row__title-wrap">
+<div class="side-row__title-wrap">s
 	<h1 id="item_name" class="product__item-title">
 		{{product.item.name}}
 		{% if black_friday and product.item.discountRate is defined %}
@@ -22,14 +22,21 @@
 	</div>
 </div>
 
+<div class="side-row__stock-line">
+	{% include 'elements/new-product-page/stock-availability.twig'  %}
+</div>
+
 {% if product.is_watch %}
 	<div class="tip-row-wrap">
 		<div class="tip-row">
 			<span class="tip-row__btn">
-				Icebox is not associated with the {{product.watch_brand}}
+				Icebox is not associated with the
+				{{product.watch_brand}}
 			</span>
 			<div class="tip-row__drop">
-				<div class="tip-row__msg">Icebox is not an authorized dealer of {{product.watch_brand}} watches, if you have any questions about this watch please call 404-803-6554<br></div>
+				<div class="tip-row__msg">Icebox is not an authorized dealer of
+					{{product.watch_brand}}
+					watches, if you have any questions about this watch please call 404-803-6554<br></div>
 			</div>
 		</div>
 	</div>

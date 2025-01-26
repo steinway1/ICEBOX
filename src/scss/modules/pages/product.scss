@@ -177,7 +177,7 @@
   padding-top: var(--breadcrumbs-height);
 
   .tip-row-wrap {
-    margin-top: 12px;
+    margin-top: 8px;
   }
 
   @include maxWidthMd {
@@ -4732,35 +4732,8 @@
 
 /* #endregion */
 
-.side-row__ship-line {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
 .product__availability-svg {
   display: none;
-}
-
-.product__item-availability {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 8px 26px 8px;
-  background-color: #f7f8fa;
-  border-radius: 0.9rem 0.9rem 0 0;
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 18px;
-  text-align: center;
-  margin: 0 0 -18px 0;
-  width: 100%;
-
-  &.in_stock_msg {
-    background-color: var(--green);
-    color: white;
-  }
 }
 
 @keyframes dotPulse {
@@ -5306,3 +5279,185 @@
     margin: 10px -14px -14px;
   }
 }
+
+/* #region  Ship line / Stock element / Ship element */
+.side-row__stock-line {
+  margin-top: 14px;
+  position: relative;
+  z-index: 6;
+}
+
+.side-row__ship-line {
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+
+.product__item-availability {
+  display: block;
+  filter: grayscale(25%);
+  position: relative;
+  z-index: 5;
+
+  &.--blue {
+    filter: hue-rotate(51deg) grayscale(14%);
+  }
+
+  &.--red {
+    filter: hue-rotate(180deg) grayscale(25%);
+    z-index: 3;
+  }
+
+  &.--special {
+    filter: hue-rotate(135deg) grayscale(86%);
+  }
+
+  &.--made {
+    filter: grayscale(30%) hue-rotate(69deg);
+
+    .product__availability-info {
+      color: #096858;
+    }
+
+    .product__availability-tip {
+      &>span {
+        color: #096858;
+      }
+    }
+  }
+
+  &.--empty {
+    .product__availability-info {
+      padding-right: 16px;
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &:hover {
+    .product__availability-tip {
+      opacity: 1;
+      transform: translateY(0px);
+      filter: blur(0px);
+    }
+  }
+}
+
+.product__availability-info {
+  filter: none;
+  color: #217d6e;
+  letter-spacing: -0.1px;
+  cursor: pointer;
+  background-color: #f2fbfa;
+  background-image: linear-gradient(60deg, #33fc970a, #fff);
+  border: 1px solid #bae7dfb8;
+  border-radius: 20rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 34px 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 16px;
+  transition: all .2s;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  &>span {
+    &>span {
+      border-bottom-width: 1px;
+      border-bottom-style: dashed;
+    }
+  }
+
+  &::before {
+    content: '';
+    border-radius: .05rem;
+    width: 6px;
+    height: 6px;
+    position: relative;
+    transform: rotate(45deg);
+    box-shadow: 0 0 0 5px 0 0 0 0px rgba(30, 182, 156, 0.4);
+    background-color: #169c85e6;
+    animation: shipDot 1.2s ease infinite;
+    transform-origin: center center;
+    margin-right: 12px;
+  }
+
+  &::after {
+    content: '?';
+    z-index: 2;
+    color: #0e806da3;
+    background-color: #f2fbfa;
+    border: 1px solid #bae7df;
+    border-radius: 20rem;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    position: absolute;
+    inset: 50% 8px auto auto;
+    transform: translate(0, -50%);
+  }
+}
+
+@keyframes shipDot {
+  0% {
+    box-shadow: 0 0 0 0px rgba(30, 182, 156, 0.4);
+    transform: rotate(45deg) scale(1);
+  }
+
+  35% {
+    box-shadow: 0 0 0 2.5px rgba(30, 182, 156, 0.25);
+  }
+
+  68% {
+    transform: rotate(45deg) scale(1.2);
+  }
+
+  100% {
+    box-shadow: 0 0 0 8px rgba(30, 182, 156, 0);
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+
+.product__availability-tip {
+  opacity: 0;
+  filter: blur(4px);
+  pointer-events: none;
+  padding-top: 6px;
+  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  transform: translate(0, 6px);
+
+  &>span {
+    display: block;
+    font-weight: 600;
+    border: 1px solid #bae7df;
+    border-radius: .6rem;
+    min-height: 38px;
+    padding: 16px;
+    font-size: 13px;
+    line-height: 20px;
+    color: #217d6e;
+    background-color: #f3faf9;
+    background-image: none;
+    min-width: 280px;
+    box-shadow: 0 8px 48px #33a69114;
+  }
+}
+
+/* #endregion */

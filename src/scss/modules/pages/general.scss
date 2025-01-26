@@ -3642,7 +3642,7 @@ button {
 }
 
 .tip-row {
-  z-index: 10;
+  z-index: 3;
   position: relative;
   margin-right: auto;
 }
@@ -3650,30 +3650,42 @@ button {
 .tip-row__btn {
   gap: 8px;
   box-shadow: none;
-  color: #0287b3;
+  color: #047094;
   border: 1px solid #0094c621;
   cursor: pointer;
-  background-color: #0095c60d;
+  // background-color: #0095c60d;
+  background-image: linear-gradient(60deg, #8dcef121, #fff);
   border-radius: 50rem;
   justify-content: flex-start;
   align-items: center;
   margin-right: auto;
-  padding: 8px 12px;
-  font-size: 12px;
+  padding: 8px 16px;
+  font-size: 13px;
+  letter-spacing: -0.1px;
   font-weight: 700;
   line-height: 16px;
   transition: all .2s cubic-bezier(.39, .575, .565, 1);
   display: flex;
+  min-height: 36px;
+  padding-right: 34px;
 
-  &::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    background-image: url('data:image/svg+xml,<svg width="100%" height="100%" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="64" cy="64" r="59" stroke="%230095c6" stroke-width="13"></circle><path d="M56.0605 77.9502V73.9756C56.0605 71.5407 56.4007 69.3923 57.0811 67.5303C57.7614 65.6325 58.8535 63.8421 60.3574 62.1592C61.8613 60.4404 63.8486 58.6859 66.3193 56.8955C68.5394 55.32 70.3118 53.9056 71.6367 52.6523C72.9974 51.3991 73.9821 50.1637 74.5908 48.9463C75.2354 47.693 75.5576 46.2786 75.5576 44.7031C75.5576 42.3757 74.6982 40.6032 72.9795 39.3857C71.2607 38.1683 68.8617 37.5596 65.7822 37.5596C62.7028 37.5596 59.6413 38.043 56.5977 39.0098C53.5898 39.9766 50.5283 41.2477 47.4131 42.8232L41.5586 31.0605C45.1393 29.0553 49.0244 27.444 53.2139 26.2266C57.4033 24.9733 61.9867 24.3467 66.9639 24.3467C74.6266 24.3467 80.5527 26.1908 84.7422 29.8789C88.9674 33.5312 91.0801 38.1862 91.0801 43.8438C91.0801 46.8516 90.5967 49.4655 89.6299 51.6855C88.6989 53.8698 87.2666 55.9108 85.333 57.8086C83.4352 59.6706 81.054 61.64 78.1895 63.7168C76.041 65.2923 74.3939 66.6172 73.248 67.6914C72.1022 68.7656 71.3145 69.8398 70.8848 70.9141C70.4909 71.9525 70.2939 73.2236 70.2939 74.7275V77.9502H56.0605ZM54.3418 96.3193C54.3418 92.9535 55.2549 90.5902 57.0811 89.2295C58.943 87.8688 61.181 87.1885 63.7949 87.1885C66.3372 87.1885 68.5215 87.8688 70.3477 89.2295C72.2096 90.5902 73.1406 92.9535 73.1406 96.3193C73.1406 99.542 72.2096 101.869 70.3477 103.302C68.5215 104.734 66.3372 105.45 63.7949 105.45C61.181 105.45 58.943 104.734 57.0811 103.302C55.2549 101.869 54.3418 99.542 54.3418 96.3193Z" fill="%230095c6"></path></svg>');
-    background-size: 100% 100%;
-    background-position: center center;
-    background-repeat: no-repeat;
-    flex: none;
+  &::after {
+    content: '?';
+    z-index: 2;
+    color: #0e806da3;
+    background-color: #f2fbfa;
+    border: 1px solid #bae7df;
+    border-radius: 20rem;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    position: absolute;
+    inset: 50% 8px auto auto;
+    transform: translate(0, -50%);
   }
 
   &:hover {
