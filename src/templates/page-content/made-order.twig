@@ -1,0 +1,22 @@
+<div class="results-content">
+	<div class="empty-content --left">
+		<div class="wrapper">
+			<div class="results__breadcrumbs">
+				<a href="/">Icebox</a>
+				<span>—</span>
+				<a href="/made-to-order">Made To Order</a>
+			</div>
+			<h3>Made To Order</h3>
+			<p>Handcrafted jewelry, made exclusively for you and and one-of-a-kind.</p>
+		</div>
+	</div>
+</div>
+
+<div class="wrapper">
+	<div class="nopage__archive-header">Explore By Category</div>
+	<div class="nopage__categories">
+		{% for link in made_order_categories %}
+			{% include "elements/general/tab-link.twig" %}
+		{% endfor %}
+	</div>
+</div>

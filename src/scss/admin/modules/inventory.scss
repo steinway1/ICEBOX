@@ -611,11 +611,15 @@
 }
 
 .ps-drop__scroller {
-  max-height: 260px;
+  max-height: 58vh;
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: none;
   transition: all 150ms ease-in-out;
+
+  @include maxWidthXs {
+    max-height: 260px;
+  }
 }
 
 .ps-drop-btn {
