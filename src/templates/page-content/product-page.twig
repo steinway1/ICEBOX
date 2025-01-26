@@ -128,16 +128,12 @@
 					{% endif %}
 					{# {% include "elements/product-page/share-row.twig" %} #}
 
-					{# Gold Option #}
-					{% for option in product.options %}
-						{% if option.type == 'goldColor' %}
-							{% include "elements/product-page/custom-fields/gold-color.twig", with { option: option } %}
-						{% endif %}
-					{% endfor %}
-
 					{# Price / Sale / Stock #}
 					<div class="side-row__margin-row">
-						{% include "elements/product-page/price.twig" %}
+
+          {# Notices #}
+          {% include "elements/product-page/product-notices.twig" %}
+
 
 						{# Description #}
 						<div class="side-row__border-row">

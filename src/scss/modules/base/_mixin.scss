@@ -45,3 +45,14 @@ $screen-md-min: 768px;
     @content
   }
 };
+
+%media-bg-template {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: var(--media-bg-index);
+  opacity: var(--media-bg-opacity);
+  filter: var(--media-bg-filter);
+  background-image: var(--media-bg-color);
+}

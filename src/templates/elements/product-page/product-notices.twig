@@ -1,0 +1,24 @@
+{% if product.is_watch %}
+	<div class="info-box">
+		<h4>Our watch prices are extremely competitive.</h4>
+		<p>See something for less? Give us a call now and we can work together to make a deal
+			<a href="tel:+14048420266" target="_blank">+1 (404) 842 02 66</a>
+		</p>
+	</div>
+{% endif %}
+
+{% if black_friday and cyber_monday == false and new_year == false and vday == false and product.item.discountRate is defined %}
+	<div class="ccb-btn --min --black-friday">Only one at this price!</div>
+{% endif %}
+
+{% if cyber_monday and black_friday and product.item.discountRate is defined %}
+	<div class="ccb-btn --min --cm">Only one at this price!</div>
+{% endif %}
+
+{% if new_year and black_friday and product.item.discountRate is defined %}
+	<div class="ccb-btn --new-year">Only one at this price!</div>
+{% endif %}
+
+{% if not productItem.is_watch and vday and productItem.discountRate %}
+	<div class="vday-subtext">EXCLUSIVE OFFER. ONLY ONE AVAILABLE</div>
+{% endif %}

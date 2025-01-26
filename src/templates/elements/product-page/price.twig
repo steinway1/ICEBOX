@@ -29,6 +29,11 @@
 			</div>
 		{% endif %}
 
+		{% if sale_price or sale_price_defined %}
+			<div class="product__price-sub-text">Save
+				{{product.item.discountRate}}% On This Item</div>
+		{% endif %}
+
 		{# BASE Price #}
 		<div
 			class="flex_8">
@@ -41,8 +46,8 @@
 			{# Discount Rate & Sale Price #}
 			{% if sale_price or sale_price_defined %}
 				<span class="product__item-price --strike">{{price}}</span>
-				<span class="price-tag --sale" id="discount_rate">SAVE
-					{{product.item.discountRate}}%</span>
+				<span class="price-tag --sale" id="discount_rate">
+					{{product.item.discountRate}}% OFF</span>
 			{% endif %}
 
 			{# Add To Cart Button #}
@@ -58,17 +63,15 @@
 			{% if not lower_msrp %}
 				<span class="price-tag --green --msrp-msg" id="msrp_dir">PRICE IS
 					{{msrp_percent|number_format(0)}}% BELOW MSRP</span>
-			{% else %}
-				<span class="price-tag --grey --msrp-msg" id="msrp_dir">GOOD DEAL</span>
 			{% endif %}
 		{% endif %}
 
 		{# Add to Cart if SALE #}
-		{% if sale_price or sale_price_defined %}
-			<a href="javascript:void(0);" class="buy-btn_xs --tag" onclick="addToCart()">
-				<span>Add to cart</span>
-			</a>
-		{% endif %}
+		{# {% if sale_price or sale_price_defined %}
+					<a href="javascript:void(0);" class="buy-btn_xs --tag" onclick="addToCart()">
+						<span>Add to cart</span>
+					</a>
+				{% endif %} #}
 
 	</div>
 {% endif %}
@@ -83,28 +86,4 @@
 			</a>
 		{% endif %}
 	</div>
-{% endif %}
-
-{% if product.is_watch %}
-	<div class="info-box">
-		<h4>Our watch prices are extremely competitive.</h4>
-		<p>See something for less? Give us a call now and we can work together to make a deal
-			<a href="tel:+14048420266" target="_blank">+1 (404) 842 02 66</a>
-		</p>
-	</div>
-{% endif %}
-{% if black_friday and cyber_monday == false and new_year == false and vday == false and product.item.discountRate is defined %}
-	<div class="ccb-btn --min --black-friday">Only one at this price!</div>
-{% endif %}
-
-{% if cyber_monday and black_friday and product.item.discountRate is defined %}
-	<div class="ccb-btn --min --cm">Only one at this price!</div>
-{% endif %}
-
-{% if new_year and black_friday and product.item.discountRate is defined %}
-	<div class="ccb-btn --new-year">Only one at this price!</div>
-{% endif %}
-
-{% if not productItem.is_watch and vday and productItem.discountRate %}
-	<div class="vday-subtext">EXCLUSIVE OFFER. ONLY ONE AVAILABLE</div>
 {% endif %}

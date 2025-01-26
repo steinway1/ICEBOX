@@ -82,7 +82,7 @@ class ProductPage {
           type: "loop",
           perPage: 1,
           perMove: 1,
-          gap: 8,
+          gap: "0px",
           arrows: false,
           pagination: false,
           speed: 750,

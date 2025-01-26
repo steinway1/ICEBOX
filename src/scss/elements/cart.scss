@@ -142,15 +142,7 @@
   position: relative;
 
   &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    mix-blend-mode: normal;
-    z-index: 0;
-    opacity: .6;
-    filter: grayscale(35%) hue-rotate(211deg);
-    background-image: radial-gradient(circle farthest-side at 100%, rgba(255, 255, 255, 0.9294117647), rgba(255, 255, 255, 0) 60%), radial-gradient(circle farthest-side at 40% 0, rgba(53, 50, 48, 0.1215686275), rgba(255, 255, 255, 0) 50%), linear-gradient(#e2e0df, #e7e6e5 14%, #f4f3f2 60%, #f3f3f3);
-    display: block;
+    @extend %media-bg-template;
   }
 
   @include maxWidthSm {
