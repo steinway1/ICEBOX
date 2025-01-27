@@ -25,14 +25,14 @@
 				<div
 					class="m-popup__main">
 
-          
+
 					{# 1 --- Find customer / add customer / selected customer #}
 					<div data-step id="contentCustomer" class="m-popup__content --step-1">
 						<div class="m-popup__input-grid">
 							<div id="selectedCustomerInputs" class="m-popup__input-row">
 								<div class="m-popop__manual-options-grid">
 									<div class="m-popup__input-row">
-										<label class="m-popup__label" for="customerFirstName">First Name</label>
+										<label class="m-popup__label" for="">First Name</label>
 										<input class="m-popup__input" data-customer-input id="customerFirstName" type="text" name="first_name" placeholder="First name" autocomplete="off" required>
 									</div>
 									<div class="m-popup__input-row">
@@ -42,10 +42,17 @@
 									<div class="m-popup__input-row">
 										<label class="m-popup__label" for="customerEmail">Email</label>
 										<input class="m-popup__input" data-customer-input id="customerEmail" type="email" name="email" placeholder="Email" autocomplete="off" required>
+										<label class="custom-checkbox">
+											<input type="checkbox" name="customer_no_email" value="No Email" onchange="document.getElementById('customerEmail').disabled = this.checked;">
+											<span>No Email</span>
+										</label>
 									</div>
 									<div class="m-popup__input-row">
 										<label class="m-popup__label" for="customerPhone">Phone</label>
 										<input class="m-popup__input" data-customer-input id="customerPhone" type="text" name="phone" placeholder="Phone" autocomplete="off" required>
+									</div>
+									<div class="m-popup__custom-pic-wrap">
+										<img data-customer-photo class="m-popup__customer-pic" src="https://www.icebox.com/unsafe/300x300/icebox-jewelry.s3.amazonaws.com/whales/8064aee9ea24ccd862f9a6b29b743f8f.png" alt="">
 									</div>
 								</div>
 							</div>
@@ -71,7 +78,7 @@
 							<div id="selectedItemContainer" class="m-popup__input-row"></div>
 						</div>
 					</div>
-          
+
 
 					{# 3 --- Other Details #}
 					<div data-step id="contentOther" class="m-popup__content --step-3">
@@ -91,16 +98,51 @@
 										</div>
 									</div>
 									<div class="m-popup__input-row">
-										<label class="m-popup__label">Paid with</label>
-										<div class="m-popup__input-wrap">
-											<div class="am-select-wrap">
-												<select class="am-select" id="paidWith" name="paid_with" required>
-													<option value="" selected>Choose...</option>
-													<option value="cash">Cash</option>
-													<option value="credit">Credit Card</option>
-													<option value="debit">Debit Card</option>
-													<option value="wire">Wire Transfer</option>
-												</select>
+										<label class="m-popup__label">Paid With</label>
+										<div data-ps-multiple class="ps --list">
+											<div class="ps-btn --list">
+												<span class="ps__selected-title">Selected:</span>
+												<span data-ps-selected class="ps__selected-list">Empty</span>
+											</div>
+											<div class="ps-drop">
+												<div class="ps-drop__scroller">
+													<label>
+														<input type="checkbox" name="paid_method" data-name="Zelle" value="paid_zelle">
+														<div class="ps-drop-btn">
+															<span>Zelle</span>
+														</div>
+													</label>
+													<label>
+														<input type="checkbox" name="paid_method" data-name="Bitpay" value="paid_bitpay">
+														<div class="ps-drop-btn">
+															<span>Bitpay</span>
+														</div>
+													</label>
+													<label>
+														<input type="checkbox" name="paid_method" data-name="Crypto" value="paid_crypto">
+														<div class="ps-drop-btn">
+															<span>Crypto</span>
+														</div>
+													</label>
+													<label>
+														<input type="checkbox" name="paid_method" data-name="PayPal" value="paid_paypal">
+														<div class="ps-drop-btn">
+															<span>PayPal</span>
+														</div>
+													</label>
+													<label>
+														<input type="checkbox" name="paid_method" data-name="Check" value="paid_check">
+														<div class="ps-drop-btn">
+															<span>Check</span>
+														</div>
+													</label>
+													<label>
+														<input type="checkbox" name="paid_method" data-name="Other" value="paid_other">
+														<div class="ps-drop-btn">
+															<span>Other</span>
+														</div>
+													</label>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -157,17 +199,22 @@
 										</div>
 									</div>
 									<div class="m-popup__input-row">
-										<label class="m-popup__label" for="customerFirstName">Tracking</label>
+										<label class="m-popup__label" for="">Tracking</label>
 										<input class="m-popup__input" data-customer-input id="orderTracking" type="text" name="tracking" placeholder="Tracking" autocomplete="off">
 									</div>
 									<div class="m-popup__input-row">
-										<label class="m-popup__label" for="customerFirstName">Today's Payment</label>
+										<label class="m-popup__label" for="">Today's Payment</label>
 										<input class="m-popup__input" data-customer-input id="orderTodayPayment" type="text" name="today_payment" placeholder="Today's Payment" autocomplete="off">
+									</div>
+									<div data-other-balance class="m-popup__input-row hidden">
+										<label class="m-popup__label" for="">Balance</label>
+										<input class="m-popup__input" data-customer-input id="orderBalance" type="text" name="balance" placeholder="Today's Payment" autocomplete="off">
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+
 
 					{# --- Buttons #}
 					<div class="m-popup__btn-group">
