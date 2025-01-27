@@ -146,15 +146,15 @@ function openPriceModal(target, id) {
   window.signPriceModal = new window.priceModal(card, id)
 }
 
-function openPriceModal(e) {
+// function openPriceModal(e) {
 
-  const card = e.target.closest('.product-card')
-  const id = card.dataset.id
+//   const card = e.target.closest('.product-card')
+//   const id = card.dataset.id
 
-  if (card && id) {
-    window.priceModal = new PriceModal(card, id)
-  }
-}
+//   if (card && id) {
+//     window.priceModal = new PriceModal(card, id)
+//   }
+// }
 
 /**
  * Countdown timer

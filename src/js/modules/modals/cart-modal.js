@@ -45,7 +45,7 @@ const cartModal = new Object({
   },
   open: function () {
     lockScroll();
-    this._.show();
+    this._?.show();
     setTimeout(() => {
       Object.assign(this.backdrop[0].style, { opacity: 1 });
       Object.assign(this.container[0].style, { transform: "translateX(0%)" });

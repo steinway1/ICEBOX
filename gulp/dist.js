@@ -25,6 +25,7 @@ const concat = require('gulp-concat')
 const minify = require('gulp-minify')
 const ts = require('gulp-typescript')
 const browserify = require('browserify');
+const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const mergeStream = require('merge-stream')
@@ -283,21 +284,39 @@ gulp.task('css-promo:build',
   }
 )
 
+// gulp.task('js:build', () => {
+//   // Browserify configuration
+//   return browserify({
+//     entries: [
+//       root.src.js.bundle.main
+//     ],
+//     debug: true
+//   })
+//     .bundle()
+//     .pipe(source('partial.js'))
+//     .pipe(buffer())
+//     .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+//     .pipe(minify())
+//     .pipe(gulp.dest(root.build.js))
+// })
+
 gulp.task('js:build', () => {
-  // Browserify configuration
   return browserify({
-    entries: [
-      root.src.js.bundle.main
-    ],
+    entries: [root.src.js.bundle.main],
     debug: true
   })
-    .bundle()
-    .pipe(source('partial.js'))
-    .pipe(buffer())
-    .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-    .pipe(minify())
-    .pipe(gulp.dest(root.build.js))
-})
+  .transform(babelify, { // Добавляем Babel
+    presets: ['@babel/preset-env'],
+    global: true // обрабатывать все файлы
+  })
+  .bundle()
+  .pipe(source('partial.js'))
+  .pipe(buffer())
+  .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+  .pipe(minify())
+  .pipe(gulp.dest(root.build.js));
+});
+
 
 
 // gulp.task('js:build',

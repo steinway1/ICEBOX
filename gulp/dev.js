@@ -24,6 +24,7 @@ const concat = require('gulp-concat')
 const minify = require('gulp-minify')
 const ts = require('gulp-typescript')
 const browserify = require('browserify');
+const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const mergeStream = require('merge-stream')
@@ -313,48 +314,35 @@ gulp.task('css-promo:dev',
 
 gulp.task('js:dev', () => {
   return browserify({
-    entries: [
-      root.src.js.bundle.main
-    ],
+    entries: [root.src.js.bundle.main],
     debug: true
   })
-    .bundle()
-    .pipe(source('partial.js'))
-    .pipe(buffer())
-    .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-    .pipe(minify())
-    .pipe(gulp.dest(root.dev.js))
+  .transform(babelify, { // Добавляем Babel
+    presets: ['@babel/preset-env'],
+    global: true // обрабатывать все файлы
+  })
+  .bundle()
+  .pipe(source('partial.js'))
+  .pipe(buffer())
+  .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+  .pipe(minify())
+  .pipe(gulp.dest(root.dev.js));
 });
 
-// gulp.task('js:dev',
-//   () => {
-//     return gulp
-//       .src([
-//         root.src.js.lib.jquery,
-//         root.src.js.lib.jqueryCrs,
-//         root.src.js.lib.splide,
-//         root.src.js.lib.splideGrid,
-//         root.src.js.lib.intlTelInput,
-//         root.src.js.lib.popper,
-//         root.src.js.lib.tippy,
-//         root.src.js.lib.parsley,
-//         root.src.js.lib.zoom,
-//         root.src.js.lib.fancybox,
-//         root.src.js.lib.zenscroll,
-//         // root.src.js.lib.sirv,
-//         root.src.js.bundle.main,
-//         root.src.js.bundle.login,
-//         root.src.js.bundle.cartMail
-
-//       ])
-//       .pipe(changed(root.dev.js))
-//       .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-//       .pipe(concat('partial.js'))
-//       .pipe(minify())
-//       // .pipe(webpack(require('./../webpack.config.js')))
-//       .pipe(gulp.dest(root.dev.js))
+// gulp.task('js:dev', () => {
+//   return browserify({
+//     entries: [
+//       root.src.js.bundle.main
+//     ],
+//     debug: true
 //   })
-
+//     .bundle()
+//     .pipe(source('partial.js'))
+//     .pipe(buffer())
+//     .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+//     .pipe(minify())
+//     .pipe(gulp.dest(root.dev.js))
+// });
 /* #endregion Javascript */
 
 gulp.task('js2:dev',

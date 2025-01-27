@@ -337,7 +337,7 @@ const pageEls = new Object({
       let telInputArr = Array.from($('[data-input="tel"]'));
 
       for (var i = 0; i < telInputArr.length; i++) {
-        iti = intlTelInput(telInputArr[i], {
+        let iti = intlTelInput(telInputArr[i], {
           initialCountry: "auto",
           preferredCountries: ["us", "gb", "br", "cn", "es", "it"],
           autoPlaceholder: "aggressive",
@@ -365,8 +365,8 @@ const pageEls = new Object({
       }
     },
     initCustomUploads: () => {
-      this.arr = [...document.querySelectorAll('[data-custom-upload]')]
-
+      const arr = [...document.querySelectorAll('[data-custom-upload]')]
+    
       const renderOutputFile = (file, imgSrc = '') => {
         let imgElem = imgSrc ? `<div class="--filled" style="background-image: url(${imgSrc})"></div>` : `<div></div>`
         return `
@@ -393,7 +393,7 @@ const pageEls = new Object({
           box.classList.remove(__ACTIVE)
           const files = e.dataTransfer.files
           const newDataTransfer = new DataTransfer()
-
+    
           for (const file of files) {
             newDataTransfer.items.add(file)
           }
@@ -413,11 +413,11 @@ const pageEls = new Object({
       const processFiles = (files, upload) => {
         const output = upload.querySelector('.custom-upload__files')
         const currentFiles = [...upload.querySelectorAll('.custom-upload__file')]
-
+    
         for (const file of currentFiles) {
           file.remove()
         }
-
+    
         for (const file of files) {
           const fileIsImage = file.type.match('image.*')
           if (fileIsImage) {
@@ -432,21 +432,21 @@ const pageEls = new Object({
         }
         setIndexes(upload)
       }
-
-      for (const upload of this.arr) {
+    
+      for (const upload of arr) {
         const box = upload.querySelector('.custom-upload__box')
         const input = upload.querySelector('input')
-
+    
         if (box) {
           bindBoxEvents(box, input)
         }
-
+    
         input.addEventListener('change', (e) => {
           const files = e.target.files
           processFiles(files, upload)
         })
       }
-
+    
       document.addEventListener('click', (e) => {
         const target = e.target
         if (e.target.closest('[data-evt="custom_upload_remove"]')) {
@@ -456,23 +456,23 @@ const pageEls = new Object({
           if (!input) throw new Error('input[type="file"] not found')
           const nameEl = e.target.closest('.custom-upload__file').querySelector('*[data-custom-name]')
           if (!nameEl) throw new Error('data-custom-name not found')
-
+    
           const name = nameEl.innerHTML
           const newDataTransfer = new DataTransfer()
           const { files } = input
-
+    
           for (let i = 0; i < files.length; i++) {
             if (files[i].name !== name) {
               newDataTransfer.items.add(files[i])
             }
           }
-
+    
           if (newDataTransfer.items.length === 0) {
             input.value = ''
           } else {
             input.files = newDataTransfer.files
           }
-
+    
           input.dispatchEvent(new Event('change', { 'bubbles': true }))
         }
       })

@@ -603,6 +603,28 @@ class ProductPage {
     }
   }
   bindGalleryZoom() {
+    const galleryContainer = document.querySelector('.product__view')
+    if (!galleryContainer) return
+
+    galleryContainer.addEventListener('click', (event) => {
+      const target = event.target
+      const mediaClicked = target.closest('.product-media')
+      const gallery = target.closest('.product__main-gallery') || target.closest('.splide__list')
+      const isThumbClicked = target.closest('.product__thumb-gallery')
+
+      if (mediaClicked && gallery && !isThumbClicked) {
+        if (this.galleryZoomInstance) {
+          this.galleryZoomInstance.destroy()
+          this.galleryZoomInstance = null
+        }
+
+        const mediaArr = [...gallery.querySelectorAll('.product-media:not(.splide__slide--clone)')]
+        const index = mediaArr.indexOf(mediaClicked)
+        this.galleryZoomInstance = new ZoomGallery(mediaArr, index)
+      }
+    })
+
+    return
     const galleryArr = [...document.querySelectorAll('#gallery_mobile .product__main-gallery')]
     for (const gallery of galleryArr) {
       gallery.addEventListener('click', (event) => {
@@ -618,6 +640,7 @@ class ProductPage {
           if (list) {
             const mediaArr = [...list.querySelectorAll('.product-media:not(.splide__slide--clone)')]
             const index = mediaArr.indexOf(mediaClicked)
+            console.log(mediaArr)
             this.galleryZoomInstance = new ZoomGallery(mediaArr, index)
           }
         }

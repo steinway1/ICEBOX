@@ -253,11 +253,11 @@ const bookModal = {
     bookModal.sectionPersonal.hide()
     bookModal.sectionDate.show()
     Object.values(bookModal.apptData).forEach((el) => {
-      delete el
+      delete bookModal.apptData[el]
     })
     $('.book-sell__date-box').remove()
     bookModal.observer()
   }
 }
 
-module.exports = bookModal
+// module.exports = bookModal

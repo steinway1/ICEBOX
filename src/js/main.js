@@ -59,7 +59,7 @@ window.sirvCards = require('./modules/elements/sirv')
  */
 window.currencyModal = require('./modules/modals/currency-modal')
 window.cartModal = require('./modules/modals/cart-modal')
-window.bookModal = require('./modules/modals/book-modal')
+// window.bookModal = require('./modules/modals/book-modal')
 window.mailModal = require('./modules/modals/mail-modal')
 window.quizModal = require('./modules/modals/quiz-modal')
 window.salesModal = require('./modules/modals/sales-modal')
@@ -129,7 +129,7 @@ const
     pageAlerts,
     sirvCards,
     sellPage,
-    bookModal,
+    // bookModal,
     passReset,
     pageReviews,
     blogPage,
@@ -213,4 +213,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Share Buttons
   // const shareButtons = new ShareButtons()
+})
+
+document.addEventListener('DOMContentLoaded', function () {
+  return
+  let text = document.querySelector('#item_name')?.textContent
 })
