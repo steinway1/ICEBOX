@@ -244,36 +244,65 @@ function getFakeProduct() {
 }
 
 function initLazyLoadForProductCards() {
-  const images = document.querySelectorAll('.product-card__img[data-src]');
+  const MAX_RETRIES = 2;
+  const RETRY_DELAY = 500;
 
   const observer = new IntersectionObserver((entries, observerInstance) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const img = entry.target;
-
-        img.src = img.dataset.src;
-        img.removeAttribute('data-src');
-
-        img.addEventListener(
-          'load',
-          () => {
-            const parent = img.closest('.product-card__media');
-            if (parent) {
-              parent.classList.add('--loaded')
-            }
-          },
-          { once: true }
-        );
-
-        observerInstance.unobserve(img);
+        checkAndLoadImage(img, observerInstance, 1);
       }
     });
-  }, {
-    rootMargin: '100px 0px',
-    threshold: 0
-  });
+  }, { rootMargin: '100px 0px', threshold: 0 });
 
+  const images = document.querySelectorAll('.product-card__img[data-src]');
   images.forEach(img => observer.observe(img));
+
+  function checkAndLoadImage(img, observerInstance, attempt) {
+    const dataSrc = img.dataset.src;
+
+    if (isValidSrc(dataSrc)) {
+      loadImage(img, observerInstance);
+      return;
+    }
+
+    if (attempt >= MAX_RETRIES) {
+      handleBrokenImage(img);
+      observerInstance.unobserve(img);
+      return;
+    }
+
+    setTimeout(() => {
+      checkAndLoadImage(img, observerInstance, attempt + 1);
+    }, RETRY_DELAY * attempt);
+  }
+
+  function isValidSrc(src) {
+    return src && src !== 'undefined' && src.trim() !== '';
+  }
+
+  function loadImage(img, observerInstance) {
+    img.src = img.dataset.src;
+    img.removeAttribute('data-src');
+
+    img.addEventListener('load', () => {
+      const parent = img.closest('.product-card__media');
+      parent?.classList.add('--loaded');
+      observerInstance.unobserve(img);
+    }, { once: true });
+
+    img.addEventListener('error', () => {
+      handleBrokenImage(img);
+      observerInstance.unobserve(img);
+    }, { once: true });
+  }
+
+  function handleBrokenImage(img) {
+    const parent = img.closest('.product-card__media');
+    parent?.classList.add('--empty');
+    console.warn('Image failed to load:', img);
+  }
 }
 
 module.exports = {
