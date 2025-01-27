@@ -5181,13 +5181,13 @@ document.addEventListener('DOMContentLoaded', () => {
         autoClose: false,
         timepicker: true,
         onSelect({ date }) {
-          const datePart = date.toLocaleDateString('en-GB', {
+          const datePart = date.toLocaleDateString('en-US', {
             day: '2-digit',
             month: '2-digit',
             year: 'numeric',
           });
 
-          let timePart = date.toLocaleTimeString('en-GB', {
+          let timePart = date.toLocaleTimeString('en-US', {
             hour: '2-digit',
             minute: '2-digit',
             hour12: true
@@ -5204,13 +5204,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Форматируем дату сразу для input.value
         const today = new Date();
-        const datePart = today.toLocaleDateString('en-GB', {
+        const datePart = today.toLocaleDateString('en-US', {
           day: '2-digit',
           month: '2-digit',
           year: 'numeric',
         });
 
-        let timePart = today.toLocaleTimeString('en-GB', {
+        let timePart = today.toLocaleTimeString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
           hour12: true
@@ -5333,6 +5333,8 @@ class PsSelect {
       const scroller = drop.querySelector('.ps-drop__scroller')
       const current = ps.querySelector('[data-ps-current]')
       const inputArr = [...ps.querySelectorAll('input')]
+      const isMultiple = ps.hasAttribute('data-ps-multiple')
+      const multipleSelected = ps.querySelector('[data-ps-selected]')
 
       if (ps.initialized) {
         return
@@ -5347,7 +5349,6 @@ class PsSelect {
         console.warn('PS SELECT: Scroller not found')
         return
       }
-
 
       ps.initialized = true
 
@@ -5367,6 +5368,25 @@ class PsSelect {
       }
 
       ps.update = () => {
+        if (isMultiple && multipleSelected) {
+          const text = [...ps.querySelectorAll('input:checked')]
+            .map(input => {
+              if (input.dataset.name) {
+                return input.dataset.name.trim();
+              }
+              
+              const label = input.closest('label');
+              if (!label) return null;
+              
+              const span = label.querySelector('span');
+              return span ? span.textContent.trim() : null;
+            })
+            .filter(item => item && item.trim())
+            .join(', ');
+        
+          multipleSelected.textContent = text || 'Empty';
+        }
+
         if (inputArr.length && current) {
           for (const input of inputArr) {
             if (input.checked) {
@@ -5916,8 +5936,8 @@ class ManualOrderCustomerSearch {
         <div>
           <h6>${customer.first_name ? `${customer.first_name} ` : ''}${customer.last_name ? `${customer.last_name}` : ''}</h6>
           <div class="am_flex8">
-            ${customer.first_name ? `<span>First name: ${customer.first_name}</span>` : ''}
-            ${customer.last_name ? `<span>Last name: ${customer.last_name}</span>` : ''}
+            ${customer.first_name ? `<span>First Name: ${customer.first_name}</span>` : ''}
+            ${customer.last_name ? `<span>Last Name: ${customer.last_name}</span>` : ''}
             ${customer.email ? `<span>Email: ${customer.email}</span>` : ''}
             ${customer.phone ? `<span>Phone: ${customer.phone}</span>` : ''}
           </div>
@@ -5991,6 +6011,11 @@ class ManualOrderForm {
     this.customerInputLastName = document.querySelector('#customerLastName')
     this.customerInputEmail = document.querySelector('#customerEmail')
     this.customerInputPhone = document.querySelector('#customerPhone')
+    this.customerPhotoWrap = document.querySelector('.m-popup__custom-pic-wrap')
+    this.customerPhotoElem = document.querySelector('[data-customer-photo]')
+
+    this.selectPickedToday = document.querySelector('#pickedUpToday')
+    this.balanceElem = document.querySelector('[data-other-balance]')
 
     this.steps = [...this.rootEl.querySelectorAll('.m-popup__step')]
     this.searchProductContainer = document.querySelector('#searchListItems')
@@ -6010,15 +6035,24 @@ class ManualOrderForm {
 
     this.setupInitialSteps()
     this.goStep(1)
+    this.bindBalanceToggle()
+  }
+
+  // Bind Initial events
+  bindBalanceToggle() {
+    this.selectPickedToday.onchange = () => {
+      const enable = this.selectPickedToday.value === 'no' ? true : false
+      this.balanceElem.classList.toggle('hidden', !enable)
+    }
   }
 
   // Utils
   disable() {
-    this.rootEl.querySelectorAll('input').forEach(input => {
-      if (!input.dataset.lockedInput) {
-        input.disabled = true
-      }
-    })
+    // this.rootEl.querySelectorAll('input').forEach(input => {
+    //   if (!input.dataset.lockedInput) {
+    //     input.disabled = true
+    //   }
+    // })
     this.rootEl.classList.add('--o-loading')
     this.rootEl.classList.add('--disabled')
   }
@@ -6027,7 +6061,7 @@ class ManualOrderForm {
       if (input.hasAttribute('data-locked-input')) {
         return
       }
-      input.disabled = false
+      // input.disabled = false
     })
     this.rootEl.classList.remove('--o-loading')
     this.rootEl.classList.remove('--disabled')
@@ -6162,9 +6196,9 @@ class ManualOrderForm {
         saleInput.hidden = !saleInput.hidden
 
         if (hiddenInput.hidden) {
-          e.target.textContent = 'Remove Sale'
+          e.target.textContent = 'Edit Price'
         } else {
-          e.target.textContent = 'Add Sale'
+          e.target.textContent = 'Set Regular Price'
         }
       }
 
@@ -6232,7 +6266,7 @@ class ManualOrderForm {
         html = `
             <input type="text" data-locked-input data-allow-decimals name="item_price" data-old-price class="m-popup__input --bold --disabled --auto" value="${item.price}" hidden>
             <input type="text" data-sale-price data-allow-decimals name="item_price_sale" class="m-popup__input --bold --disabled --auto" value="${item.salePrice}">
-            <div class="button ghost-btn --auto --red" data-evt="removeManualSale">Remove Sale</div>
+            <div class="button ghost-btn --auto --red" data-evt="removeManualSale">Edit Price</div>
             `
       } else {
         html = `
@@ -6353,7 +6387,7 @@ class ManualOrderForm {
     }
   }
   fillCustomerInputs(customer) {
-    const { first_name, last_name, email, phone } = customer
+    const { first_name, last_name, email, phone, img_src } = customer
     const resetButton = createElem('div', {
       className: 'blank-btn',
       attributes: { 'data-evt': 'resetManualCustomer' },
@@ -6370,8 +6404,17 @@ class ManualOrderForm {
 
     if (first_name) this.customerInputFirstName.value = first_name
     if (last_name) this.customerInputLastName.value = last_name
-    if (email) this.customerInputEmail.value = email
+    if (email && !this.customerInputEmail.disabled) this.customerInputEmail.value = email
     if (phone) this.customerInputPhone.value = phone
+
+    if (this.customerPhotoWrap) {
+      this.customerPhotoWrap.classList.remove('--filled')
+
+      if (img_src && this.customerPhotoElem) {
+        this.customerPhotoElem.src = img_src
+        this.customerPhotoWrap.classList.add('--filled')
+      }
+    }
   }
 
   // Switch steps

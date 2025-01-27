@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 /* Reset and base styles  */
 
 * {
@@ -449,13 +447,12 @@ legend {
 }
 
 body {
-  font-family: "TSans", sans-serif;
+  font-family: "ProximaNova", sans-serif;
   font-size: 14px;
   color: var(--black);
   line-height: 22px;
   overflow-x: hidden;
-  font-weight: 500;
-  letter-spacing: -0.1px;
+  font-weight: 400;
 }
 
 input,
@@ -8792,6 +8789,35 @@ span.--warn {
   color: var(--red);
 }
 
+.add-transaction-btn {
+  gap: 8px;
+  background-color: #2786df;
+  color: #fff;
+  cursor: pointer;
+  border: 3px solid #63abf0;
+  border-radius: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 18px;
+  font-weight: 700;
+  display: flex;
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  box-shadow: 0 8px 28px rgba(39, 134, 223, 0.2901960784), inset 6px 6px 18px rgba(17, 17, 20, 0.1019607843);
+  transition: all 200ms ease;
+  user-select: none;
+  z-index: 20;
+}
+
+.add-transaction-btn:hover {
+  background-color: #3a78cc;
+}
+
+.add-transaction-btn span:first-child {
+  font-size: 24px;
+}
+
 :root {
   --tb-border: #e6e8ee;
   --tb-border_light: rgba(230, 232, 238, 0.6);
@@ -16249,6 +16275,40 @@ select.sms-tag:hover {
   --ps-padding: 18px;
 }
 
+.ps.--list .ps-drop-btn {
+  font-size: 13px;
+  font-weight: 600;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--ps-border-color);
+}
+
+.ps.--list .ps-drop-btn:hover {
+  background-color: white;
+}
+
+.ps.--list .ps-drop-btn::before {
+  content: "";
+  width: 16px !important;
+  height: 16px !important;
+  position: static !important;
+  background-color: #d9dce1;
+  border-radius: 0.2rem !important;
+}
+
+.ps.--list input:checked + .ps-drop-btn {
+  background-color: white !important;
+  padding-left: var(--ps-padding);
+  font-weight: 600 !important;
+}
+
+.ps.--list input:checked + .ps-drop-btn::before {
+  background-color: var(--royal_blue) !important;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M2 12.4118L8.4 19L22 5" stroke="white" stroke-width="6"/></svg>');
+  background-size: 60%;
+}
+
 .ps.--active {
   z-index: 4;
 }
@@ -16327,9 +16387,12 @@ select.sms-tag:hover {
 
 .ps-btn::after {
   content: "";
+  position: absolute;
   width: 6px;
   height: 6px;
-  transform: rotate(45deg) translateY(-2px);
+  right: var(--ps-padding);
+  top: 50%;
+  transform: rotate(45deg) translateY(calc(-50% - 2px));
   border-bottom: 2px solid var(--black);
   border-right: 2px solid var(--black);
 }
@@ -16347,6 +16410,11 @@ select.sms-tag:hover {
 
 .ps-btn:active::after {
   border-color: #5f5f65;
+}
+
+.ps-btn.--list {
+  justify-content: flex-start;
+  gap: 6px;
 }
 
 .ps-drop {
@@ -16413,6 +16481,20 @@ select.sms-tag:hover {
   overflow: hidden;
 }
 
+.ps__selected-title {
+  font-size: 12px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ps__selected-list {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  padding-right: 24px;
+}
+
 [data-locked-input] {
   cursor: pointer !important;
   user-select: none !important;
@@ -16424,6 +16506,30 @@ select.sms-tag:hover {
 
 [data-locked-input]::placeholder {
   color: var(--dark_grey) !important;
+}
+
+.m-popup .ps {
+  --ps-box-shadow: none !important;
+  --ps-box-shadow-opened: 0 8px 32px rgba(81, 86, 94, 0.16);
+  --ps-border-color: #e4e8ee !important;
+  --ps-radius: 0.3rem;
+  font-size: 13px;
+}
+
+.m-popup .ps .ps-btn {
+  background-color: var(--m-grey);
+  height: 40px;
+  padding: 0 12px !important;
+}
+
+.m-popup .ps .ps-btn:hover {
+  background-color: white;
+  box-shadow: none;
+}
+
+.m-popup .ps .ps-btn::after {
+  width: 5px;
+  border-width: 1.5px;
 }
 
 .m-popup {
@@ -16722,8 +16828,11 @@ select.sms-tag:hover {
 
 .m-popup__input:disabled,
 .m-popup .am-select:disabled {
+  background-color: var(--m-grey);
   user-select: none;
+  cursor: not-allowed;
   color: var(--dark_grey);
+  opacity: 0.5;
 }
 
 .m-popup__input:disabled::placeholder,
@@ -16842,12 +16951,16 @@ select.sms-tag:hover {
   flex-direction: column;
   gap: 6px;
   align-items: flex-start;
-  padding: 12px;
+  padding: 14px;
 }
 
 .m-popup__list-item.--customer h6 {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.m-popup__list-item.--customer > .am_flex8 {
+  gap: 12px;
 }
 
 .m-popup__list-item.--customer .am_flex8:not(.--def) {
@@ -16858,7 +16971,7 @@ select.sms-tag:hover {
 
 .m-popup__list-item.--customer .am_flex8:not(.--def) span {
   font-size: 13px;
-  opacity: 0.7;
+  font-weight: 600;
 }
 
 .m-popup__list-item.--selected {
@@ -16879,7 +16992,7 @@ select.sms-tag:hover {
 }
 
 .m-popup__list-item img {
-  width: 38px;
+  width: 52px;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 0.3rem;
@@ -16948,7 +17061,6 @@ select.sms-tag:hover {
 }
 
 .m-popop__manual-options-grid .am-select {
-  height: 32px;
   min-height: unset;
   padding: 0px 12px !important;
   font-size: 13px !important;
@@ -17028,17 +17140,98 @@ select.sms-tag:hover {
   user-select: none;
 }
 
+.m-popup__custom-pic-wrap {
+  margin: auto 0 0;
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.m-popup__custom-pic-wrap::before {
+  content: "NO PHOTO";
+  position: absolute;
+  max-width: 40px;
+  margin: 0 auto;
+  inset: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(24, 31, 56, 0.3);
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 800;
+  padding-bottom: 2px;
+}
+
+.m-popup__custom-pic-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #0f2277;
+  border-radius: 50%;
+  opacity: 0.06;
+  z-index: 2;
+}
+
+.m-popup__custom-pic-wrap.--filled .m-popup__customer-pic {
+  display: block;
+}
+
+.m-popup__custom-pic-wrap.--filled::before {
+  display: none;
+}
+
+.m-popup__customer-pic {
+  display: none;
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 @font-face {
-  font-family: "TSans";
-  src: url("../fonts/TSans.woff2") format("woff2-variations");
-  font-weight: 100 900;
-  /* Диапазон весов */
-  font-style: oblique 0deg 10deg;
-  /* Для вариативного наклона */
+  font-family: "ProximaNova";
+  src: url("../fonts/Proxima-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
   font-display: swap;
-  /* Для расширенной совместимости */
-  font-variation-settings: "wght" 600, "slnt" 0;
-  /* Базовая наклонность */
+}
+
+@font-face {
+  font-family: "ProximaNova";
+  src: url("../fonts/Proxima-Semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ProximaNova";
+  src: url("../fonts/Proxima-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 @media screen and (min-width: 768px) {
