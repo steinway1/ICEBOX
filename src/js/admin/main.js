@@ -6058,13 +6058,13 @@ class ManualOrderForm {
 
       if (item.salePrice) {
         html = `
-            <input type="text" data-locked-input data-allow-decimals name="item_price" data-old-price class="m-popup__input --bold --disabled --auto" value="${item.price}" hidden>
-            <input type="text" data-sale-price data-allow-decimals name="item_price_sale" class="m-popup__input --bold --disabled --auto" value="${item.salePrice}">
+            <input type="text" data-locked-input data-allow-decimals name="price[${item.id}]" data-old-price class="m-popup__input --bold --disabled --auto" value="${item.price}" hidden>
+            <input type="text" data-sale-price data-allow-decimals name="discount_prices[${item.id}]" class="m-popup__input --bold --disabled --auto" value="${item.salePrice}">
             <div class="button ghost-btn --auto --red" data-evt="removeManualSale">Remove Sale</div>
             `
       } else {
         html = `
-            <input type="text" data-locked-input data-allow-decimals name="item_price" class="m-popup__input --bold --disabled --auto" value="${item.price}">
+            <input type="text" data-locked-input data-allow-decimals name="price[${item.id}]" class="m-popup__input --bold --disabled --auto" value="${item.price}">
             `
       }
 
@@ -6077,7 +6077,8 @@ class ManualOrderForm {
         <div class="m-popup__list-item-remove" data-evt="deleteManualItem"></div>
         <img src="${item.img_src}" alt="">
         <div class="m-popup__list-item-col">
-          <input type="text" name="item_title" class="m-popup__input --bold" value="${item.title}">
+          <input type="hidden" name="products[${item.id}]" value="${item.id}"/>
+          <input type="text" name="item_title" class="m-popup__input --bold" readonly value="${item.title}">
           <div class="am_flex8 m-popup__list-item-price">
             ${createPriceElem()}
           </div>
@@ -6122,7 +6123,7 @@ class ManualOrderForm {
           <div class="m-popup__input-row">
             <div class="m-popup__input-wrap">
               <div class="am-select-wrap">
-                <select class="am-select" name="${option.name}" required>
+                <select class="am-select" name="${option.input_name}" required>
                   ${selectContent}
                 </select>
               </div>
@@ -6260,7 +6261,7 @@ class ManualOrderForm {
   }
   go() {
     let contentType = this.currentStep === 1 ? 'customer' : this.currentStep === 2 ? 'item' : 'other';
-    alert(contentType)
+    //alert(contentType)
     const validator = new ManualOrderValidator(contentType, this.steps[this.currentStep - 1]);
     const validate = validator.run();
 
