@@ -87,8 +87,29 @@
   position: relative;
 }
 
+.i-card__empty-media {
+  width: 100%;
+  height: 100%;
+  background-color: #366bb4;
+  border-radius: 0.85rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 150px;
+    max-width: 60%;
+
+    path {
+      fill: #a4cbff;
+    }
+  }
+}
+
 .i-card__media {
   padding: var(--media-padding);
+  width: 100%;
+  height: 100%;
 
   .splide__arrow {
     background-color: white !important;
@@ -450,6 +471,11 @@
     text-decoration: underline;
     color: var(--royal_blue_hover)
   }
+
+  &>span {
+    font-size: 9px;
+    color: #858b96;
+  }
 }
 
 .i-card__footer {
@@ -589,7 +615,7 @@
   justify-content: space-between;
   align-items: center;
   font-weight: 600;
-  padding: 12px var(--ps-padding);
+  padding: 12px 32px 12px var(--ps-padding);
   background-color: #fff;
   border-radius: var(--ps-radius);
   border: 1px solid var(--ps-border-color);

@@ -174,29 +174,39 @@
 		</div>
 
 		{# Media #}
-		{% if item.media | length > 1 %}
-			<div class="i-card__media splide i-card__media-splide">
-				<div class="splide__track">
-					<div class="splide__list">
-						{% for media in item.media %}
-							<div class="splide__slide">
-								<div class="i-card__pic-wrap">
-									<img src="{{media.src}}" loading="lazy" alt="{{media.alt}}" class="i-card__img">
-									{% if loop.index > 1 %}
-										<button class="i-card__pic-delete">Remove image</button>
-									{% endif %}
-								</div>
-							</div>
-						{% endfor %}
+		{% if not item.media or item.media | length == 0 %}
+			<div class="i-card__pic-wrap">
+				<div class="i-card__media">
+					<div class="i-card__empty-media">
+						{% include "admin/svg/logo.twig" %}
 					</div>
 				</div>
 			</div>
 		{% else %}
-			<div class="i-card__media">
-				<div class="i-card__pic-wrap">
-					<img src="{{item.media[0].src}}" loading="lazy" alt="{{media.alt}}" class="i-card__img">
+			{% if item.media | length > 1 %}
+				<div class="i-card__media splide i-card__media-splide">
+					<div class="splide__track">
+						<div class="splide__list">
+							{% for media in item.media %}
+								<div class="splide__slide">
+									<div class="i-card__pic-wrap">
+										<img src="{{media.src}}" loading="lazy" alt="{{media.alt}}" class="i-card__img">
+										{% if loop.index > 1 %}
+											<button class="i-card__pic-delete">Remove image</button>
+										{% endif %}
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
 				</div>
-			</div>
+			{% else %}
+				<div class="i-card__media">
+					<div class="i-card__pic-wrap">
+						<img src="{{item.media[0].src}}" loading="lazy" alt="{{media.alt}}" class="i-card__img">
+					</div>
+				</div>
+			{% endif %}
 		{% endif %}
 	</div>
 
@@ -218,6 +228,12 @@
 				</div>
 			</div>
 			<div class="i-card__main-info">
+				{% if item.vendor and item.vendor != '' %}
+					<a href="{{ item.vendor.url }}" class="i-card__style-link">
+						<span>Vendor:
+						</span>
+						{{ item.vendor.name }}</a>
+				{% endif %}
 				<a href="{{ item.style.url }}" class="i-card__style-link">{{ item.style.name }}
 					({{ item.style.count }})</a>
 				<h2>{{ item.title }}</h2>
@@ -230,7 +246,7 @@
 		<div class="i-card__footer">
 			<span class="i-card__price">{{ item.price }}</span>
 
-      {# Notes #}
+			{# Notes #}
 			<div class="am-item__note-wrap" id="note_box_{{ item.id }}">
 				<div class="am-item__note-form">
 					<input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_{{item.id}}">
