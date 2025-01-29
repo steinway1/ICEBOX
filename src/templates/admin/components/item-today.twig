@@ -54,8 +54,8 @@
 								</a>
 							{% endif %}
 							<!--
-																																			<button class="am-item__td-btn" {% if item.fullfill_disable %} disabled {% endif %}>{{ item.fullfill_by_sakes }}</button>
-																																			-->
+																																																	<button class="am-item__td-btn" {% if item.fullfill_disable %} disabled {% endif %}>{{ item.fullfill_by_sakes }}</button>
+																																																	-->
 						</div>
 
 					</div>
@@ -83,6 +83,9 @@
 
 					<div class="am-item__details-row to_space">
 						<div class="flex-row_8">
+							{% if item.is_manual %}
+								<button onclick="editManualOrder({{item.id}})" class="blank-btn --filled">Edit Order</button>
+							{% endif %}
 							{% for tag in item.tags %}
 								<span class="am-item__tag ">{{tag | raw}}</span>
 							{% endfor %}
@@ -102,12 +105,6 @@
 							</div>
 						</div>
 					</div>
-
-					{# <div class="am-item__details-row">
-						<button class="am-item__sale-btn" onclick="Today.openAddSale({{item.id}})">Add Sale</button>
-					</div> #}
-
-          {# Notes #}
 					<div class="am-item__details-row">
 						<div class="am-item__note-wrap" id="note_box_{{ item.id }}">
 							<div class="am-item__note-form">
