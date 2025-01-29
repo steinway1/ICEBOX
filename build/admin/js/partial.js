@@ -325,6 +325,19 @@ function fakeFetchPost(url, options) {
   });
 }
 
+function fakeFetchRemoveOrder(url, options) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const fakeResponse = {
+        ok: true,
+        statusText: 'OK',
+        json: async () => ({}),
+      };
+      resolve(fakeResponse);
+    }, 2500);
+  });
+}
+
 
 function unlockDataLockedInput(input) {
   const callback = () => {
@@ -6769,6 +6782,49 @@ class ManualOrderForm {
         this.showMsg('error', 'Order link is unavailable.')
         window.location.reload();
       }
+    }
+  }
+}
+
+function deleteManualOrder(event, orderID) {
+  new LockPin({ code: 3256, callback: deleteCallback }).push()
+
+  async function deleteCallback() {
+    const button = event.target.closest('.blank-btn')
+    const orderElement = button.closest('.am-item')
+
+    const animateDelete = () => {
+      orderElement.classList.add('--remove')
+      setTimeout(() => {
+        orderElement.remove()
+      }, getTransitionTime(orderElement));
+    }
+    const toggleActiveState = (state) => {
+      if (button && orderElement) {
+        const text = !state ? 'Deleting...' : 'Delete Order'
+        button.disabled = !state
+        orderElement.classList.toggle('--deleting', !state)
+        button.textContent = text
+      }
+    }
+
+    try {
+      toggleActiveState(false)
+      /**
+      * @CHOU Setup here (Delete Order)
+      * Need to setup function here to delete order
+      */
+      const response = await fakeFetchRemoveOrder(orderID)
+      if (!response.ok) {
+        new pageMsg({ heading: 'Error', msg: `HTTP Error! Status: ${response.status}` })
+        throw new Error(`HTTP Error! Status: ${response.status}`)
+      }
+      animateDelete()
+    } catch (err) {
+      console.error(err)
+      new pageMsg({ heading: 'Error', msg: `Something went wrong: ${err.message}` })
+    } finally {
+      toggleActiveState(true)
     }
   }
 }

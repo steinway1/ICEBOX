@@ -82,6 +82,7 @@
 						<div class="flex-row_8">
 							{% if item.is_manual %}
 								<button onclick="editManualOrder({{item.id}})" class="blank-btn --filled">Edit Order</button>
+								<button onclick="deleteManualOrder(event, {{item.id}})" class="blank-btn --filled --red">Delete Order</button>
 							{% endif %}
 							{% for tag in item.tags %}
 								<span class="am-item__tag ">{{tag | raw}}</span>

@@ -7,6 +7,19 @@
   border-radius: 0.8rem;
   box-shadow: 0 24px 62px rgba(34, 43, 104, 0.09);
 
+  &.--deleting {
+    opacity: 0.3;
+    filter: grayscale(100%);
+    pointer-events: none;
+  }
+
+  &.--remove {
+    transition: all 450ms ease;
+    transform: translateY(-24px);
+    filter: blur(10px);
+    opacity: 0;
+  }
+
   @include maxWidthXs {
     margin-left: 6px;
     margin-right: 6px;

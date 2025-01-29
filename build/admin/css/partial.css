@@ -5227,6 +5227,19 @@ body.blue_head .am-select:hover {
   box-shadow: 0 24px 62px rgba(34, 43, 104, 0.09);
 }
 
+.am-item.--deleting {
+  opacity: 0.3;
+  filter: grayscale(100%);
+  pointer-events: none;
+}
+
+.am-item.--remove {
+  transition: all 450ms ease;
+  transform: translateY(-24px);
+  filter: blur(10px);
+  opacity: 0;
+}
+
 .am-item .am-select {
   min-height: 32px;
   font-size: 13px;
@@ -8800,6 +8813,12 @@ span.--warn {
 .blank-btn.--filled {
   background-color: var(--royal_blue);
   color: white;
+}
+
+.blank-btn.--filled.--red {
+  background-color: var(--ghost-red);
+  border-color: var(--ghost-red);
+  color: var(--red);
 }
 
 .add-transaction-btn {
