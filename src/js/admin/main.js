@@ -22,24 +22,289 @@ const
   __REVEALED = '--revealed',
   __EDIT = '--edit'
 
-  function inputAllowOnlyDecimals(input) {
-    input.oninput = function () {
-      this.value = this.value.replace(/[^0-9.]/g, '');
-    }
+function inputAllowOnlyDecimals(input) {
+  input.oninput = function () {
+    this.value = this.value.replace(/[^0-9.]/g, '');
   }
-  
-  function updateInputAllowOnlyDecimals() {
-    const onlyDecimalsInputs = document.querySelectorAll('input[data-allow-decimals]')
-    for (const input of onlyDecimalsInputs) {
-      inputAllowOnlyDecimals(input)
-    }
+}
+
+function updateInputAllowOnlyDecimals() {
+  const onlyDecimalsInputs = document.querySelectorAll('input[data-allow-decimals]')
+  for (const input of onlyDecimalsInputs) {
+    inputAllowOnlyDecimals(input)
   }
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    updateInputAllowOnlyDecimals()
-  })
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateInputAllowOnlyDecimals()
+})
 
 // Locked inputs (data-locked-input)
+
+function getFakeManulOrder(id) {
+  const customer = getFakeCustomer(id)
+  const item = getFakeItem(id)
+  return {
+    customer: customer,
+    item: item,
+    other_details: {
+      "sale_store": "flagship",
+      "order_date": "01/29/2025",
+      "edge_sync": "no",
+      "gift_wrap": "yes",
+      "picked_up_today": "no",
+      "paid_in_full": "no",
+      "tracking": "555",
+      "today_payment": "251",
+      "balance": "500",
+      "paid_method": [
+        "paid_zelle",
+        "paid_paypal",
+        "paid_check"
+      ]
+    }
+  }
+}
+
+function getFakeCustomersArr() {
+  return [
+    {
+      id: 2052,
+      last_name: "Smith",
+      email: "8n0X0@example.com",
+      phone: "404-555-1212",
+      img_src: "https://www.icebox.com/unsafe/300x300/icebox-jewelry.s3.amazonaws.com/whales/8064aee9ea24ccd862f9a6b29b743f8f.png"
+    },
+    {
+      id: 2053,
+      first_name: "John",
+      last_name: "Green",
+      email: "johngreeen01@gmail.com",
+    },
+    {
+      id: 2054,
+      first_name: "John",
+      last_name: "Doe"
+    },
+    {
+      id: 2052,
+      first_name: "Andrew",
+      last_name: "Smith",
+      email: "8n0X0@example.com",
+      phone: "404-555-1212",
+    },
+    {
+      id: 2053,
+      first_name: "John",
+      last_name: "Green",
+      email: "johngreeen01@gmail.com",
+      phone: "250-014-0022",
+    },
+    {
+      id: 2054,
+      first_name: "John",
+      last_name: "Doe",
+      email: "johndoe01@gmail.com",
+      phone: "250-014-0022",
+    },
+    {
+      id: 2052,
+      first_name: "Andrew",
+      last_name: "Smith",
+      email: "8n0X0@example.com",
+      phone: "404-555-1212",
+    },
+    {
+      id: 2053,
+      first_name: "John",
+      last_name: "Green",
+      email: "johngreeen01@gmail.com",
+      phone: "250-014-0022",
+    },
+    {
+      id: 2054,
+      first_name: "John",
+      last_name: "Doe",
+      email: "johndoe01@gmail.com",
+      phone: "250-014-0022",
+    }
+  ]
+}
+
+function getFakeCustomer(id) {
+  return getFakeCustomersArr()[0]
+}
+
+function getFakeItemsArr() {
+  return [
+    {
+      title: 'Jesus Of Nazareth Diamond Pendant 14k Solid Gold 9.25ctw',
+      img_src: 'https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/4d230c2794eea92434c287905a3da1ef.jpg',
+      id: 23721,
+      price: "32,590.50"
+    },
+    {
+      title: '0.55ctw Double Halo Round Solitaire Miracle - Diamond Engagement Ring - All Natural',
+      img_src: 'https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/24847fddc2e5b43a51764b6266009e7a.jpg',
+      id: 23721,
+      price: "990"
+    },
+    {
+      title: "Double Baguette Square Halo Diamond Engagement Ring 14k Solid Gold - All Natural - 1.10ctw",
+      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/e662310abce6eff77ed5f31c8519662d.jpg",
+      id: 23721,
+      price: "1,690.75"
+    },
+    {
+      title: "Goat Head Diamond Pendant 14k Solid Gold 1.25ctw",
+      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/7998fbdc0f99db2654ff77aa1c21fa81.jpg",
+      id: 23721,
+      price: "1,690.75"
+    },
+    {
+      title: "Gypsy Set Diamond Cluster Band Ring 14k Solid Gold 0.33ctw",
+      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/6466b54ad54d1daf8a549aca989417bc.jpg",
+      id: 23721,
+      price: "1,690.75"
+    },
+    {
+      title: "Graduated Border Scattered Gypset Set Diamond Band 14k Solid Gold 0.75ctw",
+      img_src: "https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/419cc1fd99d75e6b92dd2d9ed59302cc.jpg",
+      id: 23721,
+      price: "1,690.75"
+    }
+  ]
+}
+
+function getFakeItem() {
+  return {
+    title: 'Jesus Of Nazareth Diamond Pendant 14k Solid Gold 9.25ctw',
+    img_src: 'https://www.icebox.com/unsafe/400x0/icebox-jewelry.s3.amazonaws.com/products/4d230c2794eea92434c287905a3da1ef.jpg',
+    id: 23721,
+    price: "32,590.50",
+    salePrice: "14,590.50",
+    options: [
+      {
+        "name": "Color",
+        "type": "goldColor",
+        "hidden": false,
+        "set": [
+          {
+            "color": "Yellow",
+            "active": true,
+            "caption": "Yellow",
+            "class": "Yellow"
+          }]
+      },
+      {
+        "name": "Diamonds",
+        "type": "diamonds_quality",
+        "default_value": "VS",
+        "set": [
+          {
+            "value": "VS",
+            "caption": "VS",
+            "active": true
+          }]
+      },
+      {
+        "id": "97",
+        "name": "Length",
+        "type": "dropdown",
+        "selected_value": "8.5",
+        "show_inches": true,
+        "set": [
+          {
+            "value": "6.5",
+            "caption": "6.5"
+          },
+          {
+            "value": "7",
+            "caption": "7"
+          },
+          {
+            "value": "7.5",
+            "caption": "7.5"
+          },
+          {
+            "value": "8",
+            "caption": "8"
+          },
+          {
+            "value": "8.5",
+            "caption": "8.5",
+            "active": true
+          }],
+        "chuncks": false
+      }
+    ]
+  }
+}
+
+function fakeAjaxGetOrder(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = getFakeManulOrder(id)
+      // const data = false
+      resolve(data)
+    }, 1500)
+  })
+}
+
+function fakeAjaxGetCustomer(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = getFakeCustomer(id)
+      // const data = false
+      resolve(data)
+    }, 1500)
+  })
+}
+
+function fakeAjaxGetCustomers(query) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = getFakeCustomersArr(query)
+      // const data = false
+      resolve(data)
+    }, 1500)
+  })
+}
+
+function fakeAjaxGetItemsArray(query) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = getFakeItemsArr()
+      // const data = []
+      resolve(data)
+    }, 2000)
+  })
+}
+
+function fakeAjaxGetItem(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = getFakeItem()
+      // const data = false
+      resolve(data)
+    }, 1500)
+  })
+}
+
+function fakeFetchPost(url, options) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const fakeResponse = {
+        ok: true,
+        statusText: 'OK',
+        json: async () => ({}),
+      };
+      resolve(fakeResponse);
+    }, 1500);
+  });
+}
+
+
 function unlockDataLockedInput(input) {
   const callback = () => {
     input.removeAttribute('data-locked-input')
@@ -5235,16 +5500,16 @@ class PsSelect {
               if (input.dataset.name) {
                 return input.dataset.name.trim();
               }
-              
+
               const label = input.closest('label');
               if (!label) return null;
-              
+
               const span = label.querySelector('span');
               return span ? span.textContent.trim() : null;
             })
             .filter(item => item && item.trim())
             .join(', ');
-        
+
           multipleSelected.textContent = text || 'Empty';
         }
 
@@ -5437,17 +5702,18 @@ class ManualOrderValidator {
 }
 
 class ManualOrderPopup {
-  constructor() {
+  constructor(id = null) {
     this.rootEl = document.querySelector('#addManulOrderPopup')
     if (!this.rootEl) return
 
+    this.orderID = id
     this.handler = this.rootEl.querySelector('.m-popup__handler')
     this.opened = false
     this.formInstance = null
     this.init()
   }
   init() {
-    this.formInstance = new ManualOrderForm(this.rootEl, this)
+    this.formInstance = new ManualOrderForm(this.rootEl, this, this.orderID)
     this.bindEvents()
     this.bindDragEvents()
     this.show()
@@ -5629,6 +5895,7 @@ class ManualOrderProductSearch {
     try {
 
       const results = await AjaxGetItemsArray(query)
+      // const results = await fakeAjaxGetItemsArray(query)
 
       if (Array.isArray(results) && !results.length) {
         this.showEmptyResult()
@@ -5743,7 +6010,9 @@ class ManualOrderCustomerSearch {
     this.disable()
     this.toggleCheckboxVisibiltiy(false)
     try {
+
       const results = await AjaxGetCustomersArray(query)
+      // const results = await fakeAjaxGetCustomers(query)
       this.toggleCheckboxVisibiltiy(true)
 
       if (Array.isArray(results) && !results.length) {
@@ -5826,7 +6095,7 @@ class ManualOrderCustomerSearch {
 }
 
 class ManualOrderForm {
-  constructor(rootEl, popupInstance) {
+  constructor(rootEl, popupInstance, orderID) {
     this.rootEl = rootEl
     if (!this.rootEl) {
       return
@@ -5839,9 +6108,12 @@ class ManualOrderForm {
 
     this.selectedItem = null
     this.selectedItemElem = null
-
     this.selectedCustomer = null
     this.selectedCustomerElem = null
+    this.otherDetails = null
+    this.orderID = orderID
+
+    this.setFromOrder = false
 
     this.contentItem = document.querySelector('#contentItem')
     this.contentCustomer = document.querySelector('#contentCustomer')
@@ -5877,6 +6149,62 @@ class ManualOrderForm {
     this.setupInitialSteps()
     this.goStep(1)
     this.bindBalanceToggle()
+
+    if (this.orderID) {
+      this.setupFromOrder(this.orderID)
+    }
+  }
+
+  // setup from Order
+  async setupFromOrder(orderID) {
+    this.disable()
+
+    /**
+    * @CHOU Setup here
+    * Need to setup function to fetch order's details
+    * if they open this form by clicking "Edit Order" button
+    * const order = await fakeAjaxGetOrder(orderID)
+    */
+    const order = await fakeAjaxGetOrder(orderID)
+
+    if (!order || Object.keys(order).length === 0) {
+      new pageMsg({
+        heading: 'Invalid Order',
+        msg: 'The order you are trying to edit was not found or this order is not manually created'
+      })
+      this.popupInstance.close()
+      return
+    }
+
+    this.setFromOrder = true
+    this.fillFormFromOrder(order)
+    this.enable()
+  }
+  fillFormFromOrder(order) {
+    const { customer, item, other_details } = order
+    this.selectedCustomer = customer
+    this.selectedItem = item
+
+    const sections = [
+      { key: 'customer', value: customer, handler: this.fillCustomerInputs.bind(this) },
+      { key: 'item', value: item, handler: this.renderManualItem.bind(this) },
+      { key: 'other_details', value: other_details, handler: this.fillOtherDetails.bind(this) }
+    ]
+
+    const sectionHandler = (section) => {
+      const { key, value, handler } = section
+      if (!value) {
+        new pageMsg({
+          heading: 'Something went wrong',
+          msg: `${key} not found`
+        })
+        this.popupInstance.close()
+        return
+      }
+      handler(value)
+    }
+
+    sections.forEach(sectionHandler)
   }
 
   // Bind Initial events
@@ -5921,6 +6249,11 @@ class ManualOrderForm {
       inputArr.forEach(input => {
         input.value = ''
       })
+    }
+
+    if (this.customerPhotoElem) {
+      this.customerPhotoElem.src = ''
+      this.customerPhotoWrap.classList.remove('--filled')
     }
 
     if (this.customerSearch) {
@@ -6068,6 +6401,7 @@ class ManualOrderForm {
     this.disable()
 
     try {
+      // const item = await fakeAjaxGetItem(id)
       const item = await AjaxGetItem(id)
 
       if (!item) {
@@ -6077,8 +6411,6 @@ class ManualOrderForm {
 
       this.selectedItem = item
       this.renderManualItem(item)
-
-      this.contentItem.classList.add('--show-selected')
       this.productSearch.reset()
 
     } catch (error) {
@@ -6088,6 +6420,7 @@ class ManualOrderForm {
     }
   }
   renderManualItem(item) {
+    this.contentItem.classList.add('--show-selected')
     // Create main element of selected item
     const createPriceElem = (() => {
       let html = ''
@@ -6191,6 +6524,7 @@ class ManualOrderForm {
     try {
 
       const customer = await AjaxGetCustomer(id)
+      // const customer = await fakeAjaxGetCustomer(id)
 
       if (!customer) {
         this.showMsg('error', 'Customer not found')
@@ -6208,7 +6542,7 @@ class ManualOrderForm {
     }
   }
   fillCustomerInputs(customer) {
-    const { customer_id,first_name, last_name, email, phone, img_src } = customer
+    const { customer_id, first_name, last_name, email, phone, img_src } = customer
     const resetButton = createElem('div', {
       className: 'blank-btn',
       attributes: { 'data-evt': 'resetManualCustomer' },
@@ -6235,6 +6569,37 @@ class ManualOrderForm {
         this.customerPhotoElem.src = img_src
         this.customerPhotoWrap.classList.add('--filled')
       }
+    }
+  }
+
+  // Other Details
+  fillOtherDetails(details) {
+    const handleFormElement = (name, value) => {
+      const element = this.form.querySelector(`[name="${name}"]`)
+      if (element) {
+        const tagName = element.tagName.toLowerCase()
+
+        if (Array.isArray(value)) {
+          if (tagName === 'input' && element.type === 'checkbox') {
+            for (const val of value) {
+              const elem = this.form.querySelector(`[name="${name}"][value="${val}"]`)
+              elem.checked = true
+              elem.dispatchEvent(new Event('change', { bubbles: true }))
+            }
+          }
+        } else {
+          if (tagName === 'input') {
+            element.value = value
+          } else if (tagName === 'select') {
+            element.value = value
+            element.dispatchEvent(new Event('change', { bubbles: true }))
+          }
+        }
+      }
+    }
+
+    for (const value in details) {
+      handleFormElement(value, details[value])
     }
   }
 
@@ -6324,34 +6689,48 @@ class ManualOrderForm {
 
   // Close & Submit
   getFormData() {
-    const form = this.form
-    const formData = new FormData(form)
+    const formData = new FormData(this.form);
 
-    const ignoreFields = ['itemSearch', 'customerSearch']
+    const config = {
+      ignore: ['itemSearch', 'customerSearch'],
+      arrays: ['paid_method']
+    };
 
-    const data = {}
-    for (let [key, value] of formData.entries()) {
-      if (ignoreFields.includes(key)) {
-        continue
-      }
-      data[key] = value
-    }
+    const result = Object.fromEntries(
+      config.arrays.map(key => [key, formData.getAll(key)]).filter(([_, values]) => values.length > 0)
+    );
 
-    return data
+    const cleanEntries = Array.from(formData).filter(([key]) => ![...config.ignore, ...config.arrays].includes(key));
+
+    return {
+      ...Object.fromEntries(cleanEntries),
+      ...result
+    };
   }
   async submit() {
 
     const data = this.getFormData()
     this.disable()
+
     if (!data || Object.keys(data).length === 0) {
       this.enable()
       this.showMsg('error', 'ERR: MOF99. Form data is empty')
       return
     }
-    let response = null;
-    try {
 
-      response = await submitOrderData(data);
+    let response = null;
+
+    try {
+      if (!this.setFromOrder) {
+        response = await submitOrderData(data);
+      } else {
+        /**
+         * @CHOU Setup here
+         * Need to setup function to save updated order's details
+         * if they open the modal by clicking "Edit order" button.
+         */
+        response = await submitSaveOrderData(data);
+      }
 
       if (response.error) {
         throw new Error(`${response.msg}`)
@@ -6377,5 +6756,9 @@ class ManualOrderForm {
 document.addEventListener('DOMContentLoaded', () => {
   window.addManualOrder = () => {
     new ManualOrderPopup()
+  }
+
+  window.editManualOrder = (orderID) => {
+    new ManualOrderPopup(orderID)
   }
 })
