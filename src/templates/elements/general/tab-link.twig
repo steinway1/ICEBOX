@@ -1,10 +1,31 @@
-<a href="{{link.href}}" class="nopage-link smart-picture">
-	<div>
-		<img src="{{link.src}}" alt="">
-		<span>{{link.count}}</span>
-	</div>
-	<div>
-		<div>{{link.heading}}</div>
-		<span>Shop Now</span>
-	</div>
-</a>
+<div {% if user.admin %} data-id="{{link.id}}" {% endif %} class="nopage-link">
+	<a data-href href="{{link.href}}" class="nopage-link__main smart-picture">
+		<div>
+			<img data-src src="{{link.src}}" alt="">
+			<span>{{link.count}}</span>
+		</div>
+		<div>
+			<div data-heading>{{link.heading}}</div>
+			<span>Shop Now</span>
+		</div>
+	</a>
+	{% if user.admin %}
+		<div class="nopage-link__controls">
+			<div class="sign-form__item">
+				<div class="sign-form__input-wrap">
+					<input data-for="heading" type="text" class="sign-form__input" placeholder="Tab heading" value="{{ link.heading ?: '' }}" required="">
+				</div>
+			</div>
+			<div class="sign-form__item">
+				<div class="sign-form__input-wrap">
+					<input data-for="href" type="text" class="sign-form__input" placeholder="Link" value="{{ link.href ?: '' }}" required="">
+				</div>
+			</div>
+			<div class="sign-form__item">
+				<div class="sign-form__input-wrap">
+					<input data-for="src" type="text" class="sign-form__input" placeholder="Image URL" value="{{ link.src ?: '' }}" required="">
+				</div>
+			</div>
+		</div>
+	{% endif %}
+</div>

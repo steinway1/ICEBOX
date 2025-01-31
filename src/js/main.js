@@ -219,3 +219,149 @@ document.addEventListener('DOMContentLoaded', function () {
   return
   let text = document.querySelector('#item_name')?.textContent
 })
+
+class NoPage {
+  constructor() {
+    this.grid = document.querySelector('.nopage__categories')
+    this.linksArr = [...document.querySelectorAll('.nopage-link[data-id])')]
+    if (!this.grid || !this.linksArr.length) return
+
+    this.addEvtArr = [...document.querySelectorAll('[data-evt="addNewTabLink"]')]
+
+    this.init()
+  }
+  init() {
+    this.bindDraggable()
+    this.bindInputEvents()
+  }
+  bindDraggable() {
+    const container = this.grid
+    let draggedItem = null
+    let dragClone = null
+    let placeholder = null
+    let isDragging = false
+
+    container.addEventListener('mousedown', function (e) {
+      const target = e.target.closest('.nopage-link:not(.--add)')
+      const main = e.target.closest('.nopage-link__main')
+
+      if (!target || e.button !== 0) return
+      if (!main) return
+
+      draggedItem = target;
+      isDragging = false;
+
+      dragClone = draggedItem.cloneNode(true);
+      dragClone.classList.add('dragging-clone');
+      document.body.appendChild(dragClone);
+
+      const rect = draggedItem.getBoundingClientRect();
+      dragClone.style.width = `${rect.width}px`;
+      dragClone.style.height = `${rect.height}px`;
+      dragClone.style.left = `${e.pageX - rect.width / 2}px`;
+      dragClone.style.top = `${e.pageY - rect.height / 2}px`;
+
+
+      draggedItem.style.display = 'none';
+      container.classList.add('--dragging');
+
+      placeholder = document.createElement('div');
+      placeholder.className = 'nopage-link-placeholder';
+      draggedItem.parentNode.insertBefore(placeholder, draggedItem);
+
+      document.addEventListener('mousemove', onDragStart);
+      document.addEventListener('mouseup', stopDrag);
+    });
+
+    function onDragStart(e) {
+      if (!isDragging) {
+        isDragging = true;
+        document.removeEventListener('mousemove', onDragStart);
+        document.addEventListener('mousemove', onDrag);
+      }
+    }
+
+    function onDrag(e) {
+      if (!draggedItem) return;
+
+      const rect = dragClone.getBoundingClientRect();
+      dragClone.style.left = `${e.pageX - rect.width / 2}px`;
+      dragClone.style.top = `${e.pageY - rect.height / 2}px`;
+
+      const elements = document.elementsFromPoint(e.clientX, e.clientY);
+      const targetItem = elements.find(
+        (el) =>
+          el.classList.contains('nopage-link') &&
+          el !== draggedItem &&
+          el !== placeholder &&
+          !el.classList.contains('--add')
+      );
+      if (targetItem) {
+        const rect = targetItem.getBoundingClientRect();
+        const middleY = rect.top + rect.height / 2;
+
+        if (e.clientY > middleY) {
+          container.insertBefore(placeholder, targetItem.nextSibling);
+        } else {
+          container.insertBefore(placeholder, targetItem);
+        }
+      }
+    }
+
+    function stopDrag() {
+      if (!draggedItem) return;
+
+      container.insertBefore(draggedItem, placeholder);
+      placeholder.remove();
+      dragClone.remove();
+
+      draggedItem.style.display = 'flex';
+      container.classList.remove('--dragging');
+      draggedItem = null;
+      placeholder = null;
+      dragClone = null;
+      isDragging = false;
+
+      document.removeEventListener('mousemove', onDrag);
+      document.removeEventListener('mouseup', stopDrag);
+    }
+  }
+  bindInputEvents() {
+    const linksArr = [...document.querySelectorAll('.nopage-link')]
+    for (const link of linksArr) {
+      if (link.isInitialized) return
+
+      link.isInitialized = true
+      this._bindInputs(link)
+    }
+  }
+  bindAddNewLink() {
+    for (const link of this.addEvtArr) {
+      link.addEventListener('click', () => {
+        this.addNewLink(link)
+      })
+    }
+  }
+
+  // input Events
+  _bindInputs(linkElem) {
+    const inputArr = [...linkElem.querySelectorAll('input[data-for]')]
+
+    for (const input of inputArr) {
+      input.addEventListener('input', () => {
+        const setFor = input.getAttribute('data-for')
+        const target = linkElem.querySelector(`[data-${setFor}]`)
+
+        if (setFor === 'heading') {
+          target.textContent = input.value ? input.value : 'Empty Heading'
+        } else if (setFor === 'src') {
+          target.src = input.value ? input.value : ''
+        }
+      })
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  new NoPage()
+})

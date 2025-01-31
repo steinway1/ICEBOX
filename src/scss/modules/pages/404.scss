@@ -262,6 +262,15 @@
   display: grid;
   padding-bottom: 42px;
 
+  &.--dragging {
+    &, * {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+  }
+
   @media screen and (min-width: 1440px) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
@@ -277,17 +286,24 @@
   }
 }
 
-.nopage-link {
+.nopage-link__main {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  border-radius: .5rem;
+  user-select: none;
+
+  aspect-ratio: 1 / 1.1;
+
+  @include maxWidthXs {
+    aspect-ratio: 1 / 1.4;
+  }
 
   &>div {
     &:first-child {
-      aspect-ratio: 1 / 1.1;
-      border-radius: .5rem;
       position: relative;
-      overflow: hidden;
+      width: 100%;
+      height: 100%;
 
       &>img {
         object-fit: cover;
@@ -307,10 +323,6 @@
         position: absolute;
         top: 8px;
         right: 8px;
-      }
-      
-      @include maxWidthXs {
-        aspect-ratio: 1 / 1.4;
       }
     }
 
@@ -348,6 +360,51 @@
   }
 }
 
+.nopage-link__controls {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  input {
+    height: 36px;
+  }
+}
+
+.nopage-link {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &.--add {
+    .nopage-link__main {
+      cursor: pointer;
+      background-color: var(--main-grey);
+      border: 1px solid var(--main-grey-50);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &::after {
+        content: '+ Add new link';
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      &:active {
+        opacity: 0.65;
+      }
+
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+}
+
 .nopage__archive-header {
   grid-column-gap: 12px;
   grid-row-gap: 12px;
@@ -361,4 +418,37 @@
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+/* Плейсхолдер в сетке */
+.nopage-link-placeholder {
+  background: var(--ghost-blue);
+  border: 2px dashed var(--blue);
+  border-radius: 0.8rem;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* Клон для перетаскивания */
+.dragging-clone {
+  position: absolute !important;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.9;
+  transform: scale(0.8);
+  // box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: transform 0.2s, opacity 0.2s;
+  cursor: grabbing !important;
+  overflow: visible !important;
+}
+
+/* Небольшая анимация при захвате */
+.nopage-link {
+  transition: transform 0.2s, opacity 0.2s;
 }
