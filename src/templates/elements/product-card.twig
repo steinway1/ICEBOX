@@ -115,18 +115,20 @@
 					<div data-tip="This product features only natural diamonds in VS quality, offering unmatched quality and rarity." data-notice="This product features only natural diamonds in VS quality, offering unmatched quality and rarity." class="product-card__vs-btn"></div>
 				{% endif %}
 			</div>
-
 		</div>
+
+		{# Price Alerts & WhatsApp Button #}
+		{% if productItem.is_watch_market and (user.admin == true or not productItem.msrp) %}
+			<div class="product-card__button-group">
+				<button onclick="openPriceModal(event)" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+				<a href="/chat-whatsapp" class="ccb-btn --min --icon_before --wa">Chat on WhatsApp</a>
+			</div>
+		{% endif %}
 
 		<div class="product-card__details">
 			<div class="product-card__main">
 				<div
 					class="product-card__title-wrap">
-
-					{# Price Alerts #}
-					{% if productItem.is_watch_market and user.admin %}
-						<button onclick="openPriceModal(event)" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
-					{% endif %}
 
 					{# Only One At This Price #}
 					{% if xmas and productItem.is_discounted and (productItem.inStock or productItem.force_sale) and not vday %}
@@ -210,10 +212,6 @@
 							<div>
 								<span>MSRP</span>
 								<span>{{productItem.msrp ?: 'Unknown'}}</span>
-							</div>
-						{% else %}
-							<div class="--empty">
-								<a href="/chat-whatsapp">Talk on Whatsapp</a>
 							</div>
 						{% endif %}
 					</div>

@@ -6,7 +6,7 @@ require('./gulp/dist.js')
 gulp.task(
   'default', gulp.series(
     'clean:dev',
-    gulp.parallel('twig:dev', 'css:dev', 'css-promo:dev', 'js:dev', 'js-promo:dev', 'js2:dev', 'js-plugins:dev', 'assets:dev', 'fonts:dev'),
+    gulp.parallel('twig:dev', 'css:dev', 'js:dev', 'js-plugins:dev', 'assets:dev', 'fonts:dev', 'js-promo:dev', 'js2:dev', 'css-promo:dev'),
     gulp.parallel('twig-admin:dev', 'css-admin:dev', 'js-admin:dev', 'fonts-admin:dev', 'assets-admin:dev'),
     gulp.parallel('watch:dev')
   )

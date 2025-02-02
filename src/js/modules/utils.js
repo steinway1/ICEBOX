@@ -139,11 +139,12 @@ function hideSkeleton() {
   document.body.classList.remove('--skeleton')
 }
 
-function openPriceModal(target, id) {
+function openPriceModal(event, id) {
+  const target = event.target
   const card = target.closest('.product-card')
   if (!card) return
 
-  window.signPriceModal = new window.priceModal(card, id)
+  window.signPriceModal = new PriceModal(card, id)
 }
 
 // function openPriceModal(e) {

@@ -84,18 +84,6 @@
     }
   }
 
-  .ccb-btn {
-    margin-bottom: 12px;
-    box-shadow: 0 3px 6px rgba(81, 86, 94, 0.05);
-
-    @media screen and (min-width: 992px) {
-      &:hover {
-        background-color: white;
-        border-color: var(--black);
-      }
-    }
-  }
-
   @include maxWidthXs {
     background-color: white;
   }
@@ -1540,5 +1528,27 @@
 
   &.is-call-for-price {
     flex: 1;
+  }
+}
+
+.product-card__button-group {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  margin: 4px 2px -6px 2px;
+
+  .ccb-btn {
+    background-color: #f9f9f9;
+    border-color: #f9f9f9;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 12px !important;
+
+    @media screen and (min-width: 992px) {
+      &:hover {
+        border-color: #10b1e6;
+        background-color: white;
+      }
+    }
   }
 }
