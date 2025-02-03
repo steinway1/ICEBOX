@@ -66,6 +66,7 @@ window.salesModal = require('./modules/modals/sales-modal')
 const noticeModal = require('./modules/modals/notice-modal')
 const Menu = require('./modules/modals/menu')
 const AddCartModal = require('./modules/dynamic/add-cart-modal')
+const Search = require('./modules/modals/search')
 // const ShareButtons = require('./modules/elements/share-buttons')
 
 /** PG Filters/Select/Modal
@@ -214,4 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // No Page / Made Order page
   new NoPage()
+
+  // Search
+  window.Search = new Search()
 })

@@ -5,12 +5,18 @@ class PageMsg {
     this.heading = settings?.heading || 'Something went wrong'
     this.text = settings?.text || 'Text is not specified'
     this.id = settings?.id || null
+    this.autodelete = settings?.autodelete || false
     this.elem = null
     this.show()
   }
   show() {
     this.create()
     this.append()
+    if (this.autodelete) {
+      setTimeout(() => {
+        this.destroy()
+      }, 1500)
+    }
   }
   create() {
     this.elem = document.querySelector(`.page-msg[data-msg-id="${this.settings?.id}"]`) || document.createElement('div');

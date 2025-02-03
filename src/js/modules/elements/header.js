@@ -8,11 +8,6 @@ const header = {
     // Login Dropdown
     this.loginBtn = $('[data-evt="toggleAccountDropdown"]');
     this.loginDropdown = $(".login-dropdown");
-
-    // Search
-    this.searchBtn = $('[data-evt="toggleSearch"]');
-    this.searchBlock = $(".header-search");
-
     this.loginLink = $('.login-nav__link')
   },
   bindEvents: function () {
@@ -32,32 +27,6 @@ const header = {
     this.loginLink.click(function (e) {
       e.stopPropagation()
     })
-
-    this.searchBtn.click(() => {
-      let el = header.searchBlock;
-
-      function hideSearch() {
-        el.removeClass(IS_VISIBLE);
-        unlockScroll();
-      }
-
-      if (el.hasClass(IS_VISIBLE)) {
-        hideSearch()
-        if (window.searchBackdrop) {
-          window.searchBackdrop.hide();
-        }
-      } else {
-        lockScroll();
-        el.addClass(IS_VISIBLE);
-        el.find("input").focus();
-
-        window.searchBackdrop = new Backdrop({
-          half: true,
-          zIndex: (getZIndex(document.querySelector('header')) - 1),
-          callback: hideSearch
-        })
-      }
-    });
   },
   setDropdowns: function (...args) {
     args = Array.from(document.querySelectorAll('.header__sub-link'))
