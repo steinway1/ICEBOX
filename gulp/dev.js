@@ -93,6 +93,7 @@ const root = {
       },
       bundle: {
         main: './src/js/main.js',
+        admin: './src/js/admin/main.js',
         main_v2: './src/js/main_v2.js',
         login: './src/js/login.js',
         cartMail: './src/js/cart-mail.js',
@@ -178,25 +179,6 @@ gulp.task('css-admin:dev',
       // .pipe(groupMedia())
       .pipe(sourceMaps.write())
       .pipe(gulp.dest(root.dev.adminCSS))
-  }
-)
-
-gulp.task('js-admin:dev',
-  () => {
-    return gulp
-      .src([
-        root.src.adminJS.lib.jquery,
-        root.src.adminJS.lib.lottie,
-        root.src.adminJS.lib.air_datepicker,
-        root.src.adminJS.lib.select2,
-        root.src.adminJS.lib.splide,
-        root.src.adminJS.bundle.main
-      ])
-      .pipe(changed(root.dev.adminJS))
-      .pipe(plumber(setPlumberNotify('ADMIN JAVASCRIPT')))
-      .pipe(concat('partial.js'))
-      .pipe(minify())
-      .pipe(gulp.dest(root.dev.adminJS))
   }
 )
 
@@ -317,17 +299,55 @@ gulp.task('js:dev', () => {
     entries: [root.src.js.bundle.main],
     debug: true
   })
-  .transform(babelify, { // Добавляем Babel
-    presets: ['@babel/preset-env'],
-    global: true // обрабатывать все файлы
-  })
-  .bundle()
-  .pipe(source('partial.js'))
-  .pipe(buffer())
-  .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-  .pipe(minify())
-  .pipe(gulp.dest(root.dev.js));
+    .transform(babelify, { // Добавляем Babel
+      presets: ['@babel/preset-env'],
+      global: true // обрабатывать все файлы
+    })
+    .bundle()
+    .pipe(source('partial.js'))
+    .pipe(buffer())
+    .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+    .pipe(minify())
+    .pipe(gulp.dest(root.dev.js));
 });
+
+gulp.task('js-admin:dev',
+  () => {
+    return browserify({
+      entries: [root.src.js.bundle.admin],
+      debug: true
+    })
+      .transform(babelify, { // Добавляем Babel
+        presets: ['@babel/preset-env'],
+        global: true // обрабатывать все файлы
+      })
+      .bundle()
+      .pipe(source('partial.js'))
+      .pipe(buffer())
+      .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+      .pipe(minify())
+      .pipe(gulp.dest(root.dev.adminJS))
+  }
+)
+
+// gulp.task('js-admin:dev',
+//   () => {
+//     return gulp
+//       .src([
+//         root.src.adminJS.lib.jquery,
+//         root.src.adminJS.lib.lottie,
+//         root.src.adminJS.lib.air_datepicker,
+//         root.src.adminJS.lib.select2,
+//         root.src.adminJS.lib.splide,
+//         root.src.adminJS.bundle.main
+//       ])
+//       .pipe(changed(root.dev.adminJS))
+//       .pipe(plumber(setPlumberNotify('ADMIN JAVASCRIPT')))
+//       .pipe(concat('partial.js'))
+//       .pipe(minify())
+//       .pipe(gulp.dest(root.dev.adminJS))
+//   }
+// )
 
 // gulp.task('js:dev', () => {
 //   return browserify({
@@ -467,9 +487,12 @@ gulp.task('watch:dev',
       gulp.watch('./src/templates/admin/svg/**', gulp.parallel('twig-admin:dev')),
       gulp.watch('./src/templates/admin/assets/**/*', gulp.parallel('assets-admin:dev')),
       gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev', 'css-admin:dev', 'css-promo:dev')),
-      gulp.watch('./src/js/**/*.js', gulp.parallel('js:dev', 'js2:dev', 'js-admin:dev', 'js-promo:dev')),
-      gulp.watch('./src/js/**/*.ts', gulp.parallel('ts-admin:dev')),
-      gulp.watch('./src/assets/**/*', gulp.parallel('assets:dev'))
+      gulp.watch([
+        './src/js/*.js',
+        './src/js/modules/**/*.js',
+      ], gulp.parallel('js:dev')),
+      gulp.watch('./src/js/admin/**/*.js', gulp.parallel('js-admin:dev')),
+      gulp.watch('./src/js/promo/**/*.js', gulp.parallel('js-promo:dev'))
   }
 )
 

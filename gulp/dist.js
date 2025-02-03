@@ -92,6 +92,7 @@ const root = {
       },
       bundle: {
         main: './src/js/main.js',
+        admin: './src/js/admin/main.js',
         main_v2: './src/js/main_v2.js',
         login: './src/js/login.js',
         cartMail: './src/js/cart-mail.js',
@@ -187,24 +188,6 @@ gulp.task('css-admin:build',
   }
 )
 
-gulp.task('js-admin:build',
-  () => {
-    return gulp
-      .src([
-        root.src.adminJS.lib.jquery,
-        root.src.adminJS.lib.lottie,
-        root.src.adminJS.lib.air_datepicker,
-        root.src.adminJS.lib.select2,
-        root.src.adminJS.lib.splide,
-        root.src.adminJS.bundle.main
-      ])
-      .pipe(changed(root.build.adminJS))
-      .pipe(plumber(setPlumberNotify('ADMIN JAVASCRIPT')))
-      .pipe(concat('partial.js'))
-      .pipe(minify())
-      .pipe(gulp.dest(root.build.adminJS))
-  })
-
 gulp.task('fonts-admin:build',
   () => {
     return gulp
@@ -284,39 +267,58 @@ gulp.task('css-promo:build',
   }
 )
 
-// gulp.task('js:build', () => {
-//   // Browserify configuration
-//   return browserify({
-//     entries: [
-//       root.src.js.bundle.main
-//     ],
-//     debug: true
-//   })
-//     .bundle()
-//     .pipe(source('partial.js'))
-//     .pipe(buffer())
-//     .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-//     .pipe(minify())
-//     .pipe(gulp.dest(root.build.js))
-// })
-
 gulp.task('js:build', () => {
   return browserify({
     entries: [root.src.js.bundle.main],
     debug: true
   })
-  .transform(babelify, { // Добавляем Babel
-    presets: ['@babel/preset-env'],
-    global: true // обрабатывать все файлы
-  })
-  .bundle()
-  .pipe(source('partial.js'))
-  .pipe(buffer())
-  .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-  .pipe(minify())
-  .pipe(gulp.dest(root.build.js));
+    .transform(babelify, { // Добавляем Babel
+      presets: ['@babel/preset-env'],
+      global: true // обрабатывать все файлы
+    })
+    .bundle()
+    .pipe(source('partial.js'))
+    .pipe(buffer())
+    .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+    .pipe(minify())
+    .pipe(gulp.dest(root.build.js));
 });
 
+gulp.task('js-admin:build',
+  () => {
+    return browserify({
+      entries: [root.src.js.bundle.admin],
+      debug: true
+    })
+      .transform(babelify, { // Добавляем Babel
+        presets: ['@babel/preset-env'],
+        global: true // обрабатывать все файлы
+      })
+      .bundle()
+      .pipe(source('partial.js'))
+      .pipe(buffer())
+      .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
+      .pipe(minify())
+      .pipe(gulp.dest(root.build.adminJS))
+  })
+
+// gulp.task('js-admin:build',
+//   () => {
+//     return gulp
+//       .src([
+//         root.src.adminJS.lib.jquery,
+//         root.src.adminJS.lib.lottie,
+//         root.src.adminJS.lib.air_datepicker,
+//         root.src.adminJS.lib.select2,
+//         root.src.adminJS.lib.splide,
+//         root.src.adminJS.bundle.main
+//       ])
+//       .pipe(changed(root.build.adminJS))
+//       .pipe(plumber(setPlumberNotify('ADMIN JAVASCRIPT')))
+//       .pipe(concat('partial.js'))
+//       .pipe(minify())
+//       .pipe(gulp.dest(root.build.adminJS))
+//   })
 
 
 // gulp.task('js:build',

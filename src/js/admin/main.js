@@ -1,3 +1,10 @@
+var $ = require('./lib/jquery')
+window.$ = window.jQuery = $
+window.bodymovin = require('./lib/lottie')
+window.AirDatepicker = require('./lib/air-datepicker')
+window.select2 = require('./lib/select2')
+window.Splide = require('./lib/splide')
+
 const
   IS_VISIBLE = 'is-visible',
   IS_ACTIVE = 'is-active',
