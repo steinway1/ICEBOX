@@ -178,7 +178,7 @@ class Search {
        * We abort request on every new input event @see {#bindInput}
        * Kindly don't remove my fake ajax request {@link #_fakeAjaxRequest} & {@link #_getFakeSearchData}
        */
-      const searchData = await this._fakeAjaxRequest(query, signal)
+      const searchData = await this._AjaxRequest(query, signal)
       if (signal.aborted) {
         return
       }
@@ -214,7 +214,16 @@ class Search {
     }
   }
 }
+Search.prototype._getSearchData = function (query) {
+  $.ajax({
+    url:'/ajax/search-suggestions?query='+query,
+    type:'GET',
+    success:function(data){
+      return data;
+    }
+  });
 
+};
 Search.prototype._getFakeSearchData = function (query) {
   return {
     query: 'heart pendant',
@@ -314,7 +323,32 @@ Search.prototype._getFakeSearchData = function (query) {
     ]
   }
 };
+Search.prototype._AjaxRequest = function (query, signal) {
+  console.log(query);
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) {
+      reject(new DOMException('Aborted', 'AbortError'))
+      return
+    }
 
+    const timeoutId = setTimeout(() => {
+      if (signal?.aborted) {
+        reject(new DOMException('Aborted', 'AbortError'))
+        return
+      }
+
+      let searchData = this._getSearchData(query)
+      // searchData.itemsArr = []
+      // const searchData = false
+      resolve(searchData)
+    }, 1500)
+
+    signal?.addEventListener('abort', () => {
+      clearTimeout(timeoutId)
+      reject(new DOMException('Aborted', 'AbortError'))
+    })
+  })
+}
 Search.prototype._fakeAjaxRequest = function (query, signal) {
   return new Promise((resolve, reject) => {
     if (signal?.aborted) {
