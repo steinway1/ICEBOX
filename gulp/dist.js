@@ -26,6 +26,7 @@ const minify = require('gulp-minify')
 const ts = require('gulp-typescript')
 const browserify = require('browserify');
 const babelify = require('babelify');
+const aliasify = require('aliasify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const mergeStream = require('merge-stream')
@@ -294,6 +295,8 @@ gulp.task('js-admin:build',
         presets: ['@babel/preset-env'],
         global: true // обрабатывать все файлы
       })
+      // .transform('browserify-shim', { global: true })
+      // .transform(aliasify, { configure: './package.json' })
       .bundle()
       .pipe(source('partial.js'))
       .pipe(buffer())

@@ -1,52 +1,59 @@
-var $ = require('./lib/jquery')
-window.$ = window.jQuery = $
-window.bodymovin = require('./lib/lottie')
-window.AirDatepicker = require('./lib/air-datepicker')
-window.select2 = require('./lib/select2')
-window.Splide = require('./lib/splide')
+import $ from 'jquery'
+import 'select2'
 
-const
-  IS_VISIBLE = 'is-visible',
-  IS_ACTIVE = 'is-active',
-  IS_HIDDEN = 'is-hidden',
-  __BACK = '--back',
-  __MOVING = '--moving',
-  __STASH = '--stash',
-  __FILLED = '--filled',
-  __FOCUSED = '--focused',
-  __HOVERED = '--hovered',
-  __BLANK = '--blank',
-  __ADDED = '--added',
-  __LOADING = '--loading',
-  __EMPTY = '--empty',
-  __TRUE = '--true',
-  __FALSE = '--false',
-  __FADE = '--fade',
-  __VISIBLE = '--visible',
-  __ACTIVE = '--active',
-  __HIDDEN = '--hidden',
-  __SEALED = '--sealed',
-  __REVEALED = '--revealed',
-  __EDIT = '--edit'
+// Libs
+import bodymovin from './lib/lottie'
+import AirDatepicker from './lib/air-datepicker'
 
-function inputAllowOnlyDecimals(input) {
-  input.oninput = function () {
-    this.value = this.value.replace(/[^0-9.]/g, '');
-  }
-}
+// Constants
+import {
+  IS_VISIBLE,
+  IS_ACTIVE,
+  IS_HIDDEN,
+  __BACK,
+  __MOVING,
+  __STASH,
+  __FILLED,
+  __FOCUSED,
+  __HOVERED,
+  __BLANK,
+  __ADDED,
+  __LOADING,
+  __EMPTY,
+  __TRUE,
+  __FALSE,
+  __FADE,
+  __VISIBLE,
+  __ACTIVE,
+  __HIDDEN,
+  __SEALED,
+  __REVEALED,
+  __EDIT
+} from './modules/general/constants'
 
-function updateInputAllowOnlyDecimals() {
-  const onlyDecimalsInputs = document.querySelectorAll('input[data-allow-decimals]')
-  for (const input of onlyDecimalsInputs) {
-    inputAllowOnlyDecimals(input)
-  }
-}
+// Utils
+import {
+  createElem,
+  getTransitionTime,
+  inputAllowOnlyDecimals,
+  lockScroll,
+  unlockScroll,
+  updateInputsAllowOnlyDecimals
+} from './modules/general/utils'
+
+// Dynamic
+import PopupBackdrop from './modules/dynamic/popup-backdrop'
+import LockPin from './modules/dynamic/lock-pin'
+import PageMsg from './modules/dynamic/page-msg'
+
+// Pages
+import { initPage } from './page-manager'
+import { initPageElements } from './page-elements'
 
 document.addEventListener('DOMContentLoaded', () => {
-  updateInputAllowOnlyDecimals()
+  initPage()
+  initPageElements()
 })
-
-// Locked inputs (data-locked-input)
 
 function getFakeManulOrder(id) {
   const customer = getFakeCustomer(id)
@@ -324,7 +331,6 @@ function fakeFetchRemoveOrder(url, options) {
   });
 }
 
-
 function unlockDataLockedInput(input) {
   const callback = () => {
     input.removeAttribute('data-locked-input')
@@ -338,6 +344,7 @@ function unlockDataLockedInput(input) {
   })
   pin.push()
 }
+
 document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', (e) => {
     const target = e.target
@@ -459,91 +466,8 @@ function submitOrderData(data) {
   });
 }
 
-function createElem(tagName, options) {
-  const { className, id, innerHTML, style, attributes, toAppend } = options
-  const elem = document.createElement(tagName)
-  if (className) elem.className = className;
-  if (id) elem.id = id;
-  if (innerHTML) elem.innerHTML = innerHTML;
-  if (style) {
-    for (const key in options.style) { elem.style[key] = options.style[key] }
-  }
-  if (attributes) {
-    for (const key in options.attributes) { elem.setAttribute(key, options.attributes[key]) }
-  }
-  if (toAppend) {
-    for (const child of toArray(toAppend)) { elem.appendChild(child) }
-  }
-  return elem
-}
-
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function lockScroll() {
-  setTimeout(function () {
-    if (!document.body.hasAttribute("ib-scroll-lock")) {
-      let o = window.pageYOffset || document.documentElement.scrollTop;
-      document.body.setAttribute("ib-scroll-lock", o),
-        (document.body.style.overflow = "hidden"),
-        (document.body.style.position = "fixed"),
-        (document.body.style.top = "-" + o + "px"),
-        (document.body.style.left = "0"),
-        (document.body.style.width = "100%");
-    }
-  }, 1);
-}
-
-function unlockScroll() {
-  if (document.body.hasAttribute("ib-scroll-lock")) {
-    let o = document.body.getAttribute("ib-scroll-lock");
-    document.body.removeAttribute("ib-scroll-lock"),
-      (document.body.style.overflow = ""),
-      (document.body.style.position = ""),
-      (document.body.style.top = ""),
-      (document.body.style.left = ""),
-      (document.body.style.width = ""),
-      window.scroll(0, o);
-  }
-}
-
-class PopupBackdrop {
-  constructor(settings = {}) {
-    this.el = createElem('div', {
-      className: 'page-backdrop',
-    })
-    this.callback = settings.callback || null
-    this.instant = settings.instant || false
-    this.show()
-    this.el.addEventListener('click', (e) => {
-      if (e.target === this.el) {
-        this.hide()
-      }
-      if (this.callback) {
-        this.callback()
-      }
-    })
-  }
-
-  show() {
-    if (this.instant) {
-      this.el.classList.add('--instant')
-    }
-    document.body.appendChild(this.el)
-    this.el.style.display = 'block'
-    setTimeout(() => {
-      this.el.style.opacity = '1'
-    }, 1);
-  }
-
-  hide() {
-    this.el.style.opacity = '0'
-    setTimeout(() => {
-      this.el.style.display = 'none'
-      this.el.remove()
-    }, getTransitionTime(this.el));
-  }
 }
 
 function removeClasses(target, ...classes) {
@@ -598,255 +522,6 @@ function onContentLoaded(callback) {
     callback();
   } else {
     document.addEventListener('DOMContentLoaded', callback);
-  }
-}
-
-/**
- * Lock Screen / PIN Screen
- */
-class LockPin {
-  constructor(settings = {}) {
-    this.code = settings.code || 1234;
-    this.callback = settings.callback || undefined;
-    this.maxLength = this.code.toString().length;
-    this.unlockTime = settings.unlockTime || 600;
-    this.allowClose = settings.allowClose || false;
-    this.currentPin = [];
-    this.isLocked = false;
-
-    // Handlers storage for removing event listeners later
-    this.buttonHandlers = new Map();
-    this.closeHandler = null;
-    this.submitHandler = null;
-    this.keydownHandler = null;
-  }
-
-  /**
-   * Utils
-   */
-  renderHTML() {
-    let html = `
-    <div class="pin-lock">
-      <div class="pin-lock__wrapper">
-        <div class="pin-lock__holder">
-          <div class="pin-lock__title-group">
-            <h3>Enter PIN Code</h3>
-            <span>This page is locked with pin.</span>
-          </div>
-          <div data-pin-output class="pin-lock__output">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="pin-lock__btn-grid">
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button data-pin-evt="close">Close</button>
-            <button>0</button>
-            <button data-pin-evt="submit">Enter</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    `;
-    return html;
-  }
-
-  appendScreen() {
-    document.body.insertAdjacentHTML('beforeend', this.renderHTML());
-  }
-
-  setElements() {
-    this.holder = document.querySelector('.pin-lock');
-    this.btnArr = [...this.holder.querySelectorAll('button')];
-    this.output = this.holder.querySelector('[data-pin-output]');
-    this.outputSpanArr = [...this.output.querySelectorAll('span')];
-    this.evtClose = this.holder.querySelector('[data-pin-evt="close"]');
-    this.evtSubmit = this.holder.querySelector('[data-pin-evt="submit"]');
-    this.btnArrFiltered = this.btnArr.filter((btn) => {
-      return !btn.dataset.pinEvt;
-    });
-  }
-
-  /**
-   * Methods
-   */
-  unlock() {
-    unlockScroll();
-    this.output.classList.remove(__FALSE);
-    this.output.classList.add(__TRUE);
-    setTimeout(() => {
-      this.holder.classList.add(__FADE);
-      setTimeout(() => {
-        this.destroy();
-      }, getTransitionTime(this.holder));
-    }, this.unlockTime);
-
-    if (this.callback !== undefined) {
-      this.callback();
-    }
-  }
-
-  reset() {
-    this.currentPin = [];
-    this.update();
-    this.isLocked = false;
-    removeClasses(this.output, __FALSE, __TRUE);
-  }
-
-  update() {
-    const pin = this.currentPin;
-    const length = pin.length;
-    if (length === 0) {
-      this.outputSpanArr.forEach((span) => {
-        span.innerHTML = '';
-      });
-    } else if (length <= this.maxLength) {
-      this.outputSpanArr.forEach((span, i) => {
-        if (i < length) {
-          span.innerHTML = pin[i];
-        } else {
-          span.innerHTML = '';
-        }
-      });
-    }
-    if (length === this.maxLength) {
-      this.submit();
-    }
-  }
-
-  submit() {
-    if (this.currentPin.length > 0) {
-      this.isLocked = true;
-      if (this.currentPin.join('') == this.code) {
-        this.unlock();
-      } else {
-        this.output.classList.add(__FALSE);
-        setTimeout(() => {
-          this.reset();
-        }, 700);
-      }
-    }
-  }
-
-  destroy() {
-    // Remove event listeners
-    this.removeEventListeners();
-
-    // Remove the holder from the DOM
-    if (this.holder) {
-      this.holder.remove();
-    }
-  }
-
-  /**
-   * Attach Events
-   */
-  attachButtonClick() {
-    for (const btn of this.btnArrFiltered) {
-      const handler = (e) => {
-        if (!this.isLocked) {
-          const num = Number(e.target.innerHTML);
-          this.currentPin.push(num);
-          this.update();
-        }
-      };
-      btn.addEventListener('click', handler);
-      this.buttonHandlers.set(btn, handler);
-    }
-
-    // Close button handler
-    if (this.evtClose) {
-      this.closeHandler = () => {
-        if (!this.isLocked) {
-          this.destroy();
-          unlockScroll();
-        }
-      };
-      this.evtClose.addEventListener('click', this.closeHandler);
-    }
-
-    // Submit button handler
-    if (this.evtSubmit) {
-      this.submitHandler = () => {
-        if (!this.isLocked) {
-          this.submit();
-        }
-      };
-      this.evtSubmit.addEventListener('click', this.submitHandler);
-    }
-  }
-
-  attachDocEvents() {
-    this.keydownHandler = (e) => {
-      if (this.holder) {
-        if (!this.isLocked) {
-          // e.preventDefault(); // Be cautious with preventDefault
-          const key = e.key;
-
-          if (key === 'Escape' && this.allowClose) {
-            this.destroy();
-            unlockScroll();
-            return;
-          }
-
-          if (key === 'Backspace') {
-            if (this.currentPin.length > 0) {
-              this.currentPin.pop();
-              this.update();
-            }
-          } else if (key === 'Enter') {
-            this.submit();
-          } else if (key >= '0' && key <= '9') {
-            if (this.currentPin.length < this.maxLength) {
-              this.currentPin.push(Number(key));
-              this.update();
-            }
-          }
-        }
-      }
-    };
-    document.addEventListener('keydown', this.keydownHandler);
-  }
-
-  removeEventListeners() {
-    // Remove button click handlers
-    for (const [btn, handler] of this.buttonHandlers) {
-      btn.removeEventListener('click', handler);
-    }
-    this.buttonHandlers.clear();
-
-    // Remove close and submit handlers
-    if (this.evtClose && this.closeHandler) {
-      this.evtClose.removeEventListener('click', this.closeHandler);
-      this.closeHandler = null;
-    }
-    if (this.evtSubmit && this.submitHandler) {
-      this.evtSubmit.removeEventListener('click', this.submitHandler);
-      this.submitHandler = null;
-    }
-
-    // Remove document keydown handler
-    if (this.keydownHandler) {
-      document.removeEventListener('keydown', this.keydownHandler);
-      this.keydownHandler = null;
-    }
-  }
-
-  push() {
-    lockScroll();
-    this.appendScreen();
-    this.setElements();
-    this.attachButtonClick();
-    this.attachDocEvents();
   }
 }
 
@@ -938,78 +613,6 @@ class AskModal {
 }
 /* #endregion */
 
-function pageMsg(settings = {}) {
-  this.heading = settings.heading || 'Something went wrong'
-  this.msg = settings.msg || 'Undefined message'
-  this.timeout = settings.timeout || 5000
-  this.keep = settings.keep || false
-  this.callback = settings.callback || null
-  this.hideCallback = settings.hideCallback || null
-  this.type = settings.type || ''
-  this.id = settings.id || null
-  this.zIndex = settings.zIndex || null
-  /**
-   * Types:
-   * 'error'
-   * 'success'
-   * 'warning'
-   */
-
-  const hide = () => {
-    msgElem.style.transform = 'translateY(calc(100% + 20px))'
-    msgElem.style.opacity = 0
-    setTimeout(() => {
-      msgElem.remove()
-    }, getTransitionTime(msgElem));
-    if (this.hideCallback) {
-      this.hideCallback()
-    }
-  }
-
-  const html = `
-  <h4>${this.heading}</h4>
-  <p>${this.msg}</p>
-  `
-  const msgElem = createElem('div', {
-    className: `page-msg ${this.type}`,
-    innerHTML: html,
-    style: {
-      'transform': 'translateY(calc(100% + 20px))',
-      'opacity': 0
-    }
-  })
-
-  const closeBtn = createElem('button', {})
-
-  closeBtn.onclick = () => {
-    hide()
-  }
-
-  msgElem.prepend(closeBtn)
-  document.body.appendChild(msgElem)
-
-  setTimeout(() => {
-    msgElem.style.transform = 'translateY(0)'
-    msgElem.style.opacity = 1
-  }, 10)
-
-  if (!this.keep) {
-    setTimeout(() => {
-      if (document.body.contains(msgElem)) {
-        hide()
-      }
-    }, this.timeout);
-  }
-
-  if (this.callback) {
-    callback()
-  }
-
-  if (this.zIndex) {
-    msgElem.style.zIndex = this.zIndex
-  }
-}
-
 function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
@@ -1030,11 +633,6 @@ Array.prototype.handleToggleActiveState = function () {
       }
     }
   }
-}
-
-const getTransitionTime = (target) => {
-  let el = target instanceof jQuery ? target[0] : target;
-  return parseFloat(window.getComputedStyle(el).transitionDuration) * 1000;
 }
 
 /**
@@ -1347,8 +945,6 @@ class crmSwiper {
   }
 
 }
-
-
 
 const body = document.querySelector('body'),
   pageBackdrop = document.querySelector('.am-backdrop'),
@@ -2616,7 +2212,7 @@ class PrintTag {
       return acc
     }, [])
     if (!labels.length) {
-      new pageMsg({
+      new PageMsg({
         type: 'error',
         heading: 'No labels selected',
         msg: 'Select at least one label'
@@ -2644,7 +2240,7 @@ class PrintTag {
   printAll() {
     const labels = [...this.printList.querySelectorAll('label')]
     if (!labels.length) {
-      new pageMsg({
+      new PageMsg({
         type: 'error',
         heading: 'No Tags Found',
         msg: 'Add at least one tag to print list'
@@ -3647,14 +3243,14 @@ class PosPage {
       success: function (data) {
         var r = $.parseJSON(data);
         if (!r.error) {
-          new pageMsg({
+          new PageMsg({
             type: 'success',
             heading: 'Invoice Saved',
             msg: 'Invoice saved successfully',
             timeout: 1400
           })
         } else {
-          new pageMsg({
+          new PageMsg({
             type: 'error',
             heading: 'Error',
             msg: r.msg,
@@ -3797,7 +3393,7 @@ const FinanceList = {
             const removeMessage = () => {
               try {
                 deleteFinance(application_id);
-                new pageMsg({
+                new PageMsg({
                   heading: 'Application was Removed',
                   msg: 'Application has been removed successfully',
                 });
@@ -4534,13 +4130,13 @@ class AddModal {
         success: function (data) {
           var r = $.parseJSON(data);
           if (!r.error) {
-            new pageMsg({
+            new PageMsg({
               type: 'success',
               heading: `Success!`,
               msg: `New visit for <b>${whaleName}</b> added.`,
             })
           } else {
-            new pageMsg({
+            new PageMsg({
               type: 'error',
               heading: `Error!`,
               msg: r.msg,
@@ -4563,13 +4159,13 @@ class AddModal {
         success: function (data) {
           var r = $.parseJSON(data);
           if (!r.error) {
-            new pageMsg({
+            new PageMsg({
               type: 'success',
               heading: `Success!`,
               msg: `New appointment for <b>${whaleName}</b> added.`,
             })
           } else {
-            new pageMsg({
+            new PageMsg({
               type: 'error',
               heading: `Error!`,
               msg: r.msg,
@@ -4851,7 +4447,7 @@ class SMS {
     const value = input.value
 
     if (!value) {
-      new pageMsg({
+      new PageMsg({
         type: 'error',
         heading: 'No Value',
         msg: 'You can\'t add tag with empty value.'
@@ -4934,7 +4530,6 @@ class SMS {
         dataType: 'json'
       }
     })
-
     $('#sms_bulk_whale').select2({
       placeholder: "Select a whales...",
       ajax: {
@@ -5019,7 +4614,7 @@ class SMS {
   // Initialize
   init() {
     if (this.board) {
-      this.initSelect2()
+      // this.initSelect2()
       this.bindInputEvents()
       this.bindCustomUpload()
       this.toggleSMSType()
@@ -5204,7 +4799,7 @@ class FingerModal {
         const whale = await this.fetchWhale(whaleId)
 
         if (!whale) {
-          new pageMsg({
+          new PageMsg({
             type: 'error',
             heading: 'No Whale',
             msg: 'Whale ID not found'
@@ -5412,41 +5007,6 @@ document.addEventListener('DOMContentLoaded', () => {
   attachDatePickers()
   bindToggleCustomerRows()
   bindFingerSizeInput()
-})
-
-/**
- * Inventory
- * @type {class}
- */
-class Inventory {
-  constructor() {
-    this.rootEl = document.querySelector('.main_inventory')
-    if (!this.rootEl) return
-
-    this.init()
-  }
-
-  init() {
-    this.initSplide()
-  }
-
-  // Methods
-  initSplide() {
-    const splideArr = [...document.querySelectorAll('.i-card__media-splide')]
-    for (const splide of splideArr) {
-      const slider = new Splide(splide, {
-        type: 'loop',
-        rewind: true,
-        pagination: false,
-        arrows: true
-      })
-      slider.mount()
-    }
-  }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  new Inventory()
 })
 
 /**
@@ -6188,7 +5748,7 @@ class ManualOrderForm {
     const order = await fakeAjaxGetOrder(orderID)
 
     if (!order || Object.keys(order).length === 0) {
-      new pageMsg({
+      new PageMsg({
         heading: 'Invalid Order',
         msg: 'The order you are trying to edit was not found or this order is not manually created'
       })
@@ -6214,7 +5774,7 @@ class ManualOrderForm {
     const sectionHandler = (section) => {
       const { key, value, handler } = section
       if (!value) {
-        new pageMsg({
+        new PageMsg({
           heading: 'Something went wrong',
           msg: `${key} not found`
         })
@@ -6340,7 +5900,7 @@ class ManualOrderForm {
       let id = e.target.closest('[data-id]').getAttribute('data-id');
       if (!id) {
         console.warn('ERR: MOF03. Item ID not found');
-        new pageMsg({
+        new PageMsg({
           type: 'error',
           heading: 'Invalid Item',
           msg: 'ERR: MOF03. Item ID not found. Reference data-id attribute'
@@ -6359,7 +5919,7 @@ class ManualOrderForm {
       let id = e.target.closest('[data-id]').getAttribute('data-id')
       if (!id) {
         console.warn('ERR: MOF07. Customer ID not found')
-        new pageMsg({
+        new PageMsg({
           type: 'error',
           heading: 'Invalid Customer',
           msg: 'ERR: MOF07. Customer ID not found. Reference data-id attribute'
@@ -6533,7 +6093,7 @@ class ManualOrderForm {
     if (selectFields) {
       this.selectedItemContainer.appendChild(selectFields)
     }
-    updateInputAllowOnlyDecimals()
+    updateInputsAllowOnlyDecimals()
     // this.selectedItemContainer.appendChild(resetButton)
   }
 
@@ -6570,7 +6130,7 @@ class ManualOrderForm {
     })
 
     const warnMsg = (msg) => {
-      new pageMsg({
+      new PageMsg({
         type: 'error',
         heading: 'Warning',
         msg: msg
@@ -6649,12 +6209,12 @@ class ManualOrderForm {
   }
   goStep(step = 1) {
     if (step < 1) {
-      new pageMsg({ msg: "ERR: MOF88. Step can't be less than 1" })
+      new PageMsg({ msg: "ERR: MOF88. Step can't be less than 1" })
       step = 1
     }
 
     if (step > this.steps.length) {
-      new pageMsg({ msg: "ERR: MOF89. Step can't be more than " + this.steps.length })
+      new PageMsg({ msg: "ERR: MOF89. Step can't be more than " + this.steps.length })
       step = this.steps.length
     }
 
@@ -6802,13 +6362,13 @@ function deleteManualOrder(event, orderID) {
       */
       const response = await fakeFetchRemoveOrder(orderID)
       if (!response.ok) {
-        new pageMsg({ heading: 'Error', msg: `HTTP Error! Status: ${response.status}` })
+        new PageMsg({ heading: 'Error', msg: `HTTP Error! Status: ${response.status}` })
         throw new Error(`HTTP Error! Status: ${response.status}`)
       }
       animateDelete()
     } catch (err) {
       console.error(err)
-      new pageMsg({ heading: 'Error', msg: `Something went wrong: ${err.message}` })
+      new PageMsg({ heading: 'Error', msg: `Something went wrong: ${err.message}` })
     } finally {
       toggleActiveState(true)
     }

@@ -59,50 +59,50 @@
 				type="text" placeholder="CTW" id="ctw_field_{{ item.dataID }}" value="" onchange="UpdateCtw({{ item.dataID }});">
 				{# NFW Select #}
 				<select id="nfw_select_{{ item.dataID }}" onchange="UpdateNFW({{ item.dataID }});">
-					<option value="0" {% if item.nfw == 0 %} selected {% endif %}>FW</option>
-					<option value="1" {% if item.nfw == 1 %} selected {% endif %}>NFW</option>
-					<option value="2" {% if item.nfw == 2 %} selected {% endif %}>NP</option>
-					<option value="8" {% if item.nfw == 8 %} selected {% endif %}>IVAN</option>
-					<option value="9" {% if item.nfw == 9 %} selected {% endif %}>RYAN</option>
-					<option value="10" {% if item.nfw == 10 %} selected {% endif %}>SKY</option>
-					<option value="11" {% if item.nfw == 11 %} selected {% endif %}>ZAH</option>
-					<option value="3" {% if item.nfw == 3 %} selected {% endif %}>H</option>
-					<option value="4" {% if item.nfw == 4 %} selected {% endif %}>LNK</option>
-					<option value="5" {% if item.nfw == 5 %} selected {% endif %}>DLT</option>
-					<option value="6" {% if item.nfw == 6 %} selected {% endif %}>LTR</option>
-					<option value="7" {% if item.nfw == 7 %} selected {% endif %}>CST</option>
-					<option value="13" {% if item.nfw == 13 %} selected {% endif %}>FLM</option>
-					<option value="14" {% if item.nfw == 14 %} selected {% endif %}>BZL</option>
-					<option value="16" {% if item.nfw == 16 %} selected {% endif %}>MEM</option>
-					<option value="17" {% if item.nfw == 17 %} selected {% endif %}>PRT</option>
+					<option value="0" {% if item.nfw==0 %} selected {% endif %}>FW</option>
+					<option value="1" {% if item.nfw==1 %} selected {% endif %}>NFW</option>
+					<option value="2" {% if item.nfw==2 %} selected {% endif %}>NP</option>
+					<option value="8" {% if item.nfw==8 %} selected {% endif %}>IVAN</option>
+					<option value="9" {% if item.nfw==9 %} selected {% endif %}>RYAN</option>
+					<option value="10" {% if item.nfw==10 %} selected {% endif %}>SKY</option>
+					<option value="11" {% if item.nfw==11 %} selected {% endif %}>ZAH</option>
+					<option value="3" {% if item.nfw==3 %} selected {% endif %}>H</option>
+					<option value="4" {% if item.nfw==4 %} selected {% endif %}>LNK</option>
+					<option value="5" {% if item.nfw==5 %} selected {% endif %}>DLT</option>
+					<option value="6" {% if item.nfw==6 %} selected {% endif %}>LTR</option>
+					<option value="7" {% if item.nfw==7 %} selected {% endif %}>CST</option>
+					<option value="13" {% if item.nfw==13 %} selected {% endif %}>FLM</option>
+					<option value="14" {% if item.nfw==14 %} selected {% endif %}>BZL</option>
+					<option value="16" {% if item.nfw==16 %} selected {% endif %}>MEM</option>
+					<option value="17" {% if item.nfw==17 %} selected {% endif %}>PRT</option>
 				</select>
 				{# DQ Select #}
 				<select id="dq_select_{{ item.dataID }}" onchange="UpdateDQ({{ item.dataID }});">
-					<option value="" {% if item.dq == "" %} selected {% endif %}>DQ</option>
-					<option value="SI" {% if item.dq == "SI" %} selected {% endif %}>SI</option>
-					<option value="VS" {% if item.dq == "VS" %} selected {% endif %}>VS</option>
-					<option value="VVS" {% if item.dq == "VVS" %} selected {% endif %}>VVS</option>
-					<option value="SIVS" {% if item.dq == "SIVS" %} selected {% endif %}>SI/VS</option>
-					<option value="I1-I3" {% if item.dq == "I1-I3" %} selected {% endif %}>I1-I3</option>
-					<option value="PG" {% if item.dq == "PG" %} selected {% endif %}>PG</option>
+					<option value="" {% if item.dq=="" %} selected {% endif %}>DQ</option>
+					<option value="SI" {% if item.dq=="SI" %} selected {% endif %}>SI</option>
+					<option value="VS" {% if item.dq=="VS" %} selected {% endif %}>VS</option>
+					<option value="VVS" {% if item.dq=="VVS" %} selected {% endif %}>VVS</option>
+					<option value="SIVS" {% if item.dq=="SIVS" %} selected {% endif %}>SI/VS</option>
+					<option value="I1-I3" {% if item.dq=="I1-I3" %} selected {% endif %}>I1-I3</option>
+					<option value="PG" {% if item.dq=="PG" %} selected {% endif %}>PG</option>
 				</select>
 				{# Color #}
 				<select id="color_select_{{ item.dataID }}" onchange="UpdateColor({{ item.dataID }});">
-					<option value="" {% if item.color == "" %} selected {% endif %}>Color</option>
-					<option value="Yellow" {% if item.color == "Yellow" %} selected {% endif %}>Yellow</option>
-					<option value="White" {% if item.color == "White" %} selected {% endif %}>White</option>
-					<option value="Rose" {% if item.color == "Rose" %} selected {% endif %}>Rose</option>
-					<option value="Red" {% if item.color == "Red" %} selected {% endif %}>Red</option>
-					<option value="Steel" {% if item.color == "Steel" %} selected {% endif %}>Steel</option>
-					<option value="Blue" {% if item.color == "Blue" %} selected {% endif %}>Blue</option>
-					<option value="Black" {% if item.color == "Black" %} selected {% endif %}>Black</option>
-					<option value="Two-Tone" {% if item.color == "Two-Tone" %} selected {% endif %}>Two-Tone</option>
-					<option value="Two-Tone-Rose" {% if item.color == "Two-Tone-Rose" %} selected {% endif %}>Two-Tone-Rose</option>
-					<option value="Tri-Tone" {% if item.color == "Tri-Tone" %} selected {% endif %}>Tri-Tone</option>
-					<option value="Blue-Gold" {% if item.color == "Blue-Gold" %} selected {% endif %}>Blue-Gold</option>
-					<option value="Navy-Blue" {% if item.color == "Navy-Blue" %} selected {% endif %}>Navy-Blue</option>
-					<option value="Tri-Tone-Rose" {% if item.color == "Tri-Tone-Rose" %} selected {% endif %}>Tri-Tone-Rose</option>
-					<option value="Platinum" {% if item.color == "Platinum" %} selected {% endif %}>Platinum</option>
+					<option value="" {% if item.color=="" %} selected {% endif %}>Color</option>
+					<option value="Yellow" {% if item.color=="Yellow" %} selected {% endif %}>Yellow</option>
+					<option value="White" {% if item.color=="White" %} selected {% endif %}>White</option>
+					<option value="Rose" {% if item.color=="Rose" %} selected {% endif %}>Rose</option>
+					<option value="Red" {% if item.color=="Red" %} selected {% endif %}>Red</option>
+					<option value="Steel" {% if item.color=="Steel" %} selected {% endif %}>Steel</option>
+					<option value="Blue" {% if item.color=="Blue" %} selected {% endif %}>Blue</option>
+					<option value="Black" {% if item.color=="Black" %} selected {% endif %}>Black</option>
+					<option value="Two-Tone" {% if item.color=="Two-Tone" %} selected {% endif %}>Two-Tone</option>
+					<option value="Two-Tone-Rose" {% if item.color=="Two-Tone-Rose" %} selected {% endif %}>Two-Tone-Rose</option>
+					<option value="Tri-Tone" {% if item.color=="Tri-Tone" %} selected {% endif %}>Tri-Tone</option>
+					<option value="Blue-Gold" {% if item.color=="Blue-Gold" %} selected {% endif %}>Blue-Gold</option>
+					<option value="Navy-Blue" {% if item.color=="Navy-Blue" %} selected {% endif %}>Navy-Blue</option>
+					<option value="Tri-Tone-Rose" {% if item.color=="Tri-Tone-Rose" %} selected {% endif %}>Tri-Tone-Rose</option>
+					<option value="Platinum" {% if item.color=="Platinum" %} selected {% endif %}>Platinum</option>
 				</select>
 				{# Watch Model #}
 				{% if item.is_watch %}
@@ -113,61 +113,61 @@
 				{# Ring Size #}
 				{% if item.is_ring %}
 					<select id="size_select_{{ item.dataID }}" onchange="UpdateSize({{item.dataID}});">
-						<option value="" {% if item.size == "" %} selected {% endif %}>Size</option>
-						<option value="4" {% if item.size == "4" %} selected {% endif %}>4</option>
-						<option value="4.5" {% if item.size == "4.5" %} selected {% endif %}>4.5</option>
-						<option value="5" {% if item.size == "5" %} selected {% endif %}>5</option>
-						<option value="5.5" {% if item.size == "5.5" %} selected {% endif %}>5.5</option>
-						<option value="6" {% if item.size == "6" %} selected {% endif %}>6</option>
-						<option value="6.5" {% if item.size == "6.5" %} selected {% endif %}>6.5</option>
-						<option value="7" {% if item.size == "7" %} selected {% endif %}>7</option>
-						<option value="7.5" {% if item.size == "7.5" %} selected {% endif %}>7.5</option>
-						<option value="8" {% if item.size == "8" %} selected {% endif %}>8</option>
-						<option value="8.5" {% if item.size == "8.5" %} selected {% endif %}>8.5</option>
-						<option value="9" {% if item.size == "9" %} selected {% endif %}>9</option>
-						<option value="9.5" {% if item.size == "9.5" %} selected {% endif %}>9.5</option>
-						<option value="10" {% if item.size == "10" %} selected {% endif %}>10</option>
-						<option value="10.5" {% if item.size == "10.5" %} selected {% endif %}>10.5</option>
-						<option value="11" {% if item.size == "11" %} selected {% endif %}>11</option>
-						<option value="11.5" {% if item.size == "11.5" %} selected {% endif %}>11.5</option>
-						<option value="12" {% if item.size == "12" %} selected {% endif %}>12</option>
-						<option value="12.5" {% if item.size == "12.5" %} selected {% endif %}>12.5</option>
-						<option value="13" {% if item.size == "13" %} selected {% endif %}>13</option>
+						<option value="" {% if item.size=="" %} selected {% endif %}>Size</option>
+						<option value="4" {% if item.size=="4" %} selected {% endif %}>4</option>
+						<option value="4.5" {% if item.size=="4.5" %} selected {% endif %}>4.5</option>
+						<option value="5" {% if item.size=="5" %} selected {% endif %}>5</option>
+						<option value="5.5" {% if item.size=="5.5" %} selected {% endif %}>5.5</option>
+						<option value="6" {% if item.size=="6" %} selected {% endif %}>6</option>
+						<option value="6.5" {% if item.size=="6.5" %} selected {% endif %}>6.5</option>
+						<option value="7" {% if item.size=="7" %} selected {% endif %}>7</option>
+						<option value="7.5" {% if item.size=="7.5" %} selected {% endif %}>7.5</option>
+						<option value="8" {% if item.size=="8" %} selected {% endif %}>8</option>
+						<option value="8.5" {% if item.size=="8.5" %} selected {% endif %}>8.5</option>
+						<option value="9" {% if item.size=="9" %} selected {% endif %}>9</option>
+						<option value="9.5" {% if item.size=="9.5" %} selected {% endif %}>9.5</option>
+						<option value="10" {% if item.size=="10" %} selected {% endif %}>10</option>
+						<option value="10.5" {% if item.size=="10.5" %} selected {% endif %}>10.5</option>
+						<option value="11" {% if item.size=="11" %} selected {% endif %}>11</option>
+						<option value="11.5" {% if item.size=="11.5" %} selected {% endif %}>11.5</option>
+						<option value="12" {% if item.size=="12" %} selected {% endif %}>12</option>
+						<option value="12.5" {% if item.size=="12.5" %} selected {% endif %}>12.5</option>
+						<option value="13" {% if item.size=="13" %} selected {% endif %}>13</option>
 					</select>
 				{% endif %}
 				{# Bracelet Size #}
 				{% if item.is_bracelet %}
 					<select id="size_select_{{ item.dataID }}" onchange="UpdateSize({{item.dataID}});">
-						<option value="" {% if item.size == "" %} selected {% endif %}>Size</option>
-						<option value="Small" {% if item.size == "Small" %} selected {% endif %}>Small</option>
-						<option value="Medium" {% if item.size == "Medium" %} selected {% endif %}>Medium</option>
-						<option value="Large" {% if item.size == "Large" %} selected {% endif %}>Large</option>
-						<option value="Extra Large" {% if item.size == "Extra Large" %} selected {% endif %}>Extra Large</option>
-						<option value="Ladies" {% if item.size == "Ladies" %} selected {% endif %}>Ladies</option>
-						<option value="Mens" {% if item.size == "Mens" %} selected {% endif %}>Mens</option>
+						<option value="" {% if item.size=="" %} selected {% endif %}>Size</option>
+						<option value="Small" {% if item.size=="Small" %} selected {% endif %}>Small</option>
+						<option value="Medium" {% if item.size=="Medium" %} selected {% endif %}>Medium</option>
+						<option value="Large" {% if item.size=="Large" %} selected {% endif %}>Large</option>
+						<option value="Extra Large" {% if item.size=="Extra Large" %} selected {% endif %}>Extra Large</option>
+						<option value="Ladies" {% if item.size=="Ladies" %} selected {% endif %}>Ladies</option>
+						<option value="Mens" {% if item.size=="Mens" %} selected {% endif %}>Mens</option>
 					</select>
 				{% endif %}
 				{# Bracelet Length #}
 				{% if item.is_bracelet %}
 					<select id="size_select_{{ item.dataID }}" onchange="UpdateSize({{item.dataID}});">
-						<option value="" {% if item.size == "" %} selected {% endif %}>Length</option>
-						<option value="6" {% if item.size == "6" %} selected {% endif %}>6</option>
-						<option value="6.5" {% if item.size == "6.5" %} selected {% endif %}>6.5</option>
-						<option value="7" {% if item.size == "7" %} selected {% endif %}>7</option>
-						<option value="7.5" {% if item.size == "7.5" %} selected {% endif %}>7.5</option>
-						<option value="8" {% if item.size == "8" %} selected {% endif %}>8</option>
-						<option value="8.5" {% if item.size == "8.5" %} selected {% endif %}>8.5</option>
-						<option value="9" {% if item.size == "9" %} selected {% endif %}>9</option>
-						<option value="9.5" {% if item.size == "9.5" %} selected {% endif %}>9.5</option>
-						<option value="10" {% if item.size == "10" %} selected {% endif %}>10</option>
+						<option value="" {% if item.size=="" %} selected {% endif %}>Length</option>
+						<option value="6" {% if item.size=="6" %} selected {% endif %}>6</option>
+						<option value="6.5" {% if item.size=="6.5" %} selected {% endif %}>6.5</option>
+						<option value="7" {% if item.size=="7" %} selected {% endif %}>7</option>
+						<option value="7.5" {% if item.size=="7.5" %} selected {% endif %}>7.5</option>
+						<option value="8" {% if item.size=="8" %} selected {% endif %}>8</option>
+						<option value="8.5" {% if item.size=="8.5" %} selected {% endif %}>8.5</option>
+						<option value="9" {% if item.size=="9" %} selected {% endif %}>9</option>
+						<option value="9.5" {% if item.size=="9.5" %} selected {% endif %}>9.5</option>
+						<option value="10" {% if item.size=="10" %} selected {% endif %}>10</option>
 					</select>
 				{% endif %}
 				{# Earrings Pair #}
 				{% if item.is_earrings %}
 					<select id="earring_select_{{ item.dataID }}" onchange="UpdateEarringPair({{item.dataID}});">
-						<option value="" {% if item.earrings == "" %} selected {% endif %}>E.RING</option>
-						<option value="PAIR" {% if item.earrings == "PAIR" %} selected {% endif %}>PAIR</option>
-						<option value="SINGLE" {% if item.earrings == "SINGLE" %} selected {% endif %}>SINGLE</option>
+						<option value="" {% if item.earrings=="" %} selected {% endif %}>E.RING</option>
+						<option value="PAIR" {% if item.earrings=="PAIR" %} selected {% endif %}>PAIR</option>
+						<option value="SINGLE" {% if item.earrings=="SINGLE" %} selected {% endif %}>SINGLE</option>
 					</select>
 				{% endif %}
 			</div>
@@ -225,6 +225,7 @@
 					{% if item.allow_remove_link %}
 						<button id="remove_link_{{ item.dataID }}" class="--red" target="_blank">Remove Link</button>
 					{% endif %}
+					<button data-new-ptw="{{item.dataID}}" id="ptw_link_{{ item.dataID }}">PTW</button>
 				</div>
 			</div>
 			<div class="i-card__main-info">
