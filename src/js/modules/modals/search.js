@@ -217,12 +217,17 @@ class Search {
   }
 }
 Search.prototype._getSearchData = function (query) {
-  $.ajax({
-    url:'/ajax/search-suggestions?query='+query,
-    type:'GET',
-    success:function(data){
-      return data;
-    }
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+      url: '/ajax/search-suggestions?query=' + query,
+      type: 'GET',
+      success: function (data) {
+        resolve(data);
+      },
+      error: function (xhr, status, error) {
+        reject(error);
+      }
+    });
   });
 
 };
