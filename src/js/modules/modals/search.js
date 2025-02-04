@@ -169,6 +169,8 @@ class Search {
     this.abortSearchController = new AbortController()
     const signal = this.abortSearchController.signal
 
+    let queryToSearch = query
+
     try {
       /**
        * @CHOU Replace Here
@@ -178,7 +180,7 @@ class Search {
        * We abort request on every new input event @see {#bindInput}
        * Kindly don't remove my fake ajax request {@link #_fakeAjaxRequest} & {@link #_getFakeSearchData}
        */
-      const searchData = await this._AjaxRequest(query, signal)
+      const searchData = await this._AjaxRequest(queryToSearch, signal)
       if (signal.aborted) {
         return
       }
