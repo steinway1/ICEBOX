@@ -331,7 +331,7 @@ Search.prototype._getFakeSearchData = function (query) {
   }
 };
 Search.prototype._AjaxRequest = function (query, signal) {
-  console.log(query);
+  //console.log(query);
   return new Promise((resolve, reject) => {
     if (signal?.aborted) {
       reject(new DOMException('Aborted', 'AbortError'))

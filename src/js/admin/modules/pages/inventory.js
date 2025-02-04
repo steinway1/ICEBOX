@@ -10,9 +10,12 @@ class PTW {
     'Earrings',
     'Bracelets',
     'Necklaces',
+    'Gold Chains',
     'Rings',
+    'Accessories',
     'Watches',
-    'Other'
+    'Watch Market',
+    'Travel Cases',
   ]
 
   constructor(itemID) {
@@ -34,6 +37,8 @@ class PTW {
     this.#bindDocumentEvents()
     this.setup()
   }
+
+
   async setup() {
     /**
      * @CHOU Setup here
@@ -53,13 +58,13 @@ class PTW {
      *   category: 'Watches'
      * }
      */
-    const item = await fakeAjaxGetPtwData(this.itemID)
+    const item = await this.AjaxGetPtwData(this.itemID)
 
-    if (!item) {
+    if (item.error) {
       this.destroy()
       new PageMsg({
         heading: 'Something went wrong',
-        msg: 'Item not found or item ID is invalid',
+        msg: item.msg,
         type: 'error'
       })
       return
@@ -83,10 +88,10 @@ class PTW {
      * @CHOU Setup here
      * Send form data to server
      */
-    const response = await fakeFetchSuccess()
-    if (!response.ok) {
+    const response = await this.submitPtw(formData)
+    if (response.error) {
       this.enable()
-      new PageMsg({heading: 'Something went wrong', msg: 'Failed to update item', type: 'error'})
+      new PageMsg({heading: 'Something went wrong', msg: response.msg, type: 'error'})
       return
     }
 
@@ -126,9 +131,35 @@ class PTW {
     const results = Object.fromEntries(formData)
     return results
   }
+  AjaxGetPtwData(itemID) {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: '/admin/ajax/push-to-website-prepare',
+        type: 'POST',
+        data: { id: itemID },
+        success: (data) => resolve(data),
+        error: (xhr, status, error) => reject(error),
+      });
+    });
+  }
+  submitPtw(formData){
+    return new Promise(function (resolve, reject) {
+      $.ajax({
+        url: '/admin/ajax/push-to-website-save',
+        type: 'POST',
+        data:formData,
+        success: function (data) {
+          resolve(data);
+        },
+        error: function (xhr, status, error) {
+          reject(error);
+        }
+      });
+    });
+  }
 
   #renderFromItem() {
-    const { colorOptions, category, price, sku, imgSrc } = this.item
+    const { error,colorOptions, category, price, sku, imgSrc } = this.item
 
     let optionsHTML = ''
     const imgElem = this.popupElem.querySelector('[data-ptw-image]')
@@ -228,7 +259,6 @@ class PTW {
     `
   }
   #renderSkuOption(sku) {
-    sku = sku ? `001-${sku}` : '001-'
     return `
       <div class="m-popup__input-row">
         <label class="m-popup__label" for="ptwSku">Internal Item Number</label>
