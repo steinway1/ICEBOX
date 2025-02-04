@@ -1,7 +1,7 @@
 import Splide from '../../lib/splide'
 import PopupBackdrop from '../dynamic/popup-backdrop'
-import { createElem, inputAllowOnlyDecimals, lockScroll, unlockScroll } from '../general/utils'
 import PageMsg from '../dynamic/page-msg'
+import { createElem, inputAllowOnlyDecimals, lockScroll, unlockScroll } from '../general/utils'
 import { fakeAjaxGetPtwData, fakeFetchSuccess } from '../general/fake-ajax'
 
 class PTW {
