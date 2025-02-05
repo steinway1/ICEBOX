@@ -208,6 +208,10 @@
 				</div>
 			{% endif %}
 		{% endif %}
+
+		{% if item.url and item.url != "" %}
+			<a class="i-card__view-link" href="{{ item.link }}" id="item_link_{{ item.dataID }}" target="_blank">View Item</a>
+		{% endif %}
 	</div>
 
 	<div class="i-card__main">
@@ -215,9 +219,6 @@
 			<div class="i-card__ct-group">
 				<button class="i-card__ct-btn">More Actions</button>
 				<div class="i-card__ct-drop">
-					{% if item.url and item.url != "" %}
-						<a href="{{ item.link }}" id="item_link_{{ item.dataID }}" target="_blank">View Item</a>
-					{% endif %}
 					{% if item.appraisal_url and item.appraisal_url != "" %}
 						<a href="/inventory-to-appraisal/{{item.appraisal_url}}" id="item_link_{{ item.dataID }}" class="--appraisal" target="_blank">Appraisal</a>
 					{% endif %}

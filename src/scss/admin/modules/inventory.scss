@@ -73,7 +73,7 @@
       &:first-child {
         font-size: 13px;
         font-weight: 600;
-        line-height: 16px
+        line-height: 16px;
       }
 
       &:last-child {
@@ -131,7 +131,7 @@
       right: var(--media-padding) !important;
 
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         width: 10px;
         height: 10px;
@@ -143,7 +143,7 @@
       }
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 10px;
         height: 10px;
@@ -160,7 +160,7 @@
       transform: rotate(180deg) translateY(50%) !important;
 
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         width: 10px;
         height: 10px;
@@ -172,7 +172,7 @@
       }
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 10px;
         height: 10px;
@@ -206,7 +206,7 @@
 }
 
 .i-card__pic-delete {
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   justify-content: center;
   align-items: center;
   height: 24px;
@@ -242,7 +242,7 @@
 .i-card-tag {
   gap: 4px;
   background-color: #dcdcdc;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   color: black;
   justify-content: center;
   align-items: center;
@@ -398,7 +398,7 @@
   z-index: 3;
 
   &::after {
-    content: '';
+    content: "";
     width: 6px;
     height: 6px;
     transform: rotate(45deg) translateY(-2px);
@@ -470,10 +470,10 @@
 
   &:hover {
     text-decoration: underline;
-    color: var(--royal_blue_hover)
+    color: var(--royal_blue_hover);
   }
 
-  &>span {
+  & > span {
     font-size: 9px;
     color: #858b96;
   }
@@ -525,12 +525,12 @@
       }
 
       &::before {
-        content: '';
+        content: "";
         width: 16px !important;
         height: 16px !important;
         position: static !important;
         background-color: #d9dce1;
-        border-radius: .2rem !important;
+        border-radius: 0.2rem !important;
       }
     }
 
@@ -538,6 +538,7 @@
       background-color: white !important;
       padding-left: var(--ps-padding);
       font-weight: 600 !important;
+
       &::before {
         background-color: var(--royal_blue) !important;
         background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M2 12.4118L8.4 19L22 5" stroke="white" stroke-width="6"/></svg>');
@@ -548,7 +549,7 @@
 
   &.--active {
     z-index: 4;
-    
+
     .ps-drop {
       display: block;
       box-shadow: var(--ps-box-shadow-opened);
@@ -631,7 +632,7 @@
   -ms-user-select: none;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 6px;
     height: 6px;
@@ -720,7 +721,7 @@
       padding: 3px 8px;
       border-radius: 0.4rem;
       background-color: #e0e4f0;
-      color: #5f5f65
+      color: #5f5f65;
     }
 
     &:first-child {
@@ -745,4 +746,28 @@
   -webkit-line-clamp: 1;
   overflow: hidden;
   padding-right: 24px;
+}
+
+.i-card__view-link {
+  position: absolute;
+  inset: auto 14px 14px auto;
+  font-size: 12px;
+  line-height: 16px;
+  gap: 8px;
+  background-color: #1673ca;
+  color: #fff;
+  cursor: pointer;
+  border: 3px solid #63abf0;
+  border-radius: 0.65rem;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 18px;
+  font-weight: 700;
+  display: flex;
+  bottom: 12px;
+  right: 12px;
+  box-shadow: 0 4px 12px rgba(39, 134, 223, 0.15), inset 4px 4px 18px rgba(17, 17, 20, 0.1);
+  transition: all 200ms ease;
+  user-select: none;
+  z-index: 2;
 }
