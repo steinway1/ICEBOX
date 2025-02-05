@@ -95,7 +95,9 @@ class PTW {
       new PageMsg({heading: 'Something went wrong', msg: response.msg, type: 'error'})
       return
     }
-
+    $('#ptw_link_'+this.itemID).remove();
+    $('#item_link_'+this.itemID).attr('href',response.product_url);
+    $('#item_link_'+this.itemID).show();
     this.enable()
     this.destroy()
     new PageMsg({heading: 'Success', msg: 'Item added successfully!', type: 'success'})
@@ -314,6 +316,7 @@ export default class Inventory {
     if (!this.rootEl) return
 
     this.#init()
+    window.Inventory = this;
   }
 
   #init() {
@@ -343,3 +346,4 @@ export default class Inventory {
     }
   }
 }
+
