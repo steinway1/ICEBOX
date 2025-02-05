@@ -262,7 +262,7 @@
                                                                     <span>Change Photo</span>
                                                                     <form method="post" id="frm_whale_photo_1" class="frm_upload" action="/admin/json/update-whale-photo">
                                                                         <input type="hidden" name="whale_id" value="1" />
-                                                                        <input type="file" name="photo" accept="image/*" class="avatar_file" id="avatar_img_1" onchange="$(this).parent().submit();">
+                                                                        <input type="file" name="photo" accept="image/*" class="avatar_file" id="avatar_img_1" onchange="document.querySelector('#frm_whale_photo_1').submit();">
                                                                     </form>
                                                                 </label>
                                                                 <button data-add-evt="addVisit" class="drop-btn">Add Visit</button>

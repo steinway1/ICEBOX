@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import Splide from '../../lib/splide'
 import PopupBackdrop from '../dynamic/popup-backdrop'
 import PageMsg from '../dynamic/page-msg'

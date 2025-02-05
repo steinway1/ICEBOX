@@ -8,6 +8,7 @@ export default class PopupBackdrop {
     })
     this.callback = settings.callback || null
     this.instant = settings.instant || false
+    this.zIndex = settings.zIndex
     this.show()
     this.el.addEventListener('click', (e) => {
       if (e.target === this.el) {
@@ -22,6 +23,9 @@ export default class PopupBackdrop {
   show() {
     if (this.instant) {
       this.el.classList.add('--instant')
+    }
+    if (this.zIndex) {
+      this.el.style.zIndex = this.zIndex
     }
     document.body.appendChild(this.el)
     this.el.style.display = 'block'

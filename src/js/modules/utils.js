@@ -306,6 +306,19 @@ function initLazyLoadForProductCards() {
   }
 }
 
+function appendNewCustomer(storeElement, html) {
+  const newCustomer = document.createElement('tr')
+  newCustomer.classList.add(IS_ACTIVE)
+  try {
+    newCustomer.innerHTML = `<tr>${html}</tr>`
+    storeElement.appendChild(newCustomer)
+  } catch (err) {
+    throw new Error(`Append new customer error: ${err.message}`)
+  } finally {
+    console.log('Append new customer success')
+  }
+}
+
 module.exports = {
   toArray,
   lockScroll,
@@ -329,5 +342,6 @@ module.exports = {
   openPriceModal,
   createTimer,
   getFakeProduct,
-  initLazyLoadForProductCards
+  initLazyLoadForProductCards,
+  appendNewCustomer
 }

@@ -1,5 +1,4 @@
-import { getTransitionTime } from '../../modules/general/utils'
-import { lockScroll, unlockScroll } from '../../modules/general/utils'
+import { getTransitionTime, lockScroll, unlockScroll, removeClasses } from '../../modules/general/utils'
 import { __FALSE, __TRUE, __FADE } from '../../modules/general/constants'
 
 export default class LockPin {

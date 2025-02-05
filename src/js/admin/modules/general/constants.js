@@ -20,3 +20,18 @@ export const __HIDDEN = '--hidden';
 export const __SEALED = '--sealed';
 export const __REVEALED = '--revealed';
 export const __EDIT = '--edit';
+
+export const EVENTS = {
+	PAGE_MENU: {
+		OPEN: 'pageMenu:open',
+		CLOSE: 'pageMenu:close',
+	},
+	PAGE_SEARCH: {
+		OPEN: 'pageSearch:open',
+		CLOSE: 'pageSearch:close',
+	},
+	PAGE_SIDEBAR: {
+		OPEN: 'pageSidebar:open',
+		CLOSE: 'pageSidebar:close',
+	}
+}
