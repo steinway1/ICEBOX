@@ -623,29 +623,6 @@ class ProductPage {
         this.galleryZoomInstance = new ZoomGallery(mediaArr, index)
       }
     })
-
-    return
-    const galleryArr = [...document.querySelectorAll('#gallery_mobile .product__main-gallery')]
-    for (const gallery of galleryArr) {
-      gallery.addEventListener('click', (event) => {
-        const mediaClicked = event.target.closest('.product-media')
-        if (window.innerWidth < 480 && mediaClicked) {
-
-          if (this.galleryZoomInstance) {
-            this.galleryZoomInstance.destroy()
-            this.galleryZoomInstance = null
-          }
-
-          const list = gallery.querySelector('.splide__list')
-          if (list) {
-            const mediaArr = [...list.querySelectorAll('.product-media:not(.splide__slide--clone)')]
-            const index = mediaArr.indexOf(mediaClicked)
-            console.log(mediaArr)
-            this.galleryZoomInstance = new ZoomGallery(mediaArr, index)
-          }
-        }
-      })
-    }
   }
 
   // Fixed Bar

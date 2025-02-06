@@ -90,6 +90,13 @@
   -ms-flex-align: center;
   align-items: center;
 
+  &.--loading {
+    img {
+      opacity: 0;
+      transition: all 300ms ease;
+    }
+  }
+
   @include maxWidthMd {
     width: 100%;
     max-width: calc(100% - (var(--padding) * 1.3));
@@ -4960,6 +4967,12 @@
       @extend %media-bg-template;
     }
 
+    &:not(.--loading) {
+      .card-loader {
+        display: none !important;
+      }
+    }
+
     img,
     video,
     canvas {
@@ -4967,6 +4980,14 @@
       height: 100%;
       position: relative;
       z-index: 2;
+      transition: all 300ms ease;
+    }
+  }
+
+  @include minWidthMd {
+    .card-loader {
+      width: 28px;
+      height: 28px;
     }
   }
 }
