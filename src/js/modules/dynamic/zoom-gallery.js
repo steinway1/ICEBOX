@@ -19,19 +19,21 @@ class ZoomGallery {
     for (const media of this.mediaArr) {
       const clone = media.cloneNode(true);
       clone.removeAttribute("style");
-      clone.className = "product-media --loading";
-
-      const loader = document.createElement("div");
-      loader.className = "card-loader";
-      loader.innerHTML = `
-					<svg viewBox="0 0 40 40" focusable="false" aria-hidden="true">
-						<circle stroke-width="3" stroke-linejoin="round" fill="none" cx="20" cy="20" r="18"></circle>
-					</svg>
-      `;
-      clone.append(loader);
+      clone.className = "product-media";
 
       const image = clone.querySelector("img");
+
       if (image) {
+        const loader = document.createElement("div");
+        loader.className = "card-loader";
+        loader.innerHTML = `
+            <svg viewBox="0 0 40 40" focusable="false" aria-hidden="true">
+              <circle stroke-width="3" stroke-linejoin="round" fill="none" cx="20" cy="20" r="18"></circle>
+            </svg>
+        `;
+        clone.append(loader);
+
+        clone.classList.add("--loading");
         const src = image.getAttribute("src");
         if (src && src.includes("/600x0/")) {
           image.src = src.replace("/600x0/", "/0x0/");
