@@ -62,8 +62,8 @@ class AddCartModal {
       </div>
       ${this._renderItemHTML()}
       <div class="add-cart-modal__footer">
-        <a href="javascript:void(0)" data-evt="closeAddCartModal" class="--sub">Back To Shopping</a>
-        <a href="/cart">Go To Checkout</a>
+        <a href="/cart" class="--sub">View Cart</a>
+        <a href="/checkout">Go To Checkout</a>
       </div>
     </div>
     `

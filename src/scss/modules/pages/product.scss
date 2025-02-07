@@ -1154,7 +1154,8 @@
   min-height: 52px;
   min-width: 46%;
   color: #fff;
-  background-color: var(--black);
+  background-color: var(--navy-blue);
+  // background-color: var(--black);
   flex: 1;
   justify-content: center;
   gap: 8px;
@@ -1168,7 +1169,7 @@
   overflow: hidden;
 
   &:hover {
-    background-color: #3d3d44;
+    background-color: var(--navy-blue-hover);
     color: white;
   }
 
@@ -1215,8 +1216,8 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: white;
-  color: var(--green);
+  background-color: var(--green);
+  color: white;
   border: 1px solid var(--green);
   padding: 12px;
   border-radius: 50rem;
@@ -2165,6 +2166,10 @@
         background-color: transparent;
         border: 1px solid white;
         box-shadow: none;
+      }
+
+      @include maxWidthXs {
+        width: 100%;
       }
     }
 
@@ -4575,7 +4580,7 @@
     }
 
     @include maxWidthMd {
-      display: flex;
+      display: flex !important;
     }
   }
 
@@ -4584,7 +4589,7 @@
     inset: auto 0% 0%;
     transform: translateY(104%);
     border: none;
-    border-top: 1px solid var(--new-grey-50);
+    border-top: none !important;
   }
 
   .product__btn-group {
@@ -4602,7 +4607,7 @@
   &.--visible {
     transform: translateY(0%);
     box-shadow: 0 8px 18px rgba(23, 28, 41, 0.04);
-    opacity: 1;
+    opacity: 1; 
     pointer-events: auto;
   }
 
@@ -4837,7 +4842,7 @@
     width: 42px;
     height: 42px;
     margin-right: -14px;
-    padding: 14px;
+    padding: 12px;
     display: flex;
   }
 }
@@ -4855,8 +4860,8 @@
     color: #fff;
     text-align: center;
     cursor: pointer;
-    background-color: #131317;
-    border: 1px solid #131317;
+    background-color: var(--navy-blue);
+    border: 1px solid var(--navy-blue);
     border-radius: 20rem;
     flex: 1;
     height: 42px;
@@ -4867,8 +4872,8 @@
     transition: all .2s;
 
     &:hover {
-      background-color: #5f5f64;
-      border-color: #5f5f64;
+      background-color: var(--navy-blue-hover);
+      border-color: var(--navy-blue-hover);
     }
 
     &.--sub {
