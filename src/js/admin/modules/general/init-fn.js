@@ -110,10 +110,33 @@ function bindFingerSizeInput() {
   }
 }
 
+function updateLiveDateTime() {
+  const elemArr = [...document.querySelectorAll('[data-time-now]')]
+  elemArr.forEach((el) => {
+    let counter = 0
+    setInterval(() => {
+      counter += 1
+
+      const date = new Date();
+      const dateFormatted = date.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+      });
+      const timeFormatted = date.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+      });
+      el.textContent = `${dateFormatted}, ${timeFormatted}`
+    }, counter * 60000)
+  })
+}
+
 export {
   updateInputsAllowOnlyDecimals,
   initLottieElements,
   bindToggleCustomerRows,
   bindFingerSizeInput,
-  attachDatePickers
+  attachDatePickers,
+  updateLiveDateTime
 }

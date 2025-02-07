@@ -5,6 +5,7 @@ import PosPage from './modules/pages/pos'
 import PrintTag from './modules/pages/print-tag'
 import WhalesPage from './modules/pages/whales'
 import FinanceList from './modules/pages/finance-list'
+import Manufacture from './modules/pages/manufacture'
 
 class PageManager {
   constructor() {
@@ -36,6 +37,10 @@ class PageManager {
       FinanceList: {
         instance: FinanceList,
         rootSelector: '.main_fin_list'
+      },
+      Manufacture: {
+        instance: Manufacture,
+        rootSelector: '.body_manufacture'
       }
     }
     this.#init()

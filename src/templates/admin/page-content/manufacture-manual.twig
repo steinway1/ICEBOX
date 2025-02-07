@@ -1,0 +1,218 @@
+{# Mobile Header #}
+<div class="panel__m-header">
+	<div class="panel__m-header-wrap">
+		<div class="panel__space-row">
+			<div class="panel-spot-icon">
+				{% include "admin/svg/panel_manufacture.svg" %}
+			</div>
+			<span data-tip="Current Space">Manufacturing</span>
+		</div>
+		<div class="panel-icon">
+			{% include "admin/svg/panel_drop-icon.svg" %}
+		</div>
+	</div>
+</div>
+
+{# Panel #}
+<div class="panel">
+	<div
+		class="panel__holder">
+
+		{# Sidebar #}
+		<div class="panel-sidebar">
+			<div class="panel-sidebar__wrpper">
+				<div class="panel-sidebar__header">
+					<div class="panel-sidebar__header-wrapper">
+						<div class="panel-sidebar__header-content">
+							<div class="panel__space-row">
+								<div class="panel-spot-icon">
+									{% include "admin/svg/panel_manufacture.svg" %}
+								</div>
+								<span data-tip="Current Space">Manufacturing</span>
+								{% include "admin/svg/panel_drop-icon.svg" %}
+							</div>
+						</div>
+						<button data-tip="Hide Sidebar" class="panel-sidebar__toggle-btn">
+							{% include "admin/svg/panel_double-arrow.svg" %}
+						</button>
+					</div>
+				</div>
+				<div class="panel-sidebar__scroller">
+					<div class="panel-sidebar__row">
+						<h4 class="panel-sidebar__row-heading">Manufacturing</h4>
+						<div class="panel-sidebar__btn-group">
+							<a href="/manufacturing" class="panel-sidebar__btn">
+								<div class="panel-sidebar__btn-wrap">
+									<span>Online Orders</span>
+									<span class="panel-sidebar__btn-count">{{online_orders_count}}</span>
+								</div>
+							</a>
+							<a href="/manufacturing-instore" class="panel-sidebar__btn is-active">
+								<div class="panel-sidebar__btn-wrap">
+									<span>Manual Orders</span>
+									<span class="panel-sidebar__btn-count">{{manual_orders_count}}</span>
+								</div>
+							</a>
+							<a href="/auto-orders" class="panel-sidebar__btn">
+								<div class="panel-sidebar__btn-wrap">
+									<span>Auto Orders</span>
+									<span class="panel-sidebar__btn-count">{{auto_orders_count}}</span>
+								</div>
+							</a>
+							<a href="/saks-orders" class="panel-sidebar__btn">
+								<div class="panel-sidebar__btn-wrap">
+									<span>SAKS Orders</span>
+									<span class="panel-sidebar__btn-count">{{saks_orders_count}}</span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{# Content #}
+		<div class="panel-content">
+			<div class="panel-content__scroller">
+				<div class="panel-content__header">
+					<div class="panel-contet__header-wrapper">
+						<a href="/" class="gap_8">
+							<div class="panel-icon">
+								{% include "admin/svg/panel_home.svg" %}
+							</div>
+							<div>
+								<strong>Icebox.com</strong>
+							</div>
+						</a>
+						<div class="gap_8">
+							<div class="panel-icon">
+								{% include "admin/svg/panel_clock.svg" %}
+							</div>
+							<span data-tip="Current Time">
+								<strong data-time-now>Getting time...</strong>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				{# Main #}
+				<div class="panel__main">
+					<div class="panel__main-wrapper">
+						<div class="panel-box">
+							<div
+								class="panel-box__wrapper">
+
+								{# Row -- Header #}
+								<div class="panel-box__row">
+									<div class="panel-box__space-row">
+										<h3 class="panel-heading">Manual Orders<br>
+											<span>{{manual_orders_count}}
+												orders in total</span>
+										</h3>
+									</div>
+								</div>
+
+								{# Row -- Filter #}
+								<div class="panel-box__row">
+									<div class="panel-box__flex-row">
+										<div class="panel-ps">
+											<select id="mfgSelect" class="panel__input for_select">
+												<option value="0">Unselected</option>
+												<option value="evique">Evique</option>
+												<option value="recieved">Received Orders</option>
+												<option value="veda">Veda</option>
+												<option value="gs">GS</option>
+												<option value="premier">Premier</option>
+												<option value="shipped">shipped</option>
+												<option value="in-house">In-house</option>
+												<option value="americas-gold">Americas Gold</option>
+												<option value="alessi">Alessi</option>
+												<option value="fancy-chains">Fancy Chains</option>
+												<option value="melano">Melano</option>
+												<option value="daniel-jewelry">Daniel Jewelry</option>
+												<option value="haimov">Haimov</option>
+												<option value="deco">Deco</option>
+											</select>
+										</div>
+										<button class="panel__btn" onclick="exportList();">Export</button>
+										<a href="/assets/public-2020/files/instore-orders-template.xlsx" class="panel__btn bright_blue">
+											<div>Download Template<br></div>
+										</a>
+									</div>
+								</div>
+
+								{# Row -- Upload #}
+								<div class="panel-box__row">
+									<label for="file" data-panel-upload class="panel__upload-box">
+										<div class="panel__upload-box-icon">
+											{% include "admin/svg/panel_upload.svg" %}
+										</div>
+										<div class="panel__upload-box-typo">Upload in-store orders<span>Supported: XLXS</span>
+										</div>
+										{# Upload form #}
+										<form id="uploadFrm" enctype="multipart/form-data">
+											<input type="file" id="file" name="sheet" onchange="$('#submit_btn').click();" required="">
+											<input type="submit" id="submit_btn">
+										</form>
+									</label>
+								</div>
+
+								{# Row -- Search #}
+								<div class="panel-box__row --search">
+									<div class="panel-box__flex-row">
+										<div class="panel-ps">
+											<select id="search_type" class="panel__input for_select">
+												<option value="" selected>Search Type</option>
+												<option value="edge">Edge Receipt</option>
+												<option value="po">Po Number</option>
+												<option value="item">Item Name</option>
+												<option value="date">Upload Date</option>
+												<option value="adate">Assigned At</option>
+												<option value="pcad">Project #</option>
+												<option value="style">Vendor Style</option>
+											</select>
+										</div>
+										<input id="search_field" class="panel__input" placeholder="Search..." type="text" required>
+										<button class="panel__btn iba-btn--search">Search</button>
+									</div>
+								</div>
+
+								{# Row -- Asana Task Import #}
+								<div class="panel-box__row --search">
+									<div class="panel-box__flex-row">
+										<input class="panel__input" placeholder="Asana taskid (separate by a comma if multiple)" id="asana_task_id">
+										<button class="panel__btn bright_blue" onclick="importFromAsana();">Import From Asana</button>
+									</div>
+								</div>
+
+								{# Row -- View #}
+								<div class="panel-box__row">
+									<div class="panel-box__flex-row">
+										<button class="panel__blank-btn is-active">
+											{% include "admin/svg/panel_list.svg" %}
+											<span>Table</span>
+										</button>
+										<button class="panel__blank-btn">
+											{% include "admin/svg/panel_grid.svg" %}
+											<span>Grid</span>
+										</button>
+										<button class="panel__blank-btn">
+											{% include "admin/svg/panel_grid.svg" %}
+											<span>Rows</span>
+										</button>
+									</div>
+								</div>
+
+
+								{# Row -- Table #}
+								<div class="panel-box__row --table">
+									<div class="ag-quartz-table" id="manufactureManualGrid" style="height: 520px"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

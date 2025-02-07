@@ -23,6 +23,8 @@ const webpack = require('webpack-stream')
 const babel = require('gulp-babel')
 const concat = require('gulp-concat')
 const minify = require('gulp-minify')
+const terser = require('gulp-terser')
+const rename = require('gulp-rename')
 const ts = require('gulp-typescript')
 const browserify = require('browserify');
 const babelify = require('babelify');
@@ -291,17 +293,17 @@ gulp.task('js-admin:build',
       entries: [root.src.js.bundle.admin],
       debug: true
     })
-      .transform(babelify, { // Добавляем Babel
+      .transform(babelify, {
         presets: ['@babel/preset-env'],
-        global: true // обрабатывать все файлы
+        global: true,
+        ignore: [/node_modules\/ag-grid-community/]
       })
-      // .transform('browserify-shim', { global: true })
-      // .transform(aliasify, { configure: './package.json' })
       .bundle()
       .pipe(source('partial.js'))
       .pipe(buffer())
       .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-      .pipe(minify())
+      .pipe(terser())
+      .pipe(rename('partial-min.js'))
       .pipe(gulp.dest(root.build.adminJS))
   })
 

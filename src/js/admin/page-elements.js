@@ -3,7 +3,8 @@ import {
   initLottieElements,
   bindToggleCustomerRows,
   bindFingerSizeInput,
-  attachDatePickers
+  attachDatePickers,
+  updateLiveDateTime
 } from './modules/general/init-fn'
 
 import { initToolbar } from './modules/elements/tool-bar'
@@ -39,7 +40,11 @@ class PageElements {
       initAddModal,
       initOrdersModal,
       initFingerModal,
-      initPsSelect
+      initPsSelect,
+      bindToggleCustomerRows,
+      bindFingerSizeInput,
+      attachDatePickers,
+      updateLiveDateTime
     ]
     this.#init()
   }

@@ -1,0 +1,216 @@
+{# Mobile Header #}
+<div class="panel__m-header">
+	<div class="panel__m-header-wrap">
+		<div class="panel__space-row">
+			<div class="panel-spot-icon">
+				{% include "admin/svg/panel_manufacture.svg" %}
+			</div>
+			<span data-tip="Current Space">Manufacturing</span>
+		</div>
+		<div class="panel-icon">
+			{% include "admin/svg/panel_drop-icon.svg" %}
+		</div>
+	</div>
+</div>
+
+{# Panel #}
+<div class="panel">
+	<div
+		class="panel__holder">
+
+		{# Sidebar #}
+		<div class="panel-sidebar">
+			<div class="panel-sidebar__wrpper">
+				<div class="panel-sidebar__header">
+					<div class="panel-sidebar__header-wrapper">
+						<div class="panel-sidebar__header-content">
+							<div class="panel__space-row">
+								<div class="panel-spot-icon">
+									{% include "admin/svg/panel_manufacture.svg" %}
+								</div>
+								<span data-tip="Current Space">Manufacturing</span>
+								{% include "admin/svg/panel_drop-icon.svg" %}
+							</div>
+						</div>
+						<button data-tip="Hide Sidebar" class="panel-sidebar__toggle-btn">
+							{% include "admin/svg/panel_double-arrow.svg" %}
+						</button>
+					</div>
+				</div>
+				<div class="panel-sidebar__scroller">
+					<div class="panel-sidebar__row">
+						<h4 class="panel-sidebar__row-heading">Manufacturing</h4>
+						<div class="panel-sidebar__btn-group">
+							<a href="/manufacturing" class="panel-sidebar__btn is-active">
+								<div class="panel-sidebar__btn-wrap">
+									<span>Online Orders</span>
+									<span class="panel-sidebar__btn-count">{{online_orders_count}}</span>
+								</div>
+							</a>
+							<a href="/manufacturing-instore" class="panel-sidebar__btn">
+								<div class="panel-sidebar__btn-wrap">
+									<span>Manual Orders</span>
+									<span class="panel-sidebar__btn-count">{{manual_orders_count}}</span>
+								</div>
+							</a>
+							<a href="/auto-orders" class="panel-sidebar__btn">
+								<div class="panel-sidebar__btn-wrap">
+									<span>Auto Orders</span>
+									<span class="panel-sidebar__btn-count">{{auto_orders_count}}</span>
+								</div>
+							</a>
+							<a href="/saks-orders" class="panel-sidebar__btn">
+								<div class="panel-sidebar__btn-wrap">
+									<span>SAKS Orders</span>
+									<span class="panel-sidebar__btn-count">{{saks_orders_count}}</span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{# Content #}
+		<div class="panel-content">
+			<div class="panel-content__scroller">
+				<div class="panel-content__header">
+					<div class="panel-contet__header-wrapper">
+						<a href="/" class="gap_8">
+							<div class="panel-icon">
+								{% include "admin/svg/panel_home.svg" %}
+							</div>
+							<div>
+								<strong>Icebox.com</strong>
+							</div>
+						</a>
+						<div class="gap_8">
+							<div class="panel-icon">
+								{% include "admin/svg/panel_clock.svg" %}
+							</div>
+							<span data-tip="Current Time">
+								<strong data-time-now>Getting time...</strong>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				{# Main #}
+				<div class="panel__main">
+					<div class="panel__main-wrapper">
+						<div class="panel-box">
+							<div
+								class="panel-box__wrapper">
+
+								{# Row -- Header #}
+								<div class="panel-box__row">
+									<div class="panel-box__space-row">
+										<h3 class="panel-heading">Online Orders<br>
+											<span>{{online_orders_count}}
+												orders in total</span>
+										</h3>
+									</div>
+								</div>
+
+								{# Row -- Filter #}
+								{# Row -- Filter #}
+								<div class="panel-box__row">
+									<div class="panel-box__flex-row">
+										<div class="panel-ps">
+											<select id="mfgSelect" class="panel__input for_select">
+												<option value="0">Unselected</option>
+												<option value="evique">Evique</option>
+												<option value="recieved">Received Orders</option>
+												<option value="veda">Veda</option>
+												<option value="gs">GS</option>
+												<option value="premier">Premier</option>
+												<option value="shipped">shipped</option>
+												<option value="in-house">In-house</option>
+												<option value="americas-gold">Americas Gold</option>
+												<option value="alessi">Alessi</option>
+												<option value="fancy-chains">Fancy Chains</option>
+												<option value="melano">Melano</option>
+												<option value="daniel-jewelry">Daniel Jewelry</option>
+												<option value="haimov">Haimov</option>
+												<option value="deco">Deco</option>
+											</select>
+										</div>
+										<div class="panel-ps">
+											<select id="catSelect" class="panel__input for_select">
+												<option value="">Category</option>
+												<option value="9">Pendants</option>
+												<option value="23">Gold Chains</option>
+												<option value="8">Earrings</option>
+												<option value="4">Necklaces</option>
+												<option value="5">Rings</option>
+												<option value="7">Bracelets</option>
+												<option value="10">Watches</option>
+												<option value="15">Accessories</option>
+												<option value="19">Custom</option>
+												<option value="25">Watch Market</option>
+												<option value="26">Travel Cases</option>
+											</select>
+										</div>
+										<div class="panel-ps">
+											<select id="statusSelect" class="panel__input for_select">
+												<option value="" selected="">Status</option>
+												<option value="Processing">Processing</option>
+												<option value="Special Order">Special Order</option>
+												<option value="Synced">Synced</option>
+											</select>
+										</div>
+										<button class="panel__btn" onclick="exportList();">Export</button>
+									</div>
+								</div>
+
+								{# Row -- Search #}
+								<div class="panel-box__row --search">
+									<div class="panel-box__flex-row">
+										<div class="panel-ps">
+											<select id="search_type" class="panel__input for_select">
+												<option value="" selected>Search Type</option>
+												<option value="edge">Edge Receipt</option>
+												<option value="po">Po Number</option>
+												<option value="item">Item Name</option>
+												<option value="date">Order Date</option>
+												<option value="adate">Assigned At</option>
+												<option value="pcad">Project #</option>
+												<option value="style">Style Code</option>
+												<option value="id">Order Id</option>
+											</select>
+										</div>
+										<input id="search_field" class="panel__input" placeholder="Search..." type="text" required>
+										<button class="panel__btn iba-btn--search">Search</button>
+									</div>
+								</div>
+
+								{# Row -- View #}
+								<div class="panel-box__row">
+									<div class="panel-box__flex-row">
+										<button class="panel__blank-btn is-active">
+											{% include "admin/svg/panel_list.svg" %}
+											<span>Table</span>
+										</button>
+										<button class="panel__blank-btn">
+											{% include "admin/svg/panel_grid.svg" %}
+											<span>Grid</span>
+										</button>
+										<button class="panel__blank-btn">
+											{% include "admin/svg/panel_grid.svg" %}
+											<span>Rows</span>
+										</button>
+									</div>
+								</div>
+
+								{# Row -- Table #}
+								<div class="panel-box__row --table">
+									<div class="ag-quartz-table" id="manufactureOnlineGrid" style="height: 520px"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
