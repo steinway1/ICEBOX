@@ -681,8 +681,8 @@ form button {
   }
 
   &::after {
-    content: 'Loading more cards...';
-    font-size: 13px;
+    content: 'Loading...';
+    font-size: 14px;
     font-weight: 600;
   }
 }
@@ -3664,6 +3664,12 @@ input.custom-range__output {
   flex-flow: column;
   justify-content: flex-start;
   align-items: flex-start;
+	position: relative;
+	z-index: 3;
+
+	&.--custom {
+		z-index: 2;
+	}
 }
 
 .tip-row {
@@ -3680,14 +3686,13 @@ input.custom-range__output {
   cursor: pointer;
   // background-color: #0095c60d;
   background-image: linear-gradient(60deg, #8dcef121, #fff);
-  border-radius: 0.3rem;
+  border-radius: 50rem;
   justify-content: flex-start;
   align-items: center;
   margin-right: auto;
   padding: 8px 16px;
-  font-size: 13px;
-  letter-spacing: -0.1px;
-  font-weight: 700;
+	font-size: 14px;
+  font-weight: 600;
   line-height: 16px;
   transition: all .2s cubic-bezier(.39, .575, .565, 1);
   display: flex;
@@ -3697,9 +3702,9 @@ input.custom-range__output {
   &::after {
     content: '?';
     z-index: 2;
-    color: #0e806da3;
-    background-color: #f2fbfa;
-    border: 1px solid #bae7df;
+    color: #0e4980a3;
+    background-color: #f2f8fb;
+    border: 1px solid #bad7e7;
     border-radius: 20rem;
     justify-content: center;
     align-items: center;
@@ -3736,6 +3741,7 @@ input.custom-range__output {
   left: 0;
   right: 0;
   transform: translate(0, 8px);
+	min-width: 280px;
 
   &::after {
     content: '';
@@ -3755,32 +3761,33 @@ input.custom-range__output {
   background-color: #0095c6;
   border: 1px solid #0095c6;
   border-radius: .7rem;
-  padding: 10px 14px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 20px;
+  padding: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
   display: block;
   box-shadow: 0 18px 68px #0095c64d;
 }
 
 .info-box {
-  background-image: radial-gradient(circle farthest-side at 0 0, #33cbfc0d, #fff);
-  border: 1px solid #13b9ee;
-  flex-flow: column;
-  justify-content: center;
-  align-items: flex-start;
-  display: flex;
-  border-radius: .35rem;
-  padding: 20px;
+	background-image: radial-gradient(circle farthest-side at 0 0, rgba(51, 203, 252, 0.0509803922), #fff);
+	border: 1px solid #13b9ee;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	border-radius: 0.8rem;
+	padding: 20px;
 
   h4 {
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 800;
   }
 
   p {
-    margin-top: 9px;
+    margin-top: 8px;
     line-height: 20px;
     font-size: 15px;
   }

@@ -51,3 +51,18 @@
 		</div>
 	</div>
 {% endif %}
+
+
+{% if product.is_watch and product.is_custom %}
+	<div class="tip-row-wrap --custom">
+		<div class="tip-row">
+			<span class="tip-row__btn">Customized Watch</span>
+			<div class="tip-row__drop">
+				<div class="tip-row__msg">This item has an Icebox warranty, and does not have any
+					{{product.watch_brand}}
+					warranty because it has been modified.  Please call 404-803-6554 if you have any questions
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}
