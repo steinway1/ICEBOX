@@ -1,0 +1,211 @@
+<div
+	class="card">
+	{# Top Tags #}
+	<div class="card__top-tags">
+		<div class="tags-row">
+			<span class="m-tag --grey">#{{order.id}}</span>
+			{# Types could be "Asana, "SAKS", "Manual", "Auto" #}
+			<span class="m-tag --{{order.type|replace(' ', '-')|lower}}">{{order.type}}</span>
+		</div>
+
+		{% if order.price %}
+			<span class="card__price --grid">Price:
+				{{order.price}}</span>
+		{% endif %}
+	</div>
+
+	{# Main Information #}
+	<div
+		class="card__main">
+		{# Media #}
+		<div class="card__media">
+			<img src="{{order.item.img_src}}" alt="">
+		</div>
+
+		{# Title & Item Details #}
+		<div class="card__title-group">
+			<h4 class="card__title">
+				<a href="{{order.item.href}}">{{order.item.title}}</a>
+			</h4>
+			<div class="card__item-details">
+				{% for detail in order.item.details %}
+					<span>{{detail.name}}:
+						<strong>{{detail.value}}</strong>
+					</span>
+				{% endfor %}
+			</div>
+		</div>
+
+		{# Order Details & Category #}
+		<div class="card__details">
+			{% if order.item.date %}
+				<div class="m-details-box">
+					<span class="--icon --date"></span>
+					<span class="--text">{{order.item.date}}</span>
+				</div>
+			{% endif %}
+			{% if order.item.receipt %}
+				<div class="m-details-box">
+					<span class="--icon --receipt"></span>
+					<span class="--text">
+						<a href="{{order.item.receipt_href}}" target="_blank">{{order.item.receipt}}</a>
+					</span>
+				</div>
+			{% endif %}
+			{% if order.item.po %}
+				<div class="m-details-box">
+					<span class="--icon --po"></span>
+					<span class="--text">{{order.item.po}}</span>
+				</div>
+			{% endif %}
+			{% if order.item.style %}
+				<div class="m-details-box">
+					<span class="--icon --style"></span>
+					<span class="--text">
+						<strong>{{order.item.style}}</strong>
+					</span>
+				</div>
+			{% endif %}
+
+			{# Category Select #}
+			{% if order.item.category %}
+				<div class="panel-ps">
+					<select class="panel__input for_select" id="category_id_select_{{order.id}}" onchange="UpdateCategoryId({{order.id}})">
+						{% set categories = {
+																	'100': 'Diamond Engagement Rings',
+																	'110': 'Diamond Wedding Bands', 
+																	'130': 'Diamond Fashion Rings - Women',
+																	'135': 'Diamond Fashion Rings - Men',
+																	'150': 'Diamond Earrings',
+																	'160': 'Diamond Pendants',
+																	'165': 'Diamond Necklaces',
+																	'170': 'Diamond Bracelets',
+																	'185': 'Miscellaneous',
+																	'430': 'Gold Chains',
+																	'500': 'Watches',
+																	'505': 'Watch Bezels and Dials'
+																} %}
+						{% for value, label in categories %}
+							<option value="{{value}}" {% if order.item.category == value %} selected {% endif %}>{{label}}</option>
+						{% endfor %}
+					</select>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+	{# Row -- Vendor Select & Order Status & Price #}
+	<div class="card__row --col">
+		<div class="card__space">
+			<div
+				class="am_flex8">
+
+				{# Vendor Select #}
+				{% if order.mfg %}
+					<div class="panel-ps">
+						<select class="panel__input for_select" id="mfg_{{order.id}}" onchange="updateMfg({{order.id}})">
+							{% set categories = {
+																	'0': 'Unselected',
+																	'evique': 'Evique', 
+																	'recieved': 'Received Orders',
+																	'veda': 'Veda',
+																	'gs': 'GS',
+																	'premier': 'Premier',
+																	'shipped': 'shipped',
+																	'in-house': 'In-house',
+																	'americas-gold': 'Americas Gold',
+																	'alessi': 'Alessi',
+																	'fancy-chains': 'Fancy Chains',
+																	'melano': 'Melano',
+																	'daniel-jewelry': 'Daniel Jewelry',
+																	'haimov': 'Haimov',
+																	'deco': 'Deco'
+																} %}
+							{% for value, label in categories %}
+								<option value="{{value}}" {% if order.mfg == value %} selected {% endif %}>{{label}}</option>
+							{% endfor %}
+						</select>
+					</div>
+				{% endif %}
+
+				{# Order Status #}
+				{% if order.status %}
+					<div class="panel-ps">
+						<select class="panel__input for_select" id="order_type_{{order.id}}" onchange="updateOrderType({{order.id}})">
+							{% set types = {
+																	'stock': 'Stock',
+																	'special': 'Special Order'
+																} %}
+							{% for value, label in types %}
+								<option value="{{value}}" {% if order.status == value %} selected {% endif %}>{{label}}</option>
+							{% endfor %}
+						</select>
+					</div>
+				{% endif %}
+
+				{% if order.is_successful %}
+					<span class="m-tag --lg --green">Successful</span>
+				{% endif %}
+
+				{% if order.paid_method %}
+					<span class="m-tag --lg --grey">{{order.paid_method}}</span>
+				{% endif %}
+			</div>
+
+			{# Price #}
+			{% if order.price %}
+				<div class="card__price-wrap">
+					<span class="card__price">Price:
+						{{order.price}}</span>
+					{% if order.cost_price %}
+						<span class="card__cost-price">Cost:
+							{{order.cost_price}}</span>
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+
+		{# Actions #}
+		<div class="card__actions">
+			{% if order.pending == true %}
+				<div class="m-btn --waiting">Waiting...</div>
+			{% endif %}
+			{% if order.allow_receieve %}
+				<button class="m-btn --green" onclick="OrderRecieved({{order.id}});">Received</button>
+			{% endif %}
+			{% if order.allow_export %}
+				<button class="m-btn" onclick="exportAsana({{order.id}});">Export To Asana</button>
+			{% endif %}
+			{% if order.allow_remove %}
+				<button class="m-btn --red" onclick="removeOrder({{order.id}});">Remove Order</button>
+			{% endif %}
+		</div>
+
+		{# Qty & More Controls #}
+		{% if order.is_online %}
+			<div class="card__controls">
+				<input type="number" class="panel__input --qty" placeholder="Qty" value="1" step="1" min="1" id="manual_qty_{{order.id}}">
+				<button title="send to manual" class="panel__btn --send bright_blue" onclick="OnlineToManual({{order.id}});"></button>
+				<a title="STM" class="panel__btn" type="button" data-fancybox="" data-type="ajax" data-src="/crons/items-to-instoreorder.php?id={{order.id}}">STM</a>
+			</div>
+		{% endif %}
+	</div>
+
+	{# Notes #}
+	<div class="card__notes-footer">
+		<div class="am-item__note-form">
+			<input class="am-note-input" id="new_order_note_{{order.id}}" autocomplete="off" placeholder="New note here..." type="text">
+			<button onclick="AddOrderNote({{order.id}});">Add</button>
+		</div>
+		{% for note in order.notes %}
+			<div class="whale-card__note">
+				<div class="whale-card__note-date">{{note.date}}</div>
+				<div class="whale-card__note-text">
+					<span class="whale-card__note-author">{{note.author}}
+					</span>:
+					{{note.text}}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>

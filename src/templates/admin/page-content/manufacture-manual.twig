@@ -15,6 +15,7 @@
 
 {# Panel #}
 <div class="panel">
+
 	<div
 		class="panel__holder">
 
@@ -188,26 +189,34 @@
 								{# Row -- View #}
 								<div class="panel-box__row">
 									<div class="panel-box__flex-row">
-										<button class="panel__blank-btn is-active">
+										<button data-view="table" class="panel__blank-btn is-active">
 											{% include "admin/svg/panel_list.svg" %}
 											<span>Table</span>
 										</button>
-										<button class="panel__blank-btn">
+										<button data-view="grid" class="panel__blank-btn">
 											{% include "admin/svg/panel_grid.svg" %}
 											<span>Grid</span>
 										</button>
-										<button class="panel__blank-btn">
+										<button data-view="rows" class="panel__blank-btn">
 											{% include "admin/svg/panel_grid.svg" %}
 											<span>Rows</span>
 										</button>
 									</div>
 								</div>
 
+								{# Row -- Cards Row #}
+								<div class="panel-box__row --cards">
+									{% for order in manual_orders %}
+										{% include "admin/components/manufacture-card.twig" %}
+									{% endfor %}
+								</div>
 
 								{# Row -- Table #}
 								<div class="panel-box__row --table">
 									<div class="ag-quartz-table" id="manufactureManualGrid" style="height: 520px"></div>
 								</div>
+
+
 							</div>
 						</div>
 					</div>
