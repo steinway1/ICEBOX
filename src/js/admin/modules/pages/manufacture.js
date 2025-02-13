@@ -17,6 +17,7 @@ export default class Manufacture {
 
   init() {
     this.bindViewSwitch();
+		this.bindToggleSidebar();
   }
   initGrids() {
     for (const type of this.#GridTypesToRender) {
@@ -45,4 +46,20 @@ export default class Manufacture {
       });
     });
   }
+	bindToggleSidebar() {
+		function updateTipText() {
+			let tipText = !document.body.classList.contains('--hide-sidebar') ? 'Show Sidebar' : 'Hide Sidebar';
+			return tipText;
+		}
+
+		const toggleSidebarElements = document.querySelectorAll('[data-evt="toggleSidebar"]');
+		toggleSidebarElements.forEach((el) => {
+			el.setAttribute('data-tip', updateTipText());
+
+			el.addEventListener('click', () => {
+				document.body.classList.toggle('--hide-sidebar');
+				el.setAttribute('data-tip', updateTipText());
+			})
+		})
+	}
 }
