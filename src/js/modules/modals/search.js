@@ -135,6 +135,15 @@ class Search {
 
   // Events
   #bindInput() {
+		this.input.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter') {
+				const value = this.input.value.trim()
+				if (value) {
+					window.location.href = `https://www.icebox.com/search-products?keyword=${value}`
+				}
+			}
+		})
+
     this.input.addEventListener('input', () => {
       if (this.searchTimeout) clearTimeout(this.searchTimeout)
       if (this.abortSearchController) this.abortSearchController.abort()

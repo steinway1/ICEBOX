@@ -1,0 +1,211 @@
+<div class="hero-table-wrap">
+	<table class="hero-table --table-manufacture">
+		<thead>
+			<tr>
+				{% for column in column_defs %}
+					<th>{{ column.title }}</th>
+				{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for order in orders_entries %}
+				<tr>
+
+					{# ID #}
+					{% if order.id %}
+						<td class="td_id">
+							<span class="m-tag --blank">{{ order.id }}</span>
+						</td>
+					{% endif %}
+
+					{# TYPE #}
+					{% if order.type %}
+						<td class="td_type">
+							<span class="m-tag --{{ order.type|replace({' ': '-'})|lower }}">{{ order.type }}</span>
+						</td>
+					{% endif %}
+
+					{# PIC #}
+					{% if order.item.img_src %}
+						<td class="td_pic">
+							<div class="m-media-box">
+								<img src="{{ order.item.img_src }}" alt="">
+							</div>
+						</td>
+					{% endif %}
+
+					{# TITLE #}
+					{% if order.item.title %}
+						<td class="td_title">
+							<a href="{{ order.item.href }}" class="m-title">{{ order.item.title }}</a>
+						</td>
+					{% endif %}
+
+					{# CATEGORY #}
+					{% if order.item.category %}
+						<td class="td_ps td_category">
+							<div class="panel-ps">
+								<select class="panel__input for_select" id="category_id_select_{{order.id}}" onchange="UpdateCategoryId({{order.id}})">
+									{% set categories = {
+																	'100': 'Diamond Engagement Rings',
+																	'110': 'Diamond Wedding Bands', 
+																	'130': 'Diamond Fashion Rings - Women',
+																	'135': 'Diamond Fashion Rings - Men',
+																	'150': 'Diamond Earrings',
+																	'160': 'Diamond Pendants',
+																	'165': 'Diamond Necklaces',
+																	'170': 'Diamond Bracelets',
+																	'185': 'Miscellaneous',
+																	'430': 'Gold Chains',
+																	'500': 'Watches',
+																	'505': 'Watch Bezels and Dials'
+																} %}
+									{% for value, label in categories %}
+										<option value="{{value}}" {% if order.item.category == value %} selected {% endif %}>{{label}}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</td>
+					{% endif %}
+
+					{# DATE #}
+					{% if order.item.date %}
+						<td class="td_details td_date">
+							<div class="m-details-box">
+								<span class="--icon --date"></span>
+								<span class="--text">{{order.item.date}}</span>
+							</div>
+						</td>
+					{% endif %}
+
+					{# RECEIPT #}
+					{% if order.item.receipt %}
+						<td class="td_details td_receipt">
+							<div class="m-details-box">
+								<span class="--icon --receipt"></span>
+								<span class="--text">
+									<a href="{{order.item.receipt_href}}" target="_blank">{{order.item.receipt}}</a>
+								</span>
+							</div>
+						</td>
+					{% endif %}
+
+					{# PO #}
+					{% if order.item.po %}
+						<td class="td_details td_po">
+							<div class="m-details-box">
+								<span class="--icon --po"></span>
+								<span class="--text">{{order.item.po}}</span>
+							</div>
+						</td>
+					{% endif %}
+
+					{# STYLE #}
+					{% if order.item.style %}
+						<td class="td_details td_style">
+							<div class="m-details-box">
+								<span class="--icon --style"></span>
+								<span class="--text">
+									<strong>{{order.item.style}}</strong>
+								</span>
+							</div>
+						</td>
+					{% endif %}
+
+					{# INFO #}
+					{% if order.item.details %}
+						<td class="td_info">
+							<div class="card__item-details">
+								{% for detail in order.item.details %}
+									<span>{{detail.name}}:
+										<strong>{{detail.value}}</strong>
+									</span>
+								{% endfor %}
+							</div>
+						</td>
+					{% endif %}
+
+					{# STATUS #}
+					{% if order.status %}
+						<td class="td_ps td_status">
+							<div class="panel-ps">
+								<select class="panel__input for_select" id="order_type_{{order.id}}" onchange="updateOrderType({{order.id}})">
+									{% set types = {
+																	'stock': 'Stock',
+																	'special': 'Special Order'
+																} %}
+									{% for value, label in types %}
+										<option value="{{value}}" {% if order.status == value %} selected {% endif %}>{{label}}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</td>
+					{% endif %}
+
+					{# PRICE #}
+					{% if order.price %}
+						<td class="td_price">
+							<div class="m-info">
+								<span class="typo_price">Price:
+									{{order.price}}</span>
+								{% if order.cost_price %}
+									<span class="typo_cost">Cost:
+										{{order.cost_price}}</span>
+								{% endif %}
+							</div>
+						</td>
+					{% endif %}
+
+					{# VENDOR #}
+					{% if order.mfg %}
+						<td class="td_ps td_mfg">
+							<div class="panel-ps">
+								<select class="panel__input for_select" id="mfg_{{order.id}}" onchange="updateMfg({{order.id}})">
+									{% set categories = {
+																	'0': 'Unselected',
+																	'evique': 'Evique', 
+																	'recieved': 'Received Orders',
+																	'veda': 'Veda',
+																	'gs': 'GS',
+																	'premier': 'Premier',
+																	'shipped': 'shipped',
+																	'in-house': 'In-house',
+																	'americas-gold': 'Americas Gold',
+																	'alessi': 'Alessi',
+																	'fancy-chains': 'Fancy Chains',
+																	'melano': 'Melano',
+																	'daniel-jewelry': 'Daniel Jewelry',
+																	'haimov': 'Haimov',
+																	'deco': 'Deco'
+																} %}
+									{% for value, label in categories %}
+										<option value="{{value}}" {% if order.mfg == value %} selected {% endif %}>{{label}}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</td>
+					{% endif %}
+
+					{# MANAGE #}
+					<td class="td_manage">
+						<div class="m-btn-group">
+							{% if order.pending == true %}
+								<div class="m-btn --waiting">Waiting...</div>
+							{% endif %}
+							{% if order.allow_receieve %}
+								<button class="m-btn --green" onclick="OrderRecieved({{order.id}});">Received</button>
+							{% endif %}
+							{% if order.allow_export %}
+								<button class="m-btn" onclick="exportAsana({{order.id}});">Export To Asana</button>
+							{% endif %}
+							{% if order.allow_remove %}
+								<button class="m-btn --red" onclick="removeOrder({{order.id}});">Remove Order</button>
+							{% endif %}
+						</div>
+					</td>
+
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

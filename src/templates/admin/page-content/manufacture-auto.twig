@@ -148,14 +148,20 @@
 
 								{# Row -- Cards Row #}
 								<div class="panel-box__row --cards">
-									{% for order in manual_orders %}
+									{% for order in auto_orders %}
 										{% include "admin/components/manufacture-card.twig" %}
 									{% endfor %}
 								</div>
 
 								{# Row -- Table #}
 								<div class="panel-box__row --table">
-									<div class="ag-quartz-table" id="manufactureAutoGrid" style="height: 520px"></div>
+									{% include "admin/components/manufacture-table.twig" with {
+										column_defs: auto_order_columns,
+										orders_entries: auto_orders
+									} %}
+									{% include "admin/components/manufacture-table-pagination.twig" with {
+										pagination_href: "/auto-orders?p="
+									} %}
 								</div>
 							</div>
 						</div>

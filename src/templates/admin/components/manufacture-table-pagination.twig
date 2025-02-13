@@ -1,0 +1,66 @@
+<div class="panel-box__row --navigation">
+	<div
+		class="panel-box__navigation">
+		{# Select per Page #}
+		<div class="panel-box__max-page">
+			<span class="typo_xs">Show per page:</span>
+			<div class="panel-ps">
+				{% set per_page_options = [50, 100, 250, 500, 1000] %}
+				<select id="perPage" name="manufacturingTable_length" class="panel__input for_select">
+					{% for option in per_page_options %}
+						<option value="{{ option }}" {% if current_per_page == option %} selected {% endif %}>50</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+
+		{# Pagination #}
+		<div class="panel-box__pagination">
+			{% if total_pages > 1 %}
+
+				{# First page #}
+				<a href="{{ pagination_href }}1" class="panel__pg-btn {% if current_page == 1 %}is-active{% endif %}">
+					1
+				</a>
+
+				{# Calculate "page window" (start, end) #}
+				{% set start = current_page - 2 %}
+				{% if start < 2 %}
+					{% set start = 2 %}
+				{% endif %}
+
+				{% set end = current_page + 2 %}
+				{% if end > (total_pages - 1) %}
+					{% set end = total_pages - 1 %}
+				{% endif %}
+
+				{# If start > 2, there are "missing" pages between 1 and start => show ellipsis #}
+				{% if start > 2 %}
+					<span class="panel__pg-ellipsis">...</span>
+				{% endif %}
+
+				{# Print pages from start to end (inclusive), marking the current page #}
+				{% for page in range(start, end) %}
+					{% if page == current_page %}
+						<a href="{{ pagination_href }}{{ page }}" class="panel__pg-btn is-active">{{ page }}</a>
+					{% else %}
+						<a href="{{ pagination_href }}{{ page }}" class="panel__pg-btn">{{ page }}</a>
+					{% endif %}
+				{% endfor %}
+
+				{# If end < (total_pages - 1), there are "missing" pages between end and the last page => ellipsis #}
+				{% if end < (total_pages - 1) %}
+					<span class="panel__pg-ellipsis">...</span>
+				{% endif %}
+
+				{# Last page #}
+				<a href="{{ pagination_href }}{{ total_pages }}" class="panel__pg-btn {% if current_page == total_pages %}is-active{% endif %}">
+					{{ total_pages }}
+				</a>
+
+			{% endif %}
+		</div>
+
+
+	</div>
+</div>

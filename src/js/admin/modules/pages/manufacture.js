@@ -16,7 +16,6 @@ export default class Manufacture {
   }
 
   init() {
-    this.initGrids();
     this.bindViewSwitch();
   }
   initGrids() {

@@ -211,7 +211,13 @@
 
 								{# Row -- Table #}
 								<div class="panel-box__row --table">
-									<div class="ag-quartz-table" id="manufactureOnlineGrid" style="height: 520px"></div>
+									{% include "admin/components/manufacture-table.twig" with {
+										column_defs: online_order_columns,
+										orders_entries: online_orders
+									} %}
+									{% include "admin/components/manufacture-table-pagination.twig" with {
+										pagination_href: "/manufacturing?p="
+									} %}
 								</div>
 							</div>
 						</div>
