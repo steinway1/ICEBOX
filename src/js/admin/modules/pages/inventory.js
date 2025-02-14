@@ -1,44 +1,48 @@
-import $ from 'jquery'
-import Splide from '../../lib/splide'
-import PopupBackdrop from '../dynamic/popup-backdrop'
-import PageMsg from '../dynamic/page-msg'
-import { createElem, inputAllowOnlyDecimals, lockScroll, unlockScroll } from '../general/utils'
-import { fakeAjaxGetPtwData, fakeFetchSuccess } from '../general/fake-ajax'
+import $ from "jquery";
+import Splide from "../../lib/splide";
+import PopupBackdrop from "../dynamic/popup-backdrop";
+import PageMsg from "../dynamic/page-msg";
+import {
+  createElem,
+  inputAllowOnlyDecimals,
+  lockScroll,
+  unlockScroll,
+} from "../general/utils";
+import { fakeAjaxGetPtwData, fakeFetchSuccess } from "../general/fake-ajax";
 
 class PTW {
   availableCategoryOptions = [
-    'Pendants',
-    'Earrings',
-    'Bracelets',
-    'Necklaces',
-    'Gold Chains',
-    'Rings',
-    'Accessories',
-    'Watches',
-    'Watch Market',
-    'Travel Cases',
-  ]
+    "Pendants",
+    "Earrings",
+    "Bracelets",
+    "Necklaces",
+    "Gold Chains",
+    "Rings",
+    "Accessories",
+    "Watches",
+    "Watch Market",
+    "Travel Cases",
+  ];
 
   constructor(itemID) {
-    this.itemID = itemID
+    this.itemID = itemID;
     if (!this.itemID) {
-      throw new Error('No Item ID provided or item ID is invalid')
+      throw new Error("No Item ID provided or item ID is invalid");
     }
 
-    this.backdropInstance = null
-    this.loadingClass = '--o-loading'
-    this.disabledClass = '--disabled'
-    this.popupElem = null
-    this.item = null
-    this.create()
+    this.backdropInstance = null;
+    this.loadingClass = "--o-loading";
+    this.disabledClass = "--disabled";
+    this.popupElem = null;
+    this.item = null;
+    this.create();
   }
   create() {
-    lockScroll()
-    this.#createPopup()
-    this.#bindDocumentEvents()
-    this.setup()
+    lockScroll();
+    this.#createPopup();
+    this.#bindDocumentEvents();
+    this.setup();
   }
-
 
   async setup() {
     /**
@@ -60,147 +64,165 @@ class PTW {
      * }
      */
     const item = await this.AjaxGetPtwData(this.itemID)
+    // const item = await fakeAjaxGetPtwData(this.itemID);
 
     if (item.error) {
-      this.destroy()
+      this.destroy();
       new PageMsg({
-        heading: 'Something went wrong',
+        heading: "Something went wrong",
         msg: item.msg,
-        type: 'error'
-      })
-      return
+        type: "error",
+      });
+      return;
     }
 
-    this.item = item
-    this.#renderFromItem()
-    this.enable()
+    this.item = item;
+    this.#renderFromItem();
+    this.enable();
   }
   async submit() {
-    this.disable()
-    const formData = this.getFormData()
+    this.disable();
+    const formData = this.getFormData();
 
     if (!formData || Object.keys(formData).length === 0) {
-      this.enable()
-      new PageMsg({heading: 'Something went wrong', msg: 'Form data is empty or invalid', type: 'error'})
-      return
+      this.enable();
+      new PageMsg({
+        heading: "Something went wrong",
+        msg: "Form data is empty or invalid",
+        type: "error",
+      });
+      return;
     }
 
     /**
      * @CHOU Setup here
      * Send form data to server
      */
-    const response = await this.submitPtw(formData)
+    const response = await this.submitPtw(formData);
     if (response.error) {
-      this.enable()
-      new PageMsg({heading: 'Something went wrong', msg: response.msg, type: 'error'})
-      return
+      this.enable();
+      new PageMsg({
+        heading: "Something went wrong",
+        msg: response.msg,
+        type: "error",
+      });
+      return;
     }
-    $('#ptw_link_'+this.itemID).remove();
-    $('#item_link_'+this.itemID).attr('href',response.product_url);
-    $('#item_link_'+this.itemID).show();
-    this.enable()
-    this.destroy()
-    new PageMsg({heading: 'Success', msg: 'Item added successfully!', type: 'success'})
+    $("#ptw_link_" + this.itemID).remove();
+    $("#item_link_" + this.itemID).attr("href", response.product_url);
+    $("#item_link_" + this.itemID).show();
+    this.enable();
+    this.destroy();
+    new PageMsg({
+      heading: "Success",
+      msg: "Item added successfully!",
+      type: "success",
+    });
   }
 
   // Methods
   disable() {
-    this.popupElem.classList.add(this.disabledClass)
-    this.popupElem.classList.add(this.loadingClass)
+    this.popupElem.classList.add(this.disabledClass);
+    this.popupElem.classList.add(this.loadingClass);
   }
   enable() {
-    this.popupElem.classList.remove(this.disabledClass)
-    this.popupElem.classList.remove(this.loadingClass)
+    this.popupElem.classList.remove(this.disabledClass);
+    this.popupElem.classList.remove(this.loadingClass);
   }
   destroy() {
-    unlockScroll()
+    unlockScroll();
     if (this.popupElem) {
-      this.popupElem.remove()
+      this.popupElem.remove();
     }
     if (this.backdropInstance) {
-      this.backdropInstance.hide()
+      this.backdropInstance.hide();
     }
-    this.#unbindDocumentEvents()
+    this.#unbindDocumentEvents();
   }
   getFormData() {
-    const form = this.popupElem.querySelector('#ptwForm')
+    const form = this.popupElem.querySelector("#ptwForm");
 
     if (!form) {
-      new PageMsg({heading: 'Something went wrong', msg: 'Form element not found', type: 'error'})
-      return
+      new PageMsg({
+        heading: "Something went wrong",
+        msg: "Form element not found",
+        type: "error",
+      });
+      return;
     }
 
-    const formData = new FormData(form)
-    const results = Object.fromEntries(formData)
-    return results
+    const formData = new FormData(form);
+    const results = Object.fromEntries(formData);
+    return results;
   }
   AjaxGetPtwData(itemID) {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: '/admin/ajax/push-to-website-prepare',
-        type: 'POST',
+        url: "/admin/ajax/push-to-website-prepare",
+        type: "POST",
         data: { id: itemID },
         success: (data) => resolve(data),
         error: (xhr, status, error) => reject(error),
       });
     });
   }
-  submitPtw(formData){
+  submitPtw(formData) {
     return new Promise(function (resolve, reject) {
       $.ajax({
-        url: '/admin/ajax/push-to-website-save',
-        type: 'POST',
-        data:formData,
+        url: "/admin/ajax/push-to-website-save",
+        type: "POST",
+        data: formData,
         success: function (data) {
           resolve(data);
         },
         error: function (xhr, status, error) {
           reject(error);
-        }
+        },
       });
     });
   }
 
   #renderFromItem() {
-    const { error,colorOptions, category, price, sku, imgSrc } = this.item
+    const { error, colorOptions, category, price, sku, imgSrc } = this.item;
 
-    let optionsHTML = ''
-    const imgElem = this.popupElem.querySelector('[data-ptw-image]')
-    const optionsGrid = this.popupElem.querySelector('[data-ptw-options]')
+    let optionsHTML = "";
+    const imgElem = this.popupElem.querySelector("[data-ptw-image]");
+    const optionsGrid = this.popupElem.querySelector("[data-ptw-options]");
 
     const renderMethods = [
       this.#renderSkuOption(sku),
       this.#renderPriceOption(price),
       this.#renderCategoryOption(category),
-      this.#renderColorOptions(colorOptions)
-    ]
+      this.#renderColorOptions(colorOptions),
+      this.#renderAutoLink(),
+    ];
 
     if (imgSrc) {
-      imgElem.src = imgSrc
+      imgElem.src = imgSrc;
     } else {
-      this.popupElem.classList.add('--no-image')
+      this.popupElem.classList.add("--no-image");
     }
 
-    for (const method of renderMethods) optionsHTML += method
+    for (const method of renderMethods) optionsHTML += method;
 
-    optionsGrid.innerHTML = optionsHTML
+    optionsGrid.innerHTML = optionsHTML;
   }
   #createPopup() {
-    this.popupElem = createElem('div', {
+    this.popupElem = createElem("div", {
       className: `m-popup --ptw --visible`,
-      id: 'ptwPopup',
+      id: "ptwPopup",
       style: {
-        display: 'block'
-      }
-    })
-    this.disable()
-    this.popupElem.innerHTML = this.#renderPopupInnerHTML()
+        display: "block",
+      },
+    });
+    this.disable();
+    this.popupElem.innerHTML = this.#renderPopupInnerHTML();
 
-    document.body.appendChild(this.popupElem)
-    this.backdropInstance = new PopupBackdrop({ 
+    document.body.appendChild(this.popupElem);
+    this.backdropInstance = new PopupBackdrop({
       instant: true,
-      callback: this.destroy.bind(this)
-     })
+      callback: this.destroy.bind(this),
+    });
   }
   #renderPopupInnerHTML() {
     return `
@@ -225,41 +247,43 @@ class PTW {
           </div>
         </form>
       </div>
-    `
+    `;
   }
   #bindDocumentEvents() {
-    document.addEventListener('click', this.#onDocumentClick)
+    document.addEventListener("click", this.#onDocumentClick);
   }
   #unbindDocumentEvents() {
-    document.removeEventListener('click', this.#onDocumentClick)
+    document.removeEventListener("click", this.#onDocumentClick);
   }
   #onDocumentClick = (e) => {
-    const target = e.target
-    if (target.closest('[data-close-ptw]')) {
-      this.destroy()
+    const target = e.target;
+    if (target.closest("[data-close-ptw]")) {
+      this.destroy();
     }
-    if (target.closest('[data-submit-ptw]')) {
-      this.submit()
+    if (target.closest("[data-submit-ptw]")) {
+      this.submit();
     }
-  }
-  
+  };
+
   // Render methods
   #renderCategoryOption(category) {
-    category = category ? category : 'Select...'
+    category = category ? category : "Select...";
     return `
       <div class="m-popup__input-row">
         <label class="m-popup__label" for="ptwCategory">Category</label>
         <div class="am-select-wrap">
           <select name="ptwCategory" id="ptwCategory" class="am-select">
             <option value="${category}" selected>${category}</option>
-            ${this.availableCategoryOptions.map((option) => {
-      if (option === category) return ''
-      return `<option value="${option}">${option}</option>`
-    }).join('')}
+            ${this.availableCategoryOptions
+              .map((option) => {
+                if (option === category) return "";
+                return `<option value="${option}">${option}</option>`;
+              })
+              .join("")}
           </select>
         </div>
       </div>
-    `
+    `;
   }
   #renderSkuOption(sku) {
     return `
@@ -268,27 +292,29 @@ class PTW {
         <input id="ptwSku" class="m-popup__input" type="text" name="ptwSku" placeholder="Internal Item Number"
           value="${sku}" autocomplete="off" required="">
       </div>
-    `
+    `;
   }
   #renderPriceOption(price) {
-    price = price ? price : '$100'
+    price = price ? price : "$100";
     return `
       <div class="m-popup__input-row">
         <label class="m-popup__label" for="ptwPrice">Price</label>
         <input id="ptwPrice" class="m-popup__input" type="text" name="ptwPrice" placeholder="Price"
           value="${price}" autocomplete="off" required="">
       </div>
-    `
+    `;
   }
   #renderColorOptions(colorOptions) {
     if (!colorOptions) {
-      throw new Error('No color options provided')
+      throw new Error("No color options provided");
     }
 
-    const colorOptionsHTML = colorOptions.map((option) => {
-      let isActive = option.active ? 'selected' : ''
-      return `<option value="${option.value}" ${isActive}>${option.value}</option>`
-    }).join('')
+    const colorOptionsHTML = colorOptions
+      .map((option) => {
+        let isActive = option.active ? "selected" : "";
+        return `<option value="${option.value}" ${isActive}>${option.value}</option>`;
+      })
+      .join("");
 
     return `
       <div class="m-popup__input-row">
@@ -299,51 +325,60 @@ class PTW {
           </select>
         </div>
       </div>
-    `
+    `;
+  }
+  #renderAutoLink() {
+    return `
+			<div class="m-popup__input-row">
+        <label class="custom-checkbox --lg">
+          <input type="checkbox" name="auto_link" value="auto_link" checked>
+          <span>Autolink</span>
+        </label>
+      </div>
+    `;
   }
 }
 
 export default class Inventory {
   splideOptions = {
-    type: 'loop',
+    type: "loop",
     rewind: true,
     pagination: false,
-    arrows: true
-  }
+    arrows: true,
+  };
 
   constructor(rootEl) {
-    this.rootEl = rootEl
-    if (!this.rootEl) return
+    this.rootEl = rootEl;
+    if (!this.rootEl) return;
 
-    this.#init()
+    this.#init();
     window.Inventory = this;
   }
 
   #init() {
-    this.initSplide()
-    this.#bindDocumentEvents()
+    this.initSplide();
+    this.#bindDocumentEvents();
   }
 
   #bindDocumentEvents() {
-    document.addEventListener('click', this.#onDocumentClick)
+    document.addEventListener("click", this.#onDocumentClick);
   }
   #unbindDocumentEvents() {
-    document.removeEventListener('click', this.#onDocumentClick)
+    document.removeEventListener("click", this.#onDocumentClick);
   }
   #onDocumentClick = (e) => {
-    const target = e.target
-    if (target.closest('[data-new-ptw]')) {
-      const id = target.dataset.newPtw
-      new PTW(id)
+    const target = e.target;
+    if (target.closest("[data-new-ptw]")) {
+      const id = target.dataset.newPtw;
+      new PTW(id);
     }
-  }
+  };
 
   initSplide() {
-    const splideArr = [...document.querySelectorAll('.i-card__media-splide')]
+    const splideArr = [...document.querySelectorAll(".i-card__media-splide")];
     for (const splide of splideArr) {
-      const slider = new Splide(splide, Inventory.splideOptions)
-      slider.mount()
+      const slider = new Splide(splide, Inventory.splideOptions);
+      slider.mount();
     }
   }
 }
-
