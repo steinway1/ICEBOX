@@ -1,5 +1,12 @@
 body.body_panel {
 	&.--hide-sidebar {
+
+		.panel-box__row.--cards .card {
+			@media screen and (min-width: 1440px) {
+				min-width: 23%;
+			}
+		}
+
 		.panel-sidebar {
 			width: var(--panel-header-height);
 
@@ -931,6 +938,19 @@ body.body_manufacture {
 	color: white;
 	background-color: var(--panel-blue);
 
+	&.--current-status {
+		background-color: #beffaf;
+		color: black;
+
+		&.--awaiting-stock {
+			background-color: #ffd7d7;
+		}
+
+		&.--synced {
+			background-color: #ffd7d7;
+		}
+	}
+
 	&.--lg {
 		height: 34px;
 	}
@@ -1114,6 +1134,12 @@ body.body_manufacture {
 	font-weight: 500;
 	display: flex;
 	// box-shadow: 0 2px 5px #2685dd40;
+
+	&.--grey {
+		background-color: var(--panel-grey);
+		border-color: var(--panel-grey);
+		color: var(--panel-black);
+	}
 
 	&.--red {
 		background-color: var(--red);
@@ -1457,4 +1483,24 @@ body.body_manufacture {
 	flex-flow: wrap;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.hero-table__notes {
+	max-width: 680px;
+}
+
+.note-row {
+
+	&:not(.--active) {
+		.hero-table__notes {
+			display: none;
+		}
+	}
+
+	&.--active {
+		background-color: var(--panel-bg);
+		.hero-table__notes {
+			margin-top: 12px;
+		}
+	}
 }

@@ -18,6 +18,7 @@ export default class Manufacture {
   init() {
     this.bindViewSwitch();
 		this.bindToggleSidebar();
+		this.bindToggleNotes();
   }
   initGrids() {
     for (const type of this.#GridTypesToRender) {
@@ -60,6 +61,22 @@ export default class Manufacture {
 				document.body.classList.toggle('--hide-sidebar');
 				el.setAttribute('data-tip', updateTipText());
 			})
+		})
+	}
+	bindToggleNotes() {
+		document.addEventListener('click', (e) => {
+			if (e.target.dataset.evt === 'showRowNotes') {
+				const tr = e.target.closest('tr');
+				if (tr) {
+					if (tr.classList.contains('--active')) {
+						tr.classList.remove('--active');
+						e.target.textContent = 'Show Notes';
+					} else {
+						tr.classList.add('--active');
+						e.target.textContent = 'Hide Notes';
+					}
+				}
+			}
 		})
 	}
 }

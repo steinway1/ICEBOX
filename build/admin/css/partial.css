@@ -18155,6 +18155,19 @@ body.body_manufacture.--grid .card {
   background-color: var(--panel-blue);
 }
 
+.m-tag.--current-status {
+  background-color: #beffaf;
+  color: black;
+}
+
+.m-tag.--current-status.--awaiting-stock {
+  background-color: #ffd7d7;
+}
+
+.m-tag.--current-status.--synced {
+  background-color: #ffd7d7;
+}
+
 .m-tag.--lg {
   height: 34px;
 }
@@ -18328,6 +18341,12 @@ body.body_manufacture.--grid .card {
   padding: 8px 14px 8px 16px;
   font-weight: 500;
   display: flex;
+}
+
+.m-btn.--grey {
+  background-color: var(--panel-grey);
+  border-color: var(--panel-grey);
+  color: var(--panel-black);
 }
 
 .m-btn.--red {
@@ -18632,6 +18651,22 @@ body.body_manufacture.--grid .card {
   justify-content: space-between;
 }
 
+.hero-table__notes {
+  max-width: 680px;
+}
+
+.note-row:not(.--active) .hero-table__notes {
+  display: none;
+}
+
+.note-row.--active {
+  background-color: var(--panel-bg);
+}
+
+.note-row.--active .hero-table__notes {
+  margin-top: 12px;
+}
+
 .hero-table-wrap {
   --table-grey: #e0e4ec;
   width: 100%;
@@ -18849,14 +18884,6 @@ body.body_manufacture.--grid .card {
   right: 0;
   background-color: var(--table-grey);
   position: absolute;
-}
-
-.hero-table tbody tr:hover {
-  background-color: inherit;
-}
-
-.hero-table tbody tr:nth-child(even) {
-  background-color: var(--spot);
 }
 
 .hero-table tbody tr:last-child td {
@@ -19205,6 +19232,10 @@ body.body_manufacture.--grid .card {
 
   .pos-thumbs-grid {
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  body.body_panel.--hide-sidebar .panel-box__row.--cards .card {
+    min-width: 23%;
   }
 }
 

@@ -133,14 +133,18 @@
 					<div class="panel-ps">
 						<select class="panel__input for_select" id="order_type_{{order.id}}" onchange="updateOrderType({{order.id}})">
 							{% set types = {
-																	'stock': 'Stock',
-																	'special': 'Special Order'
-																} %}
+								'stock': 'Stock',
+								'special': 'Special Order'
+								} %}
 							{% for value, label in types %}
 								<option value="{{value}}" {% if order.status == value %} selected {% endif %}>{{label}}</option>
 							{% endfor %}
 						</select>
 					</div>
+				{% endif %}
+
+				{% if order.current_status %}
+					<span class="m-tag --lg --current-status --{{ order.current_status|replace({' ': '-'})|lower }}">{{ order.current_status }}</span>
 				{% endif %}
 
 				{% if order.is_successful %}

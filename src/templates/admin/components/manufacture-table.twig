@@ -68,6 +68,13 @@
 						</td>
 					{% endif %}
 
+					{# CURRENT STATUS #}
+					{% if order.current_status %}
+						<td class="td_current_status">
+							<span class="m-tag --current-status --{{ order.current_status|replace({' ': '-'})|lower }}">{{ order.current_status }}</span>
+						</td>
+					{% endif %}
+
 					{# DATE #}
 					{% if order.item.date %}
 						<td class="td_details td_date">
@@ -186,6 +193,21 @@
 						</td>
 					{% endif %}
 
+					{# CONTROLS #}
+					{% if order.controls %}
+						<td
+							class="td_controls">
+							{# Qty & More Controls #}
+							{% if order.is_online %}
+								<div class="card__controls">
+									<input type="number" class="panel__input --qty" placeholder="Qty" value="1" step="1" min="1" id="manual_qty_{{order.id}}">
+									<button title="send to manual" class="panel__btn --send bright_blue" onclick="OnlineToManual({{order.id}});"></button>
+									<a title="STM" class="panel__btn" type="button" data-fancybox="" data-type="ajax" data-src="/crons/items-to-instoreorder.php?id={{order.id}}">STM</a>
+								</div>
+							{% endif %}
+						</td>
+					{% endif %}
+
 					{# MANAGE #}
 					<td class="td_manage">
 						<div class="m-btn-group">
@@ -203,7 +225,33 @@
 							{% endif %}
 						</div>
 					</td>
+				</tr>
 
+				{# NOTES #}
+				<tr class="note-row">
+					<td class="td_notes" colspan="{{ column_defs|length }}">
+						<div class="am_flex8 --center">
+							<span class="typo_xs"><strong>Notes:
+								{{order.notes|length}}</strong></span>
+							<button class="m-btn --grey" data-evt="showRowNotes">Show Notes</button>
+						</div>
+						<div class="hero-table__notes">
+							<div class="am-item__note-form">
+								<input class="am-note-input" id="new_order_note_{{order.id}}" autocomplete="off" placeholder="New note here..." type="text">
+								<button onclick="AddOrderNote({{order.id}});">Add</button>
+							</div>
+							{% for note in order.notes %}
+								<div class="whale-card__note">
+									<div class="whale-card__note-date">{{note.date}}</div>
+									<div class="whale-card__note-text">
+										<span class="whale-card__note-author">{{note.author}}
+										</span>:
+										{{note.text}}
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</td>
 				</tr>
 			{% endfor %}
 		</tbody>
