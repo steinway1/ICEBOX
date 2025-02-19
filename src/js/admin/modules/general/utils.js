@@ -25,7 +25,15 @@ function getTransitionTime(el) {
 
 function inputAllowOnlyDecimals(input) {
   input.addEventListener('input', function () {
-    input.value = input.value.replace(/[^0-9.]/g, '');
+    let value = input.value.replace(/[^0-9.]/g, '');
+  
+    const parts = value.split('.');
+    
+    if (parts.length > 1) {
+      value = parts[0] + '.' + parts[1].slice(0, 2);
+    }
+
+    input.value = value;
   })
 }
 
@@ -158,6 +166,41 @@ function showMessage(type, heading, msg) {
   pageMsg.show()
 }
 
+function formatAndSumNumbers(...args) {
+  let sum = 0;
+  
+  function processItem(item) {
+    if (Array.isArray(item)) {
+      item.forEach(processItem);
+      return;
+    }
+    
+    if (typeof item === 'number') {
+      sum += item;
+      return;
+    }
+
+    if (typeof item === 'string') {
+      let cleaned = item.replace(/[^0-9.,]/g, '');
+      cleaned = cleaned.replace(/,/g, '');
+      const numValue = parseFloat(cleaned);
+
+      if (!isNaN(numValue)) {
+        sum += numValue;
+      }
+    }
+  }
+
+  args.forEach(processItem);
+
+  const formattedSum = sum.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+  
+  return `$${formattedSum}`;
+}
+
 export {
   createElem,
   getTransitionTime,
@@ -176,5 +219,6 @@ export {
   pageBackdropOn,
   pageBackdropOff,
   unlockDataLockedInput,
-  showMessage
+  showMessage,
+	formatAndSumNumbers
 }
