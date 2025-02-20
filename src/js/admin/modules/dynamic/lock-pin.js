@@ -244,5 +244,10 @@ export default class LockPin {
     this.setElements();
     this.attachButtonClick();
     this.attachDocEvents();
+
+    const activeEl = document.activeElement;
+    if (activeEl) {
+      activeEl.blur();
+    }
   }
 }

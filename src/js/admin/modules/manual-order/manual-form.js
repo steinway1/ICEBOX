@@ -173,7 +173,7 @@ export default class ManualOrderForm {
     if (this.paidInFullSelect && this.todayPaymentInput) {
       this.paidInFullSelect.onchange = () => {
         const enable =
-            this.paidInFullSelect.value.toLowerCase() === "yes" ? true : false,
+          this.paidInFullSelect.value.toLowerCase() === "yes" ? true : false,
           itemsArr = [
             ...this.form.querySelectorAll(".m-popup__list-item.--selected"),
           ];
@@ -183,23 +183,19 @@ export default class ManualOrderForm {
         if (enable) {
           if (itemsArr.length) {
             for (const item of itemsArr) {
-							console.log(item)
+              console.log(item)
 
               const input =
-                item.querySelector(
-                  'input[data-old-price]:not([hidden])'
-                ) ||
-                item.querySelector(
-                  'input[data-sale-price]:not([hidden])'
-                );
+                item.querySelector('input[name=price[]]') ||
+                item.querySelector('input[data-old-price]:not([hidden])') ||
+                item.querySelector('input[data-sale-price]:not([hidden])');
 
               if (input) {
                 amountArr.push(input.value);
               }
             }
 
-						console.log(amountArr)
-
+            console.log(amountArr)
             this.todayPaymentInput.value = formatAndSumNumbers(amountArr);
           }
         } else {
@@ -446,9 +442,8 @@ export default class ManualOrderForm {
         <input type="hidden" name="products[]" value="${item.id}"/>
         <img src="${item.img_src}" alt="">
         <div class="m-popup__list-item-col">
-          <input type="text" name="item_title" class="m-popup__input --bold" value="${
-            item.title
-          }">
+          <input type="text" name="item_title" class="m-popup__input --bold" value="${item.title
+        }">
           <div class="am_flex8 m-popup__list-item-price">
             ${createPriceElem()}
           </div>
@@ -485,11 +480,11 @@ export default class ManualOrderForm {
             selectContent = `
             <option value="" selected disabled>${option.name}</option>
             ${option.set
-              .map(
-                (select) =>
-                  `<option value="${select.caption}">${select.caption}</option>`
-              )
-              .join("")}
+                .map(
+                  (select) =>
+                    `<option value="${select.caption}">${select.caption}</option>`
+                )
+                .join("")}
           `;
           }
 
@@ -686,8 +681,8 @@ export default class ManualOrderForm {
       this.currentStep === 1
         ? "customer"
         : this.currentStep === 2
-        ? "item"
-        : "other";
+          ? "item"
+          : "other";
     //alert(contentType)
     const validator = new ManualOrderValidator(
       contentType,
