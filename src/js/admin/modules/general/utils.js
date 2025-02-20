@@ -198,7 +198,7 @@ function formatAndSumNumbers(...args) {
     maximumFractionDigits: 2,
   });
   
-  return `$${formattedSum}`;
+  return `${formattedSum}`;
 }
 
 export {
