@@ -186,7 +186,7 @@ export default class ManualOrderForm {
               console.log(item)
 
               const input =
-                item.querySelector('input[name=price[]]') ||
+              document.querySelector('input[name=price\\[\\]]') ||
                 item.querySelector('input[data-old-price]:not([hidden])') ||
                 item.querySelector('input[data-sale-price]:not([hidden])');
 
