@@ -29,7 +29,6 @@ export default class PageMsg {
   }
 
   getTransitionTime(element) {
-    // Предполагаем, что эта функция определена где-то в глобальной области видимости
     return getTransitionTime(element)
   }
 

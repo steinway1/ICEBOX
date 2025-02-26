@@ -201,6 +201,25 @@ function formatAndSumNumbers(...args) {
   return `${formattedSum}`;
 }
 
+function applyOverloader(target) {
+  const overLoader = createElem('span', {
+    className: 'over-loader'
+  })
+  target.appendChild(overLoader)
+	target.disabled = true
+	target.classList.add('--over-loading')
+}
+
+function removeOverloader(target) {
+	const overLoader = target.querySelector('.over-loader')
+
+	if (overLoader) {
+		overLoader.remove()
+		target.disabled = false
+		target.classList.remove('--over-loading')
+	}
+}
+
 export {
   createElem,
   getTransitionTime,
@@ -220,5 +239,7 @@ export {
   pageBackdropOff,
   unlockDataLockedInput,
   showMessage,
-	formatAndSumNumbers
+	formatAndSumNumbers,
+	applyOverloader,
+	removeOverloader
 }

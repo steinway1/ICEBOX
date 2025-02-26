@@ -6135,11 +6135,11 @@ body.blue_head .am-select:hover {
 
 :root {
   --sub_light_blue: #20dcdc;
-  --sub_dark_blue: #00B3F6;
+  --sub_dark_blue: #00b3f6;
   --sub_yellow: #ffef15;
-  --sub_orange: #FEBD00;
-  --sub_green: #00B242;
-  --sub_purple: #CB9DE5;
+  --sub_orange: #febd00;
+  --sub_green: #00b242;
+  --sub_purple: #cb9de5;
 }
 
 *.--order_last {
@@ -7080,26 +7080,27 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
 .page-msg {
   z-index: 99999;
   background-color: #fff;
-  border: 1px solid #d4d9e2;
-  width: 380px;
+  border: 1px solid #fff;
+  width: 280px;
+  border-radius: 1rem;
   min-height: 40px;
-  padding: 22px 52px 20px 72px;
+  padding: 14px 42px 14px 24px;
   transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
   position: fixed;
   bottom: 14px;
   left: 14px;
-  box-shadow: 0 0 42px rgba(96, 105, 117, 0.3);
+  box-shadow: 0 12px 68px rgba(73, 82, 94, 0.18);
 }
 
 .page-msg::after {
-  content: "";
   position: absolute;
-  top: 22px;
-  left: 36px;
-  width: 24px;
-  height: 24px;
+  top: 12px;
+  left: 12px;
+  width: 20px;
+  height: 20px;
   background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="%233a78cc"/><path d="M13.0324 5.48999L12.7984 14.22H11.0884L10.8544 5.48999H13.0324ZM12.0064 18.126C11.6344 18.126 11.3224 18 11.0704 17.748C10.8184 17.496 10.6924 17.184 10.6924 16.812C10.6924 16.44 10.8184 16.128 11.0704 15.876C11.3224 15.624 11.6344 15.498 12.0064 15.498C12.3664 15.498 12.6724 15.624 12.9244 15.876C13.1764 16.128 13.3024 16.44 13.3024 16.812C13.3024 17.184 13.1764 17.496 12.9244 17.748C12.6724 18 12.3664 18.126 12.0064 18.126Z" fill="white"/></svg>');
   background-size: 24px 24px;
+  border-radius: 50rem;
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -7109,10 +7110,10 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   z-index: 2;
   top: 0;
   right: 0;
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
   background-image: url('data:image/svg+xml,<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 1L1 11" stroke="%23171C29" stroke-width="1.5"/><path d="M1 1L11 11" stroke="%23171C29" stroke-width="1.5"/></svg>');
-  background-size: 10px 10px;
+  background-size: 12px 12px;
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -7124,12 +7125,14 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
   text-transform: capitalize;
 }
 
 .page-msg p {
-  line-height: 20px;
+  line-height: 18px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .datepicker.dropdown-menu {
@@ -8880,6 +8883,81 @@ span.--warn {
 
 .add-transaction-btn span:first-child {
   font-size: 24px;
+}
+
+.--over-loading {
+  overflow: hidden;
+  position: relative;
+  pointer-events: none;
+}
+
+.over-loader {
+  position: absolute;
+  inset: 0%;
+  z-index: 4;
+  background-color: #eff2f6;
+  border: 1px solid #eff2f6;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.over-loader::after {
+  content: "";
+  width: 1.2em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid var(--black);
+  animation: l20-1 0.8s infinite linear alternate, l20-2 1.6s infinite linear;
+}
+
+@keyframes l20-1 {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
+  }
+
+  12.5% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
+  }
+
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%);
+  }
+
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+  }
+
+  62.5% {
+    clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+  }
+
+  75% {
+    clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%);
+  }
+
+  100% {
+    clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%);
+  }
+}
+
+@keyframes l20-2 {
+  0% {
+    transform: scaleY(1) rotate(0deg);
+  }
+
+  49.99% {
+    transform: scaleY(1) rotate(135deg);
+  }
+
+  50% {
+    transform: scaleY(-1) rotate(0deg);
+  }
+
+  100% {
+    transform: scaleY(-1) rotate(-135deg);
+  }
 }
 
 :root {

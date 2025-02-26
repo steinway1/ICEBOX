@@ -4,7 +4,8 @@ import {
   getFakeItemsArr,
   getFakeCustomer,
   getFakeManulOrder,
-  getFakeCustomersArr
+  getFakeCustomersArr,
+  getFakeOrderDetails
 } from './fake-data'
 
 function fakeAjaxGetPtwData(itemID) {
@@ -34,6 +35,16 @@ function fakeAjaxGetOrder(id) {
   return new Promise((resolve) => {
     setTimeout(() => {
       const data = getFakeManulOrder(id)
+      // const data = false
+      resolve(data)
+    }, 1500)
+  })
+}
+
+function fakeAjaxGetOrderDetails(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = getFakeOrderDetails(id)
       // const data = false
       resolve(data)
     }, 1500)
@@ -115,5 +126,6 @@ export {
   fakeAjaxGetItemsArray,
   fakeAjaxGetItem,
   fakeFetchPost,
-  fakeFetchRemoveOrder
+  fakeFetchRemoveOrder,
+  fakeAjaxGetOrderDetails
 }
