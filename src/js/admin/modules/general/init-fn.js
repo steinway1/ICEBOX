@@ -159,12 +159,15 @@ async function bindCopyOrderDetails() {
 
       try {
         applyOverloader(copyBtn);
+				/**
+				 * @Chou Setup here
+				 */
         const orderDetails = await fakeAjaxGetOrderDetails(orderId);
 
         if (!orderDetails) {
           throw new Error("Order not found");
         }
-
+				
         const {
           customer = "",
           payment_type = "Unknown",
