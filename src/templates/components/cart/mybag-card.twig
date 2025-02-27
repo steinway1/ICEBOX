@@ -2,8 +2,13 @@
 	<input type="hidden" name="items[]" value="{{ key }}"/>
 	<div class="mybag-card__container">
 		<div class="mybag-card__wrap">
-			<div class="mybag-card__thumbnail">
-				<a href="{{ href }}"><img src="{{imgSrc}}" loading="lazy" class="mybag-card__picture"></a>
+			<div class="mybag-card__pic-wrap">
+				<div class="mybag-card__thumbnail">
+					<a href="{{ href }}"><img src="{{imgSrc}}" loading="lazy" class="mybag-card__picture"></a>
+				</div>
+				<a class="mybag-card__mob-title" href="{{ href }}" target="_blank">
+					<h5 class="mybag-card-title">{{name}}</h5>
+				</a>
 			</div>
 			<div class="mybag-card__content">
 				<div class="mybag-card__content-wrap">
@@ -16,28 +21,40 @@
 									<h5 class="mybag-card-title">{{name}}</h5>
 								</a>
 							</div>
-							<div class="mybag-card-drop">
-								<div></div>
-								<div>
-									<div>
-										<button onclick="confirmRemove({{item.key}});">Remove</button>
-										<a href="{{ href }}" target="_blank">Go To Product</a>
-									</div>
-								</div>
-							</div>
 						</div>
 						{# Options #}
 						<div class="mybag-card__options">
 							{% for option in options %}
-								<span>{{option.name}}:
-									{{option.value}}</span>
+								<span>
+									<span>{{option.name}}:</span>
+									<span>{{option.value}}</span>
+								</span>
 							{% endfor %}
 						</div>
 					</div>
 					<div class="mybag-card__details">
 						<div class="mybag-card__controls">
 							<div class="mybag-card__controls-wrap">
+
 								<div class="mybag-card__controls-group">
+									<div class="mybag-card__quantity">
+										<div class="mybag-card__select-wrap">
+											<select title="Quantity" class="mybag-card__select cart-blank-btn --select" name="qty[]" onchange="$('#updateCartFrm').submit();">
+												{% for selectOptions in 1..10 %}
+													{% if selectOptions == qty %}
+														<option value="{{qty}}" selected>{{qty}}</option>
+													{% else %}
+														<option value="{{selectOptions}}">{{selectOptions}}</option>
+													{% endif %}
+												{% endfor %}
+											</select>
+										</div>
+									</div>
+									<a href="{{ href }}" class="cart-blank-btn">Go To</a>
+									<button class="cart-blank-btn" onclick="confirmRemove({{item.key}});">Remove</button>
+								</div>
+
+								<div class="mybag-card__price-wrap">
 									{% if salePrice %}
 										<span class="mybag-card-price card-price_old">{{price}}</span>
 										<span class="mybag-card-price card-price_new">{{salePrice}}</span>
@@ -46,22 +63,6 @@
 										<span class="mybag-card-price">{{price}}</span>
 									{% endif %}
 								</div>
-
-								<div class="mybag-card__quantity">
-									<div class="mybag-card__select-wrap">
-										{% include "components/svg/dropdown.svg" with { class: 'checkout__dd-icon' } %}
-										<select title="Quantity" class="mybag-card__select" name="qty[]" onchange="$('#updateCartFrm').submit();">
-											{% for selectOptions in 1..10 %}
-												{% if selectOptions == qty %}
-													<option value="{{qty}}" selected>{{qty}}</option>
-												{% else %}
-													<option value="{{selectOptions}}">{{selectOptions}}</option>
-												{% endif %}
-											{% endfor %}
-										</select>
-									</div>
-								</div>
-
 
 							</div>
 						</div>
@@ -75,5 +76,4 @@
 			<span>{{ notice | raw}}</span>
 		</div>
 	{% endif %}
-
 </div>

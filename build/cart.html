@@ -39,8 +39,11 @@
 </head>
 
 
-<body class="">
+<body class=" body_cart">
 
+    <div class="top-banner">
+        Free Insured Shipping on all US Orders
+    </div>
 
     <header class="header">
         <div class="header-nav-wrapper">
@@ -251,20 +254,14 @@
             <div class="mybag-content">
 
                 <div class="mybag__cards-col">
-                    <div class="mybag__page-controls">
-                        <a href="/" class="mybag__page-btn">
-                            <svg width="100%" height="100%" viewbox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.3745 1L1.05566 9.31884L9.3745 17.6377" stroke="currentColor" stroke-width="2"></path>
-                                <path d="M1.05566 9.31885H17.0001" stroke="currentColor" stroke-width="2"></path>
-                            </svg>
-                            <span>Back To Shopping</span>
-                        </a>
-                    </div>
 
                     <div class="mybag__cards-header">
-                        <h3 class="mybag-heading">My Cart<span> (3)</span>
+                        <h3 class="mybag-heading">Shopping Cart<span>
+						(3)</span>
                         </h3>
-                        <span class="typo_xs"><strong>3 items in cart with total price $9,850</strong></span>
+                        <span class="typo_xs">3
+					items in cart with total price
+					$9,850</span>
                     </div>
 
                     <div class="mybag__cards-list">
@@ -274,8 +271,13 @@
                                 <input type="hidden" name="items[]" value="32503" />
                                 <div class="mybag-card__container">
                                     <div class="mybag-card__wrap">
-                                        <div class="mybag-card__thumbnail">
-                                            <a href="#"><img src="./assets/sample-product.webp" loading="lazy" class="mybag-card__picture"></a>
+                                        <div class="mybag-card__pic-wrap">
+                                            <div class="mybag-card__thumbnail">
+                                                <a href="#"><img src="./assets/sample-product.webp" loading="lazy" class="mybag-card__picture"></a>
+                                            </div>
+                                            <a class="mybag-card__mob-title" href="#" target="_blank">
+                                                <h5 class="mybag-card-title">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</h5>
+                                            </a>
                                         </div>
                                         <div class="mybag-card__content">
                                             <div class="mybag-card__content-wrap">
@@ -287,52 +289,49 @@
                                                                 <h5 class="mybag-card-title">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</h5>
                                                             </a>
                                                         </div>
-                                                        <div class="mybag-card-drop">
-                                                            <div></div>
-                                                            <div>
-                                                                <div>
-                                                                    <button onclick="confirmRemove(32503);">Remove</button>
-                                                                    <a href="#" target="_blank">Go To Product</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
 
                                                     <div class="mybag-card__options">
-                                                        <span>Color:
-									Yellow</span>
-                                                        <span>Size:
-									Small</span>
+                                                        <span>
+									<span>Color:</span>
+                                                        <span>Yellow</span>
+                                                        </span>
+                                                        <span>
+									<span>Size:</span>
+                                                        <span>Small</span>
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <div class="mybag-card__details">
                                                     <div class="mybag-card__controls">
                                                         <div class="mybag-card__controls-wrap">
+
                                                             <div class="mybag-card__controls-group">
+                                                                <div class="mybag-card__quantity">
+                                                                    <div class="mybag-card__select-wrap">
+                                                                        <select title="Quantity" class="mybag-card__select cart-blank-btn --select" name="qty[]" onchange="$('#updateCartFrm').submit();">
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>
+                                                                            <option value="6">6</option>
+                                                                            <option value="7">7</option>
+                                                                            <option value="8">8</option>
+                                                                            <option value="9">9</option>
+                                                                            <option value="10">10</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="#" class="cart-blank-btn">Go To</a>
+                                                                <button class="cart-blank-btn" onclick="confirmRemove(32503);">Remove</button>
+                                                            </div>
+
+                                                            <div class="mybag-card__price-wrap">
                                                                 <span class="mybag-card-price card-price_old">$7,500</span>
                                                                 <span class="mybag-card-price card-price_new">$3,500</span>
                                                                 <span class="mybag-card-sale">SALE</span>
                                                             </div>
-
-                                                            <div class="mybag-card__quantity">
-                                                                <div class="mybag-card__select-wrap">
-                                                                    <svg class="checkout__dd-icon" width="12" height="12" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
-                                                                    </svg> <select title="Quantity" class="mybag-card__select" name="qty[]" onchange="$('#updateCartFrm').submit();">
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                        <option value="6">6</option>
-                                                                        <option value="7">7</option>
-                                                                        <option value="8">8</option>
-                                                                        <option value="9">9</option>
-                                                                        <option value="10">10</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
 
                                                         </div>
                                                     </div>
@@ -341,14 +340,18 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="mybag-card" id="cart_item_row_32503">
                                 <input type="hidden" name="items[]" value="32503" />
                                 <div class="mybag-card__container">
                                     <div class="mybag-card__wrap">
-                                        <div class="mybag-card__thumbnail">
-                                            <a href="#"><img src="./assets/sample-product.webp" loading="lazy" class="mybag-card__picture"></a>
+                                        <div class="mybag-card__pic-wrap">
+                                            <div class="mybag-card__thumbnail">
+                                                <a href="#"><img src="./assets/sample-product.webp" loading="lazy" class="mybag-card__picture"></a>
+                                            </div>
+                                            <a class="mybag-card__mob-title" href="#" target="_blank">
+                                                <h5 class="mybag-card-title">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</h5>
+                                            </a>
                                         </div>
                                         <div class="mybag-card__content">
                                             <div class="mybag-card__content-wrap">
@@ -360,50 +363,47 @@
                                                                 <h5 class="mybag-card-title">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</h5>
                                                             </a>
                                                         </div>
-                                                        <div class="mybag-card-drop">
-                                                            <div></div>
-                                                            <div>
-                                                                <div>
-                                                                    <button onclick="confirmRemove(32503);">Remove</button>
-                                                                    <a href="#" target="_blank">Go To Product</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
 
                                                     <div class="mybag-card__options">
-                                                        <span>Color:
-									Yellow</span>
-                                                        <span>Size:
-									Small</span>
+                                                        <span>
+									<span>Color:</span>
+                                                        <span>Yellow</span>
+                                                        </span>
+                                                        <span>
+									<span>Size:</span>
+                                                        <span>Small</span>
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <div class="mybag-card__details">
                                                     <div class="mybag-card__controls">
                                                         <div class="mybag-card__controls-wrap">
+
                                                             <div class="mybag-card__controls-group">
+                                                                <div class="mybag-card__quantity">
+                                                                    <div class="mybag-card__select-wrap">
+                                                                        <select title="Quantity" class="mybag-card__select cart-blank-btn --select" name="qty[]" onchange="$('#updateCartFrm').submit();">
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>
+                                                                            <option value="6">6</option>
+                                                                            <option value="7">7</option>
+                                                                            <option value="8">8</option>
+                                                                            <option value="9">9</option>
+                                                                            <option value="10">10</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="#" class="cart-blank-btn">Go To</a>
+                                                                <button class="cart-blank-btn" onclick="confirmRemove(32503);">Remove</button>
+                                                            </div>
+
+                                                            <div class="mybag-card__price-wrap">
                                                                 <span class="mybag-card-price">$7,500</span>
                                                             </div>
-
-                                                            <div class="mybag-card__quantity">
-                                                                <div class="mybag-card__select-wrap">
-                                                                    <svg class="checkout__dd-icon" width="12" height="12" viewbox="0 0 24 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M1 1L12 11L23 1" stroke="currentColor" stroke-width="3"></path>
-                                                                    </svg> <select title="Quantity" class="mybag-card__select" name="qty[]" onchange="$('#updateCartFrm').submit();">
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                        <option value="6">6</option>
-                                                                        <option value="7">7</option>
-                                                                        <option value="8">8</option>
-                                                                        <option value="9">9</option>
-                                                                        <option value="10">10</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
 
                                                         </div>
                                                     </div>
@@ -415,7 +415,6 @@
                                 <div class="mybag-card__notice">
                                     <span>This item is made to order, Expect your item to arrive on or before June 25th, 2024</span>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -425,6 +424,10 @@
                     <div class="mybag-summary">
                         <div class="checkout-box">
                             <div class="mybag-summary__main">
+                                <div class="summary-price mybag-summary-price_total">
+                                    <span>Estimated Total</span>
+                                    <span>$9,850</span>
+                                </div>
                                 <div class="summary-price">
                                     <span>Original</span>
                                     <span>$7,892</span>
@@ -438,17 +441,14 @@
                                     <span>$12,540</span>
                                 </div>
                                 <div class="summary-price">
-                                    <span>Insured Shipping</span>
+                                    <span>Delivery Charge</span>
                                     <span>On Checkout</span>
-                                </div>
-
-                                <div class="summary-price mybag-summary-price_total">
-                                    <span>Total</span>
-                                    <span>$9,850</span>
                                 </div>
                             </div>
                             <div class="mybag-summary__footer">
-                                <button data-mybag="goToCheckout" class="checkout-btn" onclick="location.href='/checkout'">Continue Checkout</button>
+                                <button data-mybag="goToCheckout" class="checkout-btn" onclick="location.href='/checkout'">Checkout<span>3
+								items</span>
+                                </button>
                                 <span class="mybag-summary__sub-typo">All shipments are insured to the full value of the items included.</span>
 
                                 <div class="mybag-summary__payments">
@@ -461,6 +461,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="checkout-box --info">
                             <div class="mybag-information">
                                 <div class="mybag-information-row">
@@ -470,6 +471,11 @@
                                         <a href="tel:770-828-5540">Call us at (770) 828-5540.</a>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="checkout-box --info">
+                            <div class="mybag-information">
                                 <div class="mybag-information-row">
                                     <img src="./assets/checkout/mybag-icon_delivery.svg" loading="lazy" alt="Icebox safe delivery icon">
                                     <div class="mybag-information-row__wrap">
@@ -479,10 +485,13 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </aside>
             </div>
 
+            <!-- My bag : Features section -->
             <!-- My bag : Features section -->
             <div class="mybag-features">
                 <div class="mybag-features__grid">
@@ -520,7 +529,31 @@
 
             <!-- Go to checkout floating button -->
             <div class="mybag-floating">
-                <button class="checkout-btn" onclick="location.href='/checkout'">Go To Checkout</button>
+                <div class="mybag-summary__main">
+                    <div data-evt="toggleCartSummary" class="summary-price mybag-summary-price_total">
+                        <span>Estimated Total</span>
+                        <span>$9,850</span>
+                    </div>
+                    <div class="summary-price">
+                        <span>Original</span>
+                        <span>$7,892</span>
+                    </div>
+                    <div class="summary-price mybag-summary-price_discount">
+                        <span>Discount</span>
+                        <span>$1,250</span>
+                    </div>
+                    <div class="summary-price">
+                        <span>Subtotal</span>
+                        <span>$12,540</span>
+                    </div>
+                    <div class="summary-price">
+                        <span>Delivery Charge</span>
+                        <span>On Checkout</span>
+                    </div>
+                </div>
+                <button data-mybag="goToCheckout" class="checkout-btn" onclick="location.href='/checkout'">Checkout<span>3
+				items</span>
+                </button>
             </div>
 
         </div>

@@ -6,20 +6,14 @@
 	<div class="mybag-content">
 
 		<div class="mybag__cards-col">
-			<div class="mybag__page-controls">
-				<a href="/" class="mybag__page-btn">
-					<svg width="100%" height="100%" viewbox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M9.3745 1L1.05566 9.31884L9.3745 17.6377" stroke="currentColor" stroke-width="2"></path>
-						<path d="M1.05566 9.31885H17.0001" stroke="currentColor" stroke-width="2"></path>
-					</svg>
-					<span>Back To Shopping</span>
-				</a>
-			</div>
 
 			<div class="mybag__cards-header">
-				<h3 class="mybag-heading">My Cart<span> ({{cart_items}})</span>
+				<h3 class="mybag-heading">Shopping Cart<span>
+						({{cart_items}})</span>
 				</h3>
-        <span class="typo_xs"><strong>{{ cart_items }} items in cart with total price {{ cart.soft_total }}</strong></span>
+				<span class="typo_xs">{{ cart_items }}
+					items in cart with total price
+					{{ cart.soft_total }}</span>
 			</div>
 
 			<div class="mybag__cards-list">
@@ -48,6 +42,10 @@
 			<div class="mybag-summary">
 				<div class="checkout-box">
 					<div class="mybag-summary__main">
+						<div class="summary-price mybag-summary-price_total">
+							<span>Estimated Total</span>
+							<span>{{ cart.soft_total}}</span>
+						</div>
 						<div class="summary-price">
 							<span>Original</span>
 							<span>{{ cart.original_total}}</span>
@@ -69,17 +67,14 @@
 							</div>
 						{% endif %}
 						<div class="summary-price">
-							<span>Insured Shipping</span>
+							<span>Delivery Charge</span>
 							<span>On Checkout</span>
-						</div>
-
-						<div class="summary-price mybag-summary-price_total">
-							<span>Total</span>
-							<span>{{ cart.soft_total}}</span>
 						</div>
 					</div>
 					<div class="mybag-summary__footer">
-						<button data-mybag="goToCheckout" class="checkout-btn" onclick="location.href='/checkout'">Continue Checkout</button>
+						<button data-mybag="goToCheckout" class="checkout-btn" onclick="location.href='/checkout'">Checkout<span>{{ cart_items }}
+								items</span>
+						</button>
 						<span class="mybag-summary__sub-typo">All shipments are insured to the full value of the items included.</span>
 
 						<div class="mybag-summary__payments">
@@ -92,6 +87,7 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="checkout-box --info">
 					<div class="mybag-information">
 						<div class="mybag-information-row">
@@ -101,6 +97,11 @@
 								<a href="tel:770-828-5540">Call us at (770) 828-5540.</a>
 							</div>
 						</div>
+					</div>
+				</div>
+
+				<div class="checkout-box --info">
+					<div class="mybag-information">
 						<div class="mybag-information-row">
 							<img src="{{ THEME_ASSETS_FOLDER }}checkout/mybag-icon_delivery.svg" loading="lazy" alt="Icebox safe delivery icon">
 							<div class="mybag-information-row__wrap">
@@ -110,10 +111,13 @@
 						</div>
 					</div>
 				</div>
+
+
 			</div>
 		</aside>
 	</div>
 
+	<!-- My bag : Features section -->
 	<!-- My bag : Features section -->
 	<div class="mybag-features">
 		<div class="mybag-features__grid">
@@ -151,7 +155,39 @@
 
 	<!-- Go to checkout floating button -->
 	<div class="mybag-floating">
-		<button class="checkout-btn" onclick="location.href='/checkout'">Go To Checkout</button>
+		<div class="mybag-summary__main">
+			<div data-evt="toggleCartSummary" class="summary-price mybag-summary-price_total">
+				<span>Estimated Total</span>
+				<span>{{ cart.soft_total}}</span>
+			</div>
+			<div class="summary-price">
+				<span>Original</span>
+				<span>{{ cart.original_total}}</span>
+			</div>
+			{% if cart.total_discount is defined %}
+				<div class="summary-price mybag-summary-price_discount">
+					<span>Discount</span>
+					<span>{{cart.total_discount}}</span>
+				</div>
+			{% endif %}
+			<div class="summary-price">
+				<span>Subtotal</span>
+				<span>{{cart.subtotal}}</span>
+			</div>
+			{% if user.admin %}
+				<div class="summary-price">
+					<span>Sales Tax</span>
+					<span>TBD</span>
+				</div>
+			{% endif %}
+			<div class="summary-price">
+				<span>Delivery Charge</span>
+				<span>On Checkout</span>
+			</div>
+		</div>
+		<button data-mybag="goToCheckout" class="checkout-btn" onclick="location.href='/checkout'">Checkout<span>{{ cart_items }}
+				items</span>
+		</button>
 	</div>
 
 </div>
