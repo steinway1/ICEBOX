@@ -6,8 +6,7 @@ import {
 import bodymovin from "../../lib/lottie";
 import AirDatepicker from "../../lib/air-datepicker";
 import PageMsg from "../dynamic/page-msg";
-import { fakeAjaxGetOrderDetails } from "./fake-ajax";
-
+import { AjaxGetOrderDetails } from "./ajax.js";
 function updateInputsAllowOnlyDecimals() {
   const onlyDecimalsInputs = document.querySelectorAll(
     "input[data-allow-decimals]"
@@ -147,7 +146,7 @@ async function bindCopyOrderDetails() {
         /**
          * @Chou Setup here
          */
-        const orderDetails = await fakeAjaxGetOrderDetails(orderId);
+        const orderDetails = await AjaxGetOrderDetails(orderId);
 
         if (!orderDetails) {
           throw new Error("Order not found");

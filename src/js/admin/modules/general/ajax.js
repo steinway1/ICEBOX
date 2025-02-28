@@ -1,4 +1,5 @@
 import { showMessage } from './utils'
+import {getFakeOrderDetails} from "./fake-data";
 
 function AjaxGetCustomer(id) {
 	return new Promise((resolve, reject) => {
@@ -112,10 +113,23 @@ function submitOrderData(data) {
 	});
 }
 
+function AjaxGetOrderDetails(id){
+	return new Promise((resolve) => {
+		$.ajax({
+			url:'/admin/ajax/get-clipboard-order/'+id,
+			type:'GET',
+			success:function(data){
+				resolve(data)
+			}
+		});
+	});
+}
+
 export {
 	AjaxGetCustomer,
 	AjaxGetCustomersArray,
 	AjaxGetItemsArray,
 	AjaxGetItem,
-	submitOrderData
+	submitOrderData,
+	AjaxGetOrderDetails
 }
