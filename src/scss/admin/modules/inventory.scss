@@ -9,6 +9,20 @@
   --media-padding: 6px;
   --side-padding: 20px;
 
+	&.--show-quantities {
+		.i-card__quantities {
+			display: flex;
+		}
+
+		.i-card__main-info {
+			display: none;
+		}
+
+		.am-item__note-wrap {
+			display: none;
+		}
+	}
+
   &:hover {
     .i-card__controls {
       display: flex;
@@ -28,6 +42,7 @@
       box-shadow: none;
       border-left: 1px solid var(--b-grey);
       inset: 0 0 0 auto;
+			color: var(--black) !important;
 
       &:hover {
         background-color: var(--royal_blue);
@@ -81,6 +96,16 @@
       }
     }
   }
+
+	.panel__blank-btn {
+		&[data-evt="toggleQuantities"] {
+			font-weight: 700 !important;
+			font-size: 12px !important;
+			color: var(--black) !important;
+			height: 34px;
+			margin-top: 8px;
+		}
+	}
 }
 
 .i-card__top {
@@ -770,4 +795,25 @@
   transition: all 200ms ease;
   user-select: none;
   z-index: 2;
+}
+
+.i-card__quantities {
+	display: none;
+	flex-direction: column;
+	gap: 8px;
+	padding: 0 var(--side-padding);
+
+	.am_flex8 {
+		align-items: center;
+	}
+
+	label {
+		font-weight: 600;
+		font-size: 13px;
+		width: 24px;
+	}
+
+	input {
+		height: 30px;
+	}
 }

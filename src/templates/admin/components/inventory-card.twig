@@ -243,10 +243,32 @@
 					{{ item.date }}
 					days ago</span>
 			</div>
+			
+			{# Quantities #}
+			<div class="i-card__quantities">
+				{% set quantities = [
+					{label: 'W', id: 'w_quantity', value: item.w_quantity},
+					{label: 'Y', id: 'y_quantity', value: item.y_quantity},
+					{label: 'R', id: 'r_quantity', value: item.r_quantity}, 
+					{label: 'TT', id: 'tt_quantity', value: item.tt_quantity},
+					{label: 'TRI', id: 'tri_quantity', value: item.tri_quantity},
+					{label: 'PT', id: 'pt_quantity', value: item.pt_quantity}
+				] %}
+
+				{% for q in quantities %}
+					<div class="am_flex8">
+						<label for="{{ q.id }}_{{ item.dataID }}">{{ q.label }}</label>
+						<input type="text" class="panel__input" id="{{ q.id }}_{{ item.dataID }}" placeholder="{{ q.label }} Quantity" value="{% if q.value %}{{ q.value }}{% endif %}">
+					</div>
+				{% endfor %}
+			</div>
 		</div>
 
 		<div class="i-card__footer">
 			<span class="i-card__price">{{ item.price }}</span>
+
+			{# Toggle quantities button #}
+			<button data-evt="toggleQuantities" class="panel__blank-btn">Show Quantities</button>
 
 			{# Notes #}
 			<div class="am-item__note-wrap" id="note_box_{{ item.id }}">

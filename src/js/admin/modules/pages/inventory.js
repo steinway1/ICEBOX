@@ -372,6 +372,20 @@ export default class Inventory {
       const id = target.dataset.newPtw;
       new PTW(id);
     }
+
+		// Toggle quantities
+		if (target.closest("[data-evt='toggleQuantities']")) {
+			const card = target.closest(".i-card");
+			if (card) {
+				if (card.classList.contains("--show-quantities")) {
+					card.classList.remove("--show-quantities");
+					target.textContent = "Show Quantities";
+				} else {
+					card.classList.add("--show-quantities");
+					target.textContent = "Hide Quantities";
+				}
+			}
+		}
   };
 
   initSplide() {

@@ -15967,6 +15967,18 @@ select.sms-tag:hover {
   --side-padding: 20px;
 }
 
+.i-card.--show-quantities .i-card__quantities {
+  display: flex;
+}
+
+.i-card.--show-quantities .i-card__main-info {
+  display: none;
+}
+
+.i-card.--show-quantities .am-item__note-wrap {
+  display: none;
+}
+
 .i-card:hover .i-card__controls {
   display: flex;
 }
@@ -15981,6 +15993,7 @@ select.sms-tag:hover {
   box-shadow: none;
   border-left: 1px solid var(--b-grey);
   inset: 0 0 0 auto;
+  color: var(--black) !important;
 }
 
 .i-card .am-item__note-form button:hover {
@@ -16028,6 +16041,14 @@ select.sms-tag:hover {
 
 .i-card .am-item-note div:last-child {
   display: none;
+}
+
+.i-card .panel__blank-btn[data-evt=toggleQuantities] {
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  color: var(--black) !important;
+  height: 34px;
+  margin-top: 8px;
 }
 
 .i-card__top {
@@ -16686,6 +16707,27 @@ select.sms-tag:hover {
   transition: all 200ms ease;
   user-select: none;
   z-index: 2;
+}
+
+.i-card__quantities {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 var(--side-padding);
+}
+
+.i-card__quantities .am_flex8 {
+  align-items: center;
+}
+
+.i-card__quantities label {
+  font-weight: 600;
+  font-size: 13px;
+  width: 24px;
+}
+
+.i-card__quantities input {
+  height: 30px;
 }
 
 [data-locked-input] {

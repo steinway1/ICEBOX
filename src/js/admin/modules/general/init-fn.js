@@ -40,9 +40,9 @@ function attachDatePickers() {
       timepicker: false,
       onSelect({ date }) {
         const datePart = date.toLocaleDateString("en-US", {
-          day: "2-digit", 
+          day: "2-digit",
           month: "2-digit",
-          year: "numeric"
+          year: "numeric",
         });
         input.value = datePart;
       },
@@ -56,10 +56,10 @@ function attachDatePickers() {
       const today = new Date();
       const datePart = today.toLocaleDateString("en-US", {
         day: "2-digit",
-        month: "2-digit", 
-        year: "numeric"
+        month: "2-digit",
+        year: "numeric",
       });
-      
+
       input.value = datePart;
     }
 
@@ -144,15 +144,15 @@ async function bindCopyOrderDetails() {
 
       try {
         applyOverloader(copyBtn);
-				/**
-				 * @Chou Setup here
-				 */
+        /**
+         * @Chou Setup here
+         */
         const orderDetails = await fakeAjaxGetOrderDetails(orderId);
 
         if (!orderDetails) {
           throw new Error("Order not found");
         }
-				
+
         const {
           customer = "",
           payment_type = "Unknown",
@@ -163,15 +163,17 @@ async function bindCopyOrderDetails() {
           balance = "$0.00",
         } = orderDetails;
 
-        let textToCopy = `
-				Customer: ${customer}
-				Payment Type: ${payment_type}
-				Total: ${total}
-				Paid Today: ${paid_today}
-				Discount: ${discount}
-				Items Purchased: ${items_purchased.map((item) => item.title).join(", ")}
-				Balance: ${balance}
-				`;
+        let textToCopy = [
+          `Customer: ${customer}`,
+          `Payment Type: ${payment_type}`,
+          `Total: ${total}`,
+          `Paid Today: ${paid_today}`,
+          `Discount: ${discount}`,
+          `Items Purchased: ${items_purchased
+            .map((item) => item.title)
+            .join(", ")}`,
+          `Balance: ${balance}`,
+        ].join("\n");
 
         navigator.clipboard.writeText(textToCopy);
 
