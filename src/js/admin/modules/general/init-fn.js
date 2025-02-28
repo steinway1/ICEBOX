@@ -37,22 +37,14 @@ function attachDatePickers() {
   for (const input of arr) {
     const options = {
       autoClose: false,
-      timepicker: true,
+      timepicker: false,
       onSelect({ date }) {
         const datePart = date.toLocaleDateString("en-US", {
-          day: "2-digit",
+          day: "2-digit", 
           month: "2-digit",
-          year: "numeric",
+          year: "numeric"
         });
-
-        let timePart = date.toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: true,
-        });
-
-        timePart = timePart.replace("am", "AM").replace("pm", "PM");
-        input.value = `${datePart} ${timePart}`;
+        input.value = datePart;
       },
     };
 
@@ -64,18 +56,11 @@ function attachDatePickers() {
       const today = new Date();
       const datePart = today.toLocaleDateString("en-US", {
         day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
+        month: "2-digit", 
+        year: "numeric"
       });
-
-      let timePart = today.toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      });
-
-      timePart = timePart.replace("am", "AM").replace("pm", "PM");
-      input.value = `${datePart}`;
+      
+      input.value = datePart;
     }
 
     new AirDatepicker(input, options);
