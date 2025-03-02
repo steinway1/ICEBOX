@@ -185,7 +185,9 @@ gulp.task('css-admin:build',
       .pipe(changed(root.build.adminCSS))
       .pipe(plumber(setPlumberNotify('ADMIN SCSS')))
       .pipe(sassGlob())
-      .pipe(sass())
+			.pipe(sass({
+				includePaths: ['./src/scss']
+			}).on('error', sass.logError))
       .pipe(groupMedia())
       .pipe(gulp.dest(root.build.adminCSS))
   }
@@ -248,7 +250,9 @@ gulp.task('css:build',
       .pipe(changed(root.build.css))
       .pipe(plumber(setPlumberNotify('SCSS')))
       .pipe(sassGlob())
-      .pipe(sass())
+			.pipe(sass({
+				includePaths: ['./src/scss']
+			}).on('error', sass.logError))
       .pipe(groupMedia())
       .pipe(cleanCSS({ compatibility: 'ie8' }))
       .pipe(gulp.dest(root.build.css))
@@ -263,7 +267,9 @@ gulp.task('css-promo:build',
       .pipe(plumber(setPlumberNotify('PROMO SCSS')))
       .pipe(sourceMaps.init())
       .pipe(sassGlob())
-      .pipe(sass())
+			.pipe(sass({
+				includePaths: ['./src/scss']
+			}).on('error', sass.logError))
       // .pipe(groupMedia())
       .pipe(sourceMaps.write())
       .pipe(gulp.dest(root.build.cssPromo))

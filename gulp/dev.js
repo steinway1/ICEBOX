@@ -177,8 +177,10 @@ gulp.task('css-admin:dev',
       .pipe(changed(root.dev.adminCSS))
       .pipe(plumber(setPlumberNotify('ADMIN SCSS')))
       .pipe(sourceMaps.init())
-      .pipe(sassGlob())
-      .pipe(sass())
+      // .pipe(sassGlob())
+			.pipe(sass({
+				includePaths: [path.resolve(__dirname, 'src/scss')]
+			}).on('error', sass.logError))
       // .pipe(groupMedia())
       .pipe(sourceMaps.write())
       .pipe(gulp.dest(root.dev.adminCSS))
@@ -272,7 +274,9 @@ gulp.task('css:dev',
       .pipe(plumber(setPlumberNotify('SCSS')))
       .pipe(sourceMaps.init())
       .pipe(sassGlob())
-      .pipe(sass())
+			.pipe(sass({
+				includePaths: [path.resolve(__dirname, 'src/scss')]
+			}).on('error', sass.logError))
       // .pipe(groupMedia())
       .pipe(sourceMaps.write())
       .pipe(gulp.dest(root.dev.css))
@@ -287,7 +291,9 @@ gulp.task('css-promo:dev',
       .pipe(plumber(setPlumberNotify('PROMO SCSS')))
       .pipe(sourceMaps.init())
       .pipe(sassGlob())
-      .pipe(sass())
+			.pipe(sass({
+				includePaths: ['./src/scss']
+			}).on('error', sass.logError))
       // .pipe(groupMedia())
       .pipe(sourceMaps.write())
       .pipe(gulp.dest(root.dev.cssPromo))

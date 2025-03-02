@@ -7,7 +7,7 @@ gulp.task(
   'default', gulp.series(
     'clean:dev',
     gulp.parallel('twig:dev', 'css:dev', 'js:dev', 'js-plugins:dev', 'assets:dev', 'fonts:dev', 'js-promo:dev', 'css-promo:dev'),
-    gulp.parallel('twig-admin:dev', 'css-admin:dev', 'js-admin:dev', 'fonts-admin:dev', 'assets-admin:dev'),
+    gulp.parallel('twig-admin:dev', 'js-admin:dev', 'fonts-admin:dev', 'css-admin:dev', 'assets-admin:dev'),
     gulp.parallel('watch:dev')
   )
 )

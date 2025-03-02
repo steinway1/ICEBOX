@@ -1,4 +1,61 @@
-@import '../mixin.scss';
+// media aliases and breakpoints
+$screen-xs-max: 479px;
+$screen-xs-min: 320px;
+
+$screen-sm-max: 767px;
+$screen-sm-min: 568px;
+
+$screen-md-max: 991px;
+$screen-md-min: 768px;
+
+// media devices
+
+@mixin maxWidthXs {
+  @media screen and (max-width: #{$screen-xs-max}) {
+    @content
+  }
+};
+
+@mixin maxWidthSm {
+  @media screen and (max-width: #{$screen-sm-max}) {
+    @content
+  }
+};
+
+@mixin maxWidthMd {
+  @media screen and (max-width: #{$screen-md-max}) {
+    @content
+  }
+};
+
+@mixin minWidthXs {
+  @media screen and (min-width: 480px) {
+    @content
+  }
+};
+
+@mixin minWidthSm {
+  @media screen and (min-width: 768px) {
+    @content
+  }
+};
+
+@mixin minWidthMd {
+  @media screen and (min-width: 992px) {
+    @content
+  }
+};
+
+%media-bg-template {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: var(--media-bg-index);
+  opacity: var(--media-bg-opacity);
+  filter: var(--media-bg-filter);
+  background-image: var(--media-bg-color);
+}
 
 body.--xmas {
   .top-banner {

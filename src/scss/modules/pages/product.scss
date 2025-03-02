@@ -1,3 +1,4 @@
+@use 'modules/base/mixin' as *;
 .body_product {
   // font-size: 14px;
   line-height: 24px;
@@ -18,7 +19,18 @@
   --side_padding: 58px;
   padding-bottom: 52px;
 
-  @media screen and (min-width: 1440px) {
+  .subscribe-row {
+    background-color: #ffffff !important;
+  }
+
+  --thumb-width: 10vw;
+  --breadcrumbs-height: 50px;
+
+  .share-row {
+    margin-top: 8px;
+  }
+
+	@media screen and (min-width: 1440px) {
     --side_padding: 68px;
   }
 
@@ -36,17 +48,6 @@
 
   @include maxWidthMd {
     border: none;
-  }
-
-  .subscribe-row {
-    background-color: #ffffff !important;
-  }
-
-  --thumb-width: 10vw;
-  --breadcrumbs-height: 50px;
-
-  .share-row {
-    margin-top: 8px;
   }
 }
 

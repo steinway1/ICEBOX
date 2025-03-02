@@ -1,108 +1,113 @@
+@use 'modules/base/mixin' as *;
+@use "./mixin.scss" as *;
+
 :root {
-  --main-wrapper-width: 1420px;
-  --main-wrapper-padding: 0px 56px;
+	--main-wrapper-width: 1420px;
+	--main-wrapper-padding: 0px 56px;
 
-  --padding: 86px;
+	--padding: 86px;
 
-  @include maxWidthMd {
-    --padding: 42px;
-  }
+	--font-main: "ProximaNova", sans-serif;
 
-  @include maxWidthSm {
-    --padding: 32px;
-  }
-
-  @include maxWidthXs {
-    --padding: 22px;
-  }
-
-  @include maxWidthMd {
-    --main-wrapper-padding: 0px 46px;
-  }
-
-  @include maxWidthSm {
-    --main-wrapper-padding: 0px 42px;
-  }
-
-  @include maxWidthXs {
-    --main-wrapper-padding: 0px 24px;
-  }
-
-  --font-main: 'ProximaNova', sans-serif;
-
-  --white: #ffffff;
-  --black: #14181e;
-  --black_hover: #33363c;
-  --red: #d72b4b;
-  --vday-color: #d32a5d;
-  --red-shadow: #e52d2d40;
-  --green: #2b9d84;
-  --green-10: #05a89810;
-  --green-20: #05a89815;
-  --green-shadow: #04b8972e;
-  --text-muted: #909090;
-  --blue: #0b8cb6;
-  --navy-blue: #1f2431;
-  --navy-blue-hover: #2f384f;
-  --ghost-blue: #f4fcff;
-  --blue-sub: #2a94f1;
-  --blue-gold: #0095c6;
-  --blue-gold_hover: #14afe3;
-  --text-white: #ffffff;
-  --sub-grey: #eaeef3;
-  --main-grey: #f5f8fa;
-  --main-grey-50: #e9edf0;
-  --main-grey-100: #dadee7;
-  --grey: #f5f8fa;
-  --main-easing: cubic-bezier(.39, .575, .565, 1);
-  --ease: cubic-bezier(.39, .575, .565, 1);
-  --checkout-blue: #18a0cf;
+	--white: #ffffff;
+	--black: #14181e;
+	--black_hover: #33363c;
+	--red: #d72b4b;
+	--vday-color: #d32a5d;
+	--red-shadow: #e52d2d40;
+	--green: #2b9d84;
+	--green-10: #05a89810;
+	--green-20: #05a89815;
+	--green-shadow: #04b8972e;
+	--text-muted: #909090;
+	--blue: #0b8cb6;
+	--navy-blue: #1f2431;
+	--navy-blue-hover: #2f384f;
+	--ghost-blue: #f4fcff;
+	--blue-sub: #2a94f1;
+	--blue-gold: #0095c6;
+	--blue-gold_hover: #14afe3;
+	--text-white: #ffffff;
+	--sub-grey: #eaeef3;
+	--main-grey: #f5f8fa;
+	--main-grey-50: #e9edf0;
+	--main-grey-100: #dadee7;
+	--grey: #f5f8fa;
+	--main-easing: cubic-bezier(0.39, 0.575, 0.565, 1);
+	--ease: cubic-bezier(0.39, 0.575, 0.565, 1);
+	--checkout-blue: #18a0cf;
 	--checkout-grey: #f7f7f8;
-  --light-blue: #f4f8ff;
-  --t-border: #f0f0f0;
+	--light-blue: #f4f8ff;
+	--t-border: #f0f0f0;
 	--cart-border: #f0f0f1;
-  --t-border-100: #e7e7e7;
-  --lx-border: #e4e8ee;
-  --p-border: #ebf0f3;
-  --p-text: #777d8b;
-  --erp-border: #e0e3e9;
+	--t-border-100: #e7e7e7;
+	--lx-border: #e4e8ee;
+	--p-border: #ebf0f3;
+	--p-text: #777d8b;
+	--erp-border: #e0e3e9;
 
-  --new-grey: #f4f4f4;
-  --new-grey-100: #dcdcdc;
-  --new-grey-50: #f9f9f9;
-  --new-grey-text: #888888;
-  
-  --media-bg-color: radial-gradient(circle farthest-side at 100%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 60%), radial-gradient(circle farthest-side at 40% 0, rgba(53, 50, 48, 0.12), rgba(255, 255, 255, 0) 50%), linear-gradient(#e2e0df, #e7e6e5 14%, #f4f3f2 60%, #f3f3f3);
-  --media-bg-opacity: 0.6;
-  --media-bg-filter: grayscale(35%) hue-rotate(211deg);
-  --media-bg-index: 0;
+	--new-grey: #f4f4f4;
+	--new-grey-100: #dcdcdc;
+	--new-grey-50: #f9f9f9;
+	--new-grey-text: #888888;
 
-  --color-brand-900: #015686;
-  --color-brand-800: #0175a7;
-  --color-brand-700: #0186ba;
-  --color-brand-600: #0999cd;
-  --color-brand-500: #14a5db;
-  --color-brand-400: #34b3de;
-  --color-brand-300: #54c0e2;
-  --color-brand-200: #81d2e9;
-  --color-brand-100: #b3e3f2;
-  --color-brand-50: #e1f5fa;
-  --color-gold: #fcd99f;
-  --color-blue: #0938eb;
-  --color-bright-blue: #0db0e6;
-  --color-bright-blue_dim: #059fd2;
+	--media-bg-color: radial-gradient(circle farthest-side at 100%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 60%),
+		radial-gradient(circle farthest-side at 40% 0, rgba(53, 50, 48, 0.12), rgba(255, 255, 255, 0) 50%),
+		linear-gradient(#e2e0df, #e7e6e5 14%, #f4f3f2 60%, #f3f3f3);
+	--media-bg-opacity: 0.6;
+	--media-bg-filter: grayscale(35%) hue-rotate(211deg);
+	--media-bg-index: 0;
 
-  --transition-m: all 250ms cubic-bezier(.39, .575, .565, 1);
-  --transition-l: all 350ms cubic-bezier(.39, .575, .565, 1);
-  --transition-s: all 175ms cubic-bezier(.39, .575, .565, 1);
+	--color-brand-900: #015686;
+	--color-brand-800: #0175a7;
+	--color-brand-700: #0186ba;
+	--color-brand-600: #0999cd;
+	--color-brand-500: #14a5db;
+	--color-brand-400: #34b3de;
+	--color-brand-300: #54c0e2;
+	--color-brand-200: #81d2e9;
+	--color-brand-100: #b3e3f2;
+	--color-brand-50: #e1f5fa;
+	--color-gold: #fcd99f;
+	--color-blue: #0938eb;
+	--color-bright-blue: #0db0e6;
+	--color-bright-blue_dim: #059fd2;
 
-  --backdrop-darkcolor: rgba(6, 12, 20, .6);
-  --backdrop-menu: rgba(6, 12, 20, .8);
+	--transition-m: all 250ms cubic-bezier(0.39, 0.575, 0.565, 1);
+	--transition-l: all 350ms cubic-bezier(0.39, 0.575, 0.565, 1);
+	--transition-s: all 175ms cubic-bezier(0.39, 0.575, 0.565, 1);
 
-  --modal-transition: all .45s cubic-bezier(.39, .575, .565, 1);
-  --menu-transition: all 300ms cubic-bezier(.39, .575, .565, 1);
+	--backdrop-darkcolor: rgba(6, 12, 20, 0.6);
+	--backdrop-menu: rgba(6, 12, 20, 0.8);
 
-  --cubic: cubic-bezier(.39, .575, .565, 1);
+	--modal-transition: all 0.45s cubic-bezier(0.39, 0.575, 0.565, 1);
+	--menu-transition: all 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
 
-  --radius: 0.3rem;
+	--cubic: cubic-bezier(0.39, 0.575, 0.565, 1);
+
+	--radius: 0.3rem;
+
+	@include maxWidthMd {
+		--padding: 42px;
+	}
+
+	@include maxWidthSm {
+		--padding: 32px;
+	}
+
+	@include maxWidthXs {
+		--padding: 22px;
+	}
+
+	@include maxWidthMd {
+		--main-wrapper-padding: 0px 46px;
+	}
+
+	@include maxWidthSm {
+		--main-wrapper-padding: 0px 42px;
+	}
+
+	@include maxWidthXs {
+		--main-wrapper-padding: 0px 24px;
+	}
 }
