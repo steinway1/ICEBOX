@@ -1,0 +1,17 @@
+<header class="checkout-header">
+	<div class="checkout-header__logo">
+		<img src="{{THEME_ASSETS_FOLDER}}logo.svg" loading="eager" alt="Icebox ">
+	</div>
+	<div class="checkout-header__controls">
+		<a href="/cart" class="checkout-header__btn">
+			{% include "components/svg/arrow.svg" %}
+			To Cart
+		</a>
+		{% if not user %}
+			<button class="checkout-header__btn js-toggle-sign">
+				{% include "components/svg/account.svg" %}
+				Sign In
+			</button>
+		{% endif %}
+	</div>
+</header>

@@ -107,6 +107,8 @@ const /* Loan App : /financing */
   tagPreview = require("./modules/pages/tag-preview");
 const sirvCards = require("./modules/elements/sirv");
 
+const CheckoutPage = require("./modules/pages/checkout");
+
 // Product Cards media loader
 document.addEventListener("DOMContentLoaded", () => {
   initLazyLoadForProductCards();
@@ -212,4 +214,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Search
   window.Search = new Search();
+
+  // Checkout Page
+  const checkoutMain = document.querySelector(".checkout-main");
+  const checkoutBody = document.querySelector(".body_checkout");
+  if (checkoutMain || checkoutBody) {
+    new CheckoutPage();
+  }
 });

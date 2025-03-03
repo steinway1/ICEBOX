@@ -1,0 +1,7 @@
+{% set stepClass = checkoutStep == 1 ? '--step-1' : checkoutStep == 2 ? '--step-2' : '--step-3' %}
+
+<div class="checkout-progress {{ stepClass }}">
+	<div class="checkout-progress__step"><span>Contact Details</span></div>
+	<div class="checkout-progress__step"><span>Shipping & Billing</span></div>
+	<div class="checkout-progress__step"><span>Payment</span></div>
+</div>

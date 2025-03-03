@@ -1,101 +1,65 @@
-<div id="checkoutContactsBlock" class="checkout-block is-completed">
-  <div class="checkout-box">
-    <div class="checkout-box__header">
-      <div class="checkout-box__header-wrap">
-        <h3 class="checkout-heading">Contact Information</h3>
-        <div class="checkout-box__header-controls">
-          <a href="/checkout" class="checkout-box__edit-btn">Edit</a>
-        </div>
-      </div>
-      <span class="checkout-box__info-summary">{{checkoutData.email}}</span>
-      <span class="checkout-box__info-summary">{{checkoutData.phone}}</span>
-    </div>
-  </div>
+<div
+	class="checkout-flow">
+
+	{# -- DONE : Contacts #}
+	<div class="checkout-step --filled">
+		<div class="checkout-step__wrapper">
+			<div class="checkout-step__header">
+				<h2 class="checkout-step__title">Contact Details</h2>
+				<a href="/checkout" class="checkout-box__edit-btn">Edit</a>
+			</div>
+			<div class="checkout-step__summary">
+				<span>{{shipping_address.email}}</span>
+				<span>{{shipping_address.phone}}</span>
+			</div>
+		</div>
+	</div>
+
+	{# Shipping Method #}
+	<div class="checkout-step">
+		<div class="checkout-step__wrapper">
+			<div class="checkout-step__header">
+				<h2 class="checkout-step__title">Shipping Method</h2>
+			</div>
+			<div class="checkout-step__body">
+				<div class="checkout-step__flow">
+					<div class="checkout-multiselect">
+						{% for method in shipping_methods %}
+							<label for="{{ method.name }}" class="checkout__pseudo-cb">
+								<input type="radio" id="{{ method.name }}" value="{{ method.name }}" name="option" {% if method.name == selected_method or method.name == 'International Shipping' %} checked {% endif %}>
+								<div class="checkout__pseudo-cb-box --xs-pd">
+									<div class="flex --12">
+										<span class="checkout__pseudo-cb-dot"></span>
+										<h5>{{ method.name }}</h5>
+									</div>
+									<span class="checkout__shipping-price">{{ method.formatted_price }}</span>
+								</div>
+							</label>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{# -- END : Shipping Method #}
+
+	{# Gift Wrapping #}
+	<div class="checkout-step">
+		<div class="checkout-step__wrapper">
+			<label for="gift_wrap" class="checkout__pseudo-cb">
+				<input type="checkbox" id="gift_wrap" name="gift_wrap">
+				<div class="checkout__pseudo-cb-box --pd">
+					<div class="flex --12">
+						<span class="checkout__pseudo-cb-dot"></span>
+						<h4>Free Gift Wrapping
+							<span>Add touch of elegance with our free gift wrapping service</span>
+						</h4>
+					</div>
+					<img src="{{THEME_ASSETS_FOLDER}}checkout/gift-wrap.webp" alt="Icebox gift wrapping" class="pseudo-radio__gift-img">
+				</div>
+			</label>
+		</div>
+	</div>
+	{# -- END : Gift Wrapping #}
+
 </div>
-
-<section id="checkoutDeliveryBlock" class="checkout-block">
-  <form method="post" action="/checkout-step3" class="checkout-edit">
-    <!-- DELIVERY METHOD -->
-    <div class="checkout-box">
-      <div class="checkout-box__gift-row">
-        <div class="checkout-box__header">
-          <h3 class="checkout-heading">Gift Wrapping</h3>
-        </div>
-        <div class="checkout-box__content">
-          <label class="checkout-form__radio-row">
-            <input type="checkbox" name="gift_wrap" d="checkoutGift">
-            <div class="pseudo-radio">
-              <div class="pseudo-radio__wrapper">
-                <div class="pseudo-radio__label-group">
-                  <div class="pseudo-radio__space-row">
-                    <div class="pseudo-radio__title-group">
-                      <span class="pseudo-radio__input pseudo-radio__input_square"></span>
-                      <span class="pseudo-radio__large-notice">
-                        Would you like to add free gift wrapping?
-                        <br>
-                        <span>Free. No Charge.</span>
-                      </span>
-                    </div>
-                    <img src="./assets/checkout/gift-wrap.webp" alt="Icebox gift wrapping"
-                      class="pseudo-radio__gift-img">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </label>
-        </div>
-      </div>
-      <div class="checkout-box__header">
-        <div class="checkout-box__header-wrap">
-          <h3 class="checkout-heading">Delivery Options</h3>
-          <div class="checkout-box__header-controls">
-            <button data-checkout="editDeliveryBlock" class="checkout-box__edit-btn">Edit</button>
-          </div>
-        </div>
-      </div>
-      <div class="checkout-box__content">
-
-        <div class="checkout-form-wrap">
-
-          <label class="checkout-form__radio-row">
-            <input type="radio" name="option" value="International Shipping" checked="">
-            <div class="pseudo-radio">
-              <div class="pseudo-radio__wrapper">
-                <div class="pseudo-radio__label-group">
-                  <span class="pseudo-radio__input"></span>
-                  <span class="pseudo-radio__label">International Shipping</span>
-                </div>
-                <div class="pseudo-radio__sub-group">
-                  <span class="pseudo-radio__shipping-price">FREE</span>
-                </div>
-              </div>
-            </div>
-          </label>
-        </div>
-        <div class="checkout__sub-form">
-          <div class="checkout-form-wrap">
-            <label class="checkout-form__radio-row">
-              <input type="checkbox" name="accepted" class="radio" required="">
-              <div class="pseudo-radio">
-                <div class="pseudo-radio__wrapper">
-                  <div class="pseudo-radio__label-group">
-                    <span class="pseudo-radio__input"></span>
-                    <span class="pseudo-radio__small-notice">
-                      <span>I Accept that</span>
-                      the customs office of the destination country or region may impose customs fees and other charges
-                      to your international order and are the responsibility of the recipient.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="checkout-block__footer">
-      <button class="checkout__main-btn">GO TO PAYMENTS</button>
-    </div>
-  </form>
-</section>

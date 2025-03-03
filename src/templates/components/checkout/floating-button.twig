@@ -1,0 +1,24 @@
+<div class="checkout__floating">
+	<div data-toggle-summary class="summary-price mybag-summary-price_total">
+		<span>Total</span>
+		{% if checkoutStep < 1 %}
+			<span>{{ cart.total_without_shipping | raw}}</span>
+		{% else %}
+			<span>{{ cart.total | raw }}</span>
+		{% endif %}
+	</div>
+	{# Main Button #}
+	{% if checkoutStep == 1 %}
+		<button data-submit-checkout class="checkout-summary__btn">To Delivery
+			<span>1 / 3 step</span>
+		</button>
+	{% endif %}
+	{% if checkoutStep == 2 %}
+		<button data-submit-checkout class="checkout-summary__btn">To Payment
+			<span>2 / 3 step</span>
+		</button>
+	{% endif %}
+	{% if checkoutStep == 3 %}
+		<button data-submit-checkout class="checkout-summary__btn">Complete Order</button>
+	{% endif %}
+</div>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <title>
@@ -35,1414 +36,722 @@
 
     <script src="https://scripts.sirv.com/sirv.js"></script>
 
-
 </head>
 
 
-<body class=" body_checkout">
-
-    <div class="top-banner">
-        Free Insured Shipping on all US Orders
-    </div>
-
-    <header class="header">
-        <div class="header-nav-wrapper">
-            <div class="wrapper">
-                <div class="header-nav">
-                    <a href="/" class="header-logo">
-                        <img src="./assets/logo.svg" loading="eager" alt="Icebox ">
-                    </a>
-
-                    <div class="header-nav__group">
-                        <a class="--large" href="javascript:void(0);" data-evt="toggleMenu">
-                            <div>
-                                <svg width="36" height="32" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0 12H32" stroke="currentColor" stroke-width="1.5"></path>
-                                    <path d="M0 5H32" stroke="currentColor" stroke-width="1.5"></path>
-                                    <path d="M0 19H32" stroke="currentColor" stroke-width="1.5"></path>
-                                </svg>
-                            </div>
-                        </a>
-                        <a href="/locations" data-evt="locations">
-                            <div>
-                                <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.34999 9.99952C8.35028 12.0187 9.97943 13.6495 11.9991 13.65C12.4788 13.6506 12.954 13.5566 13.3973 13.3733C13.8406 13.19 14.2434 12.9209 14.5825 12.5817C14.9217 12.2424 15.1906 11.8395 15.3737 11.3962C15.5568 10.953 15.6507 10.478 15.65 9.99848M8.34999 9.99952C8.3494 9.52004 8.44341 9.04516 8.62664 8.60208C8.80991 8.15888 9.07884 7.75622 9.41802 7.41715C9.75719 7.07809 10.16 6.80929 10.6032 6.62616C11.0463 6.44311 11.5211 6.34926 12.0005 6.34999C14.0201 6.35026 15.6497 7.9809 15.65 9.99848M8.34999 9.99952C8.34999 9.99963 8.34999 9.99974 8.34999 9.99986L8.99999 9.99899H8.34999C8.34999 9.99916 8.34999 9.99934 8.34999 9.99952ZM15.65 9.99848C15.65 9.99829 15.65 9.9981 15.65 9.9979L15 9.99899H15.65C15.65 9.99882 15.65 9.99865 15.65 9.99848ZM6.08932 4.04479L6.08932 4.04479L6.09098 4.04317C7.67013 2.50204 9.7913 1.64263 11.9978 1.65L12.0022 1.64999C14.2087 1.64263 16.3299 2.50204 17.909 4.04317L18.363 3.57799L17.9107 4.04479C18.6818 4.79203 19.2951 5.6865 19.7141 6.67517C20.1331 7.66384 20.3494 8.72658 20.35 9.80037L20.35 9.8022C20.3578 12.0893 19.4773 14.2902 17.8941 15.9408C17.894 15.9409 17.894 15.941 17.8939 15.941L12 22.0628L6.10609 15.941C6.10598 15.9409 6.10587 15.9408 6.10576 15.9407C4.52267 14.2901 3.64222 12.0893 3.64999 9.8022L3.64999 9.80037C3.65063 8.72658 3.86686 7.66384 4.28588 6.67517C4.7049 5.6865 5.31816 4.79203 6.08932 4.04479Z" stroke="currentColor" stroke-width="1"></path>
-                                </svg> <span>Our Locations</span>
-                            </div>
-                        </a>
-
-                    </div>
-
-                    <div class="header-nav__group">
-                        <a href="javascript:void(0);" data-evt="toggleSearch">
-                            <div>
-                                <svg width="18" height="18" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5 16C12.6422 16 16 12.6422 16 8.5C16 4.35786 12.6422 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6422 4.35786 16 8.5 16Z" stroke="currentColor" stroke-width="1"></path>
-                                    <path d="M18.3335 18.3334L14 13.9999" stroke="currentColor" stroke-width="1"></path>
-                                </svg>
-                            </div>
-                        </a>
-                        <div data-evt="toggleAccountDropdown" data-sign-switch="phone_register" class="js-toggle-sign">
-                            <div>
-                                <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-width="1" d="M2.76923 6.46153L12 0.923065L21.2308 6.46153V17.5384L12 23.0769L2.76923 17.5384V6.46153Z" stroke="currentColor"></path>
-                                    <path stroke-width="1" d="M12 12C13.5294 12 14.7692 10.7602 14.7692 9.23078C14.7692 7.70137 13.5294 6.46155 12 6.46155C10.4706 6.46155 9.23077 7.70137 9.23077 9.23078C9.23077 10.7602 10.4706 12 12 12Z" stroke="currentColor"></path>
-                                    <path stroke-width="1" d="M7.38461 18.4615C7.55556 17.2308 8.71794 14.7692 12 14.7692C15.2821 14.7692 16.4444 17.2308 16.6154 18.4615" stroke="currentColor"></path>
-                                </svg> <!-- <span>My Account</span> -->
-                            </div>
-                        </div>
-                        <a href="/account/wishlist" data-evt="toggleWishlist">
-                            <div>
-                                <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.7899 3.82249C5.17644 1.3925 9.04578 1.3925 11.4323 3.82249L12 4.4005L12.5677 3.82249C14.9542 1.3925 18.8236 1.3925 21.2101 3.82249C23.5966 6.25247 23.5966 10.1923 21.2101 12.6222L12 22L2.7899 12.6222C0.403366 10.1923 0.403366 6.25247 2.7899 3.82249Z" stroke="currentColor" stroke-width="1" stroke-linecap="round"></path>
-                                </svg>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0);" class="cart_trigger" data-evt="toggleCart">
-                            <div>
-                                <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M21 23V7H3V23H21Z" stroke="currentColor" stroke-width="1"></path>
-                                    <path d="M8 9.5V5.16871C8 2.86638 9.86641 1.00001 12.1687 1.00001C14.4711 1.00001 16.3375 2.86638 16.3375 5.16871V9.5" stroke="currentColor" stroke-width="1"></path>
-                                </svg> <span class="cart-count cart-counter">3</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+<body class=" body_checkout ">
+    <header class="checkout-header">
+        <div class="checkout-header__logo">
+            <img src="./assets/logo.svg" loading="eager" alt="Icebox ">
         </div>
-        <div class="header__sub-nav">
-            <div class="wrapper">
-                <div class="header__sub-nav-list">
-                    <a href="https://www.icebox.com/results/pendants" class="header__sub-link" data-dropdown="categories">By Category</a>
-                    <a href="https://www.icebox.com/results/gold-chains" class="header__sub-link" data-dropdown="men">For Men</a>
-                    <a href="https://www.icebox.com/results/earrings" class="header__sub-link" data-dropdown="women">For Women</a>
-                    <a href="https://www.icebox.com/results/watches" class="header__sub-link" data-dropdown="watches">Watches</a>
-                    <a href="https://www.icebox.com/results/accessories" class="header__sub-link" data-dropdown="accessories">Accessories</a>
-                    <a href="https://www.icebox.com/results/travel-cases" class="header__sub-link" data-dropdown="cases">Travel Cases</a>
-                    <a href="https://www.icebox.com/results/custom" class="header__sub-link" data-dropdown="custom">Custom</a>
-                    <a href="https://www.icebox.com/results/glasses" class="header__sub-link" data-dropdown="">Glasses</a>
-                    <a href="https://www.icebox.com/results/glasses" class="header__sub-link sub-link_spot" data-dropdown="">Made To Order</a>
-
-                </div>
-                <div class="nav-drop">
-                    <div class="nav-drop__container">
-                        <!-- Fine Jewelry -->
-                        <div id="dd_categories" class="nav-drop__content">
-                            <a href="/results/pendants" class="nav-drop-link">Pendants</a>
-                            <a href="/results/gold-chains" class="nav-drop-link">Gold Chains</a>
-                            <a href="/results/earrings" class="nav-drop-link">Earrings</a>
-                            <a href="/results/necklaces" class="nav-drop-link">Necklaces</a>
-                            <a href="/results/rings" class="nav-drop-link">Rings</a>
-                            <a href="/results/rings?sub[]=Engagement%20Rings" class="nav-drop-link">Engagement Rings</a>
-                            <a href="/results/bracelets" class="nav-drop-link">Bracelets</a>
-                            <a href="/results/bracelets?sub[]=Gold%20Bracelets" class="nav-drop-link">Gold Bracelets</a>
-                        </div>
-
-                        <!-- For Men -->
-                        <div id="dd_men" class="nav-drop__content">
-                            <a href="https://www.icebox.com/sale?gender[]=Male%Unisex?sort=Best-Sellers" class="nav-drop-link nav-drop-link_spot">
-                                Men&#x27;s Collection
-                            </a>
-                            <a href="https://www.icebox.com/sale?gender[]=Male%Unisex?pricerange=$0-1500" class="nav-drop-link nav-drop-link_spot">
-                                Best Under $1500
-                            </a>
-                            <a href="https://www.icebox.com/results/pendants?gender[]=Male" class="nav-drop-link">Pendants</a>
-                            <a href="https://www.icebox.com/results/gold-chains?gender[]=Male" class="nav-drop-link">Gold Chains</a>
-                            <a href="https://www.icebox.com/results/necklaces?gender[]=Male" class="nav-drop-link">Necklaces</a>
-                            <a href="https://www.icebox.com/results/earrings?gender[]=Male" class="nav-drop-link">Earrings</a>
-                            <a href="https://www.icebox.com/results/rings?gender[]=Male" class="nav-drop-link">Rings</a>
-                            <a href="https://www.icebox.com/results/bracelets?gender[]=Male" class="nav-drop-link">Bracelets</a>
-                        </div>
-
-                        <!-- For Women -->
-                        <div id="dd_women" class="nav-drop__content">
-                            <a href="https://www.icebox.com/results/pendants?gender[]=Female?sort=Best-Sellers" class="nav-drop-link nav-drop-link_spot">
-                                Best Women&#x27;s Pick
-                            </a>
-                            <a href="https://www.icebox.com/sale?gender[]=Female%Unisex?pricerange=$0-1500" class="nav-drop-link nav-drop-link_spot">
-                                Hot Under $1500
-                            </a>
-                            <a href="/results/rings?sub[]=Engagement%20Rings" class="nav-drop-link nav-drop-link_spot">
-                                Engagement &amp; Wedding
-                            </a>
-                            <a href="https://www.icebox.com/results/pendants?gender[]=Female" class="nav-drop-link">Pendants</a>
-                            <a href="https://www.icebox.com/results/gold-chains?gender[]=Female" class="nav-drop-link">Gold Chains</a>
-                            <a href="https://www.icebox.com/results/necklaces?gender[]=Female" class="nav-drop-link">Necklaces</a>
-                            <a href="https://www.icebox.com/results/earrings?gender[]=Female" class="nav-drop-link">Earrings</a>
-                            <a href="https://www.icebox.com/results/rings?gender[]=Female" class="nav-drop-link">Rings</a>
-                            <a href="https://www.icebox.com/results/bracelets?gender[]=Female" class="nav-drop-link">Bracelets</a>
-                        </div>
-
-                        <!-- Watches -->
-                        <div id="dd_watches" class="nav-drop__content">
-                            <a href="/results/watches" class="nav-drop-link nav-drop-link_spot">
-                                Shop All Watches
-                            </a>
-                            <div data-evt="subDrop" class="nav-drop-link nav-drop-link_spot nav-drop_more">
-                                By Brand
-                                <div class="nav-drop__sub">
-                                    <div class="nav-drop__sub-wrap">
-                                        <a href="/results/watches?sub[]=Custom Rolex Watches" class="nav-drop-link">Rolex</a>
-                                        <a href="/results/watches?sub[]=Custom Patek Philippe Watches" class="nav-drop-link">Patek Philippe</a>
-                                        <a href="/results/watches?sub[]=Custom Audemars Piguet Watches" class="nav-drop-link">Audemars
-                                            Piguet</a>
-                                        <a href="/results/watches?sub[]=Bustdowns" class="nav-drop-link">Bustdowns</a>
-                                        <a href="/results/watches?sub[]=Custom Hublot Watches" class="nav-drop-link">Hublot</a>
-                                        <a href="/results/watches?sub[]=Custom Cartier Watches" class="nav-drop-link">Cartier</a>
-                                        <a href="/results/watches?sub[]=Plain Watches" class="nav-drop-link">Plain Watches</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="https://www.icebox.com/results/watches?sort=Best-Sellers" class="nav-drop-link nav-drop-link_spot">
-                                Best Sellers
-                            </a>
-                            <a href="https://www.icebox.com/results/watches?gender[]=Male" class="nav-drop-link">For Men</a>
-                            <a href="https://www.icebox.com/results/watches?gender[]=Female" class="nav-drop-link">For Women</a>
-                            <a href="https://www.icebox.com/results/watches?gender[]=Unisex" class="nav-drop-link">Unisex Watches</a>
-                            <div data-evt="openQuizModal" class="nav-drop-link nav-drop-link_wizard">Watch Wizard</div>
-                        </div>
-
-                        <!-- Accessories -->
-                        <div id="dd_accessories" class="nav-drop__content">
-                            <a href="/results/accessories" class="nav-drop-link nav-drop-link_spot">
-                                Shop All Accessories
-                            </a>
-                            <a href="https://www.icebox.com/results/accessories?pricerange=$0-1500" class="nav-drop-link nav-drop-link_spot">
-                                Under $1500
-                            </a>
-                            <a href="/results/accessories?sub[]=Items" class="nav-drop-link">Diamond &amp; Jewelry</a>
-                            <a href="/results/accessories?sub[]=Leather Goods" class="nav-drop-link">Leather Goods</a>
-                            <a href="/results/accessories?sub[]=Phone Cases" class="nav-drop-link">Phone Cases</a>
-                            <a href="/results/accessories?sub[]=Glasses" class="nav-drop-link">Glasses</a>
-                            <a href="/results/accessories?sub[]=Watch Bezels" class="nav-drop-link">Watches Bezels</a>
-                            <a href="/results/accessories?sub[]=Earring Backs" class="nav-drop-link">Earring Backs</a>
-                        </div>
-
-                        <!-- Travel Cases -->
-                        <div id="dd_cases" class="nav-drop__content">
-                            <a href="/results/travel-cases" class="nav-drop-link nav-drop-link_spot">
-                                Shop All Cases
-                            </a>
-                            <a href="https://www.icebox.com/results/travel-cases?pricerange=$0-1500" class="nav-drop-link nav-drop-link_spot">
-                                Under $1500
-                            </a>
-                            <a href="/results/travel-cases?sub[]=Jewelry" class="nav-drop-link">Jewelry</a>
-                            <a href="/results/travel-cases?sub[]=Watches" class="nav-drop-link">Watches</a>
-                            <a href="/results/travel-cases?sub[]=Travel" class="nav-drop-link">Travel</a>
-                            <a href="/results/travel-cases?sub[]=Sunglasses" class="nav-drop-link">Sunglasses</a>
-                            <a href="/results/travel-cases?sub[]=Trays" class="nav-drop-link">Trays</a>
-                        </div>
-
-                        <!-- Custom -->
-                        <div id="dd_custom" class="nav-drop__content">
-                            <a href="/custom-design" class="nav-drop-link">Pendants</a>
-                            <a href="/custom-design/rings-men" class="nav-drop-link">Men Rings</a>
-                            <a href="/custom-design/rings-women" class="nav-drop-link">Women Rings</a>
-                            <a href="#" class="nav-drop-link">By The Letter</a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+        <div class="checkout-header__controls">
+            <a href="/cart" class="checkout-header__btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 27" fill="none">
+                    <path d="M0.5 13.5H20.5" stroke="currentColor" stroke-width="4"></path>
+                    <path d="M8.5 1.5L20.5 13.5L8.5 25.5" stroke="currentColor" stroke-width="4"></path>
+                </svg> To Cart
+            </a>
+            <button class="checkout-header__btn js-toggle-sign">
+                <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-width="1" d="M2.76923 6.46153L12 0.923065L21.2308 6.46153V17.5384L12 23.0769L2.76923 17.5384V6.46153Z" stroke="currentColor"></path>
+                    <path stroke-width="1" d="M12 12C13.5294 12 14.7692 10.7602 14.7692 9.23078C14.7692 7.70137 13.5294 6.46155 12 6.46155C10.4706 6.46155 9.23077 7.70137 9.23077 9.23078C9.23077 10.7602 10.4706 12 12 12Z" stroke="currentColor"></path>
+                    <path stroke-width="1" d="M7.38461 18.4615C7.55556 17.2308 8.71794 14.7692 12 14.7692C15.2821 14.7692 16.4444 17.2308 16.6154 18.4615" stroke="currentColor"></path>
+                </svg> Sign In
+            </button>
         </div>
-
     </header>
-
 
     <main class="main_checkout">
         <div class="checkout-main">
             <div class="checkout-main__wrapper">
-                <div class="checkout-wrapper">
-                    <div class="sm-container">
-                        <div class="checkout__page-controls">
-                            <a class="checkout__page-btn" href="/cart">
-                                <svg width="22" height="22" viewbox="0 0 38 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.5 1L1.5 11L12.5 21" stroke="currentColor" stroke-width="2"></path>
-                                    <path d="M1.5 11H38" stroke="currentColor" stroke-width="2"></path>
-                                </svg> Back To Shopping Cart
-                            </a>
-                        </div>
-                        <div class="checkout-content">
-                            <div class="checkout__cards-col">
-                                <div class="checkout-box checkout-box_steps">
-                                    <div class="checkout-step checkout-step_contacts is-active">
-                                        <span>CONTACTS</span>
-                                        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2.76923 6.46153L12 0.923065L21.2308 6.46153V17.5384L12 23.0769L2.76923 17.5384V6.46153Z" stroke="currentColor" stroke-width="1.3"></path>
-                                            <path d="M12 12C13.5294 12 14.7692 10.7602 14.7692 9.23078C14.7692 7.70137 13.5294 6.46155 12 6.46155C10.4706 6.46155 9.23077 7.70137 9.23077 9.23078C9.23077 10.7602 10.4706 12 12 12Z" stroke="currentColor" stroke-width="1.3"></path>
-                                            <path d="M7.38461 18.4615C7.55556 17.2308 8.71794 14.7692 12 14.7692C15.2821 14.7692 16.4444 17.2308 16.6154 18.4615" stroke="currentColor" stroke-width="1.3"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="checkout-step checkout-step_delivery is-active">
-                                        <span>DELIVERY</span>
-                                        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M22.0883 17.0789V6.92111C22.0883 6.77493 22.0488 6.63139 21.9738 6.50521C21.8988 6.37903 21.7911 6.27476 21.6616 6.2031L12.4545 1.1058C12.3292 1.03644 12.1879 1 12.0441 1C11.9004 1 11.7591 1.03644 11.6338 1.1058L2.42666 6.2031C2.29721 6.27476 2.18947 6.37903 2.1145 6.50521C2.03952 6.63139 2 6.77493 2 6.92111V17.0789C2 17.2251 2.03952 17.3686 2.1145 17.4948C2.18947 17.621 2.29721 17.7252 2.42666 17.7969L11.6338 22.8942C11.7591 22.9636 11.9004 23 12.0441 23C12.1879 23 12.3292 22.9636 12.4545 22.8942L21.6616 17.7969C21.7911 17.7252 21.8988 17.621 21.9738 17.4948C22.0488 17.3686 22.0883 17.2251 22.0883 17.0789Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path>
-                                            <path d="M17.1731 14.524V9.1693L7.02207 3.65896" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path>
-                                            <path d="M21.9729 6.50387L12.1434 12L2.11591 6.50284" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path>
-                                            <path d="M12.1434 12L12.0452 23" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="checkout-step checkout-step_payment is-active">
-                                        <span>PAYMENT</span>
-                                        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="1.65" y="3.65" width="20.7" height="15.7" rx="1.35" stroke="currentColor" stroke-width="1.3"></rect>
-                                            <path d="M22.5 8.5H2" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path>
-                                            <path d="M20 13H12" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path>
-                                            <path d="M20 16L14 16" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path>
-                                        </svg>
+                <div class="checkout-content">
+
+                    <div class="checkout-progress --step-3">
+                        <div class="checkout-progress__step"><span>Contact Details</span></div>
+                        <div class="checkout-progress__step"><span>Shipping & Billing</span></div>
+                        <div class="checkout-progress__step"><span>Payment</span></div>
+                    </div>
+                    <section id="checkoutDeliveryBlock">
+                        <form method="post" id="checkoutFrm" action="/process-checkout">
+                            <div class="checkout-flow">
+
+
+                                <div class="checkout-step --filled">
+                                    <div class="checkout-step__wrapper">
+                                        <div class="checkout-step__header">
+                                            <h2 class="checkout-step__title">Contact Details</h2>
+                                            <a href="/checkout" class="checkout-box__edit-btn">Edit</a>
+                                        </div>
+                                        <div class="checkout-step__summary">
+                                            <span>johndoe123@gmail.com</span>
+                                            <span>8 (900) 340-33-00</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="checkout__cards-col-wrapper">
-                                    <div id="checkoutContactsBlock" class="checkout-block is-completed">
-                                        <div class="checkout-box">
-                                            <div class="checkout-box__header">
-                                                <div class="checkout-box__header-wrap">
-                                                    <h3 class="checkout-heading">Contact Information</h3>
-                                                    <div class="checkout-box__header-controls">
-                                                        <a href="/checkout" class="checkout-box__edit-btn">Edit</a>
-                                                    </div>
+
+
+                                <div class="checkout-step --filled">
+                                    <div class="checkout-step__wrapper">
+                                        <div class="checkout-step__header">
+                                            <h2 class="checkout-step__title">Shipping Method</h2>
+                                            <a href="/checkout-step2" class="checkout-box__edit-btn">Edit</a>
+                                        </div>
+                                        <div class="checkout-step__summary">
+                                            <span>International Shipping</span>
+                                            <span>
+					123 Main St
+					Apt 1</span>
+                                            <span>
+					Anytown,
+					CA
+					12345
+					USA</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="checkout-step">
+                                    <div class="checkout-step__wrapper">
+                                        <div class="checkout-step__header">
+                                            <h2 class="checkout-step__title">Payment Method</h2>
+                                            <span class="checkout__secure-typo">Totally Secure Payment</span>
+                                        </div>
+                                        <div class="checkout-step__body">
+                                            <div class="checkout-step__flow">
+                                                <div class="checkout-multiselect">
+
+
+                                                    <label for="gateway_card" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_card" value="stripe" name="gateway" checked>
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>Credit / Debit Card</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/check_pay-visa.svg" alt="VISA" class="checkout__pay-img">
+                                                                <img src="./assets/checkout/check_pay-mastercard.svg" alt="Mastercard" class="checkout__pay-img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">After clicking “Complete order”, you will be redirected to complete your purchase securely.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00
+									</span>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <label for="gateway_gpay" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_gpay" value="stripe" name="gateway">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>Google Pay / Apple Pay</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/check_pay-gpay.svg" alt="GPay" class="checkout__pay-img">
+                                                                <img src="./assets/checkout/check_pay-apple.svg" alt="Apple Pay" class="checkout__pay-img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">After clicking “Complete order”, you will be redirected to complete your purchase securely.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00
+									</span>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <label for="gateway_affirm" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_affirm" value="affirm" name="gateway">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>Affirm</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/check_pay-affirm.svg" alt="Affirm" class="checkout__pay-img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">After clicking “Complete order”, you will be redirected to complete your purchase securely.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00
+									</span>
+                                                            <div class="checkout-form__pay-details">
+                                                                <div id="affirm-message"></div>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <label for="gateway_klarna" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_klarna" value="klarna" name="gateway">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>Klarna</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/checkout_klarna.svg" alt="Klarna" class="checkout__pay-img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">After clicking "Complete order", you will be redirected to complete your purchase securely.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00
+									</span>
+                                                            <div class="checkout-form__pay-details">
+                                                                <div id="klarna-message"></div>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <label for="gateway_afterpay" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_afterpay" value="afterpay" name="gateway">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>Afterpay</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/checkout_afterpay.svg" alt="Afterpay" class="checkout__pay-img --lg">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">After clicking "Complete order", you will be redirected to complete your purchase securely.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00
+									</span>
+                                                            <div class="checkout-form__pay-details">
+                                                                <div id="afterpay-message"></div>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <label for="gateway_bitpay" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_bitpay" value="bitpay" name="gateway">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>BitPay</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/check_pay-bitpay.svg" alt="BitPay" class="checkout__pay-img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">After clicking "Complete order", you will be redirected to complete your purchase securely.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00</span>
+                                                            <div class="checkout-form__pay-details">
+                                                                <div id="bitpay-message"></div>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <label for="gateway_usdt_erc20" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_usdt_erc20" value="usdt erc20" name="gateway">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>USDT ERC20</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/check_pay-usdt.svg" alt="USDT" class="checkout__pay-img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">Transfer the cryptocurrency directly to us and send us a screenshot on WhatsApp.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00</span>
+                                                            <div data-copy-address data-crypto-address="0xc3d6cb5d8f1f2510f4512d00a5a3423BBC1EA5e6" class="checkout__crypto-address">
+                                                                <span>0xc3d6cb5d8f1f2510f4512d00a5a3423BBC1EA5e6</span>
+                                                            </div>
+                                                            <div class="checkout__crypto-controls">
+                                                                <a href="javascript:void(0)" data-copy-address>Copy Address</a>
+                                                                <a href="/chat-whatsapp" target="_blank" class="--wa">WhatsApp</a>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <label for="gateway_usdt_trx" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_usdt_trx" value="usdt trx" name="gateway">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>USDT TRX</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/check_pay-usdt.svg" alt="USDT" class="checkout__pay-img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">Transfer the cryptocurrency directly to us and send us a screenshot on WhatsApp.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00</span>
+                                                            <div data-copy-address data-crypto-address="TNxdBaTSdhFjz7WLvDpWWiCS49uXWb58XY" class="checkout__crypto-address">
+                                                                <span>TNxdBaTSdhFjz7WLvDpWWiCS49uXWb58XY</span>
+                                                            </div>
+                                                            <div class="checkout__crypto-controls">
+                                                                <a href="javascript:void(0)" data-copy-address>Copy Address</a>
+                                                                <a href="/chat-whatsapp" target="_blank" class="--wa">WhatsApp</a>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <label for="gateway_eth" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_eth" value="etherium" name="gateway">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>Etherium ERC20</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/check_pay-eth.svg" alt="ETH" class="checkout__pay-img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">Transfer the cryptocurrency directly to us and send us a screenshot on WhatsApp.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00</span>
+                                                            <div data-copy-address data-crypto-address="0xc3d6cb5d8f1f2510f4512d00a5a3423BBC1EA5e6" class="checkout__crypto-address">
+                                                                <span>0xc3d6cb5d8f1f2510f4512d00a5a3423BBC1EA5e6</span>
+                                                            </div>
+                                                            <div class="checkout__crypto-controls">
+                                                                <a href="javascript:void(0)" data-copy-address>Copy Address</a>
+                                                                <a href="/chat-whatsapp" target="_blank" class="--wa">WhatsApp</a>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <label for="gateway_btc" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_btc" value="bitcoin" name="gateway">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>Bitcoin</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/check_pay-bitcoin.svg" alt="BTC" class="checkout__pay-img --lg">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">Transfer the cryptocurrency directly to us and send us a screenshot on WhatsApp.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00</span>
+                                                            <div data-copy-address data-crypto-address="bc1qrhx0f0kemvshwynejuffamxsp8qwwh9kvk0w03" class="checkout__crypto-address">
+                                                                <span>bc1qrhx0f0kemvshwynejuffamxsp8qwwh9kvk0w03</span>
+                                                            </div>
+                                                            <div class="checkout__crypto-controls">
+                                                                <a href="javascript:void(0)" data-copy-address>Copy Address</a>
+                                                                <a href="/chat-whatsapp" target="_blank" class="--wa">WhatsApp</a>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <label for="gateway_paypal" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_paypal" value="paypal" name="gateway">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>PayPal</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/check_pay-paypal.svg" alt="PayPal" class="checkout__pay-img --lg">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">After clicking "Complete order", you will be redirected to complete your purchase securely.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00
+									</span>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <label for="gateway_wire" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="gateway_wire" name="gateway" value="wire-transfer">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>Wire Transfer</h5>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <img src="./assets/checkout/check_pay-wire.svg" alt="Wire Transfer" class="checkout__pay-img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <span class="checkout__payment-typo">After clicking “Complete order”, you will recieve an email with instructions on how to pay your order with a Bank Wire-Transfer.</span>
+                                                            <span class="checkout__payment-price">Total
+										$12,890.00
+									</span>
+                                                        </div>
+                                                    </label>
+
                                                 </div>
-                                                <span class="checkout-box__info-summary">annasteinway1@gmail.com</span>
-                                                <span class="checkout-box__info-summary">9003403300</span>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
 
-                                    <section id="checkoutDeliveryBlock" class="checkout-block is-completed">
-                                        <!-- DELIVERY METHOD -->
-                                        <div class="checkout-box">
-                                            <div class="checkout-box__header">
-                                                <div class="checkout-box__header-wrap">
-                                                    <h3 class="checkout-heading">Delivery Options</h3>
-                                                    <div class="checkout-box__header-controls">
-                                                        <a href="/checkout-step2" class="checkout-box__edit-btn">Edit
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <span class="checkout-box__info-summary">International Shipping</span>
-                                                <span class="checkout-box__info-summary">
-				3255 Peachtree Rd NESuite #2 Atlanta, GA Peachtree RD NESuite #2</span>
-                                                <span class="checkout-box__info-summary">
-				Atlanta,
-				Elbasan 30305,
-				Albania</span>
-                                            </div>
+
+                                <div class="checkout-step">
+                                    <div class="checkout-step__wrapper">
+                                        <div class="checkout-step__header">
+                                            <h2 class="checkout-step__title">Billing Address</h2>
                                         </div>
-                                    </section>
+                                        <div class="checkout-step__body">
+                                            <div class="checkout-step__flow">
+                                                <div class="checkout-multiselect">
 
+                                                    <label for="shippingAddress" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="shippingAddress" value="same" name="same_billing" checked>
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>Same as Shipping Address</h5>
+                                                            </div>
+                                                        </div>
+                                                    </label>
 
-                                    <section id="checkoutPayment" class="checkout-block">
-                                        <!-- PAYMENT METHOD -->
-                                        <div class="checkout-box">
-                                            <div class="checkout-box__header">
-                                                <div class="checkout-box__header-wrap">
-                                                    <h3 class="checkout-heading">Payment Method</h3>
-                                                </div>
-                                            </div>
-                                            <div class="checkout-box__content">
-                                                <div class="checkout-box__info-box">
-                                                    <img src="./assets/checkout/check_secure-icon.svg" alt="Payments secured">
-                                                    <span>All Payments Are Completely Secured</span>
-                                                </div>
-                                                <div class="checkout-form-wrap">
-                                                    <label class="checkout-form__radio-row">
-                                                        <input type="radio" name="gateway" value="stripe" data-gtm-form-interact-field-id="19" checked="">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span>Credit / Debit Card</span>
-                                                                </div>
-                                                                <div class="pseudo-radio__sub-group">
-                                                                    <img src="./assets/checkout/check_pay-visa.svg" alt="VISA payment method" class="pseudo-radio__pay-image">
-                                                                    <img src="./assets/checkout/check_pay-mastercard.svg" alt="Mastercard payment method" class="pseudo-radio__pay-image">
-                                                                    <img src="./assets/checkout/check_pay-gpay.svg" alt="Google Pay payment method" class="pseudo-radio__pay-image">
-                                                                    <img src="./assets/checkout/check_pay-apple.svg" alt="Apple Pay payment method" class="pseudo-radio__pay-image">
-                                                                </div>
+                                                    <label for="billingAddress" class="checkout__pseudo-cb">
+                                                        <input type="radio" id="billingAddress" value="different" name="same_billing">
+                                                        <div class="checkout__pseudo-cb-box --xs-pd">
+                                                            <div class="flex">
+                                                                <span class="checkout__pseudo-cb-dot"></span>
+                                                                <h5>Use a different billing address</h5>
                                                             </div>
                                                         </div>
-                                                        <div class="checkout-form__radio-details">
-                                                            <div class="checkout-form__radio-details-group">
-                                                                <span class="checkout-form__radio-details-typo">After clicking “Complete order”, you will be redirected to complete your purchase securely.</span>
-                                                                <span class="checkout-form__radio-details-price">Total $ 6,950.00</span>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    <label class="checkout-form__radio-row --disabled">
-                                                        <input type="radio" name="gateway" value="bitpay" data-gtm-form-interact-field-id="14">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span>Bitpay</span>
-                                                                </div>
-                                                                <div class="pseudo-radio__sub-group">
-                                                                    <img src="./assets/checkout/check_pay-bitpay.svg" alt="Bitpay payment method" class="pseudo-radio__pay-image">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-form__radio-details">
-                                                            <div class="checkout-form__radio-details-group">
-                                                                <span class="checkout-form__radio-details-typo">After clicking “Complete order”, you
-																																								                will
-																																								                be redirected to complete your purchase securely.</span>
-                                                                <span class="checkout-form__radio-details-price">Total
-																																								                $ 6,950.00
-							</span>
-                                                                <div class="checkout-form__pay-details"></div>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    <label class="checkout-form__radio-row">
-                                                        <input type="radio" name="gateway" value="etherium" data-gtm-form-interact-field-id="15">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span>USDT ERC20</span>
-                                                                </div>
-                                                                <div class="pseudo-radio__sub-group">
-                                                                    <img src="./assets/checkout/check_pay-usdt.svg" alt="ETH payment method" class="pseudo-radio__pay-image">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-form__radio-details">
-                                                            <div class="checkout-form__radio-details-group">
-                                                                <span class="checkout-form__radio-details-typo">Transfer the cryptocurrency directly to us and send us a screenshot on WhatsApp.</span>
-                                                                <span class="checkout-form__radio-details-price">Total $ 6,950.00
-							</span>
-                                                                <div class="checkout-form__pay-details">
-                                                                    <div type="button" class="copy-address-btn">
-                                                                        <span class="copy-address-btn__typo">0xc3d6cb5d8f1f2510f4512d00a5a3423BBC1EA5e6</span>
-                                                                    </div>
-                                                                    <div class="checkout__radio-controls">
-                                                                        <button class="crypto-how-btn">
-                                                                            <span>COPY ADDRESS</span>
-                                                                        </button>
-                                                                        <a href="/chat-whatsapp" target="_blank" class="wa-glow-btn">
-                                                                            WhatsApp
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    <label class="checkout-form__radio-row">
-                                                        <input type="radio" name="gateway" value="etherium" data-gtm-form-interact-field-id="15">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span>USDT TRX</span>
-                                                                </div>
-                                                                <div class="pseudo-radio__sub-group">
-                                                                    <img src="./assets/checkout/check_pay-usdt.svg" alt="ETH payment method" class="pseudo-radio__pay-image">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-form__radio-details">
-                                                            <div class="checkout-form__radio-details-group">
-                                                                <span class="checkout-form__radio-details-typo">Transfer the cryptocurrency directly to us and send us a screenshot on WhatsApp.</span>
-                                                                <span class="checkout-form__radio-details-price">Total $ 6,950.00
-							</span>
-                                                                <div class="checkout-form__pay-details">
-                                                                    <div type="button" class="copy-address-btn">
-                                                                        <span class="copy-address-btn__typo">TNxdBaTSdhFjz7WLvDpWWiCS49uXWb58XY</span>
-                                                                    </div>
-                                                                    <div class="checkout__radio-controls">
-                                                                        <button class="crypto-how-btn">
-                                                                            <span>COPY ADDRESS</span>
-                                                                        </button>
-                                                                        <a href="/chat-whatsapp" target="_blank" class="wa-glow-btn">
-                                                                            WhatsApp
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    <label class="checkout-form__radio-row">
-                                                        <input type="radio" name="gateway" value="etherium" data-gtm-form-interact-field-id="15">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span>Ethereum ERC20</span>
-                                                                </div>
-                                                                <div class="pseudo-radio__sub-group">
-                                                                    <img src="./assets/checkout/check_pay-eth.svg" alt="ETH payment method" class="pseudo-radio__pay-image">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-form__radio-details">
-                                                            <div class="checkout-form__radio-details-group">
-                                                                <span class="checkout-form__radio-details-typo">Transfer the cryptocurrency directly to us and send us a screenshot on WhatsApp.</span>
-                                                                <span class="checkout-form__radio-details-price">Total $ 6,950.00
-							</span>
-                                                                <div class="checkout-form__pay-details">
-                                                                    <div type="button" class="copy-address-btn">
-                                                                        <span class="copy-address-btn__typo">0xc3d6cb5d8f1f2510f4512d00a5a3423BBC1EA5e6</span>
-                                                                    </div>
-                                                                    <div class="checkout__radio-controls">
-                                                                        <button class="crypto-how-btn">
-                                                                            <span>COPY ADDRESS</span>
-                                                                        </button>
-                                                                        <a href="/chat-whatsapp" target="_blank" class="wa-glow-btn">
-                                                                            WhatsApp
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    <label class="checkout-form__radio-row">
-                                                        <input type="radio" name="gateway" value="etherium" data-gtm-form-interact-field-id="15">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span>Bitcoin</span>
-                                                                </div>
-                                                                <div class="pseudo-radio__sub-group">
-                                                                    <img src="./assets/checkout/check_pay-bitcoin.svg" alt="ETH payment method" class="pseudo-radio__pay-image">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-form__radio-details">
-                                                            <div class="checkout-form__radio-details-group">
-                                                                <span class="checkout-form__radio-details-typo">Transfer the cryptocurrency directly to us and send us a screenshot on WhatsApp.</span>
-                                                                <span class="checkout-form__radio-details-price">Total $ 6,950.00
-							</span>
-                                                                <div class="checkout-form__pay-details">
-                                                                    <div type="button" class="copy-address-btn">
-                                                                        <span class="copy-address-btn__typo">bc1qrhx0f0kemvshwynejuffamxsp8qwwh9kvk0w03</span>
-                                                                    </div>
-                                                                    <div class="checkout__radio-controls">
-                                                                        <button class="crypto-how-btn">
-                                                                            <span>COPY ADDRESS</span>
-                                                                        </button>
-                                                                        <a href="/chat-whatsapp" target="_blank" class="wa-glow-btn">
-                                                                            WhatsApp
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    <label class="checkout-form__radio-row">
-                                                        <input type="radio" name="gateway" value="paypal">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span>PayPal</span>
-                                                                </div>
-                                                                <div class="pseudo-radio__sub-group">
-                                                                    <img src="./assets/checkout/pay-icon_paypal.svg" alt="PayPal payment method" class="pseudo-radio__pay-image paypal">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-form__radio-details">
-                                                            <div class="checkout-form__radio-details-group">
-                                                                <span class="checkout-form__radio-details-typo">After clicking “Complete order”, you
-																																								                will
-																																								                be redirected to complete your purchase securely.</span>
-                                                                <span class="checkout-form__radio-details-price">Total
-																																								                $ 6,950.00
-							</span>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    <label class="checkout-form__radio-row">
-                                                        <input type="radio" name="gateway" value="wire-transfer">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span>Wire Tranfer</span>
-                                                                </div>
-                                                                <div class="pseudo-radio__sub-group">
-                                                                    <img src="./assets/checkout/check_pay-wire.svg" loading="lazy" alt="Wire transfer payment method" class="pseudo-radio__pay-image">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-form__radio-details">
-                                                            <div class="checkout-form__radio-details-group">
-                                                                <span class="checkout-form__radio-details-typo">After clicking “Complete order”, you
-																																								                will
-																																								                recieve an email with instructions on how to pay your order with a Bank Wire-Transfer.
-							</span>
-                                                                <span class="checkout-form__radio-details-price">Total
-																																								                $ 6,950.00
-							</span>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- WARRANTY -->
-                                        <div class="checkout-box">
-                                            <div class="checkout-box__header">
-                                                <div class="checkout-box__header-wrap">
-                                                    <h3 class="checkout-heading">Warranty</h3>
-                                                </div>
-                                            </div>
-                                            <div class="checkout-box__content">
-                                                <div class="checkout-form-wrap">
-                                                    <label class="checkout-form__radio-row">
-                                                        <input type="radio" name="warranty" value="1" checked="">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span class="pseudo-radio__big-notice">2 Year Extended Warranty (+
-																																													                  $521)<span>What Is
-																																													                    Warranty?</span>
-                                                                    </span>
-                                                                </div>
-                                                                <div class="pseudo-radio__sub-group">
-                                                                    <img src="./assets/checkout/check_warranty.svg" alt="Warranty protection" class="pseudo-radio__protect-img">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    <label class="checkout-form__radio-row">
-                                                        <input type="radio" name="warranty" value="0">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span>I Don't Need Warranty</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- BILLING ADDRESS -->
-                                        <div class="checkout-box">
-                                            <div class="checkout-box__header">
-                                                <div class="checkout-box__header-wrap">
-                                                    <h3 class="checkout-heading">Billing Address</h3>
-                                                </div>
-                                            </div>
-                                            <div class="checkout-box__content">
-                                                <div class="checkout-form-wrap">
-                                                    <label class="checkout-form__radio-row">
-                                                        <input type="radio" name="same_billing" value="same" id="shippingAddress" checked="">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span>Same as shipping address</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    <label class="checkout-form__radio-row">
-                                                        <input type="radio" name="same_billing" value="different" id="billingAddress" data-gtm-form-interact-field-id="17">
-                                                        <div class="pseudo-radio">
-                                                            <div class="pseudo-radio__wrapper">
-                                                                <div class="pseudo-radio__label-group">
-                                                                    <span class="pseudo-radio__input"></span>
-                                                                    <span>Use a different billing address</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </label>
-                                                    <!-- Billing Address Details -->
-                                                    <div class="checkout-form__radio-details" id="billingAddressNew">
-                                                        <div class="checkout-form__input-row">
-                                                            <div class="checkout-form__input-grid">
+                                                        <div class="checkout__pseudo-cb-drop">
+                                                            <div class="checkout-step__input-grid">
+
                                                                 <div class="checkout-form__input-wrap">
-                                                                    <label for="checkoutBillingName" class="checkout-form__input-label">First Name</label>
-                                                                    <input type="text" class="checkout-form__input required" id="checkoutBillingName" name="bl_first_name" value="" pattern="[a-zA-Z][a-zA-Z\s]*">
-                                                                    <span class="checkout-form__err-msg" style="user-select: auto; display: none;">Something Went Wrong. Try
-																																													                  Again</span>
+                                                                    <label for="checkoutBillingName" class="checkout-form__input-label">Name</label>
+                                                                    <input type="text" class="checkout-form__input" id="checkoutBillingName" name="bl_first_name" value="" pattern="[a-zA-Z][a-zA-Z\s]*" placeholder="Your First Name">
+                                                                    <span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
                                                                 </div>
+
+
                                                                 <div class="checkout-form__input-wrap">
-                                                                    <label for="checkoutBillingSurname" class="checkout-form__input-label">Last
-                                                                        Name</label>
-                                                                    <input type="text" class="checkout-form__input required" id="checkoutBillingSurname" name="bl_last_name" value="">
-                                                                    <span class="checkout-form__err-msg" style="user-select: auto; display: none;">Something Went Wrong. Try
-																																													                  Again</span>
+                                                                    <label for="checkoutBillingSurname" class="checkout-form__input-label">Last Name</label>
+                                                                    <input type="text" class="checkout-form__input" id="checkoutBillingSurname" name="bl_last_name" value="" placeholder="Your Last Name">
+                                                                    <span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-form__input-row">
-                                                            <div class="checkout-form__input-grid">
+
+
                                                                 <div class="checkout-form__input-wrap">
                                                                     <label for="checkoutBillingAddress" class="checkout-form__input-label">Address</label>
-                                                                    <input type="text" class="checkout-form__input required" name="bl_address" value="">
-                                                                    <span class="checkout-form__err-msg" style="user-select: auto; display: none;">Something Went Wrong. Try
-																																													                  Again</span>
+                                                                    <input type="text" class="checkout-form__input pac-target-input" id="checkoutBillingAddress" name="bl_address" value="" placeholder="Enter a location">
+                                                                    <span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
                                                                 </div>
+
+
                                                                 <div class="checkout-form__input-wrap">
-                                                                    <label for="checkoutBillingSuite" class="checkout-form__input-label">Apartment, suite,
-                                                                        etc</label>
-                                                                    <input type="text" class="checkout-form__input " id="checkoutBillingSuite" name="bl_address2" value="">
-                                                                    <span class="checkout-form__err-msg" style="user-select: auto; display: none;">Something Went Wrong. Try
-																																													                  Again</span>
+                                                                    <label for="address2" class="checkout-form__input-label">Apartment, suite, etc</label>
+                                                                    <input type="text" class="checkout-form__input" id="checkoutBillingSuite" name="bl_address2" value="">
+                                                                    <span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-form__input-row">
-                                                            <div class="checkout-form__input-grid">
+
+
                                                                 <div class="checkout-form__input-wrap">
                                                                     <label for="checkoutBillingCountry" class="checkout-form__input-label">Country</label>
-                                                                    <div class="checkout-form__select-wrap required">
-                                                                        <select id="checkoutBillingCountry" class="checkout-form__input required crs-country" name="bl_country" data-default-value="Russia" data-region-id="checkoutBillingRegion" data-crs-loaded="true">
-                                                                            <option value="">Select country</option>
-                                                                            <option value="Afghanistan">Afghanistan</option>
-                                                                        </select>
-                                                                        <span class="checkout-form__select-icon"></span>
-                                                                    </div>
-                                                                    <span class="checkout-form__err-msg" style="user-select: auto; display: none;">Something Went Wrong. Try
-																																													                  Again</span>
-                                                                </div>
-                                                                <div class="checkout-form__input-wrap">
-                                                                    <label for="checkoutBillingRegion" class="checkout-form__input-label required">Region</label>
                                                                     <div class="checkout-form__select-wrap">
-                                                                        <select id="checkoutBillingRegion" class="checkout-form__input to-select" name="bl_state" data-default-value="">
-
-                                                                            <option value="">-</option>
+                                                                        <select class="checkout-form__input  crs-country" id="checkoutBillingCountry" name="bl_country" data-region-id="checkoutBillingRegion" data-default-value="">
+                                                                            <option value="">Select country</option>
                                                                         </select>
                                                                         <span class="checkout-form__select-icon"></span>
                                                                     </div>
-                                                                    <span class="checkout-form__err-msg" style="user-select: auto; display: none;">Something Went Wrong. Try
-																																													                  Again</span>
+                                                                    <span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-form__input-row">
-                                                            <div class="checkout-form__input-grid">
+
+
+                                                                <div class="checkout-form__input-wrap">
+                                                                    <label for="checkoutBillingRegion" class="checkout-form__input-label">Region</label>
+                                                                    <div class="checkout-form__select-wrap">
+                                                                        <select class="checkout-form__input to-select" id="checkoutBillingRegion" name="bl_state" data-default-value=""></select>
+                                                                        <span class="checkout-form__select-icon"></span>
+                                                                    </div>
+                                                                    <span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
+                                                                </div>
+
+
                                                                 <div class="checkout-form__input-wrap">
                                                                     <label for="checkoutBillingCity" class="checkout-form__input-label">City</label>
-                                                                    <input type="text" class="checkout-form__input required" id="checkoutBillingCity" value="" name="blcity">
-                                                                    <span class="checkout-form__err-msg" style="user-select: auto; display: none;">Something Went Wrong. Try
-																																													                  Again</span>
+                                                                    <input type="text" class="checkout-form__input" id="checkoutBillingCity" value="" name="blcity">
+                                                                    <span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
                                                                 </div>
+
+
                                                                 <div class="checkout-form__input-wrap">
                                                                     <label for="checkoutBillingZip" class="checkout-form__input-label">Zip Code</label>
-                                                                    <input type="text" class="checkout-form__input required" id="checkoutBillingZip" name="bl_zip" placeholder="Zip Code" value="">
-                                                                    <span class="checkout-form__err-msg" style="user-select: auto; display: none;">Something Went Wrong. Try
-																																													                  Again</span>
+                                                                    <input type="text" class="checkout-form__input pac-target-input" id="checkoutBillingZip" name="bl_zip" placeholder="Zip Code" value="">
+                                                                    <span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </label>
 
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="checkout-block__footer">
-                                            <button data-checkout="submitCheckoutPayment" class="checkout__main-btn">Complete Order
-                                            </button>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="checkout-step">
+                                    <div class="checkout-step__wrapper">
+                                        <label for="customs_fees" class="checkout__pseudo-cb">
+                                            <input type="checkbox" id="customs_fees" name="customs_fees" value="1" required>
+                                            <div class="checkout__pseudo-cb-box --pd">
+                                                <div class="flex --12 --align-top">
+                                                    <span class="checkout__pseudo-cb-dot"></span>
+                                                    <h4>International Orders Customs & Additional Fees
+                                                        <span>I Accept that the customs office of the destination country or region may impose customs fees and other charges to my international order and are the responsibility of the recipient.</span>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </section>
+                </div>
+                <aside class="checkout-aside checkout-summary">
+                    <div class="checkout-summary__wrapper">
+
+
+                        <div class="checkout-summary__main cart-review">
+                            <div class="cart-review__amount-typo">Amount to pay</div>
+                            <div class="summary-price mybag-summary-price_total cart-review__total">
+                                <span>$12,890.00</span>
+                            </div>
+                            <div class="summary-price mybag-summary-price_total">
+                                <span>Total</span>
+                                <span>$12,890.00</span>
+                            </div>
+                            <div class="summary-price">
+                                <span>Subtotal</span>
+                                <span>$7,892</span>
+                            </div>
+                            <div class="summary-price mybag-summary-price_discount">
+                                <span>Discount</span>
+                                <span>-
+						$1,250</span>
+                            </div>
+                            <div class="summary-price">
+                                <span>Sales Tax</span>
+                                <span>TBD</span>
+                            </div>
+                            <div class="summary-price">
+                                <span>Delivery Charge</span>
+                                <span></span>
+                            </div>
+
+
+                            <div class="cart-review__items --hide-items">
+                                <ul role="list" class="checkout-summary__list">
+                                    <li>
+                                        <a href="#" target="_blank" class="checkout-item">
+                                            <div class="checkout-item__pic-wrap">
+                                                <img src="./assets/sample-product.webp" alt="Small Nail Diamond Bangle 14k Solid Gold 2.75ctw">
+                                            </div>
+                                            <div class="checkout-item__details">
+                                                <div>
+                                                    <h6 class="checkout-item-title">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</h6>
+                                                    <div class="checkout-item__details-row">
+                                                        <span>Yellow</span>
+                                                        <span>Small</span>
+                                                    </div>
+                                                </div>
+                                                <div class="checkout-item-price checkout-item-price_discount">
+                                                    <span>$7,500</span>
+                                                    <span>$3,500</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" target="_blank" class="checkout-item">
+                                            <div class="checkout-item__pic-wrap">
+                                                <img src="./assets/sample-product.webp" alt="Small Nail Diamond Bangle 14k Solid Gold 2.75ctw">
+                                            </div>
+                                            <div class="checkout-item__details">
+                                                <div>
+                                                    <h6 class="checkout-item-title">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</h6>
+                                                    <div class="checkout-item__details-row">
+                                                        <span>Yellow</span>
+                                                        <span>Small</span>
+                                                    </div>
+                                                </div>
+                                                <div class="checkout-item-price">
+                                                    <span>$7,500</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <button data-toggle-cart-items class="cart-review__toggle-btn"></button>
+                            </div>
+                        </div>
+
+
+                        <button data-submit-checkout class="checkout-summary__btn">Complete Order</button>
+
+
+                        <div class="redeem-input-wrap">
+                            <input data-input-toggle id="redeem_input" type="text" class="redeem-input" placeholder="Enter discount code">
+                            <button id="redeem_button" class="redeem-btn" onclick="applyRedeemCode()" disabled>Apply</button>
+                        </div>
+
+                        <div class="checkout-redeem">
+                            <h3>Code Redeemed:</h3>
+                            <a href="/product/icebox-jewelry-cleaner-polishing-cloth-kit-4205" class="checkout-item --code">
+                                <div class="checkout-item__pic-wrap">
+                                    <img src="https://www.icebox.com/unsafe/600x398/icebox-jewelry.s3.amazonaws.com/products/c3c688c03c0903554eeafcbae033476b.jpg" alt="ICEBOX JEWELRY CLEANER & POLISHING CLOTH KIT">
+                                </div>
+                                <div class="checkout-item__details">
+                                    <div>
+                                        <h6 class="checkout-item-title">Icebox Jewelry Cleaner & Polishing Cloth Kit</h6>
+                                        <div class="checkout-item__code">
+                                            <span>FCMAIL24</span>
                                         </div>
-                                    </section>
+                                    </div>
+                                    <div class="checkout-item-price">
+                                        <span>Free</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div class="mybag-information">
+                            <div class="mybag-information-row">
+                                <img src="./assets/checkout/mybag-icon_call.svg" loading="lazy" alt="call Icebox icon">
+                                <div class="mybag-information-row__wrap">
+                                    <span>Need Last Minute Help?</span>
+                                    <a href="tel:770-828-5540">Call us at (770) 828-5540.</a>
                                 </div>
                             </div>
-                            <aside class="checkout-summary">
-                                <div class="checkout-boxes-wrap">
-
-                                    <div class="checkout-box">
-                                        <div class="checkout-summary__header">
-                                            <h3 class="checkout-heading">Order Summary</h3>
-                                        </div>
-                                        <ul role="list" class="checkout-summary__list">
-
-                                            <li>
-                                                <a href="#" class="checkout-item">
-                                                    <div class="checkout-item__pic-wrap">
-                                                        <img src="./assets/sample-product.webp" alt="Small Nail Diamond Bangle 14k Solid Gold 2.75ctw">
-                                                    </div>
-                                                    <div class="checkout-item__details">
-                                                        <div>
-                                                            <h6 class="checkout-item-title">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</h6>
-                                                            <div class="checkout-item__details-row">
-                                                                <span>Yellow</span>
-                                                                <span>Small</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-item-price checkout-item-price_discount">
-                                                            <span>$7,500</span>
-                                                            <span>$3,500</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="checkout-item">
-                                                    <div class="checkout-item__pic-wrap">
-                                                        <img src="./assets/sample-product.webp" alt="Small Nail Diamond Bangle 14k Solid Gold 2.75ctw">
-                                                    </div>
-                                                    <div class="checkout-item__details">
-                                                        <div>
-                                                            <h6 class="checkout-item-title">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</h6>
-                                                            <div class="checkout-item__details-row">
-                                                                <span>Yellow</span>
-                                                                <span>Small</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="checkout-item-price">
-                                                            <span>$7,500</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                        </ul>
-
-                                        <div class="checkout-redeem">
-                                            <h3>Codes Applied:</h3>
-                                            <a href="#" class="checkout-item --code">
-                                                <div class="checkout-item__pic-wrap">
-                                                    <img src="./assets/sample-product.webp" alt="Small Nail Diamond Bangle 14k Solid Gold 2.75ctw">
-                                                </div>
-                                                <div class="checkout-item__details">
-                                                    <div>
-                                                        <h6 class="checkout-item-title">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</h6>
-                                                        <div class="checkout-item__code">Code:
-                                                            <span>sometestcode</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="checkout-item-price">
-                                                        <span>Free</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-
-
-                                        <div class="redeem-input-wrap">
-                                            <input data-input-toggle id="redeem_input" type="text" class="redeem-input" placeholder="Enter discount code">
-                                            <button id="redeem_button" class="redeem-btn" onclick="applyRedeemCode()" disabled>Apply</button>
-                                        </div>
-                                    </div>
-                                    <div class="checkout-box">
-                                        <div class="checkout-summary__main">
-                                            <div class="summary-price">
-                                                <span>Subtotal</span>
-                                                <span>$0.00</span>
-                                            </div>
-                                            <div class="summary-price mybag-summary-price_discount">
-                                                <span>Discount</span>
-                                                <span>- $1,250.00</span>
-                                            </div>
-                                            <div class="summary-price">
-                                                <span>Delivery Charge</span>
-                                                <span>$0.00</span>
-                                            </div>
-                                            <div class="summary-price mybag-summary-price_total">
-                                                <span>Total</span>
-                                                <span>$0.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="checkout-box">
-                                        <div class="mybag-information">
-                                            <div class="mybag-information-row">
-                                                <img src="./assets/checkout/mybag-icon_call.svg" loading="lazy" alt="call Icebox icon">
-                                                <div class="mybag-information-row__wrap">
-                                                    <span>Need Last Minute Help?</span>
-                                                    <a href="tel:770-828-5540">Call us at (770) 828-5540.</a>
-                                                </div>
-                                            </div>
-                                            <div class="mybag-information-row">
-                                                <img src="./assets/checkout/mybag-icon_delivery.svg" loading="lazy" alt="Icebox safe delivery icon">
-                                                <div class="mybag-information-row__wrap">
-                                                    <span>Safe and Secure Shipping Across the Globe.</span>
-                                                    <a href="#">Learn more</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                            <div class="mybag-information-row">
+                                <img src="./assets/checkout/mybag-icon_delivery.svg" loading="lazy" alt="Icebox safe delivery icon">
+                                <div class="mybag-information-row__wrap">
+                                    <span>Safe and Secure Shipping Across the Globe.</span>
+                                    <a href="#">Learn more</a>
                                 </div>
-                            </aside>
+                            </div>
                         </div>
+
+                    </div>
+                </aside>
+            </div>
+            <div class="checkout__floating">
+                <div data-toggle-summary class="summary-price mybag-summary-price_total">
+                    <span>Total</span>
+                    <span>$12,890.00</span>
+                </div>
+
+                <button data-submit-checkout class="checkout-summary__btn">Complete Order</button>
+            </div>
+            <div class="summary-mobile">
+                <div class="checkout-summary__main cart-review">
+                    <div class="cart-review__amount-typo">Amount to pay</div>
+                    <div class="summary-price mybag-summary-price_total cart-review__total">
+                        <span>$12,890.00</span>
+                    </div>
+                    <div class="summary-price mybag-summary-price_total">
+                        <span>Total</span>
+                        <span>$12,890.00</span>
+                    </div>
+                    <div class="summary-price">
+                        <span>Subtotal</span>
+                        <span>$7,892</span>
+                    </div>
+                    <div class="summary-price mybag-summary-price_discount">
+                        <span>Discount</span>
+                        <span>-
+					$1,250</span>
+                    </div>
+                    <div class="summary-price">
+                        <span>Sales Tax</span>
+                        <span>TBD</span>
+                    </div>
+                    <div class="summary-price">
+                        <span>Delivery Charge</span>
+                        <span></span>
+                    </div>
+
+
+                    <div class="cart-review__items --hide-items">
+                        <ul role="list" class="checkout-summary__list">
+                            <li>
+                                <a href="#" target="_blank" class="checkout-item">
+                                    <div class="checkout-item__pic-wrap">
+                                        <img src="./assets/sample-product.webp" alt="Small Nail Diamond Bangle 14k Solid Gold 2.75ctw">
+                                    </div>
+                                    <div class="checkout-item__details">
+                                        <div>
+                                            <h6 class="checkout-item-title">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</h6>
+                                            <div class="checkout-item__details-row">
+                                                <span>Yellow</span>
+                                                <span>Small</span>
+                                            </div>
+                                        </div>
+                                        <div class="checkout-item-price checkout-item-price_discount">
+                                            <span>$7,500</span>
+                                            <span>$3,500</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" class="checkout-item">
+                                    <div class="checkout-item__pic-wrap">
+                                        <img src="./assets/sample-product.webp" alt="Small Nail Diamond Bangle 14k Solid Gold 2.75ctw">
+                                    </div>
+                                    <div class="checkout-item__details">
+                                        <div>
+                                            <h6 class="checkout-item-title">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</h6>
+                                            <div class="checkout-item__details-row">
+                                                <span>Yellow</span>
+                                                <span>Small</span>
+                                            </div>
+                                        </div>
+                                        <div class="checkout-item-price">
+                                            <span>$7,500</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <button data-toggle-cart-items class="cart-review__toggle-btn"></button>
                     </div>
                 </div>
+
+                <button data-toggle-summary class="summary-mobile__btn">Get Back</button>
             </div>
         </div>
+
+
+
 
 
     </main>
-    <div class="footer">
 
-
-        <div class="footer__main">
-            <div class="wrapper">
-                <div class="footer__flex-row">
-
-
-                    <div class="footer__main-details">
-
-                        <a href="/" class="header-logo">
-                            <img src="./assets/logo.svg" loading="eager" alt="Icebox ">
-                        </a>
-
-                        <img alt="Icebox Atlanta store" src="./assets/store-picture.webp" loading="eager" class="footer__store-pic">
-                        <h5 class="footer__sub-typo">3255 Peachtree Road, NE<br>Suite #2<br>Atlanta, GA, 30305, USA</h5>
-                    </div>
-
-
-                    <div class="footer__more-details">
-                        <div class="footer__col">
-                            <div class="footer__col-head">
-                                <h5 class="contact__heading">More Pages</h5>
-                                <svg width="100%" height="100%" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="4"></path>
-                                </svg>
-                            </div>
-                            <div class="footer__links-list">
-                                <a href="#">Contact Us</a>
-                                <a href="#">Our Locations</a>
-                                <a href="#">My Account</a>
-                                <a href="#">Careers</a>
-                                <a href="#">Catalog</a>
-                                <a href="#">Frequentely Asked Questions</a>
-                                <a href="#">Return & Exchange Policy</a>
-                            </div>
-                        </div>
-                        <div class="footer__col">
-                            <div class="footer__col-head">
-                                <h5 class="contact__heading">Shop By Category</h5>
-                                <svg width="100%" height="100%" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="4"></path>
-                                </svg>
-                            </div>
-                            <div class="footer__links-list">
-                                <a href="#">
-                                    Pendants
-                                </a>
-                                <a href="#">
-                                    Gold Chains
-                                </a>
-                                <a href="#">
-                                    Earrings
-                                </a>
-                                <a href="#">
-                                    Rings
-                                </a>
-                                <a href="#">
-                                    Bracelets
-                                </a>
-                                <a href="#">
-                                    Bustdowns
-                                </a>
-                                <a href="#">
-                                    Accessories
-                                </a>
-                                <a href="#">
-                                    Custom Jewelry
-                                </a>
-                            </div>
-                        </div>
-                        <div class="footer__col --first --static">
-                            <div class="footer__contacts">
-                                <h5 class="contact__heading">Contact Us<span>We are open Monday - Friday 11AM - 6PM, Saturday 12PM - 5PM<br>Closed Sundays.</span>
-                                </h5>
-                                <a href="tel:404-842-0266" class="footer__lg-link">+1 (404) 842-0266</a>
-                                <a href="/chat-whatsapp" class="footer__btn">
-                                    <img loading="lazy" src="./assets/wa_white-pic.svg" alt="">
-                                    <span>Chat on WhatsApp</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewbox="0 0 24 27" fill="none">
-                                        <path d="M0.5 13.5H20.5" stroke="currentColor" stroke-width="4"></path>
-                                        <path d="M8.5 1.5L20.5 13.5L8.5 25.5" stroke="currentColor" stroke-width="4"></path>
-                                    </svg>
-                                </a>
-                                <a href="mailto:sales@icebox.com" class="footer__lg-link is-low">sales@icebox.com</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="footer__bottom">
-            <div class="wrapper">
-                <div class="footer__flex-row is-low">
-                    <div class="footer__disclaimer">
-                        <div>Icebox.com
-                            2025
-                            ⓒ . All Rights Reserved.</div>
-                        <div class="footer__socials">
-                            <a href="https://www.instagram.com/icebox/">
-                                <img loading="lazy" src="./assets/social-box_instagram.svg" alt="">
-                            </a>
-                            <a href="https://www.youtube.com/channel/UCv8gFyATae1x0VmDHmNbIhg?sub_confirmation=1">
-                                <img loading="lazy" src="./assets/social-box_youtube.svg" alt="">
-                            </a>
-                            <a href="https://www.twitter.com/icebox">
-                                <img loading="lazy" src="./assets/social-box_twitter.svg" alt="">
-                            </a>
-                            <a href="https://www.facebook.com/Icebox">
-                                <img loading="lazy" src="./assets/social-box_facebook.svg" alt="">
-                            </a>
-                            <a href="https://www.tiktok.com/@icebox">
-                                <img loading="lazy" src="./assets/social-box_tiktok.svg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="footer__payments">
-                        <img loading="eager" src="./assets/checkout/pay-icon_visa.svg" alt="Visa logo">
-                        <img loading="eager" src="./assets/checkout/pay-icon_mastercard.svg" alt="Mastercard logo">
-                        <img loading="eager" src="./assets/checkout/pay-icon_paypal.svg" alt="Paypal logo">
-                        <img loading="eager" src="./assets/checkout/pay-icon_btc.svg" alt="Bitcoin logo">
-                        <img loading="eager" src="./assets/checkout/pay-icon_amex.svg" alt="Amex logo">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="menu">
-
-        <button class="menu__close-btn"></button>
-
-        <div class="menu__wrapper">
-            <div class="menu__header">
-                <button onclick="window.menu.closeOverList()" class="back-btn"></button>
-                <span id="activeListName" class="menu__spot-title" data-title="Explore Icebox">Explore Icebox</span>
-            </div>
-            <div class="menu__main">
-
-                <div class="menu__content-list">
-
-                    <div class="menu__list">
-                        <a href="/cart" class="menu__item --more --icon --cart">
-                            <span>3
-			items in your cart</span>
-                        </a>
-
-
-                        <div data-menu-nav="men" class="menu__item --more">
-                            <span>Men's</span>
-                        </div>
-                        <div data-menu-nav="women" class="menu__item --more">
-                            <span>Women's</span>
-                        </div>
-                        <div data-menu-nav="goldChains" class="menu__item --more">
-                            <span>Gold Chains</span>
-                        </div>
-                        <div data-menu-nav="pendants" class="menu__item --more">
-                            <span>Pendants</span>
-                        </div>
-                        <div data-menu-nav="earrings" class="menu__item --more">
-                            <span>Earrings</span>
-                        </div>
-                        <div data-menu-nav="necklaces" class="menu__item --more">
-                            <span>Necklaces</span>
-                        </div>
-                        <div data-menu-nav="rings" class="menu__item --more">
-                            <span>Rings</span>
-                        </div>
-                        <div data-menu-nav="bracelets" class="menu__item --more">
-                            <span>Bracelets</span>
-                        </div>
-                        <div data-menu-nav="watches" class="menu__item --more">
-                            <span>Watches</span>
-                        </div>
-                        <div data-menu-nav="accessories" class="menu__item --more">
-                            <span>Accessories</span>
-                        </div>
-                        <div data-menu-nav="custom" class="menu__item --more">
-                            <span>Custom</span>
-                        </div>
-                        <div data-menu-nav="travelCases" class="menu__item --more">
-                            <span>Travel Cases</span>
-                        </div>
-                    </div>
-
-
-                    <div class="menu__list --sub">
-
-                        <h4 class="menu__heading">Get notifications you will love with our free account!</h4>
-                        <button onclick="signModal.open('register')" class="menu__btn mg-bottom_12">Sign Up Now</button>
-
-
-                        <div class="menu__sub-list">
-
-                            <a href="/track-order" class="menu__item --icon --track">
-                                <span>Track Your Order</span>
-                            </a>
-
-                            <a href="/account" class="menu__item --icon --account">
-                                <span>My Account</span>
-                            </a>
-                            <a href="/account/wishlist" class="menu__item --icon --wishlist">
-                                <span>Wishlist</span>
-                            </a>
-                            <a href="/logout" class="menu__item --icon --logout">
-                                <span>Sign Out</span>
-                            </a>
-
-
-                        </div>
-                    </div>
-
-
-                    <div class="menu__list --sub --grey">
-                        <div class="menu__sub-list">
-                            <a href="tel:+17705585466" target="_blank" class="menu__item">
-                                <span>Call Us: + 1 770 558 5466</span>
-                            </a>
-                            <a href="/chat-whatsapp" target="_blank" class="menu__item">
-                                <span>Chat on WhatsApp now
-			<span class="menu__wa-dot"></span>
-                                </span>
-                            </a>
-                            <div data-evt="toggleCurrency" class="menu__item">
-                                <span>Change Currency</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="menu__over-list">
-                    <div class="menu__list" data-menu-list="men">
-                        <a href="/all?gender[]=Male&sort=Best-Sellers" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Pendants</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Gold Chains</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Earrings</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Necklaces</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Rings</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Bracelets</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Watches</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Accessories</span>
-                        </a>
-                    </div>
-                    <div class="menu__list" data-menu-list="women">
-                        <a href="/all?gender[]=Female&sort=Best-Sellers" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Pendants</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Gold Chains</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Engagement Rings</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Earrings</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Necklaces</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Rings</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Bracelets</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Watches</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>Accessories</span>
-                        </a>
-                    </div>
-                    <div class="menu__list" data-menu-list="goldChains">
-                        <a href="/results/gold-chains" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="#" class="menu__item">
-                            <span>Franco</span>
-                        </a>
-                        <a href="#" class="menu__item">
-                            <span>Rope</span>
-                        </a>
-                        <a href="#" class="menu__item">
-                            <span>Miami Cuban</span>
-                        </a>
-                        <a href="#" class="menu__item">
-                            <span>Rolo</span>
-                        </a>
-                        <a href="#" class="menu__item">
-                            <span>Mariner Link</span>
-                        </a>
-                        <a href="#" class="menu__item">
-                            <span>Box</span>
-                        </a>
-                        <a href="#" class="menu__item">
-                            <span>Figaro</span>
-                        </a>
-                        <a href="#" class="menu__item">
-                            <span>Byzantine</span>
-                        </a>
-                    </div>
-                    <div class="menu__list" data-menu-list="pendants">
-                        <a href="/results/pendants" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>test</span>
-                        </a>
-                    </div>
-                    <div class="menu__list" data-menu-list="earrings">
-                        <a href="/results/earrings" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>test</span>
-                        </a>
-                    </div>
-                    <div class="menu__list" data-menu-list="necklaces">
-                        <a href="/results/necklaces" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>test</span>
-                        </a>
-                    </div>
-                    <div class="menu__list" data-menu-list="rings">
-                        <a href="/results/rings" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>test</span>
-                        </a>
-                    </div>
-                    <div class="menu__list" data-menu-list="bracelets">
-                        <a href="/results/bracelets" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>test</span>
-                        </a>
-                    </div>
-                    <div class="menu__list" data-menu-list="watches">
-                        <a href="/results/watch-market" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>test</span>
-                        </a>
-                    </div>
-                    <div class="menu__list" data-menu-list="accessories">
-                        <a href="/results/accessories" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>test</span>
-                        </a>
-                    </div>
-                    <div class="menu__list" data-menu-list="custom">
-                        <a href="/results/custom" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>test</span>
-                        </a>
-                    </div>
-                    <div class="menu__list" data-menu-list="travelCases">
-                        <a href="/results/travel-cases" class="menu__item">
-                            <span>
-			<strong>Shop All</strong>
-		</span>
-                        </a>
-                        <a href="" class="menu__item">
-                            <span>test</span>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="cart-modal">
-        <div data-evt="toggleCart" class="cart-modal__backdrop"></div>
-        <div class="cart-modal__container">
-            <div class="cart-modal__wrapper">
-                <div class="cart-modal__header">
-                    <h5 class="cart-modal__heading">My Cart
-                        <span>(3)</span>
-                    </h5>
-                    <div data-evt="toggleCart" class="cart-modal__close-btn">
-                        <svg width="12" height="12" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 1L23 23" stroke="currentColor" stroke-width="2.5"></path>
-                            <path d="M23 1L1 23" stroke="currentColor" stroke-width="2.5"></path>
-                        </svg>
-                    </div>
-
-                </div>
-                <div class="cart-modal__scrollable">
-                    <div class="cart-modal__rows-wrap ">
-
-                        <div class="cart-row">
-                            <div class="cart-row__wrapper bag_inner">
-
-
-
-
-                                <div class="fedex-notice">
-                                    <img src="./assets/fedex.svg" alt="">
-                                    <span>Guaranteed & Insured Shipping</span>
-                                </div>
-
-
-                                <div class="cart-item">
-                                    <div class="cart-item__main">
-                                        <div class="cart-item__media">
-                                            <img src="./assets/sample-product.webp" loading="lazy">
-                                        </div>
-                                        <div class="cart-item__details">
-                                            <span class="cart-item__category">Earrings</span>
-                                            <div class="cart-item__info-row">
-                                                <div class="cart-item__title-group">
-                                                    <a href="#" target="_blank" class="cart-item-name">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</a>
-                                                </div>
-                                                <div class="cart-item__options-group">
-                                                    <div class="cart-item__option">
-                                                        <span>Color</span>:
-                                                        <span>Yellow</span>
-                                                    </div>
-                                                    <div class="cart-item__option">
-                                                        <span>Size</span>:
-                                                        <span>Small</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="cart-item__footer">
-                                                <div class="cart-item__btn-group">
-                                                    <button class="cart-item__btn --wishlist" onclick="addToWishlist(32503);"></button>
-                                                    <button class="cart-item__btn --remove" onclick="removeItemFromCart(32503)"></button>
-                                                </div>
-                                                <div class="cart-item__price-row">
-                                                    <span class="cart-item-price">$7,500</span>
-                                                    <span class="cart-item-price_sale">$3,500</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cart-item">
-                                    <div class="cart-item__main">
-                                        <div class="cart-item__media">
-                                            <img src="./assets/sample-product.webp" loading="lazy">
-                                        </div>
-                                        <div class="cart-item__details">
-                                            <span class="cart-item__category">Earrings</span>
-                                            <div class="cart-item__info-row">
-                                                <div class="cart-item__title-group">
-                                                    <a href="#" target="_blank" class="cart-item-name">Small Nail Diamond Bangle 14k Solid Gold 2.75ctw</a>
-                                                </div>
-                                                <div class="cart-item__options-group">
-                                                    <div class="cart-item__option">
-                                                        <span>Color</span>:
-                                                        <span>Yellow</span>
-                                                    </div>
-                                                    <div class="cart-item__option">
-                                                        <span>Size</span>:
-                                                        <span>Small</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="cart-item__footer">
-                                                <div class="cart-item__btn-group">
-                                                    <button class="cart-item__btn --wishlist" onclick="addToWishlist(32503);"></button>
-                                                    <button class="cart-item__btn --remove" onclick="removeItemFromCart(32503)"></button>
-                                                </div>
-                                                <div class="cart-item__price-row">
-                                                    <span class="cart-item-price">$7,500</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="cart-item__notice">
-                                        This item is made to order, Expect your item to arrive on or before June 25th, 2024
-                                    </div>
-                                </div>
-
-
-                                <div class="cart-modal__summary">
-                                    <div class="cart-modal__summary-price --total">
-                                        <span>Total</span>
-                                        <span class="cart-modal__total-price" id="mini-cart-total">$9,850</span>
-                                    </div>
-                                    <div class="cart-modal__summary-price">
-                                        <span>Original</span>
-                                        <span>$7,892</span>
-                                    </div>
-                                    <div class="cart-modal__summary-price --discount">
-                                        <span>Discount</span>
-                                        <span>-
-												$1,250</span>
-                                    </div>
-                                    <div class="cart-modal__summary-price">
-                                        <span>Delivery Charge</span>
-                                        <span>On Checkout</span>
-                                    </div>
-                                    <a href="/cart" class="cart-modal__btn">Checkout</a>
-                                    <div class="mybag-summary__payments">
-                                        <img src="./assets/checkout/pay-icon_paypal.svg" alt="paypal payment">
-                                        <img src="./assets/checkout/pay-icon_visa.svg" alt="payment visa">
-                                        <img src="./assets/checkout/pay-icon_mastercard.svg" alt="payment mastercard">
-                                        <img src="./assets/checkout/pay-icon_amex.svg" alt="payment amex">
-                                        <img src="./assets/checkout/pay-icon_btc.svg" alt="payment bitcoin">
-                                        <img src="./assets/checkout/pay-icon_wire.svg" alt="payment wire transfer">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="sign-modal">
         <div data-evt="closeSignModal" class="sign-modal__backdrop"></div>
         <div class="sign-modal__container">
@@ -2305,25 +1614,6 @@
             </div>
         </div>
     </div>
-    <a href="/chat-whatsapp" target="_blank" class="wa-float">
-        <div class="wa-float__wrapper">
-            <div class="wa-float__live">
-                <span></span>
-                <span>LIVE</span>
-            </div>
-            <div class="wa-float__icons">
-                <div class="wa-float__dots">
-                    <div class="typing-dots -alt">
-                        <div></div>
-                    </div>
-                </div>
-                <div class="wa-float__pic-wrap">
-                    <img src="./assets/wa_white-pic.svg" loading="eager" alt="" class="wa-float__pic">
-                </div>
-            </div>
-            <img src="./assets/wa_chat-text.svg" loading="eager" alt="" class="wa-float__text-pic">
-        </div>
-    </a>
     <div class="ib-search">
         <div class="ib-search__scroller">
             <div class="ib-search__logo">
@@ -2351,10 +1641,116 @@
             </div>
         </div>
     </div>
+    <a href="/chat-whatsapp" target="_blank" class="wa-float">
+        <div class="wa-float__wrapper">
+            <div class="wa-float__live">
+                <span></span>
+                <span>LIVE</span>
+            </div>
+            <div class="wa-float__icons">
+                <div class="wa-float__dots">
+                    <div class="typing-dots -alt">
+                        <div></div>
+                    </div>
+                </div>
+                <div class="wa-float__pic-wrap">
+                    <img src="./assets/wa_white-pic.svg" loading="eager" alt="" class="wa-float__pic">
+                </div>
+            </div>
+            <img src="./assets/wa_chat-text.svg" loading="eager" alt="" class="wa-float__text-pic">
+        </div>
+    </a>
     <script src="./js/partial-min.js"></script>
 
 
+    <script>
+        $(document).ready(function() {
+            $('#shippingAddress').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('#billingAddressNew').hide();
+                    $('.required').each(function(index, obj) {
+                        $(obj).attr('required', false);
+                    });
 
+                }
+            });
+
+            $('#billingAddress').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('#billingAddressNew').show();
+                    $('.required').each(function(index, obj) {
+                        $(obj).attr('required', true);
+                    });
+
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            dataLayer.push({
+                ecommerce: null
+            })
+            dataLayer.push({
+                event: 'add_shipping_info',
+                ecommerce: {
+                    currency: 'USD',
+                    value: '',
+                    shipping_tier: '',
+                    items: [{
+                        item_name: 'Small Nail Diamond Bangle 14k Solid Gold 2.75ctw',
+                        item_id: '',
+                        price: '',
+                        index: '32503',
+                        item_brand: "",
+                        item_category: 'Earrings',
+                        variant: 'Yellow',
+                        quantity:
+                    }, {
+                        item_name: 'Small Nail Diamond Bangle 14k Solid Gold 2.75ctw',
+                        item_id: '',
+                        price: '',
+                        index: '32503',
+                        item_brand: "",
+                        item_category: 'Earrings',
+                        variant: 'Yellow',
+                        quantity:
+                    }, ]
+                }
+
+
+            });
+        });
+    </script>
+
+
+    <script>
+        function removeItemFromCart(item_id) {
+            $.ajax({
+                url: '/json/remove-cart/item/' + item_id,
+                type: 'GET',
+                success: function(data) {
+                    var result = $.parseJSON(data);
+                    if (!result.error) {
+                        $('.cart-modal').replaceWith(result.twig_cart_modal);
+                        $('.added_items').html(result.count);
+                        $('.cart-counter').each(function() {
+                            $(this).html(result.count);
+                        });
+                        $('.bag-counter').html(result.count);
+                        // $('.cart-modal__close-btn').click();
+                        unlockScroll();
+                        // send_gtag_remove_from_cart_event(result.gtag_event);
+                    } else {
+                        showMessage('error', 'Error', result.msg);
+                    }
+
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+	<head>
+		{% include 'page-components/head.twig' %}
+		{{ block('include_head') }}
+	</head>
+
+
+	<body class="{% if bodyClass is defined %} {{bodyClass}}{% endif %} {% if admin_overlay %} --controls-visible {% endif %}">
+		{% if disable_layout is not defined %}
+			{% include "elements/header_checkout.twig" %}
+		{% endif %}
+
+		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
+
+			{% if logged %}
+				{% else %}
+				{# {% include "elements/subscribe.twig" %} #}
+			{% endif %}
+			{% if disable_layout is not defined  %}
+				{% if user.admin == true or user.saks %}
+					{% include "elements/admin-bar.twig" %}
+				{% endif %}
+
+				{#  {% include "elements/affirm-disclaimer.twig" %} #}
+
+			{% endif %}
+		</main>
+
+		{% include "elements/sign-modal.twig" %}
+		{% include "elements/currency-modal.twig" %}
+		{% include "elements/page-alerts.twig" %}
+		{% include "elements/pay-modal.twig" %}
+		{% include "elements/mail-modal.twig" %}
+		{% include "elements/quiz-modal.twig" %}
+		{% include "components/general/search.twig" %}
+		{% include "elements/whatsapp-float.twig" %}
+		{% include "page-components/scripts.twig" %}
+		{{ block('include_script') }}
+
+		{% if show_admin_controls %}
+			<script>
+				LOAD_ADMIN_DATA = true;
+$(document).ready(function () {
+loadAdminData();
+});
+			</script>
+		{% endif %}
+		<script>
+			function removeItemFromCart(item_id) {
+$.ajax({
+url: '/json/remove-cart/item/' + item_id,
+type: 'GET',
+success: function (data) {
+var result = $.parseJSON(data);
+if (! result.error) {
+$('.cart-modal').replaceWith(result.twig_cart_modal);
+$('.added_items').html(result.count);
+$('.cart-counter').each(function () {
+$(this).html(result.count);
+});
+$('.bag-counter').html(result.count);
+// $('.cart-modal__close-btn').click();
+unlockScroll();
+// send_gtag_remove_from_cart_event(result.gtag_event);
+} else {
+showMessage('error', 'Error', result.msg);
+}
+
+}
+});
+}
+		</script>
+	</body>
+</html>

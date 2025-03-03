@@ -1,45 +1,79 @@
-{% extends 'layouts/default.twig' %}
-{% set pageBanner = false %}
+{% extends 'layouts/layout_checkout.twig' %}
+{% set pageBanner = true %}
 {% set bodyClass = 'body_checkout' %}
 {% set mainClass = 'main_checkout' %}
-{% set topBanner = {
-  text: "Free Insured Shipping on all US Orders"
-} %}
 
 {% set checkoutStep = 3 %}
 
-{% block include_head %}
-	{# Styles / preload scripts / etc... #}
-{% endblock %}
-
 {% block content %}
-
 	<div class="checkout-main">
 		<div class="checkout-main__wrapper">
-			<div class="checkout-wrapper">
-				<div class="sm-container">
-					<div class="checkout__page-controls">
-						<a class="checkout__page-btn" href="/cart">
-							{% include "./components/svg/back-arrow.svg" %}
-							Back To Shopping Cart
-						</a>
-					</div>
-					<div class="checkout-content">
-						<div class="checkout__cards-col">
-							{% include "./components/checkout/steps.twig" %}
-							<div class="checkout__cards-col-wrapper">
-								{% include "./components/checkout/3_step.twig" %}
-							</div>
-						</div>
-						{% include "./components/checkout/summary.twig" %}
-					</div>
-				</div>
+			<div class="checkout-content">
+				{% include "components/checkout/progress.twig" %}
+				<section id="checkoutDeliveryBlock">
+					<form method="post" id="checkoutFrm" action="/process-checkout">
+						{% include "components/checkout/3_step.twig" %}
+					</form>
+				</section>
 			</div>
+			{% include "components/checkout/summary.twig" %}
 		</div>
+		{% include "components/checkout/floating-button.twig" %}
+		{% include "components/checkout/summary-mobile.twig" %}
 	</div>
-
 {% endblock %}
 
 {% block include_script %}
 	{# Scripts / etc... #}
+
+	<script>
+		$(document).ready(function () {
+$('#shippingAddress').on('change', function () {
+if ($(this).is(':checked')) {
+$('#billingAddressNew').hide();
+$('.required').each(function (index, obj) {
+$(obj).attr('required', false);
+});
+
+}
+});
+
+$('#billingAddress').on('change', function () {
+if ($(this).is(':checked')) {
+$('#billingAddressNew').show();
+$('.required').each(function (index, obj) {
+$(obj).attr('required', true);
+});
+
+}
+});
+});
+	</script>
+
+
+	<script>
+		$(document).ready(function () {
+dataLayer.push({ecommerce: null})
+dataLayer.push({
+event: 'add_shipping_info',
+ecommerce: {
+currency: 'USD',
+value:'{{ cart.shipping_cost_unformatted }}',
+shipping_tier:'{{ cart.shipping_option }}',
+items: [{% for item in cart.items %}{
+item_name: '{{ item.name }}',
+item_id: '{{ item.product_id }}',
+price: '{{ item.unit_price }}',
+index:'{{ item.key }}',
+item_brand: "{{ item.brand }}",
+item_category: '{{ item.category }}',
+variant: '{{ item.options[0].value }}',
+quantity: {{ item.qty }}
+},{% endfor %}]
+}
+
+
+});
+});
+	</script>
 {% endblock %}

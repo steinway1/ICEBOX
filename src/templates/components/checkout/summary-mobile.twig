@@ -1,0 +1,86 @@
+<div class="summary-mobile">
+	<div class="checkout-summary__main cart-review">
+		<div class="cart-review__amount-typo">Amount to pay</div>
+		<div class="summary-price mybag-summary-price_total cart-review__total">
+			{% if checkoutStep < 1 %}
+				<span>{{ cart.total_without_shipping | raw}}</span>
+			{% else %}
+				<span>{{ cart.total | raw }}</span>
+			{% endif %}
+		</div>
+		<div class="summary-price mybag-summary-price_total">
+			<span>Total</span>
+			{% if checkoutStep < 1 %}
+				<span>{{ cart.total_without_shipping | raw}}</span>
+			{% else %}
+				<span>{{ cart.total | raw }}</span>
+			{% endif %}
+		</div>
+		<div class="summary-price">
+			<span>Subtotal</span>
+			<span>{{cart.original_total | raw}}</span>
+		</div>
+		{% if cart.total_discount is defined %}
+			<div class="summary-price mybag-summary-price_discount">
+				<span>Discount</span>
+				<span>-
+					{{cart.total_discount | raw}}</span>
+			</div>
+		{% endif %}
+		{% if cart.tax_amount is defined  %}
+			{% if cart.tax_amount != false %}
+				<div class="summary-price">
+					<span>Sale Tax</span>
+					<span>{{ cart.tax_amount | raw }}</span>
+				</div>
+			{% endif %}
+		{% else %}
+			<div class="summary-price">
+				<span>Sales Tax</span>
+				<span>TBD</span>
+			</div>
+		{% endif %}
+		<div class="summary-price">
+			<span>Delivery Charge</span>
+			{% if checkoutStep == 3 %}
+				<span>{{ cart.shipping_cost_formatted | raw }}</span>
+			{% else %}
+				<span>TBD</span>
+			{% endif %}
+		</div>
+
+		{# Items #}
+		<div class="cart-review__items --hide-items">
+			<ul role="list" class="checkout-summary__list">
+				{% for item in cart.items %}
+					<li>
+						<a href="{{item.href}}" target="_blank" class="checkout-item">
+							<div class="checkout-item__pic-wrap">
+								<img src="{{item.imgSrc}}" alt="{{item.name}}">
+							</div>
+							<div class="checkout-item__details">
+								<div>
+									<h6 class="checkout-item-title">{{item.name}}</h6>
+									<div class="checkout-item__details-row">
+										{% for option in item.options %}
+											<span>{{option.value}}</span>
+										{% endfor %}
+									</div>
+								</div>
+								<div class="checkout-item-price{% if item.salePrice %} checkout-item-price_discount{% endif %}">
+									<span>{{item.price}}</span>
+									{% if item.salePrice %}
+										<span>{{item.salePrice}}</span>
+									{% endif %}
+								</div>
+							</div>
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+			<button data-toggle-cart-items class="cart-review__toggle-btn"></button>
+		</div>
+	</div>
+
+	<button data-toggle-summary class="summary-mobile__btn">Get Back</button>
+</div>

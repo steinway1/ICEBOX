@@ -1,45 +1,24 @@
-{% extends 'layouts/default.twig' %}
-{% set pageBanner = false %}
+{% extends 'layouts/layout_checkout.twig' %}
+{% set pageBanner = true %}
 {% set bodyClass = 'body_checkout' %}
 {% set mainClass = 'main_checkout' %}
-{% set topBanner = {
-  text: "Free Insured Shipping on all US Orders"
-} %}
 
 {% set checkoutStep = 2 %}
 
-{% block include_head %}
-	{# Styles / preload scripts / etc... #}
-{% endblock %}
-
 {% block content %}
-
 	<div class="checkout-main">
 		<div class="checkout-main__wrapper">
-			<div class="checkout-wrapper">
-				<div class="sm-container">
-					<div class="checkout__page-controls">
-						<a class="checkout__page-btn" href="/cart">
-							{% include "./components/svg/back-arrow.svg" %}
-							Back To Shopping Cart
-						</a>
-					</div>
-					<div class="checkout-content">
-						<div class="checkout__cards-col">
-							{% include "./components/checkout/steps.twig" %}
-							<div class="checkout__cards-col-wrapper">
-								{% include "./components/checkout/2_step.twig" %}
-							</div>
-						</div>
-						{% include "./components/checkout/summary.twig" %}
-					</div>
-				</div>
+			<div class="checkout-content">
+				{% include "components/checkout/progress.twig" %}
+				<section id="checkoutDeliveryBlock">
+					<form method="post" action="/checkout-step3" class="checkout-edit" id="checkoutFrm">
+						{% include "components/checkout/2_step.twig" %}
+					</form>
+				</section>
 			</div>
+			{% include "components/checkout/summary.twig" %}
 		</div>
+		{% include "components/checkout/floating-button.twig" %}
+		{% include "components/checkout/summary-mobile.twig" %}
 	</div>
-
-{% endblock %}
-
-{% block include_script %}
-	{# Scripts / etc... #}
 {% endblock %}
