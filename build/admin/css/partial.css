@@ -16833,7 +16833,7 @@ select.sms-tag:hover {
   width: 100%;
   max-width: 586px;
   min-height: 68px;
-  max-height: 80vh;
+  max-height: 90vh;
   transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
   z-index: 1200;
   position: fixed;
@@ -17005,6 +17005,9 @@ select.sms-tag:hover {
   grid-column-gap: 8px;
   grid-row-gap: 8px;
   display: flex;
+  background-color: white;
+  margin: calc(var(--m-padding) * -1);
+  padding: var(--m-padding);
 }
 
 .m-popup__input-grid {
@@ -19674,6 +19677,10 @@ body.body_manufacture.--grid .card {
     flex-flow: column;
   }
 
+  .m-popup {
+    max-height: 70vh;
+  }
+
   .m-popup.--visible {
     transform: translateY(0%);
   }
@@ -19691,6 +19698,12 @@ body.body_manufacture.--grid .card {
     opacity: 1 !important;
   }
 
+  .m-popup__btn-group {
+    margin-top: 24px;
+    position: sticky;
+    bottom: 0;
+  }
+
   .m-popup__wrapper {
     padding-top: 12px;
   }
@@ -19700,13 +19713,10 @@ body.body_manufacture.--grid .card {
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
-    padding-top: 6px;
-    padding-bottom: 14px;
   }
 
   .m-popup__handler {
     padding-top: 16px;
-    display: flex;
   }
 
   body.body_manufacture.--grid .card {

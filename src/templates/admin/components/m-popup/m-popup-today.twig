@@ -25,7 +25,60 @@
 				<div
 					class="m-popup__main">
 
-										{# 3 --- Other Details #}
+
+					{# 1 --- Find customer / add customer / selected customer #}
+					<div data-step id="contentCustomer" class="m-popup__content --step-1">
+						<div class="m-popup__input-grid">
+							<div id="selectedCustomerInputs" class="m-popup__input-row">
+								<div class="m-popop__manual-options-grid">
+									<div class="m-popup__input-row">
+										<label class="m-popup__label" for="">First Name</label>
+										<input class="m-popup__input" data-customer-input id="customerFirstName" type="text" name="first_name" placeholder="First name" autocomplete="off" required>
+									</div>
+									<div class="m-popup__input-row">
+										<label class="m-popup__label" for="customerLastName">Last Name</label>
+										<input class="m-popup__input" data-customer-input id="customerLastName" type="text" name="last_name" placeholder="Last name" autocomplete="off" required>
+									</div>
+									<div class="m-popup__input-row">
+										<label class="m-popup__label" for="customerEmail">Email</label>
+										<input class="m-popup__input" data-customer-input id="customerEmail" type="email" name="email" placeholder="Email" autocomplete="off" required>
+										<label class="custom-checkbox">
+											<input type="checkbox" name="customer_no_email" value="No Email" onchange="document.getElementById('customerEmail').disabled = this.checked;">
+											<span>No Email</span>
+										</label>
+									</div>
+									<div class="m-popup__input-row">
+										<label class="m-popup__label" for="customerPhone">Phone</label>
+										<input class="m-popup__input" data-customer-input id="customerPhone" type="text" name="phone" placeholder="Phone" autocomplete="off" required onkeypress="return event.charCode >= 48 && event.charCode <= 57" inputmode="numeric" pattern="[0-9]*">
+									</div>
+									<div class="m-popup__custom-pic-wrap">
+										<img data-customer-photo class="m-popup__customer-pic" src="https://www.icebox.com/unsafe/300x300/icebox-jewelry.s3.amazonaws.com/whales/8064aee9ea24ccd862f9a6b29b743f8f.png" alt="">
+									</div>
+								</div>
+							</div>
+							<div id="searchListCustomers" class="m-popup__input-row">
+								<div class="m-popup__input-wrap">
+									<input class="m-popup__input --bold" id="customerSearchInput" name="customerSearch" placeholder="Find a customer..." type="text" autocomplete="off" required>
+								</div>
+								<div class="m-popup__search-list"></div>
+							</div>
+						</div>
+					</div>
+
+					{# 2 --- Find item & Selected item #}
+					<div data-step id="contentItem" class="m-popup__content --step-2">
+						<div class="m-popup__input-grid">
+							<div id="searchListItems" class="m-popup__input-row">
+								<div class="m-popup__input-wrap">
+									<input class="m-popup__input --bold" id="itemSearchInput" name="itemSearch" placeholder="Find an item..." type="text" autocomplete="off" required>
+								</div>
+								<div class="m-popup__search-list"></div>
+							</div>
+							<div id="selectedItemContainer" class="m-popup__input-row"></div>
+						</div>
+					</div>
+
+					{# 3 --- Other Details #}
 					<div data-step id="contentOther" class="m-popup__content --step-3">
 						<div class="m-popup__input-grid">
 							<div id="otherDetails" class="m-popup__input-row">
@@ -165,61 +218,6 @@
 							</div>
 						</div>
 					</div>
-
-
-					{# 1 --- Find customer / add customer / selected customer #}
-					<div data-step id="contentCustomer" class="m-popup__content --step-1">
-						<div class="m-popup__input-grid">
-							<div id="selectedCustomerInputs" class="m-popup__input-row">
-								<div class="m-popop__manual-options-grid">
-									<div class="m-popup__input-row">
-										<label class="m-popup__label" for="">First Name</label>
-										<input class="m-popup__input" data-customer-input id="customerFirstName" type="text" name="first_name" placeholder="First name" autocomplete="off" required>
-									</div>
-									<div class="m-popup__input-row">
-										<label class="m-popup__label" for="customerLastName">Last Name</label>
-										<input class="m-popup__input" data-customer-input id="customerLastName" type="text" name="last_name" placeholder="Last name" autocomplete="off" required>
-									</div>
-									<div class="m-popup__input-row">
-										<label class="m-popup__label" for="customerEmail">Email</label>
-										<input class="m-popup__input" data-customer-input id="customerEmail" type="email" name="email" placeholder="Email" autocomplete="off" required>
-										<label class="custom-checkbox">
-											<input type="checkbox" name="customer_no_email" value="No Email" onchange="document.getElementById('customerEmail').disabled = this.checked;">
-											<span>No Email</span>
-										</label>
-									</div>
-									<div class="m-popup__input-row">
-										<label class="m-popup__label" for="customerPhone">Phone</label>
-										<input class="m-popup__input" data-customer-input id="customerPhone" type="text" name="phone" placeholder="Phone" autocomplete="off" required>
-									</div>
-									<div class="m-popup__custom-pic-wrap">
-										<img data-customer-photo class="m-popup__customer-pic" src="https://www.icebox.com/unsafe/300x300/icebox-jewelry.s3.amazonaws.com/whales/8064aee9ea24ccd862f9a6b29b743f8f.png" alt="">
-									</div>
-								</div>
-							</div>
-							<div id="searchListCustomers" class="m-popup__input-row">
-								<div class="m-popup__input-wrap">
-									<input class="m-popup__input --bold" id="customerSearchInput" name="customerSearch" placeholder="Find a customer..." type="text" autocomplete="off" required>
-								</div>
-								<div class="m-popup__search-list"></div>
-							</div>
-						</div>
-					</div>
-
-					{# 2 --- Find item & Selected item #}
-					<div data-step id="contentItem" class="m-popup__content --step-2">
-						<div class="m-popup__input-grid">
-							<div id="searchListItems" class="m-popup__input-row">
-								<div class="m-popup__input-wrap">
-									<input class="m-popup__input --bold" id="itemSearchInput" name="itemSearch" placeholder="Find an item..." type="text" autocomplete="off" required>
-								</div>
-								<div class="m-popup__search-list"></div>
-							</div>
-							<div id="selectedItemContainer" class="m-popup__input-row"></div>
-						</div>
-					</div>
-
-
 
 					{# --- Buttons #}
 					<div class="m-popup__btn-group">

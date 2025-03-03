@@ -29,7 +29,6 @@ export default class ManualOrderPopup {
 	init() {
 		this.formInstance = new ManualOrderForm(this.rootEl, this, this.orderID)
 		this.bindEvents()
-		this.bindDragEvents()
 		this.show()
 	}
 
@@ -50,6 +49,7 @@ export default class ManualOrderPopup {
 		this.opened = true
 		this.rootEl.style.display = 'block'
 		this.formInstance._bindDocumentClick()
+		this.rootEl.scrollTop = 0
 
 		await delay(1)
 
