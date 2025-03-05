@@ -468,12 +468,17 @@ body.body_manufacture {
 	font-weight: 500 !important;
 	transition: all 0.2s !important;
 
+	&:disabled {
+		background-color: var(--panel-input-bg-disabled);
+		cursor: not-allowed;
+	}
+
 	&.--qty {
 		width: 72px;
 	}
 
 	@include minWidthMd {
-		&:hover {
+		&:not([disabled]):hover {
 			background-color: #fff;
 			border-color: #2786df;
 		}

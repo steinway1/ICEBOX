@@ -63,7 +63,7 @@ class PTW {
      *   category: 'Watches'
      * }
      */
-    const item = await this.AjaxGetPtwData(this.itemID)
+    const item = await this.AjaxGetPtwData(this.itemID);
     // const item = await fakeAjaxGetPtwData(this.itemID);
 
     if (item.error) {
@@ -373,19 +373,27 @@ export default class Inventory {
       new PTW(id);
     }
 
-		// Toggle quantities
-		if (target.closest("[data-evt='toggleQuantities']")) {
-			const card = target.closest(".i-card");
-			if (card) {
-				if (card.classList.contains("--show-quantities")) {
-					card.classList.remove("--show-quantities");
-					target.textContent = "Show Quantities";
-				} else {
-					card.classList.add("--show-quantities");
-					target.textContent = "Hide Quantities";
-				}
-			}
-		}
+    // Toggle quantities
+    if (target.closest("[data-evt='toggleQuantities']")) {
+      const card = target.closest(".i-card");
+      if (card) {
+        const inputArr = [
+          ...card
+            .querySelector(".i-card__quantities")
+            ?.querySelectorAll("input"),
+        ];
+
+        if (inputArr.some((input) => input.disabled)) {
+          inputArr.forEach((input) => (input.disabled = false));
+					target.textContent = 'Save'
+					target.className = 'panel__btn bright_blue'
+        } else {
+          inputArr.forEach((input) => (input.disabled = true));
+					target.textContent = 'Edit'
+					target.className = 'panel__btn --border-grey'
+        }
+      }
+    }
   };
 
   initSplide() {
