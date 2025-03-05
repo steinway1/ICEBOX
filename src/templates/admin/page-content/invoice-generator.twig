@@ -1,0 +1,299 @@
+{# Panel #}
+<div class="panel">
+	<div
+		class="panel__holder">
+
+		{# Content #}
+		<div class="panel-content">
+			<div class="panel-content__scroller">
+				<div class="panel-content__header">
+					<div class="panel-contet__header-wrapper">
+						<a href="/" class="gap_8">
+							<div class="panel-icon">
+								{% include "admin/svg/panel_home.svg" %}
+							</div>
+							<div>
+								<strong>Icebox.com</strong>
+							</div>
+						</a>
+						<div class="gap_8">
+							<div class="panel-icon">
+								{% include "admin/svg/panel_clock.svg" %}
+							</div>
+							<span data-tip="Current Time">
+								<strong data-time-now>Getting time...</strong>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				{# Main #}
+				<div class="panel__main">
+					<div
+						class="panel__area --row">
+
+						{# -- SIDEBAR #}
+						<div
+							class="panel__area-sidebar">
+							{# Controls #}
+							<div class="panel-bump">
+								<h3 class="panel-heading">Invoice Generator<br>
+									<span>Upload or create a new invoice</span>
+								</h3>
+								<div class="panel-bump__btn-group">
+									<button data-do-print class="panel__btn">Print</button>
+									<button data-do-pdf class="panel__btn">PDF</button>
+									<button class="panel__btn --grey" onclick="window.location.reload()">Reset</button>
+									<button class="panel__btn --black">Save as Template</button>
+								</div>
+							</div>
+
+							{# Tax / Ship / Discount #}
+							<div class="panel-bump --s-gap">
+								<button data-gen="addNewItem" class="panel__btn --ghost-blue">Add New Item</button>
+								<div class="dbl-input-row">
+									<span>Tax</span>
+									<input data-diff-input data-input-tax type="text" placeholder="0.00">
+								</div>
+								<div class="dbl-input-row">
+									<span>Ship / Ins</span>
+									<input data-diff-input data-input-ship type="text" placeholder="0.00">
+								</div>
+								<div class="dbl-input-row">
+									<span>Discount</span>
+									<input data-diff-input data-input-discount type="text" placeholder="0.00">
+								</div>
+							</div>
+
+							{# Saved Templates #}
+							<div class="panel-bump --s-gap">
+								<h5 class="panel-heading">Saved Templates<br>
+									<span>Fill up the invoice with template</span>
+								</h5>
+								<button class="panel__btn --grey">Template 1</button>
+								<button class="panel__btn --grey">Template 2</button>
+								<button class="panel__btn --grey">Template 3</button>
+								<button class="panel__btn --border-grey">Show More</button>
+							</div>
+						</div>
+
+						{# -- CONTENT #}
+						<div class="panel__area-content">
+							<div class="paper gen-paper">
+								<div
+									class="gen-paper-wrap">
+
+									{# Top #}
+									<div
+										class="gen-paper-top">
+										{# Header #}
+										<div class="gen-header">
+											<div class="flex-space">
+												<div class="gen__company-box">
+													<h4 contenteditable>DEVA JEWELS LLC</h5>
+													<strong contenteditable>5040 Lexon RD Suite 1501</strong>
+													<strong contenteditable>Atlanta, GA - 30326, USA</strong>
+													<strong contenteditable>Phone: +1 404 842-0266</strong>
+													<strong contenteditable>info@devajewelry.com</strong>
+												</div>
+												<div class="gen__invoice-box">
+													<h5 contenteditable>SALES INVOICE</h5>
+													<div class="gen__small-box">
+														<div>
+															<div>
+																<span contenteditable>Invoice #</span>
+															</div>
+															<div>
+																<span contenteditable>3172</span>
+															</div>
+														</div>
+														<div>
+															<div>
+																<span contenteditable>Date</span>
+															</div>
+															<div>
+																<span data-set-date contenteditable>Setting date...</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										{# Customer / Ship -- Headings #}
+										<div class="gen-paper__thick-row">
+											<div>
+												<span contenteditable>CUSTOMER</span>
+											</div>
+											<div>
+												<span contenteditable>SHIP TO</span>
+											</div>
+										</div>
+
+										{# Customer / Ship -- Information #}
+										<div class="gen-paper__dbl-row --xs">
+											<div>
+												<strong contenteditable>ICEBOX</strong>
+												<small contenteditable>3255 Peachtree Rd #2</small>
+												<small contenteditable>Atlanta, GA, 30305, USA</small>
+												<small contenteditable>Phone: (404) 842-0266</small>
+											</div>
+											<div>
+												<strong contenteditable>ICEBOX</strong>
+												<small contenteditable>3255 Peachtree Rd #2</small>
+												<small contenteditable>Atlanta, GA, 30305, USA</small>
+												<small contenteditable>Phone: (404) 842-0266</small>
+											</div>
+										</div>
+
+										{# Info Grid #}
+										<div class="gen-paper__info-grid">
+											<div>
+												<span contenteditable>PO #</span>
+												<span contenteditable>38921</span>
+												<span contenteditable>Ship Via</span>
+												<span contenteditable>Fedex</span>
+											</div>
+
+											<div>
+												<span contenteditable>Invoiced By</span>
+												<span contenteditable>AB</span>
+												<span contenteditable>Desp. Date</span>
+												<span contenteditable>03/04/2025</span>
+											</div>
+
+											<div>
+												<span contenteditable>Terms</span>
+												<span contenteditable>Net 30 days</span>
+												<span contenteditable>Tracking / HAWB #</span>
+												<span contenteditable>Empty</span>
+											</div>
+
+											<div>
+												<span contenteditable>Due Date</span>
+												<span contenteditable>1/4/2025</span>
+												<span contenteditable>Attn.</span>
+												<span contenteditable>22002</span>
+											</div>
+										</div>
+
+										{# Items #}
+										<div class="gen-paper__items-box">
+											<div class="inset-scroller">
+												<div
+													class="gen-paper__table-wrapper">
+													{# Upload Image #}
+													<input
+													class="hidden-input" type="file" id="picUpload" accept="image/*">
+													{# Items #}
+													<table data-gen-table class="gen-table">
+														<thead>
+															<tr>
+																<th>SR #</th>
+																<th>Image</th>
+																<th>Item</th>
+																<th>Qty</th>
+																<th>G WT</th>
+																<th>Price / Unit</th>
+																<th>Net Amount</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>1</td>
+																<td>
+																	<div class="gen-item__pic"></div>
+																</td>
+																<td>
+																	<div class="gen-item__vendor-info">
+																		<p contenteditable>Vendor Style</p>
+																		<p contenteditable>Metal</p>
+																	</div>
+																	<h6 contenteditable>Item Name</h6>
+																	<p contenteditable>CTW</p>
+																</td>
+																<td>
+																	<p contenteditable data-item-qty>1</p>
+																</td>
+																<td>
+																	<p contenteditable>0.50</p>
+																</td>
+																<td>
+																	<p>$
+																		<span contenteditable data-item-unit-price>100.00</span>
+																		pc
+																	</p>
+																</td>
+																<td>
+																	<p>$
+																		<span data-item-amount>0.00</span>
+																	</p>
+																</td>
+															</tr>
+														</tbody>
+														<tfoot>
+															<tr>
+																<td colspan="6">Shipping</td>
+																<td>$
+																	<span data-current-shipping data-all-items-shipping>0.00</span>
+																</td>
+															</tr>
+															<tr>
+																<td colspan="3">TOTAL</td>
+																<td>
+																	<span data-all-items-qty>1</span>
+																</td>
+																<td colspan="2"></td>
+																<td>$
+																	<span data-all-items-amount>0.00</span>
+																</td>
+															</tr>
+														</tfoot>
+													</table>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+									{# Bottom #}
+									<div
+										class="gen-paper-bottom">
+										{# Disclaimer #}
+										<div class="gen-disclaimer">
+											<strong contenteditable>EXP-198/23-24</strong>
+											<p contenteditable class="typo_xs">The diamonds herein invoiced have benn purchased from legitimate sources not involved in funding conflict and are compliance with United Nations Resolutions. I hereby guarantee that these diamonds are conflict free. Based on a personal knowledge and/or written guarantees provided by the supplier of these diamonds.</p>
+										</div>
+
+										{# Summary #}
+										<div class="gen-summary">
+											<div class="gen-summary__main">
+												<div class="gen-summary__row">
+													<span>Taxes:</span>
+													<span data-current-tax>0.00</span>
+												</div>
+												<div class="gen-summary__row">
+													<span>Shipping / Insurance</span>
+													<span data-current-shipping>0.00</span>
+												</div>
+												<div class="gen-summary__row">
+													<span>Discount</span>
+													<span data-current-discount>0.00</span>
+												</div>
+											</div>
+											<div class="gen-summary__total">
+												<span>Total</span>
+												<span data-total>0.00</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

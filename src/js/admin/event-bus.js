@@ -13,11 +13,11 @@ export default class EventBus {
 
 
 	emit(eventName, ...args) {
-		console.log(`Event emitted: ${eventName}`, args);
 		const callbacks = this.events.get(eventName)
-		if (callbacks) {
-			callbacks.forEach(callback => callback(...args))
-		}
+    if (callbacks) {
+      console.log(`Event emitted: ${eventName}`);
+      callbacks.forEach((callback) => callback(...args));
+    }
 	}
 
 	on(eventName, callback) {

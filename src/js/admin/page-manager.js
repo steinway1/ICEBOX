@@ -6,6 +6,7 @@ import PrintTag from './modules/pages/print-tag'
 import WhalesPage from './modules/pages/whales'
 import FinanceList from './modules/pages/finance-list'
 import Manufacture from './modules/pages/manufacture'
+import InvoiceGenerator from './modules/pages/invoice-generator'
 
 class PageManager {
   constructor() {
@@ -41,6 +42,10 @@ class PageManager {
       Manufacture: {
         instance: Manufacture,
         rootSelector: '.body_manufacture'
+      },
+      InvoiceGenerator: {
+        instance: InvoiceGenerator,
+        rootSelector: '.body_invoice_generator'
       }
     }
     this.#init()
