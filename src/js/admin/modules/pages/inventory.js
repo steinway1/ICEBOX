@@ -377,6 +377,7 @@ export default class Inventory {
     if (target.closest("[data-evt='toggleQuantities']")) {
       const card = target.closest(".i-card");
       if (card) {
+        var id = card.getAttribute('data-id');
         const inputArr = [
           ...card
             .querySelector(".i-card__quantities")
@@ -387,10 +388,34 @@ export default class Inventory {
           inputArr.forEach((input) => (input.disabled = false));
 					target.textContent = 'Save'
 					target.className = 'panel__btn bright_blue'
+
         } else {
-          inputArr.forEach((input) => (input.disabled = true));
+          let values = {};
+
+          inputArr.forEach((input) => {
+                  let key = input.getAttribute('data-label');
+                  let value = input.value;
+                  values[key] = value;
+                    input.disabled = true;
+                  });
+          $.blockUI({ message: 'Saving, Please wait...' });
+          $.ajax({
+            url: '/admin/ajax/update-inventory-qty',
+            type: 'POST',
+            data: { values: values , item : id},
+            success: function(response) {
+              $.unblockUI();
+               if(response.error){
+                 alert(response.alert);
+               }
+            },
+            error: function(xhr, status, error) {
+              console.error('Error:', error);
+            }
+          });
 					target.textContent = 'Edit'
 					target.className = 'panel__btn --border-grey'
+                    target.removeAttribute('onclick')
         }
       }
     }
