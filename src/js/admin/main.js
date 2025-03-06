@@ -7,17 +7,23 @@ import { onContentLoaded } from "./modules/general/utils";
 import { initPage } from "./page-manager";
 import { initPageElements } from "./page-elements";
 import { initPageEvents } from "./page-events";
+import PageMsg from "./modules/dynamic/page-msg";
 
 // Initialization
 onContentLoaded(() => {
   initPage();
   initPageElements();
   initPageEvents();
+
+  window.showMessage = (settings = {}) => {
+    new PageMsg(settings);
+  };
 });
 
 // Manual Order
 import { deleteManualOrder } from "./page-global";
 import ManualOrderPopup from "./modules/manual-order/manual-popup";
+import { type } from "jquery";
 
 onContentLoaded(() => {
   window.deleteManualOrder = deleteManualOrder;
