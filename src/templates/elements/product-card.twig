@@ -120,7 +120,12 @@
 		{# Price Alerts & WhatsApp Button #}
 		{% if productItem.is_watch_market and (user.admin == true or not productItem.msrp) %}
 			<div class="product-card__button-group">
-				<button onclick="openPriceModal(event)" class="ccb-btn --min --icon_before --bell">Get Price Alerts</button>
+				<button onclick="openPriceModal(event)" class="ccb-btn --min --icon_before --bell{% if productItem.subscribers|length > 0 %} --subscribed{% endif %}">
+					Get Price Alerts
+					{% if productItem.subscribers|length > 0 %}
+						<span>({{ productItem.subscribers|length }})</span>
+					{% endif %}
+				</button>
 				<a href="/chat-whatsapp" class="ccb-btn --min --icon_before --wa">Chat on WhatsApp</a>
 			</div>
 		{% endif %}

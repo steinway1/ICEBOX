@@ -6167,6 +6167,41 @@ body.blue_head .am-select:hover {
   pointer-events: none;
 }
 
+body.body_today .am-header__mob-search {
+  display: none !important;
+}
+
+body.body_today [data-am-evt=toggleSearch] {
+  display: none !important;
+}
+
+body.body_today .am-container .am-search__form {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  margin-bottom: 18px;
+}
+
+body.body_today .am-container .am-search__form .am-search__input-wrap {
+  max-width: unset;
+}
+
+body.body_today .am-container .am-search__form .am-search__field {
+  height: 46px;
+  background-color: #426eac;
+  padding-right: 62px;
+}
+
+body.body_today .am-container .am-search__form .am-search__field:focus {
+  background-color: transparent;
+}
+
+body.body_today .am-container .am-search__form .am-search__btn {
+  background-color: transparent;
+  border-color: transparent;
+  backdrop-filter: blur(8px);
+}
+
 body.admin_plain .am-content {
   padding-left: 0px;
 }
@@ -16938,7 +16973,7 @@ select.sms-tag:hover {
 }
 
 .m-popup#addManulOrderPopup {
-  max-width: 760px;
+  max-width: 710px;
 }
 
 #selectedItemContainer {
@@ -19881,6 +19916,10 @@ body.body_manufacture.--grid .card {
 
   .am-content {
     padding-top: 116px !important;
+  }
+
+  body.body_today .am-container .am-search__form {
+    display: none;
   }
 
   .whale-card:hover {

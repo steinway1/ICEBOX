@@ -6,6 +6,7 @@ import {
   attachDatePickers,
   updateLiveDateTime,
   bindCopyOrderDetails,
+  initSelectStates,
 } from "./modules/general/init-fn";
 
 import { initToolbar } from "./modules/elements/tool-bar";
@@ -47,6 +48,7 @@ class PageElements {
       attachDatePickers,
       updateLiveDateTime,
       bindCopyOrderDetails,
+      initSelectStates,
     ];
     this.#init();
   }

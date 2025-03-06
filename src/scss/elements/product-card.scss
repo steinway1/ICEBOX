@@ -8,7 +8,7 @@
   display: flex;
   position: relative;
   --card-padding: 16px;
-  --price-font-size: 16px;
+  --price-font-size: 17px;
 
   &.--sold {
     position: relative;
@@ -141,19 +141,15 @@
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
-  font-size: 14px;
+  -webkit-line-clamp: 2;
+  font-size: 13px;
   font-weight: 450;
-  line-height: 20px;
+  line-height: 18px;
 
   @media screen and (min-width: 992px) {
     &:hover {
       text-decoration: underline;
     }
-  }
-
-  @include maxWidthSm {
-    -webkit-line-clamp: 2;
   }
 }
 
@@ -355,10 +351,10 @@
   display: flex;
   justify-content: flex-start;
   // background-color: #fcfcfc;
-  padding: 28px 20px;
+  padding: 16px 12px;
 
   @include maxWidthXs {
-    padding: 24px 14px;
+    padding: 18px 10px;
   }
 }
 
@@ -366,7 +362,7 @@
 .product-card__sale-price {
   letter-spacing: -0.3px;
   font-size: var(--price-font-size);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .product-card__price {
@@ -386,23 +382,44 @@
   overflow: hidden;
   align-items: center;
   display: flex;
-  gap: 5px;
+  gap: 4px;
 
   &.is-sale {
+		flex-flow: wrap;
+		row-gap: 2px;
+
     .product-card__price {
       // color: #999eaa;
       position: relative;
       padding: 0 4px;
-      color: var(--new-grey-text);
+      // color: var(--new-grey-text);
+			display: flex;
+			align-items: flex-start;
+			gap: 4px;
+			font-size: 14px;
+			font-weight: 700;
+
+			&::before {
+				content: 'was';
+				padding-top: 2px;
+				font-size: 13px;
+				font-weight: 700;
+				line-height: 12px;
+				color: var(--red);
+			}
 
       &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        height: 1px;
-        inset: 50% 2px auto 2px;
-        background-color: var(--new-grey-text);
-        transform: translateY(-50%);
+				content: "";
+				display: block;
+				position: absolute;
+				height: 1.5px;
+				top: 0;
+				right: 0;
+				left: 0;
+				margin-left: 30px;
+				margin-top: 12px;
+				background-color: var(--red);
+				transform: translateY(-50%) rotate(-18deg);
       }
     }
 
@@ -1435,7 +1452,7 @@
 .product-card__tags {
   position: absolute;
   inset: 0 auto auto 0;
-  padding: 0 8px;
+  padding: 0;
   display: flex;
   gap: 0;
   z-index: 3;
@@ -1449,30 +1466,27 @@
 }
 
 .product-tag {
-  z-index: 1;
-  background: white;
-  justify-content: center;
-  align-items: center;
-  height: 26px;
-  padding: 2px 6px;
-  font-size: 9px;
-  font-weight: 800;
-  display: flex;
-  text-transform: uppercase;
-  box-shadow: 0 3px 6px rgba(81, 86, 94, 0.05);
-  flex: none;
+	z-index: 1;
+	background: white;
+	justify-content: center;
+	align-items: center;
+	height: 22px;
+	padding: 2px 6px;
+	font-size: 9px;
+	font-weight: 900;
+	display: flex;
+	text-transform: uppercase;
+	box-shadow: none;
+	flex: none;
 
   &.--green {
     background-color: var(--green);
     color: white;
-    box-shadow: 0 1px 3px var(--green-shadow);
   }
 
   &.--red {
     background-color: var(--red);
     color: white;
-    box-shadow: 0 1px 3px var(--red-shadow);
-    font-size: 11px;
   }
 }
 
@@ -1536,7 +1550,7 @@
   display: flex;
   gap: 4px;
   flex-direction: column;
-  margin: 4px 2px -6px 2px;
+  margin: 4px 0;
 
   .ccb-btn {
     background-color: #f9f9f9;
@@ -1553,5 +1567,18 @@
         background-color: white;
       }
     }
+
+		&.--subscribed {
+			background-color: var(--green) !important;
+			color: white;
+
+			&::before {
+				background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.65 8.512C12.37 3.605 11.184 1.741 7.45903 1.819C6.13203 1.846 6.45003 0.857 5.43803 1.232C4.42803 1.607 5.29503 2.156 4.26103 3.005C1.35903 5.388 1.62603 7.592 2.97203 12.845C3.53903 15.058 1.60503 15.166 2.37003 17.31C2.92903 18.874 7.04903 19.529 11.395 17.917C15.742 16.304 18.481 13.103 17.922 11.539C17.157 9.394 15.611 10.578 14.65 8.512ZM10.924 16.595C7.04203 18.035 3.85203 17.189 3.71703 16.812C3.48503 16.162 4.97003 13.996 9.40803 12.349C13.846 10.702 16.323 11.313 16.582 12.038C16.735 12.467 14.807 15.154 10.924 16.595ZM9.67603 13.101C7.64703 13.854 6.23703 14.715 5.32303 15.49C5.96603 16.074 7.17003 16.216 8.36903 15.771C9.89603 15.206 10.835 13.905 10.464 12.867L10.448 12.831C10.197 12.913 9.94003 13.002 9.67603 13.101Z" fill="white"/></svg>') !important;
+			}
+
+			span {
+				font-weight: 700;
+			}
+		}
   }
 }

@@ -27,6 +27,49 @@
 	pointer-events: none;
 }
 
+body.body_today {
+	.am-header__mob-search {
+		display: none !important;
+	}
+
+	[data-am-evt="toggleSearch"] {
+		display: none !important;
+	}
+
+	.am-container {
+		.am-search__form {
+			flex-direction: column;
+			align-items: stretch;
+			justify-content: stretch;
+			margin-bottom: 18px;
+
+			@include minWidthMd {
+				display: none;
+			}
+
+			.am-search__input-wrap {
+				max-width: unset;
+			}
+
+			.am-search__field {
+				height: 46px;
+				background-color: #426eac;
+				padding-right: 62px;
+
+				&:focus {
+					background-color: transparent;
+				}
+			}
+
+			.am-search__btn {
+				background-color: transparent;
+				border-color: transparent;
+				backdrop-filter: blur(8px);
+			}
+		}
+	}
+}
+
 body.admin_plain {
 	.am-content {
 		padding-left: 0px;
