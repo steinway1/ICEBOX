@@ -2,11 +2,16 @@ import {
   inputAllowOnlyDecimals,
   applyOverloader,
   removeOverloader,
+  delay,
+  appendPageLoader,
+  removePageLoader,
 } from "./utils";
 import bodymovin from "../../lib/lottie";
 import AirDatepicker from "../../lib/air-datepicker";
 import PageMsg from "../dynamic/page-msg";
 import { AjaxGetOrderDetails } from "./ajax.js";
+import { fakeFetchRemoveNote } from "./fake-ajax.js";
+
 function updateInputsAllowOnlyDecimals() {
   const onlyDecimalsInputs = document.querySelectorAll(
     "input[data-allow-decimals]"
@@ -258,6 +263,45 @@ function initSelectStates() {
   });
 }
 
+function bindRemoveNote() {
+  document.addEventListener("click", async (e) => {
+    const target = e.target;
+    const removeBtn = target.closest("[data-remove-note]");
+
+    if (removeBtn) {
+      const noteId = removeBtn.dataset.removeNote;
+      if (!noteId) {
+        console.warn("No note ID Found. Expected data-remove-note");
+        return;
+      }
+
+      try {
+        applyOverloader(removeBtn);
+
+        /**
+         * @Chou Setup here
+         */
+        const response = await fakeFetchRemoveNote(noteId);
+
+        if (!response.ok) {
+          throw new Error("Failed note remove.");
+        }
+
+        new PageMsg({
+          type: "success",
+          heading: "Success!",
+          msg: "Note removed successfully.",
+        });
+        target.closest(".am-item-note")?.remove();
+      } catch (err) {
+        console.error(`Error removing note: ${err.message}`);
+      } finally {
+        removeOverloader(removeBtn);
+      }
+    }
+  });
+}
+
 export {
   updateInputsAllowOnlyDecimals,
   initLottieElements,
@@ -267,4 +311,5 @@ export {
   updateLiveDateTime,
   bindCopyOrderDetails,
   initSelectStates,
+  bindRemoveNote,
 };

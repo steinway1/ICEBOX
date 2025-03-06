@@ -276,11 +276,13 @@
 				</div>
 				{% for note in item.notes %}
 					<div class="am-item-note" id="note_{{note.id}}">
-						<div>
-							<span>{{note.author}}</span>:
-							{{note.comment}}
+						<div class="am_flex8 --top">
+							<div>
+								<span>{{note.author}}</span>:
+								{{note.comment}}
+							</div>
+							<button class="i-card__note-remove-btn" data-remove-note="{{note.id}}"></button>
 						</div>
-						<div>{{note.date}}</div>
 					</div>
 				{% endfor %}
 			</div>

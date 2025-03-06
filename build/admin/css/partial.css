@@ -692,11 +692,13 @@ a {
   --dark-grey: #7e8490;
   --whale-border: #e9f0f8;
   --red: #e52d2d;
+  --red-text: #c43232;
   --ghost-red: #fff4f4;
   --red-hover: #d41c1c;
   --red-active: #f54646;
   --red-shadow: #e52d2d40;
   --green: #04b897;
+  --green-text: #118872;
   --ghost-green: #f3fff7;
   --green-shadow: #04b89740;
   --transition-m: all 250ms cubic-bezier(.39, .575, .565, 1);
@@ -7189,6 +7191,22 @@ div.dt-container.dt-empty-footer .dt-scroll-body {
   line-height: 18px;
   font-size: 13px;
   font-weight: 600;
+}
+
+.page-msg.success {
+  border: 3px solid var(--green);
+}
+
+.page-msg.success h4 {
+  color: var(--green-text);
+}
+
+.page-msg.error {
+  border: 3px solid var(--red);
+}
+
+.page-msg.error h4 {
+  color: var(--red-text);
 }
 
 .datepicker.dropdown-menu {
@@ -16133,20 +16151,34 @@ select.sms-tag:hover {
   border-radius: 0.6rem;
 }
 
-.i-card .am-item-note div:first-child {
+.i-card .am-item-note {
   font-size: 13px;
   font-weight: 600;
   line-height: 16px;
 }
 
-.i-card .am-item-note div:last-child {
-  display: none;
+.i-card .am-item-note .am_flex8 {
+  gap: 12px;
+  align-items: flex-start;
+  flex-flow: nowrap;
 }
 
 .i-card .panel__btn[data-evt=toggleQuantities] {
   font-weight: 600 !important;
   font-size: 12px !important;
   height: 34px !important;
+}
+
+.i-card__note-remove-btn {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  background-size: 65% 65%;
+  background-image: url('data:image/svg+xml,<svg width="100%" height="100%" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L26 26" stroke="%23d72929" stroke-width="6"></path><path d="M26 2L2 26" stroke="%23d72929" stroke-width="6"></path></svg>');
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 0.4rem;
+  flex: none;
 }
 
 .i-card__top {

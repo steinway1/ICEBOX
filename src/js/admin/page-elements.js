@@ -7,6 +7,7 @@ import {
   updateLiveDateTime,
   bindCopyOrderDetails,
   initSelectStates,
+  bindRemoveNote,
 } from "./modules/general/init-fn";
 
 import { initToolbar } from "./modules/elements/tool-bar";
@@ -49,6 +50,7 @@ class PageElements {
       updateLiveDateTime,
       bindCopyOrderDetails,
       initSelectStates,
+      bindRemoveNote,
     ];
     this.#init();
   }
