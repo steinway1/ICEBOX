@@ -23,7 +23,6 @@ onContentLoaded(() => {
 // Manual Order
 import { deleteManualOrder } from "./page-global";
 import ManualOrderPopup from "./modules/manual-order/manual-popup";
-import { type } from "jquery";
 
 onContentLoaded(() => {
   window.deleteManualOrder = deleteManualOrder;
