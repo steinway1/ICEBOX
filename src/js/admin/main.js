@@ -8,6 +8,7 @@ import { initPage } from "./page-manager";
 import { initPageElements } from "./page-elements";
 import { initPageEvents } from "./page-events";
 import PageMsg from "./modules/dynamic/page-msg";
+import { initGTip } from "./modules/elements/g-tip";
 
 // Initialization
 onContentLoaded(() => {
@@ -18,6 +19,9 @@ onContentLoaded(() => {
   window.showMessage = (settings = {}) => {
     new PageMsg(settings);
   };
+
+  // Google Tips
+  window.initGTip = initGTip;
 });
 
 // Manual Order
