@@ -272,6 +272,13 @@
 		padding: var(--media-padding);
 		padding-bottom: 0 !important;
 	}
+
+	& > input[type="checkbox"] {
+		z-index: 10 !important;
+		width: 16px;
+		height: 16px;
+		cursor: pointer;
+	}
 }
 
 .i-card-tag {
@@ -832,6 +839,10 @@
 	@include maxWidthXs {
 		& > .am_flex8 {
 			flex-flow: nowrap;
+		}
+
+		.panel__input {
+			width: 70%;
 		}
 	}
 }

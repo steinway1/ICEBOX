@@ -25,6 +25,28 @@
 							{% endfor %}
 						</div>
 					</div>
+
+					{# COLLECTIONS #}
+					<div id="toolbarCollections" class="toolbar-content">
+						<div class="toolbar-form">
+							<label class="--sticky-top --z-10">
+								<input type="radio" value="new" name="collection" checked/>
+								<div>
+									<span>New Collection</span>
+									<span></span>
+								</div>
+							</label>
+							{% for collection in collections %}
+								<label>
+									<input type="radio" value="{{collection.value}}" name="collection"/>
+									<div>
+										<span>{{collection.name}}</span>
+										<span></span>
+									</div>
+								</label>
+							{% endfor %}
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -34,6 +56,12 @@
 					<span>
 						<span data-id="pts">{{user.pts}}</span>
 						POINTS</span>
+				</button>
+				<button data-evt="toggleCollections" class="toolbar-btn">
+					<span>New Collection</span>
+				</button>
+				<button data-evt="addToCollecton" class="toolbar-btn --disactive">
+					<span>Add Bulk To Collection</span>
 				</button>
 			</div>
 		</div>

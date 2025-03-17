@@ -6,9 +6,17 @@ import {
   createElem,
   inputAllowOnlyDecimals,
   lockScroll,
+  removePageLoader,
   unlockScroll,
 } from "../general/utils";
-import { fakeAjaxGetPtwData, fakeFetchSuccess } from "../general/fake-ajax";
+import {
+  fakeAjaxGetPtwData,
+  fakeFetchSuccess,
+  fakeFetchSaveToCollection,
+} from "../general/fake-ajax";
+
+import { appendPageLoader } from "../general/utils";
+import AskModal from "../dynamic/ask-modal-2";
 
 class PTW {
   availableCategoryOptions = [
@@ -351,6 +359,10 @@ export default class Inventory {
     this.rootEl = rootEl;
     if (!this.rootEl) return;
 
+    this.addToCollectionArr = Array.from(
+      document.querySelectorAll('[data-evt="addToCollecton"]')
+    );
+
     this.#init();
     window.Inventory = this;
   }
@@ -358,6 +370,10 @@ export default class Inventory {
   #init() {
     this.initSplide();
     this.#bindDocumentEvents();
+
+    // Collections
+    this.#bindCollectionsEvents();
+    this.updateAddCollectionButtonState();
   }
 
   #bindDocumentEvents() {
@@ -377,7 +393,7 @@ export default class Inventory {
     if (target.closest("[data-evt='toggleQuantities']")) {
       const card = target.closest(".i-card");
       if (card) {
-        var id = card.getAttribute('data-id');
+        var id = card.getAttribute("data-id");
         const inputArr = [
           ...card
             .querySelector(".i-card__quantities")
@@ -386,46 +402,179 @@ export default class Inventory {
 
         if (inputArr.some((input) => input.disabled)) {
           inputArr.forEach((input) => (input.disabled = false));
-					target.textContent = 'Save'
-					target.className = 'panel__btn bright_blue'
-
+          target.textContent = "Save";
+          target.className = "panel__btn bright_blue";
         } else {
           let values = {};
 
           inputArr.forEach((input) => {
-                  let key = input.getAttribute('data-label');
-                  let value = input.value;
-                  values[key] = value;
-                    input.disabled = true;
-                  });
-          $.blockUI({ message: 'Saving, Please wait...' });
-          $.ajax({
-            url: '/admin/ajax/update-inventory-qty',
-            type: 'POST',
-            data: { values: values , item : id},
-            success: function(response) {
-              $.unblockUI();
-               if(response.error){
-                 alert(response.alert);
-               }
-            },
-            error: function(xhr, status, error) {
-              console.error('Error:', error);
-            }
+            let key = input.getAttribute("data-label");
+            let value = input.value;
+            values[key] = value;
+            input.disabled = true;
           });
-					target.textContent = 'Edit'
-					target.className = 'panel__btn --border-grey'
-                    target.removeAttribute('onclick')
+          $.blockUI({ message: "Saving, Please wait..." });
+          $.ajax({
+            url: "/admin/ajax/update-inventory-qty",
+            type: "POST",
+            data: { values: values, item: id },
+            success: function (response) {
+              $.unblockUI();
+              if (response.error) {
+                alert(response.alert);
+              }
+            },
+            error: function (xhr, status, error) {
+              console.error("Error:", error);
+            },
+          });
+          target.textContent = "Edit";
+          target.className = "panel__btn --border-grey";
+          target.removeAttribute("onclick");
         }
       }
     }
   };
-
   initSplide() {
     const splideArr = [...document.querySelectorAll(".i-card__media-splide")];
     for (const splide of splideArr) {
       const slider = new Splide(splide, Inventory.splideOptions);
       slider.mount();
+    }
+  }
+
+  // Collections
+  updateAddCollectionButtonState() {
+    const selectItemsInputArr = Array.from(
+      document.querySelectorAll("input[type='checkbox'].multi_select_checkox")
+    );
+
+    if (!selectItemsInputArr.length) {
+      console.warn(
+        "Iventory.js : updateAddCollectionButtonState : No items selected"
+      );
+      return;
+    }
+
+    if (selectItemsInputArr.some((input) => input.checked)) {
+      this.addToCollectionArr.forEach((btn) =>
+        btn.classList.remove("--disactive")
+      );
+    } else {
+      this.addToCollectionArr.forEach((btn) =>
+        btn.classList.add("--disactive")
+      );
+    }
+  }
+  #bindCollectionsEvents() {
+    // Update add collection button state when checkboxes are changed
+    document.addEventListener("change", (e) => {
+      const target = e.target;
+      if (
+        target.tagName === "INPUT" &&
+        target.type === "checkbox" &&
+        target.classList.contains("multi_select_checkox")
+      ) {
+        this.updateAddCollectionButtonState();
+      }
+    });
+
+    // Bind click add to collection
+    document.querySelector(".toolbar")?.addEventListener("click", (e) => {
+      const target = e.target;
+      const collectionBtn = target.closest("[data-evt='addToCollecton']");
+      if (collectionBtn && !collectionBtn.classList.contains("--disactive")) {
+        this.submitCollectionData();
+      }
+    });
+  }
+  #handleSaveCollectionMsg(type) {
+    const errorsMap = {
+      saved: {
+        heading: "Success!",
+        msg: "Items added to collection successfully",
+        type: "success",
+      },
+      "error-items": {
+        heading: "Something went wrong",
+        msg: "Failed to add items to collection",
+        type: "error",
+      },
+      "error-response": {
+        heading: "Something went wrong",
+        msg: "Failed to add items to collection",
+        type: "error",
+      },
+      "error-collection": {
+        heading: "Something went wrong",
+        msg: "Failed to add items to collection",
+        type: "error",
+      },
+    };
+    const msg = errorsMap[type];
+    new PageMsg(msg);
+  }
+  async submitCollectionData() {
+    // Get selected items values
+    const selectedItemsArr = Array.from(
+      document.querySelectorAll(
+        'input[type="checkbox"].multi_select_checkox:checked'
+      )
+    ).map((checkbox) => checkbox.value);
+
+    if (!selectedItemsArr.length) {
+      this.#handleSaveCollectionMsg("error-items");
+      return;
+    }
+
+    // Get Collection To Save
+    let collectionName = "";
+    const collection = document.querySelector(
+      'input[type="radio"][name="collection"]:checked'
+    );
+    if (!collection || !collection.value) {
+      this.#handleSaveCollectionMsg("error-collection");
+      return;
+    }
+
+    if (collection.value === "new") {
+      const askModal = new AskModal({
+        question: "Set Collection Name",
+      });
+
+      const result = await askModal.getPromise();
+      collectionName = result;
+    } else {
+      collectionName = collection.value;
+    }
+
+    this.save(selectedItemsArr, collectionName);
+  }
+
+  async save(itemsArr, collectionName) {
+    try {
+      lockScroll();
+      appendPageLoader();
+
+      /**
+       * @CHOU Setup here
+       */
+      const response = await fakeFetchSaveToCollection(
+        itemsArr,
+        collectionName
+      );
+
+      if (!response.ok) {
+        this.#handleSaveCollectionMsg("error-response");
+        return;
+      }
+
+      this.#handleSaveCollectionMsg("saved");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      unlockScroll();
+      removePageLoader();
     }
   }
 }

@@ -9078,6 +9078,15 @@ span.--warn {
   animation: l20-15 0.8s infinite linear alternate, l20-25 1.6s infinite linear;
 }
 
+.--sticky-top {
+  position: sticky;
+  top: 0;
+}
+
+.--z-10 {
+  z-index: 10;
+}
+
 :root {
   --tb-border: #e6e8ee;
   --tb-border_light: rgba(230, 232, 238, 0.6);
@@ -12267,7 +12276,17 @@ body.--visible_questions .whale-card__box.--quiz {
   overflow: hidden;
 }
 
-.toolbar-btn:active {
+.toolbar-btn.--disactive {
+  cursor: not-allowed;
+  background-color: #4c5462;
+  border-color: #4c5462;
+}
+
+.toolbar-btn.--disactive > span {
+  opacity: 0.4;
+}
+
+.toolbar-btn:not(.--disactive):active {
   background-color: #4e5767 !important;
   border-color: #4e5767 !important;
 }
@@ -12277,7 +12296,7 @@ body.--visible_questions .whale-card__box.--quiz {
   height: 12px !important;
 }
 
-.toolbar-btn:hover {
+.toolbar-btn:not(.--disactive):hover {
   background-color: #353c49;
 }
 
@@ -12370,6 +12389,7 @@ body.--visible_questions .whale-card__box.--quiz {
   font-size: 13px;
   font-weight: 600;
   border-bottom: 1px solid #4b5363;
+  background-color: #373e4c;
   transition: all 200ms ease;
 }
 
@@ -16327,6 +16347,13 @@ select.sms-tag:hover {
   inset: calc(var(--media-padding) * 2) calc(var(--media-padding) * 2) auto calc(var(--media-padding) * 2);
 }
 
+.i-card__tags > input[type=checkbox] {
+  z-index: 10 !important;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
 .i-card-tag {
   gap: 4px;
   background-color: #dcdcdc;
@@ -16962,6 +16989,19 @@ select.sms-tag:hover {
   opacity: 0;
   display: none;
   --m-grey: #f7f8fa;
+}
+
+.m-popup.--ask {
+  max-width: 480px;
+}
+
+.m-popup.--ask .m-popup__title {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.m-popup.--ask input {
+  font-weight: 600;
 }
 
 .m-popup.--visible {
@@ -20090,14 +20130,14 @@ body.body_manufacture.--grid .card {
   }
 }
 
-@media screen and (min-width: 1680px) {
-  .tb-grid {
+@media screen and (min-width: 1920px) {
+  .pos-thumbs-grid {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 }
 
-@media screen and (min-width: 1920px) {
-  .pos-thumbs-grid {
+@media screen and (min-width: 2080px) {
+  .tb-grid {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 }
@@ -21759,6 +21799,10 @@ body.body_manufacture.--grid .card {
 
   .i-card__quantities > .am_flex8 {
     flex-flow: nowrap;
+  }
+
+  .i-card__quantities .panel__input {
+    width: 70%;
   }
 
   .m-popup.--ptw .m-popop__manual-options-grid {
