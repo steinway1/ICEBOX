@@ -10,6 +10,8 @@ import { initPageEvents } from "./page-events";
 import PageMsg from "./modules/dynamic/page-msg";
 import { initGTip } from "./modules/elements/g-tip";
 
+import { EditModal } from "./modules/elements/edit-modal";
+
 // Initialization
 onContentLoaded(() => {
   initPage();
@@ -22,6 +24,9 @@ onContentLoaded(() => {
 
   // Google Tips
   window.initGTip = initGTip;
+
+  // editModal
+  window.editModal = new EditModal();
 });
 
 // Manual Order

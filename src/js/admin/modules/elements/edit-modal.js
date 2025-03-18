@@ -1,7 +1,7 @@
 import { getTransitionTime, lockScroll, unlockScroll } from '../general/utils'
 import { IS_VISIBLE } from '../general/constants'
 
-class EditModal {
+export class EditModal {
   constructor() {
     this.init();
   }
