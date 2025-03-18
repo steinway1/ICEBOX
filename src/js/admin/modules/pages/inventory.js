@@ -14,7 +14,7 @@ import {
   fakeFetchSuccess,
   fakeFetchSaveToCollection,
 } from "../general/fake-ajax";
-
+import { SaveToInventoryCollection } from "../general/ajax";
 import { appendPageLoader } from "../general/utils";
 import AskModal from "../dynamic/ask-modal-2";
 
@@ -559,12 +559,12 @@ export default class Inventory {
       /**
        * @CHOU Setup here
        */
-      const response = await fakeFetchSaveToCollection(
+      const response = await SaveToInventoryCollection(
         itemsArr,
         collectionName
       );
 
-      if (!response.ok) {
+      if(response.error) {
         this.#handleSaveCollectionMsg("error-response");
         return;
       }

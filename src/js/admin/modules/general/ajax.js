@@ -1,6 +1,24 @@
 import { showMessage } from './utils'
 import {getFakeOrderDetails} from "./fake-data";
 
+
+function SaveToInventoryCollection(itemsArray,collectionName){
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			url: '/admin/ajax/inventory-to-collection',
+			method: 'POST',
+			dataType: 'json',
+			data:{'items':itemsArray,'name' : collectionName},
+			success: function (data) {
+				resolve(data);
+			},
+			error: function (xhr, status, error) {
+				console.error('Error occurred:', error);
+				reject(error); // Reject the promise if an error occurs
+			}
+		});
+	});
+}
 function AjaxGetCustomer(id) {
 	return new Promise((resolve, reject) => {
 		$.ajax({
@@ -131,5 +149,6 @@ export {
 	AjaxGetItemsArray,
 	AjaxGetItem,
 	submitOrderData,
-	AjaxGetOrderDetails
+	AjaxGetOrderDetails,
+	SaveToInventoryCollection
 }
