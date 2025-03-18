@@ -27,6 +27,15 @@ onContentLoaded(() => {
 
   // editModal
   window.editModal = new EditModal();
+
+  $.fn.extend({
+    isVisible: function () {
+      let target = this instanceof jQuery ? $(this).get(0) : this;
+      return (
+        window.getComputedStyle(target).getPropertyValue("display") !== "none"
+      );
+    },
+  });
 });
 
 // Manual Order
