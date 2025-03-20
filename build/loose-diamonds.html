@@ -2421,16 +2421,17 @@
         <div class="mail-modal__wrapper">
             <div class="mail-modal__container">
                 <div class="mail-modal-wrap">
-                    <span class="mail-modal__title">Enter Your Email Address</span>
-                    <span class="mail-modal__subtitle">Your email is required to add to cart.
+                    <span class="mail-modal__title">Enter Your Phone Number</span>
+                    <span class="mail-modal__subtitle">Your phone number is required to add to cart.
 				</span>
                     <div class="mail-modal__controls-wrap">
                         <div class="mail-modal__form-wrap">
-                            <form method="post" id="frmCartEmail">
-                                <label class="mail-modal__label">Email Address</label>
-                                <input type="text" class="mail-modal__input" id="cart_email" placeholder="Enter Your Email" name="email" required="">
+                            <form method="post" id="frmCartPhone">
+                                <div class="sign-form__input-wrap">
+                                    <input type="tel" class="sign-form__input" data-input="tel" name="login_otp_phone" id="phone_input_Login" autocorrect="off" spellcheck="false" placeholder="Enter your phone number" pattern="\d*" required>
+                                </div>
                                 <div class="mail-modal__form-controls">
-                                    <button type="button" onclick="saveCartEmail();" class="mail-modal__form-submit">Add To Cart</button>
+                                    <button type="button" onclick="saveCartPhone();" class="mail-modal__form-submit">Add To Cart</button>
                                 </div>
                             </form>
                         </div>
