@@ -4,6 +4,7 @@ class ZoomGallery {
     this.mediaArr = mediaArr;
     this.zoomMediaArr = [];
     this.scrollIndex = scrollIndex || undefined;
+    this.handleEscape = this.handleEscape.bind(this);
     this.init();
   }
   init() {
@@ -82,6 +83,7 @@ class ZoomGallery {
     if (this.elem) {
       unlockScroll();
       this.elem.classList.remove(__VISIBLE);
+      document.removeEventListener("keydown", this.handleEscape);
       setTimeout(() => {
         this.elem.style.display = "none";
         this.destroy();
@@ -94,6 +96,7 @@ class ZoomGallery {
     lockScroll();
     this.elem.style.display = "block";
     this._scrollToIndex();
+    document.addEventListener("keydown", this.handleEscape);
     requestAnimationFrame(() => {
       this.elem.classList.add(__VISIBLE);
     });
@@ -110,6 +113,12 @@ class ZoomGallery {
     }
   }
 
+  handleEscape(e) {
+    if (e.key === "Escape") {
+      this.hide();
+    }
+  }
+
   // Events
   _bindInnerEvents() {
     if (this.elem) {
@@ -123,6 +132,7 @@ class ZoomGallery {
   // Init
   destroy() {
     if (this.elem) {
+      document.removeEventListener("keydown", this.handleEscape);
       this.elem.remove();
       this.elem = null;
     }
