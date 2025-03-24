@@ -300,6 +300,8 @@ class ToolBar {
     if (this.rootEl) {
       this.bindEvents();
       this.renderPTSLottie();
+
+      window.celebrateScore = this.showScore.bind(this);
     }
   }
 }
