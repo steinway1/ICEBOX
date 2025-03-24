@@ -13,6 +13,7 @@ import {
   fakeAjaxGetPtwData,
   fakeFetchSuccess,
   fakeFetchSaveToCollection,
+  fakeFetchSaveItemTitle,
 } from "../general/fake-ajax";
 import { SaveToInventoryCollection } from "../general/ajax";
 import { appendPageLoader } from "../general/utils";
@@ -374,6 +375,9 @@ export default class Inventory {
     // Collections
     this.#bindCollectionsEvents();
     this.updateAddCollectionButtonState();
+
+    // Edit Title
+    this.#bindEditTitleEvents();
   }
 
   #bindDocumentEvents() {
@@ -564,7 +568,7 @@ export default class Inventory {
         collectionName
       );
 
-      if(response.error) {
+      if (response.error) {
         this.#handleSaveCollectionMsg("error-response");
         return;
       }
@@ -574,6 +578,53 @@ export default class Inventory {
       console.error(err);
     } finally {
       unlockScroll();
+      removePageLoader();
+    }
+  }
+
+  // Edit Title
+  #bindEditTitleEvents() {
+    document.addEventListener("click", async (e) => {
+      const target = e.target;
+      const title = target.closest("[data-ask-text-change]");
+      const itemID = target.closest(".i-card")?.dataset.id;
+
+      if (title && itemID) {
+        const askModal = new AskModal({
+          question: "Set Edge Description",
+          value: title.textContent,
+          placeholder: "Edge Description",
+        });
+
+        const result = await askModal.getPromise();
+        if (result) {
+          title.textContent = result;
+          this.#saveNewItemTitle(itemID, result);
+        } else {
+          new PageMsg({
+            heading: "Cancelled",
+            msg: "Edge description not changed",
+            type: "info",
+          });
+        }
+      }
+    });
+  }
+  async #saveNewItemTitle(itemID, title) {
+    try {
+      appendPageLoader();
+      /**
+       * @CHOU Setup here
+       */
+      const response = await fakeFetchSaveItemTitle(itemID, title);
+
+      if (response.error) {
+        this.#handleSaveCollectionMsg("error-response");
+        return;
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
       removePageLoader();
     }
   }

@@ -1,4 +1,4 @@
-<div class="i-card">
+<div class="i-card" data-id="{{ item.dataID }}">
 
 	<div class="i-card__top">
 		<div class="i-card__tags">
@@ -239,7 +239,7 @@
 				{% endif %}
 				<a href="{{ item.style.url }}" class="i-card__style-link">{{ item.style.name }}
 					({{ item.style.count }})</a>
-				<h2>{{ item.title }}</h2>
+				<h2 data-ask-text-change>{{ item.title }}</h2>
 				<span class="xs-typo">Added
 					{{ item.date }}
 					days ago</span>

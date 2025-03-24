@@ -138,6 +138,14 @@ function fakeFetchSaveToCollection(url, options) {
   });
 }
 
+function fakeFetchSaveItemTitle(url, options) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ ok: true });
+    }, 2000);
+  });
+}
+
 export {
   fakeAjaxGetPtwData,
   fakeFetchSuccess,
@@ -151,4 +159,5 @@ export {
   fakeAjaxGetOrderDetails,
   fakeFetchRemoveNote,
   fakeFetchSaveToCollection,
+  fakeFetchSaveItemTitle,
 };

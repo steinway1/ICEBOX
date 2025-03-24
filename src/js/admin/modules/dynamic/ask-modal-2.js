@@ -1,6 +1,8 @@
 export default class AskModal {
   constructor(options) {
     this.question = options.question;
+    this.placeholder = options.placeholder || "";
+    this.value = options.value || "";
 
     this.promise = new Promise((resolve, reject) => {
       this.resolve = resolve;
@@ -22,11 +24,11 @@ export default class AskModal {
 											<div class="m-popup__input-row">
 													<input
 															class="m-popup__input"
-															data-customer-input=""
 															type="text"
-															name="amount"
-															placeholder="Amount"
+															data-customer-input
+															placeholder="${this.placeholder}"
 															autocomplete="off"
+															value="${this.value}"
 													/>
 											</div>
 											<div class="m-popup__btn-group">
