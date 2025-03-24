@@ -318,6 +318,10 @@ class ProductPage {
     }
   }
   appendOption(option = this.optionsArr[0]) {
+    this.optionsArr.length > 1
+      ? this.optionModal.classList.remove("--single")
+      : this.optionModal.classList.add("--single");
+
     this.revertOptions();
     if (option) {
       const optionName = option.querySelector(".product-option-name");
