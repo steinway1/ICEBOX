@@ -66,3 +66,10 @@
 		</div>
 	</div>
 {% endif %}
+
+
+{% if user.admin == true %}
+	<div class="product__admin-controls">
+		{% include "elements/admin-card.twig" %}
+	</div>
+{% endif %}
