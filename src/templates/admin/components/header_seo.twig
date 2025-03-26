@@ -1,0 +1,127 @@
+<header class="am-header">
+	<div class="am-header__wrapper">
+
+		<div
+			class="am-header__side">
+
+			{# Mobile Navigation #}
+			<div class="am-header__mob-nav">
+				<button data-am-evt="toggleSidebar" class="am-header__nav-btn">
+					{% include "admin/svg/icon_sidebar.svg" %}
+				</button>
+				<button data-am-evt="toggleSearch" class="am-header__nav-btn">
+					{% include "admin/svg/icon_search.svg" %}
+				</button>
+			</div>
+
+			{# Logo #}
+			<a href="/" class="am-header__logo">
+				<img src="./assets/logo.svg" loading="eager" alt="Icebox logotype">
+			</a>
+
+			{# Page Navigation -- Button #}
+			<button data-am-evt="togglePageNav" class="am-header__nav-btn">
+				{% include "admin/svg/icon_page-nav.svg" %}
+			</button>
+		</div>
+
+		<div
+			class="am-header__nav">
+
+			{# Search #}
+			<div class="am-search">
+				<form method="get" class="am-search__form">
+					<div class="am-search__input-wrap">
+						<input class="am-search__field" name="order_id" placeholder="Search for orders..." type="text">
+						<div class="am-search__icon">{% include "admin/svg/icon_search.svg" %}</div>
+						<input type="submit" data-wait="Search" class="am-search__btn" value="Find">
+					</div>
+					<div class="am-select-wrap">
+						<select class="am-select">
+							<option value="">Search By...</option>
+						</select>
+					</div>
+				</form>
+			</div>
+
+			{# Sub Navigation #}
+
+			<div class="am_flex8">
+				<span class="am-header__spot">{{page.tag}}</span>
+				{% if dateNav == true %}
+					<a class="am-today-arrow">
+						{% include "admin/svg/icon_arrow-prev.svg" %}
+					</a>
+					<a class="am-today-arrow">
+						{% include "admin/svg/icon_arrow-next.svg" %}
+					</a>
+				{% endif %}
+			</div>
+
+		</div>
+
+	</div>
+
+	{# Drop Content #}
+
+	{# Mobile Search #}
+	<div class="am-header__mob-search">
+		<div class="am-header__mob-search-wrap">
+			<div class="am-search">
+				<form method="get" class="am-search__form">
+					<div class="am-search__input-wrap">
+						<input class="am-search__field" name="order_id" placeholder="Search for orders..." type="text">
+						<div class="am-search__icon">{% include "admin/svg/icon_search.svg" %}</div>
+						<input type="submit" data-wait="Search" class="am-search__btn" value="Find">
+					</div>
+					<div class="am-select-wrap">
+						<select class="am-select">
+							<option value="">Search By...</option>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="am-header__page-nav">
+		<div class="am-page-nav__wrapper">
+			<a href="/manufacturing">
+				<div>
+					{% include "admin/svg/icon_manufacture.svg" %}
+				</div>
+				<span>Online Orders</span>
+			</a>
+			<a href="/manufacturing-instore">
+				<div>
+					{% include "admin/svg/icon_manufacture.svg" %}
+				</div>
+				<span>Manual Orders</span>
+			</a>
+			<a href="/auto-orders">
+				<div>
+					{% include "admin/svg/icon_manufacture.svg" %}
+				</div>
+				<span>Auto Orders</span>
+			</a>
+			<a href="/saks-orders">
+				<div>
+					{% include "admin/svg/icon_manufacture.svg" %}
+				</div>
+				<span>SAKS Orders</span>
+			</a>
+			<a href="/today">
+				<div>
+					{% include "admin/svg/icon_today.svg" %}
+				</div>
+				<span>Today</span>
+			</a>
+			<a href="/vendors">
+				<div>
+					{% include "admin/svg/icon_vendors.svg" %}
+				</div>
+				<span>Vendors</span>
+			</a>
+		</div>
+	</div>
+</header>

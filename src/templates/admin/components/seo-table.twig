@@ -1,0 +1,64 @@
+<div class="hero-table-wrap --font-graphik --auto-height">
+	<table class="hero-table">
+		<thead>
+			<tr>
+				<th>Page URL</th>
+				<th>Title</th>
+				<th>Keywords</th>
+				<th>Description</th>
+				<th>Heading</th>
+				<th>Subheading</th>
+				<th>Structured Data</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for page in seo_pages %}
+				<tr
+					class="tr-seo-page" data-tr-seo-page data-id="{{page.id}}">
+					{# URL #}
+					<td data-td="url">
+						<a href="{{page.url}}" target="_blank">{{page.url}}</a>
+					</td>
+
+					{# Title #}
+					<td data-td="title">
+						<span class="m-title">{{page.title}}</span>
+					</td>
+
+					{# Keywords #}
+					<td data-td="keywords" class="--keywords">
+						<div data-wrap-keywords class="m-keywords">
+							<span>{{page.keywords}}</span>
+						</div>
+					</td>
+
+					{# Description #}
+					<td data-td="description">
+						<span data-code-shield="Text">
+							{{page.description}}
+						</span>
+					</td>
+
+					{# Heading #}
+					<td data-td="heading">
+						<span class="m-title">{{page.heading}}</span>
+					</td>
+
+					{# Subheading #}
+					<td data-td="subheading">
+						<span data-code-shield="html">
+							{{page.subheading}}
+						</span>
+					</td>
+
+					{# Structured Data #}
+					<td data-td="structured_data">
+						<span data-code-shield="json-ld">
+							{{page.structured_data}}
+						</span>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

@@ -8,6 +8,9 @@ import {
   bindCopyOrderDetails,
   initSelectStates,
   bindRemoveNote,
+	wrapKeywordsElements,
+	shieldCodeElements,
+	bindCopyCodeBtn
 } from "./modules/general/init-fn";
 
 import { initToolbar } from "./modules/elements/tool-bar";
@@ -51,6 +54,9 @@ class PageElements {
       bindCopyOrderDetails,
       initSelectStates,
       bindRemoveNote,
+			wrapKeywordsElements,
+			shieldCodeElements,
+			bindCopyCodeBtn
     ];
     this.#init();
   }

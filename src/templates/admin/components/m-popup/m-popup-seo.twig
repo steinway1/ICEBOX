@@ -1,0 +1,71 @@
+<div data-seo-popup class="m-popup --seo">
+	<div class="m-popup__handler"></div>
+
+	{# Header #}
+	<div class="m-popup__title">
+		<h3>Add / Edit Page</h3>
+	</div>
+
+	{# Main Content #}
+	<div class="m-popup__main">
+		<form id="seoPageEditForm" method="post">
+			<div class=" m-popup__wrapper">
+
+				<div class="m-popup__main">
+
+					<div class="m-popup__content">
+						<div class="m-popup__input-grid">
+							<div class="m-popup__input-row">
+								<label class="m-popup__label" for="pageTitle">Title</label>
+								<input class="m-popup__input" id="pageTitle" type="text" name="pageTitle" placeholder="Page Title" autocomplete="off">
+							</div>
+							<div class="m-popup__input-row">
+								<label class="m-popup__label" for="pageUrl">URL</label>
+								<input class="m-popup__input" id="pageUrl" type="text" name="pageUrl" placeholder="Page URL" autocomplete="off">
+							</div>
+							<div class="m-popup__input-row">
+								<label class="m-popup__label" for="pageKeywordsFake">Keywords</label>
+								<div class="col-8">
+									<textarea data-keywords-textarea class="m-popup__input m-popup__textarea --hidden" id="pageKeywords" name="pageKeywords" autocomplete="off"></textarea>
+									<textarea data-keywords-input class="m-popup__input m-popup__textarea --xs" id="pageKeywordsFake" name="pageKeywordsFake" autocomplete="off"></textarea>
+									<div data-keywords-container class="am_flex4 --font-graphik">
+										<div data-keyword-tag class="m-tag --xs">Keyword 1</div>
+										<div data-keyword-tag class="m-tag --xs">Keyword 2</div>
+										<div data-keyword-tag class="m-tag --xs">Keyword 3</div>
+									</div>
+								</div>
+							</div>
+							<div class="m-popup__input-row">
+								<label class="m-popup__label" for="pageDescription">Description</label>
+								<textarea class="m-popup__input m-popup__textarea --md" id="pageDescription" name="pageDescription" placeholder="Page Description" autocomplete="off"></textarea>
+							</div>
+							<div class="m-popup__input-row">
+								<label class="m-popup__label" for="pageStructuredData">Structured Data</label>
+								<textarea class="m-popup__input m-popup__textarea --lg" id="pageStructuredData" name="pageStructuredData" placeholder="Page Structured Data" autocomplete="off"></textarea>
+							</div>
+							<div class="m-popup__input-row">
+								<label class="m-popup__label" for="pageHeading">Heading</label>
+								<input class="m-popup__input" id="pageHeading" type="text" name="pageHeading" placeholder="Page Heading" autocomplete="off">
+							</div>
+							<div class="m-popup__input-row">
+								<label class="m-popup__label" for="pageSubheading">Subheading</label>
+								<textarea class="m-popup__input m-popup__textarea --xs" id="pageSubheading" name="pageSubheading" placeholder="Page Subheading" autocomplete="off"></textarea>
+							</div>
+						</div>
+					</div>
+
+
+					{# --- Buttons #}
+					<div class="m-popup__btn-group">
+						<div data-close-popup class="m-popup__btn is-dim">Close</div>
+						<div data-save-popup class="m-popup__btn">Save</div>
+					</div>
+
+					{# --- Message Error / Success message #}
+					<div class="m-popup__msg">Something went wrong...</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+</div>

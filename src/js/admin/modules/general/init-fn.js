@@ -302,6 +302,101 @@ function bindRemoveNote() {
   });
 }
 
+function wrapKeywordsElements() {
+  const arr = [...document.querySelectorAll("[data-wrap-keywords]")];
+  for (const elem of arr) {
+    const keywords = elem.textContent;
+    const keywordsArr = keywords.split(",");
+    const keywordsHtml = keywordsArr
+      .map((keyword) => `<span class="m-tag --xs">${keyword}</span>`)
+      .join("");
+    elem.innerHTML = keywordsHtml;
+  }
+}
+
+function shieldCodeElements() {
+  const arr = [...document.querySelectorAll("[data-code-shield]")];
+  for (const elem of arr) {
+    const language = elem.dataset.codeShield || "Code";
+    const isJson = language.toLowerCase().includes("json");
+
+    let code;
+
+    if (isJson) {
+      if (isJson) {
+        let jsonString = elem.innerText || elem.textContent;
+        try {
+          const jsonObj = JSON.parse(jsonString);
+          code = JSON.stringify(jsonObj, null, 2);
+        } catch (e) {
+          console.error("Parse JSON Error:", e);
+          code = jsonString;
+        }
+      }
+
+      elem.innerHTML = `
+				<div class="m-code-shield">
+					<header>
+						<span>${language}</span>
+						<span class="copy-code-btn" data-copy-code="${code}"></span>
+					</header>
+					<pre><code>${code}</code></pre>
+				</div>
+			`;
+    } else {
+      let code = elem.innerHTML
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
+      code = code
+        .replace(/(&lt;\/?[a-zA-Z]+.*?&gt;)/g, "\n$1")
+        .replace(/\n\n/g, "\n")
+        .trim();
+
+      let indentLevel = 0;
+      const lines = code
+        .split("\n")
+        .map((line) => {
+          if (line.match(/&lt;\//)) {
+            indentLevel = Math.max(0, indentLevel - 1);
+          }
+          const indentedLine = "  ".repeat(indentLevel) + line.trim();
+          if (line.match(/&lt;[a-zA-Z]+.*?&gt;/) && !line.match(/&lt;\//)) {
+            indentLevel++;
+          }
+          return indentedLine;
+        })
+        .join("\n");
+
+      elem.innerHTML = `
+		<div class="m-code-shield">
+		  <header>
+			  <span>${language}</span>
+				<span class="copy-code-btn" data-copy-code="${lines}"></span>
+			</header>
+		  <pre><code>${lines}</code></pre>
+		</div>
+		`;
+    }
+  }
+}
+
+function bindCopyCodeBtn() {
+  document.addEventListener("click", async (e) => {
+    const target = e.target;
+    const copyBtn = target.closest(".copy-code-btn");
+
+    if (copyBtn) {
+      const parent = copyBtn.closest(".m-code-shield");
+      const code = parent.querySelector("code").textContent;
+      navigator.clipboard.writeText(code);
+    }
+  });
+}
+
 export {
   updateInputsAllowOnlyDecimals,
   initLottieElements,
@@ -312,4 +407,7 @@ export {
   bindCopyOrderDetails,
   initSelectStates,
   bindRemoveNote,
+  wrapKeywordsElements,
+  shieldCodeElements,
+  bindCopyCodeBtn,
 };
