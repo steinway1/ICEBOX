@@ -25,12 +25,19 @@
 {# Price #}
 {% include "elements/product-page/price.twig" %}
 
-{# Gold Option #}
-{% for option in product.options %}
-	{% if option.type == 'goldColor' %}
-		{% include "elements/product-page/custom-fields/gold-color.twig", with { option: option } %}
-	{% endif %}
-{% endfor %}
+<div>
+	{# Gold Option #}
+	{% for option in product.options %}
+		{% if option.type == 'goldColor' %}
+			{% include "elements/product-page/custom-fields/gold-color.twig", with { option: option } %}
+		{% endif %}
+	{% endfor %}
+
+	<div class="side-row__quick-actions">
+		<a href="javascript:void(0);" class="product__quick-btn" onclick="addToCart()">Add To Cart</a>
+		<a href="javascript:void(0);" class="product__quick-btn --solid" onclick="buyNow()">Buy Now</a>
+	</div>
+</div>
 
 <div class="side-row__stock-line">
 	{% include 'elements/new-product-page/stock-availability.twig'  %}
