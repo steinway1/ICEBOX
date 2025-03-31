@@ -4,29 +4,24 @@
 <html lang="en">
 
 
-	<head>
-		{% include 'page-components/head.twig' %}
-		{{ block('include_head') }}
-	</head>
+<head>
+	{% include 'page-components/head.twig' %}
+	{{ block('include_head') }}
+</head>
 
 
-	<body class="body_sell">
-		{% include "elements/header.twig" %}
+<body class="body_sell">
+	{% include "components/sell/header.twig" %}
+	{% include "components/sell/loader.twig" %}
 
+	<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
+	</main>
 
-		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> 
-    {% block content %}{% endblock %}
-		</main>
-
-
-		{% include "elements/menu.twig" %}
-		{% include "elements/cart-modal.twig" %}
-		{% include "elements/sign-modal.twig" %}
-		{% include "elements/currency-modal.twig" %}
-		{% include "elements/page-alerts.twig" %}
-		{% include "elements/book-sell.twig" %}
-		{% include "page-components/scripts.twig" %}
-		{{ block('include_script') }}
-	</body>
+	{% include "page-components/scripts.twig" %}
+	<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+	{{ block('include_script') }}
+</body>
 
 </html>

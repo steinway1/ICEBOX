@@ -1,0 +1,302 @@
+<div class="sell-welcome">
+
+	{# Welcome Header #}
+	{% include "components/sell/welcome-header.twig" %}
+
+	{# Welcome Media #}
+	{% include "components/sell/welcome-media.twig" with { src: 'banner_bullions.avif', alt: 'Sell your bullions for cash
+	in Atlanta, GA' } %}
+
+	{# Welcome Content #}
+	<div class="sell-welcome__content">
+		<div>
+			{% include "components/sell/perks.twig" %}
+			{% include "components/sell/welcome-text.twig" with {
+			heading: 'Sell Your <span class="sell-gold-color">Gold Bullion, Coins, and Bars</span> in Atlanta',
+			subheading: 'If you\'re searching for
+			<strong>the best place to sell gold bullion in Atlanta</strong>, Icebox provides a secure and transparent solution
+			for selling your precious metals.'
+			}
+			%}
+		</div>
+	</div>
+</div>
+
+{# Welcome Perks for Mobile #}
+<div class="sell__mob-welcome-perks">
+	{% include "components/sell/perks.twig" with { class: 'for_mobile' } %}
+</div>
+
+{# Section #1 #}
+<div class="sell__section">
+	<div class="sell__side-container">
+		<div data-ygsap class="col_24 --start">
+			<h2>
+				Whether you have gold coins, bars, or bullion, our expert team offers <span>competitive prices</span> and a
+				<span>streamlined selling</span> process.
+			</h2>
+			<p>
+				We are the <strong>premier bullion exchanges in Atlanta</strong>, committed to providing the highest cash value
+				for your gold
+				investments.
+			</p>
+			<button data-sell-appt class="sell-btn accent-2 --arrow">
+				<span>Sell Your Gold</span>
+			</button>
+		</div>
+
+		<div data-ygsap class="sell__pic-box">
+			<div class="sell__pic-cards-card">
+				<div class="sell-hor-card">
+					<div class="sell-hor-card__pic-wrap">
+						<img alt="" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_png1.avif" loading="lazy" class="ratio-1" />
+					</div>
+					<div class="sell-hor-card__details">
+						<h6 class="sell-card__title">1.23 Carat Round Diamond</h6>
+						<h6 class="sell-card__title">
+							Sold for <span>$886</span>
+						</h6>
+						<span class="sell-card__sub-typo">VG Cut, VS1, D color </span>
+					</div>
+				</div>
+				<div class="sell-hor-card move_2">
+					<div class="sell-hor-card__pic-wrap">
+						<img alt="" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_png2.webp" loading="lazy" class="ratio-1" />
+					</div>
+					<div class="sell-hor-card__details">
+						<h6 class="sell-card__title">1.5 Carat Round Diamond </h6>
+						<h6 class="sell-card__title">
+							Sold for <span>$2,350</span>
+						</h6>
+						<span class="sell-card__sub-typo">RC Cut, VS1, F color </span>
+					</div>
+				</div>
+			</div>
+			<img alt="" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_1.avif" loading="lazy" class="sell__pic-box-img" />
+		</div>
+	</div>
+</div>
+
+{# Section #2 -- Why Sell To Icebox #}
+<div id="why-us" class="sell__section">
+	<div class="sell__column-section">
+		<div data-ygsap class="col_24 --center mw-760 mx-auto">
+			<span class="sell__section-tag">Why Choose Icebox</span>
+			<h2>
+				Where to Sell <span>Gold Coins in Atlanta</span>: Your Trusted Bullion Buyer
+			</h2>
+			<p>
+				<strong>Icebox stands out as the top destination for selling gold in the Atlanta metro area.</strong> Our
+				expertise in precious metals and commitment to fair pricing makes us the go-to choice for individuals looking to
+				convert their gold into cash quickly and securely.
+			</p>
+		</div>
+
+		<div class="sell__features-grid">
+			<div data-ygsap>
+				<div class="sell__fill-icon">
+					{% include "components/svg/geo.svg" %}
+				</div>
+				<p>Local Atlanta-based business</p>
+			</div>
+			<div data-ygsap>
+				<div class="sell__fill-icon">
+					{% include "components/svg/desktop-money.svg" %}
+				</div>
+				<p>Competitive Market Rates</p>
+			</div>
+			<div data-ygsap>
+				<div class="sell__fill-icon">
+					{% include "components/svg/protect.svg" %}
+				</div>
+				<p>Secure and Confidential Transactions</p>
+			</div>
+			<div data-ygsap>
+				<div class="sell__fill-icon">
+					{% include "components/svg/wallet.svg" %}
+				</div>
+				<p>Instant Cash Payments</p>
+			</div>
+			<div data-ygsap>
+				<div class="sell__fill-icon">
+					{% include "components/svg/law.svg" %}
+				</div>
+				<p>Expert In-Store Appraisals</p>
+			</div>
+		</div>
+
+		<div data-ygsap class="col_24 --center">
+			<button data-sell-appt class="sell-btn --arrow accent-2"><span>Sell Your Gold</span></button>
+		</div>
+	</div>
+</div>
+
+{# What We Buy #}
+<div id="what-we-buy" class="sell__section --grey">
+	<div class="sell__column-section">
+
+		<div data-ygsap class="col_24 --start mw-760">
+			<span class="sell__section-tag">WHAT WE BUY</span>
+			<h2>What <span>Types of gold</span> Do We Buy?</h2>
+			<p>Whether you have investment-grade bullion or collectible coins, we provide competitive offers based on current
+				market values.
+			</p>
+		</div>
+
+		<div class="sell__types-grid">
+			<div data-ygsap class="sell-type">
+				<img alt="" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-bars.avif" loading="lazy" class="sell-type__pic">
+				<button data-sell-appt="" class="sell-type__btn"><span>Gold Bars of various weights</span></button>
+			</div>
+			<div data-ygsap class="sell-type">
+				<img alt="" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-coins.webp" loading="lazy" class="sell-type__pic">
+				<button data-sell-appt="" class="sell-type__btn"><span>Collectibe Gold Coins</span></button>
+			</div>
+			<div data-ygsap class="sell-type">
+				<img alt="" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-exchange.webp" loading="lazy"
+					class="sell-type__pic">
+				<button data-sell-appt="" class="sell-type__btn"><span>Bullion Exchanges</span></button>
+			</div>
+			<div data-ygsap class="sell-type">
+				<img alt="" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-collections.avif" loading="lazy"
+					class="sell-type__pic">
+				<button data-sell-appt="" class="sell-type__btn"><span>Precious Metal Collections</span></button>
+			</div>
+			<div data-ygsap class="sell-type">
+				<img alt="" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-historical.avif" loading="lazy"
+					class="sell-type__pic">
+				<button data-sell-appt="" class="sell-type__btn"><span>Historical gold pieces</span></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{# How to Sell #}
+<div id="how-to-sell" class="sell__section --stripes">
+	<div class="sell__column-section">
+
+		<div data-ygsap class="col_24 --start mw-760">
+			<span class="sell__section-tag">HOW TO SELL</span>
+			<h2>How to Sell <span>Gold Bullion</span> Near Me in 3 Easy Steps</h2>
+			<p>Get a quote in a minutes or less!</p>
+		</div>
+
+		<div class="sell__how-grid">
+			<div data-ygsap class="sell__how-item">
+				<span class="sell__how-item-tag">Step 1</span>
+				<h4 class="sell__how-item-title">Evaluate Your Gold </h4>
+				<ul class="sell__how-list">
+					<li>Bring your gold items to our Atlanta location </li>
+					<li>Our experts will assess authenticity and value </li>
+				</ul>
+			</div>
+
+			<span class="sell__how-arrow"></span>
+
+			<div data-ygsap class="sell__how-item">
+				<span class="sell__how-item-tag">Step 2</span>
+				<h4 class="sell__how-item-title">Get a Free Quote </h4>
+				<ul class="sell__how-list">
+					<li>Receive a no-obligation, competitive offer </li>
+					<li>Transparent pricing based on current market rates </li>
+				</ul>
+			</div>
+
+			<span class="sell__how-arrow"></span>
+
+			<div data-ygsap class="sell__how-item">
+				<div class="sell__how-item-tag">Step 3</div>
+				<div class="sell__how-item-title">Receive Instant Cash </div>
+				<ul class="sell__how-list">
+					<li>Get paid immediately </li>
+					<li>No hidden fees or complicated processes </li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div data-ygsap class="row_8 mt-48">
+			<button data-sell-appt class="sell-btn --arrow accent-2"><span>Sell Your Watch</span></button>
+			<button data-sell-contact class="sell-btn stroke-black">Contact Us</button>
+		</div>
+	</div>
+</div>
+
+{# Icebox History #}
+{% include "components/sell/history.twig" with {
+src: 'banner_bullions.avif',
+alt: 'Sell your gold for cash in Atlanta, GA' } %}
+
+{# FAQ #}
+{% include "components/sell/faq.twig" with {
+questions: [
+{
+question: "Q: Where can I sell my gold coins for the best price?",
+answer: 'A: Icebox offers top-dollar prices for gold coins in Atlanta. Our expert appraisers ensure you receive the most
+competitive offer based on current market rates.',
+icon: 'location'
+},
+{
+question: 'Q: How easy is it to sell gold bars?',
+answer: '
+<strong>Selling gold bars at Icebox is simple:</strong>
+<br>
+Bring your gold bars to our Atlanta location
+<br>
+Our experts will assess the value
+<br>
+Receive immediate cash payment
+<br>
+No hidden fees or obligations
+',
+icon: 'money-bag'
+},
+{
+question: "Q: What types of gold do you buy?",
+answer: "<strong>We buy various gold items, including:</strong>
+<br>
+Gold bullion
+<br>
+Collectible gold coins
+<br>
+Gold bars of different weights
+<br>
+Precious metal coll",
+icon: 'documents'
+},
+{
+question: 'Q: How do I know I\'m getting a fair price?',
+answer: '
+<strong>We ensure fair pricing through:</strong>
+<br>
+Real-time market pricing
+<br>
+Professional appraisal techniques
+<br>
+Transparent evaluation process
+<br>
+Competitive rates based on gold\'s current value
+',
+icon: 'money-bag'
+},
+]
+} %}
+
+{# Conclusion #}
+{% include "components/sell/conclusion.twig" with {
+title: "
+Ready to Sell Your <span>Gold</span>?
+",
+description: "
+Turn your gold into cash with Icebox – Atlanta's trusted gold and bullion buyer!
+<br>
+<br>
+Visit our Atlanta location at <strong><a href='https://maps.app.goo.gl/3255PeachtreeRdNE' class='underline'>3255
+		Peachtree Rd
+		NE</a></strong> or start your online evaluation now.
+"
+} %}
+
+{# Footer #}
+{% include "components/sell/footer.twig" %}
+{% include "components/sell/book-modal.twig" %}

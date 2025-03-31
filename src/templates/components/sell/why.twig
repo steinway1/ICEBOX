@@ -1,0 +1,33 @@
+<div class="sell__section {% if big_list == true %} --big-list{% endif %}">
+	<div class="sell__column-section">
+
+		<div data-ygsap class="col_24 --start mw-760">
+			{% if tag %}
+			<span class="sell__section-tag">WHY TO SELL</span>
+			{% endif %}
+			<h2>{{ title }}</h2>
+			{% if subtitle %}
+			<p>{{ subtitle }}</p>
+			{% endif %}
+		</div>
+
+		<div class="sell__why-list">
+			{% for item in items %}
+			<div data-ygsap class="sell__why-list-item">
+				<div class="sell__why-list-wrap">
+					<span>0{{ loop.index }}</span>
+					<div>
+						<h6 class="sell__why-list-title">{{ item.title }}</h6>
+						{% if item.description %}
+						<p class="sell__why-list-typo">
+							{{ item.description }}
+						</p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+
+	</div>
+</div>

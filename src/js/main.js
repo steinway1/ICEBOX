@@ -89,14 +89,13 @@ const /* Loan App : /financing */
   ResultsPage = require("./modules/pages/results"),
   ProductPage = require("./modules/pages/product"),
   NoPage = require("./modules/pages/no-page"),
+  SellPage = require("./modules/pages/sell-page"),
   /* My Bag : /cart */
   myBag = require("./modules/pages/my-bag"),
   /* Account Profile : /account */
   account = require("./modules/pages/account-page"),
   /* Locations : /locations */
   locationPage = require("./modules/pages/location-page"),
-  /* Sell Pages : /sell */
-  sellPage = require("./modules/pages/sell-page"),
   /* Pass Reset : /pass-reset */
   passReset = require("./modules/pages/pass-reset"),
   /* Blog : /blog */
@@ -127,7 +126,6 @@ const pageObjectsArr = [
   locationPage,
   pageAlerts,
   sirvCards,
-  sellPage,
   // bookModal,
   passReset,
   pageReviews,
@@ -220,5 +218,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const checkoutBody = document.querySelector(".body_checkout");
   if (checkoutMain || checkoutBody) {
     new CheckoutPage();
+  }
+
+  // Sell Page
+  const sellPageRoot = document.querySelector(".body_sell");
+  if (sellPageRoot) {
+    new SellPage(sellPageRoot);
   }
 });

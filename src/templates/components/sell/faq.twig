@@ -1,0 +1,26 @@
+<div id="faq" class="sell__section --grey">
+	<div class="sell__faq-wraper">
+		<div data-ygsap class="sell__faq-title">
+			<div class="col_24 --start">
+				<h2>Frequently Asked Questions</h2>
+				<p>Here are the most frequently asked questions regarding the process of selling your luxury pieces to Icebox in
+					Atlanta.
+				</p>
+				<button data-sell-appt class="sell-btn --arrow accent-2"><span>Start Evaluation</span></button>
+			</div>
+		</div>
+		<div class="sell__faq-grid">
+			{% for item in questions %}
+			<div data-ygsap class="sell__faq-item">
+				<div class="sell__faq-item-icon {% if item.icon %}--{{ item.icon }}{% endif %}"></div>
+				<div class="sell__faq-item-content">
+					<div class="sell__faq-item-title">{{ item.question }}</div>
+					<div class="sell__faq-item-typo">
+						{{ item.answer }}
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
