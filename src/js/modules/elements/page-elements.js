@@ -25,18 +25,18 @@ const pageEls = new Object({
               if (document.body.classList.contains(cssClass)) {
                 document.body.classList.remove(cssClass);
                 unlockScroll();
-								if (window.cartSummaryBackdrop) {
-									window.cartSummaryBackdrop.hide(true)
-								}
+                if (window.cartSummaryBackdrop) {
+                  window.cartSummaryBackdrop.hide(true);
+                }
               } else {
                 document.body.classList.add(cssClass);
                 lockScroll();
                 window.cartSummaryBackdrop = new Backdrop({
                   half: true,
-									zIndex: 20,
+                  zIndex: 20,
                   callback: () => {
                     document.body.classList.remove(cssClass);
-										unlockScroll()
+                    unlockScroll();
                   },
                 });
               }
@@ -386,28 +386,11 @@ const pageEls = new Object({
 
       for (var i = 0; i < telInputArr.length; i++) {
         let iti = intlTelInput(telInputArr[i], {
-          initialCountry: "auto",
-          preferredCountries: ["us", "gb", "br", "cn", "es", "it"],
+          initialCountry: "us",
+          preferredCountries: ["us"],
           autoPlaceholder: "aggressive",
           useFullscreenPopup: true,
           utilsScript: "/assets/public-2020/js/plugins/phone/utils.js",
-          geoIpLookup: function (callback) {
-            fetch("https://ipinfo.io/json", {
-              cache: "reload",
-            })
-              .then((response) => {
-                if (response.ok) {
-                  return response.json();
-                }
-                throw new Error("Failed: " + response.status);
-              })
-              .then((ipjson) => {
-                callback(ipjson.country);
-              })
-              .catch((e) => {
-                callback("us");
-              });
-          },
         });
       }
     },

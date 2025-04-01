@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+
+    </title>
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="robots" content="index follow">
+
+    <link rel="stylesheet" href="css/partial.css" />
+
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.icebox.com/assets/public-2022/v4/favicons/new/apple-touch-icon.png?v=641530abd62e7">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.icebox.com/assets/public-2022/v4/favicons/new/favicon-32x32.png?v=641530abd62e8">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.icebox.com/assets/public-2022/v4/favicons/new/favicon-16x16.png?v=641530abd62e9">
+    <link rel="manifest" href="./assets/favicons/site.webmanifest">
+    <link rel="mask-icon" href="./assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
+
+    <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+</head>
+
+
+<body>
+    <header class="am-header">
+        <div class="am-header__wrapper">
+
+            <div class="am-header__side">
+
+
+                <div class="am-header__mob-nav">
+                    <button data-am-evt="toggleSidebar" class="am-header__nav-btn">
+                        <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3 1.25C2.0335 1.25 1.25 2.0335 1.25 3V21C1.25 21.9665 2.0335 22.75 3 22.75H6.55556C7.52205 22.75 8.30556 21.9665 8.30556 21V3C8.30556 2.0335 7.52205 1.25 6.55556 1.25H3ZM2.75 3C2.75 2.86193 2.86193 2.75 3 2.75H6.55556C6.69363 2.75 6.80556 2.86193 6.80556 3V21C6.80556 21.1381 6.69363 21.25 6.55556 21.25H3C2.86193 21.25 2.75 21.1381 2.75 21V3ZM9.77777 1.25C9.36356 1.25 9.02777 1.58579 9.02777 2C9.02777 2.41421 9.36356 2.75 9.77777 2.75H21C21.1381 2.75 21.25 2.86193 21.25 3V21C21.25 21.1381 21.1381 21.25 21 21.25H9.77777C9.36356 21.25 9.02777 21.5858 9.02777 22C9.02777 22.4142 9.36356 22.75 9.77777 22.75H21C21.9665 22.75 22.75 21.9665 22.75 21V3C22.75 2.0335 21.9665 1.25 21 1.25H9.77777Z" fill="currentColor"></path>
+                        </svg> </button>
+                    <button data-am-evt="toggleSearch" class="am-header__nav-btn">
+                        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10.5" cy="10.5" r="9.5" stroke="currentColor" stroke-width="2"></circle>
+                            <path d="M23 23L17 17" stroke="currentColor" stroke-width="2"></path>
+                        </svg> </button>
+                </div>
+
+
+                <a href="/" class="am-header__logo">
+                    <img src="./assets/logo.svg" loading="eager" alt="Icebox logotype">
+                </a>
+
+
+                <button data-am-evt="togglePageNav" class="am-header__nav-btn">
+                    <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 9.5V2.5H9.5V9.5H2.5ZM1 2C1 1.44772 1.44772 1 2 1H10C10.5523 1 11 1.44772 11 2V10C11 10.5523 10.5523 11 10 11H2C1.44772 11 1 10.5523 1 10V2ZM2.5 21.5V14.5H9.5V21.5H2.5ZM1 14C1 13.4477 1.44772 13 2 13H10C10.5523 13 11 13.4477 11 14V22C11 22.5523 10.5523 23 10 23H2C1.44772 23 1 22.5523 1 22V14ZM14.5 2.5V9.5H21.5V2.5H14.5ZM14 1C13.4477 1 13 1.44772 13 2V10C13 10.5523 13.4477 11 14 11H22C22.5523 11 23 10.5523 23 10V2C23 1.44772 22.5523 1 22 1H14ZM14.5 21.5V14.5H21.5V21.5H14.5ZM13 14C13 13.4477 13.4477 13 14 13H22C22.5523 13 23 13.4477 23 14V22C23 22.5523 22.5523 23 22 23H14C13.4477 23 13 22.5523 13 22V14Z" fill="currentColor"></path>
+                    </svg> </button>
+            </div>
+
+            <div class="am-header__nav">
+
+
+                <div class="am-search">
+                    <form method="get" class="am-search__form">
+                        <div class="am-search__input-wrap">
+                            <input class="am-search__field" name="order_id" placeholder="Search for orders..." type="text">
+                            <div class="am-search__icon"><svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10.5" cy="10.5" r="9.5" stroke="currentColor" stroke-width="2"></circle>
+                                    <path d="M23 23L17 17" stroke="currentColor" stroke-width="2"></path>
+                                </svg></div>
+                            <input type="submit" data-wait="Search" class="am-search__btn" value="Find">
+                        </div>
+                        <div class="am-select-wrap">
+                            <select class="am-select">
+                                <option value="">Search By...</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <div class="am_flex8">
+                    <span class="am-header__spot"></span>
+                    <a class="am-today-arrow">
+                        <svg width="16" height="16" viewbox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M26 10H2" stroke="currentColor" stroke-width="2"></path>
+                            <path d="M11 1L2 10L11 19" stroke="currentColor" stroke-width="2"></path>
+                        </svg> </a>
+                    <a class="am-today-arrow">
+                        <svg width="16" height="16" viewbox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 10H24" stroke="currentColor" stroke-width="2"></path>
+                            <path d="M15 1L24 10L15 19" stroke="currentColor" stroke-width="2"></path>
+                        </svg> </a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="am-header__mob-search">
+            <div class="am-header__mob-search-wrap">
+                <div class="am-search">
+                    <form method="get" class="am-search__form">
+                        <div class="am-search__input-wrap">
+                            <input class="am-search__field" name="order_id" placeholder="Search for orders..." type="text">
+                            <div class="am-search__icon"><svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10.5" cy="10.5" r="9.5" stroke="currentColor" stroke-width="2"></circle>
+                                    <path d="M23 23L17 17" stroke="currentColor" stroke-width="2"></path>
+                                </svg></div>
+                            <input type="submit" data-wait="Search" class="am-search__btn" value="Find">
+                        </div>
+                        <div class="am-select-wrap">
+                            <select class="am-select">
+                                <option value="">Search By...</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="am-header__page-nav">
+            <div class="am-page-nav__wrapper">
+                <a href="/manufacturing">
+                    <div>
+                        <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6.95V17.05C19.84 17.02 19.67 17 19.5 17C18.12 17 17 18.12 17 19.5C17 19.67 17.02 19.84 17.05 20H6.95C6.98 19.84 7 19.67 7 19.5C7 18.12 5.88 17 4.5 17C4.33 17 4.16 17.02 4 17.05V6.95C4.16 6.98 4.33 7 4.5 7C5.88 7 7 5.88 7 4.5C7 4.33 6.98 4.16 6.95 4H17.05C17.02 4.16 17 4.33 17 4.5C17 5.88 18.12 7 19.5 7C19.67 7 19.84 6.98 20 6.95Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7 4.5C7 5.88 5.88 7 4.5 7C4.33 7 4.16 6.98 4 6.95C2.86 6.72 2 5.71 2 4.5C2 3.12 3.12 2 4.5 2C5.71 2 6.72 2.86 6.95 4C6.98 4.16 7 4.33 7 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M22 4.5C22 5.71 21.14 6.72 20 6.95C19.84 6.98 19.67 7 19.5 7C18.12 7 17 5.88 17 4.5C17 4.33 17.02 4.16 17.05 4C17.28 2.86 18.29 2 19.5 2C20.88 2 22 3.12 22 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7 19.5C7 19.67 6.98 19.84 6.95 20C6.72 21.14 5.71 22 4.5 22C3.12 22 2 20.88 2 19.5C2 18.29 2.86 17.28 4 17.05C4.16 17.02 4.33 17 4.5 17C5.88 17 7 18.12 7 19.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M22 19.5C22 20.88 20.88 22 19.5 22C18.29 22 17.28 21.14 17.05 20C17.02 19.84 17 19.67 17 19.5C17 18.12 18.12 17 19.5 17C19.67 17 19.84 17.02 20 17.05C21.14 17.28 22 18.29 22 19.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <span>Online Orders</span>
+                </a>
+                <a href="/manufacturing-instore">
+                    <div>
+                        <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6.95V17.05C19.84 17.02 19.67 17 19.5 17C18.12 17 17 18.12 17 19.5C17 19.67 17.02 19.84 17.05 20H6.95C6.98 19.84 7 19.67 7 19.5C7 18.12 5.88 17 4.5 17C4.33 17 4.16 17.02 4 17.05V6.95C4.16 6.98 4.33 7 4.5 7C5.88 7 7 5.88 7 4.5C7 4.33 6.98 4.16 6.95 4H17.05C17.02 4.16 17 4.33 17 4.5C17 5.88 18.12 7 19.5 7C19.67 7 19.84 6.98 20 6.95Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7 4.5C7 5.88 5.88 7 4.5 7C4.33 7 4.16 6.98 4 6.95C2.86 6.72 2 5.71 2 4.5C2 3.12 3.12 2 4.5 2C5.71 2 6.72 2.86 6.95 4C6.98 4.16 7 4.33 7 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M22 4.5C22 5.71 21.14 6.72 20 6.95C19.84 6.98 19.67 7 19.5 7C18.12 7 17 5.88 17 4.5C17 4.33 17.02 4.16 17.05 4C17.28 2.86 18.29 2 19.5 2C20.88 2 22 3.12 22 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7 19.5C7 19.67 6.98 19.84 6.95 20C6.72 21.14 5.71 22 4.5 22C3.12 22 2 20.88 2 19.5C2 18.29 2.86 17.28 4 17.05C4.16 17.02 4.33 17 4.5 17C5.88 17 7 18.12 7 19.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M22 19.5C22 20.88 20.88 22 19.5 22C18.29 22 17.28 21.14 17.05 20C17.02 19.84 17 19.67 17 19.5C17 18.12 18.12 17 19.5 17C19.67 17 19.84 17.02 20 17.05C21.14 17.28 22 18.29 22 19.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <span>Manual Orders</span>
+                </a>
+                <a href="/auto-orders">
+                    <div>
+                        <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6.95V17.05C19.84 17.02 19.67 17 19.5 17C18.12 17 17 18.12 17 19.5C17 19.67 17.02 19.84 17.05 20H6.95C6.98 19.84 7 19.67 7 19.5C7 18.12 5.88 17 4.5 17C4.33 17 4.16 17.02 4 17.05V6.95C4.16 6.98 4.33 7 4.5 7C5.88 7 7 5.88 7 4.5C7 4.33 6.98 4.16 6.95 4H17.05C17.02 4.16 17 4.33 17 4.5C17 5.88 18.12 7 19.5 7C19.67 7 19.84 6.98 20 6.95Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7 4.5C7 5.88 5.88 7 4.5 7C4.33 7 4.16 6.98 4 6.95C2.86 6.72 2 5.71 2 4.5C2 3.12 3.12 2 4.5 2C5.71 2 6.72 2.86 6.95 4C6.98 4.16 7 4.33 7 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M22 4.5C22 5.71 21.14 6.72 20 6.95C19.84 6.98 19.67 7 19.5 7C18.12 7 17 5.88 17 4.5C17 4.33 17.02 4.16 17.05 4C17.28 2.86 18.29 2 19.5 2C20.88 2 22 3.12 22 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7 19.5C7 19.67 6.98 19.84 6.95 20C6.72 21.14 5.71 22 4.5 22C3.12 22 2 20.88 2 19.5C2 18.29 2.86 17.28 4 17.05C4.16 17.02 4.33 17 4.5 17C5.88 17 7 18.12 7 19.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M22 19.5C22 20.88 20.88 22 19.5 22C18.29 22 17.28 21.14 17.05 20C17.02 19.84 17 19.67 17 19.5C17 18.12 18.12 17 19.5 17C19.67 17 19.84 17.02 20 17.05C21.14 17.28 22 18.29 22 19.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <span>Auto Orders</span>
+                </a>
+                <a href="/saks-orders">
+                    <div>
+                        <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6.95V17.05C19.84 17.02 19.67 17 19.5 17C18.12 17 17 18.12 17 19.5C17 19.67 17.02 19.84 17.05 20H6.95C6.98 19.84 7 19.67 7 19.5C7 18.12 5.88 17 4.5 17C4.33 17 4.16 17.02 4 17.05V6.95C4.16 6.98 4.33 7 4.5 7C5.88 7 7 5.88 7 4.5C7 4.33 6.98 4.16 6.95 4H17.05C17.02 4.16 17 4.33 17 4.5C17 5.88 18.12 7 19.5 7C19.67 7 19.84 6.98 20 6.95Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7 4.5C7 5.88 5.88 7 4.5 7C4.33 7 4.16 6.98 4 6.95C2.86 6.72 2 5.71 2 4.5C2 3.12 3.12 2 4.5 2C5.71 2 6.72 2.86 6.95 4C6.98 4.16 7 4.33 7 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M22 4.5C22 5.71 21.14 6.72 20 6.95C19.84 6.98 19.67 7 19.5 7C18.12 7 17 5.88 17 4.5C17 4.33 17.02 4.16 17.05 4C17.28 2.86 18.29 2 19.5 2C20.88 2 22 3.12 22 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7 19.5C7 19.67 6.98 19.84 6.95 20C6.72 21.14 5.71 22 4.5 22C3.12 22 2 20.88 2 19.5C2 18.29 2.86 17.28 4 17.05C4.16 17.02 4.33 17 4.5 17C5.88 17 7 18.12 7 19.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M22 19.5C22 20.88 20.88 22 19.5 22C18.29 22 17.28 21.14 17.05 20C17.02 19.84 17 19.67 17 19.5C17 18.12 18.12 17 19.5 17C19.67 17 19.84 17.02 20 17.05C21.14 17.28 22 18.29 22 19.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <span>SAKS Orders</span>
+                </a>
+                <a href="/today">
+                    <div>
+                        <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.81 2L5.19 5.63" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M15.19 2L18.81 5.63" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M2 7.85001C2 6.00001 2.99 5.85001 4.22 5.85001H19.78C21.01 5.85001 22 6.00001 22 7.85001C22 10 21.01 9.85001 19.78 9.85001H4.22C2.99 9.85001 2 10 2 7.85001Z" stroke="currentColor" stroke-width="1.5"></path>
+                            <path d="M9.76 14V17.55" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                            <path d="M14.36 14V17.55" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                            <path d="M3.5 10L4.91 18.64C5.23 20.58 6 22 8.86 22H14.89C18 22 18.46 20.64 18.82 18.76L20.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg>
+                    </div>
+                    <span>Today</span>
+                </a>
+                <a href="/vendors">
+                    <div>
+                        <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21.08 8.58003V15.42C21.08 16.54 20.48 17.58 19.51 18.15L13.57 21.58C12.6 22.14 11.4 22.14 10.42 21.58L4.48003 18.15C3.51003 17.59 2.91003 16.55 2.91003 15.42V8.58003C2.91003 7.46003 3.51003 6.41999 4.48003 5.84999L10.42 2.42C11.39 1.86 12.59 1.86 13.57 2.42L19.51 5.84999C20.48 6.41999 21.08 7.45003 21.08 8.58003Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M12 11.0001C13.2869 11.0001 14.33 9.95687 14.33 8.67004C14.33 7.38322 13.2869 6.34009 12 6.34009C10.7132 6.34009 9.67004 7.38322 9.67004 8.67004C9.67004 9.95687 10.7132 11.0001 12 11.0001Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M16 16.6601C16 14.8601 14.21 13.4001 12 13.4001C9.79 13.4001 8 14.8601 8 16.6601" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <span>Vendors</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main_today">
+        <div class="am-content w_max_1080">
+            <div class="am-content__wrapper">
+
+
+                <div class="am-today__top-arrows is-visible">
+                    <button>
+                        <svg width="16" height="16" viewbox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M26 10H2" stroke="currentColor" stroke-width="2"></path>
+                            <path d="M11 1L2 10L11 19" stroke="currentColor" stroke-width="2"></path>
+                        </svg> <span>Prev</span>
+                    </button>
+                    <button>
+                        <span>Next</span>
+                        <svg width="16" height="16" viewbox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 10H24" stroke="currentColor" stroke-width="2"></path>
+                            <path d="M15 1L24 10L15 19" stroke="currentColor" stroke-width="2"></path>
+                        </svg> </button>
+                </div>
+
+
+                <!-- #region Content : Header -->
+                <div class="am-main__header for_today">
+                    <div class="am-container">
+                        <div class="am-row__header-wrapper">
+                            <div class="am-row__header">
+                                <div class="am_vertical-start">
+                                    <h2 data-id="test" class="am-main__header-title">Abandoned Carts On
+                                        Friday
+                                        01/01/2024
+                                    </h2>
+                                    <div class="am-main__subtitle">
+                                        <svg style="margin-right: 6px;" width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z" fill="currentColor"></path>
+                                            <path d="M15.7101 15.93C15.5801 15.93 15.4501 15.9 15.3301 15.82L12.2301 13.97C11.4601 13.51 10.8901 12.5 10.8901 11.61V7.51001C10.8901 7.10001 11.2301 6.76001 11.6401 6.76001C12.0501 6.76001 12.3901 7.10001 12.3901 7.51001V11.61C12.3901 11.97 12.6901 12.5 13.0001 12.68L16.1001 14.53C16.4601 14.74 16.5701 15.2 16.3601 15.56C16.2101 15.8 15.9601 15.93 15.7101 15.93Z" fill="currentColor"></path>
+                                        </svg> <span>14
+									hrs,
+									36
+									mins left today.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am_flex8">
+                                <div class="am-select-wrap to-extend">
+                                    <input data-date-end-date="0d" name="date_from" type="text" value="" class="am-input datepicker" id="datepicker_from" placeholder="Start Date">
+                                </div>
+                                <div class="am-select-wrap to-extend">
+                                    <input data-date-end-date="0d" name="date" type="text" value="01/01/2024" class="am-input datepicker" id="datepicker" placeholder="End Date">
+                                </div>
+                                <div class="am-select-wrap to-extend">
+                                    <select class="am-select" id="mfg" name="mfg">
+                                        <option value="">Unselected</option>
+                                        <option value="veda">Veda</option>
+                                        <option value="gs">Gs</option>
+                                        <option value="premier">Premier</option>
+                                        <option value="in-house">In-house</option>
+                                        <option value="shipped">Shipped</option>
+                                        <option value="americas-gold">Americas-gold</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #endregion -->
+
+
+                <!-- #region Content : Main -->
+                <div class="am-main__flow">
+                    <div class="am-container">
+                        <div class="am-main__content">
+                            <div class="am__dbl-wrap">
+                                <div class="am-main__orders">
+                                    <div class="am-content-divider">
+                                        Orders total<span></span>
+                                    </div>
+
+                                    <div class="am-item am-item_abandoned">
+
+
+                                        <div class="am-item__over">
+                                            <div>
+                                                <span>Cart #1378472</span>
+                                                <span>Mattymarlow8@gmail.com</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="am-item__body">
+                                            <div class="am-item__row">
+
+                                                <!-- #region ITEM : TOP -->
+                                                <div class="am-item__main">
+
+                                                    <div class="am-item__pic-wrap">
+                                                        <img src="./assets/item-sample.webp" loading="eager" alt="">
+                                                        <button class="am-zoom-btn"></button>
+                                                    </div>
+
+                                                    <div class="am-item__main-details">
+                                                        <h4 class="am-item__title">
+                                                            <a href="#" target="_blank">Flower Diamond Ring 14k Solid Gold 0.50ctw</a>
+                                                        </h4>
+                                                        <div class="am-item__options">
+                                                            <div>QTY:
+                                                                <span>1</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="am-item__options">
+                                                            <div>GC:
+                                                                <span>Yellow</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="am-item__options">
+                                                            <div>Length:
+                                                                <span>8.5</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- #endregion ITEM : TOP -->
+
+                                                <div class="am-item__space-row">
+
+                                                    <div class="am-item__details">
+                                                        <div class="am-item__details-row">
+                                                            <span class="am-item__color-tag">In Stock - Ships Today!</span>
+                                                        </div>
+                                                        <div class="am-item__details-row to_space">
+                                                            <div class="flex-row_8">
+                                                                <span class="am-item__tag">01/06/2024 12:04 AM</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="am-item__price-wrap">
+                                                        <div class="am-item__price">
+                                                            <span class="off-price">30% OFF</span>
+                                                            $1,650.00
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="am-item__row">
+
+                                                <!-- #region ITEM : TOP -->
+                                                <div class="am-item__main">
+
+                                                    <div class="am-item__pic-wrap">
+                                                        <img src="./assets/item-sample.webp" loading="eager" alt="">
+                                                        <button class="am-zoom-btn"></button>
+                                                    </div>
+
+                                                    <div class="am-item__main-details">
+                                                        <h4 class="am-item__title">
+                                                            <a href="#" target="_blank">Flower Diamond Ring 14k Solid Gold 0.50ctw</a>
+                                                        </h4>
+                                                        <div class="am-item__options">
+                                                            <div>QTY:
+                                                                <span>1</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="am-item__options">
+                                                            <div>GC:
+                                                                <span>Yellow</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="am-item__options">
+                                                            <div>Length:
+                                                                <span>8.5</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- #endregion ITEM : TOP -->
+
+                                                <div class="am-item__space-row">
+
+                                                    <div class="am-item__details">
+                                                        <div class="am-item__details-row">
+                                                            <span class="am-item__color-tag">In Stock - Ships Today!</span>
+                                                        </div>
+                                                        <div class="am-item__details-row to_space">
+                                                            <div class="flex-row_8">
+                                                                <span class="am-item__tag">01/06/2024 12:04 AM</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="am-item__price-wrap">
+                                                        <div class="am-item__price">
+                                                            <span class="off-price">30% OFF</span>
+                                                            $1,650.00
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="am-item__details-row --abandoned">
+
+                                                <div class="am-item__abandoned-footer">
+                                                    <div class="am-item__space-row">
+                                                        <div class="am_flex8">
+                                                            <div class="am-select-wrap">
+                                                                <select class="am-select" id="cart_status_1378472" onchange="updateAbandonedCartStatus(1378472)">
+                                                                    <option value="">Status</option>
+                                                                    <option value="9">Pendants</option>
+                                                                    <option value="23">Gold Chains</option>
+                                                                    <option value="8">Earrings</option>
+                                                                    <option value="4">Necklaces</option>
+                                                                    <option value="5">Rings</option>
+                                                                    <option value="7">Bracelets</option>
+                                                                    <option value="10">Watches</option>
+                                                                    <option value="15">Accessories</option>
+                                                                    <option value="19">Custom</option>
+                                                                    <option value="25">Watch Market</option>
+                                                                    <option value="26">Travel Cases</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="am-select-wrap">
+                                                                <select class="am-select" id="cart_tmp_discount1378472" onchange="updateAbandonedCartDiscoun(1378472)">
+                                                                    <option value="">Discount %</option>
+                                                                    <option selected="" value="0">0%</option>
+                                                                    <option value="10">10%</option>
+                                                                    <option value="20">20%</option>
+                                                                    <option value="30">30%</option>
+                                                                    <option value="40">40%</option>
+                                                                    <option value="50">50%</option>
+                                                                </select>
+                                                            </div>
+                                                            <button class="am-item__btn is-green" onclick="sendKlaviyoEmail(1378472)" id="send_klaviyo_btn_1378472">Send Email</button>
+                                                        </div>
+                                                        <div class="am-item__price">$3,758.00</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="am-item__note-wrap">
+                                                    <div class="am-item__note-form">
+                                                        <input class="am-note-input" autocomplete="off" placeholder="New note here..." type="text" id="new_note_">
+                                                        <button data-am-evt="submitNote" onclick="addNotes()">Add</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="am-box">
+                                        <div class="am-box__stat-row">
+                                            <span>Total Value</span>
+                                            <span>$ 3,758,529.00</span>
+                                        </div>
+                                        <div class="am-box__stat-row">
+                                            <span>Abandoned Carts</span>
+                                            <span>1</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="am-today__side">
+                                    <div class="am-side-box">
+                                        <div class="am-side-box__row">
+                                            <div class="am-side-box__stat">
+                                                <div class="am-side-box__icon">
+                                                    <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M13 11.9H7C6.59 11.9 6.25 11.56 6.25 11.15C6.25 10.74 6.59 10.4 7 10.4H13C13.41 10.4 13.75 10.74 13.75 11.15C13.75 11.56 13.41 11.9 13 11.9Z" fill="currentColor"></path>
+                                                        <path d="M2 11.9001C1.59 11.9001 1.25 11.5601 1.25 11.1501V6.53009C1.25 4.08009 3.24 2.09009 5.69 2.09009H11.31C13.88 2.09009 15.75 3.80009 15.75 6.15009C15.75 6.56009 15.41 6.90009 15 6.90009C14.59 6.90009 14.25 6.56009 14.25 6.15009C14.25 4.39009 12.72 3.59009 11.31 3.59009H5.69C4.07 3.59009 2.75 4.91009 2.75 6.53009V11.1501C2.75 11.5701 2.41 11.9001 2 11.9001Z" fill="currentColor"></path>
+                                                        <path d="M16 21.9H6C3.38 21.9 1.25 19.77 1.25 17.15V10.15C1.25 7.53002 3.38 5.40002 6 5.40002H16C18.62 5.40002 20.75 7.53002 20.75 10.15V11.6C20.75 12.01 20.41 12.35 20 12.35H18.92C18.57 12.35 18.25 12.48 18.02 12.72L18.01 12.73C17.68 13.06 17.55 13.52 17.67 13.97C17.82 14.53 18.41 14.94 19.07 14.94H20C20.41 14.94 20.75 15.28 20.75 15.69V17.14C20.75 19.77 18.62 21.9 16 21.9ZM6 6.90002C4.21 6.90002 2.75 8.36002 2.75 10.15V17.15C2.75 18.94 4.21 20.4 6 20.4H16C17.79 20.4 19.25 18.94 19.25 17.15V16.45H19.07C17.72 16.45 16.55 15.6 16.22 14.37C15.96 13.4 16.24 12.37 16.95 11.67C17.47 11.14 18.17 10.85 18.92 10.85H19.25V10.15C19.25 8.36002 17.79 6.90002 16 6.90002H6Z" fill="currentColor"></path>
+                                                        <path d="M20.9699 16.45H19.0399C17.5299 16.45 16.2499 15.33 16.1299 13.89C16.0499 13.06 16.3499 12.25 16.9499 11.66C17.4499 11.14 18.1599 10.85 18.9099 10.85H20.9599C21.9399 10.85 22.7399 11.64 22.7399 12.62V14.68C22.7499 15.66 21.9499 16.45 20.9699 16.45ZM18.9199 12.35C18.5699 12.35 18.2499 12.48 18.0199 12.72C17.7299 13 17.5899 13.38 17.6299 13.76C17.6799 14.42 18.3199 14.95 19.0399 14.95H20.9699C21.1199 14.95 21.2499 14.83 21.2499 14.68V12.62C21.2499 12.47 21.1199 12.35 20.9699 12.35H18.9199Z" fill="currentColor"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="stat-content">
+                                                    <span class="am-side-box__title">Total Value</span>
+                                                    <span class="am-side-box__typo is-green">$ 3,758,529.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="am-side-box__row">
+                                            <div class="am-side-box__stat">
+                                                <div class="am-side-box__icon">
+                                                    <svg width="18" height="18" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M16.4899 22.75H7.49993C5.77993 22.75 4.48994 22.29 3.68994 21.38C2.88994 20.47 2.57993 19.15 2.78993 17.44L3.68994 9.94C3.94994 7.73 4.50994 5.75 8.40994 5.75H15.6099C19.4999 5.75 20.0599 7.73 20.3299 9.94L21.2299 17.44C21.4299 19.15 21.1299 20.48 20.3299 21.38C19.4999 22.29 18.2199 22.75 16.4899 22.75ZM8.39993 7.25C5.51993 7.25 5.37993 8.38999 5.16993 10.11L4.26994 17.61C4.11994 18.88 4.29993 19.81 4.80993 20.38C5.31993 20.95 6.21993 21.24 7.49993 21.24H16.4899C17.7699 21.24 18.6699 20.95 19.1799 20.38C19.6899 19.81 19.8699 18.88 19.7199 17.61L18.8199 10.11C18.6099 8.37999 18.4799 7.25 15.5899 7.25H8.39993Z" fill="currentColor"></path>
+                                                        <path d="M16 8.75C15.59 8.75 15.25 8.41 15.25 8V4.5C15.25 3.42 14.58 2.75 13.5 2.75H10.5C9.42 2.75 8.75 3.42 8.75 4.5V8C8.75 8.41 8.41 8.75 8 8.75C7.59 8.75 7.25 8.41 7.25 8V4.5C7.25 2.59 8.59 1.25 10.5 1.25H13.5C15.41 1.25 16.75 2.59 16.75 4.5V8C16.75 8.41 16.41 8.75 16 8.75Z" fill="currentColor"></path>
+                                                        <path d="M20.41 17.78H8C7.59 17.78 7.25 17.44 7.25 17.03C7.25 16.62 7.59 16.28 8 16.28H20.41C20.82 16.28 21.16 16.62 21.16 17.03C21.16 17.44 20.82 17.78 20.41 17.78Z" fill="currentColor"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="stat-content">
+                                                    <span class="am-side-box__title">Total Carts</span>
+                                                    <span class="am-side-box__typo">1 Abandoned Carts</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #endregion -->
+
+            </div>
+        </div>
+    </main>
+
+    <aside class="am-sidebar">
+        <div class="am-sidebar__wrapper">
+            <div class="am-sidebar__content">
+                <div class="am-sidebar__main">
+                    <div class="am-sidebar__nav">
+
+
+
+
+                        <h4 class="am-sidebar__group-title">Navigation</h4>
+                        <div class="am-sidebar__nav-list">
+                            <a href="#" class="am-sidebar__link is-active">
+                                <div>
+                                    <span>
+																						<span>All Orders</span>
+                                    <span class="link-count">12</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="#" class="am-sidebar__link">
+                                <div>
+                                    <span>
+																						<span>Refunded</span>
+                                    <span class="link-count">1</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="#" class="am-sidebar__link">
+                                <div>
+                                    <span>
+																						<span>Shipped</span>
+                                    <span class="link-count">6</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="#" class="am-sidebar__link">
+                                <div>
+                                    <span>
+																						<span>Unshipped</span>
+                                    <span class="link-count">23</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="#" class="am-sidebar__link">
+                                <div>
+                                    <span>
+																						<span>Pending</span>
+                                    <span class="link-count">98</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="#" class="am-sidebar__link">
+                                <div>
+                                    <span>
+																						<span>Tracking Added</span>
+                                    <span class="link-count">17</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="#" class="am-sidebar__link">
+                                <div>
+                                    <span>
+																						<span>Pending Wire-Transfer</span>
+                                    <span class="link-count">14</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="#" class="am-sidebar__link">
+                                <div>
+                                    <span>
+																						<span>Abandoned Carts</span>
+                                    <span class="link-count">12</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="#" class="am-sidebar__link">
+                                <div>
+                                    <span>
+																						<span>Declined</span>
+                                    <span class="link-count">7</span>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+
+
+                <div class="am-sidebar__footer">
+                    <span class="am-profile-short"></span>
+                    <span class="am-profile-name"><span></span>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+        <button data-am-evt="toggleSidebar" class="am-header__nav-btn">
+            <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M3 1.25C2.0335 1.25 1.25 2.0335 1.25 3V21C1.25 21.9665 2.0335 22.75 3 22.75H6.55556C7.52205 22.75 8.30556 21.9665 8.30556 21V3C8.30556 2.0335 7.52205 1.25 6.55556 1.25H3ZM2.75 3C2.75 2.86193 2.86193 2.75 3 2.75H6.55556C6.69363 2.75 6.80556 2.86193 6.80556 3V21C6.80556 21.1381 6.69363 21.25 6.55556 21.25H3C2.86193 21.25 2.75 21.1381 2.75 21V3ZM9.77777 1.25C9.36356 1.25 9.02777 1.58579 9.02777 2C9.02777 2.41421 9.36356 2.75 9.77777 2.75H21C21.1381 2.75 21.25 2.86193 21.25 3V21C21.25 21.1381 21.1381 21.25 21 21.25H9.77777C9.36356 21.25 9.02777 21.5858 9.02777 22C9.02777 22.4142 9.36356 22.75 9.77777 22.75H21C21.9665 22.75 22.75 21.9665 22.75 21V3C22.75 2.0335 21.9665 1.25 21 1.25H9.77777Z" fill="currentColor"></path>
+            </svg> </button>
+    </aside>
+    <script src="./js/partial-min.js"></script>
+
+
+    <div class="am-backdrop"></div>
+</body>
+
+</html>

@@ -1,5 +1,4 @@
-<div
-	class="checkout-flow">
+<div class="checkout-flow">
 
 	{# Contact Details #}
 	<div class="checkout-step">
@@ -9,20 +8,22 @@
 			</div>
 			<div class="checkout-step__body">
 				<div class="checkout-step__flow">
-					<div
-						class="checkout-step__input-grid">
+					<div class="checkout-step__input-grid">
 
 						{# Email #}
 						<div class="checkout-form__input-wrap">
 							<label for="email" class="checkout-form__input-label">Email Address</label>
-							<input type="email" class="checkout-form__input" id="email" name="email" required="" value="{% if user %}{{ user.email }} {% else %} {{ cart.user_data.email }} {% endif %}" placeholder="Your email">
+							<input type="email" class="checkout-form__input" id="email" name="email" required=""
+								value="{% if user %}{{ user.email }} {% else %} {{ cart.user_data.email }} {% endif %}"
+								placeholder="Your email">
 							<span id="checkoutEmailError" class="checkout-form__err-msg">Error Message</span>
 						</div>
 
 						{# Phone Number #}
 						<div class="checkout-form__input-wrap">
 							<label for="phone" class="checkout-form__input-label">Phone Number</label>
-							<input data-input="tel" type="tel" id="phone" name="phone" class="checkout-form__input tel-input" required value="{{ user.phone }}">
+							<input data-input="tel" type="tel" id="phone" name="phone" class="checkout-form__input tel-input" required
+								value="{{ user.phone }}">
 							<span id="checkoutTelError" class="checkout-form__err-msg">Error Message</span>
 						</div>
 
@@ -31,14 +32,16 @@
 							<label for="instagramField" class="checkout-form__input-label">Instagram
 								<span>Optional</span>
 							</label>
-							<input type="text" class="checkout-form__input" name="instagram" id="instagramField" placeholder="@account">
+							<input type="text" class="checkout-form__input" name="instagram" id="instagramField"
+								placeholder="@account">
 						</div>
 
 					</div>
 				</div>
-				<span class="checkout-step__disclaimer">
-					We prioritize your privacy and ensure that your personal information remains confidential. Our systems are designed with advanced security measures to protect your data from unauthorized access.
-				</span>
+				{# <span class="checkout-step__disclaimer">
+					We prioritize your privacy and ensure that your personal information remains confidential. Our systems are
+					designed with advanced security measures to protect your data from unauthorized access.
+				</span> #}
 			</div>
 		</div>
 	</div>
@@ -52,34 +55,37 @@
 			</div>
 			<div class="checkout-step__body">
 				<div class="checkout-step__flow">
-					<div
-						class="checkout-step__input-grid">
+					<div class="checkout-step__input-grid">
 
 						{# First Name #}
 						<div class="checkout-form__input-wrap">
 							<label for="firstName" class="checkout-form__input-label">Name</label>
-							<input type="text" class="checkout-form__input" name="first_name" id="firstName" pattern="[a-zA-Z][a-zA-Z\s]*" required="" value="{{ user.first_name }}" placeholder="Your First Name">
+							<input type="text" class="checkout-form__input" name="first_name" id="firstName"
+								pattern="[a-zA-Z][a-zA-Z\s]*" required="" value="{{ user.first_name }}" placeholder="Your First Name">
 							<span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
 						</div>
 
 						{# Last Name #}
 						<div class="checkout-form__input-wrap">
 							<label for="lastName" class="checkout-form__input-label">Last Name</label>
-							<input type="text" class="checkout-form__input" name="last_name" id="lastName" pattern="[a-zA-Z][a-zA-Z\s]*" required="" value="{{ user.last_name }}" placeholder="Your Last Name">
+							<input type="text" class="checkout-form__input" name="last_name" id="lastName"
+								pattern="[a-zA-Z][a-zA-Z\s]*" required="" value="{{ user.last_name }}" placeholder="Your Last Name">
 							<span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
 						</div>
 
 						{# Address #}
 						<div class="checkout-form__input-wrap">
 							<label for="address" class="checkout-form__input-label">Address</label>
-							<input type="text" class="checkout-form__input pac-target-input" name="address" id="address" required="" value="{{ user.shipping_address.address1 }}" placeholder="Enter a location" autocomplete="off">
+							<input type="text" class="checkout-form__input pac-target-input" name="address" id="address" required=""
+								value="{{ user.shipping_address.address1 }}" placeholder="Enter a location" autocomplete="off">
 							<span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
 						</div>
 
 						{# Address 2 #}
 						<div class="checkout-form__input-wrap">
 							<label for="address2" class="checkout-form__input-label">Apartment, suite, etc</label>
-							<input type="text" class="checkout-form__input" name="address2" value="{{ user.shipping_address.address2 }}" id="addressDetails">
+							<input type="text" class="checkout-form__input" name="address2"
+								value="{{ user.shipping_address.address2 }}" id="addressDetails">
 							<span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
 						</div>
 
@@ -87,7 +93,8 @@
 						<div class="checkout-form__input-wrap">
 							<label for="country" class="checkout-form__input-label">Country</label>
 							<div class="checkout-form__select-wrap">
-								<select name="country" id="country" class="checkout-form__input  crs-country" data-default-value="United States" data-region-id="state" onchange="CheckDestination();" required="">
+								<select name="country" id="country" class="checkout-form__input  crs-country"
+									data-default-value="United States" data-region-id="state" onchange="CheckDestination();" required="">
 									<option value="">Select country</option>
 								</select>
 								<span class="checkout-form__select-icon"></span>
@@ -99,7 +106,8 @@
 						<div class="checkout-form__input-wrap">
 							<label for="state" class="checkout-form__input-label">State</label>
 							<div class="checkout-form__select-wrap">
-								<select name="state" id="state" class="checkout-form__input to-select" data-default-option="Select State" required=""></select>
+								<select name="state" id="state" class="checkout-form__input to-select"
+									data-default-option="Select State" required=""></select>
 								<span class="checkout-form__select-icon"></span>
 							</div>
 							<span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
@@ -108,14 +116,16 @@
 						{# City #}
 						<div class="checkout-form__input-wrap">
 							<label for="city" class="checkout-form__input-label">City</label>
-							<input type="text" class="checkout-form__input" id="city" name="city" value="{{ user.shipping_address.city }}" value="Atlanta" required="">
+							<input type="text" class="checkout-form__input" id="city" name="city"
+								value="{{ user.shipping_address.city }}" value="Atlanta" required="">
 							<span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
 						</div>
 
 						{# Zip Code #}
 						<div class="checkout-form__input-wrap">
 							<label for="postalCode" class="checkout-form__input-label">Zip Code</label>
-							<input type="text" class="checkout-form__input pac-target-input" value="{{ user.shipping_address.zip_code }}" name="zip" id="postalCode" required="" autocomplete="off">
+							<input type="number" pattern="[0-9]*" inputmode="numeric" class="checkout-form__input pac-target-input"
+								value="{{ user.shipping_address.zip_code }}" name="zip" id="postalCode" required="" autocomplete="off">
 							<span class="checkout-form__err-msg">Something Went Wrong. Try Again</span>
 						</div>
 
@@ -125,5 +135,5 @@
 		</div>
 	</div>
 	{# -- END : Delivery Address #}
-	
+
 </div>
