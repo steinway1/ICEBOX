@@ -222,6 +222,55 @@ class SellPageBook {
   }
 }
 
+class SellPageMenu {
+  constructor() {
+    this.active = false;
+    this.rootEl = document.querySelector(".sell-menu");
+    this.toggleArr = [
+      ...document.querySelectorAll(".sell-menu-btn"),
+      ...document.querySelectorAll(".sell-menu"),
+    ];
+    this.init();
+  }
+  init() {
+    this.#bindEvents();
+  }
+  #bindEvents() {
+    if (!this.toggleArr) return;
+
+    this.toggleArr.forEach((el) => {
+      el.addEventListener("click", () => {
+        this.toggle();
+      });
+    });
+  }
+
+  // Methods
+  toggle() {
+    if (this.active) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
+  open() {
+    lockScroll();
+    this.active = true;
+    this.rootEl.style.display = "block";
+    requestAnimationFrame(() => {
+      this.rootEl.classList.remove("is-hidden");
+    });
+  }
+  close() {
+    unlockScroll();
+    this.active = false;
+    this.rootEl.classList.add("is-hidden");
+    setTimeout(() => {
+      this.rootEl.style.display = "none";
+    }, 500);
+  }
+}
+
 class SellPage {
   constructor(root) {
     this.rootEl = root;
@@ -233,6 +282,7 @@ class SellPage {
     this.init();
     this.gsap = new SellPageGsap();
     this.book = new SellPageBook();
+    this.menu = new SellPageMenu();
   }
   async init() {
     this.#bindEvents();
