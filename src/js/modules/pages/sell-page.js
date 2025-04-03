@@ -152,7 +152,7 @@ class SellPageBook {
   // Submit Form
   async submitForm() {
     const formData = new FormData(this.form);
-    const data = Object.fromEntries(formData);
+    const d = Object.fromEntries(formData);
 
     try {
       this.appendLoader();
@@ -162,17 +162,22 @@ class SellPageBook {
        */
       const res = await (() => {
         return new Promise((resolve) => {
-          setTimeout(() => {
-            resolve({ ok: false });
-          }, 3500);
+          $.ajax({
+            url:'/json/book-appointment',
+            type:'POST',
+            data:d,
+            dataType:'json',
+            success:function(response){
+              resolve(response);
+            }
+          })
         });
       })();
 
-      if (!res.ok) {
+      if (res.error) {
         this.appendResult(false);
         throw new Error("Form submission failed");
       }
-
       this.appendResult(true);
     } catch (err) {
       console.error(err);
