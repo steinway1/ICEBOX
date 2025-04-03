@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{% include 'general/head_launch.twig' %}
+	{{ block('include_head') }}
+</head>
+
+
+<body class="{% if bodyClass is defined %} {{bodyClass}}{% endif %}">
+
+	<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}>
+		{% block content %}{% endblock %}
+	</main>
+	
+	{% include 'general/script_launch.twig' %}
+	{{ block('include_script') }}
+</body>
+
+</html>

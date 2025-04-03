@@ -1,0 +1,12 @@
+{% set items_arr = launch_items %}
+
+<div id="launchCards" class="launch__cards">
+	{% for i in 0..2 %}
+	<div class="lauch__cards-grid">
+		{% for item in launch_items|slice(0, 6) %}
+		{% include "ui/card.twig" with { item: item } %}
+		{% endfor %}
+	</div>
+	{% endfor %}
+	<button class="launch__load-more-btn">Load More</button>
+</div>

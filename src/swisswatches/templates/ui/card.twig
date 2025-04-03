@@ -1,0 +1,58 @@
+<div class="card{%if extraClass %} {{ extraClass }}{% endif %}">
+	<div class="card__wrapper">
+		<div class="card__top">
+
+			{# Over top #}
+			<div class="card__over-top">
+				{% if item.available == true %}
+				<div class="card__labels">
+					<span class="card__label">Available</span>
+				</div>
+				{% endif %}
+				<button class="card__fav-btn"></button>
+			</div>
+
+			{# Media #}
+			<div class="card__media">
+				<a href="{{ item.link }}">
+					<img alt="{{ item.title }}" src="{{ item.image }}" loading="lazy" class="card__pic">
+				</a>
+			</div>
+
+			{# Info tags #}
+			{% if item.material or item.size %}
+			<div class="card__info-tags">
+				{% if item.material %}
+				<span class="card__info-tag">
+					{% include "ui/icons/layers.svg" %}
+					<span>{{ item.material }}</span>
+				</span>
+				{% endif %}
+				{% if item.size %}
+				<span class="card__info-tag">
+					{% include "ui/icons/diameter.svg" %}
+					<span>{{ item.size }}</span>
+				</span>
+				{% endif %}
+			</div>
+			{% endif %}
+		</div>
+		<div class="card__main">
+			<div class="card__content">
+				<h4 class="card__title"><a href="{{ item.link }}">{{ item.title }}</a></h4>
+				<p class="card__subtitle">{{ item.model }}</p>
+			</div>
+			<div class="card_bottom">
+				<div class="card__price-row">
+					{% if item.sale_price %}
+					<div class="card__sale-price">
+						<span>{{ item.price }}</span>
+						<span>{{ item.sale_percentage }}</span>
+					</div>
+					{% endif %}
+					<span class="card__price">{{ item.sale_price ?: item.price }}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
