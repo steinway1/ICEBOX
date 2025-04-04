@@ -2,8 +2,6 @@ const gulp = require("gulp");
 
 require("./gulp/dev.js");
 require("./gulp/dist.js");
-require("./gulp/sw.js");
-require("./gulp/sw-dist.js");
 
 gulp.task(
   "default",
@@ -51,28 +49,6 @@ gulp.task(
       "js-admin:build",
       "fonts-admin:build",
       "assets-admin:build"
-    )
-  )
-);
-
-gulp.task(
-  "sw",
-  gulp.series(
-    "sw-clean:dev",
-    gulp.parallel("sw-twig:dev", "sw-css:dev", "sw-js:dev", "sw-fonts:dev"),
-    gulp.parallel("sw-watch:dev")
-  )
-);
-
-gulp.task(
-  "sw-build",
-  gulp.series(
-    "sw-clean:build",
-    gulp.parallel(
-      "sw-twig:build",
-      "sw-css:build",
-      "sw-js:build",
-      "sw-fonts:build"
     )
   )
 );
