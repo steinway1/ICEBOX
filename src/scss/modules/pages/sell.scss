@@ -2509,3 +2509,137 @@ p.sell__why-list-typo {
 .sell-menu.is-hidden .sell-menu__sublink {
   opacity: 0;
 }
+
+.sell__call-btn {
+  z-index: 20;
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
+  color: #fff;
+  background-color: #181e22;
+  border: 1px solid #60666b;
+  border-radius: 50rem;
+  min-width: 52px;
+  height: 56px;
+  padding: 1px;
+  display: flex;
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  box-shadow: 0 10px 28px #4e525c26, 0 0 0 2px #b4b4b41a;
+}
+
+.sell__call-btn-box {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  cursor: pointer;
+  background-color: #07927b;
+  background-image: none;
+  border-radius: 50rem;
+  justify-content: center;
+  align-items: stretch;
+  padding: 6px 20px 6px 6px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.25s;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 2px #12b499;
+}
+
+.sell__call-btn-box:hover {
+  background-color: #12b499;
+  box-shadow: inset 0 0 0 2px #07927b;
+
+  .sell__call-btn-icon {
+    background-color: #07927b;
+  }
+}
+
+.sell__call-btn-icon {
+  aspect-ratio: 1;
+  background-color: #12b499;
+  border-radius: 50rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  transition: all 0.25s;
+  animation: sell__call-btn-icon 1.5s cubic-bezier(0.39, 0.575, 0.565, 1)
+    infinite;
+  transform-origin: center center;
+}
+
+@keyframes sell__call-btn-icon {
+  0% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(-7deg);
+  }
+  30% {
+    transform: rotate(7deg);
+  }
+  45% {
+    transform: rotate(-7deg);
+  }
+  60% {
+    transform: rotate(7deg);
+  }
+  75% {
+    transform: rotate(-7deg);
+  }
+  85% {
+    transform: rotate(7deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.sell__call-btn-typo {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.sell__call-btn-blink {
+  opacity: 0.3;
+  filter: blur(8px);
+  transform-origin: 50%;
+  background-color: #fff;
+  width: 20px;
+  height: 120px;
+  transition: all 0.5s;
+  position: absolute;
+  top: 50%;
+  transform: skew(30deg) translate(-70px, -50%);
+}
+
+@media screen and (max-width: 479px) {
+  .sell__call-btn {
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+.sell__call-btn-blink {
+  animation: sell__call-btn-blink 4s infinite;
+}
+
+@keyframes sell__call-btn-blink {
+  0% {
+    transform: skew(30deg) translate(-70px, -50%);
+  }
+  25% {
+    transform: skew(30deg) translate(140px, -50%);
+  }
+  50% {
+    transform: skew(30deg) translate(140px, -50%);
+  }
+  75% {
+    transform: skew(30deg) translate(-70px, -50%);
+  }
+  100% {
+    transform: skew(30deg) translate(-70px, -50%);
+  }
+}

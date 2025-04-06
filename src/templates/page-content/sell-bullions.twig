@@ -4,13 +4,13 @@
 	{% include "components/sell/welcome-header.twig" %}
 
 	{# Welcome Media #}
-	{% include "components/sell/welcome-media.twig" with { src: 'banner_bullions.avif', alt: 'Sell your bullions for cash
+	{% include "components/sell/welcome-media.twig" with { src: 'banner_bullions.avif', alt: 'Sell your bullion for cash
 	in Atlanta, GA' } %}
 
 	{# Welcome Content #}
 	<div class="sell-welcome__content">
 		<div>
-			{% include "components/sell/perks.twig" %}
+			{% include "components/sell/perks.twig" with { type: 'bullion' } %}
 			{% include "components/sell/welcome-text.twig" with {
 			heading: 'Sell Your <span class="sell-gold-color">Gold Bullion, Coins, and Bars</span> in Atlanta',
 			subheading: 'If you\'re searching for
@@ -24,7 +24,7 @@
 
 {# Welcome Perks for Mobile #}
 <div class="sell__mob-welcome-perks">
-	{% include "components/sell/perks.twig" with { class: 'for_mobile' } %}
+	{% include "components/sell/perks.twig" with { type: 'bullion', class: 'for_mobile' } %}
 </div>
 
 {# Section #1 #}
@@ -49,30 +49,33 @@
 			<div class="sell__pic-cards-card">
 				<div class="sell-hor-card">
 					<div class="sell-hor-card__pic-wrap">
-						<img alt="Gold bullion bar" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_png1.avif" loading="lazy" class="ratio-1" />
+						<img alt="Gold bullion bar" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_png1.avif" loading="lazy"
+							class="ratio-1" />
 					</div>
 					<div class="sell-hor-card__details">
-						<h6 class="sell-card__title">1.23 Carat Round Diamond</h6>
+						<h6 class="sell-card__title">1000 Gram Gold Bar</h6>
 						<h6 class="sell-card__title">
-							Sold for <span>$886</span>
+							Sold for <span>$95.000</span>
 						</h6>
-						<span class="sell-card__sub-typo">VG Cut, VS1, D color </span>
+						<span class="sell-card__sub-typo">Sealed Bullion</span>
 					</div>
 				</div>
 				<div class="sell-hor-card move_2">
 					<div class="sell-hor-card__pic-wrap">
-						<img alt="Gold coin collection" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_png2.webp" loading="lazy" class="ratio-1" />
+						<img alt="Gold coin collection" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_png2.webp" loading="lazy"
+							class="ratio-1" />
 					</div>
 					<div class="sell-hor-card__details">
-						<h6 class="sell-card__title">1.5 Carat Round Diamond </h6>
+						<h6 class="sell-card__title">1 Ounce Gold Liberty Coin</h6>
 						<h6 class="sell-card__title">
-							Sold for <span>$2,350</span>
+							Sold for <span>$2,900</span>
 						</h6>
-						<span class="sell-card__sub-typo">RC Cut, VS1, F color </span>
+						<span class="sell-card__sub-typo">Sealed Coin</span>
 					</div>
 				</div>
 			</div>
-			<img alt="Gold bullion display" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_1.avif" loading="lazy" class="sell__pic-box-img" />
+			<img alt="Gold bullion display" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_1.avif" loading="lazy"
+				class="sell__pic-box-img" />
 		</div>
 	</div>
 </div>
@@ -145,26 +148,28 @@
 
 		<div class="sell__types-grid">
 			<div data-ygsap class="sell-type">
-				<img alt="Gold bars of various weights" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-bars.avif" loading="lazy" class="sell-type__pic">
+				<img alt="Gold bars of various weights" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-bars.avif"
+					loading="lazy" class="sell-type__pic">
 				<button data-sell-appt="" class="sell-type__btn"><span>Gold Bars of various weights</span></button>
 			</div>
 			<div data-ygsap class="sell-type">
-				<img alt="Collectible gold coins" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-coins.webp" loading="lazy" class="sell-type__pic">
+				<img alt="Collectible gold coins" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-coins.webp" loading="lazy"
+					class="sell-type__pic">
 				<button data-sell-appt="" class="sell-type__btn"><span>Collectibe Gold Coins</span></button>
 			</div>
 			<div data-ygsap class="sell-type">
-				<img alt="Bullion exchanges display" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-exchange.webp" loading="lazy"
-					class="sell-type__pic">
+				<img alt="Bullion exchanges display" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-exchange.webp"
+					loading="lazy" class="sell-type__pic">
 				<button data-sell-appt="" class="sell-type__btn"><span>Bullion Exchanges</span></button>
 			</div>
 			<div data-ygsap class="sell-type">
-				<img alt="Precious metal collections" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-collections.avif" loading="lazy"
-					class="sell-type__pic">
+				<img alt="Precious metal collections" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-collections.avif"
+					loading="lazy" class="sell-type__pic">
 				<button data-sell-appt="" class="sell-type__btn"><span>Precious Metal Collections</span></button>
 			</div>
 			<div data-ygsap class="sell-type">
-				<img alt="Historical gold pieces" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-historical.avif" loading="lazy"
-					class="sell-type__pic">
+				<img alt="Historical gold pieces" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_type-historical.avif"
+					loading="lazy" class="sell-type__pic">
 				<button data-sell-appt="" class="sell-type__btn"><span>Historical gold pieces</span></button>
 			</div>
 		</div>
@@ -291,7 +296,8 @@ description: "
 Turn your gold into cash with Icebox – Atlanta's trusted gold and bullion buyer!
 <br>
 <br>
-Visit our Atlanta location at <strong><a href='https://maps.app.goo.gl/3255PeachtreeRdNE' class='underline'>3255
+Visit our Atlanta location at <strong><a target='_blank' href='https://maps.app.goo.gl/sFFNFXppH6MXaWDz7'
+		class='underline'>3255
 		Peachtree Rd
 		NE</a></strong> or start your online evaluation now.
 "

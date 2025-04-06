@@ -10,7 +10,7 @@
 	{# Welcome Content #}
 	<div class="sell-welcome__content">
 		<div>
-			{% include "components/sell/perks.twig" %}
+			{% include "components/sell/perks.twig" with { type: 'diamonds' } %}
 
 			{% include "components/sell/welcome-text.twig" with {
 			heading: 'Sell Your <span class="sell-gold-color">Diamonds</span> for Cash in Atlanta, GA',
@@ -24,7 +24,7 @@
 
 {# Welcome Perks for Mobile #}
 <div class="sell__mob-welcome-perks">
-	{% include "components/sell/perks.twig" with { class: 'for_mobile' } %}
+	{% include "components/sell/perks.twig" with { type: 'diamonds', class: 'for_mobile' } %}
 </div>
 
 
@@ -43,7 +43,7 @@
 				simple, transparent, and financially rewarding.
 			</p>
 			<button data-sell-appt class="sell-btn accent-2 --arrow">
-				<span>Sell Your Diamonds</span>
+				<span>Sell Diamonds</span>
 			</button>
 		</div>
 
@@ -76,7 +76,8 @@
 					</div>
 				</div>
 			</div>
-			<img alt="Diamond showcase at Icebox Atlanta" src="{{ THEME_ASSETS_FOLDER }}sell/diamonds_1.avif" loading="lazy" class="sell__pic-box-img" />
+			<img alt="Diamond showcase at Icebox Atlanta" src="{{ THEME_ASSETS_FOLDER }}sell/diamonds_1.avif" loading="lazy"
+				class="sell__pic-box-img" />
 		</div>
 	</div>
 </div>
@@ -125,8 +126,11 @@
 			</div>
 		</div>
 
-		<div data-ygsap class="col_24 --center">
+		<div data-ygsap class="row_8 --center">
 			<button data-sell-appt class="sell-btn --arrow accent-2"><span>Sell Your Diamonds</span></button>
+			<a href="tel:+14048420266" class="sell-btn stroke-black">
+				<span>Call Now</span>
+			</a>
 		</div>
 	</div>
 </div>
@@ -145,17 +149,18 @@
 
 		<div class="sell__types-grid">
 			<div data-ygsap class="sell-type">
-				<img alt="Diamond engagement rings" src="{{ THEME_ASSETS_FOLDER }}sell/diamonds_type-engagement.avif" loading="lazy"
-					class="sell-type__pic">
+				<img alt="Diamond engagement rings" src="{{ THEME_ASSETS_FOLDER }}sell/diamonds_type-engagement.avif"
+					loading="lazy" class="sell-type__pic">
 				<button data-sell-appt="" class="sell-type__btn"><span>Engagement Rings</span></button>
 			</div>
 			<div data-ygsap class="sell-type">
-				<img alt="Loose diamonds" src="{{ THEME_ASSETS_FOLDER }}sell/diamonds_type-loose.avif" loading="lazy" class="sell-type__pic">
+				<img alt="Loose diamonds" src="{{ THEME_ASSETS_FOLDER }}sell/diamonds_type-loose.avif" loading="lazy"
+					class="sell-type__pic">
 				<button data-sell-appt="" class="sell-type__btn"><span>Loose Diamonds</span></button>
 			</div>
 			<div data-ygsap class="sell-type">
-				<img alt="Diamond jewelry collection" src="{{ THEME_ASSETS_FOLDER }}sell/diamonds_type-jewelry.avif" loading="lazy"
-					class="sell-type__pic">
+				<img alt="Diamond jewelry collection" src="{{ THEME_ASSETS_FOLDER }}sell/diamonds_type-jewelry.avif"
+					loading="lazy" class="sell-type__pic">
 				<button data-sell-appt="" class="sell-type__btn"><span>Diamond Jewelry</span></button>
 			</div>
 			<div data-ygsap class="sell-type">
@@ -164,7 +169,8 @@
 				<button data-sell-appt="" class="sell-type__btn"><span>Vintage Diamonds</span></button>
 			</div>
 			<div data-ygsap class="sell-type">
-				<img alt="Estate diamond jewelry" src="{{ THEME_ASSETS_FOLDER }}sell/diamonds_type-estate.webp" loading="lazy" class="sell-type__pic">
+				<img alt="Estate diamond jewelry" src="{{ THEME_ASSETS_FOLDER }}sell/diamonds_type-estate.webp" loading="lazy"
+					class="sell-type__pic">
 				<button data-sell-appt="" class="sell-type__btn"><span>Estate Diamonds</span></button>
 			</div>
 			<div data-ygsap class="sell-type">
@@ -198,7 +204,7 @@
 				</h4>
 				<ul class="sell__how-list">
 					<li>Walk-ins are welcome! </li>
-					<li>Call now for immediate assistance </li>
+					<li><a class="underline" href="tel:+14048420266" target="_blank">Call now</a>for immediate assistance</li>
 					<li>Can't come right away? Schedule a convenient appointment </li>
 					<li>Walk-ins are always welcome </li>
 				</ul>
@@ -327,7 +333,8 @@ Located in the heart of Atlanta, Icebox has become the go-to destination for dia
 commitment to fair, transparent transactions sets us apart.
 <br>
 <br>
-Visit our Atlanta location at <strong><a href='https://maps.app.goo.gl/3255PeachtreeRdNE' class='underline'>3255
+Visit our Atlanta location at <strong><a target='_blank' href='https://maps.app.goo.gl/sFFNFXppH6MXaWDz7'
+		class='underline'>3255
 		Peachtree Rd
 		NE</a></strong> or start your online evaluation now.
 "
