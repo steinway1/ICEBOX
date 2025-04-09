@@ -1,0 +1,357 @@
+<div class="sell-welcome">
+	{# Welcome Header #}
+	{% include "components/sell/welcome-header.twig" %}
+	{# Welcome Media #}
+	{% include "components/sell/welcome-media.twig" with { src:
+	'banner_all.avif', alt: 'Sell your watches, diamonds, gold and more for cash in Atlanta, GA' }
+	%}
+	{# Welcome Content #}
+	<div class="sell-welcome__content">
+		<div>
+			{% include "components/sell/perks.twig" with { type: 'all' } %}
+			{%
+			include "components/sell/welcome-text.twig" with { heading: 'Sell Your
+			<span class="sell-gold-color">Jewelry, diamonds, watches, gold and more</span> for Cash in Atlanta!', subheading:
+			'If you\'re
+			looking to
+			<strong>sell your jewelry, diamonds, watches, gold and more in Atlanta</strong>, our service offers a
+			hassle-free experience to get the best cash offer for your items.' } %}
+		</div>
+	</div>
+</div>
+
+{# Welcome Perks for Mobile #}
+<div class="sell__mob-welcome-perks">
+	{% include "components/sell/perks.twig" with { type: 'all', class:
+	'for_mobile' } %}
+</div>
+
+{# Section #1 #}
+<div class="sell__section">
+	<div class="sell__side-container">
+		<div data-ygsap class="col_24 --start">
+			<h2>
+				Whether you're looking to sell jewelry, diamonds, gold, or luxury watches, we
+				provide a trusted and <span>secure service</span> to get you the best value
+				for your items.
+			</h2>
+			<p>Our team is dedicated to ensuring you receive <strong>the best offer for your items</strong>, making us the
+				top destination to sell your items in Atlanta.
+			</p>
+			<button data-sell-appt class="sell-btn accent-2 --arrow">
+				<span>Sell Your Items</span>
+			</button>
+		</div>
+
+		<div class="sell__pic-box">
+			<div class="sell__pic-cards-card">
+				<div class="sell-hor-card">
+					<div class="sell-hor-card__pic-wrap">
+						<img alt="Gold bullion bar" src="{{ THEME_ASSETS_FOLDER }}sell/bullions_png1.avif" loading="lazy"
+							class="ratio-1" />
+					</div>
+					<div class="sell-hor-card__details">
+						<h6 class="sell-card__title">1000 Gram Gold Bar</h6>
+						<h6 class="sell-card__title">
+							Sold for <span>$95.000</span>
+						</h6>
+						<span class="sell-card__sub-typo">Sealed Bullion</span>
+					</div>
+				</div>
+				<div data-ygsap class="sell-hor-card move_2">
+					<div class="sell-hor-card__pic-wrap">
+						<img alt="Rolex Oyster Perpetual Watch" src="{{ THEME_ASSETS_FOLDER }}sell/watches_png1.webp"
+							loading="lazy" />
+					</div>
+					<div class="sell-hor-card__details">
+						<div class="sell-card__rating">
+							<img loading="lazy" src="{{ THEME_ASSETS_FOLDER }}sell/rating.svg" alt="Rating Stars" />
+							<span>3.5/5 condition</span>
+						</div>
+						<h6 class="sell-card__title">Rolex Oyster Perpetual</h6>
+						<h6 class="sell-card__title">
+							Sold for <span>$7,550</span>
+						</h6>
+						<span class="sell-card__sub-typo">Bad condition</span>
+					</div>
+				</div>
+			</div>
+			<img data-ygsap alt="Luxury watches display" src="{{ THEME_ASSETS_FOLDER }}sell/watches_1.avif" loading="lazy"
+				class="sell__pic-box-img" />
+		</div>
+	</div>
+</div>
+
+{# Side form #}
+<div class="sell__section">
+
+	<div data-ygsap class="col_24 --center mw-600 mx-auto">
+		<h2>Best Place to <span>Sell Your Watches, Jewelry, Diamonds, Gold and More</span> in Atlanta</h2>
+		<p>
+			Icebox is your trusted local solution for selling your items in Atlanta. We specialize in providing
+			serious cash offers for your valuable items, ensuring you get the most competitive price in the
+			market.
+		</p>
+		<button data-sell-appt class="sell-btn --arrow accent-2"><span>Get Your Offer</span></button>
+	</div>
+</div>
+
+{# What We Buy #}
+<div id="what-we-buy" class="sell__section --grey">
+	<div class="sell__column-section">
+
+		<div data-ygsap class="col_24 --start mw-760">
+			<span class="sell__section-tag">WE BUY</span>
+			<h2>What <span>Items</span> Do We Buy?</h2>
+			<p>We're interested in purchasing a <strong>wide range of items</strong>, including luxury watches, jewelry in any
+				condition, diamonds, gold, silver, platinum, and more.</p>
+		</div>
+
+		<div class="sell__types-grid">
+			<div data-ygsap class="sell-type">
+				<img alt="Diamond luxury jewelry" src="{{ THEME_ASSETS_FOLDER }}sell/jewelry_pic1.jpg" loading="lazy"
+					class="sell-type__pic --right">
+				<button data-sell-appt="" class="sell-type__btn"><span>Sell Jewelry</span></button>
+			</div>
+			<div data-ygsap class="sell-type">
+				<img alt="Diamonds and jewelry" src="{{ THEME_ASSETS_FOLDER }}sell/diamonds-banner.webp" loading="lazy"
+					class="sell-type__pic --align">
+				<a href="/sell-diamonds" class="sell-type__btn"><span>Sell Diamonds</span></a>
+			</div>
+			<div data-ygsap class="sell-type">
+				<img alt="Luxury watches" src="{{ THEME_ASSETS_FOLDER }}sell/watches-banner.webp" loading="lazy"
+					class="sell-type__pic">
+				<a href="/sell-watches" class="sell-type__btn"><span>Sell Watches</span></a>
+			</div>
+			<div data-ygsap class="sell-type">
+				<img alt="Gold bullion" src="{{ THEME_ASSETS_FOLDER }}sell/banner_bullions.avif" loading="lazy"
+					class="sell-type__pic">
+				<a href="/sell-bullions" class="sell-type__btn"><span>Sell Gold / Bullions</span></a>
+			</div>
+			<div data-ygsap class="sell-type">
+				<img alt="Precious metals" src="{{ THEME_ASSETS_FOLDER }}sell/banner_metal.png" loading="lazy"
+					class="sell-type__pic">
+				<button data-sell-appt="" class="sell-type__btn"><span>Precisious Metals</span></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{# Section #2 -- Why Sell To Icebox #}
+<div id="why-us" class="sell__section">
+	<div class="sell__column-section">
+		<div data-ygsap class="col_24 --center">
+			<span class="sell__section-tag">Why Choose Icebox</span>
+			<h2>
+				Why Choose Icebox for
+				<br>
+				Selling<span> Luxury Items</span>?
+			</h2>
+			<p><strong>We turn your items into unforgettable opportunities.</strong></p>
+		</div>
+
+		<div class="sell__features-grid">
+			<div data-ygsap>
+				<div class="sell__fill-icon">
+					{% include "components/svg/geo.svg" %}
+				</div>
+				<p>Local Atlanta business with years of expertise</p>
+			</div>
+			<div data-ygsap>
+				<div class="sell__fill-icon">
+					{% include "components/svg/desktop-money.svg" %}
+				</div>
+				<p>Convenient online and in-store option</p>
+			</div>
+			<div data-ygsap>
+				<div class="sell__fill-icon">
+					{% include "components/svg/protect.svg" %}
+				</div>
+				<p>Secure and confidential transaction</p>
+			</div>
+			<div data-ygsap>
+				<div class="sell__fill-icon">
+					{% include "components/svg/wallet.svg" %}
+				</div>
+				<p>Immediate cash offers.</p>
+			</div>
+			<div data-ygsap>
+				<div class="sell__fill-icon">
+					{% include "components/svg/law.svg" %}
+				</div>
+				<p>No obligations</p>
+			</div>
+			<div data-ygsap>
+				<div class="sell__fill-icon">
+					{% include "components/svg/transparency.svg" %}
+				</div>
+				<p>Professional and transparent evaluation</p>
+			</div>
+		</div>
+
+		<div data-ygsap class="col_24 --center">
+			<button data-sell-appt class="sell-btn --arrow accent-2"><span>Get Your Offer</span></button>
+		</div>
+	</div>
+</div>
+
+{# How to Sell #}
+<div id="how-to-sell" class="sell__section --stripes">
+	<div class="sell__column-section">
+
+		<div data-ygsap class="col_24 --start mw-760">
+			<span class="sell__section-tag">HOW TO SELL</span>
+			<h2>A Simple 3-Step Process to <span>sell your luxury item</span> in Atlanta</h2>
+			<p>Get a quote in a minutes or less!</p>
+		</div>
+
+		<div class="sell__how-grid">
+			<div data-ygsap class="sell__how-item">
+				<span class="sell__how-item-tag">Step 1</span>
+				<h4 class="sell__how-item-title">Free Valuation</h4>
+				<ul class="sell__how-list">
+					<li>
+						<p class="sm_typo">Get an instant online quote or visit our Atlanta store</p>
+					</li>
+				</ul>
+			</div>
+
+			<span data-ygsap class="sell__how-arrow"></span>
+
+			<div data-ygsap class="sell__how-item">
+				<span class="sell__how-item-tag">Step 2</span>
+				<h4 class="sell__how-item-title">Expert Appraisal</h4>
+				<ul class="sell__how-list">
+					<li>
+						<p class="sm_typo">Our professional team evaluates your item's condition and market value
+						</p>
+					</li>
+				</ul>
+			</div>
+
+			<span data-ygsap class="sell__how-arrow"></span>
+
+			<div data-ygsap class="sell__how-item">
+				<span class="sell__how-item-tag">Step 3</span>
+				<h4 class="sell__how-item-title">Instant Cash Payment</h4>
+				<ul class="sell__how-list">
+					<li>
+						<p class="sm_typo">Receive a fair, competitive offer on the spot
+						</p>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div data-ygsap class="row_8 mt-48">
+			<button data-sell-appt class="sell-btn --arrow accent-2"><span>Get Your Offer</span></button>
+			<a href="tel:+14048420266" class="sell-btn stroke-black">
+				<span>Call Now</span>
+			</a>
+		</div>
+	</div>
+</div>
+
+{# Icebox History #}
+{% include "components/sell/history.twig" with {
+src: 'banner_all.avif',
+alt: 'Sell your luxury item for cash in Atlanta, GA' } %}
+
+
+{# Why to Sell #}
+{% include "components/sell/why.twig" with {
+title: "Selling your luxury items<br>What to expect:",
+big_list: true,
+items: [
+{
+title: "
+Professional and <span>respectful</span> service
+"
+},
+{
+title: "
+Quick and <span>secure</span> transactions
+"
+},
+{
+title: "
+Honest and <span>transparent</span> evaluations
+"
+},
+{
+title: "
+Competitive <span>cash</span> offers
+"
+},
+{
+title: "
+Discretion and <span>confidentiality</span>
+"
+}
+]
+} %}
+
+
+{# FAQ #}
+{% include "components/sell/faq.twig" with {
+questions: [
+{
+question: "Where can I sell my luxury item in Atlanta for the best price?",
+answer: 'Icebox offers top-dollar cash offers for luxury items in Atlanta. Our expert appraisers ensure you receive
+the most competitive price for your item.',
+icon: 'location'
+},
+{
+question: 'How do I get the most value when selling my luxury item?',
+answer: '
+<strong>To maximize your luxury item value:</strong>
+<br>
+Maintain
+original packaging and documents
+<br>
+Keep the item in excellent condition
+<br>
+Get a professional cleaning
+before appraisal
+<br>
+Choose a reputable buyer like Icebox
+',
+icon: 'money-bag'
+},
+{
+question: "What documents do I need to sell my luxury item?",
+answer: "<strong>While not always required, having the following can increase your luxury item's value:</strong>
+<br>
+Original purchase receipt
+<br>
+Warranty card
+<br>
+Service records
+<br>
+Authentication papers",
+icon: 'documents'
+},
+{
+question: "Can I sell an item that needs repairs?",
+answer: 'Yes! We buy luxury items in various conditions. Our experts will provide a fair assessment based on the item\'s
+overall condition and potential restoration value.',
+icon: 'repair'
+},
+]
+} %}
+
+{# Conclusion #}
+{% include "components/sell/conclusion.twig" with {
+title: "READY TO SELL?",
+description: "
+Visit our Atlanta location at <strong><a target='_blank' href='https://maps.app.goo.gl/sFFNFXppH6MXaWDz7'
+		class='underline'>3255
+		Peachtree Rd
+		NE</a></strong> or start your online evaluation now.
+"
+} %}
+
+{# Footer #}
+{% include "components/sell/footer.twig" %}
+{% include "components/sell/book-modal.twig" %}
