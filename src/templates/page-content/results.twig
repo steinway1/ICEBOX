@@ -2,25 +2,26 @@
 {% set stickySidebar = true %}
 
 {% if category.id == 25 %}
-	{% set watch_market_brands = true %}
-	{% set is_watch_market_page = true %}
+{% set watch_market_brands = true %}
+{% set is_watch_market_page = true %}
 {% endif %}
 
-<div class="results-content {% if category.id == 25  %} --watch-market {% endif %}{% if user.admin %} --admin{% endif %}">
+<div
+	class="results-content {% if category.id == 25  %} --watch-market {% endif %}{% if user.admin %} --admin{% endif %}">
 
 	{% if vday %}
-		<div class="vday-ticker-row --static">
-			{% for i in 0..9 %}
-				<div class="vday-ticker">
-					<div>LIMITED OFFERS!</div>
-					<div class="vday-ticker__divider"></div>
-					<div>SALE UP TO 70% OFF</div>
-					<div class="vday-ticker__divider"></div>
-					<div>FOR HIM &amp; HER</div>
-					<div class="vday-ticker__divider"></div>
-				</div>
-			{% endfor %}
+	<div class="vday-ticker-row --static">
+		{% for i in 0..9 %}
+		<div class="vday-ticker">
+			<div>LIMITED OFFERS!</div>
+			<div class="vday-ticker__divider"></div>
+			<div>SALE UP TO 70% OFF</div>
+			<div class="vday-ticker__divider"></div>
+			<div>FOR HIM &amp; HER</div>
+			<div class="vday-ticker__divider"></div>
 		</div>
+		{% endfor %}
+	</div>
 	{% endif %}
 
 
@@ -29,66 +30,68 @@
 			<div class="header-search__input-wrap">
 				<span class="header-search__span-icon">
 					<svg width="18" height="18" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M8.5 16C12.6422 16 16 12.6422 16 8.5C16 4.35786 12.6422 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6422 4.35786 16 8.5 16Z" stroke="currentColor" stroke-width="1.5"></path>
+						<path
+							d="M8.5 16C12.6422 16 16 12.6422 16 8.5C16 4.35786 12.6422 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6422 4.35786 16 8.5 16Z"
+							stroke="currentColor" stroke-width="1.5"></path>
 						<path d="M18.3335 18.3334L14 13.9999" stroke="currentColor" stroke-width="1.5"></path>
 					</svg>
 				</span>
-				<input autocomplete="off" type="text" name="keyword" class="header-search__input" placeholder="Search on Icebox.com" id="main_search_field">
+				<input autocomplete="off" type="text" name="keyword" class="header-search__input"
+					placeholder="Search on Icebox.com" id="main_search_field">
 			</div>
 		</form>
 	</div>
 
 	{% if care_page == true %}
-		{% include "elements/results/care-banner.twig" %}
+	{% include "elements/results/care-banner.twig" %}
 	{% else %}
-		{% if category %}
-			{% if category.big_banner != '' %}
-				{% include "elements/results/results-banner.twig" %}
-			{% endif %}
-			{% if sale_page %}
-				{% include "elements/results/results-banner_sale.twig" %}
-			{% endif %}
-		{% endif %}
-		{% if search_keyword is defined %}
-			{% include "elements/results/results-empty.twig" %}
-		{% endif %}
+	{% if category %}
+	{% if category.big_banner != '' %}
+	{% include "elements/results/results-banner.twig" %}
+	{% endif %}
+	{% if sale_page %}
+	{% include "elements/results/results-banner_sale.twig" %}
+	{% endif %}
+	{% endif %}
+	{% if search_keyword is defined %}
+	{% include "elements/results/results-empty.twig" %}
+	{% endif %}
 	{% endif %}
 
 
 	<div class="results__wrap">
 		<div class="results__main">
 
-			{% if category.has_subcategories %}
-				<div class="results__subcategories">
-					<div class="results__subcategories-wrap wrapper">
-						{% for option in subcategories %}
-							<label class="custom-checkbox">
-								<input type="checkbox" value="pendants" {% if option.checked == true %} checked {% endif %}>
-								<span>{{ option.caption }}</span>
-							</label>
-						{% endfor %}
-					</div>
+			{% if category.subs %}
+			<div class="results__subcategories">
+				<div class="results__subcategories-wrap wrapper">
+					{% for option in category.subs %}
+					<a href="{{ option.href }}" class="custom-checkbox{% if option.checked %} is-active{% endif %}">
+						{{ option.caption }}
+					</a>
+					{% endfor %}
 				</div>
+			</div>
 			{% endif %}
 
 
 			{% include "elements/results/page-filters.twig" %}
 			{% include "elements/results/filter-modal.twig" %}
 			{% if sale_page is not defined %}
-				{% include "elements/results/results-bar.twig" %}
+			{% include "elements/results/results-bar.twig" %}
 			{% endif %}
 			{% if category.is_watches %}
-				{% include "elements/results/watches-notice.twig" %}
+			{% include "elements/results/watches-notice.twig" %}
 			{% endif %}
 			{% if category.is_watches %}
-				<div class="results__sub-bar">
-					<div class="wrapper">
-						<label class="custom-checkbox --raw">
-							<input type="checkbox" value="with_price_only">
-							<span>Hide items w/o price</span>
-						</label>
-					</div>
+			<div class="results__sub-bar">
+				<div class="wrapper">
+					<label class="custom-checkbox --raw">
+						<input type="checkbox" value="with_price_only">
+						<span>Hide items w/o price</span>
+					</label>
 				</div>
+			</div>
 			{% endif %}
 			<div class="results-cards-content">
 				<div class="wrapper">
@@ -97,47 +100,47 @@
 						<div class="results__items">
 							<div class="cards-grid">
 								{% if from_africa %}
-									{% set index_target = 5 %}
+								{% set index_target = 5 %}
 								{% else %}
-									{% set index_target = 10 %}
+								{% set index_target = 10 %}
 								{% endif %}
 								{% if category.id != 25 and from_africa == false %}
-									{% include 'elements/pay-card.twig' %}
-                  {# {% include "elements/crypto-card.twig" %} #}
+								{% include 'elements/pay-card.twig' %}
+								{# {% include "elements/crypto-card.twig" %} #}
 								{% endif %}
 								{% set loop_index = 0 %}
 								{% set last = "pay" %}
 								{% for item in items %}
-									{% set loop_index = loop_index + 1 %}
-									{% if (loop_index == index_target and category.id != 25) %}
-										{% if last == "crypto" %}
-											{% include "elements/pay-card.twig" %}
-											{% set last = "pay" %}
-										{% else %}
-											{% include "elements/crypto-card.twig" %}
-											{% if from_africa == false  %}
-												{% set last = "crypto" %}
-											{% endif %}
-										{% endif %}
+								{% set loop_index = loop_index + 1 %}
+								{% if (loop_index == index_target and category.id != 25) %}
+								{% if last == "crypto" %}
+								{% include "elements/pay-card.twig" %}
+								{% set last = "pay" %}
+								{% else %}
+								{% include "elements/crypto-card.twig" %}
+								{% if from_africa == false %}
+								{% set last = "crypto" %}
+								{% endif %}
+								{% endif %}
 
-										{% set loop_index = 0 %}
-									{% else %}
-										{% include "elements/product-card.twig" with {productItem:item}%}
-									{% endif %}
+								{% set loop_index = 0 %}
+								{% else %}
+								{% include "elements/product-card.twig" with {productItem:item}%}
+								{% endif %}
 
 								{% endfor %}
 							</div>
 
 							{% if pages is defined %}
-								{% if pages > 1 %}
-									<div class="content-preloader">
-										<span></span>
-									</div>
-								{% endif %}
-							{% else  %}
-								<div class="content-preloader">
-									<span></span>
-								</div>
+							{% if pages > 1 %}
+							<div class="content-preloader">
+								<span></span>
+							</div>
+							{% endif %}
+							{% else %}
+							<div class="content-preloader">
+								<span></span>
+							</div>
 							{% endif %}
 
 						</div>
