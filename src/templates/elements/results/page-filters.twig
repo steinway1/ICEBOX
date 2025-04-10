@@ -1,69 +1,57 @@
 <div class="page-filters">
-	<form id="" class="wrapper">
+	<form class="wrapper" id="filtersFrm" action="{{ category.pagination_href }}">
 		<div class="page-filters__wrapper">
-
 			<div class="page-filters__group">
-				{% if black_friday or cyber_monday %}
-					<div data-share-page data-tip="Copy Url to this page with current selected filters" class="page-filter-box">
-						<div class="page-filter-btn --share">
-							<span>Share</span>
-						</div>
-					</div>
-				{% endif %}
+				<input type="hidden" name="p" id="current_page" value="1" />
+				<input type="hidden" class="frm_input" name="sort" id="input_sortby" value="{{ sort_by_selection }}" />
 
+				{% for filter_row in category.filters %}
 
-				{% for pageFilter in pageFilters %}
-					<div id="{{pageFilter.filterID}}" class="page-filter-box">
-						<div class="page-filter-btn">
-							<span>{{pageFilter.title}}</span>
-							{% include "elements/results/svg/arrow.svg" %}
-						</div>
-						{% if pageFilter.options.length %}
-							<div class="page-filter-drop">
-								<div class="page-filter-drop__container">
-									{% for option in pageFilter.options %}
-										<label>
-											<input type="{% if pageFilter.radio == true %}radio{% else %}checkbox{% endif %}" name="{{option.name}}" value="{{option.value}}" {% if option.checked == true %} checked {% endif %}>
-											<div>
-												<span>
-													{% if option.extraClass is defined %}
-														<span class="color-gradient {{option.extraClass}}"></span>
-													{% endif %}
-													{{option.caption}}
-													{% if user_admin == true %}
-														({{option.count}})
-													{% endif %}
-												</span>
-											</div>
-										</label>
-									{% endfor %}
-								</div>
-							</div>
-						{% endif %}
-					</div>
-				{% endfor %}
-			</div>
-
-			<div class="page-filters__group">
-				<div class="page-filter-box">
-					<div class="page-filter-btn">
-						{% include "elements/results/svg/sort_new.svg" %}
-						<span>Most Popular</span>
+				<div class="page-filter-box" id="filter_{{ loop.index }}">
+					<button class="page-filter-btn" type="button">
+						<span>{{ filter_row.title }}</span>
 						{% include "elements/results/svg/arrow.svg" %}
-					</div>
+					</button>
 					<div class="page-filter-drop">
 						<div class="page-filter-drop__container">
-							{% for sort in pageSort %}
-								<a {% if sort.active == true %} class="is-active" {% endif %} onclick="{{sort.onclick}}">{{sort.title}}</a>
+							{% for item in filter_row.values %}
+							<a href="{{ item.href }}" class="{% if item.selected %}is-active{% endif %}"
+								data-type="{{ filter_row.type }}" data-name="{{ filter_row.name }}" data-value="{{item.value}}">
+								<span>
+									{% if filter_row.is_color_filter %}
+									<span class="color-gradient {{ item.extraClass }}"></span>
+									{% endif %}
+									{{item.caption}}{% if item.count is defined and user.admin %}<span>({{item.count}})</span>{% endif %}
+								</span>
+							</a>
 							{% endfor %}
 						</div>
 					</div>
 				</div>
+
+				{% endfor %}
+
+
 			</div>
+			<div class="page-filters__group">
+				<div class="page-filter-box">
+					<button class="page-filter-btn" type="button">
+						{% include "elements/results/svg/sort_new.svg" %}
+						<span class="filter-dropdown__current">Sort By</span>
+						{% include "elements/results/svg/arrow.svg" %}
+					</button>
+					<div class="page-filter-drop">
+						<div class="page-filter-drop__container">
+							{% for sorter in sorters %}
+							<a
+								onclick="updateSortByFilter('{{ sorter.value }}','{{ sorter.caption }}');$(this).parent().find('a').removeClass('is-active');$(this).addClass('is-active');">{{
+								sorter.caption }}</a>
+							{% endfor %}
 
-      <div class="mobile-filter-btn --filter" data-evt="openFilterModal">Filters</div>
-      <div class="mobile-filter-btn --sort" data-evt="openFilterModal">Sort</div>
-
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</form>
 </div>
