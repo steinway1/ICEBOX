@@ -260,7 +260,9 @@
                     <div class="header-search__input-wrap">
                         <span class="header-search__span-icon">
 					<svg width="18" height="18" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M8.5 16C12.6422 16 16 12.6422 16 8.5C16 4.35786 12.6422 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6422 4.35786 16 8.5 16Z" stroke="currentColor" stroke-width="1.5"></path>
+						<path
+							d="M8.5 16C12.6422 16 16 12.6422 16 8.5C16 4.35786 12.6422 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6422 4.35786 16 8.5 16Z"
+							stroke="currentColor" stroke-width="1.5"></path>
 						<path d="M18.3335 18.3334L14 13.9999" stroke="currentColor" stroke-width="1.5"></path>
 					</svg>
 				</span>
@@ -294,349 +296,219 @@
 
                     <div class="results__subcategories">
                         <div class="results__subcategories-wrap wrapper">
-                            <label class="custom-checkbox">
-                                <input type="checkbox" value="pendants" checked>
-                                <span>Pendants</span>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" value="pendants">
-                                <span>Gold Chains</span>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" value="pendants">
-                                <span>Rings</span>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" value="pendants">
-                                <span>Earrings</span>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" value="pendants">
-                                <span>Necklaces</span>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" value="pendants">
-                                <span>Bracelets</span>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" value="pendants">
-                                <span>Bangles</span>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" value="pendants">
-                                <span>Custom Jewelry</span>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" value="pendants">
-                                <span>Jewelry Sets</span>
-                            </label>
+                            <a href="#" class="custom-checkbox is-active">
+                                Pendants
+                            </a>
+                            <a href="#" class="custom-checkbox">
+                                Gold Chains
+                            </a>
+                            <a href="" class="custom-checkbox">
+                                Rings
+                            </a>
+                            <a href="" class="custom-checkbox">
+                                Earrings
+                            </a>
+                            <a href="" class="custom-checkbox">
+                                Necklaces
+                            </a>
+                            <a href="" class="custom-checkbox">
+                                Bracelets
+                            </a>
+                            <a href="" class="custom-checkbox">
+                                Bangles
+                            </a>
+                            <a href="" class="custom-checkbox">
+                                Custom Jewelry
+                            </a>
+                            <a href="" class="custom-checkbox">
+                                Jewelry Sets
+                            </a>
                         </div>
                     </div>
 
 
                     <div class="page-filters">
-                        <form id="" class="wrapper">
+                        <form class="wrapper" id="filtersFrm" action="">
                             <div class="page-filters__wrapper">
-
                                 <div class="page-filters__group">
+                                    <input type="hidden" name="p" id="current_page" value="1" />
+                                    <input type="hidden" class="frm_input" name="sort" id="input_sortby" value="" />
 
 
-                                    <div id="filter_1" class="page-filter-box">
-                                        <div class="page-filter-btn">
+                                    <div class="page-filter-box" id="filter_1">
+                                        <button class="page-filter-btn" type="button">
                                             <span>Gold Chains Subcategories</span>
                                             <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-                                            </svg>
-                                        </div>
+                                            </svg> </button>
                                         <div class="page-filter-drop">
                                             <div class="page-filter-drop__container">
-                                                <label>
-                                                    <input type="checkbox" name="gender[]" value="Male" checked>
-                                                    <div>
-                                                        <span>
-																										Male
-																									</span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="gender[]" value="Female">
-                                                    <div>
-                                                        <span>
-																										Female
-																									</span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="gender[]" value="Unisex">
-                                                    <div>
-                                                        <span>
-																										Unisex
-																									</span>
-                                                    </div>
-                                                </label>
+                                                <a href="" class="" data-type="" data-name="" data-value="Male">
+                                                    <span>
+																		Male								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="Female">
+                                                    <span>
+																		Female								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="Unisex">
+                                                    <span>
+																		Unisex								</span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="filter_2" class="page-filter-box">
-                                        <div class="page-filter-btn">
+
+
+                                    <div class="page-filter-box" id="filter_2">
+                                        <button class="page-filter-btn" type="button">
                                             <span>Price Range</span>
                                             <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-                                            </svg>
-                                        </div>
+                                            </svg> </button>
                                         <div class="page-filter-drop">
                                             <div class="page-filter-drop__container">
-                                                <label>
-                                                    <input type="radio" name="pricerange" value="Any Price">
-                                                    <div>
-                                                        <span>
-																										Any Price
-																									</span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="pricerange" value="$500 & Under">
-                                                    <div>
-                                                        <span>
-																										$500 & Under
-																									</span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="pricerange" value="$500 - $1000">
-                                                    <div>
-                                                        <span>
-																										$500 - $1000
-																									</span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="pricerange" value="$1000 - $2000">
-                                                    <div>
-                                                        <span>
-																										$1000 - $2000
-																									</span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="pricerange" value="$2000 - $5000">
-                                                    <div>
-                                                        <span>
-																										$2000 - $5000
-																									</span>
-                                                    </div>
-                                                </label>
+                                                <a href="" class="" data-type="" data-name="" data-value="Any Price">
+                                                    <span>
+																		Any Price								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="$500 & Under">
+                                                    <span>
+																		$500 & Under								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="$500 - $1000">
+                                                    <span>
+																		$500 - $1000								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="$1000 - $2000">
+                                                    <span>
+																		$1000 - $2000								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="$2000 - $5000">
+                                                    <span>
+																		$2000 - $5000								</span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="filter_3" class="page-filter-box">
-                                        <div class="page-filter-btn">
+
+
+                                    <div class="page-filter-box" id="filter_3">
+                                        <button class="page-filter-btn" type="button">
                                             <span>Thickness</span>
                                             <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-                                            </svg>
-                                        </div>
+                                            </svg> </button>
                                         <div class="page-filter-drop">
                                             <div class="page-filter-drop__container">
-                                                <label>
-                                                    <input type="checkbox" name="thickness" value="All">
-                                                    <div>
-                                                        <span>
-																										All
-																									</span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="thickness" value="1mm">
-                                                    <div>
-                                                        <span>
-																										1mm
-																									</span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="thickness" value="2mm">
-                                                    <div>
-                                                        <span>
-																										2mm
-																									</span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="thickness" value="3mm">
-                                                    <div>
-                                                        <span>
-																										3mm
-																									</span>
-                                                    </div>
-                                                </label>
+                                                <a href="" class="" data-type="" data-name="" data-value="All">
+                                                    <span>
+																		All								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="1mm">
+                                                    <span>
+																		1mm								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="2mm">
+                                                    <span>
+																		2mm								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="3mm">
+                                                    <span>
+																		3mm								</span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="filter_4" class="page-filter-box">
-                                        <div class="page-filter-btn">
+
+
+                                    <div class="page-filter-box" id="filter_4">
+                                        <button class="page-filter-btn" type="button">
                                             <span>Color</span>
                                             <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-                                            </svg>
-                                        </div>
+                                            </svg> </button>
                                         <div class="page-filter-drop">
                                             <div class="page-filter-drop__container">
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorYellowGold">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Yellow"></span>
-                                                        Yellow Gold
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorRoseGold">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Rose"></span>
-                                                        Rose Gold
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorWhiteGold">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient White"></span>
-                                                        White Gold
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorBlue">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Blue"></span>
-                                                        Blue
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorRed">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Red"></span>
-                                                        Red
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorSteel">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Steel"></span>
-                                                        Steel
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorTwoTone">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Two_Tone"></span>
-                                                        Two Tone
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorTwoToneRose">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Two_Tone_Rose"></span>
-                                                        Two Tone Rose
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorTriTone">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Tri_Tone"></span>
-                                                        Tri Tone
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorTriToneRose">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Tri_Tone_Rose"></span>
-                                                        Tri Tone Rose
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorBlueGold">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Blue_Gold"></span>
-                                                        Blue Gold
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorMidnightNavy">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Navy_Blue"></span>
-                                                        Midnight Navy
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorPlatinum">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Platinum"></span>
-                                                        Platinum
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="" value="colorBlack">
-                                                    <div>
-                                                        <span>
-																											<span class="color-gradient Black"></span>
-                                                        Black
-                                                        </span>
-                                                    </div>
-                                                </label>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorYellowGold">
+                                                    <span>
+																		Yellow Gold								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorRoseGold">
+                                                    <span>
+																		Rose Gold								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorWhiteGold">
+                                                    <span>
+																		White Gold								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorBlue">
+                                                    <span>
+																		Blue								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorRed">
+                                                    <span>
+																		Red								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorSteel">
+                                                    <span>
+																		Steel								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorTwoTone">
+                                                    <span>
+																		Two Tone								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorTwoToneRose">
+                                                    <span>
+																		Two Tone Rose								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorTriTone">
+                                                    <span>
+																		Tri Tone								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorTriToneRose">
+                                                    <span>
+																		Tri Tone Rose								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorBlueGold">
+                                                    <span>
+																		Blue Gold								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorMidnightNavy">
+                                                    <span>
+																		Midnight Navy								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorPlatinum">
+                                                    <span>
+																		Platinum								</span>
+                                                </a>
+                                                <a href="" class="" data-type="" data-name="" data-value="colorBlack">
+                                                    <span>
+																		Black								</span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
+
+
+                                </div>
                                 <div class="page-filters__group">
                                     <div class="page-filter-box">
-                                        <div class="page-filter-btn">
+                                        <button class="page-filter-btn" type="button">
                                             <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M6.9708 4.6375L6.14597 5.46233L4.66663 3.983V11.6667H3.49997V3.983L2.02122 5.46233L1.1958 4.6375L4.0833 1.75L6.9708 4.6375ZM12.8041 9.3625L9.91663 12.25L7.02913 9.3625L7.85397 8.53767L9.33388 10.017L9.3333 2.33333H10.5V10.017L11.9793 8.53767L12.8041 9.3625V9.3625Z" fill="#131317"></path>
-                                            </svg> <span>Most Popular</span>
+                                            </svg> <span class="filter-dropdown__current">Sort By</span>
                                             <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-                                            </svg>
-                                        </div>
+                                            </svg> </button>
                                         <div class="page-filter-drop">
                                             <div class="page-filter-drop__container">
-                                                <a onclick="updateSortByFilter('Popular','Popular');">Most Popular</a>
-                                                <a onclick="updateSortByFilter('Newest','Newest');">Newest</a>
-                                                <a onclick="updateSortByFilter('High','Price - High to Low');">High - Low</a>
-                                                <a onclick="updateSortByFilter('Low','Price - Low To High');">Low - High</a>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="mobile-filter-btn --filter" data-evt="openFilterModal">Filters</div>
-                                <div class="mobile-filter-btn --sort" data-evt="openFilterModal">Sort</div>
-
                             </div>
                         </form>
                     </div>
@@ -670,234 +542,12 @@
 
 
                                 <div class="div filter-modal__options-list">
-                                    <label>
-                                        <input type="checkbox" name="gender[]" value="Male" checked>
-                                        <div>
-                                            <span>
-																		Male
-																	</span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="gender[]" value="Female">
-                                        <div>
-                                            <span>
-																		Female
-																	</span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="gender[]" value="Unisex">
-                                        <div>
-                                            <span>
-																		Unisex
-																	</span>
-                                        </div>
-                                    </label>
                                 </div>
                                 <div class="div filter-modal__options-list">
-                                    <label>
-                                        <input type="radio" name="pricerange" value="Any Price">
-                                        <div>
-                                            <span>
-																		Any Price
-																	</span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="pricerange" value="$500 & Under">
-                                        <div>
-                                            <span>
-																		$500 & Under
-																	</span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="pricerange" value="$500 - $1000">
-                                        <div>
-                                            <span>
-																		$500 - $1000
-																	</span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="pricerange" value="$1000 - $2000">
-                                        <div>
-                                            <span>
-																		$1000 - $2000
-																	</span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="pricerange" value="$2000 - $5000">
-                                        <div>
-                                            <span>
-																		$2000 - $5000
-																	</span>
-                                        </div>
-                                    </label>
                                 </div>
                                 <div class="div filter-modal__options-list">
-                                    <label>
-                                        <input type="checkbox" name="thickness" value="All">
-                                        <div>
-                                            <span>
-																		All
-																	</span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="thickness" value="1mm">
-                                        <div>
-                                            <span>
-																		1mm
-																	</span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="thickness" value="2mm">
-                                        <div>
-                                            <span>
-																		2mm
-																	</span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="thickness" value="3mm">
-                                        <div>
-                                            <span>
-																		3mm
-																	</span>
-                                        </div>
-                                    </label>
                                 </div>
                                 <div class="div filter-modal__options-list">
-                                    <label>
-                                        <input type="checkbox" name="" value="colorYellowGold">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Yellow"></span>
-                                            Yellow Gold
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorRoseGold">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Rose"></span>
-                                            Rose Gold
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorWhiteGold">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient White"></span>
-                                            White Gold
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorBlue">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Blue"></span>
-                                            Blue
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorRed">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Red"></span>
-                                            Red
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorSteel">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Steel"></span>
-                                            Steel
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorTwoTone">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Two_Tone"></span>
-                                            Two Tone
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorTwoToneRose">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Two_Tone_Rose"></span>
-                                            Two Tone Rose
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorTriTone">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Tri_Tone"></span>
-                                            Tri Tone
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorTriToneRose">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Tri_Tone_Rose"></span>
-                                            Tri Tone Rose
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorBlueGold">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Blue_Gold"></span>
-                                            Blue Gold
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorMidnightNavy">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Navy_Blue"></span>
-                                            Midnight Navy
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorPlatinum">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Platinum"></span>
-                                            Platinum
-                                            </span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="" value="colorBlack">
-                                        <div>
-                                            <span>
-																			<span class="color-gradient Black"></span>
-                                            Black
-                                            </span>
-                                        </div>
-                                    </label>
                                 </div>
 
 
@@ -3300,7 +2950,6 @@
             </div>
 
         </div>
-
 
         <div class="iba-toolbar">
             <div class="iba-toolbar__wrapper">
