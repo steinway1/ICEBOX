@@ -316,34 +316,31 @@
                 <div class="results__main">
 
                     <div class="page-filters">
-                        <form id="" class="wrapper">
+                        <form class="wrapper" id="filtersFrm" action="">
                             <div class="page-filters__wrapper">
-
                                 <div class="page-filters__group">
+                                    <input type="hidden" name="p" id="current_page" value="1" />
+                                    <input type="hidden" class="frm_input" name="sort" id="input_sortby" value="" />
+
 
 
                                 </div>
-
                                 <div class="page-filters__group">
                                     <div class="page-filter-box">
-                                        <div class="page-filter-btn">
+                                        <button class="page-filter-btn" type="button">
                                             <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M6.9708 4.6375L6.14597 5.46233L4.66663 3.983V11.6667H3.49997V3.983L2.02122 5.46233L1.1958 4.6375L4.0833 1.75L6.9708 4.6375ZM12.8041 9.3625L9.91663 12.25L7.02913 9.3625L7.85397 8.53767L9.33388 10.017L9.3333 2.33333H10.5V10.017L11.9793 8.53767L12.8041 9.3625V9.3625Z" fill="#131317"></path>
-                                            </svg> <span>Most Popular</span>
+                                            </svg> <span class="filter-dropdown__current">Sort By</span>
                                             <svg width="10" height="10" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 7L12 18L23 7" stroke="currentColor" stroke-width="3"></path>
-                                            </svg>
-                                        </div>
+                                            </svg> </button>
                                         <div class="page-filter-drop">
                                             <div class="page-filter-drop__container">
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="mobile-filter-btn --filter" data-evt="openFilterModal">Filters</div>
-                                <div class="mobile-filter-btn --sort" data-evt="openFilterModal">Sort</div>
-
                             </div>
                         </form>
                     </div>
