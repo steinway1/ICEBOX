@@ -163,14 +163,14 @@ class SellPageBook {
       const res = await (() => {
         return new Promise((resolve) => {
           $.ajax({
-            url:'/json/book-appointment',
-            type:'POST',
-            data:d,
-            dataType:'json',
-            success:function(response){
+            url: "/json/book-appointment",
+            type: "POST",
+            data: d,
+            dataType: "json",
+            success: function (response) {
               resolve(response);
-            }
-          })
+            },
+          });
         });
       })();
 
@@ -276,6 +276,35 @@ class SellPageMenu {
   }
 }
 
+class SellPageSplide {
+  constructor() {
+    this.rootEl = document.querySelector("#sell-reviews-splide");
+    if (this.rootEl) {
+      this.init();
+    }
+  }
+  init() {
+    this.initSplide();
+  }
+  initSplide() {
+    if (this.rootEl) {
+      this.splide = new Splide(this.rootEl, {
+        perPage: 2.5,
+        perMove: 1,
+        gap: 16,
+        type: "loop",
+        pagination: false,
+        breakpoints: {
+          768: {
+            perPage: 1.2,
+						gap: 8,
+          },
+        },
+      });
+      this.splide.mount();
+    }
+  }
+}
 class SellPage {
   constructor(root) {
     this.rootEl = root;
@@ -288,6 +317,7 @@ class SellPage {
     this.gsap = new SellPageGsap();
     this.book = new SellPageBook();
     this.menu = new SellPageMenu();
+    this.splide = new SellPageSplide();
   }
   async init() {
     this.#bindEvents();

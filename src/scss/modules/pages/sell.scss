@@ -2650,3 +2650,85 @@ p.sell__why-list-typo {
     transform: skew(30deg) translate(-70px, -50%);
   }
 }
+
+.sell-review {
+  padding: 48px;
+  background-color: #f9f9f9;
+  border-radius: 0.5rem;
+  height: 100%;
+
+  @include maxWidthXs {
+    padding: 28px;
+  }
+}
+
+.sell-review__star {
+  width: 148px;
+  margin-bottom: 24px;
+
+  svg {
+    width: 100%;
+  }
+}
+
+.sell-review__text {
+  font-size: 16px !important;
+  line-height: 24px !important;
+  margin-bottom: 38px;
+}
+
+.sell-review__name {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.sell-review__location {
+  opacity: 0.6;
+}
+
+.move_right {
+  margin-right: -68px;
+
+  @include maxWidthMd {
+    margin-right: -42px;
+  }
+
+  @include maxWidthXs {
+    margin-right: -24px;
+  }
+}
+
+#sell-reviews-splide {
+  .splide__arrows {
+    position: static;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 32px;
+    gap: 8px;
+  }
+
+  .splide__arrow {
+    position: static;
+    width: 42px;
+    height: 42px;
+    opacity: 1;
+    border: 1px solid var(--black);
+    border-radius: 50rem;
+    background-color: transparent;
+    background-image: url('data:image/svg+xml,<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 2L21 14L9 26" stroke="black" stroke-width="3"/></svg>');
+    background-size: 38% 38%;
+    background-repeat: no-repeat;
+		background-position: center center;
+    box-shadow: none;
+    transition: all 0.25s;
+    transform: none;
+
+		&.splide__arrow--prev {
+			transform: rotate(180deg);
+		}
+  }
+}
