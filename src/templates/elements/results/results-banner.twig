@@ -14,5 +14,10 @@
 	</div>
 	<div class="smart-picture">
 		<img src="{{category.big_banner}}" loading="lazy" sizes="100vw" alt="{{category.big_banner_alt}}">
+		{% if user.admin %}
+		<label class="res-banner__uploader">
+			<input type="file" id="bannerInputUpload" class="hidden-input" accept="image/*">
+		</label>
+		{% endif %}
 	</div>
 </div>

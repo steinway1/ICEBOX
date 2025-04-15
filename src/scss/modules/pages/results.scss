@@ -109,7 +109,7 @@ body.--controls-visible {
       z-index: 2;
       background-color: #111114;
       pointer-events: none;
-      opacity: 0.15;
+      opacity: 0.05;
     }
   }
 
@@ -2513,3 +2513,24 @@ body.--controls-visible {
 }
 
 /* #endregion */
+
+.res-banner__uploader {
+  position: absolute;
+  z-index: 10;
+  inset: auto auto 10px 10px;
+  height: 28px;
+  padding: 0 12px;
+  background-color: white;
+  border-radius: 0.3rem;
+  border: 1px solid var(--grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    content: "Upload Image";
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+  }
+}

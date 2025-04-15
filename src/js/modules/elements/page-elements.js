@@ -394,6 +394,44 @@ const pageEls = new Object({
         });
       }
     },
+    initBannerUploader: () => {
+      const input = document.querySelector("#bannerInputUpload");
+      const smartPicture = input.closest(".smart-picture");
+      if (input && smartPicture) {
+        input.addEventListener("change", async (e) => {
+          const picture = input.files[0];
+          const formData = new FormData();
+          formData.append("picture", picture);
+
+          /**
+           * @CHOU
+           * @TODO: Replace with actual fetch
+           */
+          const fakeFetch = () =>
+            new Promise((resolve) => {
+              setTimeout(() => {
+                resolve({
+                  success: true,
+                  message: "Banner uploaded successfully",
+                  url: URL.createObjectURL(picture),
+                });
+              }, 2000);
+            });
+
+          try {
+            smartPicture.classList.remove("--loaded");
+            const data = await fakeFetch();
+
+            if (data.success) {
+              smartPicture.classList.add("--loaded");
+              smartPicture.querySelector("img").src = data.url;
+            }
+          } catch (err) {
+            console.error(err);
+          }
+        });
+      }
+    },
     initCustomUploads: () => {
       const arr = [...document.querySelectorAll("[data-custom-upload]")];
 
