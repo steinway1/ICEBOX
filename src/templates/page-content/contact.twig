@@ -2,83 +2,140 @@
 	<div class="contact-container dark_bg">
 		<div class="wrapper">
 			<div class="contact__title-group">
-				<h2 class="contact-title">Customer Care Center
-					<span>We are here to solve your problems. Contact us the way that is most convenient for you.</span>
+				<h2 class="contact-title">Experience Luxury Personalized: Contact Icebox Today!
+					<span>At Icebox Diamonds & Watches, we're dedicated to providing you with an unparalleled shopping experience.
+						Our expert team is ready to assist you with all your luxury jewelry and timepiece needs.</span>
 				</h2>
-				<div class="contact__form-wrap">
-					<form action="/send-msg" id="contactForm" method="post">
-						<input type="text" name="full_name" value="{{user.name}} {{user.surname}}" required="" placeholder="Your Full Name">
-						<input type="email" name="email" placeholder="Email" value="{{user.email}}" required="">
-						<input type="submit" value="Contact Me" class="contact__main-btn">
-					</form>
-				</div>
 			</div>
 		</div>
 	</div>
 	<div class="contact-container">
-		<div class="wrapper"></div>
 		<div class="wrapper">
 			<div class="contact__grid">
+
+				{# Phone #}
 				<div class="contact-card">
 					<div class="contact-card__details">
-						<h4>Via Email<span>Contact us by email with the necessary details and we will get back to you promptly.</span>
+						<h4>Call Us Now for Immediate Assistance<span>
+								Speak with our knowledgeable sales and support team who can help you find the perfect piece, answer any
+								questions, and guide you through our services. Don't wait - call now at 404-842-0266 and let us exceed
+								your expectations!
+							</span>
+							</span>
 						</h4>
-						<a href="mailto:sales@icebox.com">
-							<div>Send Email</div>
-						</a>
-					</div>
-					{% include "../components/svg/contact_email.svg" %}
-				</div>
-				<div class="contact-card">
-					<div class="contact-card__details">
-						<h4>Call Now<span>Call Icebox now and speak with our sales &amp; support team.</span>
-						</h4>
-						<a href="tel:404-842-0266">Call Now 404-842-0266</a>
+						<a href="tel:404-842-0266">Call Now</a>
 					</div>
 					{% include "../components/svg/contact_call.svg" %}
 				</div>
+
+				{# Location #}
 				<div class="contact-card">
 					<div class="contact-card__details">
-						<h4>Live WhatsApp Chat<span>Click the button below to message us on WhatsApp, we will reply instantly during business hours!</span>
-						</h4>
-						<a href="/chat-whatsapp">Chat On WhatsApp</a>
-					</div>
-					{% include "../components/svg/contact_wa.svg" %}
-				</div>
-				<div class="contact-card">
-					<div class="contact-card__details">
-						<h4>Visit Our Store<span>Visit our Flagship Showroom to experience full Concierge Services, including our expert Customer Experience Team, jewelry cleaning and appraisals, watch services, custom design consultations and more.</span>
+						<h4>Visit Our Flagship Store<span>
+								Experience the epitome of luxury at our Flagship Showroom in Atlanta. Enjoy full concierge services,
+								including:
+								<br><br>
+								<strong class="list-item">Expert guidance from our Customer Experience Team</strong>
+								<br>
+								<strong class="list-item">Jewelry cleaning and appraisals</strong>
+								<br>
+								<strong class="list-item">Watch services</strong>
+								<br>
+								<strong class="list-item">Custom design consultations</strong>
+								<br>
+								<strong class="list-item">And more!</strong>
+							</span>
 						</h4>
 						<a href="https://goo.gl/maps/tSbUj8MuugytJkjm7">Google Maps</a>
 					</div>
 					{% include "../components/svg/contact_visit.svg" %}
 				</div>
+
+				{# Booking #}
 				<div class="contact-card">
 					<div class="contact-card__details">
-						<h4>Book an Appointment<span>Looking to meet with one of our Expert Jewelry Consultants or Craftsmen in person? Schedule an appointment now and we'll be ready to assist you.</span>
+						<h4>Book a Personal Appointment
+							<span>
+								Want a more personalized experience? Schedule a one-on-one appointment with one of our Expert Jewelry
+								Consultants or Master Craftsmen. We'll be ready to assist you with undivided attention.
+							</span>
 						</h4>
-						<a href="/we-buy-it-all">Book Now</a>
+						<a target="_blank" href="/sell-all">Book Now</a>
 					</div>
 					{% include "../components/svg/contact_book.svg" %}
 				</div>
+
+				{# WhatsApp #}
 				<div class="contact-card">
 					<div class="contact-card__details">
-						<h4>FAQ<span>Most likely, the answer to your questions are already in our FAQ’s. Choose your topic to find answers related to your topic of interest.</span>
+						<h4>Connect with Us on WhatsApp
+							<span>
+								For quick questions or inquiries, message us on WhatsApp! We'll reply instantly during business hours,
+								so you can get the answers you need without delay.
+							</span>
 						</h4>
-						<a href="/faq/all">Explore FAQ</a>
+						<a href="/chat-whatsapp">Start a WhatsApp Chat</a>
+					</div>
+					{% include "../components/svg/contact_wa.svg" %}
+				</div>
+
+				{# Emails #}
+				<div class="contact-card">
+					<div class="contact-card__details">
+						<h4>Send Us an Email
+							<span>
+								If you prefer to communicate via email, we're always ready to help. Send us a message with your
+								questions or requests, and our dedicated team will promptly respond with the information you need.
+							</span>
+						</h4>
+						<a href="mailto:sales@icebox.com">
+							<div>Send an Email</div>
+						</a>
+					</div>
+					{% include "../components/svg/contact_email.svg" %}
+				</div>
+
+				{# FAQ #}
+				<div class="contact-card">
+					<div class="contact-card__details">
+						<h4>Frequently Asked Questions
+							<span>
+								Looking for quick answers? Check out our comprehensive FAQ section, where you'll find solutions to
+								common questions across various topics.
+							</span>
+						</h4>
+						<a href="/faq/all">Explore Our FAQs</a>
 					</div>
 					{% include "../components/svg/contact_faq.svg" %}
 				</div>
+
 			</div>
 		</div>
 	</div>
-	<div class="contact-container dark_bg">
+
+	<div class="contact-container">
+		<div class="wrapper">
+			<div class="contact__title-group">
+				<h2 class="contact-title max-520">Call Icebox now at <a href="tel:404-842-0266">404-842-0266</a> and let our
+					expertise work for
+					you! 📞
+					<span>
+						Don't hesitate to reach out - our priority is delivering the best possible service to ensure your complete
+						satisfaction. We look forward to helping you find the luxury jewelry or timepiece of your dreams!
+					</span>
+				</h2>
+			</div>
+		</div>
+	</div>
+
+	{# <div class="contact-container dark_bg">
 		<div class="wrapper">
 			<div class="contact__location-wrap">
-				<h2 class="contact-title">Our Store Locations<span>We invite you to visit our store in person. See the variety of products and get concierge service right in the store.</span>
+				<h2 class="contact-title">Our Store Locations<span>We invite you to visit our store in person. See the variety
+						of products and get concierge service right in the store.</span>
 				</h2>
 				<a href="/locations" class="contact__main-btn">Explore Our Locations</a>
 			</div>
 		</div>
-	</div>
+	</div> #}
 </div>
