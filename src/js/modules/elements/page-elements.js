@@ -396,6 +396,7 @@ const pageEls = new Object({
     },
     initBannerUploader: () => {
       const input = document.querySelector("#bannerInputUpload");
+      if (!input) return;
       const smartPicture = input.closest(".smart-picture");
       if (input && smartPicture) {
         input.addEventListener("change", async (e) => {

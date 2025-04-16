@@ -5,12 +5,14 @@
 	<div class="menu__wrapper">
 		<div class="menu__header">
 			<button onclick="window.menu.closeOverList()" class="back-btn"></button>
-			<span id="activeListName" class="menu__spot-title" data-title="Explore Icebox">Explore Icebox</span>
+			{# <span id="activeListName" class="menu__spot-title" data-title="Explore Icebox">Explore Icebox</span> #}
+			<a href="/" class="header-logo">
+				<img src="{{ main_logo }}" loading="eager" alt="Icebox ">
+			</a>
 		</div>
 		<div class="menu__main">
 
-			<div
-				class="menu__content-list">
+			<div class="menu__content-list">
 				{# Main Navigation #}
 				<div class="menu__list">
 					{% include "components/menu/nav_main.twig" %}
