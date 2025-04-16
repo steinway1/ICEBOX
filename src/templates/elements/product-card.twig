@@ -1,89 +1,90 @@
 {% set classes = ['product-card'] %}
 
 {% if productItem.unpublished %}
-	{% set classes = classes|merge(['unpublished-card']) %}
+{% set classes = classes|merge(['unpublished-card']) %}
 {% endif %}
 
 {% if black_friday and xmas == false and cyber_monday == false %}
-	{% set classes = classes|merge(['--black-friday']) %}
+{% set classes = classes|merge(['--black-friday']) %}
 {% endif %}
 
 {% if cyber_monday and black_friday and xmas == false %}
-	{% set classes = classes|merge(['--cm']) %}
+{% set classes = classes|merge(['--cm']) %}
 {% endif %}
 
 {% if xmas == true %}
-	{% set classes = classes|merge(['--xmas']) %}
+{% set classes = classes|merge(['--xmas']) %}
 {% endif %}
 
 {% if new_year == true %}
-	{% set classes = classes|merge(['--new-year']) %}
+{% set classes = classes|merge(['--new-year']) %}
 {% endif %}
 
 {% if vday == true %}
-	{% set classes = classes|merge(['--vday']) %}
+{% set classes = classes|merge(['--vday']) %}
 {% endif %}
 
 {% if splideClass is defined %}
-	{% set classes = classes|merge(['splide__slide']) %}
+{% set classes = classes|merge(['splide__slide']) %}
 {% endif %}
 
 {% if productItem.is_watch %}
-	{% set classes = classes|merge(['--watch']) %}
+{% set classes = classes|merge(['--watch']) %}
 {% endif %}
 
 {% if productItem.sold %}
-	{% set classes = classes|merge(['--sold']) %}
+{% set classes = classes|merge(['--sold']) %}
 {% endif %}
 
 <div class="{{ classes|join(' ') }}" data-id="{{ productItem.id }}">
 
 	{% if user.admin == true %}
-		{% include "elements/admin-card.twig" %}
+	{% include "elements/admin-card.twig" %}
 	{% endif %}
 
 	<div class="product-card__wrapper">
 		<div class="product-card__top">
 
 			{% if vday == true and productItem.discountRate %}
-				<div class="vday-tag-2">
-					{{ productItem.discountRate }}% OFF</div>
-				<div class="vday-tag">
-					<img src="{{THEME_ASSETS_FOLDER}}promo/vday/2024/tag_{{ productItem.discountRate }}.svg" alt="">
-				</div>
+			<div class="vday-tag-2">
+				{{ productItem.discountRate }}% OFF</div>
+			<div class="vday-tag">
+				<img src="{{THEME_ASSETS_FOLDER}}promo/vday/2024/tag_{{ productItem.discountRate }}.svg" alt="">
+			</div>
 			{% endif %}
 
 			{% if new_year == true %}
-				<div class="ny-card-over">
-					<img src="{{THEME_ASSETS_FOLDER}}promo/new-year/2024/garland.webp" alt="">
-				</div>
+			<div class="ny-card-over">
+				<img src="{{THEME_ASSETS_FOLDER}}promo/new-year/2024/garland.webp" alt="">
+			</div>
 			{% endif %}
 
 
 			{# Product Tags #}
 			{% if productItem.inStock or productItem.is_discounted %}
-				<div
-					class="product-card__tags">
-					{# Stock Tag #}
-					{% if productItem.inStock %}
-						<div class="product-tag --green">In Stock</div>
-					{% endif %}
-					{# Sale Tag #}
-					{% if (productItem.inStock or productItem.force_sale) and productItem.is_discounted %}
-						<div class="product-tag --red">SALE
-							{{  productItem.discountRate }}%</div>
-					{% endif %}
-				</div>
+			<div class="product-card__tags">
+				{# Stock Tag #}
+				{% if productItem.inStock %}
+				<div class="product-tag --green">In Stock</div>
+				{% endif %}
+				{# Sale Tag #}
+				{% if (productItem.inStock or productItem.force_sale) and productItem.is_discounted %}
+				<div class="product-tag --red">SALE
+					{{ productItem.discountRate }}%</div>
+				{% endif %}
+			</div>
 			{% endif %}
 
 			{# Media #}
 			<div class="product-card__media">
 				<a href="{{productItem.href}}">
 					{% if productItem.no_photo == false or productItem.no_photo is not defined %}
-						<img data-src="{{productItem.cover}}" {% if productItem.extra_classes == '' %} loading="lazy" {% endif %} alt="{{productItem.alt}}" class="product-card__img {% if disableZoom is not defined %}{{ productItem.extra_classes }} {% endif %}">
+					<img data-src="{{productItem.cover}}" {% if productItem.extra_classes=='' %} loading="lazy" {% endif %}
+						alt="{{productItem.alt}}"
+						class="product-card__img {% if disableZoom is not defined %}{{ productItem.extra_classes }} {% endif %}">
 					{% endif %}
 					{% if productItem.sirv_html is defined %}
-						{{ productItem.sirv_html | raw }}
+					{{ productItem.sirv_html | raw }}
 					{% endif %}
 				</a>
 				<span class="card-loader">
@@ -95,60 +96,72 @@
 
 			{# Xmas Snow #}
 			{% if xmas and productItem.force_sale and productItem.is_discounted %}
-				<div class="xmas-card-over">
-					<img src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/snow.avif" alt="">
-				</div>
+			<div class="xmas-card-over">
+				<img src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/snow.avif" alt="">
+			</div>
 			{% endif %}
 
 			{# Video Button #}
 			{% if productItem.video == true and productItem.no_photo is not defined %}
-				<button onclick="window.location.href='{{ productItem.href}}';" class="product-card__play-btn"></button>
+			<button onclick="window.location.href='{{ productItem.href}}';" class="product-card__play-btn"></button>
 			{% endif %}
 
 			{# Natural Diamonds & Last price update #}
 			<div class="product-card__over">
 				{% if user.admin == true %}
-					<span class="typo_xs">Price updated:
-						{{ productItem.updated_at }}</span>
+				<span class="typo_xs">Price updated:
+					{{ productItem.updated_at }}</span>
 				{% endif %}
 				{% if productItem.have_diamonds %}
-					<div data-tip="This product features only natural diamonds, offering unmatched quality and rarity." data-notice="This product features only natural diamonds in VS quality, offering unmatched quality and rarity." class="product-card__vs-btn"></div>
+				<div data-tip="This product features only natural diamonds, offering unmatched quality and rarity."
+					data-notice="This product features only natural diamonds in VS quality, offering unmatched quality and rarity."
+					class="product-card__vs-btn"></div>
 				{% endif %}
 			</div>
 		</div>
 
 		{# Price Alerts & WhatsApp Button #}
 		{% if productItem.is_watch_market and (user.admin == true or not productItem.msrp) %}
-			<div class="product-card__button-group">
-				<button onclick="openPriceModal(event)" class="ccb-btn --min --icon_before --bell{% if productItem.subscribers|length > 0 %} --subscribed{% endif %}">
-					Get Price Alerts
-					{% if productItem.subscribers|length > 0 %}
-						<span>({{ productItem.subscribers|length }})</span>
-					{% endif %}
-				</button>
-				<a href="/chat-whatsapp" class="ccb-btn --min --icon_before --wa">Chat on WhatsApp</a>
-			</div>
+		<div class="product-card__button-group">
+			<button onclick="openPriceModal(event)"
+				class="ccb-btn --min --icon_before --bell{% if productItem.subscribers|length > 0 %} --subscribed{% endif %}">
+				Get Price Alerts
+				{% if productItem.subscribers|length > 0 %}
+				<span>({{ productItem.subscribers|length }})</span>
+				{% endif %}
+			</button>
+			<a href="/chat-whatsapp" class="ccb-btn --min --icon_before --wa">Chat on WhatsApp</a>
+		</div>
 		{% endif %}
 
 		<div class="product-card__details">
+
+			{% if productItem.available_colors %}
+			<div class="product-card__colors">
+				{% for color in productItem.available_colors %}
+				<div data-switch-color="{{ color.value }}" data-id="{{ productItem.id }}"
+					class="product-card__color color--{{ color.value }}{% if color.selected %} --active{% endif %}"></div>
+				{% endfor %}
+			</div>
+			{% endif %}
+
 			<div class="product-card__main">
-				<div
-					class="product-card__title-wrap">
+				<div class="product-card__title-wrap">
 
 					{# Only One At This Price #}
 					{% if xmas and productItem.is_discounted and (productItem.inStock or productItem.force_sale) and not vday %}
-						<div class="candy-text">
-							<span>Only One At This Price!</span>
-						</div>
+					<div class="candy-text">
+						<span>Only One At This Price!</span>
+					</div>
 					{% endif %}
 
 					{# Sub Details #}
 					{% if productItem.details %}
-						<span class="product-card__sub-detail">{{productItem.details}}
-							{% if productItem.custom_tag %}
-								<span class="--blue">{{ productItem.custom_tag }}</span>
-							{% endif %}
-						</span>
+					<span class="product-card__sub-detail">{{productItem.details}}
+						{% if productItem.custom_tag %}
+						<span class="--blue">{{ productItem.custom_tag }}</span>
+						{% endif %}
+					</span>
 					{% endif %}
 
 					{# Title #}
@@ -157,82 +170,81 @@
 					</h2>
 
 					{# Watch market item MSRP labels #}
-					{% if productItem.msrp != '' and productItem.is_watch and productItem.call_for_price == false and productItem.price_range %}
+					{% if productItem.msrp != '' and productItem.is_watch and productItem.call_for_price == false and
+					productItem.price_range %}
 
-						{% set msrp_num = productItem.msrp_unformatted %}
-						{% set price_num = productItem.price_range_unformatted %}
-						{% set diff = (((price_num - msrp_num) / msrp_num) * 100)%}
-						{% set class = diff > 0 ? '--red' : diff < 0 ? '--green' : '' %}
-						{% set diff_text = diff > 0 ? 'above' : diff < 0 ? 'below' : '' %}
+					{% set msrp_num = productItem.msrp_unformatted %}
+					{% set price_num = productItem.price_range_unformatted %}
+					{% set diff = (((price_num - msrp_num) / msrp_num) * 100)%}
+					{% set class = diff > 0 ? '--red' : diff < 0 ? '--green' : '' %} {% set diff_text=diff> 0 ? 'above' : diff < 0
+							? 'below' : '' %} {% if class !='' %} <div class="product-card__labels">
+							<span class="product-label {{class}}">{{ diff|number_format(0) }}%
+								{{ diff_text }}
+								MSRP</span>
+				</div>
+				{% endif %}
+				{% endif %}
 
-						{% if class != '' %}
-							<div class="product-card__labels">
-								<span class="product-label {{class}}">{{ diff|number_format(0) }}%
-									{{ diff_text }}
-									MSRP</span>
-							</div>
-						{% endif %}
+			</div>
+		</div>
+
+		{# Price Elements #}
+		<div class="product-card__sub{% if productItem.call_for_price %} is-call-for-price{% endif %}">
+			{% if not productItem.is_watch or productItem.call_for_price == true %}
+			{# NOT Watch Market item #}
+			<div class="product-card__single-price{% if productItem.call_for_price %} is-call-for-price{% endif %}">
+				<div
+					class="product-card__price-wrap{% if productItem.salePrice and (global_sales or black_friday) %} is-sale{% endif %}">
+					{% if productItem.price_range %}
+					<span class="product-card__price">{{productItem.price_range}}</span>
+					{% else %}
+					<span class="product-card__price">{{productItem.price}}</span>
 					{% endif %}
-
+					{% if productItem.salePrice and (global_sales or black_friday) %}
+					<span class="product-card__sale-price">{{productItem.salePrice}}</span>
+					{% endif %}
 				</div>
 			</div>
+			{% else %}
+			{# Watch Market item #}
+			<div class="row-price{% if productItem.salePrice and global_sales %} --sale{% endif %}">
 
-			{# Price Elements #}
-			<div class="product-card__sub{% if productItem.call_for_price %} is-call-for-price{% endif %}">
-				{% if not productItem.is_watch or productItem.call_for_price == true %}
-					{# NOT Watch Market item #}
-					<div class="product-card__single-price{% if productItem.call_for_price %} is-call-for-price{% endif %}">
-						<div class="product-card__price-wrap{% if productItem.salePrice and (global_sales or black_friday) %} is-sale{% endif %}">
-							{% if productItem.price_range  %}
-								<span class="product-card__price">{{productItem.price_range}}</span>
-							{% else %}
-								<span class="product-card__price">{{productItem.price}}</span>
-							{% endif %}
-							{% if productItem.salePrice and (global_sales or black_friday) %}
-								<span class="product-card__sale-price">{{productItem.salePrice}}</span>
-							{% endif %}
-						</div>
-					</div>
-				{% else %}
-					{# Watch Market item #}
-					<div class="row-price{% if productItem.salePrice and global_sales %} --sale{% endif %}">
+				{% if productItem.price_range %}
+				<div>
+					<span>PRICE</span>
+					<span>{{ productItem.price_range }}</span>
+				</div>
+				{% endif %}
 
-						{% if productItem.price_range  %}
-							<div>
-								<span>PRICE</span>
-								<span>{{ productItem.price_range }}</span>
-							</div>
-						{% endif %}
+				{# SALE Price #}
+				{% if productItem.salePrice and global_sales %}
+				<div class="--sale">
+					<span>SALE</span>
+					<span>{{ productItem.salePrice }}</span>
+				</div>
+				{% endif %}
 
-						{# SALE Price #}
-						{% if productItem.salePrice and global_sales %}
-							<div class="--sale">
-								<span>SALE</span>
-								<span>{{ productItem.salePrice }}</span>
-							</div>
-						{% endif %}
-
-						{# MSRP Price OR Talk on Whatsapp #}
-						{% if productItem.msrp %}
-							<div>
-								<span>MSRP</span>
-								<span>{{productItem.msrp ?: 'Unknown'}}</span>
-							</div>
-						{% endif %}
-					</div>
+				{# MSRP Price OR Talk on Whatsapp #}
+				{% if productItem.msrp %}
+				<div>
+					<span>MSRP</span>
+					<span>{{productItem.msrp ?: 'Unknown'}}</span>
+				</div>
 				{% endif %}
 			</div>
-
-			{# Exclusive Offer Vday #}
-			{% if not productItem.is_watch and vday and productItem.discountRate %}
-				<div class="vday-subtext">ONLY ONE AVAILABLE</div>
 			{% endif %}
 		</div>
 
-
-		{% if user.admin %}
-			{{ productItem.extra_html | raw}}
+		{# Exclusive Offer Vday #}
+		{% if not productItem.is_watch and vday and productItem.discountRate %}
+		<div class="vday-subtext">ONLY ONE AVAILABLE</div>
 		{% endif %}
-
 	</div>
+
+
+	{% if user.admin %}
+	{{ productItem.extra_html | raw}}
+	{% endif %}
+
+</div>
 </div>
