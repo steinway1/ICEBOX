@@ -10,16 +10,17 @@ class SwitchCardColor {
         "https://image.icebox.com/unsafe/600x0/icebox-jewelry.s3.amazonaws.com/products/da82270d8916c65f626f7e831ab5682a.jpg",
     },
   };
-  #fetchProductData(id) {
+  #fetchProductData(id,color) {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const data = this.#mockData[id];
-        if (data) {
-          resolve(data);
-        } else {
-          reject(new Error("Product not found"));
-        }
-      }, 2000);
+       $.ajax({
+         url:'/ajax/get-product-color-image',
+         type:'POST',
+         data:{product:id,gc : color},
+         datatype:'json',
+         success:function(response){
+           resolve(response);
+         }
+       })
     });
   }
   constructor(cardElement, color) {
@@ -42,10 +43,7 @@ class SwitchCardColor {
       this.media.classList.remove("--loaded");
       this.colorButtons.forEach((btn) => btn.classList.add("--disabled"));
 
-      /**
-       * @CHOU Put here the product data fetch
-       */
-      const itemData = await this.#fetchProductData(this.productId);
+      const itemData = await this.#fetchProductData(this.productId,this.color);
 
       if (!itemData) {
         console.error("Product not found");
@@ -57,7 +55,7 @@ class SwitchCardColor {
        * It's expected to get the src by color name + Src name . Example:
        * itemData.YellowSrc or itemData.RoseSrc
        */
-      const colorImageSrc = itemData[this.color + "Src"];
+      const colorImageSrc = itemData.src;
       if (!colorImageSrc) {
         console.error("Color image not found");
         return;
