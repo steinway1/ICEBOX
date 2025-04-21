@@ -1,0 +1,32 @@
+<div class="ui-select">
+	{% if title %}
+	<h4>{{ title }}</h4>
+	{% endif %}
+	<div class="ui-select__btn">
+		<span data-empty-text="{{ empty_text }}" data-current>
+			{{ empty_text }}
+		</span>
+	</div>
+	<div class="ui-select__drop">
+		<div class="ui-select__list">
+			{% if allow_search %}
+			<input type="text" data-select-search placeholder="Search..." />
+			{% endif %}
+			{% for list in lists %}
+			<div class="ui-select__list-row">
+				{% if list.title %}
+				<h5>{{ list.title }}</h5>
+				{% endif %}
+				{% for item in list.items %}
+				<label>
+					<input type="radio" name="{{ name }}" value="{{ item.value }}" {% if item.active %}checked{% endif %} />
+					<div>
+						<span>{{ item.title }}</span>
+					</div>
+				</label>
+				{% endfor %}
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

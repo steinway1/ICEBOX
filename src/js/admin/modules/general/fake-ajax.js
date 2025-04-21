@@ -7,6 +7,7 @@ import {
   getFakeCustomersArr,
   getFakeOrderDetails,
   getFakeSeoPage,
+  getFakeCatalogCollection,
 } from "./fake-data";
 
 function fakeAjaxGetPtwData(itemID) {
@@ -164,6 +165,14 @@ function fakeAjaxGetSeoPage(id) {
   });
 }
 
+function fakeAjaxGetCatalogCollection(collectionName) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const data = getFakeCatalogCollection(collectionName);
+      resolve(data);
+    }, 2000);
+  });
+}
 export {
   fakeAjaxGetPtwData,
   fakeFetchSuccess,
@@ -180,4 +189,5 @@ export {
   fakeFetchSaveItemTitle,
   fakeAjaxGetSeoPage,
   fakeFetchSaveSeoPage,
+  fakeAjaxGetCatalogCollection,
 };

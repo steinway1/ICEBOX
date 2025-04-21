@@ -1,0 +1,13 @@
+<div class="ui-tabs">
+	{% if title %}
+	<h4>{{ title }}</h4>
+	{% endif %}
+	<div class="ui-tabs__grid">
+		{% for option in options %}
+		<label>
+			<input type="radio" name="{{ name }}" value="{{ option.value }}" {% if option.active %}checked{% endif %} />
+			<div class="ui-tabs__btn"><span>{{ option.title }}</span></div>
+		</label>
+		{% endfor %}
+	</div>
+</div>

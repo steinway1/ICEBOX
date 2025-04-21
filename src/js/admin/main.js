@@ -9,7 +9,7 @@ import { initPageElements } from "./page-elements";
 import { initPageEvents } from "./page-events";
 import PageMsg from "./modules/dynamic/page-msg";
 import { initGTip } from "./modules/elements/g-tip";
-
+import initUI from "./ui-elements";
 import { EditModal } from "./modules/elements/edit-modal";
 
 // Initialization
@@ -17,7 +17,7 @@ onContentLoaded(() => {
   initPage();
   initPageElements();
   initPageEvents();
-
+  initUI();
   window.showMessage = (settings = {}) => {
     new PageMsg(settings);
   };

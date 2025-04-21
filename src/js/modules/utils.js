@@ -86,10 +86,10 @@ function getOrdinalTxt(n) {
   return n % 10 == 1 && n % 100 != 11
     ? "st"
     : n % 10 == 2 && n % 100 != 12
-    ? "nd"
-    : n % 10 == 3 && n % 100 != 13
-    ? "rd"
-    : "th";
+      ? "nd"
+      : n % 10 == 3 && n % 100 != 13
+        ? "rd"
+        : "th";
 }
 function getZIndex(elem) {
   return parseInt(window.getComputedStyle(elem).getPropertyValue("z-index"));
@@ -287,7 +287,7 @@ function initLazyLoadForProductCards() {
         }
       });
     },
-    { rootMargin: "100px 0px", threshold: 0 }
+    { rootMargin: "100px 0px", threshold: 0 },
   );
 
   const images = document.querySelectorAll(".product-card__img[data-src]");
@@ -327,7 +327,7 @@ function initLazyLoadForProductCards() {
         parent?.classList.add("--loaded");
         observerInstance.unobserve(img);
       },
-      { once: true }
+      { once: true },
     );
 
     img.addEventListener(
@@ -336,7 +336,7 @@ function initLazyLoadForProductCards() {
         handleBrokenImage(img);
         observerInstance.unobserve(img);
       },
-      { once: true }
+      { once: true },
     );
   }
 
@@ -401,5 +401,5 @@ module.exports = {
   initLazyLoadForProductCards,
   appendNewCustomer,
   throttle,
-  delay,
+  delay
 };

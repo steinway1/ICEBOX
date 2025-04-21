@@ -1,36 +1,46 @@
-@use './mixin' as *;
+@use "./mixin" as *;
 
 :root {
   --panel-border: #e0e4ec;
   --panel-header-height: 58px;
   --panel-sub-typo: #727477;
-	--panel-input-placeholder: #b5b7b9;
+  --panel-input-placeholder: #b5b7b9;
   --panel-grey: #edeff3;
-	--panel-grey-hover: #d0d4da;
+  --panel-grey-hover: #d0d4da;
   --panel-black: #2c364b;
-	--panel-black-hover: #464d5a;
+  --panel-black-hover: #464d5a;
   --panel-black-20: #c4d3ef;
-  --panel-bg: #f6f8fa;
+  --panel-bg: #f0f2f5;
   --panel-blue: #1787ee;
-	--panel-blue-ghost: #e9f0f8;
-	--panel-blue-ghost-hover: #dde8f5;
+  --panel-blue-ghost: #e9f0f8;
+  --panel-blue-ghost-hover: #dde8f5;
   --panel-sm-height: 38px;
-  --panel-sm-radius: .45rem;
+  --panel-sm-radius: 0.45rem;
   --panel-blue-30: #1787ee4d;
   --panel-blue-dark: #1872c5;
   --panel-green: #0fb88b;
   --panel-green-30: #0fb88b4d;
   --panel-input-bg: #f3f5f6;
-	--panel-input-bg-disabled: #e7eaf1;
+  --panel-input-bg-disabled: #e7eaf1;
   --panel-grey-dark: #dadee4;
   --panel-blue-05: #1787ee0d;
   --panel-blue-10: #1787ee1a;
   --panel-blue-20: #1787ee33;
-  
+
+  --ui-grey: #e0e3e9;
+  --ui-grey-30: #e0e3e930;
+  --ui-grey-50: #e0e3e950;
+  --ui-grey-dark: #e0e3e9;
+  --ui-dim: #767c86;
+  --ui-shadow: 0 2px 4px rgba(81, 86, 94, 0.05);
+  --ui-big-shadow: 0 12px 58px rgba(81, 86, 94, 0.12);
+  --ui-radius: 0.4rem;
+  --ui-transition: all 130ms ease-in-out;
+
   --body_color: #f7faff;
   --white: #ffffff;
   --black: #28344b;
-	--black-shadow: rgba(40, 52, 75, 0.12);
+  --black-shadow: rgba(40, 52, 75, 0.12);
   --black_hover: #3b4861;
   --board-grey: #f3f8fd;
   --dark_grey: #8c96a5;
@@ -47,7 +57,7 @@
   --royal_blue_hover: #2368ca;
   --royal_blue_light: #488eec;
   --royal_blue_light_hover: #4478bc;
-  --royal_blue_transparent: rgba(50, 121, 218, .05);
+  --royal_blue_transparent: rgba(50, 121, 218, 0.05);
   --navy_blue_pale: #577daf;
   --blue_gold: #408cf1;
   --blue_gold_hover: #60a1f6;
@@ -60,7 +70,7 @@
   --dark-grey: #7e8490;
   --whale-border: #e9f0f8;
   --red: #e52d2d;
-	--red-text: #c43232;
+  --red-text: #c43232;
   --ghost-red: #fff4f4;
   --red-hover: #d41c1c;
   --red-active: #f54646;
@@ -69,12 +79,22 @@
   --green-text: #118872;
   --ghost-green: #f3fff7;
   --green-shadow: #04b89740;
-  --transition-m: all 250ms cubic-bezier(.39, .575, .565, 1);
-  --transition-l: all 350ms cubic-bezier(.39, .575, .565, 1);
-  --transition-s: all 175ms cubic-bezier(.39, .575, .565, 1);
-  --box-shadow-color: rgba(54, 88, 134, .03);
+  --transition-m: all 250ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  --transition-l: all 350ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  --transition-s: all 175ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  --box-shadow-color: rgba(54, 88, 134, 0.03);
 
-  --media-bg-color: radial-gradient(circle farthest-side at 100%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 60%), radial-gradient(circle farthest-side at 40% 0, rgba(53, 50, 48, 0.12), rgba(255, 255, 255, 0) 50%), linear-gradient(#e2e0df, #e7e6e5 14%, #f4f3f2 60%, #f3f3f3);
+  --media-bg-color: radial-gradient(
+      circle farthest-side at 100%,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0) 60%
+    ),
+    radial-gradient(
+      circle farthest-side at 40% 0,
+      rgba(53, 50, 48, 0.12),
+      rgba(255, 255, 255, 0) 50%
+    ),
+    linear-gradient(#e2e0df, #e7e6e5 14%, #f4f3f2 60%, #f3f3f3);
   --media-bg-opacity: 0.6;
   --media-bg-filter: grayscale(35%) hue-rotate(211deg);
   --media-bg-index: 0;

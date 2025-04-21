@@ -1,0 +1,234 @@
+{# Panel #}
+<div class="panel">
+  <div class="panel__holder">
+    <div class="panel-content">
+      <div class="panel-content__scroller">
+        <div class="panel-content__header">
+          <div class="panel-contet__header-wrapper">
+            <a href="/" class="gap_8">
+              <div class="panel-icon">
+                {% include 'admin/svg/panel_home.svg' %}
+              </div>
+              <div>
+                <strong>Icebox.com</strong>
+              </div>
+            </a>
+            <div class="gap_8">
+              <div class="panel-icon">
+                {% include 'admin/svg/panel_clock.svg' %}
+              </div>
+              <span data-tip="Current Time"><strong data-time-now>Getting time...</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="panel__main">
+          <div class="panel__area --row">
+            <div class="panel__area-sidebar --sticky">
+              <div class="panel-bump">
+                {# Contacts page visibility #}
+                {# Cover page visibility #}
+
+                {# Text Align #}
+
+                {# View Select #}
+                {% include 'admin/ui/ui-tabs.twig' with {
+                  title: 'Contacts Page',
+                  name: 'catalog_contacts_page',
+                  options: [
+                    {
+                      title: 'Hide',
+                      value: 'hide',
+                      active: true
+                    },
+                    {
+                      title: 'Show',
+                      value: 'show'
+                    }
+                  ]
+                } %}
+                {% include 'admin/ui/ui-tabs.twig' with {
+                  title: 'Cover Page',
+                  name: 'catalog_cover_page',
+                  options: [
+                    {
+                      title: 'Hide',
+                      value: 'hide',
+                      active: true
+                    },
+                    {
+                      title: 'Show',
+                      value: 'show'
+                    }
+                  ]
+                } %}
+                {% include 'admin/ui/ui-tabs.twig' with {
+                  title: 'Layout View',
+                  name: 'catalog_view',
+                  options: [
+                    {
+                      title: "<i class='hgi hgi-stroke hgi-layout-grid'></i>",
+                      value: 'grid-2x2',
+                      active: true
+                    },
+                    {
+                      title: "<i class='hgi hgi-stroke hgi-list-view'></i>",
+                      value: 'list-1x4'
+                    }
+                  ]
+                } %}
+                {% include 'admin/ui/ui-tabs.twig' with {
+                  title: 'Text Align',
+                  name: 'catalog_text_align',
+                  options: [
+                    {
+                      title: "<i class='hgi hgi-stroke hgi-left-to-right-block-quote'></i>",
+                      value: 'left',
+                      active: true
+                    },
+                    {
+                      title: "<i class='hgi hgi-stroke hgi-text-align-center'></i>",
+                      value: 'center'
+                    },
+                    {
+                      title: "<i class='hgi hgi-stroke hgi-right-to-left-block-quote'></i>",
+                      value: 'right'
+                    }
+                  ]
+                } %}
+              </div>
+
+              <div class="panel-bump">
+                {# Checkbox List #}
+                {% include 'admin/ui/ui-checkbox-list.twig' with {
+                  title: 'Other Options',
+                  options: [
+                    {
+                      title: 'Hide Borders',
+                      name: 'catalog_hide_borders',
+                      value: 'hide-borders',
+                      checked: false
+                    },
+                    {
+                      title: 'Hide header & footer',
+                      name: 'catalog_hide_header_footer',
+                      value: 'hide-header-footer',
+                      checked: false
+                    },
+                    {
+                      title: 'Hide Placeholders',
+                      name: 'catalog_hide_placeholders',
+                      value: 'hide-placeholders',
+                      checked: false
+                    },
+                    {
+                      title: 'Minimize Price',
+                      name: 'catalog_minimize_price',
+                      value: 'minimize-price',
+                      checked: false
+                    }
+                  ]
+                } %}
+              </div>
+              <div class="panel-bump">
+                <div class="panel-bump__btn-group grid-2">
+                  <button class="panel__btn --black"><span>Reset</span></button>
+                  <button data-catalog-zoom-in class="panel__btn --grey min-w-45">
+                    <i class="hgi hgi-stroke hgi-zoom-in-area font-16" />
+                    <span>Zoom In</span>
+                  </button>
+                  <button data-catalog-zoom-out class="panel__btn --grey min-w-45">
+                    <i class="hgi hgi-stroke hgi-zoom-out-area font-16" />
+                    <span>Zoom Out</span>
+                  </button>
+                  <button data-do-print class="panel__btn">Print</button>
+                </div>
+                <h3 class="panel-heading">
+                  <br />
+                  <span>Create & print new Catalog</span>
+                  Catalog
+                </h3>
+              </div>
+
+              <div class="panel-bump">
+                {# Currently available fonts: Jost - Variable
+																																																																																																																																																																																																																																																																																																																																																																																																																								DM Serif - 400,
+																																																																																																																																																																																																																																																																																																																																																																																																																								Arvo
+																																																																																																																																																																																																																																																																																																																																																																																																																								DM Sans,
+																																																																																																																																																																																																																																																																																																																																																																																																																								Vollkorn
+																																																																																																																																																																																																																																																																																																																																																																																																																								#}
+                {#
+																																																																																																																																																																																																																																																																																																																																																																																																																								items object expected to be an array of objects with the following properties:
+																																																																																																																																																																																																																																																																																																																																																																																																																								title: string
+																																																																																																																																																																																																																																																																																																																																																																																																																								value: string
+																																																																																																																																																																																																																																																																																																																																																																																																																								select?: boolean - default: false - optional
+																																																																																																																																																																																																																																																																																																																																																																																																																								#}
+                {# Collection Select #}
+
+                {# Title Font #}
+                {% include 'admin/ui/ui-select.twig' with {
+                  title: 'Collection',
+                  name: 'catalog_collection',
+                  empty_text: 'No collection selected',
+                  allow_search: true,
+                  lists: [
+                    {
+                      title: 'Collections',
+                      items: collections
+                    }
+                  ]
+                } %}
+                {% include 'admin/ui/ui-select.twig' with {
+                  title: 'Title Font',
+                  name: 'catalog_title_font',
+                  empty_text: 'No font selected',
+                  lists: [
+                    {
+                      title: 'Font',
+                      items: [
+                        {
+                          title: 'Regular',
+                          value: 'jost',
+                          active: true
+                        },
+                        {
+                          title: 'Vollkorn',
+                          value: 'vollkorn'
+                        },
+                        {
+                          title: 'DM Serif',
+                          value: 'dm-serif-text'
+                        },
+                        {
+                          title: 'DM Sans',
+                          value: 'dm-sans'
+                        },
+                        {
+                          title: 'Arvo',
+                          value: 'arvo'
+                        }
+                      ]
+                    }
+                  ]
+                } %}
+              </div>
+              {# Controls #}
+            </div>
+            <div class="panel__area-content">
+              <div class="catalog__sheets-grid">
+                {% include 'admin/components/catalog-sheet-contacts.twig' %}
+                {% include 'admin/components/catalog-sheet-cover.twig' %}
+                {% include 'admin/components/catalog-sheet.twig' %}
+              </div>
+            </div>
+
+            {# -- CONTENT #}
+            {# -- SIDEBAR #}
+          </div>
+        </div>
+
+        {# Main #}
+      </div>
+    </div>
+    {# Content #}
+  </div>
+</div>

@@ -8,6 +8,8 @@ import FinanceList from "./modules/pages/finance-list";
 import Manufacture from "./modules/pages/manufacture";
 import InvoiceGenerator from "./modules/pages/invoice-generator";
 import Seo from "./modules/pages/seo";
+import Catalog from "./modules/pages/catalog";
+
 class PageManager {
   constructor() {
     this.pageComponents = {
@@ -50,6 +52,10 @@ class PageManager {
       Seo: {
         instance: Seo,
         rootSelector: ".body_seo",
+      },
+      Catalog: {
+        instance: Catalog,
+        rootSelector: ".body_catalog",
       },
     };
     this.#init();

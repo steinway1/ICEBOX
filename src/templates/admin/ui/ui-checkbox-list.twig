@@ -1,0 +1,16 @@
+<div class="ui-checkbox-list">
+	{% if title %}
+	<h4>{{ title }}</h4>
+	{% endif %}
+	<div class="ui-checkbox-list__grid">
+		{% for option in options %}
+		<label>
+			<input type="{{ name ? 'radio' : 'checkbox' }}" name="{{ name ?: option.name }}" value="{{ option.value }}" {% if
+				option.checked %}checked{% endif %} />
+			<div class="ui-checkbox-list__btn">
+				<span>{{ option.title }}</span>
+			</div>
+		</label>
+		{% endfor %}
+	</div>
+</div>

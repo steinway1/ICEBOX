@@ -252,6 +252,41 @@ function removePageLoader() {
   loader.remove();
 }
 
+function debounce(func, ms) {
+  let lastCall;
+  let lastCallTimer;
+
+  return function perform(...args) {
+    let prevCall = lastCall;
+    lastCall = Date.now();
+
+    if (prevCall && lastCall - prevCall <= ms) {
+      clearTimeout(lastCallTimer);
+    }
+
+    lastCallTimer = setTimeout(() => func(...args), ms);
+  };
+}
+
+function throttle(func, ms) {
+  let timer = null;
+
+  return function perform(...args) {
+    if (timer) return;
+
+    timer = setTimeout(() => {
+      func(...args);
+      timer = null;
+    }, ms);
+  };
+}
+
+function arrayIntoChunks(array, size) {
+  return Array.from({ length: Math.ceil(array.length / size) }, (_, i) =>
+    array.slice(i * size, (i + 1) * size),
+  );
+}
+
 export {
   createElem,
   getTransitionTime,
@@ -277,4 +312,7 @@ export {
   anyIsNaN,
   appendPageLoader,
   removePageLoader,
+  debounce,
+  throttle,
+  arrayIntoChunks,
 };

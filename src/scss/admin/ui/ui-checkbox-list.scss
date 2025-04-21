@@ -1,0 +1,110 @@
+.ui-checkbox-list {
+  --grey: var(--ui-grey);
+  --black-light: var(--ui-black-light);
+  --grey-light: var(--ui-grey-30);
+  --grey-50: var(--ui-grey-50);
+  --grey-dark: var(--ui-grey-dark);
+  --dim: var(--ui-dim);
+  --shadow: var(--ui-shadow);
+  --big-shadow: var(--ui-big-shadow);
+  --radius: var(--ui-radius);
+  --transition: var(--ui-transition);
+  --font-size: 13px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  h4 {
+    background-color: #fff;
+    margin-bottom: 6px;
+    font-weight: 500;
+    position: static;
+    font-size: 11px;
+    line-height: 16px;
+    color: var(--dim);
+  }
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+      display: block;
+
+      input {
+        position: absolute;
+        z-index: -10;
+        opacity: 0;
+        pointer-events: none;
+
+        &:checked + div {
+          background-color: white;
+          // border-color: var(--bright_blue);
+          &::after {
+            background-color: var(--bright_blue);
+            border-color: var(--bright_blue);
+            background-position: center center;
+          }
+        }
+      }
+    }
+  }
+
+  &__btn {
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border-radius: var(--radius);
+    border: 1px solid var(--grey);
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    margin-bottom: 0;
+    padding: 8px 12px;
+    font-weight: 500;
+    display: flex;
+    font-size: var(--font-size);
+    transition: var(--transition);
+
+    &:active {
+      opacity: 0.5;
+    }
+
+    &:hover {
+      // border-color: var(--bright_blue);
+      background-color: var(--grey-light);
+    }
+
+    &::after {
+      content: "";
+      border: 1px solid var(--erp-border);
+      background-color: var(--grey);
+      background-position: center 24px;
+      background-repeat: no-repeat;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="white" fill="none"><path d="M5 14L8.5 17.5L19 6.5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>');
+      background-size: 14px 14px;
+      border-radius: var(--radius);
+      width: 20px;
+      height: 20px;
+      margin-top: 0;
+      margin-left: 0;
+      display: block;
+      flex: none;
+    }
+
+    i {
+      font-size: 20px;
+      display: flex;
+    }
+
+    span {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      max-width: 80%;
+    }
+  }
+}
