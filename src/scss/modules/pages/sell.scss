@@ -1,6 +1,11 @@
 @use "modules/base/mixin" as *;
 
 /** region sell */
+.main_sell {
+  width: 100vw;
+  overflow: hidden;
+}
+
 .body_sell {
   p {
     font-size: 20px;
@@ -909,7 +914,7 @@
 
 @media screen and (min-width: 1920px) {
   .sell__types-grid {
-    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
@@ -1550,7 +1555,9 @@ p.sell__why-list-typo {
   bottom: -41px;
   left: 50%;
   transform: translate(-50%);
-  box-shadow: inset -8px 8px 12px #bcc3d61f, 0 12px 38px #434b645c;
+  box-shadow:
+    inset -8px 8px 12px #bcc3d61f,
+    0 12px 38px #434b645c;
 
   span {
     color: #fff;
@@ -2564,6 +2571,8 @@ p.sell__why-list-typo {
 }
 
 .sell__call-btn-icon {
+  width: 44px;
+  height: 44px;
   aspect-ratio: 1;
   background-color: #12b499;
   border-radius: 50rem;
@@ -2722,13 +2731,13 @@ p.sell__why-list-typo {
     background-image: url('data:image/svg+xml,<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 2L21 14L9 26" stroke="black" stroke-width="3"/></svg>');
     background-size: 38% 38%;
     background-repeat: no-repeat;
-		background-position: center center;
+    background-position: center center;
     box-shadow: none;
     transition: all 0.25s;
     transform: none;
 
-		&.splide__arrow--prev {
-			transform: rotate(180deg);
-		}
+    &.splide__arrow--prev {
+      transform: rotate(180deg);
+    }
   }
 }
