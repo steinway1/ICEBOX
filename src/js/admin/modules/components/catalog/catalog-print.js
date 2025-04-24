@@ -7,7 +7,23 @@ export default class CatalogPrint {
     this.catalogInstance = catalogInstance;
     this.printElem = document.querySelector("#catalogList");
   }
+  async waitForImagesToLoad(elem) {
+    const images = elem.querySelectorAll("img");
+    const promises = [];
 
+    images.forEach((img) => {
+      if (!img.complete || img.naturalWidth === 0) {
+        promises.push(
+            new Promise((resolve) => {
+              img.onload = resolve;
+              img.onerror = resolve;
+            })
+        );
+      }
+    });
+
+    await Promise.all(promises);
+  }
   async print() {
     if (!this.printElem) {
       new PageMsg({
@@ -24,6 +40,7 @@ export default class CatalogPrint {
       image: { type: "jpg", quality: 0.98 },
       html2canvas: {
         scale: 2,
+        useCORS: true,
         windowWidth: 8.5 * 96,
         windowHeight: 11 * 96,
       },
@@ -32,8 +49,16 @@ export default class CatalogPrint {
     };
 
     appendPageLoader();
-    html2pdf(this.printElem, options).then(() => {
+    await this.waitForImagesToLoad(this.printElem);
+    html2pdf()
+        .from(this.printElem)
+        .set(options)
+        .save()
+        .then(() => {
+          removePageLoader();
+        });
+    /*html2pdf(this.printElem, options).then(() => {
       removePageLoader();
-    });
+    });*/
   }
 }

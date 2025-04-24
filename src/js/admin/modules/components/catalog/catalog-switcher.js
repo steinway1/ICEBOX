@@ -1,5 +1,6 @@
 import PageMsg from "../../dynamic/page-msg";
 import { fakeAjaxGetCatalogCollection } from "../../general/fake-ajax";
+import { AjaxGetCatalogCollection} from "../../general/ajax";
 import {
   appendPageLoader,
   removePageLoader,
@@ -30,8 +31,7 @@ export default class CatalogSwitcher {
        * @CHOU
        * Put the real AJAX call here
        */
-      const collection = await fakeAjaxGetCatalogCollection(collectionName);
-
+      const collection = await AjaxGetCatalogCollection(collectionName);
       if (!collection) {
         new PageMsg({
           type: "error",

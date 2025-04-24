@@ -1,5 +1,5 @@
 import { showMessage } from './utils'
-import {getFakeOrderDetails} from "./fake-data";
+import {getFakeCatalogCollection, getFakeOrderDetails} from "./fake-data";
 
 
 function SaveToInventoryCollection(itemsArray,collectionName){
@@ -143,6 +143,18 @@ function AjaxGetOrderDetails(id){
 	});
 }
 
+function AjaxGetCatalogCollection(id){
+	return new Promise((resolve) => {
+		$.ajax({
+			url:'/admin/ajax/get-collection-items/'+id,
+			type:'POST',
+			dataType:'json',
+			success:function(response){
+				resolve(response);
+			}
+		});
+	});
+}
 export {
 	AjaxGetCustomer,
 	AjaxGetCustomersArray,
@@ -150,5 +162,6 @@ export {
 	AjaxGetItem,
 	submitOrderData,
 	AjaxGetOrderDetails,
-	SaveToInventoryCollection
+	SaveToInventoryCollection,
+	AjaxGetCatalogCollection
 }
