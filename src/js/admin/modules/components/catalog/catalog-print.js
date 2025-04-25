@@ -28,23 +28,7 @@ export default class CatalogPrint {
     }
   }
 
-  async waitForImagesToLoad(elem) {
-    const images = elem.querySelectorAll("img");
-    const promises = [];
 
-    images.forEach((img) => {
-      if (!img.complete || img.naturalWidth === 0) {
-        promises.push(
-          new Promise((resolve) => {
-            img.onload = resolve;
-            img.onerror = resolve;
-          }),
-        );
-      }
-    });
-
-    await Promise.all(promises);
-  }
   async print() {
     this.#updateElemToPrint();
 
@@ -63,7 +47,6 @@ export default class CatalogPrint {
       image: { type: "jpg", quality: 0.98 },
       html2canvas: {
         scale: 2,
-        useCORS: true,
         windowWidth: 8.5 * 96,
         windowHeight: 11 * 96,
       },
@@ -72,7 +55,6 @@ export default class CatalogPrint {
     };
 
     appendPageLoader();
-    await this.waitForImagesToLoad(this.printElem);
     html2pdf()
       .from(this.printElem)
       .set(options)
