@@ -1,6 +1,6 @@
 import PageMsg from "../../dynamic/page-msg";
 import { fakeAjaxGetCatalogCollection } from "../../general/fake-ajax";
-import { AjaxGetCatalogCollection} from "../../general/ajax";
+import { AjaxGetCatalogCollection } from "../../general/ajax";
 import {
   appendPageLoader,
   removePageLoader,

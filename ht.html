@@ -1,0 +1,101 @@
+<!-- Rotating Dotted Earth (Continents from GeoJSON) with Glow and Tilt
+     Author: ChatGPT (OpenAI)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dotted Earth with GeoJSON</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+    import { feature } from 'https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';
+
+    // Scene setup
+    const canvas = document.getElementById('scene');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 3;
+    scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(5, 3, 5);
+    scene.add(pointLight);
+
+    const RADIUS = 1;
+    const THRESHOLD_SKIP = 5; // skip every Nth coordinate to reduce density
+    
+    // Load world topojson and create points
+    fetch('https://unpkg.com/world-atlas@2/world/110m.json')
+      .then(res => res.json())
+      .then(world => {
+        const land = feature(world, world.objects.land);
+        const positions = [];
+        land.features.forEach(f => {
+          const geom = f.geometry;
+          const coords = (geom.type === 'Polygon') ? [geom.coordinates] : geom.coordinates;
+          coords.forEach(polygon => {
+            polygon.forEach((ring, ri) => {
+              for (let i = 0; i < ring.length; i += THRESHOLD_SKIP) {
+                const [lon, lat] = ring[i];
+                const phi = (90 - lat) * Math.PI / 180;
+                const theta = (lon + 180) * Math.PI / 180;
+                const x = RADIUS * Math.sin(phi) * Math.cos(theta);
+                const y = RADIUS * Math.cos(phi);
+                const z = RADIUS * Math.sin(phi) * Math.sin(theta);
+                positions.push(x, y, z);
+              }
+            });
+          });
+        });
+
+        // Create Points
+        const dotGeom = new THREE.BufferGeometry();
+        dotGeom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        const dotMat = new THREE.PointsMaterial({ size: 0.01, color: 0xffffff });
+        const dots = new THREE.Points(dotGeom, dotMat);
+        dots.rotation.z = THREE.MathUtils.degToRad(23);
+        scene.add(dots);
+
+        // Glow
+        const glowCanvas = document.createElement('canvas'); glowCanvas.width = 256; glowCanvas.height = 256;
+        const gctx = glowCanvas.getContext('2d');
+        const grad = gctx.createRadialGradient(128, 128, 64, 128, 128, 128);
+        grad.addColorStop(0, 'rgba(0,200,255,0.6)');
+        grad.addColorStop(1, 'rgba(0,200,255,0)');
+        gctx.fillStyle = grad; gctx.fillRect(0, 0, 256, 256);
+        const glowTex = new THREE.CanvasTexture(glowCanvas);
+        const glowSpr = new THREE.Sprite(
+          new THREE.SpriteMaterial({ map: glowTex, blending: THREE.AdditiveBlending, transparent: true })
+        );
+        glowSpr.scale.set(RADIUS * 2.5, RADIUS * 2.5, 1);
+        scene.add(glowSpr);
+
+        // Animation
+        (function animate() {
+          requestAnimationFrame(animate);
+          dots.rotation.y += 0.002;
+          glowSpr.rotation.y += 0.002;
+          renderer.render(scene, camera);
+        })();
+      })
+      .catch(err => console.error('Failed to load topojson:', err));
+
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    });
+  </script>
+</body>
+</html>
