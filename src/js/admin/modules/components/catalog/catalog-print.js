@@ -41,26 +41,39 @@ export default class CatalogPrint {
       return;
     }
 
-    const options = {
-      margin: 0,
-      filename: `${this.catalogInstance?.selectedCollection?.title || "catalog"}.pdf`,
-      image: { type: "jpg", quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        windowWidth: 8.5 * 96,
-        windowHeight: 11 * 96,
-      },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-      pagebreak: { mode: ["avoid-all"] },
-    };
+
 
     appendPageLoader();
-    html2pdf()
-      .from(this.printElem)
-      .set(options)
-      .save()
-      .then(() => {
-        removePageLoader();
-      });
+    fetch('/admin/ajax/generate-catalog-pdf', {
+      method: 'GET',
+    })
+        .then(response => {
+          if (!response.ok) {
+            new PageMsg({
+              heading: "Error",
+              msg: `Pdf generation failed, please try again`,
+              type: "error",
+            });
+          }
+          return response.blob();
+        })
+        .then(blob => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          removePageLoader();
+          a.href = url;
+          a.download = 'catalog.pdf';
+          a.click();
+          window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+          removePageLoader();
+          new PageMsg({
+            heading: "Error",
+            msg: `Pdf generation failed, please try again`,
+            type: "error",
+          });
+        });
+
   }
 }
