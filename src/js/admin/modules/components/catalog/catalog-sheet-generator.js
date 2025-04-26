@@ -25,7 +25,7 @@ export default class CatalogSheetsGenerator {
                   return `
                   <div class="catalog-item">
                     <div class="catalog-item__pic-wrap">
-                      <img alt="" src="${item.src}" />
+                      <div style="background-image: url('${item.src}'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
                     </div>
                     <div class="catalog-item__details">
                       <div class="catalog-item__title">

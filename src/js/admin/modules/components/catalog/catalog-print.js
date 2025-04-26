@@ -6,28 +6,6 @@ export default class CatalogPrint {
   constructor(catalogInstance) {
     this.catalogInstance = catalogInstance;
   }
-  #updateElemToPrint() {
-    const originalElem = document.querySelector("#catalogList");
-
-    if (originalElem) {
-      this.printElem = originalElem.cloneNode(true);
-    }
-
-    const cover = document.querySelector("#catalogCover");
-    const contacts = document.querySelector("#catalogContacts");
-
-    if (document.body.classList.contains("show-cover") && cover) {
-      this.printElem.insertBefore(
-        cover.cloneNode(true),
-        this.printElem.firstChild,
-      );
-    }
-
-    if (document.body.classList.contains("show-contacts") && contacts) {
-      this.printElem.appendChild(contacts.cloneNode(true));
-    }
-  }
-
   async waitForImagesToLoad(elem) {
     const images = elem.querySelectorAll("img");
     const promises = [];
@@ -46,12 +24,12 @@ export default class CatalogPrint {
     await Promise.all(promises);
   }
   async print() {
-    this.#updateElemToPrint();
+    this.printElem = document.querySelector("#catalogList");
 
     if (!this.printElem) {
       new PageMsg({
         heading: "Print element not found",
-        msg: `Please try again. Expected element with id="catalogList"`,
+        msg: `Please try again. Expected element with id="catalogPrint"`,
         type: "error",
       });
       return;
