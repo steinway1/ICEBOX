@@ -139,11 +139,11 @@ function AjaxGetOrderDetails(id) {
 }
 
 function AjaxGetCatalogCollection(id) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(getFakeCatalogCollection(id));
-    }, 500);
-  });
+  // return new Promise((resolve) => {
+  //   setTimeout(() => {
+  //     resolve(getFakeCatalogCollection(id));
+  //   }, 500);
+  // });
   return new Promise((resolve) => {
     $.ajax({
       url: "/admin/ajax/get-collection-items/" + id,

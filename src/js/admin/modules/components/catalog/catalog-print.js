@@ -6,23 +6,25 @@ export default class CatalogPrint {
   constructor(catalogInstance) {
     this.catalogInstance = catalogInstance;
   }
-  async waitForImagesToLoad(elem) {
-    const images = elem.querySelectorAll("img");
-    const promises = [];
+  #updateElemToPrint() {
+    const originalElem = document.querySelector("#catalogList");
 
-    images.forEach((img) => {
-      if (!img.complete || img.naturalWidth === 0) {
-        promises.push(
-          new Promise((resolve) => {
-            img.onload = resolve;
-            img.onerror = resolve;
-          }),
-        );
-      }
-    });
+    if (originalElem) {
+      this.printElem = originalElem.cloneNode(true);
+    }
 
-    await Promise.all(promises);
+    const cover = document.querySelector("#catalogCover");
+    const contacts = document.querySelector("#catalogContacts");
+
+    if (document.body.classList.contains("show-cover") && cover) {
+      this.printElem.insertBefore(cover.cloneNode(true), this.printElem.firstChild);
+    }
+
+    if (document.body.classList.contains("show-contacts") && contacts) {
+      this.printElem.appendChild(contacts.cloneNode(true));
+    }
   }
+
   async print() {
     this.printElem = document.querySelector("#catalogList");
 
@@ -35,28 +37,41 @@ export default class CatalogPrint {
       return;
     }
 
-    const options = {
-      margin: 0,
-      filename: `${this.catalogInstance?.selectedCollection?.title || "catalog"}.pdf`,
-      image: { type: "jpg", quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        windowWidth: 8.5 * 96,
-        windowHeight: 11 * 96,
-      },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-      pagebreak: { mode: ["avoid-all"] },
-    };
-
     appendPageLoader();
-    await this.waitForImagesToLoad(this.printElem);
-    html2pdf()
-      .from(this.printElem)
-      .set(options)
-      .save()
-      .then(() => {
+
+    const settings = this.catalogInstance.settings;
+    const params = settings?.params;
+    const bodyClassname = settings?.bodyClassname;
+
+    fetch("/admin/ajax/generate-catalog-pdf", {
+      method: "GET",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          new PageMsg({
+            heading: "Error",
+            msg: `Pdf generation failed, please try again`,
+            type: "error",
+          });
+        }
+        return response.blob();
+      })
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
         removePageLoader();
+        a.href = url;
+        a.download = "catalog.pdf";
+        a.click();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((error) => {
+        removePageLoader();
+        new PageMsg({
+          heading: "Error",
+          msg: `Pdf generation failed, please try again`,
+          type: "error",
+        });
       });
   }
 }
