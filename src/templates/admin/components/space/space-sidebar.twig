@@ -1,0 +1,31 @@
+<div class="space-sidebar">
+  <div class="space-sidebar__wrapper">
+    <a href="/" target="_blank" class="space-sidebar__header">
+      <div class="panel-icon">
+        <i class="hgi hgi-stroke hgi-home-06"></i>
+      </div>
+      <span><strong>Icebox.com</strong></span>
+    </a>
+    <div class="space-sidebar__scroller">
+      <div class="space__theme-toggle">
+        <label>
+          <input type="radio" name="spaceTheme" value="light" checked />
+          <span><i class="hgi hgi-stroke hgi-sun-02"></i></span>
+        </label>
+        <label>
+          <input type="radio" name="spaceTheme" value="dark" />
+          <span><i class="hgi hgi-stroke hgi-moon-02"></i></span>
+        </label>
+      </div>
+      <div class="space-sidebar__nav-row">
+        <h4>Admin Navigation</h4>
+        {% for item in nav %}
+          <a href="{{ item.href }}" class="space-sidebar__btn {% if item.active %}--active{% endif %}">
+            {{ item.icon and item.icon != 'blank' ? item.icon : '<i class="hgi hgi-stroke hgi-record"></i>' }}
+            <span>{{ item.title }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

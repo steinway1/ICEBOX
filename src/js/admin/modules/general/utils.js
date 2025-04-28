@@ -47,12 +47,7 @@ function lockScroll() {
   setTimeout(function () {
     if (!document.body.hasAttribute("ib-scroll-lock")) {
       let o = window.pageYOffset || document.documentElement.scrollTop;
-      document.body.setAttribute("ib-scroll-lock", o),
-        (document.body.style.overflow = "hidden"),
-        (document.body.style.position = "fixed"),
-        (document.body.style.top = "-" + o + "px"),
-        (document.body.style.left = "0"),
-        (document.body.style.width = "100%");
+      document.body.setAttribute("ib-scroll-lock", o), (document.body.style.overflow = "hidden"), (document.body.style.position = "fixed"), (document.body.style.top = "-" + o + "px"), (document.body.style.left = "0"), (document.body.style.width = "100%");
     }
   }, 1);
 }
@@ -60,13 +55,7 @@ function lockScroll() {
 function unlockScroll() {
   if (document.body.hasAttribute("ib-scroll-lock")) {
     let o = document.body.getAttribute("ib-scroll-lock");
-    document.body.removeAttribute("ib-scroll-lock"),
-      (document.body.style.overflow = ""),
-      (document.body.style.position = ""),
-      (document.body.style.top = ""),
-      (document.body.style.left = ""),
-      (document.body.style.width = ""),
-      window.scroll(0, o);
+    document.body.removeAttribute("ib-scroll-lock"), (document.body.style.overflow = ""), (document.body.style.position = ""), (document.body.style.top = ""), (document.body.style.left = ""), (document.body.style.width = ""), window.scroll(0, o);
   }
 }
 
@@ -118,8 +107,7 @@ function allowInputSum(input) {
     }
   });
   input.addEventListener("keydown", (e) => {
-    const alreadyContainsDotOrComma =
-      e.target.value.includes(".") || e.target.value.includes(",");
+    const alreadyContainsDotOrComma = e.target.value.includes(".") || e.target.value.includes(",");
     if (alreadyContainsDotOrComma && (e.key === "." || e.key === ",")) {
       e.preventDefault();
     }
@@ -236,11 +224,16 @@ function anyIsNaN(...args) {
   return false;
 }
 
-function appendPageLoader() {
+/**
+ * @description Appends a page loader to the body
+ * @param {string} text
+ */
+function appendPageLoader(text = null) {
   let loader = document.querySelector(".page-loader");
   if (loader) return;
 
   loader = document.createElement("div");
+  if (text) loader.setAttribute("data-text", text);
   loader.classList.add("page-loader");
   document.body.appendChild(loader);
 }
@@ -282,37 +275,7 @@ function throttle(func, ms) {
 }
 
 function arrayIntoChunks(array, size) {
-  return Array.from({ length: Math.ceil(array.length / size) }, (_, i) =>
-    array.slice(i * size, (i + 1) * size),
-  );
+  return Array.from({ length: Math.ceil(array.length / size) }, (_, i) => array.slice(i * size, (i + 1) * size));
 }
 
-export {
-  createElem,
-  getTransitionTime,
-  inputAllowOnlyDecimals,
-  lockScroll,
-  unlockScroll,
-  toArray,
-  delay,
-  removeClasses,
-  addClasses,
-  getAdminUserName,
-  allowInputDigits,
-  formatAsCurrency,
-  allowInputSum,
-  onContentLoaded,
-  pageBackdropOn,
-  pageBackdropOff,
-  unlockDataLockedInput,
-  showMessage,
-  formatAndSumNumbers,
-  applyOverloader,
-  removeOverloader,
-  anyIsNaN,
-  appendPageLoader,
-  removePageLoader,
-  debounce,
-  throttle,
-  arrayIntoChunks,
-};
+export { createElem, getTransitionTime, inputAllowOnlyDecimals, lockScroll, unlockScroll, toArray, delay, removeClasses, addClasses, getAdminUserName, allowInputDigits, formatAsCurrency, allowInputSum, onContentLoaded, pageBackdropOn, pageBackdropOff, unlockDataLockedInput, showMessage, formatAndSumNumbers, applyOverloader, removeOverloader, anyIsNaN, appendPageLoader, removePageLoader, debounce, throttle, arrayIntoChunks };

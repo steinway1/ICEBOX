@@ -1,3 +1,23 @@
+select.ui-select__btn,
+input.ui-select__btn {
+  font-style: unset;
+  color: var(--black);
+  font-weight: 500;
+}
+
+input.ui-select__btn {
+  background-image: none !important;
+  cursor: text !important;
+  padding-right: 12px;
+
+  &:focus {
+    border-color: var(--black);
+    &::placeholder {
+      opacity: 0.5;
+    }
+  }
+}
+
 .ui-select {
   position: relative;
   --grey: var(--ui-grey);
@@ -11,6 +31,7 @@
   --radius: var(--ui-radius);
   --transition: var(--ui-transition);
   --font-size: 13px;
+  --select-height: 38px;
 
   &.--active {
     .ui-select__list {
@@ -38,6 +59,7 @@
   }
 
   &__btn {
+    width: 100%;
     border: 1px solid var(--grey);
     cursor: pointer;
     border-radius: var(--radius);
@@ -50,6 +72,7 @@
     transition: var(--transition);
     box-shadow: var(--shadow);
     color: var(--dim);
+    height: var(--select-height) !important;
     background-size: 8px 8px;
     background-repeat: no-repeat;
     background-position: right 14px center;

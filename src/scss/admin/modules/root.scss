@@ -1,6 +1,29 @@
 @use "./mixin" as *;
 
 :root {
+  --space-bg: #f6f7f8;
+  --space-grey: #edf0f3;
+  --space-bg-hover: #e5e8ea;
+  --space-color-black: #2f333b;
+  --space-color-red: #b1485e;
+  --space-color-red-hover: #c4596d;
+  --space-side-gap: 10px;
+  --space-color-border: #dfe3e7;
+  --space-color-dim: #737983;
+  --space-transition-lg: all 350ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  --space-transition: all 90ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  --space-sidebar-width: 240px;
+  --space-sidebar-gap: 20px;
+  --space-radius: 0.8rem;
+  --space-radius-min: 0.55rem;
+  --space-icon-size: 18px;
+  --space-content-space: 28px;
+  --space-inner-gap: 20px;
+
+  --gradient-gold-yellow: linear-gradient(34deg, #ccbda6, #f5eada 50%, #ccbda6);
+  --gradient-platinum: linear-gradient(34deg, #a6bacc, #eaf0f5 50%, #a6bacc);
+  --gradient-silver: linear-gradient(34deg, #d1d1d1, #f4f4f4 50%, #c5c5c5);
+
   --panel-border: #e0e4ec;
   --panel-header-height: 58px;
   --panel-sub-typo: #727477;
@@ -84,7 +107,8 @@
   --transition-s: all 175ms cubic-bezier(0.39, 0.575, 0.565, 1);
   --box-shadow-color: rgba(54, 88, 134, 0.03);
 
-  --media-bg-color: radial-gradient(
+  --media-bg-color:
+    radial-gradient(
       circle farthest-side at 100%,
       rgba(255, 255, 255, 0.9),
       rgba(255, 255, 255, 0) 60%
@@ -109,6 +133,7 @@
 
   @include maxWidthMd {
     --board-padding: 24px;
+    --space-inner-gap: 16px;
   }
 
   @include maxWidthSm {
@@ -117,5 +142,6 @@
 
   @include maxWidthXs {
     --board-padding: 20px;
+    --space-content-space: 10px;
   }
 }

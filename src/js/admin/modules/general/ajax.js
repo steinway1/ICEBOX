@@ -18,6 +18,7 @@ function SaveToInventoryCollection(itemsArray, collectionName) {
     });
   });
 }
+
 function AjaxGetCustomer(id) {
   return new Promise((resolve, reject) => {
     $.ajax({
@@ -155,6 +156,23 @@ function AjaxGetCatalogCollection(id) {
     });
   });
 }
+
+function saveDiamondBaseCostOptions(data) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ ok: true });
+    }, 2000);
+  });
+}
+
+function saveMetalBaseCostOptions(data) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ ok: true });
+    }, 2000);
+  });
+}
+
 export {
   AjaxGetCustomer,
   AjaxGetCustomersArray,
@@ -164,4 +182,6 @@ export {
   AjaxGetOrderDetails,
   SaveToInventoryCollection,
   AjaxGetCatalogCollection,
+  saveDiamondBaseCostOptions,
+  saveMetalBaseCostOptions,
 };

@@ -1,10 +1,11 @@
 module.exports = {
   plugins: ["@zackad/prettier-plugin-twig"],
+  twigPrintWidth: 999,
   overrides: [
     {
       files: "*.js",
       options: {
-        printWidth: 580,
+        printWidth: 200,
       },
     },
     {
@@ -12,7 +13,8 @@ module.exports = {
       options: {
         tabWidth: 2, // Размер отступа
         useTabs: false,
-        printWidth: 280,
+        printWidth: 680,
+        trailingComma: "all",
       },
     },
   ],

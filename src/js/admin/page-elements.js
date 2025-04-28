@@ -8,9 +8,12 @@ import {
   bindCopyOrderDetails,
   initSelectStates,
   bindRemoveNote,
-	wrapKeywordsElements,
-	shieldCodeElements,
-	bindCopyCodeBtn
+  wrapKeywordsElements,
+  shieldCodeElements,
+  bindCopyCodeBtn,
+  bindToggleSpaceBox,
+  bindToggleSpaceTheme,
+  bindInputDecimals,
 } from "./modules/general/init-fn";
 
 import { initToolbar } from "./modules/elements/tool-bar";
@@ -54,9 +57,12 @@ class PageElements {
       bindCopyOrderDetails,
       initSelectStates,
       bindRemoveNote,
-			wrapKeywordsElements,
-			shieldCodeElements,
-			bindCopyCodeBtn
+      wrapKeywordsElements,
+      shieldCodeElements,
+      bindCopyCodeBtn,
+      bindToggleSpaceBox,
+      bindToggleSpaceTheme,
+      bindInputDecimals,
     ];
     this.#init();
   }

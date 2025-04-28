@@ -1,30 +1,21 @@
-import {
-  inputAllowOnlyDecimals,
-  applyOverloader,
-  removeOverloader,
-  delay,
-  appendPageLoader,
-  removePageLoader,
-} from "./utils";
+import { inputAllowOnlyDecimals, applyOverloader, removeOverloader, delay, appendPageLoader, removePageLoader } from "./utils";
 import bodymovin from "../../lib/lottie";
 import AirDatepicker from "../../lib/air-datepicker";
 import PageMsg from "../dynamic/page-msg";
 import { AjaxGetOrderDetails } from "./ajax.js";
 import { fakeFetchRemoveNote } from "./fake-ajax.js";
 
+import InputFormatter from "../ui/input-formatter";
+
 function updateInputsAllowOnlyDecimals() {
-  const onlyDecimalsInputs = document.querySelectorAll(
-    "input[data-allow-decimals]"
-  );
+  const onlyDecimalsInputs = document.querySelectorAll("input[data-allow-decimals]");
   for (const input of onlyDecimalsInputs) {
     inputAllowOnlyDecimals(input);
   }
 }
 
 function initLottieElements() {
-  const lottieContainers = [
-    ...document.querySelectorAll('[data-lottie="score"]'),
-  ];
+  const lottieContainers = [...document.querySelectorAll('[data-lottie="score"]')];
   lottieContainers.forEach((container) => {
     const animation = bodymovin.loadAnimation({
       container: container,
@@ -72,9 +63,7 @@ function attachDatePickers() {
 }
 
 function bindToggleCustomerRows() {
-  const arr = [
-    ...document.querySelectorAll(['[data-evt="toggleCustomerRow"]']),
-  ];
+  const arr = [...document.querySelectorAll(['[data-evt="toggleCustomerRow"]'])];
   for (const elem of arr) {
     elem.addEventListener("click", () => {
       const row = elem.closest(".limit-form__row");
@@ -114,10 +103,7 @@ function bindFingerSizeInput() {
 function updateLiveDateTime() {
   const elemArr = [...document.querySelectorAll("[data-time-now]")];
   elemArr.forEach((el) => {
-    let counter = 0;
-    setInterval(() => {
-      counter += 1;
-
+    const updateTime = () => {
       const date = new Date();
       const dateFormatted = date.toLocaleDateString("en-US", {
         month: "short",
@@ -129,7 +115,10 @@ function updateLiveDateTime() {
         hour12: true,
       });
       el.textContent = `${dateFormatted}, ${timeFormatted}`;
-    }, counter * 60000);
+    };
+
+    updateTime();
+    setInterval(updateTime, 60000);
   });
 }
 
@@ -157,15 +146,7 @@ async function bindCopyOrderDetails() {
           throw new Error("Order not found");
         }
 
-        const {
-          customer = "",
-          payment_type = "Unknown",
-          total = "Unknown",
-          paid_today = "Unknown",
-          discount = "No",
-          items_purchased = [],
-          balance = "$0.00",
-        } = orderDetails;
+        const { customer = "", payment_type = "Unknown", total = "Unknown", paid_today = "Unknown", discount = "No", items_purchased = [], balance = "$0.00" } = orderDetails;
 
         let textToCopy = [
           `Customer: ${customer}`,
@@ -173,9 +154,7 @@ async function bindCopyOrderDetails() {
           `Total: ${total}`,
           `Paid Today: ${paid_today}`,
           `Discount: ${discount}`,
-          `Items Purchased: ${items_purchased
-            .map((item) => item.title)
-            .join(", ")}`,
+          `Items Purchased: ${items_purchased.map((item) => item.title).join(", ")}`,
           `Balance: ${balance}`,
         ].join("\n");
 
@@ -255,9 +234,7 @@ function initSelectStates() {
     const existingOptions = select.innerHTML;
 
     // Add state options
-    const stateOptions = states
-      .map((state) => `<option value="${state.value}">${state.text}</option>`)
-      .join("");
+    const stateOptions = states.map((state) => `<option value="${state.value}">${state.text}</option>`).join("");
 
     select.innerHTML = existingOptions + stateOptions;
   });
@@ -307,9 +284,7 @@ function wrapKeywordsElements() {
   for (const elem of arr) {
     const keywords = elem.textContent;
     const keywordsArr = keywords.split(",");
-    const keywordsHtml = keywordsArr
-      .map((keyword) => `<span class="m-tag --xs">${keyword}</span>`)
-      .join("");
+    const keywordsHtml = keywordsArr.map((keyword) => `<span class="m-tag --xs">${keyword}</span>`).join("");
     elem.innerHTML = keywordsHtml;
   }
 }
@@ -344,12 +319,7 @@ function shieldCodeElements() {
 				</div>
 			`;
     } else {
-      let code = elem.innerHTML
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
+      let code = elem.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 
       code = code
         .replace(/(&lt;\/?[a-zA-Z]+.*?&gt;)/g, "\n$1")
@@ -397,6 +367,59 @@ function bindCopyCodeBtn() {
   });
 }
 
+function bindInputDecimals() {
+  const arr = [...document.querySelectorAll("[data-input-decimal]")];
+  for (const input of arr) {
+    const precision = input.dataset.inputDecimal || 2;
+    new InputFormatter(input).decimalMask(precision);
+  }
+}
+
+function bindToggleSpaceBox() {
+  document.addEventListener("click", async (e) => {
+    const toggleBtn = e.target.closest("[data-evt='toggleSpaceBox']");
+
+    if (toggleBtn) {
+      const box = toggleBtn.closest(".space-box");
+      if (box) {
+        box.classList.toggle("--collapsed");
+      }
+    }
+  });
+}
+
+function bindToggleSpaceTheme() {
+  const BODY = document.body;
+  if (!BODY.classList.contains("space")) return;
+
+  const STORAGE_KEY = "spaceTheme";
+  const toggleArr = [...document.querySelectorAll('input[name="spaceTheme"]')];
+
+  const saved = localStorage.getItem(STORAGE_KEY); // "dark" | "light" | null
+  let currentTheme = saved;
+  if (!currentTheme) {
+    currentTheme = BODY.classList.contains("--theme-dark") ? "dark" : "light";
+  }
+
+  BODY.classList.toggle("--theme-dark", currentTheme === "dark");
+
+  toggleArr.forEach((input) => {
+    input.checked = input.value === currentTheme;
+  });
+
+  toggleArr.forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!input.checked) return;
+      const isDark = input.value === "dark";
+      BODY.classList.toggle("--theme-dark", isDark);
+      localStorage.setItem(STORAGE_KEY, isDark ? "dark" : "light");
+      toggleArr.forEach((other) => {
+        if (other !== input) other.checked = false;
+      });
+    });
+  });
+}
+
 export {
   updateInputsAllowOnlyDecimals,
   initLottieElements,
@@ -410,4 +433,7 @@ export {
   wrapKeywordsElements,
   shieldCodeElements,
   bindCopyCodeBtn,
+  bindToggleSpaceBox,
+  bindInputDecimals,
+  bindToggleSpaceTheme,
 };

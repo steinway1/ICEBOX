@@ -9,7 +9,7 @@ import Manufacture from "./modules/pages/manufacture";
 import InvoiceGenerator from "./modules/pages/invoice-generator";
 import Seo from "./modules/pages/seo";
 import Catalog from "./modules/pages/catalog";
-
+import PriceCalculator from "./modules/pages/price-calculator";
 class PageManager {
   constructor() {
     this.pageComponents = {
@@ -56,6 +56,10 @@ class PageManager {
       Catalog: {
         instance: Catalog,
         rootSelector: ".body_catalog",
+      },
+      PriceCalculator: {
+        instance: PriceCalculator,
+        rootSelector: ".body_price_calculator",
       },
     };
     this.#init();

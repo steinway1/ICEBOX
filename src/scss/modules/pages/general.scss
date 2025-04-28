@@ -401,10 +401,12 @@ b {
     content: "";
     display: block;
     --bg: no-repeat linear-gradient(#ffffff 0 0);
-    background: var(--bg), var(--bg), var(--bg), var(--bg), var(--bg), var(--bg),
+    background:
+      var(--bg), var(--bg), var(--bg), var(--bg), var(--bg), var(--bg),
       var(--bg), var(--bg), var(--bg);
     background-size: 6px 6px;
-    animation: rootLoaderAnimation1 1.4s infinite,
+    animation:
+      rootLoaderAnimation1 1.4s infinite,
       rootLoaderAnimation2 1.4s infinite;
   }
 }
@@ -426,14 +428,30 @@ b {
 @keyframes rootLoaderAnimation2 {
   0%,
   40% {
-    background-position: 0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%,
-      100% 0, 50% 0, 50% 50%;
+    background-position:
+      0 0,
+      0 50%,
+      0 100%,
+      50% 100%,
+      100% 100%,
+      100% 50%,
+      100% 0,
+      50% 0,
+      50% 50%;
   }
 
   60%,
   100% {
-    background-position: 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0,
-      50% 0, 0 0, 50% 50%;
+    background-position:
+      0 50%,
+      0 100%,
+      50% 100%,
+      100% 100%,
+      100% 50%,
+      100% 0,
+      50% 0,
+      0 0,
+      50% 50%;
   }
 }
 
@@ -683,7 +701,8 @@ form button {
     aspect-ratio: 1;
     border-radius: 50%;
     background: #111114;
-    --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+    --_m:
+      conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
     -webkit-mask: var(--_m);
     mask: var(--_m);
     -webkit-mask-composite: source-out;
@@ -2757,7 +2776,9 @@ input.custom-range__output {
   pointer-events: none;
   border: 1px solid var(--t-border);
   box-shadow: 0 6px 38px rgba(72, 98, 162, 0.15);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 
   &::after {
     content: "";
@@ -4072,7 +4093,8 @@ input.custom-range__output {
       aspect-ratio: 1;
       border-radius: 50%;
       border: 3px solid var(--blue);
-      animation: pageMessageLoading-1 0.9s infinite linear alternate,
+      animation:
+        pageMessageLoading-1 0.9s infinite linear alternate,
         pageMessageLoading-2 1.8s infinite linear;
     }
   }

@@ -13,16 +13,7 @@ class UISelect {
    * @param {string} options.dropClass - Class for dropdown element
    * @param {string} options.listClass - Class for list element
    */
-  constructor({
-    activeClass = "--active",
-    uiClass = ".ui-select",
-    btnClass = ".ui-select__btn",
-    dropClass = ".ui-select__drop",
-    selectedClass = "--selected",
-    searchSelector = "[data-select-search]",
-    currentSelector = "[data-current]",
-    listClass = ".ui-select__list",
-  } = {}) {
+  constructor({ activeClass = "--active", uiClass = ".ui-select", btnClass = ".ui-select__btn", dropClass = ".ui-select__drop", selectedClass = "--selected", searchSelector = "[data-select-search]", currentSelector = "[data-current]", listClass = ".ui-select__list" } = {}) {
     this.activeClass = activeClass;
     this.btnClass = btnClass;
     this.dropClass = dropClass;
@@ -113,7 +104,8 @@ class UISelect {
     const current = select.querySelector(this.currentSelector);
 
     if (!btn || !drop || !list) {
-      console.error("Incorrect select structure", select);
+      console.warn("Incorrect select structure", select);
+      return;
     }
     return { btn, drop, list, search, labels, current };
   }
@@ -176,8 +168,7 @@ class UISelect {
    */
   update(select) {
     const { current, labels } = this.getDOM(select);
-    const defaultText =
-      select.querySelector("[data-empty-text]")?.textContent ?? "No selected";
+    const defaultText = select.querySelector("[data-empty-text]")?.textContent ?? "No selected";
     const activeLabel = this.getActiveLabel(labels);
 
     this.updateCurrentText(current, activeLabel?.textContent ?? defaultText);
@@ -197,9 +188,7 @@ class UISelect {
   }
 
   getActiveLabel(labels) {
-    return [...labels].find(
-      (label) => label.querySelector("input[type='radio']").checked
-    );
+    return [...labels].find((label) => label.querySelector("input[type='radio']").checked);
   }
 
   updateCurrentText(current, text) {
