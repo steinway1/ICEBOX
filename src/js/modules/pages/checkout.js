@@ -1,8 +1,6 @@
 class CheckoutPage {
   constructor() {
-    this.cartReviewItemsContainer = [
-      ...document.querySelectorAll(".cart-review__items"),
-    ];
+    this.cartReviewItemsContainer = [...document.querySelectorAll(".cart-review__items")];
 
     // Mobile summary
     this.summaryMobile = document.querySelector(".summary-mobile");
@@ -17,12 +15,7 @@ class CheckoutPage {
 
   // Getters
   get summaryIsVisible() {
-    return (
-      this.summaryMobile &&
-      window
-        .getComputedStyle(this.summaryMobile)
-        .getPropertyValue("display") !== "none"
-    );
+    return this.summaryMobile && window.getComputedStyle(this.summaryMobile).getPropertyValue("display") !== "none";
   }
 
   get getActiveFlow() {
@@ -35,17 +28,13 @@ class CheckoutPage {
   }
   #showErrorInput(input, msg = "Something went wrong...") {
     if (!input) {
-      console.warn(
-        "Couldn't find a input. Selector : input. checkout.js - #showErrorInput()"
-      );
+      console.warn("Couldn't find a input. Selector : input. checkout.js - #showErrorInput()");
       return;
     }
 
     const parent = input.closest(".checkout-form__input-wrap");
     if (!parent) {
-      console.warn(
-        "Couldn't find a parent. Selector : .checkout-form__input-wrap. checkout.js - #showErrorInput()"
-      );
+      console.warn("Couldn't find a parent. Selector : .checkout-form__input-wrap. checkout.js - #showErrorInput()");
       return;
     }
 
@@ -62,40 +51,38 @@ class CheckoutPage {
     parent.classList.add("--error");
   }
   #removeErrors() {
-    const errorInputs = document.querySelectorAll(
-      ".checkout-form__input-wrap.--error"
-    );
+    const errorInputs = document.querySelectorAll(".checkout-form__input-wrap.--error");
     errorInputs.forEach((input) => {
       input.classList.remove("--error");
     });
   }
-	#copyAddress(elem) {
-		const parent = elem.closest('.checkout__pseudo-cb-drop')
-		if (!parent) {
-			console.error('Couldn\'t find a parent. Selector : .checkout__pseudo-cb-drop. checkout.js - #copyAddress()')
-			return
-		}
+  #copyAddress(elem) {
+    const parent = elem.closest(".checkout__pseudo-cb-drop");
+    if (!parent) {
+      console.error("Couldn't find a parent. Selector : .checkout__pseudo-cb-drop. checkout.js - #copyAddress()");
+      return;
+    }
 
-		const address = parent.querySelector('[data-crypto-address]')
-		if (!address) {
-			parent.classList.add('--error')
-			setTimeout(() => {
-				if (parent.classList.contains('--error')) {
-					parent.classList.remove('--error')
-				}
-			}, 3000);
-			console.error('Couldn\'t find a address. Selector : [data-crypto-address]. checkout.js - #copyAddress()')
-			return
-		}
+    const address = parent.querySelector("[data-crypto-address]");
+    if (!address) {
+      parent.classList.add("--error");
+      setTimeout(() => {
+        if (parent.classList.contains("--error")) {
+          parent.classList.remove("--error");
+        }
+      }, 3000);
+      console.error("Couldn't find a address. Selector : [data-crypto-address]. checkout.js - #copyAddress()");
+      return;
+    }
 
-		navigator.clipboard.writeText(address.getAttribute('data-crypto-address'))
-		parent.classList.add('--copied')
-		setTimeout(() => {
-			if (parent.classList.contains('--copied')) {
-				parent.classList.remove('--copied')
-			}
-		}, 1200);
-	}
+    navigator.clipboard.writeText(address.getAttribute("data-crypto-address"));
+    parent.classList.add("--copied");
+    setTimeout(() => {
+      if (parent.classList.contains("--copied")) {
+        parent.classList.remove("--copied");
+      }
+    }, 1200);
+  }
 
   // Bind Events
   #bindDocumentEvents() {
@@ -121,7 +108,7 @@ class CheckoutPage {
 
     if (target.closest("[data-copy-address]")) {
       e.preventDefault();
-			this.#copyAddress(target)
+      this.#copyAddress(target);
     }
   }
   #bindInputEvents() {
@@ -172,32 +159,45 @@ class CheckoutPage {
   async #submit() {
     this.#removeErrors();
 
+    const refundInput = document.querySelector("#no_refunds");
+    if (refundInput) {
+      if (!refundInput.checked) {
+        let highlightTimeout = false;
+        const label = refundInput.closest("label");
+        if (label) {
+          if (highlightTimeout) {
+            clearTimeout(highlightTimeout);
+          }
+
+          label.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+
+          label.classList.add("--highlight");
+          highlightTimeout = setTimeout(() => {
+            label.classList.remove("--highlight");
+          }, 1600);
+          return;
+        }
+      }
+    }
+
     const form = document.querySelector("#checkoutFrm");
     if (!form) {
-      console.error(
-        "Couldn't find a form. Selector : #checkoutFrm. checkout.js - #submit()"
-      );
+      console.error("Couldn't find a form. Selector : #checkoutFrm. checkout.js - #submit()");
       return;
     }
 
     const activeFlow = this.getActiveFlow;
     if (!activeFlow) {
-      console.error(
-        "Couldn't find a active flow. Selector : .checkout-flow. checkout.js - #submit()"
-      );
+      console.error("Couldn't find a active flow. Selector : .checkout-flow. checkout.js - #submit()");
       return;
     }
 
     // Required Inputs
-    const emptyRequiredInputArr = [
-      ...activeFlow.querySelectorAll("input[required]"),
-    ].filter((input) => {
-      if (
-        input.type === "radio" ||
-        input.type === "checkbox" ||
-        input.classList.contains("pac-target-input")
-      )
-        return false;
+    const emptyRequiredInputArr = [...activeFlow.querySelectorAll("input[required]")].filter((input) => {
+      if (input.type === "radio" || input.type === "checkbox" || input.classList.contains("pac-target-input")) return false;
       return !input.value;
     });
     if (emptyRequiredInputArr.length > 0) {
@@ -212,9 +212,9 @@ class CheckoutPage {
     }
 
     this.#appendLoader();
-    
-		await this.#delay(150)
-		form.submit();
+
+    await this.#delay(150);
+    form.submit();
   }
 
   // Mobile Summary

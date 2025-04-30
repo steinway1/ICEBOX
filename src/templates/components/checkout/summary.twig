@@ -1,52 +1,54 @@
 <aside class="checkout-aside checkout-summary">
-	<div class="checkout-summary__wrapper">
+	<div
+		class="checkout-summary__wrapper">
 
 		{# Cart Review #}
 		<div class="checkout-summary__main cart-review">
 			<div class="cart-review__amount-typo">Amount to pay</div>
 			<div class="summary-price mybag-summary-price_total cart-review__total">
-				{% if checkoutStep < 1 %} <span>{{ cart.total_without_shipping | raw}}</span>
-					{% else %}
+				{% if checkoutStep < 1 %}
+					<span>{{ cart.total_without_shipping | raw}}</span>
+				{% else %}
 					<span>{{ cart.total | raw }}</span>
-					{% endif %}
+				{% endif %}
 			</div>
 			<div class="summary-price mybag-summary-price_total">
 				<span>Total</span>
-				{% if checkoutStep < 1 %} <span>{{ cart.total_without_shipping | raw}}</span>
-					{% else %}
+				{% if checkoutStep < 1 %}
+					<span>{{ cart.total_without_shipping | raw}}</span>
+				{% else %}
 					<span>{{ cart.total | raw }}</span>
-					{% endif %}
+				{% endif %}
 			</div>
 			<div class="summary-price">
 				<span>Subtotal</span>
 				<span>{{cart.original_total | raw}}</span>
 			</div>
 			{% if cart.total_discount is defined %}
-			<div class="summary-price mybag-summary-price_discount">
-				<span>Discount</span>
-				<span>-
-					{{cart.total_discount | raw}}</span>
-			</div>
+				<div class="summary-price mybag-summary-price_discount">
+					<span>Discount</span>
+					<span>- {{cart.total_discount | raw}}</span>
+				</div>
 			{% endif %}
 			{% if cart.tax_amount is defined %}
-			{% if cart.tax_amount != false %}
-			<div class="summary-price">
-				<span>Sale Tax</span>
-				<span>{{ cart.tax_amount | raw }}</span>
-			</div>
-			{% endif %}
+				{% if cart.tax_amount != false %}
+					<div class="summary-price">
+						<span>Sale Tax</span>
+						<span>{{ cart.tax_amount | raw }}</span>
+					</div>
+				{% endif %}
 			{% else %}
-			<div class="summary-price">
-				<span>Sales Tax</span>
-				<span>TBD</span>
-			</div>
+				<div class="summary-price">
+					<span>Sales Tax</span>
+					<span>TBD</span>
+				</div>
 			{% endif %}
 			<div class="summary-price">
 				<span>Delivery Charge</span>
 				{% if checkoutStep == 3 %}
-				<span>{{ cart.shipping_cost_formatted | raw }}</span>
+					<span>{{ cart.shipping_cost_formatted | raw }}</span>
 				{% else %}
-				<span>TBD</span>
+					<span>TBD</span>
 				{% endif %}
 			</div>
 
@@ -54,29 +56,29 @@
 			<div class="cart-review__items --hide-items">
 				<ul role="list" class="checkout-summary__list">
 					{% for item in cart.items %}
-					<li>
-						<a href="{{item.href}}" target="_blank" class="checkout-item">
-							<div class="checkout-item__pic-wrap">
-								<img src="{{item.imgSrc}}" alt="{{item.name}}">
-							</div>
-							<div class="checkout-item__details">
-								<div>
-									<h6 class="checkout-item-title">{{item.name}}</h6>
-									<div class="checkout-item__details-row">
-										{% for option in item.options %}
-										<span>{{option.value}}</span>
-										{% endfor %}
+						<li>
+							<a href="{{item.href}}" target="_blank" class="checkout-item">
+								<div class="checkout-item__pic-wrap">
+									<img src="{{item.imgSrc}}" alt="{{item.name}}">
+								</div>
+								<div class="checkout-item__details">
+									<div>
+										<h6 class="checkout-item-title">{{item.name}}</h6>
+										<div class="checkout-item__details-row">
+											{% for option in item.options %}
+												<span>{{option.value}}</span>
+											{% endfor %}
+										</div>
+									</div>
+									<div class="checkout-item-price{% if item.salePrice %} checkout-item-price_discount{% endif %}">
+										<span>{{item.price}}</span>
+										{% if item.salePrice %}
+											<span>{{item.salePrice}}</span>
+										{% endif %}
 									</div>
 								</div>
-								<div class="checkout-item-price{% if item.salePrice %} checkout-item-price_discount{% endif %}">
-									<span>{{item.price}}</span>
-									{% if item.salePrice %}
-									<span>{{item.salePrice}}</span>
-									{% endif %}
-								</div>
-							</div>
-						</a>
-					</li>
+							</a>
+						</li>
 					{% endfor %}
 				</ul>
 				<button data-toggle-cart-items class="cart-review__toggle-btn"></button>
@@ -85,32 +87,37 @@
 
 		{# Main Button #}
 		{% if checkoutStep == 1 %}
-		<button data-submit-checkout class="checkout-summary__btn">To Delivery
-			<span>1 / 3 step</span>
-		</button>
+			<button data-submit-checkout class="checkout-summary__btn">To Delivery
+				<span>1 / 3 step</span>
+			</button>
 		{% endif %}
 		{% if checkoutStep == 2 %}
-		<button data-submit-checkout class="checkout-summary__btn">To Payment
-			<span>2 / 3 step</span>
-		</button>
+			<button data-submit-checkout class="checkout-summary__btn">To Payment
+				<span>2 / 3 step</span>
+			</button>
 		{% endif %}
 		{% if checkoutStep == 3 %}
-		<button data-submit-checkout class="checkout-summary__btn">Complete Order</button>
+			<div class="col_8">
+				<button data-submit-checkout class="checkout-summary__btn">Complete Order</button>
+				<label for="no_refunds" class="checkout__pseudo-cb mg-bottom_12 --checkout">
+					<input type="checkbox" id="no_refunds" name="no_refunds" value="1" required="">
+					<div class="checkout__pseudo-cb-box">
+						<div class="flex --12 --align-top">
+							<span class="checkout__pseudo-cb-dot"></span>
+							<h4>No refunds policy
+								<span>By checking this box, you acknowledge and agree to the store's no refund policy.</span>
+							</h4>
+						</div>
+					</div>
+				</label>
+			</div>
 		{% endif %}
-
-		{# Redeem Input #}
-		{# <div class="redeem-input-wrap">
-			<input data-input-toggle id="redeem_input" type="text" class="redeem-input" placeholder="Enter discount code">
-			<button id="redeem_button" class="redeem-btn" onclick="applyRedeemCode()" disabled>Apply</button>
-		</div> #}
 
 		<div class="checkout-redeem" {% if cart.code_redeemed==false %} style="display:none" {% endif %}>
 			<h3>Code Redeemed:</h3>
 			<a href="/product/icebox-jewelry-cleaner-polishing-cloth-kit-4205" class="checkout-item --code">
 				<div class="checkout-item__pic-wrap">
-					<img
-						src="https://www.icebox.com/unsafe/600x398/icebox-jewelry.s3.amazonaws.com/products/c3c688c03c0903554eeafcbae033476b.jpg"
-						alt="ICEBOX JEWELRY CLEANER & POLISHING CLOTH KIT">
+					<img src="https://www.icebox.com/unsafe/600x398/icebox-jewelry.s3.amazonaws.com/products/c3c688c03c0903554eeafcbae033476b.jpg" alt="ICEBOX JEWELRY CLEANER & POLISHING CLOTH KIT">
 				</div>
 				<div class="checkout-item__details">
 					<div>
@@ -136,8 +143,7 @@
 				</div>
 			</div>
 			<div class="mybag-information-row">
-				<img src="{{ THEME_ASSETS_FOLDER }}checkout/mybag-icon_delivery.svg" loading="lazy"
-					alt="Icebox safe delivery icon">
+				<img src="{{ THEME_ASSETS_FOLDER }}checkout/mybag-icon_delivery.svg" loading="lazy" alt="Icebox safe delivery icon">
 				<div class="mybag-information-row__wrap">
 					<span>Safe and Secure Shipping Across the Globe.</span>
 					<a href="#">Learn more</a>
