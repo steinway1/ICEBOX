@@ -3146,15 +3146,85 @@ span {
 }
 
 .page-loader {
+  --loader-back-color: rgba(255, 255, 255, 0.02);
+
   position: fixed;
   z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(38, 41, 51, 0.6);
+  background-image:
+    linear-gradient(
+      0deg,
+      transparent 24%,
+      var(--loader-back-color) 25%,
+      var(--loader-back-color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--loader-back-color) 75%,
+      var(--loader-back-color) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      var(--loader-back-color) 25%,
+      var(--loader-back-color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--loader-back-color) 75%,
+      var(--loader-back-color) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-size: 120px 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 18px;
   inset: 0%;
+
+  @include maxWidthMd {
+    background-size: 76px 76px;
+  }
+
+  &-container {
+    --uib-size: 36px;
+    --uib-color: rgb(255, 255, 255);
+    --uib-speed: 0.9s;
+    --uib-bg-opacity: 0.3;
+    height: var(--uib-size);
+    width: var(--uib-size);
+    transform-origin: center;
+    overflow: visible;
+  }
+
+  &-car {
+    fill: none;
+    stroke: var(--uib-color);
+    stroke-dasharray: 15, 85;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: travel var(--uib-speed) linear infinite;
+    will-change: stroke-dasharray, stroke-dashoffset;
+    transition: stroke 0.5s ease;
+  }
+
+  &-track {
+    stroke: var(--uib-color);
+    opacity: var(--uib-bg-opacity);
+    transition: stroke 0.5s ease;
+  }
+
+  @keyframes travel {
+    0% {
+      stroke-dashoffset: 0;
+    }
+
+    100% {
+      stroke-dashoffset: 100;
+    }
+  }
 
   &[data-text] {
     &::before {
@@ -3166,16 +3236,16 @@ span {
     }
   }
 
-  &::after {
-    content: "";
-    width: 26px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 2px solid var(--white);
-    animation:
-      l20-15 0.8s infinite linear alternate,
-      l20-25 1.6s infinite linear;
-  }
+  //   &::after {
+  //     content: "";
+  //     width: 26px;
+  //     aspect-ratio: 1;
+  //     border-radius: 50%;
+  //     border: 2px solid var(--white);
+  //     animation:
+  //       l20-15 0.8s infinite linear alternate,
+  //       l20-25 1.6s infinite linear;
+  //   }
 }
 
 .--sticky-top {

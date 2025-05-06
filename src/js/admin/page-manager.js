@@ -9,7 +9,8 @@ import Manufacture from './modules/pages/manufacture';
 import InvoiceGenerator from './modules/pages/invoice-generator';
 import Seo from './modules/pages/seo';
 import Catalog from './modules/pages/catalog';
-import PriceCalculator from './modules/pages/price-calculator-auto';
+import PriceCalculatorAuto from './modules/pages/price-calculator-auto';
+import PriceCalculator from './modules/pages/price-calculator';
 
 class PageManager {
   constructor() {
@@ -58,9 +59,13 @@ class PageManager {
         instance: Catalog,
         rootSelector: '.body_catalog',
       },
+      PriceCalculatorAuto: {
+        instance: PriceCalculatorAuto,
+        rootSelector: '.body_price_calculator_auto',
+      },
       PriceCalculator: {
         instance: PriceCalculator,
-        rootSelector: '.body_price_calculator_auto',
+        rootSelector: '.body_price_calculator',
       },
     };
     this.#init();

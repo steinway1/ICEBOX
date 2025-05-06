@@ -1,0 +1,277 @@
+<div class="space-window">
+  {# Header #}
+  <div class="space-window__header">
+    <div class="gap_8 pdx_8">
+      <div class="space__icon-btn">
+        <i class="hgi hgi-stroke hgi-sidebar-left"></i>
+      </div>
+      <div class="sm-divider mg-right_8"></div>
+      <strong class="clamp-1">Jewelry Price Calculator</strong>
+    </div>
+    <div class="space__time-now">
+      <i class="hgi hgi-stroke hgi-time-quarter-pass"></i>
+      <span data-time-now>Calculating...</span>
+    </div>
+  </div>
+
+  {# Content #}
+  <div class="space-window__content">
+    <div class="space-row">
+      <div class="space__dbl-col">
+        {# Calculators #}
+        <div class="space__col">
+          {# Diamond Jewelry #}
+          <div data-calc-type="diamondJewelry" class="space-box">
+            <div class="space-box__header">
+              <div class="gap_8">
+                <div class="space__fill-icon">
+                  {% include 'admin/svg/icon_diamond.svg' %}
+                </div>
+                <div class="col_4">
+                  <strong class="clamp-1">Diamond Jewelry Pricing</strong>
+                  <span class="typo_xs opacity_65">Calculate the cost of diamond jewelry</span>
+                </div>
+              </div>
+              {# <button class="space__spot-btn">Reset</button> #}
+            </div>
+            {# DiamondOptions #}
+            <div class="grid">
+              {# DIA SHAPE #}
+              <div class="ui-input-box">
+                <h4>DIA Shape</h4>
+                <select name="diaShape" data-name="Diamond Shape" id="diaShape" class="ui-input --select">
+                  {% for diaShapeOption in diaShapeOptions %}
+                    <option value="{{ diaShapeOption.value }}">
+                      {{ diaShapeOption.label }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              {# DIA QUALITY #}
+              <div class="ui-input-box">
+                <h4>DIA Quality</h4>
+                <select name="diaQuality" data-name="Diamond Quality" id="diaQuality" class="ui-input --select">
+                  {% for diaQualityOption in diaQualityOptions %}
+                    <option value="{{ diaQualityOption.value }}">
+                      {{ diaQualityOption.label }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              {# DIA METAL #}
+              <div class="ui-input-box">
+                <h4>Metal</h4>
+                <select name="diaMetal" data-name="Diamond Metal" id="diaMetal" class="ui-input --select">
+                  {% for diaMetalOption in diaMetalOptions %}
+                    <option value="{{ diaMetalOption.value }}">
+                      {{ diaMetalOption.label }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              {# CTW #}
+              <div class="ui-input-box">
+                <h4>CTW</h4>
+                <input data-input-decimal="2" name="ctw" data-name="Carat Total Weight" id="diaCtw" class="ui-input" placeholder="0.00" />
+              </div>
+
+              {# Gram Weight #}
+              <div class="ui-input-box">
+                <h4>Gram Weight</h4>
+                <input data-input-decimal="2" name="gramWeight" data-name="Gram Weight" id="diaGramWeight" class="ui-input" placeholder="0.00" />
+              </div>
+            </div>
+            <div class="grid --force-mob-1">
+              {# COST #}
+              <div class="space-tab">
+                <strong class="typo_xs">Cost</strong>
+                <span data-result="diaCost" class="typo_lg --color-red">$ 0.00</span>
+                <button class="--calc" data-calc-info="diaCost">Calculations</button>
+              </div>
+              {# RETAIL PRICE #}
+              <div class="space-tab">
+                <strong class="typo_xs">Retail Price</strong>
+                <span data-result="diaRetail" class="typo_lg">$ 0.00</span>
+                <button class="--calc" data-calc-info="diaRetail">Calculations</button>
+              </div>
+
+              {# DIA COST #}
+              <div class="space-tab">
+                <strong class="typo_xs">DIA Cost</strong>
+                <span data-result="diaDiamondCost" class="typo_lg --color-dim">$ 0.00</span>
+                <button class="--calc" data-calc-info="diaDiamondCost">Calculations</button>
+              </div>
+
+              {# METAL COST #}
+              <div class="space-tab">
+                <strong class="typo_xs">Metal Cost</strong>
+                <span data-result="diaMetalCost" class="typo_lg --color-dim">$ 0.00</span>
+                <button class="--calc" data-calc-info="diaMetalCost">Calculations</button>
+              </div>
+            </div>
+          </div>
+
+          {# Gold Chain #}
+          <div data-calc-type="goldChain" class="space-box">
+            <div class="space-box__header">
+              <div class="gap_8">
+                <div class="space__fill-icon">
+                  {% include 'admin/svg/icon_gold.svg' %}
+                </div>
+                <div class="col_4">
+                  <strong class="clamp-1">Gold chain price by Gram Weight</strong>
+                  <span class="typo_xs opacity_65">Calculate the cost of gold chain</span>
+                </div>
+              </div>
+              {# <button class="space__spot-btn">Reset</button> #}
+            </div>
+            {# Gold Chain Options #}
+            <div class="grid">
+              {# CHAIN KARAT #}
+              <div class="ui-input-box">
+                <h4>Karat</h4>
+                <select name="chainKarat" data-name="Chain Karat" id="chainKarat" class="ui-input --select">
+                  {% for chainKaratOption in chainKaratOptions %}
+                    <option value="{{ chainKaratOption.value }}">
+                      {{ chainKaratOption.label }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              {# CHAIN LENGTH #}
+              <div class="ui-input-box">
+                <h4>Length</h4>
+                <select name="chainLength" data-name="Chain Length" id="chainLength" class="ui-input --select">
+                  {% for chainLengthOption in chainLengthOptions %}
+                    <option value="{{ chainLengthOption.value }}">
+                      {{ chainLengthOption.label }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              {# Chain Weight #}
+              <div class="ui-input-box">
+                <h4>Weight (gr)</h4>
+                <input data-input-decimal="2" name="chainWeight" data-name="Chain Weight" id="chainWeight" class="ui-input" placeholder="0.00" value="20.00" />
+              </div>
+            </div>
+            <div class="grid --force-mob-1">
+              {# COST #}
+              <div class="space-tab">
+                <strong class="typo_xs">Re-Cost</strong>
+                <span data-result="chainCost" class="typo_lg --color-red">$ 0.00</span>
+                <button class="--calc" data-calc-info="chainCost">Calculations</button>
+              </div>
+
+              {# RETAIL PRICE #}
+              <div class="space-tab">
+                <strong class="typo_xs">Retail Price</strong>
+                <span data-result="chainRetail" class="typo_lg">$ 0.00</span>
+                <button class="--calc" data-calc-info="chainRetail">Calculations</button>
+              </div>
+
+              {# Gram Per Inch #}
+              <div class="space-tab">
+                <strong class="typo_xs">Gram Per Inch</strong>
+                <span data-result="chainGramPerInch" class="typo_lg --color-dim">0 g/in</span>
+                <button class="--calc" data-calc-info="chainGramPerInch">Calculations</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {# Base Prices #}
+        <div class="space__col --side-col">
+          {# Base Gold Price #}
+          <div class="space-box">
+            <div class="space-box__header">
+              <div class="gap_8">
+                <div class="col_4">
+                  <strong class="clamp-1">Base of cost gold</strong>
+                  <span class="typo_xs opacity_65">Last update: Just Now</span>
+                </div>
+              </div>
+              <div class="gap_8">
+                <button data-evt="toggleSpaceBox" class="space__spot-btn">
+                  <i class="hgi hgi-stroke hgi-view"></i>
+                  <i class="hgi hgi-stroke hgi-view-off-slash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="space-box__body">
+              <div id="metalBaseCostTable" class="col_8">
+                <div class="space-metal-row">
+                  <span class="typo_xs"><strong>$ OZ / Gold</strong></span>
+                  <div class="metal-circle"></div>
+                  <input data-input-decimal="2" name="baseGoldPrice" data-name="Base Gold Price" id="baseGoldPrice" class="ui-input" value="{{ baseGoldPrice }}" />
+                </div>
+                <div class="space-metal-row">
+                  <span class="typo_xs"><strong>$ OZ / Plat</strong></span>
+                  <div class="metal-circle --platinum"></div>
+                  <input data-input-decimal="2" name="basePlatinumPrice" data-name="Base Platinum Price" id="basePlatinumPrice" class="ui-input" value="{{ basePlatinumPrice }}" />
+                </div>
+                <div class="space-metal-row">
+                  <span class="typo_xs"><strong>$ OZ / Silver</strong></span>
+                  <div class="metal-circle --silver"></div>
+                  <input data-input-decimal="2" name="baseSilverPrice" data-name="Base Silver Price" id="baseSilverPrice" class="ui-input" value="{{ baseSilverPrice }}" />
+                </div>
+              </div>
+            </div>
+            <button data-save="baseMetalCost" class="space__spot-btn --lg">Save</button>
+          </div>
+
+          {# Diamond Base Cost #}
+          <div class="space-box">
+            <div class="space-box__header">
+              <div class="gap_8">
+                <div class="col_4">
+                  <strong class="clamp-1">Base of cost diamonds <span class="add-span">+ ${{ diamondBaseCoseAdd }}</span></strong>
+                  <span class="typo_xs opacity_65">Last update: Just Now</span>
+                </div>
+              </div>
+              <div class="gap_8">
+                <button data-tip="Add new base cost" data-evt="addBaseDiamondCost" class="space__spot-btn"><i class="hgi hgi-stroke hgi-add-circle-half-dot"></i></button>
+                <button data-evt="toggleSpaceBox" class="space__spot-btn">
+                  <i class="hgi hgi-stroke hgi-view-off-slash"></i>
+                  <i class="hgi hgi-stroke hgi-view"></i>
+                </button>
+              </div>
+            </div>
+            <div class="space-box__body">
+              <table id="diamondBaseCostTable" class="space-table --max-md">
+                <thead>
+                  <tr>
+                    <th><span>Shape</span></th>
+                    <th><span>Qlty</span></th>
+                    <th><span>Cost</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding: 0;" colspan="3"><input type="text" class="box-search-input" placeholder="Search..." /></td>
+                  </tr>
+                  {% for diamondBaseCostOption in diamondBaseCostOptions %}
+                    <tr data-base-cost="diaRow" {{ diamondBaseCostOption.highlight ? 'class="--highlight"' : '' }}>
+                      <td><span>{{ diamondBaseCostOption.shape }}</span></td>
+                      <td><span>{{ diamondBaseCostOption.quality }}</span></td>
+                      <td>
+                        <input data-input-decimal="2" type="text" class="ui-input" value="{{ diamondBaseCostOption.cost }}" />
+                        <button data-evt="removeBaseDiamondCost" class="tr-remove-btn"></button>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <button data-save="baseDiamondCost" class="space__spot-btn --lg">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
