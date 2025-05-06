@@ -34,7 +34,46 @@
               </div>
               {# <button class="space__spot-btn">Reset</button> #}
             </div>
-            {# DiamondOptions #}
+
+            {# Diamond URL Calculator #}
+            <div class="space__items-calc grid mg-bottom_12 --force-mob-1">
+              {# Bulk Select #}
+              <select data-bulk name="diaCategory" data-name="Diamond Category" id="diaCategory" class="ui-input --select">
+                <option value="" selected disabled>
+                  Select category...
+                </option>
+                {% for diamondCategory in diamondCategories %}
+                  <option value="{{ diamondCategory.value }}">
+                    {{ diamondCategory.label }}
+                  </option>
+                {% endfor %}
+              </select>
+              <select data-bulk name="diaSubcategory" data-name="Diamond Sub Category" id="diaSubcategory" class="ui-input --select">
+                <option value="" selected disabled>
+                  Subcategory...
+                </option>
+              </select>
+
+              {# Single #}
+              <div data-single class="ui-input-box --col-span-2">
+                <input type="text" name="diamondUrl" data-name="Diamond URL" id="diamondItemUrl" class="ui-input" placeholder="Paste item URL to calculate" />
+              </div>
+
+              {# Single / Bulk Toggles #}
+              <div class="space__toggle-group">
+                <label>
+                  <input type="radio" name="diaItemType" value="single" />
+                  <span>Single</span>
+                </label>
+                <label>
+                  <input type="radio" name="diaItemType" value="bulk" checked="" />
+                  <span>Bulk</span>
+                </label>
+              </div>
+              <button data-evt="calcDiamondItemUrl" class="space__btn"><span>Calculate</span></button>
+            </div>
+
+            {# Diamond Options #}
             <div class="grid">
               {# DIA SHAPE #}
               <div class="ui-input-box">
@@ -128,6 +167,42 @@
               </div>
               {# <button class="space__spot-btn">Reset</button> #}
             </div>
+
+            {# Gold Chain URL Calculator #}
+            <div class="space__items-calc grid mg-bottom_12 --force-mob-1">
+              {# Bulk Select #}
+              <select data-bulk name="goldChainCategory" data-name="Gold Chain Category" id="goldChainCategory" class="ui-input --select">
+                <option value="goldChains" selected>
+                  Gold Chains
+                </option>
+              </select>
+              <select data-bulk name="goldChainSubcategory" data-name="Gold Chain Sub Category" id="goldChainSubcategory" class="ui-input --select">
+                {% for goldChainSubCategory in goldChainSubCategories %}
+                  <option value="{{ goldChainSubCategory.value }}">
+                    {{ goldChainSubCategory.label }}
+                  </option>
+                {% endfor %}
+              </select>
+
+              {# Single #}
+              <div data-single class="ui-input-box --col-span-2">
+                <input type="text" name="goldChainUrl" data-name="Gold Chain URL" id="goldChainItemUrl" class="ui-input" placeholder="Paste item URL to calculate" />
+              </div>
+
+              {# Single / Bulk Toggles #}
+              <div class="space__toggle-group">
+                <label>
+                  <input type="radio" name="goldChainItemType" value="single" checked="" />
+                  <span>Single</span>
+                </label>
+                <label>
+                  <input type="radio" name="goldChainItemType" value="bulk" />
+                  <span>Bulk</span>
+                </label>
+              </div>
+              <button data-evt="calcGoldChainItemUrl" class="space__btn"><span>Calculate</span></button>
+            </div>
+
             {# Gold Chain Options #}
             <div class="grid">
               {# CHAIN KARAT #}
@@ -272,6 +347,9 @@
           </div>
         </div>
       </div>
+
+      {# Bulk Table #}
+      <div id="bulk-table-container"></div>
     </div>
   </div>
 </div>

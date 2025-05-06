@@ -1,18 +1,11 @@
-import PageMsg from "../dynamic/page-msg";
-import { appendPageLoader, removePageLoader } from "../general/utils";
-import EventBus from "../../event-bus";
-import InputFormatter from "../ui/input-formatter";
+import EventBus from '../../event-bus';
+import InputFormatter from '../ui/input-formatter';
 
-/** --------
- * COMPONENTS
- * -------- */
-import PriceInfoModals from "../components/price-calculator/price-info-modals";
-import CalculatorDiamondJewelry from "../components/price-calculator/calculator-diamond-jewelry";
-import CalculatorGoldChain from "../components/price-calculator/calculator-gold-chain";
-import CalculatorBaseCostSaver from "../components/price-calculator/calculator-save-base-cost";
-/** --------------
- * PRICE CALCULATOR
- * -------------- */
+/** -------- COMPONENTS -------- */
+// import PriceInfoModals from '../components/price-calculator/price-info-modals';
+import CalculatorDiamondJewelry from '../components/price-calculator-auto/calculator-diamond-jewelry';
+import CalculatorGoldChain from '../components/price-calculator-auto/calculator-gold-chain';
+import CalculatorBaseCostSaver from '../components/price-calculator-auto/calculator-save-base-cost';
 
 /**
  * @class PriceCalculator
@@ -21,18 +14,23 @@ import CalculatorBaseCostSaver from "../components/price-calculator/calculator-s
  */
 class PriceCalculator {
   static Events = {
-    ADD_BASE_DIAMOND_COST: "add-base-diamond-cost",
+    ADD_BASE_DIAMOND_COST: 'add-base-diamond-cost',
   };
+
   constructor(rootEl) {
     this.rootEl = rootEl;
-    this.priceInfoModals = new PriceInfoModals(this.rootEl);
+    this.eventBus = new EventBus();
+
+    // Components
     this.calculatorDiamondJewelry = new CalculatorDiamondJewelry(this.rootEl);
     this.calculatorGoldChain = new CalculatorGoldChain(this.rootEl);
-    this.eventBus = new EventBus();
+    // this.priceInfoModals = new PriceInfoModals(this.rootEl);
     this.calculatorBaseCostSaver = new CalculatorBaseCostSaver(this.rootEl);
-    this.diamondBaseCostTable = this.rootEl.querySelector("#diamondBaseCostTable");
-    this.diamondBaseCostTableBody = this.diamondBaseCostTable?.querySelector("tbody");
-    this.metalBaseCostTable = this.rootEl.querySelector("#metalBaseCostTable");
+
+    // DOM Elements
+    this.diamondBaseCostTable = this.rootEl.querySelector('#diamondBaseCostTable');
+    this.diamondBaseCostTableBody = this.diamondBaseCostTable?.querySelector('tbody');
+    this.metalBaseCostTable = this.rootEl.querySelector('#metalBaseCostTable');
 
     this.init();
   }
@@ -52,7 +50,7 @@ class PriceCalculator {
      * Add Base Diamond Cost
      * @description Add a base diamond cost to the table
      */
-    this.rootEl.addEventListener("click", (e) => {
+    this.rootEl.addEventListener('click', e => {
       const addBaseDiamondCostBtn = e.target.closest("[data-evt='addBaseDiamondCost']");
       if (addBaseDiamondCostBtn) {
         this.eventBus.emit(PriceCalculator.Events.ADD_BASE_DIAMOND_COST);
@@ -63,10 +61,10 @@ class PriceCalculator {
      * Remove Base Diamond Cost
      * @description Remove a base diamond cost from the table
      */
-    this.rootEl.addEventListener("click", (e) => {
+    this.rootEl.addEventListener('click', e => {
       const removeBaseDiamondCostBtn = e.target.closest("[data-evt='removeBaseDiamondCost']");
       if (removeBaseDiamondCostBtn) {
-        const row = removeBaseDiamondCostBtn.closest("tr");
+        const row = removeBaseDiamondCostBtn.closest('tr');
         if (!row) return;
         this.#removeBaseDiamondCost(row);
       }
@@ -80,7 +78,7 @@ class PriceCalculator {
    * --------- */
   /** Create the TR Row structure for the Base Diamond Cost Table */
   #buildBaseDiamondCostRow() {
-    const tpl = document.createElement("template");
+    const tpl = document.createElement('template');
     tpl.innerHTML = `
 		<tr data-base-cost="diaRow">
 			<td><span contenteditable="true">Shape</span></td>
@@ -93,7 +91,7 @@ class PriceCalculator {
 		`;
 
     const row = tpl.content.firstElementChild;
-    const input = row.querySelector("input");
+    const input = row.querySelector('input');
     new InputFormatter(input).decimalMask(2);
     return row;
   }

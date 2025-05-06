@@ -5,7 +5,15 @@ module.exports = {
     {
       files: "*.js",
       options: {
-        printWidth: 200,
+        printWidth: 120,
+        semi: true,
+        singleQuote: true,
+        trailingComma: "all",
+        bracketSpacing: true,
+        arrowParens: "avoid",
+        endOfLine: "lf",
+        tabWidth: 2,
+        useTabs: false,
       },
     },
     {

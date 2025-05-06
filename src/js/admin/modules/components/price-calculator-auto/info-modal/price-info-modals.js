@@ -1,5 +1,5 @@
-import InfoModal from "../../dynamic/info-modal";
-import PageMsg from "../../dynamic/page-msg";
+import InfoModal from "../../../dynamic/info-modal";
+import PageMsg from "../../../dynamic/page-msg";
 import { FORMULAS } from "./price-calculator-formulas";
 
 /**

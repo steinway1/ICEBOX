@@ -8,10 +8,14 @@ import {
   getFakeOrderDetails,
   getFakeSeoPage,
   getFakeCatalogCollection,
-} from "./fake-data";
+  getFakeDiamondItem,
+  getFakeChainItem,
+  getFakeSubcategoryItems,
+  getFakeSubcategories,
+} from './fake-data';
 
 function fakeAjaxGetPtwData(itemID) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const data = getFakePtwData(itemID);
       // const data = false
@@ -21,11 +25,11 @@ function fakeAjaxGetPtwData(itemID) {
 }
 
 function fakeFetchSuccess() {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const fakeResponse = {
         ok: true,
-        statusText: "OK",
+        statusText: 'OK',
         json: async () => ({}),
       };
       resolve(fakeResponse);
@@ -34,7 +38,7 @@ function fakeFetchSuccess() {
 }
 
 function fakeAjaxGetOrder(id) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const data = getFakeManulOrder(id);
       // const data = false
@@ -44,7 +48,7 @@ function fakeAjaxGetOrder(id) {
 }
 
 function fakeAjaxGetOrderDetails(id) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const data = getFakeOrderDetails(id);
       // const data = false
@@ -54,7 +58,7 @@ function fakeAjaxGetOrderDetails(id) {
 }
 
 function fakeAjaxGetCustomer(id) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const data = getFakeCustomer(id);
       // const data = false
@@ -64,7 +68,7 @@ function fakeAjaxGetCustomer(id) {
 }
 
 function fakeAjaxGetCustomers(query) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const data = getFakeCustomersArr(query);
       // const data = false
@@ -74,7 +78,7 @@ function fakeAjaxGetCustomers(query) {
 }
 
 function fakeAjaxGetItemsArray(query) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const data = getFakeItemsArr();
       // const data = []
@@ -84,7 +88,7 @@ function fakeAjaxGetItemsArray(query) {
 }
 
 function fakeAjaxGetItem(id) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const data = getFakeItem();
       // const data = false
@@ -94,11 +98,11 @@ function fakeAjaxGetItem(id) {
 }
 
 function fakeFetchPost(url, options) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const fakeResponse = {
         ok: true,
-        statusText: "OK",
+        statusText: 'OK',
         json: async () => ({}),
       };
       resolve(fakeResponse);
@@ -107,11 +111,11 @@ function fakeFetchPost(url, options) {
 }
 
 function fakeFetchRemoveOrder(url, options) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const fakeResponse = {
         ok: true,
-        statusText: "OK",
+        statusText: 'OK',
         json: async () => ({}),
       };
       resolve(fakeResponse);
@@ -120,11 +124,11 @@ function fakeFetchRemoveOrder(url, options) {
 }
 
 function fakeFetchRemoveNote(url, options) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const fakeResponse = {
         ok: true,
-        statusText: "OK",
+        statusText: 'OK',
         json: async () => ({}),
       };
       resolve(fakeResponse);
@@ -133,7 +137,7 @@ function fakeFetchRemoveNote(url, options) {
 }
 
 function fakeFetchSaveToCollection(url, options) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve({ ok: true });
     }, 2000);
@@ -141,7 +145,7 @@ function fakeFetchSaveToCollection(url, options) {
 }
 
 function fakeFetchSaveItemTitle(url, options) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve({ ok: true });
     }, 2000);
@@ -149,7 +153,7 @@ function fakeFetchSaveItemTitle(url, options) {
 }
 
 function fakeFetchSaveSeoPage(url, options) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve({ ok: true });
     }, 2000);
@@ -157,7 +161,7 @@ function fakeFetchSaveSeoPage(url, options) {
 }
 
 function fakeAjaxGetSeoPage(id) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const data = getFakeSeoPage();
       resolve(data);
@@ -166,11 +170,47 @@ function fakeAjaxGetSeoPage(id) {
 }
 
 function fakeAjaxGetCatalogCollection(collectionName) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const data = getFakeCatalogCollection(collectionName);
       resolve(data);
     }, 2000);
+  });
+}
+
+function fakeAjaxGetDiamondItem(url) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const data = getFakeDiamondItem(url);
+      resolve(data);
+    }, 2000);
+  });
+}
+
+function fakeAjaxGetChainItem(url) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const data = getFakeChainItem(url);
+      resolve(data);
+    }, 2000);
+  });
+}
+
+function fakeAjaxGetSubcategoryItems(category, subcategory) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const data = getFakeSubcategoryItems(category, subcategory);
+      resolve(data);
+    }, 500);
+  });
+}
+
+function fakeAjaxGetSubcategories(category) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const data = getFakeSubcategories(category);
+      resolve(data);
+    }, 500);
   });
 }
 export {
@@ -190,4 +230,8 @@ export {
   fakeAjaxGetSeoPage,
   fakeFetchSaveSeoPage,
   fakeAjaxGetCatalogCollection,
+  fakeAjaxGetDiamondItem,
+  fakeAjaxGetChainItem,
+  fakeAjaxGetSubcategoryItems,
+  fakeAjaxGetSubcategories,
 };

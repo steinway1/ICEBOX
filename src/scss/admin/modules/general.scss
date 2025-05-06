@@ -153,7 +153,7 @@ select {
   align-items: center !important;
   padding: 10px 14px !important;
   font-size: 13px !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) !important;
   gap: 6px !important;
 }
@@ -1914,6 +1914,10 @@ svg.svg_loader {
   }
 }
 
+.mg-bottom_12 {
+  margin-bottom: 12px;
+}
+
 .mg-top_6 {
   margin-top: 6px;
 }
@@ -3144,7 +3148,7 @@ span {
 .page-loader {
   position: fixed;
   z-index: 9999;
-  background-color: rgba(22, 23, 24, 0.25);
+  background-color: rgba(0, 0, 0, 0.65);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -3157,7 +3161,7 @@ span {
       content: attr(data-text);
       font-size: 14px;
       font-weight: 600;
-      color: var(--black);
+      color: var(--white);
       order: 1;
     }
   }
@@ -3167,7 +3171,7 @@ span {
     width: 26px;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 2px solid var(--black);
+    border: 2px solid var(--white);
     animation:
       l20-15 0.8s infinite linear alternate,
       l20-25 1.6s infinite linear;
@@ -3250,7 +3254,8 @@ span {
 
   &.--force-mob-1 {
     @include maxWidthXs {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
     }
   }
 
@@ -3260,6 +3265,10 @@ span {
 
   @include maxWidthSm {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .--col-span-2 {
+    grid-column: span 2;
   }
 }
 
@@ -3330,7 +3339,7 @@ span {
   .symbol {
     width: 1.2em;
     height: 1.2em;
-		margin: 0 4px;
+    margin: 0 4px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
