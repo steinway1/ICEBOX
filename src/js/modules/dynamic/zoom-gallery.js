@@ -16,38 +16,51 @@ class ZoomGallery {
 
   // Render HTML
   _renderMediaHTML() {
-    let html = "";
+    let html = '';
+
     for (const media of this.mediaArr) {
+      const isSirv = media.classList.contains('--sirv');
       const clone = media.cloneNode(true);
-      clone.removeAttribute("style");
-      clone.className = "product-media";
+      clone.removeAttribute('style');
 
-      const image = clone.querySelector("img");
+      if (isSirv) {
+        const sirvDiv = clone.querySelector('.Sirv');
+        if (sirvDiv) {
+          const src = sirvDiv.getAttribute('data-src');
+          // Clear existing content and recreate Sirv div
+          sirvDiv.innerHTML = '';
+          sirvDiv.setAttribute('data-src', src);
+        }
+        html += clone.outerHTML;
+        this.zoomMediaArr.push(clone);
+      } else {
+        const image = clone.querySelector('img');
+        if (image) {
+          const src = image.getAttribute('src');
+          if (src && src.includes('/600x0/')) {
+            image.src = src.replace('/600x0/', '/0x0/');
+          }
 
-      if (image) {
-        const loader = document.createElement("div");
-        loader.className = "card-loader";
-        loader.innerHTML = `
+          const loader = document.createElement('div');
+          loader.className = 'card-loader';
+          loader.innerHTML = `
             <svg viewBox="0 0 40 40" focusable="false" aria-hidden="true">
               <circle stroke-width="3" stroke-linejoin="round" fill="none" cx="20" cy="20" r="18"></circle>
             </svg>
-        `;
-        clone.append(loader);
+          `;
+          clone.append(loader);
+          clone.classList.add('--loading');
 
-        clone.classList.add("--loading");
-        const src = image.getAttribute("src");
-        if (src && src.includes("/600x0/")) {
-          image.src = src.replace("/600x0/", "/0x0/");
+          html += clone.outerHTML;
+          this.zoomMediaArr.push(clone);
         }
       }
-
-      html += clone.outerHTML;
-      this.zoomMediaArr.push(clone);
     }
+
     return html;
   }
   _renderInnerHTML() {
-    const name = document.querySelector("#item_name");
+    const name = document.querySelector('#item_name');
     return `
     <div class="zoom2__wrapper">
       <div class="zoom2__scroller">
@@ -64,16 +77,15 @@ class ZoomGallery {
     `;
   }
   _create() {
-    this.elem = document.createElement("div");
-    this.elem.className = "zoom2";
+    this.elem = document.createElement('div');
+    this.elem.className = 'zoom2';
     this.elem.innerHTML = this._renderInnerHTML();
     document.body.append(this.elem);
   }
   _scrollToIndex() {
     if (this.scrollIndex) {
-      const scroller = this.elem.querySelector(".zoom2__scroller");
-      const mediaHeight =
-        this.elem.querySelector(".product-media").offsetHeight;
+      const scroller = this.elem.querySelector('.zoom2__scroller');
+      const mediaHeight = this.elem.querySelector('.product-media').offsetHeight;
       scroller.scrollTop = mediaHeight * this.scrollIndex;
     }
   }
@@ -83,38 +95,38 @@ class ZoomGallery {
     if (this.elem) {
       unlockScroll();
       this.elem.classList.remove(__VISIBLE);
-      document.removeEventListener("keydown", this.handleEscape);
+      document.removeEventListener('keydown', this.handleEscape);
       setTimeout(() => {
-        this.elem.style.display = "none";
+        this.elem.style.display = 'none';
         this.destroy();
       }, getTransitionTime(this.elem));
     }
   }
   open() {
-    if (!this.elem) throw new Error("No element created Zoom2 ZoomGallery");
+    if (!this.elem) throw new Error('No element created Zoom2 ZoomGallery');
 
     lockScroll();
-    this.elem.style.display = "block";
+    this.elem.style.display = 'block';
     this._scrollToIndex();
-    document.addEventListener("keydown", this.handleEscape);
+    document.addEventListener('keydown', this.handleEscape);
     requestAnimationFrame(() => {
       this.elem.classList.add(__VISIBLE);
     });
   }
   removeLazyLoaders() {
-    const mediaArr = [...this.elem.querySelectorAll(".product-media")];
+    const mediaArr = [...this.elem.querySelectorAll('.product-media')];
     for (const media of mediaArr) {
-      const img = media.querySelector("img");
+      const img = media.querySelector('img');
       if (img && img.complete) {
-        media.classList.remove("--loading");
+        media.classList.remove('--loading');
       } else if (img) {
-        img.onload = () => media.classList.remove("--loading");
+        img.onload = () => media.classList.remove('--loading');
       }
     }
   }
 
   handleEscape(e) {
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       this.hide();
     }
   }
@@ -122,9 +134,9 @@ class ZoomGallery {
   // Events
   _bindInnerEvents() {
     if (this.elem) {
-      const closeArr = [...this.elem.querySelectorAll("[data-zoom-close]")];
-      closeArr.forEach((closeElem) => {
-        closeElem.addEventListener("click", this.hide.bind(this));
+      const closeArr = [...this.elem.querySelectorAll('[data-zoom-close]')];
+      closeArr.forEach(closeElem => {
+        closeElem.addEventListener('click', this.hide.bind(this));
       });
     }
   }
@@ -132,7 +144,7 @@ class ZoomGallery {
   // Init
   destroy() {
     if (this.elem) {
-      document.removeEventListener("keydown", this.handleEscape);
+      document.removeEventListener('keydown', this.handleEscape);
       this.elem.remove();
       this.elem = null;
     }
