@@ -1,4 +1,5 @@
 import EventBus from '../../../event-bus';
+import { ChainMath } from '../price-calculator-auto/helpers/chain-math';
 
 import { debounce } from '../../general/utils';
 import { METALS_BASE_COST_MAP_CHAIN as METALS_BASE_COST_MAP } from './metals-base-cost-map';
@@ -46,6 +47,7 @@ class CalculatorGoldChain {
     this.#clearErrors();
     this.#calcGramPerInch();
     this.#calcChainCost();
+    this.#calcChainRetail();
   }
   reset() {
     this.currentChainCost = undefined;
@@ -118,6 +120,21 @@ class CalculatorGoldChain {
 
     this.resultChainCost.textContent = `$ ${chainCost.toFixed(2)}`;
     this.currentChainCost = chainCost;
+  }
+  #calcChainRetail() {
+    if (!this.currentChainCost || !this.currentChainGramPerInch) {
+      this.#showError('Calculate cost and gram per inch first');
+      return;
+    }
+
+    const retail = ChainMath.chainRetail({
+      chainCost: this.currentChainCost,
+      gramsPerInch: this.currentChainGramPerInch,
+      roundStep: 5,
+    });
+
+    this.resultChainRetail.textContent = `$ ${retail.toFixed(2)}`;
+    this.currentChainRetail = retail;
   }
 
   /** --------
