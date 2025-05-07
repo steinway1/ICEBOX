@@ -101,20 +101,10 @@ class CalculatorBaseCostSaver {
         return acc;
       }, []);
 
-      /**
-       * @Chou - Setup the response to save the diamond base cost options
-       * diamondBaseCostOptions supposed to be an array of objects with the following keys:
-       * {
-       * 	shape: String,
-       * 	quality: String,
-       * 	price: Number,
-       * }
-       *
-       * We render these values on the page by using these variables:
-       * diamondBaseCostOptions within the table #diamondBaseCostTable
-       */
-      const response = await saveDiamondBaseCostOptions(diamondBaseCostOptions);
+
       console.log(diamondBaseCostOptions);
+      const response = await saveDiamondBaseCostOptions(diamondBaseCostOptions);
+
 
       if (!response.ok) throw new Error('Failed to save diamond prices');
 

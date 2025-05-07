@@ -159,17 +159,30 @@ function AjaxGetCatalogCollection(id) {
 
 function saveDiamondBaseCostOptions(data) {
   return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ ok: true });
-    }, 2000);
+    $.ajax({
+      url:'/admin/save-diamonds-base-cost',
+      type:'POST',
+      data: JSON.stringify(data),
+      dataType: 'json',
+      contentType: 'application/json', // Important
+      success:function(response){
+        resolve(response);
+      }
+    })
   });
 }
 
 function saveMetalBaseCostOptions(data) {
   return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ ok: true });
-    }, 2000);
+    $.ajax({
+      url:'/admin/save-metal-base-cost',
+      data:data,
+      type:'POST',
+      dataType:'json',
+      success:function(response){
+        resolve(response);
+      }
+    })
   });
 }
 
