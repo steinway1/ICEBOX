@@ -2,19 +2,19 @@ class SwitchCardColor {
   #mockData = {
     150: {
       YellowSrc:
-        "https://image.icebox.com/unsafe/600x0/icebox-jewelry.s3.amazonaws.com/products/a865d3552002730a248fdedf0721b331.jpg",
+        'https://image.icebox.com/unsafe/600x0/icebox-jewelry.s3.amazonaws.com/products/a865d3552002730a248fdedf0721b331.jpg',
       RoseSrc: undefined,
       WhiteSrc:
-        "https://image.icebox.com/unsafe/600x0/icebox-jewelry.s3.amazonaws.com/products/da82270d8916c65f626f7e831ab5682a.jpg",
+        'https://image.icebox.com/unsafe/600x0/icebox-jewelry.s3.amazonaws.com/products/da82270d8916c65f626f7e831ab5682a.jpg',
     },
   };
   #fetchProductData(id, color) {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: "/ajax/get-product-color-image",
-        type: "POST",
+        url: '/ajax/get-product-color-image',
+        type: 'POST',
         data: { product: id, gc: color },
-        datatype: "json",
+        datatype: 'json',
         success: function (response) {
           resolve(response);
         },
@@ -24,12 +24,10 @@ class SwitchCardColor {
   constructor(cardElement, color) {
     this.card = cardElement;
     this.productId = this.card.dataset.id;
-    this.image = this.card.querySelector(".product-card__img");
-    this.media = this.card.querySelector(".product-card__media");
-    this.colorButtons = this.card.querySelectorAll("[data-switch-color]");
-    this.currentColor = this.card.querySelector(
-      "[data-switch-color].--active"
-    ).dataset.switchColor;
+    this.image = this.card.querySelector('.product-card__img');
+    this.media = this.card.querySelector('.product-card__media');
+    this.colorButtons = this.card.querySelectorAll('[data-switch-color]');
+    this.currentColor = this.card.querySelector('[data-switch-color].--active').dataset.switchColor;
     this.color = color;
 
     this.#switch();
@@ -38,13 +36,13 @@ class SwitchCardColor {
     if (this.currentColor === this.color) return;
 
     try {
-      this.media.classList.remove("--loaded");
-      this.colorButtons.forEach((btn) => btn.classList.add("--disabled"));
+      this.media.classList.remove('--loaded');
+      this.colorButtons.forEach(btn => btn.classList.add('--disabled'));
 
       const itemData = await this.#fetchProductData(this.productId, this.color);
 
       if (!itemData) {
-        console.error("Product not found");
+        console.error('Product not found');
         return;
       }
 
@@ -55,7 +53,7 @@ class SwitchCardColor {
        */
       const colorImageSrc = itemData.src;
       if (!colorImageSrc) {
-        console.error("Color image not found");
+        console.error('Color image not found');
         return;
       }
 
@@ -67,25 +65,22 @@ class SwitchCardColor {
       });
 
       this.image.src = colorImageSrc;
-      this.colorButtons.forEach((btn) => {
-        btn.classList.toggle(
-          "--active",
-          btn.dataset.switchColor === this.color
-        );
+      this.colorButtons.forEach(btn => {
+        btn.classList.toggle('--active', btn.dataset.switchColor === this.color);
       });
     } catch (err) {
       console.warn(err);
     } finally {
-      this.media.classList.add("--loaded");
-      this.colorButtons.forEach((btn) => btn.classList.remove("--disabled"));
+      this.media.classList.add('--loaded');
+      this.colorButtons.forEach(btn => btn.classList.remove('--disabled'));
     }
   }
 }
 
 const pageEls = new Object({
   init: function () {
-    Object.values(this.attachEvent).forEach((target) => {
-      if (typeof target === "function") {
+    Object.values(this.attachEvent).forEach(target => {
+      if (typeof target === 'function') {
         try {
           target();
         } catch (err) {
@@ -97,10 +92,10 @@ const pageEls = new Object({
   attachEvent: {
     // Switch Card Color
     bindSwitchCardColor() {
-      document.addEventListener("click", (e) => {
+      document.addEventListener('click', e => {
         const { target } = e;
-        if (target.closest("[data-switch-color]")) {
-          const card = target.closest(".product-card");
+        if (target.closest('[data-switch-color]')) {
+          const card = target.closest('.product-card');
           const color = target.dataset.switchColor;
           if (card && color) {
             new SwitchCardColor(card, color);
@@ -110,15 +105,13 @@ const pageEls = new Object({
     },
     // Cart - Toggle Cart Summary - mobile floating button
     bindCartSummaryToggle() {
-      if (document.body.classList.contains("body_cart")) {
-        const triggerArr = [
-          ...document.querySelectorAll('[data-evt="toggleCartSummary"]'),
-        ];
-        const cssClass = "mybag-summary-open";
+      if (document.body.classList.contains('body_cart')) {
+        const triggerArr = [...document.querySelectorAll('[data-evt="toggleCartSummary"]')];
+        const cssClass = 'mybag-summary-open';
 
         if (triggerArr.length) {
           for (const trigger of triggerArr) {
-            trigger.addEventListener("click", () => {
+            trigger.addEventListener('click', () => {
               if (document.body.classList.contains(cssClass)) {
                 document.body.classList.remove(cssClass);
                 unlockScroll();
@@ -145,7 +138,7 @@ const pageEls = new Object({
     // Youtube videos / Youtube row
     bindYoutubeVideos() {
       // Create Player
-      const createPlayer = (url) => {
+      const createPlayer = url => {
         const render = () => {
           return `
   <div class="yt-controls">
@@ -160,39 +153,37 @@ const pageEls = new Object({
           `;
         };
 
-        const player = createElem("div", {
-          className: "yt-float",
+        const player = createElem('div', {
+          className: 'yt-float',
           innerHTML: render(),
         });
         document.body.appendChild(player);
-        player.addEventListener("click", (e) => {
-          if (e.target.closest(".yt-float__btn")) {
+        player.addEventListener('click', e => {
+          if (e.target.closest('.yt-float__btn')) {
             player.remove();
           }
         });
       };
-      document.addEventListener("click", (e) => {
+      document.addEventListener('click', e => {
         const target = e.target;
-        if (target.closest(".yt-item") && target.closest("[data-url]")) {
-          const ytElement = document.querySelector(".yt-float");
+        if (target.closest('.yt-item') && target.closest('[data-url]')) {
+          const ytElement = document.querySelector('.yt-float');
           if (ytElement) {
             ytElement.remove();
           }
-          const url = target.closest("[data-url]").dataset.url;
+          const url = target.closest('[data-url]').dataset.url;
           createPlayer(url);
         }
       });
 
       // Expand Youtube row
-      const expandArr = [
-        ...document.querySelectorAll('[data-evt="expandYoutubeRow"]'),
-      ];
-      const ytRow = document.querySelector(".yt-row");
+      const expandArr = [...document.querySelectorAll('[data-evt="expandYoutubeRow"]')];
+      const ytRow = document.querySelector('.yt-row');
       if (ytRow) {
         for (const elem of expandArr) {
-          elem.addEventListener("click", () => {
-            ytRow.classList.add("--expanded");
-            elem.innerHTML = "No more videos...";
+          elem.addEventListener('click', () => {
+            ytRow.classList.add('--expanded');
+            elem.innerHTML = 'No more videos...';
             elem.disabled = true;
           });
         }
@@ -200,57 +191,49 @@ const pageEls = new Object({
     },
     // Set capitalize for all subcategories tabs
     changeToLowerCaseSubcategories() {
-      const tabs = [
-        ...document.querySelectorAll(
-          ".results__subcategories-wrap .custom-checkbox"
-        ),
-      ];
+      const tabs = [...document.querySelectorAll('.results__subcategories-wrap .custom-checkbox')];
       for (const tab of tabs) {
-        const span = tab.querySelector("span");
+        const span = tab.querySelector('span');
         if (span) {
           const text = span.textContent;
-          const toUpperCase = (str) => str[0].toUpperCase() + str.slice(1);
-          const correctText = text
-            .toLowerCase()
-            .split(" ")
-            .map(toUpperCase)
-            .join(" ");
+          const toUpperCase = str => str[0].toUpperCase() + str.slice(1);
+          const correctText = text.toLowerCase().split(' ').map(toUpperCase).join(' ');
           span.textContent = correctText;
         }
       }
     },
     // Page Share Button
     bindPageShareButton() {
-      const elemArr = [...document.querySelectorAll("[data-share-page]")];
+      const elemArr = [...document.querySelectorAll('[data-share-page]')];
       for (const elem of elemArr) {
-        elem.addEventListener("click", () => {
-          const span = elem.querySelector("span");
+        elem.addEventListener('click', () => {
+          const span = elem.querySelector('span');
           navigator.clipboard
             .writeText(window.location.href)
             .then(() => {
-              span.textContent = "Share";
-              span.textContent = "URL Copied!";
+              span.textContent = 'Share';
+              span.textContent = 'URL Copied!';
               setTimeout(() => {
-                span.textContent = "Share";
+                span.textContent = 'Share';
               }, 800);
             })
-            .catch((err) => {
-              throw new Error("Copying error occured", err);
+            .catch(err => {
+              throw new Error('Copying error occured', err);
             });
         });
       }
     },
     // Floating Whatsapp Button
     observeFloatWhatsapp() {
-      const elem = document.querySelector(".wa-float");
-      const triggerElem = document.querySelector(".footer");
+      const elem = document.querySelector('.wa-float');
+      const triggerElem = document.querySelector('.footer');
       if (!elem || !triggerElem) return;
 
       let offset = 120;
       let observer = null;
 
-      const callback = (entries) => {
-        entries.forEach((entry) => {
+      const callback = entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             elem.classList.add(__HIDDEN);
           } else {
@@ -269,10 +252,10 @@ const pageEls = new Object({
     },
     // Copy Elements
     copyEvents: () => {
-      const copyArr = [...document.querySelectorAll("[data-evt-copy]")];
+      const copyArr = [...document.querySelectorAll('[data-evt-copy]')];
       if (copyArr.length) {
         for (const btn of copyArr) {
-          btn.addEventListener("click", () => {
+          btn.addEventListener('click', () => {
             const textToCopy = btn.dataset.evtCopy;
             if (textToCopy) {
               navigator.clipboard.writeText(textToCopy);
@@ -287,26 +270,26 @@ const pageEls = new Object({
       if (arr.length) {
         function toggleInput(value) {
           const elements = {
-            phone: document.querySelector("#form_track_order .iti"),
-            email: document.querySelector("#input_track_email"),
+            phone: document.querySelector('#form_track_order .iti'),
+            email: document.querySelector('#input_track_email'),
           };
 
           if (!elements.phone || !elements.email) {
-            console.error("phone or email not found");
+            console.error('phone or email not found');
             return;
           }
 
           if (elements[value]) {
-            Object.keys(elements).forEach((key) => {
-              elements[key].style.display = key === value ? "block" : "none";
+            Object.keys(elements).forEach(key => {
+              elements[key].style.display = key === value ? 'block' : 'none';
             });
           } else {
             console.error(`Invalid value: ${value}`);
           }
         }
 
-        arr.forEach((input) => {
-          input.addEventListener("change", () => {
+        arr.forEach(input => {
+          input.addEventListener('change', () => {
             toggleInput(input.value);
           });
         });
@@ -315,11 +298,11 @@ const pageEls = new Object({
     resetTrackOrderForm: () => {
       const elem = document.querySelector('[data-evt="reset_track_form"]');
       if (elem) {
-        elem.addEventListener("click", (e) => {
+        elem.addEventListener('click', e => {
           e.preventDefault();
-          const form = document.querySelector("#form_track_order");
+          const form = document.querySelector('#form_track_order');
           if (!form) {
-            console.error("form not found");
+            console.error('form not found');
             return;
           }
 
@@ -329,16 +312,16 @@ const pageEls = new Object({
     },
     // Other
     filterDropdown: () => {
-      let dropdownEls = Array.from($(".filter-dropdown"));
+      let dropdownEls = Array.from($('.filter-dropdown'));
 
       for (let i = 0; i < dropdownEls.length; i++) {
         const el = dropdownEls[i];
         $(el).hover(function () {
-          let thisCurrent = $(this).find(".filter-dropdown__current"),
-            list = $(this).find(".filter-dropdown__list"),
-            scrollContainer = list.find("> div"),
-            buttons = Array.from(scrollContainer.find("> div")),
-            main = $(this).find(".filter-dropdown__main");
+          let thisCurrent = $(this).find('.filter-dropdown__current'),
+            list = $(this).find('.filter-dropdown__list'),
+            scrollContainer = list.find('> div'),
+            buttons = Array.from(scrollContainer.find('> div')),
+            main = $(this).find('.filter-dropdown__main');
 
           const scrollH = scrollContainer[0].scrollHeight;
 
@@ -346,7 +329,7 @@ const pageEls = new Object({
             list.css({ height: `${scrollH}px` });
             main.addClass(IS_ACTIVE);
           } else {
-            list.css({ height: "0px" });
+            list.css({ height: '0px' });
             main.removeClass(IS_ACTIVE);
           }
 
@@ -364,18 +347,16 @@ const pageEls = new Object({
       }
     },
     trackingDateUpdate: () => {
-      const dates = [
-        ...document.querySelectorAll('[data-track="updated_date"]'),
-      ];
+      const dates = [...document.querySelectorAll('[data-track="updated_date"]')];
       const nowDate = new Date();
 
       if (dates.length) {
         const day = nowDate.getDate();
-        const month = nowDate.toLocaleDateString("en-US", { month: "short" });
+        const month = nowDate.toLocaleDateString('en-US', { month: 'short' });
         const year = nowDate.getFullYear();
         let hours = nowDate.getHours();
-        const minutes = nowDate.getMinutes().toString().padStart(2, "0");
-        const ampm = hours >= 12 ? "PM" : "AM";
+        const minutes = nowDate.getMinutes().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
         hours = hours % 12 || 12;
 
         for (const date of dates) {
@@ -384,13 +365,13 @@ const pageEls = new Object({
       }
     },
     pageFilters: () => {
-      let filterRows = Array.from($(".filter-row"));
+      let filterRows = Array.from($('.filter-row'));
       for (let i = 0; i < filterRows.length; i++) {
         const el = $(filterRows[i]),
-          header = el.find(".filter-row__header"),
-          body = el.find(".filter-row__body"),
-          container = el.find(".filter-row__container"),
-          icon = header.find("svg");
+          header = el.find('.filter-row__header'),
+          body = el.find('.filter-row__body'),
+          container = el.find('.filter-row__container'),
+          icon = header.find('svg');
 
         header.click(() => {
           let currentBodyHeight = body.height();
@@ -398,23 +379,23 @@ const pageEls = new Object({
             body.css({ height: `${currentBodyHeight}px` });
             setTimeout(() => {
               body.css({ height: 0 });
-              container.css({ transform: "translateY(-24px)", opacity: 0 });
-              icon.css({ transform: "rotate(0deg)" });
+              container.css({ transform: 'translateY(-24px)', opacity: 0 });
+              icon.css({ transform: 'rotate(0deg)' });
             }, 1);
           } else {
             let scrollH = container[0].scrollHeight;
             body.css({ height: scrollH });
-            container.css({ transform: "translateY(0px)", opacity: 1 });
-            icon.css({ transform: "rotate(180deg)" });
+            container.css({ transform: 'translateY(0px)', opacity: 1 });
+            icon.css({ transform: 'rotate(180deg)' });
           }
         });
       }
     },
     faqLists: () => {
-      const headArr = [...document.querySelectorAll(".faq-head")];
+      const headArr = [...document.querySelectorAll('.faq-head')];
       let liArr = [];
       for (const faqHead of headArr) {
-        const li = faqHead.closest("li");
+        const li = faqHead.closest('li');
         const body = faqHead.nextElementSibling;
         if (li && body) {
           liArr.push(li);
@@ -423,7 +404,7 @@ const pageEls = new Object({
             const scrollHeight = body.scrollHeight;
             body.style.height = `${scrollHeight}px`;
             setTimeout(() => {
-              body.style.height = "auto";
+              body.style.height = 'auto';
             }, 1);
           };
           li.hide = () => {
@@ -441,11 +422,9 @@ const pageEls = new Object({
           };
 
           // Transform letters
-          const h6 = faqHead.querySelector("h6");
+          const h6 = faqHead.querySelector('h6');
           if (h6) {
-            const capitalized = h6.textContent
-              .toLowerCase()
-              .replace(/(\b)(\w)/g, (match, p1, p2) => p2.toUpperCase());
+            const capitalized = h6.textContent.toLowerCase().replace(/(\b)(\w)/g, (match, p1, p2) => p2.toUpperCase());
             h6.textContent = capitalized;
           }
 
@@ -455,15 +434,13 @@ const pageEls = new Object({
       }
     },
     listings: () => {
-      const listings = [...document.querySelectorAll(".listing-set")];
+      const listings = [...document.querySelectorAll('.listing-set')];
       for (const listing of listings) {
-        const buttonArray = [
-          ...listing.querySelectorAll(".listing-btn:not(.--disabled)"),
-        ];
-        buttonArray.forEach((btn) => {
-          btn.addEventListener("click", () => {
+        const buttonArray = [...listing.querySelectorAll('.listing-btn:not(.--disabled)')];
+        buttonArray.forEach(btn => {
+          btn.addEventListener('click', () => {
             btn.classList.add(IS_ACTIVE);
-            buttonArray.forEach((arrBtn) => {
+            buttonArray.forEach(arrBtn => {
               if (arrBtn != btn) arrBtn.classList.remove(IS_ACTIVE);
             });
           });
@@ -471,7 +448,7 @@ const pageEls = new Object({
       }
     },
     removeZeroSubheading: () => {
-      const arr = [...document.querySelectorAll(".results__subheading")];
+      const arr = [...document.querySelectorAll('.results__subheading')];
       for (const subheading of arr) {
         if (subheading.innerHTML.length < 1) {
           subheading.remove();
@@ -483,46 +460,46 @@ const pageEls = new Object({
 
       for (var i = 0; i < telInputArr.length; i++) {
         let iti = intlTelInput(telInputArr[i], {
-          initialCountry: "us",
-          preferredCountries: ["us"],
-          autoPlaceholder: "aggressive",
+          initialCountry: 'us',
+          preferredCountries: ['us'],
+          autoPlaceholder: 'aggressive',
           useFullscreenPopup: true,
-          utilsScript: "/assets/public-2020/js/plugins/phone/utils.js",
+          utilsScript: '/assets/public-2020/js/plugins/phone/utils.js',
         });
       }
     },
     initBannerUploader: () => {
-      const input = document.querySelector("#bannerInputUpload");
+      const input = document.querySelector('#bannerInputUpload');
       if (!input) return;
-      const smartPicture = input.closest(".smart-picture");
+      const smartPicture = input.closest('.smart-picture');
       if (input && smartPicture) {
-        input.addEventListener("change", async (e) => {
+        input.addEventListener('change', async e => {
           const picture = input.files[0];
           const formData = new FormData();
-          formData.append("picture", picture);
+          formData.append('picture', picture);
 
           /**
            * @CHOU
            * @TODO: Replace with actual fetch
            */
           const fakeFetch = () =>
-            new Promise((resolve) => {
+            new Promise(resolve => {
               setTimeout(() => {
                 resolve({
                   success: true,
-                  message: "Banner uploaded successfully",
+                  message: 'Banner uploaded successfully',
                   url: URL.createObjectURL(picture),
                 });
               }, 2000);
             });
 
           try {
-            smartPicture.classList.remove("--loaded");
+            smartPicture.classList.remove('--loaded');
             const data = await fakeFetch();
 
             if (data.success) {
-              smartPicture.classList.add("--loaded");
-              smartPicture.querySelector("img").src = data.url;
+              smartPicture.classList.add('--loaded');
+              smartPicture.querySelector('img').src = data.url;
             }
           } catch (err) {
             console.error(err);
@@ -531,12 +508,10 @@ const pageEls = new Object({
       }
     },
     initCustomUploads: () => {
-      const arr = [...document.querySelectorAll("[data-custom-upload]")];
+      const arr = [...document.querySelectorAll('[data-custom-upload]')];
 
-      const renderOutputFile = (file, imgSrc = "") => {
-        let imgElem = imgSrc
-          ? `<div class="--filled" style="background-image: url(${imgSrc})"></div>`
-          : `<div></div>`;
+      const renderOutputFile = (file, imgSrc = '') => {
+        let imgElem = imgSrc ? `<div class="--filled" style="background-image: url(${imgSrc})"></div>` : `<div></div>`;
         return `
         <div class="custom-upload__file">
           <div>
@@ -550,15 +525,15 @@ const pageEls = new Object({
         `;
       };
       const bindBoxEvents = (box, input) => {
-        box.ondragover = (e) => {
+        box.ondragover = e => {
           e.preventDefault();
           box.classList.add(__ACTIVE);
         };
-        box.ondragleave = (e) => {
+        box.ondragleave = e => {
           e.preventDefault();
           box.classList.remove(__ACTIVE);
         };
-        box.addEventListener("drop", (e) => {
+        box.addEventListener('drop', e => {
           e.preventDefault();
           box.classList.remove(__ACTIVE);
           const files = e.dataTransfer.files;
@@ -568,71 +543,64 @@ const pageEls = new Object({
             newDataTransfer.items.add(file);
           }
           input.files = newDataTransfer.files;
-          input.dispatchEvent(new Event("change", { bubbles: true }));
+          input.dispatchEvent(new Event('change', { bubbles: true }));
         });
-        box.addEventListener("click", (e) => {
+        box.addEventListener('click', e => {
           input.click();
         });
       };
-      const setIndexes = (upload) => {
-        const files = [...upload.querySelectorAll(".custom-upload__file")];
+      const setIndexes = upload => {
+        const files = [...upload.querySelectorAll('.custom-upload__file')];
         for (let i = 0; i < files.length; i++) {
           files[i].dataset.customIndex = i;
         }
       };
       const processFiles = (files, upload) => {
-        const output = upload.querySelector(".custom-upload__files");
-        const currentFiles = [
-          ...upload.querySelectorAll(".custom-upload__file"),
-        ];
+        const output = upload.querySelector('.custom-upload__files');
+        const currentFiles = [...upload.querySelectorAll('.custom-upload__file')];
 
         for (const file of currentFiles) {
           file.remove();
         }
 
         for (const file of files) {
-          const fileIsImage = file.type.match("image.*");
+          const fileIsImage = file.type.match('image.*');
           if (fileIsImage) {
             let reader = new FileReader();
-            reader.onload = (e) => {
-              output.insertAdjacentHTML(
-                "beforeend",
-                renderOutputFile(file, e.target.result)
-              );
+            reader.onload = e => {
+              output.insertAdjacentHTML('beforeend', renderOutputFile(file, e.target.result));
             };
             reader.readAsDataURL(file);
           } else {
-            output.insertAdjacentHTML("beforeend", renderOutputFile(file));
+            output.insertAdjacentHTML('beforeend', renderOutputFile(file));
           }
         }
         setIndexes(upload);
       };
 
       for (const upload of arr) {
-        const box = upload.querySelector(".custom-upload__box");
-        const input = upload.querySelector("input");
+        const box = upload.querySelector('.custom-upload__box');
+        const input = upload.querySelector('input');
 
         if (box) {
           bindBoxEvents(box, input);
         }
 
-        input.addEventListener("change", (e) => {
+        input.addEventListener('change', e => {
           const files = e.target.files;
           processFiles(files, upload);
         });
       }
 
-      document.addEventListener("click", (e) => {
+      document.addEventListener('click', e => {
         const target = e.target;
         if (e.target.closest('[data-evt="custom_upload_remove"]')) {
-          const upload = target.closest("[data-custom-upload]");
-          if (!upload) throw new Error("data-custom-upload not found");
+          const upload = target.closest('[data-custom-upload]');
+          if (!upload) throw new Error('data-custom-upload not found');
           const input = upload.querySelector('input[type="file"]');
           if (!input) throw new Error('input[type="file"] not found');
-          const nameEl = e.target
-            .closest(".custom-upload__file")
-            .querySelector("*[data-custom-name]");
-          if (!nameEl) throw new Error("data-custom-name not found");
+          const nameEl = e.target.closest('.custom-upload__file').querySelector('*[data-custom-name]');
+          if (!nameEl) throw new Error('data-custom-name not found');
 
           const name = nameEl.innerHTML;
           const newDataTransfer = new DataTransfer();
@@ -645,12 +613,12 @@ const pageEls = new Object({
           }
 
           if (newDataTransfer.items.length === 0) {
-            input.value = "";
+            input.value = '';
           } else {
             input.files = newDataTransfer.files;
           }
 
-          input.dispatchEvent(new Event("change", { bubbles: true }));
+          input.dispatchEvent(new Event('change', { bubbles: true }));
         }
       });
     },
@@ -658,9 +626,9 @@ const pageEls = new Object({
       let evtOpenLater = $('[data-evt="payModalLater"]'),
         evtOpenCrypto = $('[data-evt="payModalCrypto"]'),
         evtClose = $('[data-evt="closePayModal"]'),
-        crypto = $("#payModalCrypto"),
-        later = $("#payModalLater"),
-        modal = $(".pay-modal");
+        crypto = $('#payModalCrypto'),
+        later = $('#payModalLater'),
+        modal = $('.pay-modal');
 
       const openModal = () => {
         lockScroll();
@@ -694,13 +662,11 @@ const pageEls = new Object({
       });
     },
     attachToggleInputs: function () {
-      const arr = [...document.querySelectorAll("[data-input-toggle]")];
+      const arr = [...document.querySelectorAll('[data-input-toggle]')];
       for (const input of arr) {
-        const btn =
-          input.parentNode.querySelector("button") ||
-          input.parentNode.querySelector('input[type="submit"]');
+        const btn = input.parentNode.querySelector('button') || input.parentNode.querySelector('input[type="submit"]');
         if (btn) {
-          input.addEventListener("input", () => {
+          input.addEventListener('input', () => {
             const value = input.value;
             if (value) {
               btn.disabled = false;
@@ -710,27 +676,27 @@ const pageEls = new Object({
             return;
           });
 
-          input.addEventListener("keydown", (e) => {
-            const keyIsEnter = e.key === "Enter";
+          input.addEventListener('keydown', e => {
+            const keyIsEnter = e.key === 'Enter';
             if (keyIsEnter) {
               e.preventDefault();
               btn.click();
             }
           });
 
-          btn.addEventListener("click", () => {
+          btn.addEventListener('click', () => {
             const value = input.value;
-            input.value = "";
-            input.dispatchEvent(new Event("input"));
+            input.value = '';
+            input.dispatchEvent(new Event('input'));
           });
         }
       }
     },
     initProductZoom: () => {
       const isDesktop = window.innerWidth > 991;
-      window.removeSlider = (target) => {
+      window.removeSlider = target => {
         unlockScroll();
-        const slider = target.closest(".zoom_slider");
+        const slider = target.closest('.zoom_slider');
         slider.css({ opacity: 0 });
         setTimeout(() => {
           slider.hide();
@@ -738,40 +704,37 @@ const pageEls = new Object({
       };
 
       const setDesktopZoom = () => {
-        [...document.querySelectorAll(".product-media-img")]
+        [...document.querySelectorAll('.product-media-img')]
           .reduce((acc, el) => {
             if (el && el !== null) {
-              if (!/(placeholder|store|pay)/gi.test(el.getAttribute("src"))) {
-                acc.push($(el).parent(".product-media__inner-wrap"));
+              if (!/(placeholder|store|pay)/gi.test(el.getAttribute('src'))) {
+                acc.push($(el).parent('.product-media__inner-wrap'));
               }
             }
             return acc;
           }, [])
-          .forEach((el) => {
-            $(el).zoom({ magnify: 1.9, on: "click" });
-            $(el).on("mouseleave", function () {
-              $(document).trigger("click");
+          .forEach(el => {
+            $(el).zoom({ magnify: 1.9, on: 'click' });
+            $(el).on('mouseleave', function () {
+              $(document).trigger('click');
             });
           });
       };
 
       const setMobileZoom = () => {
-        const sliders = [...document.querySelectorAll(".product-slider")]; // Get all existing sliders
+        const sliders = [...document.querySelectorAll('.product-slider')]; // Get all existing sliders
 
         sliders.forEach((slider, index) => {
-          const button = $("<button/>", {
+          const button = $('<button/>', {
             class: `product__zoom-btn zoom_btn${index}`,
           });
           button.appendTo($(slider)); // Create & append zoom button
           const renderNewSlider = (slider, index) => {
             // Get HTML new zoom slider
-            let mediaArr = [...slider.querySelectorAll("img")]
+            let mediaArr = [...slider.querySelectorAll('img')]
               .reduce((acc, img) => {
-                const src = img.getAttribute("src");
-                if (
-                  !acc.includes(src) &&
-                  !/(placeholder|store|pay)/gi.test(src)
-                ) {
+                const src = img.getAttribute('src');
+                if (!acc.includes(src) && !/(placeholder|store|pay)/gi.test(src)) {
                   acc.push(src);
                 }
                 return acc;
@@ -782,7 +745,7 @@ const pageEls = new Object({
               return mediaArr.reduce((acc, src) => {
                 acc += `<div class="splide__slide"><img src="${src}"></div>`;
                 return acc;
-              }, "");
+              }, '');
             };
 
             return `
@@ -804,17 +767,17 @@ const pageEls = new Object({
               </div>
             </div>`;
           };
-          const appendNewSlider = (html) => {
+          const appendNewSlider = html => {
             $body.append(html);
           }; // Append Zoom Slider
-          const initNewSlider = (index) => {
+          const initNewSlider = index => {
             // Splide Initialization
             this.settings = {
-              type: "loop",
+              type: 'loop',
               perPage: 1,
               perMove: 1,
               autoplay: 0,
-              gap: "12px",
+              gap: '12px',
               arrows: 1,
               pagination: 0,
               speed: 800,
@@ -824,26 +787,22 @@ const pageEls = new Object({
             const zoomSlider = new Splide(`.zoom-sl${index}`, this.settings);
             zoomSlider.mount();
           };
-          const initZoom = (index) => {
+          const initZoom = index => {
             // Initialize jQuery zoom for the new slider
-            let slides = [
-              ...document
-                .querySelector(`.zoom_slider.zsl${index}`)
-                .querySelectorAll(".splide__slide"),
-            ];
-            slides.forEach((slide) => {
+            let slides = [...document.querySelector(`.zoom_slider.zsl${index}`).querySelectorAll('.splide__slide')];
+            slides.forEach(slide => {
               $(slide).zoom({
                 magnify: 1.4,
                 onZoomIn: function () {
-                  $(this).closest(".splide").css("border-color", "#e6eaec");
+                  $(this).closest('.splide').css('border-color', '#e6eaec');
                 },
                 onZoomOut: function () {
-                  $(this).closest(".splide").css("border-color", "#0095c6");
+                  $(this).closest('.splide').css('border-color', '#0095c6');
                 },
               });
             });
           };
-          const showNewSlider = (index) => {
+          const showNewSlider = index => {
             let localSlider = $(`.zoom_slider.zsl${index}`);
             if (localSlider) {
               localSlider.show();
@@ -853,7 +812,7 @@ const pageEls = new Object({
               }, 1);
             }
           };
-          const openSlider = (index) => {
+          const openSlider = index => {
             let slider = $(`.zoom_slider.zsl${index}`);
             if (slider) {
               slider.show();
@@ -865,9 +824,7 @@ const pageEls = new Object({
           };
 
           button.click(() => {
-            const localSlider = document.querySelector(
-              `.zoom_slider.zsl${index}`
-            );
+            const localSlider = document.querySelector(`.zoom_slider.zsl${index}`);
             if (!localSlider) {
               appendNewSlider(renderNewSlider(slider, index));
               initNewSlider(index);
@@ -882,8 +839,8 @@ const pageEls = new Object({
 
       const setZoom = () => {
         $(document).ready(function () {
-          if (document.querySelector(".main_product_zoom") == null) {
-            if (isDesktop && $(".main_product").length) {
+          if (document.querySelector('.main_product_zoom') == null) {
+            if (isDesktop && $('.main_product').length) {
               setDesktopZoom();
             } else {
               setMobileZoom();
@@ -898,22 +855,17 @@ const pageEls = new Object({
       let zoomOpenCount = 0;
 
       const setZoom = () => {
-        const srcIsValid = (src) => {
+        const srcIsValid = src => {
             return !/(placeholder|store|pay)/gi.test(src);
           },
-          filterMedia = (arr) => {
+          filterMedia = arr => {
             return arr.reduce((acc, media) => {
-              const img = media.querySelector("img"),
-                thumbAncestor = media.closest(".product-slider_thumbnails"),
-                zoomAncestor = media.closest(".zoom-modal");
+              const img = media.querySelector('img'),
+                thumbAncestor = media.closest('.product-slider_thumbnails'),
+                zoomAncestor = media.closest('.zoom-modal');
 
-              if (
-                img &&
-                img !== null &&
-                thumbAncestor == null &&
-                zoomAncestor == null
-              ) {
-                const src = img.getAttribute("src");
+              if (img && img !== null && thumbAncestor == null && zoomAncestor == null) {
+                const src = img.getAttribute('src');
                 if (srcIsValid(src)) {
                   acc.push(media);
                 }
@@ -921,12 +873,12 @@ const pageEls = new Object({
               return acc;
             }, []);
           },
-          getSrcArr = (arr) => {
+          getSrcArr = arr => {
             return arr.reduce((acc, media) => {
-              const img = media.querySelector("img");
+              const img = media.querySelector('img');
               if (img !== null) {
-                if (img.hasAttribute("src")) {
-                  const src = img.getAttribute("src");
+                if (img.hasAttribute('src')) {
+                  const src = img.getAttribute('src');
                   if (srcIsValid(src) && !acc.includes(src)) {
                     acc.push(src);
                   }
@@ -935,15 +887,15 @@ const pageEls = new Object({
               return acc;
             }, []);
           },
-          renderSlidesHTML = (srcArr) => {
+          renderSlidesHTML = srcArr => {
             return srcArr.reduce((acc, src) => {
               acc += `<div style="cursor: zoom-in" class="zoom-modal__slide splide__slide"><img loading="eager" alt="" src="${src}"></div>`;
               return acc;
-            }, "");
+            }, '');
           },
-          renderSplideHTML = (slidesHTML) => {
-            let productTitle = $(".product__item-title").html(),
-              price = $(".product__item-price").eq(-1).html();
+          renderSplideHTML = slidesHTML => {
+            let productTitle = $('.product__item-title').html(),
+              price = $('.product__item-price').eq(-1).html();
             return `
           <div class="zoom-modal splide">
             <button data-evt="closeZoomModal" class="zoom-modal__close-btn"></button>
@@ -973,69 +925,61 @@ const pageEls = new Object({
           },
           initZoomSlider = (indexToGo = 0) => {
             const settings = {
-                type: "loop",
+                type: 'loop',
                 perPage: 1,
                 perMove: 1,
                 autoplay: 0,
-                gap: "12px",
+                gap: '12px',
                 arrows: 1,
                 pagination: 0,
                 speed: 800,
                 drag: false,
                 dragAngleThreshold: 0,
               },
-              slider = document.querySelector(".zoom-modal");
+              slider = document.querySelector('.zoom-modal');
             if (slider !== null) {
-              const zoomSlider = new Splide(".zoom-modal", settings);
+              const zoomSlider = new Splide('.zoom-modal', settings);
               zoomSlider.mount();
               zoomSlider.go(indexToGo);
             }
           },
-          initPressZoom = (slider) => {
-            const slides = [...slider.querySelectorAll(".splide__slide")],
+          initPressZoom = slider => {
+            const slides = [...slider.querySelectorAll('.splide__slide')],
               zoomValue = window.innerWidth > 479 ? 2.2 : 1.6;
-            slides.forEach((slide) => {
+            slides.forEach(slide => {
               $(slide).zoom({
                 magnify: zoomValue,
-                on: "grab",
+                on: 'grab',
                 onZoomIn: function () {
-                  $(".zoom-modal .splide__arrows").css({ opacity: 0 });
-                  $(".zoom-hint").css({ opacity: 0 });
+                  $('.zoom-modal .splide__arrows').css({ opacity: 0 });
+                  $('.zoom-hint').css({ opacity: 0 });
                 },
                 onZoomOut: function () {
-                  $(".zoom-modal .splide__arrows").css({ opacity: 1 });
+                  $('.zoom-modal .splide__arrows').css({ opacity: 1 });
                 },
               });
             });
           };
 
-        const mediaArr = filterMedia([
-          ...document.querySelectorAll(".product-media"),
-        ]);
+        const mediaArr = filterMedia([...document.querySelectorAll('.product-media')]);
 
-        mediaArr.forEach((el) => {
+        mediaArr.forEach(el => {
           el.onclick = () => {
             lockScroll();
             try {
               const sibSrcArr = getSrcArr(
-                  filterMedia([
-                    ...el.parentNode
-                      .closest("div")
-                      .querySelectorAll(".product-media"),
-                  ])
+                  filterMedia([...el.parentNode.closest('div').querySelectorAll('.product-media')]),
                 ),
                 splideHTML = renderSplideHTML(renderSlidesHTML(sibSrcArr));
 
               $body.append(splideHTML);
-              initZoomSlider(
-                sibSrcArr.indexOf(el.querySelector("img").getAttribute("src"))
-              );
+              initZoomSlider(sibSrcArr.indexOf(el.querySelector('img').getAttribute('src')));
 
-              let zoomModal = document.querySelector(".zoom-modal"),
-                holder = zoomModal.querySelector(".zoom-modal__holder");
+              let zoomModal = document.querySelector('.zoom-modal'),
+                holder = zoomModal.querySelector('.zoom-modal__holder');
               initPressZoom(zoomModal);
 
-              let zoomHint = $("<div>", { class: "zoom-hint" });
+              let zoomHint = $('<div>', { class: 'zoom-hint' });
 
               setTimeout(() => {
                 zoomModal.style.opacity = 1;
@@ -1047,24 +991,24 @@ const pageEls = new Object({
                 }
               }, 1);
 
-              zoomModal.addEventListener("mousedown", () => {
+              zoomModal.addEventListener('mousedown', () => {
                 zoomHint.css({ opacity: 0 });
                 setTimeout(() => {
                   zoomHint.remove();
                 }, 450);
               });
-              document.onkeydown = (e) => {
+              document.onkeydown = e => {
                 e = e || window.event;
                 let isEsc = false;
-                if ("key" in e) {
-                  isEsc = e.key === "Escape" || e.key === "Esc";
+                if ('key' in e) {
+                  isEsc = e.key === 'Escape' || e.key === 'Esc';
                 } else {
                   isEsc = e.keyCode === 27;
                 }
                 if (isEsc) {
                   e.preventDefault();
                   unlockScroll();
-                  let modal = $(".zoom-modal");
+                  let modal = $('.zoom-modal');
                   if (modal.length) {
                     modal.css({ opacity: 0 });
                     setTimeout(() => {
@@ -1075,14 +1019,14 @@ const pageEls = new Object({
               };
               zoomOpenCount++;
             } catch {
-              throw new Error("JS : Init Product Zoom Error");
+              throw new Error('JS : Init Product Zoom Error');
             }
           };
         });
 
-        $(document).on("click", '[data-evt="closeZoomModal"]', function () {
+        $(document).on('click', '[data-evt="closeZoomModal"]', function () {
           unlockScroll();
-          let modal = $(".zoom-modal");
+          let modal = $('.zoom-modal');
           if (modal.length) {
             modal.css({ opacity: 0 });
             setTimeout(() => {
@@ -1092,18 +1036,18 @@ const pageEls = new Object({
         });
       };
 
-      if (document.querySelector(".main_product_zoom") !== null) {
+      if (document.querySelector('.main_product_zoom') !== null) {
         setZoom();
       }
     },
     attachStickyScroll: () => {
-      const bar = $(".filter-sidebar"),
-        overlay = $(".filter-sidebar__overlay");
+      const bar = $('.filter-sidebar'),
+        overlay = $('.filter-sidebar__overlay');
       if (bar.length && overlay.length) {
-        const els = bar.find(".filter-row");
+        const els = bar.find('.filter-row');
         $.each(els, function (i) {
           els[i].onclick = () => {
-            let cont = $(this).find(".filter-row__container");
+            let cont = $(this).find('.filter-row__container');
             setTimeout(() => {
               let currentHeight = bar.height();
               let scrollHeight = bar[0].scrollHeight;
@@ -1115,7 +1059,7 @@ const pageEls = new Object({
             }, getTransitionTime(cont));
           };
         });
-        bar[0].addEventListener("scroll", function (e) {
+        bar[0].addEventListener('scroll', function (e) {
           if (this.scrollTop + this.clientHeight >= this.scrollHeight) {
             overlay.css({ opacity: 0 });
           } else {
@@ -1126,18 +1070,16 @@ const pageEls = new Object({
     },
     attachCheckoutCopy: () => {
       const btnArr = [
-        ...document.querySelectorAll(".crypto-how-btn"),
-        ...document.querySelectorAll(".copy-address-btn"),
+        ...document.querySelectorAll('.crypto-how-btn'),
+        ...document.querySelectorAll('.copy-address-btn'),
       ];
       if (btnArr.length) {
-        btnArr.forEach((btn) => {
+        btnArr.forEach(btn => {
           btn.onclick = () => {
             if (!window.getSelection().toString()) {
-              let details = btn.closest(".checkout-form__radio-details");
+              let details = btn.closest('.checkout-form__radio-details');
               if (details !== null) {
-                let address = details.querySelector(
-                  ".copy-address-btn__typo"
-                ).innerHTML;
+                let address = details.querySelector('.copy-address-btn__typo').innerHTML;
                 async function copyAddress() {
                   try {
                     await navigator.clipboard.writeText(address);
@@ -1161,23 +1103,20 @@ const pageEls = new Object({
     },
     adjustStickyEls: () => {
       const elsArr = [
-        ...document.querySelectorAll(".filter-sidebar.to-stick"),
-        ...document.querySelectorAll(".sticky-filters"),
+        ...document.querySelectorAll('.filter-sidebar.to-stick'),
+        ...document.querySelectorAll('.sticky-filters'),
       ];
-      const header = document.querySelector(".header");
+      const header = document.querySelector('.header');
 
       if (elsArr.length && header) {
         function adjust() {
-          let headerHeight = parseInt(
-            window.getComputedStyle(header).getPropertyValue("height")
-          );
-          elsArr.forEach((el) => {
-            let topValue =
-              $(window).width() > 991 ? headerHeight + 24 : headerHeight;
+          let headerHeight = parseInt(window.getComputedStyle(header).getPropertyValue('height'));
+          elsArr.forEach(el => {
+            let topValue = $(window).width() > 991 ? headerHeight + 24 : headerHeight;
             Object.assign(el.style, { top: `${topValue}px` });
           });
         }
-        ["load", "resize"].forEach((event) => {
+        ['load', 'resize'].forEach(event => {
           window.addEventListener(event, () => {
             adjust();
           });
@@ -1185,32 +1124,32 @@ const pageEls = new Object({
       }
     },
     bindCardFav: () => {
-      const buttons = document.querySelectorAll(".card-item-fav");
+      const buttons = document.querySelectorAll('.card-item-fav');
       buttons.forEach(
-        (btn) =>
+        btn =>
           (btn.onclick = () => {
             if (btn.classList.contains(IS_ACTIVE)) {
               btn.classList.remove(IS_ACTIVE);
             } else {
               btn.classList.add(IS_ACTIVE);
             }
-          })
+          }),
       );
     },
     observeSmartPictures: () => {
-      const smartPictures = document.querySelectorAll(".smart-picture");
-      smartPictures.forEach((el) => {
-        const img = el.querySelector("img");
+      const smartPictures = document.querySelectorAll('.smart-picture');
+      smartPictures.forEach(el => {
+        const img = el.querySelector('img');
         if (img) {
-          img.addEventListener("load", () => {
-            el.classList.add("--loaded");
+          img.addEventListener('load', () => {
+            el.classList.add('--loaded');
           });
 
           if (img.complete) {
-            el.classList.add("--loaded");
+            el.classList.add('--loaded');
           }
         } else {
-          el.classList.add("--loaded");
+          el.classList.add('--loaded');
         }
       });
     },

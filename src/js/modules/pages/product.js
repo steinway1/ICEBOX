@@ -1,40 +1,26 @@
-const ZoomGallery = require("../dynamic/zoom-gallery");
+const ZoomGallery = require('../dynamic/zoom-gallery');
 
 class ProductPage {
   constructor() {
-    this.optionsArr = [
-      ...document.querySelectorAll(".product__item-option:not(.--static)"),
-    ];
-    this.optionsRow = document.querySelector(".side-row__options");
-    this.colorPickArr = [...document.querySelectorAll(".color-pick")];
-    this.toggleRowArr = [...document.querySelectorAll(".toggle-row")];
-    this.description = document.querySelector("#product_description");
-    this.galleryDesktopArr = [
-      ...document
-        .querySelector("#gallery_desktop")
-        .querySelectorAll(".product__gallery"),
-    ];
-    this.galleryMobileArr = [
-      ...document
-        .querySelector("#gallery_mobile")
-        .querySelectorAll(".product__gallery"),
-    ];
+    this.optionsArr = [...document.querySelectorAll('.product__item-option:not(.--static)')];
+    this.optionsRow = document.querySelector('.side-row__options');
+    this.colorPickArr = [...document.querySelectorAll('.color-pick')];
+    this.toggleRowArr = [...document.querySelectorAll('.toggle-row')];
+    this.description = document.querySelector('#product_description');
+    this.galleryDesktopArr = [...document.querySelector('#gallery_desktop').querySelectorAll('.product__gallery')];
+    this.galleryMobileArr = [...document.querySelector('#gallery_mobile').querySelectorAll('.product__gallery')];
 
-    this.optionModal = document.querySelector(".option-modal");
-    this.optionModalContent = document.querySelector(".option-modal__content");
-    this.optionModalNextElem = document.querySelector(
-      "[data-option-modal-next]"
-    );
-    this.optionModalName = document.querySelector("[data-option-modal-name]");
+    this.optionModal = document.querySelector('.option-modal');
+    this.optionModalContent = document.querySelector('.option-modal__content');
+    this.optionModalNextElem = document.querySelector('[data-option-modal-next]');
+    this.optionModalName = document.querySelector('[data-option-modal-name]');
     this.evtNextOption = document.querySelector('[data-evt="optionModalNext"]');
-    this.evtCloseOptionModalArr = document.querySelectorAll(
-      '[data-evt="optionModalClose"]'
-    );
-    this.favBtn = document.querySelector(".product__add-fav");
+    this.evtCloseOptionModalArr = document.querySelectorAll('[data-evt="optionModalClose"]');
+    this.favBtn = document.querySelector('.product__add-fav');
     this.activeOptionIndex = undefined;
 
-    this.fixedBar = document.querySelector(".fixed-bar");
-    this.fixedBarTrigger = document.querySelector(".side-row__payments");
+    this.fixedBar = document.querySelector('.fixed-bar');
+    this.fixedBarTrigger = document.querySelector('.side-row__payments');
 
     this.galleryZoomInstance = null;
 
@@ -64,6 +50,7 @@ class ProductPage {
     this.setFixedBarMedia();
     this.formatPrice();
     this.bindGalleryZoom();
+    this.bindVVSNotice();
 
     setTimeout(() => {
       this.formatPrice();
@@ -73,22 +60,14 @@ class ProductPage {
   // Gallery
   setupDesktopGallery() {
     for (const gallery of this.galleryDesktopArr) {
-      const thumbs = [
-        ...gallery
-          .querySelector(".product__thumb-gallery")
-          .querySelectorAll(".product-media"),
-      ];
-      const media = [
-        ...gallery
-          .querySelector(".product__main-gallery")
-          .querySelectorAll(".product-media"),
-      ];
+      const thumbs = [...gallery.querySelector('.product__thumb-gallery').querySelectorAll('.product-media')];
+      const media = [...gallery.querySelector('.product__main-gallery').querySelectorAll('.product-media')];
 
       if (thumbs.length && media.length) {
         thumbs.forEach((thumb, index) => {
-          thumb.addEventListener("click", () => {
-            media.forEach((el) => (el.style.display = "none"));
-            media[index].style.display = "block";
+          thumb.addEventListener('click', () => {
+            media.forEach(el => (el.style.display = 'none'));
+            media[index].style.display = 'block';
           });
         });
       }
@@ -96,17 +75,15 @@ class ProductPage {
   }
   setupMobileGallery() {
     for (const gallery of this.galleryMobileArr) {
-      const mainSplide = gallery.querySelector(".product__main-gallery.splide");
-      const thumbsSplide = gallery.querySelector(
-        ".product__thumb-gallery.splide"
-      );
+      const mainSplide = gallery.querySelector('.product__main-gallery.splide');
+      const thumbsSplide = gallery.querySelector('.product__thumb-gallery.splide');
 
       if (mainSplide && thumbsSplide) {
         const main = new Splide(mainSplide, {
-          type: "loop",
+          type: 'loop',
           perPage: 1,
           perMove: 1,
-          gap: "0px",
+          gap: '0px',
           arrows: false,
           pagination: false,
           speed: 750,
@@ -149,17 +126,15 @@ class ProductPage {
   // Methods
   setActiveOptionsText() {
     for (const option of this.optionsArr) {
-      const holder = option.querySelector(".product-option__head-right");
-      const activeBtn =
-        option.querySelector(".option-btn.is-active") ||
-        option.querySelector(".option-btn.active");
+      const holder = option.querySelector('.product-option__head-right');
+      const activeBtn = option.querySelector('.option-btn.is-active') || option.querySelector('.option-btn.active');
 
       if (holder && activeBtn) {
         const textContent = activeBtn.textContent;
 
         if (textContent.length) {
-          const selectedElem = createElem("div", {
-            className: "product-option-current",
+          const selectedElem = createElem('div', {
+            className: 'product-option-current',
             innerHTML: textContent,
           });
 
@@ -169,17 +144,17 @@ class ProductPage {
     }
   }
   setActiveColor(color) {
-    const currentElem = document.querySelector("[data-current-color]");
+    const currentElem = document.querySelector('[data-current-color]');
     if (currentElem) {
       currentElem.innerHTML = color;
     }
   }
   setActiveColorPickElem(elem) {
-    this.colorPickArr.forEach((pick) => {
+    this.colorPickArr.forEach(pick => {
       if (pick === elem) {
-        pick.classList.add("--active");
+        pick.classList.add('--active');
       } else {
-        pick.classList.remove("--active");
+        pick.classList.remove('--active');
       }
     });
   }
@@ -188,21 +163,17 @@ class ProductPage {
       const textContent = this.description.textContent;
 
       const extractLastParagraph = () => {
-        let elements = this.description.querySelectorAll("p, div, li");
-        let holder = document.querySelector("#itemDetails");
+        let elements = this.description.querySelectorAll('p, div, li');
+        let holder = document.querySelector('#itemDetails');
 
         if (holder) {
           for (let element of elements) {
             if (
-              element.textContent
-                .trim()
-                .startsWith("These pieces are handcrafted and") ||
-              element.textContent
-                .trim()
-                .startsWith("This piece is handcrafted and")
+              element.textContent.trim().startsWith('These pieces are handcrafted and') ||
+              element.textContent.trim().startsWith('This piece is handcrafted and')
             ) {
               holder.appendChild(element);
-              element.classList.add("product__more-typo");
+              element.classList.add('product__more-typo');
               break;
             }
           }
@@ -212,14 +183,14 @@ class ProductPage {
     }
   }
   setupSplide() {
-    const splideArr = [...document.querySelectorAll(".more-row__splide")];
+    const splideArr = [...document.querySelectorAll('.more-row__splide')];
     for (const el of splideArr) {
       let main = new Splide(el, {
-        type: "loop",
+        type: 'loop',
         perPage: 4,
         perMove: 1,
         autoplay: 0,
-        gap: "0px",
+        gap: '0px',
         arrows: 1,
         pagination: 0,
         speed: 750,
@@ -267,13 +238,13 @@ class ProductPage {
     }
   }
   setupReviewsSplide() {
-    const reviewsSplide = document.querySelector(".more-row__reviews");
-    if (reviewsSplide && reviewsSplide.classList.contains("splide")) {
+    const reviewsSplide = document.querySelector('.more-row__reviews');
+    if (reviewsSplide && reviewsSplide.classList.contains('splide')) {
       const splide = new Splide(reviewsSplide, {
         perPage: 4,
         perMove: 1,
         autoplay: 1,
-        gap: "8px",
+        gap: '8px',
         arrows: 1,
         pagination: 0,
         speed: 750,
@@ -300,11 +271,9 @@ class ProductPage {
 
   // Option Modal
   revertOptions() {
-    const body = this.optionModal.querySelector(".product-option__body");
-    const guideBtn = this.optionModal.querySelector(".option-guide-btn");
-    const emptyOption = this.optionsArr.find(
-      (option) => !option.querySelector(".product-option__body")
-    );
+    const body = this.optionModal.querySelector('.product-option__body');
+    const guideBtn = this.optionModal.querySelector('.option-guide-btn');
+    const emptyOption = this.optionsArr.find(option => !option.querySelector('.product-option__body'));
     const input = this.optionModal.querySelector('input[type="hidden"]');
 
     if (body && emptyOption) {
@@ -319,24 +288,21 @@ class ProductPage {
   }
   appendOption(option = this.optionsArr[0]) {
     this.optionsArr.length > 1
-      ? this.optionModal.classList.remove("--single")
-      : this.optionModal.classList.add("--single");
+      ? this.optionModal.classList.remove('--single')
+      : this.optionModal.classList.add('--single');
 
     this.revertOptions();
     if (option) {
-      const optionName = option.querySelector(".product-option-name");
+      const optionName = option.querySelector('.product-option-name');
       const currentIndex = this.optionsArr.indexOf(option);
       this.activeOptionIndex = currentIndex;
-      const nextOption =
-        this.optionsArr[currentIndex + 1] || this.optionsArr[0];
-      const nextOptionName = nextOption.querySelector(".product-option-name");
-      const body = option.querySelector(".product-option__body");
+      const nextOption = this.optionsArr[currentIndex + 1] || this.optionsArr[0];
+      const nextOptionName = nextOption.querySelector('.product-option-name');
+      const body = option.querySelector('.product-option__body');
       const input = option.querySelector('input[type="hidden"]');
 
-      const guideBtn = option.querySelector(".option-guide-btn");
-      const modalWrapper = this.optionModal.querySelector(
-        ".option-modal__wrapper"
-      );
+      const guideBtn = option.querySelector('.option-guide-btn');
+      const modalWrapper = this.optionModal.querySelector('.option-modal__wrapper');
 
       if (body) {
         this.optionModalName.innerHTML = optionName.textContent;
@@ -354,24 +320,22 @@ class ProductPage {
     }
   }
   bindOptionModalEvents() {
-    this.evtNextOption.addEventListener("click", () => {
-      this.appendOption(
-        this.optionsArr[this.activeOptionIndex + 1] || this.optionsArr[0]
-      );
+    this.evtNextOption.addEventListener('click', () => {
+      this.appendOption(this.optionsArr[this.activeOptionIndex + 1] || this.optionsArr[0]);
     });
-    this.evtCloseOptionModalArr.forEach((elem) => {
-      elem.addEventListener("click", () => {
+    this.evtCloseOptionModalArr.forEach(elem => {
+      elem.addEventListener('click', () => {
         this.closeOptionModal();
       });
     });
   }
   bindOptionToggleMobile() {
     for (const option of this.optionsArr) {
-      const head = option.querySelector(".product-option__head");
-      const body = option.querySelector(".product-option__body");
+      const head = option.querySelector('.product-option__head');
+      const body = option.querySelector('.product-option__body');
 
       if (head && body) {
-        head.addEventListener("click", () => {
+        head.addEventListener('click', () => {
           this.appendOption(option);
           this.showOptionModal();
         });
@@ -386,13 +350,13 @@ class ProductPage {
         this.closeOptionModal();
       },
     });
-    this.optionModal.classList.add("--visible");
+    this.optionModal.classList.add('--visible');
   }
   closeOptionModal() {
     unlockScroll();
-    this.optionModal.classList.remove("--visible");
+    this.optionModal.classList.remove('--visible');
     setTimeout(() => {
-      this.optionModal.removeAttribute("style");
+      this.optionModal.removeAttribute('style');
       this.revertOptions();
     }, getTransitionTime(this.optionModal));
     if (window.optionModalBackdrop) {
@@ -405,13 +369,13 @@ class ProductPage {
     let isDragging = false;
     let isMovingRoot = false;
     const rootEl = this.optionModal;
-    const scroller = document.querySelector(".option-modal__content");
-    const handler = document.querySelector(".option-modal__header");
-    const transition = "all 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)";
+    const scroller = document.querySelector('.option-modal__content');
+    const handler = document.querySelector('.option-modal__header');
+    const transition = 'all 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)';
 
     rootEl.addEventListener(
-      "touchstart",
-      (e) => {
+      'touchstart',
+      e => {
         const target = e.target;
 
         const isOnHandler = handler.contains(target) || target === handler;
@@ -422,18 +386,18 @@ class ProductPage {
 
         this.isOnHandler = isOnHandler;
       },
-      { passive: false }
+      { passive: false },
     );
 
     rootEl.addEventListener(
-      "touchmove",
-      (e) => {
+      'touchmove',
+      e => {
         if (!isDragging) return;
 
         currentY = e.touches[0].clientY;
         let diffY = currentY - startY;
 
-        rootEl.style.transition = "none";
+        rootEl.style.transition = 'none';
 
         if (diffY > 0) {
           if (this.isOnHandler) {
@@ -457,10 +421,10 @@ class ProductPage {
           }
         }
       },
-      { passive: false }
+      { passive: false },
     );
 
-    rootEl.addEventListener("touchend", () => {
+    rootEl.addEventListener('touchend', () => {
       if (!isDragging) return;
       isDragging = false;
 
@@ -473,7 +437,7 @@ class ProductPage {
           this.closeOptionModal();
           rootEl.style.transform = `translateY(100%)`;
         } else {
-          rootEl.removeAttribute("style");
+          rootEl.removeAttribute('style');
         }
       }
     });
@@ -481,7 +445,7 @@ class ProductPage {
 
   // Methods - Options
   hideAllOptions(exclude = null) {
-    this.optionsArr.forEach((option) => {
+    this.optionsArr.forEach(option => {
       if (option !== exclude) {
         this.hideOption(option);
       } else {
@@ -489,31 +453,28 @@ class ProductPage {
       }
     });
     if (exclude == null) {
-      this.optionsRow.classList.remove("--active");
+      this.optionsRow.classList.remove('--active');
     }
   }
   showOption(option) {
-    option.classList.add("--active");
+    option.classList.add('--active');
   }
   hideOption(option) {
-    option.classList.remove("--active");
+    option.classList.remove('--active');
   }
 
   // Price
   formatPrice() {
-    const priceArr = [...document.querySelectorAll(".product__item-price")];
+    const priceArr = [...document.querySelectorAll('.product__item-price')];
 
     for (const elem of priceArr) {
       const text = elem.textContent;
-      const containsDollar = text.includes("$");
-      const parentBar = elem.closest(".fixed-bar");
+      const containsDollar = text.includes('$');
+      const parentBar = elem.closest('.fixed-bar');
 
       if (containsDollar && !parentBar) {
-        const price = text.replace("$", "");
-        elem.innerHTML = `<span class="dollar-symbol">$</span>${price.replace(
-          /\s/g,
-          ""
-        )}`;
+        const price = text.replace('$', '');
+        elem.innerHTML = `<span class="dollar-symbol">$</span>${price.replace(/\s/g, '')}`;
       }
     }
   }
@@ -521,12 +482,12 @@ class ProductPage {
   // Bind Events
   bindOptionToggleDesktop() {
     for (const option of this.optionsArr) {
-      const head = option.querySelector(".product-option__head");
-      const btnArr = [...option.querySelectorAll(".option-btn")];
+      const head = option.querySelector('.product-option__head');
+      const btnArr = [...option.querySelectorAll('.option-btn')];
       if (head) {
-        head.addEventListener("click", () => {
+        head.addEventListener('click', () => {
           return;
-          if (option.classList.contains("--active")) {
+          if (option.classList.contains('--active')) {
             this.hideOption(option);
           } else {
             this.hideAllOptions(option);
@@ -547,13 +508,13 @@ class ProductPage {
   }
   bindOptionButtonClick() {
     for (const option of this.optionsArr) {
-      const btnArr = [...option.querySelectorAll(".option-btn")];
-      const selectedElem = option.querySelector(".product-option-current");
+      const btnArr = [...option.querySelectorAll('.option-btn')];
+      const selectedElem = option.querySelector('.product-option-current');
 
       if (btnArr.length) {
         for (const btn of btnArr) {
-          btn.addEventListener("click", () => {
-            if (!btn.classList.contains("disabled")) {
+          btn.addEventListener('click', () => {
+            if (!btn.classList.contains('disabled')) {
               const textContent = btn.textContent.trim();
               if (textContent.length) {
                 if (selectedElem) {
@@ -561,7 +522,7 @@ class ProductPage {
                 }
               }
 
-              btnArr.forEach((el) => el.classList.remove(IS_ACTIVE));
+              btnArr.forEach(el => el.classList.remove(IS_ACTIVE));
               btn.classList.add(IS_ACTIVE);
             }
           });
@@ -570,67 +531,60 @@ class ProductPage {
     }
   }
   bindOptionButtonClickInputValue() {
-    const btnArr = [...document.querySelectorAll(".option-btn")];
+    const btnArr = [...document.querySelectorAll('.option-btn')];
     for (const btn of btnArr) {
-      btn.addEventListener("click", () => {
+      btn.addEventListener('click', () => {
         const value = btn.dataset.value;
-        if (!value) throw new Error("data-value attribute is required");
+        if (!value) throw new Error('data-value attribute is required');
 
-        const parent =
-          btn.closest(".product__item-option") ||
-          btn.closest(".option-modal__content");
-        if (!parent) throw new Error("parent element is required");
+        const parent = btn.closest('.product__item-option') || btn.closest('.option-modal__content');
+        if (!parent) throw new Error('parent element is required');
 
-        const input = parent.querySelector(".custom-fields-fetch");
-        if (!input) throw new Error("custom-fields-fetch element is required");
+        const input = parent.querySelector('.custom-fields-fetch');
+        if (!input) throw new Error('custom-fields-fetch element is required');
 
         input.value = value;
-        const event = new Event("change", { bubbles: true });
+        const event = new Event('change', { bubbles: true });
         input.dispatchEvent(event);
         this.closeOptionModal();
       });
     }
   }
   bindColorPick() {
-    this.colorPickArr.forEach((btn) => {
-      btn.addEventListener("click", () => {
+    this.colorPickArr.forEach(btn => {
+      btn.addEventListener('click', () => {
         const attr = btn.dataset.color;
         if (attr) {
           this.setActiveColor(attr);
           this.setActiveColorPickElem(btn);
 
           if (this.fixedBar) {
-            this.fixedBar.classList.remove("--filled");
+            this.fixedBar.classList.remove('--filled');
           }
         }
       });
     });
   }
   bindToggleRow() {
-    this.toggleRowArr.forEach((row) => {
-      const head = row.querySelector(".toggle-row__head");
-      const body = row.querySelector(".toggle-row__body");
-      const wrapper = row.querySelector(".toggle-row__wrapper");
+    this.toggleRowArr.forEach(row => {
+      const head = row.querySelector('.toggle-row__head');
+      const body = row.querySelector('.toggle-row__body');
+      const wrapper = row.querySelector('.toggle-row__wrapper');
 
       if (head && body && wrapper) {
         let timeoutTimer = null;
 
-        head.addEventListener("click", (e) => {
+        head.addEventListener('click', e => {
           if (timeoutTimer) {
             clearTimeout(timeoutTimer);
           }
 
           const target = e.target;
-          if (
-            target.classList.contains("editable") ||
-            target.tagName === "INPUT" ||
-            target.tagName === "TEXTAREA"
-          ) {
+          if (target.classList.contains('editable') || target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
             return;
           }
           const scrollHeight = wrapper.scrollHeight;
-          const isActive =
-            body.offsetHeight > 0 && row.classList.contains("--active");
+          const isActive = body.offsetHeight > 0 && row.classList.contains('--active');
 
           if (isActive) {
             const currentHeight = body.offsetHeight;
@@ -638,14 +592,14 @@ class ProductPage {
 
             setTimeout(() => {
               body.style.height = `0px`;
-              row.classList.remove("--active");
+              row.classList.remove('--active');
             }, 3);
           } else {
             body.style.height = `${scrollHeight}px`;
-            row.classList.add("--active");
+            row.classList.add('--active');
 
             timeoutTimer = window.setTimeout(() => {
-              body.style.height = "auto";
+              body.style.height = 'auto';
             }, getTransitionTime(body));
           }
         });
@@ -654,22 +608,20 @@ class ProductPage {
   }
   bindToggleFav() {
     if (this.favBtn) {
-      this.favBtn.addEventListener("click", () => {
-        this.favBtn.classList.toggle("is-active");
+      this.favBtn.addEventListener('click', () => {
+        this.favBtn.classList.toggle('is-active');
       });
     }
   }
   bindGalleryZoom() {
-    const galleryContainer = document.querySelector(".product__view");
+    const galleryContainer = document.querySelector('.product__view');
     if (!galleryContainer) return;
 
-    galleryContainer.addEventListener("click", (event) => {
+    galleryContainer.addEventListener('click', event => {
       const target = event.target;
-      const mediaClicked = target.closest(".product-media");
-      const gallery =
-        target.closest(".product__main-gallery") ||
-        target.closest(".splide__list");
-      const isThumbClicked = target.closest(".product__thumb-gallery");
+      const mediaClicked = target.closest('.product-media');
+      const gallery = target.closest('.product__main-gallery') || target.closest('.splide__list');
+      const isThumbClicked = target.closest('.product__thumb-gallery');
 
       if (mediaClicked && gallery && !isThumbClicked) {
         if (this.galleryZoomInstance) {
@@ -677,11 +629,7 @@ class ProductPage {
           this.galleryZoomInstance = null;
         }
 
-        const mediaArr = [
-          ...gallery.querySelectorAll(
-            ".product-media:not(.splide__slide--clone)"
-          ),
-        ];
+        const mediaArr = [...gallery.querySelectorAll('.product-media:not(.splide__slide--clone)')];
         const index = mediaArr.indexOf(mediaClicked);
         this.galleryZoomInstance = new ZoomGallery(mediaArr, index);
       }
@@ -690,39 +638,37 @@ class ProductPage {
 
   // Fixed Bar
   positionFixedBar() {
-    const header = document.querySelector("header");
+    const header = document.querySelector('header');
     if (header && this.fixedBar && this.fixedBarTrigger) {
-      this.fixedBar.style.display = "block";
+      this.fixedBar.style.display = 'block';
 
       const update = () => {
         if (window.innerWidth > 991) {
           this.fixedBar.style.zIndex = -1;
-          this.fixedBar.style.position = "absolute";
-          this.fixedBar.style.top = "100%";
+          this.fixedBar.style.position = 'absolute';
+          this.fixedBar.style.top = '100%';
           if (!header.contains(this.fixedBar)) {
             header.appendChild(this.fixedBar);
           }
         } else {
-          const headerZIndex = window
-            .getComputedStyle(header)
-            .getPropertyValue("z-index");
+          const headerZIndex = window.getComputedStyle(header).getPropertyValue('z-index');
           this.fixedBar.style.zIndex = parseInt(headerZIndex, 10) - 1;
-          this.fixedBar.style.top = "auto";
-          this.fixedBar.style.position = "fixed";
+          this.fixedBar.style.top = 'auto';
+          this.fixedBar.style.position = 'fixed';
           if (!document.body.contains(this.fixedBar)) {
             document.body.appendChild(this.fixedBar);
           }
         }
       };
 
-      window.addEventListener("resize", update);
+      window.addEventListener('resize', update);
       update();
     }
   }
   observeFixedBar() {
     const triggerElem = this.fixedBarTrigger;
     const bar = this.fixedBar;
-    let header = document.querySelector("header");
+    let header = document.querySelector('header');
 
     if (triggerElem && bar) {
       let headerOffset = header ? header.offsetHeight : 0;
@@ -735,8 +681,8 @@ class ProductPage {
           observer.disconnect();
         }
 
-        const observerCallback = (entries) => {
-          entries.forEach((entry) => {
+        const observerCallback = entries => {
+          entries.forEach(entry => {
             if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
               bar.classList.add(__VISIBLE);
               this.setFixedBarMedia();
@@ -757,47 +703,52 @@ class ProductPage {
 
       updateObserver();
 
-      window.addEventListener("resize", updateObserver);
+      window.addEventListener('resize', updateObserver);
     }
   }
   setFixedBarMedia() {
     if (this.fixedBar) {
-      if (!this.fixedBar.querySelector("img")) {
-        this.fixedBar.classList.remove("--filled");
+      if (!this.fixedBar.querySelector('img')) {
+        this.fixedBar.classList.remove('--filled');
       }
 
-      const visibleGallery = [
-        ...document.querySelectorAll(".product__gallery"),
-      ].find((el) => {
-        return (
-          window.getComputedStyle(el).getPropertyValue("display") !== "none"
-        );
+      const visibleGallery = [...document.querySelectorAll('.product__gallery')].find(el => {
+        return window.getComputedStyle(el).getPropertyValue('display') !== 'none';
       });
 
       if (visibleGallery) {
-        const mainGallery = visibleGallery.querySelector(
-          ".product__main-gallery"
-        );
-        const fixedBarMedia = document.querySelector(".fixed-bar__media");
+        const mainGallery = visibleGallery.querySelector('.product__main-gallery');
+        const fixedBarMedia = document.querySelector('.fixed-bar__media');
 
         if (mainGallery && fixedBarMedia) {
-          const image = mainGallery.querySelector("img");
-          const fixedBarImage = fixedBarMedia.querySelector("img");
+          const image = mainGallery.querySelector('img');
+          const fixedBarImage = fixedBarMedia.querySelector('img');
 
           if (image) {
             if (!fixedBarImage) {
-              const newImg = document.createElement("img");
+              const newImg = document.createElement('img');
               newImg.src = image.src;
               fixedBarMedia.appendChild(newImg);
             } else {
               fixedBarImage.src = image.src;
             }
 
-            this.fixedBar.classList.add("--filled");
+            this.fixedBar.classList.add('--filled');
           }
         }
       }
     }
+  }
+
+  //   Toggle VVS Notice Visibility
+  bindVVSNotice() {
+    window.toggleVVSNotice = bool => {
+      const vvsNotice = document.querySelector('.product__vvs-notice');
+
+      if (vvsNotice) {
+        document.body.classList.toggle('--vvs-notice-visible', bool);
+      }
+    };
   }
 }
 

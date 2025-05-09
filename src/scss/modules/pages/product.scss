@@ -1225,8 +1225,8 @@
       aspect-ratio: 1;
       border-radius: 50%;
       background: #ffffff;
-      --_m: conic-gradient(#0000 10%, #000),
-        linear-gradient(#000 0 0) content-box;
+      --_m:
+        conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
       -webkit-mask: var(--_m);
       mask: var(--_m);
       -webkit-mask-composite: source-out;
@@ -4726,7 +4726,9 @@
     border-radius: 50%;
     border: 1px solid #9b9fab;
     transition: all 200ms ease;
-    animation: l20-1 1.2s infinite linear alternate, l20-2 2.4s infinite linear;
+    animation:
+      l20-1 1.2s infinite linear alternate,
+      l20-2 2.4s infinite linear;
   }
 }
 
@@ -5565,4 +5567,24 @@
     color: white;
     background-image: linear-gradient(45deg, black, #0095c64d);
   }
+}
+
+.product__vvs-notice {
+  display: none;
+  padding: 2px 10px 2px 26px;
+  border-radius: 50rem;
+  height: 26px;
+  font-size: 13px;
+  letter-spacing: -0.3px;
+  font-weight: 700;
+  justify-content: center;
+  align-items: center;
+  color: #117ca0;
+  border: 1px solid rgba(0, 148, 198, 0.1294117647);
+  cursor: pointer;
+  background: rgba(141, 206, 241, 0.1294117647);
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M22.5952 8.45709C22.8056 8.18328 22.8019 7.80115 22.5862 7.53148L18.361 2.25H5.64008L1.4149 7.53148C1.19904 7.8013 1.19547 8.18367 1.40623 8.45748L11.4131 21.4575C11.5551 21.642 11.7748 21.7501 12.0076 21.75C12.2405 21.7499 12.4601 21.6417 12.602 21.4571L22.5952 8.45709ZM9.00055 9H15.0005V7H9.00055V9Z" fill="%23117ca0"/></svg>');
+  background-size: 12px 12px;
+  background-position: left 8px center;
+  background-repeat: no-repeat;
 }
