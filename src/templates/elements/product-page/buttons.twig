@@ -1,118 +1,134 @@
 <div class="side-row__payments">
-	<div class="product__btn-group">
-		{% if product.temp_unavailable == false %}
-			{% if product.call_for_price == false %}
-				<a id="ajax-button" href="javascript:void(0);" class="buy-btn{% if black_friday and product.item.discountRate is defined %} --black-friday{% endif %}" onclick="addCartModal.create(getFakeProduct())">
-					<span>ADD TO CART</span>
-					<span class="buy-btn__price" id="add_cart_btn_price">...</span>
-				</a>
-			{% else %}
-				<a href="tel:+1770828554" class="buy-btn">
-					<span>{{ product.call_for_price_text }}</span>
-				</a>
-			{% endif %}
-		{% else %}
-			<a href="javascript:void(0)" class="buy-btn">
-				{% if product.item.sold %}
-					<span>Sold</span>
-				{% else %}
-					<span>Temporarily Unavailable</span>
-				{% endif %}
-			</a>
-		{% endif %}
-	</div>
+  <div class="product__btn-group">
+    {% if product.temp_unavailable == false %}
+      {% if product.call_for_price == false %}
+        <a id="ajax-button" href="javascript:void(0);" class="buy-btn{% if black_friday and product.item.discountRate is defined %} --black-friday{% endif %}" onclick="addCartModal.create(getFakeProduct())">
+          <span>ADD TO CART</span>
+          <span class="buy-btn__price" id="add_cart_btn_price">...</span>
+        </a>
+      {% else %}
+        <a href="tel:+1770828554" class="buy-btn"><span>{{ product.call_for_price_text }}</span></a>
+      {% endif %}
+    {% else %}
+      <a href="javascript:void(0)" class="buy-btn">
+        {% if product.item.sold %}
+          <span>Sold</span>
+        {% else %}
+          <span>Temporarily Unavailable</span>
+        {% endif %}
+      </a>
+    {% endif %}
+  </div>
 
-	{% if is_watch_market_item  %}
-		<a class="product__wa-link" href="/chat-whatsapp-2?p_id={{ product.item.id }}" target="_blank">
-			<img src="{{ THEME_ASSETS_FOLDER }}wa_white-icon.svg" alt="Whatsapp Icon Picture" loading="eager">
-			<span>Talk Now on WhatsApp</span>
-		</a>
-	{% else %}
-		<a class="product__wa-link" href="/chat-whatsapp?p_id={{ product.item.id }}" target="_blank">
-			<img src="{{ THEME_ASSETS_FOLDER }}wa_white-icon.svg" alt="Whatsapp Icon Picture" loading="eager">
-			<span>Talk Now on WhatsApp</span>
-		</a>
-	{% endif %}
-	
-	{% if product.is_watch %}
-		<div class="info-box">
-			<h4>Our watch prices are extremely competitive.</h4>
-			<p>See something for less? Give us a call now and we can work together to make a deal
-				<a href="tel:+14048420266" target="_blank">+1 (404) 842 02 66</a>
-			</p>
-		</div>
-	{% endif %}
+  {% if is_watch_market_item %}
+    <a class="product__wa-link" href="/chat-whatsapp-2?p_id={{ product.item.id }}" target="_blank">
+      <img src="{{ THEME_ASSETS_FOLDER }}wa_white-icon.svg" alt="Whatsapp Icon Picture" loading="eager" />
+      <span>Talk Now on WhatsApp</span>
+    </a>
+  {% else %}
+    <a class="product__wa-link" href="/chat-whatsapp?p_id={{ product.item.id }}" target="_blank">
+      <img src="{{ THEME_ASSETS_FOLDER }}wa_white-icon.svg" alt="Whatsapp Icon Picture" loading="eager" />
+      <span>Talk Now on WhatsApp</span>
+    </a>
+  {% endif %}
 
-	{% if black_friday or new_year %}
-		<div class="promo-counter-row">
-			<div class="expire-tab --black-friday">
-				<div class="expire-tab__heading">EXPIRES IN:</div>
-				<div class="expire-tab__grid">
-					<div>
-						<span data-new-year-timer="days">00</span>
-						<span>Days</span>
-					</div>
-					<div>
-						<span data-new-year-timer="hours">00</span>
-						<span>Hours</span>
-					</div>
-					<div>
-						<span data-new-year-timer="minutes">00</span>
-						<span>Min</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	{% endif %}
+  {% if product.is_watch %}
+    <div class="info-box">
+      <h4>Our watch prices are extremely competitive.</h4>
+      <p>
+        Give us a call now and we can work together to make a deal
+        <a href="tel:+14048420266" target="_blank">+1 (404) 842 02 66</a>
+      </p>
+    </div>
+  {% endif %}
 
+  {% if black_friday or new_year %}
+    <div class="promo-counter-row">
+      <div class="expire-tab --black-friday">
+        <div class="expire-tab__heading">
+          EXPIRES IN:
+        </div>
+        <div class="expire-tab__grid">
+          <div>
+            <span data-new-year-timer="days">00</span>
+            <span>Days</span>
+          </div>
+          <div>
+            <span data-new-year-timer="hours">00</span>
+            <span>Hours</span>
+          </div>
+          <div>
+            <span data-new-year-timer="minutes">00</span>
+            <span>Min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 
-	{% if (cyber_monday or cyber_week) %}
-		<div class="promo-counter-row">
-			<div class="expire-tab --cm">
-				<div class="expire-tab__heading">EXPIRES IN:</div>
-				<div class="expire-tab__grid">
-					<div>
-						<span data-cyber-timer="days">00</span>
-						<span>Days</span>
-					</div>
-					<div>
-						<span data-cyber-timer="hours">00</span>
-						<span>Hours</span>
-					</div>
-					<div>
-						<span data-cyber-timer="minutes">00</span>
-						<span>Min</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	{% endif %}
+  {% if cyber_monday or cyber_week %}
+    <div class="promo-counter-row">
+      <div class="expire-tab --cm">
+        <div class="expire-tab__heading">
+          EXPIRES IN:
+        </div>
+        <div class="expire-tab__grid">
+          <div>
+            <span data-cyber-timer="days">00</span>
+            <span>Days</span>
+          </div>
+          <div>
+            <span data-cyber-timer="hours">00</span>
+            <span>Hours</span>
+          </div>
+          <div>
+            <span data-cyber-timer="minutes">00</span>
+            <span>Min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 
-	{% if xmas %}
-		<div class="xmas-timer">
-			<div class="xmas-timer__wrapper">
-				<img loading="lazy" src="{{THEME_ASSETS_FOLDER}}promo/xmas/2024/timer-end.avif" alt="" class="xmas-timer__pic swing_5">
-				<div class="xmas-timer__time">
-					<div class="xmas-timer__col">
-						<div data-xmas-timer="days" class="xmas-timer__typo">14</div>
-						<div class="xmas-timer__sub-typo">DAYS</div>
-					</div>
-					<div class="xmas-timer__col">
-						<div data-xmas-timer="hours" class="xmas-timer__typo">08</div>
-						<div class="xmas-timer__sub-typo">HOURS</div>
-					</div>
-					<div class="xmas-timer__col">
-						<div data-xmas-timer="minutes" class="xmas-timer__typo">46</div>
-						<div class="xmas-timer__sub-typo">MIN</div>
-					</div>
-					<div class="xmas-timer__col">
-						<div data-xmas-timer="seconds" class="xmas-timer__typo">00</div>
-						<div class="xmas-timer__sub-typo">SEC</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	{% endif %}
-
-
+  {% if xmas %}
+    <div class="xmas-timer">
+      <div class="xmas-timer__wrapper">
+        <img loading="lazy" src="{{ THEME_ASSETS_FOLDER }}promo/xmas/2024/timer-end.avif" alt="" class="xmas-timer__pic swing_5" />
+        <div class="xmas-timer__time">
+          <div class="xmas-timer__col">
+            <div data-xmas-timer="days" class="xmas-timer__typo">
+              14
+            </div>
+            <div class="xmas-timer__sub-typo">
+              DAYS
+            </div>
+          </div>
+          <div class="xmas-timer__col">
+            <div data-xmas-timer="hours" class="xmas-timer__typo">
+              08
+            </div>
+            <div class="xmas-timer__sub-typo">
+              HOURS
+            </div>
+          </div>
+          <div class="xmas-timer__col">
+            <div data-xmas-timer="minutes" class="xmas-timer__typo">
+              46
+            </div>
+            <div class="xmas-timer__sub-typo">
+              MIN
+            </div>
+          </div>
+          <div class="xmas-timer__col">
+            <div data-xmas-timer="seconds" class="xmas-timer__typo">
+              00
+            </div>
+            <div class="xmas-timer__sub-typo">
+              SEC
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 </div>
