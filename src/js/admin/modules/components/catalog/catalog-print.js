@@ -42,8 +42,8 @@ export default class CatalogPrint {
     const settings = this.catalogInstance.settings;
     const params = settings?.params;
     const bodyClassname = settings?.bodyClassname;
-
-    fetch("/admin/ajax/generate-catalog-pdf", {
+    var pageCss =  $('body').attr('class');
+    fetch("/admin/ajax/generate-catalog-pdf?class="+pageCss, {
       method: "GET",
     })
       .then((response) => {
