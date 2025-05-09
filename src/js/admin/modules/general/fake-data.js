@@ -260,13 +260,20 @@ function getFakeSeoPage() {
 }
 
 function getFakeCatalogCollection(collectionName) {
+  function getRandomZoom() {
+    return Math.floor(Math.random() * 20 + 1) / 10;
+  }
   const renderItems = () => {
-    return Array(15).fill({
-      src: 'https://image.icebox.com/unsafe/0x0/icebox-jewelry.s3.amazonaws.com/products/b572c3fcc605e3a3fbc9ed48edaa8227.jpg',
-      title: 'Pear Ruby With Diamond Halo Pendant 14k Solid Gold 0.10ctw',
-      price: '5,550',
-      description: 'Item is available in yellow, white, rose colors. Made with solid 14k gold.',
-    });
+    return Array(15)
+      .fill()
+      .map(() => ({
+        id: 20912,
+        src: 'https://image.icebox.com/unsafe/0x0/icebox-jewelry.s3.amazonaws.com/products/b572c3fcc605e3a3fbc9ed48edaa8227.jpg',
+        title: 'Pear Ruby With Diamond Halo Pendant 14k Solid Gold 0.10ctw',
+        price: '5,550',
+        description: 'Item is available in yellow, white, rose colors. Made with solid 14k gold.',
+        zoom: getRandomZoom(),
+      }));
   };
 
   const collections = {

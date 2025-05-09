@@ -213,6 +213,15 @@ function fakeAjaxGetSubcategories(category) {
     }, 500);
   });
 }
+
+function fakeAjaxSaveCatalogItemZoom(url, options) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({ ok: true });
+    }, 2000);
+  });
+}
+
 export {
   fakeAjaxGetPtwData,
   fakeFetchSuccess,
@@ -234,4 +243,5 @@ export {
   fakeAjaxGetChainItem,
   fakeAjaxGetSubcategoryItems,
   fakeAjaxGetSubcategories,
+  fakeAjaxSaveCatalogItemZoom,
 };

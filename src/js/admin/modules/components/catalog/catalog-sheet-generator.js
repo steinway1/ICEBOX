@@ -3,6 +3,15 @@ export default class CatalogSheetsGenerator {
     this.title = title;
     this.itemsArray = itemsArray;
   }
+  #renderMediaControls() {
+    return `
+      <div class="catalog-item__media-controls">
+	    <button data-evt="catalog-item-zoom-out"><i class="hgi hgi-stroke hgi-zoom-out-area"></i></button>
+        <button data-evt="catalog-item-zoom-in"><i class="hgi hgi-stroke hgi-zoom-in-area"></i></button>
+        <button class="--save" data-evt="catalog-item-zoom-save"><i class="hgi hgi-stroke hgi-floppy-disk"></i></button>
+      </div>
+    `;
+  }
 
   generate() {
     return this.itemsArray.reduce((markup, chunk, index) => {
@@ -21,11 +30,13 @@ export default class CatalogSheetsGenerator {
               </div>
               <div class="catalog-sheet__grid">
 							${chunk
-                .map((item) => {
+                .map(item => {
+                  const zoom = item.zoom && !isNaN(item.zoom) ? item.zoom : 1;
                   return `
-                  <div class="catalog-item">
+                  <div class="catalog-item" data-id="${item.id}">
                     <div class="catalog-item__pic-wrap">
-                      <div style="background-image: url('${item.src}'); background-size: cover; background-position: center; width: 100%; height: 100%;"></div>
+                      ${this.#renderMediaControls()}
+                      <div class="catalog-item__media" style="background-image: url('${item.src}'); background-size: contain; background-position: center; width: 100%; height: 100%; transform: scale(${zoom});"></div>
                     </div>
                     <div class="catalog-item__details">
                       <div class="catalog-item__title">
@@ -41,7 +52,7 @@ export default class CatalogSheetsGenerator {
                   </div>
                 `;
                 })
-                .join("")}
+                .join('')}
               </div>
               <div class="catalog-sheet__footer">
                 <span>3255 Peachtree Road, NE Suite #2, Atlanta, GA, 30305, USA</span>
