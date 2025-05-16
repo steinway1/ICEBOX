@@ -545,6 +545,11 @@ class ProductPage {
 
         input.value = value;
         const event = new Event('change', { bubbles: true });
+        const siblingButtons = parent.querySelectorAll('.option-btn');
+        siblingButtons.forEach(b => b.classList.remove(IS_ACTIVE));
+
+        // Add IS_ACTIVE to the clicked button
+        btn.classList.add(IS_ACTIVE);
         input.dispatchEvent(event);
         this.closeOptionModal();
       });
