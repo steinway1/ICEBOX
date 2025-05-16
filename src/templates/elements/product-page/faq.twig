@@ -1,168 +1,175 @@
 <div class="product__sub-row">
-	<div class="wrapper">
-		<div class="product__sticky-flex">
-			<div>
-				<h3 class="product__heading">{{product.category.caption}}
-					FAQ</h3>
-				<p class="product__typo">Find answers to common questions about our
-					{{product.category.caption|lower}}, from materials and care tips to sizing and warranty information.
-				</p>
-				<a href="/faq" class="fancy-btn --blank">
-					<span>Go to FAQ page</span>
-					{% include "components/svg/arrow.svg" %}
-				</a>
-				<div class="form-container">
-					<h2>Add New Question/Answer For Bracelets</h2>
-					<div class="form-group">
-						<label for="textarea1">Question</label>
-						<textarea id="new_category_faq_question" placeholder="Enter text here..."></textarea>
-					</div>
-					<div class="form-group">
-						<label for="textarea2">Answer</label>
-						<textarea id="new_category_faq_answer" placeholder="Enter more text here..."
-							style="height: 16px;"></textarea>
-					</div>
-					<div class="form-button">
-						<button type="button" onclick="addNewCategoryFaq(7);">Add Question/Answer</button>
-					</div>
-				</div>
-			</div>
-			<div>
+  <div class="wrapper">
+    <div class="product__sticky-flex">
+      <div>
+        <h3 class="product__heading">
+          {{ product.category.caption }}
+          FAQ
+        </h3>
+        <p class="product__typo">
+          Find answers to common questions about our
+          {{ product.category.caption|lower }}, from materials and care tips to sizing and warranty information.
+        </p>
+        <a href="/faq" class="fancy-btn --blank">
+          <span>Go to FAQ page</span>
+          {% include 'components/svg/arrow.svg' %}
+        </a>
+        <div class="form-container">
+          <h2>Add New Question/Answer For Bracelets</h2>
+          <div class="form-group">
+            <label for="textarea1">Question</label>
+            <textarea id="new_category_faq_question" placeholder="Enter text here..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="textarea2">Answer</label>
+            <textarea id="new_category_faq_answer" placeholder="Enter more text here..." style="height: 16px;"></textarea>
+          </div>
+          <div class="form-button">
+            <button type="button" onclick="addNewCategoryFaq(7);">Add Question/Answer</button>
+          </div>
+        </div>
+      </div>
 
-				<div class="toggle-row" id="faq_item_3">
-					{# <div class="toggle-row__head">
-						<span class="editable-faq editable editable-pre-wrapped editable-click editable-open" data-name="question"
-							data-type="textarea" data-pk="3" data-url="/admin/ajax/category-faq-edit"
-							style="display: none;">Sample</span>
-						<span class="editable-container editable-inline" style="
-																    width: 100%;
-																">
-							<div>
-								<div class="editableform-loading" style="display: none;"></div>
-								<form class="form-inline editableform" style="">
-									<div class="control-group">
-										<div style="
-																								    display: flex;
-																								    flex-direction: column;
-																								    gap: 10px;
-																								">
-											<div class="editable-input" style="
-																										    /* width: 100%; */
-																										">
-												<textarea class="input-large" rows="7" value="Sample"></textarea>
-											</div>
-											<div class="editable-buttons" style="
-																										    margin: 0;
-																										">
-												<button type="submit" class="editable-submit">ok</button>
-												<button type="button" class="editable-cancel">cancel</button>
-											</div>
-										</div>
-										<div class="editable-error-block" style="display: none;"></div>
-									</div>
-								</form>
-							</div>
-						</span>
-						<button class="btn btn_red" onclick="confirmDeleteFaq(3);">Delete</button>
-					</div> #}
-					<div class="toggle-row__body" style="height: auto !important;">
-						<div class="toggle-row__wrapper">
-							<p class="editable-faq editable editable-pre-wrapped editable-click editable-open" data-name="answer"
-								data-type="textarea" data-pk="3" data-url="/admin/ajax/category-faq-edit" style="display: none;">Sample
-							</p>
-							<span class="editable-container editable-inline" style="">
-								<div>
-									<div class="editableform-loading" style="display: none;"></div>
-									<form class="form-inline editableform" style="">
-										<div class="control-group">
-											<div>
-												<div class="editable-input">
-													<textarea class="input-large" rows="7"></textarea>
-												</div>
-												<div class="editable-buttons">
-													<button type="submit" class="editable-submit">ok</button>
-													<button type="button" class="editable-cancel">cancel</button>
-												</div>
-											</div>
-											<div class="editable-error-block" style="display: none;"></div>
-										</div>
-									</form>
-								</div>
-							</span>
-						</div>
-					</div>
-				</div>
+      <div id="faq_section">
+        <div class="toggle-row --active" id="faq_item_37">
+          <div class="toggle-row__head">
+            <span>How do I choose the perfect engagement ring?</span>
+          </div>
 
+          <div class="toggle-row__body" style="height: auto;">
+            <div class="toggle-row__wrapper">
+              <p>
+                When selecting <a href="/engagement-rings">engagement</a> rings, consider the <strong>4Cs</strong> (cut, color, clarity, and carat weight), metal type (platinum, white/yellow/rose gold), setting style (solitaire, halo, three-stone, vintage), and band design. Active individuals may prefer low-profile settings; fashion-forward partners may like bold designs. Prioritize diamond cut for brilliance. Icebox offers everything from classic solitaires to custom creations for any budget.
+              </p>
+            </div>
+          </div>
+        </div> <div class="toggle-row --active" id="faq_item_38">
+          <div class="toggle-row__head">
+            <span>What are custom engagement rings and how does the design process work?</span>
+          </div>
 
-				<div class="toggle-row">
-					<div class="toggle-row__head">
-						<span>What materials are your products made of?</span>
-					</div>
-					<div class="toggle-row__body">
-						<div class="toggle-row__wrapper">
-							<p>Our pieces are crafted from high-quality metals, including 14k gold (available in rose, white, or
-								yellow), as well as other premium metals like platinum and stainless steel.</p>
-						</div>
-					</div>
-				</div>
-				<div class="toggle-row">
-					<div class="toggle-row__head">
-						<span>Are the products safe for sensitive skin?</span>
-					</div>
-					<div class="toggle-row__body">
-						<div class="toggle-row__wrapper">
-							<p>Absolutely! Our products are completely hypoallergenic and safe for all skin types.</p>
-						</div>
-					</div>
-				</div>
-				<div class="toggle-row">
-					<div class="toggle-row__head">
-						<span>How can I keep my jewelry in good condition?</span>
-					</div>
-					<div class="toggle-row__body">
-						<div class="toggle-row__wrapper">
-							<p>Regular care is essential. We recommend using the special cleaning products available on our site to
-								maintain the shine and durability of your pieces.</p>
-						</div>
-					</div>
-				</div>
-				<div class="toggle-row">
-					<div class="toggle-row__head">
-						<span>Is there a warranty on your products?</span>
-					</div>
-					<div class="toggle-row__body">
-						<div class="toggle-row__wrapper">
-							<p>Yes, we offer a one-year limited warranty that covers significant manufacturing defects and normal wear
-								and tear. Please note, customer negligence and damage to diamonds over 0.10ct are not covered. Icebox
-								reserves the right to repair or replace items at its discretion.</p>
-						</div>
-					</div>
-				</div>
-				<div class="toggle-row">
-					<div class="toggle-row__head">
-						<span>How do I repair my jewelry?</span>
-					</div>
-					<div class="toggle-row__body">
-						<div class="toggle-row__wrapper">
-							<p>Our repairs are warranted for six months from the repair date. This warranty covers defects in
-								materials or workmanship on the specific repairs we handle. It excludes normal wear and tear, invisible
-								set items, and diamonds over 0.10ct.</p>
-						</div>
-					</div>
-				</div>
-				<div class="toggle-row">
-					<div class="toggle-row__head">
-						<span>Do you offer multiple payment options?</span>
-					</div>
-					<div class="toggle-row__body">
-						<div class="toggle-row__wrapper">
-							<p>Definitely! We accept a variety of payment methods including credit and debit cards, PayPal, BitPay,
-								Zelle, and wire transfers. Simply email orders@icebox.com, and our Online Sales Team will assist you
-								with the payment process.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+          <div class="toggle-row__body" style="height: auto;">
+            <div class="toggle-row__wrapper">
+              <p>
+                Custom engagement rings are unique, personalized pieces. The process at Icebox includes:
+              </p>
+              <ol>
+                <li>Consultation to define vision and budget</li>
+                <li>Sketches and 3D renderings</li>
+                <li>Handcrafted production by master jewelers</li>
+              </ol>Custom features may include unique settings, hidden birthstones, engravings, and exclusive diamond configurations. The process takes 3–6 weeks, with prices from $1,000 to $100,000+.<p></p>
+            </div>
+          </div>
+        </div> <div class="toggle-row --active" id="faq_item_39">
+          <div class="toggle-row__head">
+            <span>What should I know about diamond rings and their quality factors?</span>
+          </div>
+
+          <div class="toggle-row__body" style="height: auto;">
+            <div class="toggle-row__wrapper">
+              <p>
+                Diamond quality is based on:
+              </p>
+              <ul>
+                <li><strong>Cut:</strong> Impacts sparkle; Ideal/Excellent cuts preferred</li>
+                <li><strong>Color:</strong> D-F (colorless), G-J (value)</li>
+                <li><strong>Clarity:</strong> Flawless to Included; VS1-VS2 offers best value</li>
+                <li><strong>Carat:</strong> Total diamond weight; price rises with size</li>
+              </ul>Other factors: fluorescence, polish, and symmetry. Icebox rings include GIA or IGI certification.<p></p>
+            </div>
+          </div>
+        </div> <div class="toggle-row" id="faq_item_40">
+          <div class="toggle-row__head">
+            <span>What are eternity rings and when are they typically given?</span>
+          </div>
+
+          <div class="toggle-row__body">
+            <div class="toggle-row__wrapper">
+              <p>
+                Eternity rings feature diamonds/gemstones encircling the entire band, symbolizing endless love. Common occasions:
+              </p>
+              <ul>
+                <li>Anniversaries (especially milestones)</li>
+                <li>Push presents for new births</li>
+                <li>Wedding bands</li>
+              </ul>Types include full and half eternity bands with channel, prong, or bezel settings. They can be worn solo or stacked. Prices range from $1,500 to $15,000+.<p></p>
+            </div>
+          </div>
+        </div> <div class="toggle-row" id="faq_item_41">
+          <div class="toggle-row__head">
+            <span>What makes mens engagement rings different from traditional rings?</span>
+          </div>
+
+          <div class="toggle-row__body">
+            <div class="toggle-row__wrapper">
+              <p>
+                Men’s rings usually feature:
+              </p>
+              <ul>
+                <li>Wider bands (6–8mm)</li>
+                <li>Masculine aesthetics (channel-set diamonds, mixed metals, hammered textures)</li>
+                <li>Durable materials (titanium, tungsten, tantalum)</li>
+                <li>Subtle diamonds via flush settings or accents</li>
+              </ul>Icebox offers both classic and modern men’s designs.<p></p>
+            </div>
+          </div>
+        </div> <div class="toggle-row" id="faq_item_42">
+          <div class="toggle-row__head">
+            <span>What are princess cut engagement rings and what makes them popular?</span>
+          </div>
+
+          <div class="toggle-row__body">
+            <div class="toggle-row__wrapper">
+              <p>
+                Princess cut diamonds are square with pointed corners and brilliant facets. Benefits:
+              </p>
+              <ul>
+                <li>Modern geometric shape</li>
+                <li>Great sparkle like rounds</li>
+                <li>Up to 30% more affordable than round cuts</li>
+              </ul>Popular in four-prong, channel, and halo settings. Icebox offers both classic and cutting-edge styles.<p></p>
+            </div>
+          </div>
+        </div> <div class="toggle-row" id="faq_item_43">
+          <div class="toggle-row__head">
+            <span>What should I know about affordable engagement rings that still look impressive?</span>
+          </div>
+
+          <div class="toggle-row__body">
+            <div class="toggle-row__wrapper">
+              <p>
+                Tips for maximizing beauty on a budget:
+              </p>
+              <ul>
+                <li>Choose oval or cushion cuts for size</li>
+                <li>Color grades H–J look colorless to most</li>
+                <li>Clarity grades VS2–SI1 give good value</li>
+                <li>Use halo settings to make the diamond appear larger</li>
+                <li>White gold is more affordable than platinum</li>
+                <li>Rose gold adds unique style</li>
+              </ul>Icebox rings start at $1,500 with financing options.<p></p>
+            </div>
+          </div>
+        </div> <div class="toggle-row" id="faq_item_44">
+          <div class="toggle-row__head">
+            <span>How do I choose between a diamond wedding band and other ring styles?</span>
+          </div>
+
+          <div class="toggle-row__body">
+            <div class="toggle-row__wrapper">
+              <p>
+                Consider how the band pairs with an engagement ring or stands alone. Options:
+              </p>
+              <ul>
+                <li><strong>Diamond bands:</strong> Full eternity, three-quarter, or halfway</li>
+                <li><strong>Plain metal bands:</strong> Minimalist and classic</li>
+                <li><strong>Mixed metals:</strong> Trendy and bold</li>
+                <li><strong>Curved bands:</strong> Fit flush with engagement rings</li>
+              </ul>Men’s bands: 4–8mm. Women’s bands: 1.5–4mm depending on style.<p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

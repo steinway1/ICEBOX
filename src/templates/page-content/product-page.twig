@@ -1,193 +1,198 @@
 {% include 'elements/product-page/general-js-vars.twig' %}
 <div class="product__main">
+  {% if xmas and product.item.discountRate is defined %}
+    <div class="xmas-banner__ticker">
+      {% for i in 0..2 %}
+        <div class="xmas-ticker">
+          {% for i in 0..3 %}
+            <span>UP TO 60% OFF!</span>
+            <span>LIMITED OFFERS ONLY!</span>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-	{% if xmas and product.item.discountRate is defined %}
-		<div class="xmas-banner__ticker">
-			{% for i in 0..2 %}
-				<div class="xmas-ticker">
-					{% for i in 0..3 %}
-						<span>UP TO 60% OFF!</span>
-						<span>LIMITED OFFERS ONLY!</span>
-					{% endfor %}
-				</div>
-			{% endfor %}
-		</div>
-	{% endif %}
+  {% if new_year %}
+    <div class="ny-banner__ticker">
+      {% for i in 0..5 %}
+        <div class="ny-ticker">
+          <div class="ny-ticker__typo">
+            UP TO 60% OFF<span class="ny-ticker__typo-dot">•</span>
+            <span class="ny-ticker__spot-typo">LIMITED OFFERS ONLY!</span>
+            <span class="ny-ticker__typo-dot">•</span>
+          </div>
+          <div class="ny-ticker__typo">
+            UP TO 60% OFF<span class="ny-ticker__typo-dot">•</span>
+            <span class="ny-ticker__spot-typo">LIMITED OFFERS ONLY!</span>
+            <span class="ny-ticker__typo-dot">•</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-	{% if new_year %}
-		<div class="ny-banner__ticker">
-			{% for i in 0..5 %}
-				<div class="ny-ticker">
-					<div class="ny-ticker__typo">UP TO 60% OFF<span class="ny-ticker__typo-dot">•</span>
-						<span class="ny-ticker__spot-typo">LIMITED OFFERS ONLY!</span>
-						<span class="ny-ticker__typo-dot">•</span>
-					</div>
-					<div class="ny-ticker__typo">UP TO 60% OFF<span class="ny-ticker__typo-dot">•</span>
-						<span class="ny-ticker__spot-typo">LIMITED OFFERS ONLY!</span>
-						<span class="ny-ticker__typo-dot">•</span>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-	{% endif %}
+  {% if vday %}
+    <div class="vday-ticker-row">
+      {% for i in 0..9 %}
+        <div class="vday-ticker">
+          {% if product.item.discountRate is defined %}
+            <div>
+              ONLY ONE AT THIS PRICE
+            </div>
+            <div class="vday-ticker__divider"></div>
+            <div>
+              {{ product.item.discountRate }}% OFF THIS ITEM
+            </div>
+          {% else %}
+            <div>
+              LIMITED OFFERS!
+            </div>
+            <div class="vday-ticker__divider"></div>
+            <div>
+              SALE UP TO 70% OFF
+            </div>
+          {% endif %}
+          <div class="vday-ticker__divider"></div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-	{% if vday %}
-		<div class="vday-ticker-row">
-			{% for i in 0..9 %}
-				<div class="vday-ticker">
-					{% if product.item.discountRate is defined %}
-						<div>ONLY ONE AT THIS PRICE</div>
-						<div class="vday-ticker__divider"></div>
-						<div>{{product.item.discountRate}}% OFF THIS ITEM</div>
-					{% else %}
-						<div>LIMITED OFFERS!</div>
-						<div class="vday-ticker__divider"></div>
-						<div>SALE UP TO 70% OFF</div>
-					{% endif %}
-					<div class="vday-ticker__divider"></div>
-				</div>
-			{% endfor %}
-		</div>
-	{% endif %}
+  {# Ticker Black Friday #}
+  {% if black_friday and product.item.discountRate is defined %}
+    <div class="black-banner__ticker-row --static">
+      {% for i in 0..4 %}
+        <div>
+          <h4>LIMITED TIME!</h4>
+          <span></span>
+          <h5>{{ product.item.discountRate }}% OFF THIS ITEM</h5>
+          <span></span>
+          <h4>LIMITED TIME!</h4>
+          <span></span>
+          <h5>{{ product.item.discountRate }}% OFF THIS ITEM</h5>
+          <span></span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
+  {# Ticker Cyber Monday #}
+  {% if (cyber_monday or cyber_week) and product.item.discountRate is defined %}
+    <div class="cm-green-tape --static">
+      {% for i in 0..3 %}
+        <div class="cm-tape2">
+          {% for i in 0..1 %}
+            <span style="color: white;">LIMITED TIME</span>
+            <span class="cm-tape__star">
+              <svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+              </svg>
+            </span>
+            <span data-text="{{ product.item.discountRate }}% OFF THIS ITEM" class="glitch is-glitching">{{ product.item.discountRate }}% OFF THIS ITEM</span>
+            <span class="cm-tape__star">
+              <svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
+              </svg>
+            </span>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-	{# Ticker Black Friday #}
-	{% if black_friday and product.item.discountRate is defined %}
-		<div class="black-banner__ticker-row --static">
-			{% for i in 0..4 %}
-				<div>
-					<h4>LIMITED TIME!</h4>
-					<span></span>
-					<h5>{{product.item.discountRate}}% OFF THIS ITEM</h5>
-					<span></span>
-					<h4>LIMITED TIME!</h4>
-					<span></span>
-					<h5>{{product.item.discountRate}}% OFF THIS ITEM</h5>
-					<span></span>
-				</div>
-			{% endfor %}
-		</div>
-	{% endif %}
+  <div class="wrapper">
+    <div class="product__wrapper">
+      <div class="product__view">
+        {# Breadcrumbs #}
+        {% include 'elements/product-page/breadcrumbs.twig' %}
 
-	{# Ticker Cyber Monday #}
-	{% if (cyber_monday or cyber_week) and product.item.discountRate is defined %}
-		<div class="cm-green-tape --static">
-			{% for i in 0..3 %}
-				<div class="cm-tape2">
-					{% for i in 0..1 %}
-						<span style="color: white;">LIMITED TIME</span>
-						<span class="cm-tape__star">
-							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
-							</svg>
-						</span>
-						<span data-text="{{product.item.discountRate}}% OFF THIS ITEM" class="glitch is-glitching">{{product.item.discountRate}}% OFF THIS ITEM</span>
-						<span class="cm-tape__star">
-							<svg width="100%" height="100%" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M50 0V0C54.2268 25.6609 74.3391 45.7732 100 50V50V50C74.3391 54.2268 54.2268 74.3391 50 100V100V100C45.7732 74.3391 25.6609 54.2268 0 50V50V50C25.6609 45.7732 45.7732 25.6609 50 0V0Z" fill="currentColor"></path>
-							</svg>
-						</span>
-					{% endfor %}
-				</div>
-			{% endfor %}
-		</div>
-	{% endif %}
+        <div class="product__mob-details">
+          <div class="side-row__category">
+            {{ product.subcategory.caption }}
+          </div>
+          {% include 'elements/product-page/title.twig' %}
+          {# {% include "elements/product-page/share-row.twig" %} #}
+        </div>
 
+        {# -- Gallery #}
+        {% include 'elements/product-page/gallery_desktop.twig' %}
+        {% include 'elements/product-page/gallery_mobile.twig' %}
+      </div>
 
-	<div class="wrapper">
-		<div class="product__wrapper">
+      {# -- Side #}
+      <aside class="product__side">
+        <div class="side-body">
+          {# Subcategory / Title / Wishlist / Reviews Bar #}
+          <div class="side-row__category">
+            {{ product.subcategory.caption }}
+          </div>
+          {% include 'elements/product-page/title.twig' %}
+          {% if userIsAdmin %}
+            {% include 'elements/product-page/reviews-bar.twig' %}
+          {% endif %}
+          {# {% include "elements/product-page/share-row.twig" %} #}
 
-			<div
-				class="product__view">
+          {# Price / Sale / Stock #}
+          <div class="side-row__margin-row">
+            {# Notices #}
+            {% include 'elements/product-page/product-notices.twig' %}
 
+            {# Description #}
+            <div class="side-row__border-row">
+              <div class="product__item-summary">
+                {% if product.item.mainDescription %}
+                  <div id="product_description">
+                    {{ product.item.mainDescription|raw }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
 
-				{# Breadcrumbs #}
-				{% include "elements/product-page/breadcrumbs.twig" %}
+          {# Options #}
+          <div class="side-row__options">
+            {% include 'elements/product-page/options.twig' %}
+          </div>
 
-				<div class="product__mob-details">
-					<div class="side-row__category">{{product.subcategory.caption}}</div>
-					{% include "elements/product-page/title.twig" %}
-					{# {% include "elements/product-page/share-row.twig" %} #}
-				</div>
+          {# Buttons #}
+          <div class="side-row__buttons">
+            {% include 'elements/product-page/buttons.twig' %}
+          </div>
 
-				{# -- Gallery #}
-				{% include "elements/product-page/gallery_desktop.twig" %}
-				{% include "elements/product-page/gallery_mobile.twig" %}
-			</div>
-
-			{# -- Side #}
-			<aside class="product__side">
-				<div
-					class="side-body">
-
-					{# Subcategory / Title / Wishlist / Reviews Bar #}
-					<div class="side-row__category">{{product.subcategory.caption}}</div>
-					{% include "elements/product-page/title.twig" %}
-					{% if userIsAdmin %}
-						{% include "elements/product-page/reviews-bar.twig" %}
-					{% endif %}
-					{# {% include "elements/product-page/share-row.twig" %} #}
-
-					{# Price / Sale / Stock #}
-					<div class="side-row__margin-row">
-
-          {# Notices #}
-          {% include "elements/product-page/product-notices.twig" %}
-
-
-						{# Description #}
-						<div class="side-row__border-row">
-							<div class="product__item-summary">
-								{% if product.item.mainDescription %}
-									<div id="product_description">{{product.item.mainDescription | raw }}</div>
-								{% endif %}
-							</div>
-						</div>
-
-					</div>
-
-					{# Options #}
-					<div class="side-row__options">
-						{% include "elements/product-page/options.twig" %}
-					</div>
-
-					{# Buttons #}
-					<div class="side-row__buttons">
-						{% include "elements/product-page/buttons.twig" %}
-					</div>
-
-					{# Shipping & Question #}
-					<div class="side-row__more">
-						{% include "elements/product-page/side-more.twig" %}
-					</div>
-
-				</div>
-			</aside>
-		</div>
-	</div>
+          {# Shipping & Question #}
+          <div class="side-row__more">
+            {% include 'elements/product-page/side-more.twig' %}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
 </div>
 
 {# Description & Details #}
-{% include "elements/product-page/details.twig" %}
+{% include 'elements/product-page/details.twig' %}
 {# Promises #}
-{% include "elements/product-page/promises.twig" %}
+{% include 'elements/product-page/promises.twig' %}
 {# YouTube #}
-{% include "elements/product-page/youtube.twig" %}
+{% include 'elements/product-page/youtube.twig' %}
 {# FAQ #}
-{% include "elements/product-page/faq.twig" %}
+{% include 'elements/product-page/faq.twig' %}
 {% if product.is_watch and user.admin == true %}
-	{# Review #}
-	{% include "elements/product-page/watch-reviews.twig" %}
+  {# Review #}
+  {% include 'elements/product-page/watch-reviews.twig' %}
 {% endif %}
 {# More Items #}
 {% for Productslider in product.bottom_sliders %}
-	{% include "elements/product-page/items-slider.twig" with {slider:Productslider}%}
+  {% include 'elements/product-page/items-slider.twig' with {
+    slider: Productslider
+  } %}
 {% endfor %}
 {# Guide Modal #}
-{% include "elements/pg-modal.twig" %}
+{% include 'elements/pg-modal.twig' %}
 {# Options #}
-{% include "elements/product-page/options-modal.twig" %}
+{% include 'elements/product-page/options-modal.twig' %}
 {# Float Bar - Add To Cart #}
-{% include "elements/product-page/fixed-bar.twig" %}
+{% include 'elements/product-page/fixed-bar.twig' %}
 {# Forms #}
-{% include "elements/product-page/hidden-form.twig" %}
+{% include 'elements/product-page/hidden-form.twig' %}
