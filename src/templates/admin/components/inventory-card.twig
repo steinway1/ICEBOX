@@ -3,8 +3,7 @@
 	<div class="i-card__top">
 		<div class="i-card__tags">
 			<input
-			type="checkbox" style="position:absolute;z-index:9999;-webkit-appearance:auto;right:0px;" class="multi_select_checkox" value="28467">
-			{# Stock Tag #}
+			type="checkbox" style="position:absolute;z-index:9999;-webkit-appearance:auto;right:0px;" class="multi_select_checkox" value="28467"> {# Stock Tag #}
 			{% set stock_class = "" %}
 			{% set stock_text = "" %}
 			{% if item.in_stock == true %}
@@ -36,8 +35,7 @@
 				</button>
 				<span>
 					{% if stock_text != ""%}
-						{{ stock_text }}
-						-
+						{{ stock_text }} -
 					{% endif %}
 					{{ item.stock_id }}
 				</span>
@@ -237,12 +235,9 @@
 						</span>
 						{{ item.vendor.name }}</a>
 				{% endif %}
-				<a href="{{ item.style.url }}" class="i-card__style-link">{{ item.style.name }}
-					({{ item.style.count }})</a>
+				<a href="{{ item.style.url }}" class="i-card__style-link">{{ item.style.name }} ({{ item.style.count }})</a>
 				<h2 data-ask-text-change>{{ item.title }}</h2>
-				<span class="xs-typo">Added
-					{{ item.date }}
-					days ago</span>
+				<span class="xs-typo">Added 32 days <ago></ago>   / Updated: 20 days   /  <span data-clipboard-content>EDD5951-302</span></span>
 			</div>
 
 			{# Quantities #}
@@ -279,8 +274,7 @@
 					<div class="am-item-note" id="note_{{note.id}}">
 						<div class="am_flex8 --top">
 							<div>
-								<span>{{note.author}}</span>:
-								{{note.comment}}
+								<span>{{note.author}}</span>: {{note.comment}}
 							</div>
 							<button class="i-card__note-remove-btn" data-remove-note="{{note.id}}"></button>
 						</div>

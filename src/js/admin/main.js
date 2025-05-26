@@ -1,16 +1,16 @@
-window.$ = window.jQuery = require("jquery");
+window.$ = window.jQuery = require('jquery');
 
 // Utils
-import { onContentLoaded } from "./modules/general/utils";
+import { onContentLoaded } from './modules/general/utils';
 
 // Pages
-import { initPage } from "./page-manager";
-import { initPageElements } from "./page-elements";
-import { initPageEvents } from "./page-events";
-import PageMsg from "./modules/dynamic/page-msg";
-import { initGTip } from "./modules/elements/g-tip";
-import initUI from "./ui-elements";
-import { EditModal } from "./modules/elements/edit-modal";
+import { initPage } from './page-manager';
+import { initPageElements } from './page-elements';
+import { initPageEvents } from './page-events';
+import PageMsg from './modules/dynamic/page-msg';
+import { initGTip } from './modules/elements/g-tip';
+import initUI from './ui-elements';
+import { EditModal } from './modules/elements/edit-modal';
 
 // Initialization
 onContentLoaded(() => {
@@ -31,23 +31,21 @@ onContentLoaded(() => {
   $.fn.extend({
     isVisible: function () {
       let target = this instanceof jQuery ? $(this).get(0) : this;
-      return (
-        window.getComputedStyle(target).getPropertyValue("display") !== "none"
-      );
+      return window.getComputedStyle(target).getPropertyValue('display') !== 'none';
     },
   });
 });
 
 // Manual Order
-import { deleteManualOrder } from "./page-global";
-import ManualOrderPopup from "./modules/manual-order/manual-popup";
+import { deleteManualOrder } from './page-global';
+import ManualOrderPopup from './modules/manual-order/manual-popup';
 
 onContentLoaded(() => {
   window.deleteManualOrder = deleteManualOrder;
   window.addManualOrder = () => {
     new ManualOrderPopup();
   };
-  window.editManualOrder = (orderID) => {
+  window.editManualOrder = orderID => {
     new ManualOrderPopup(orderID);
   };
 });

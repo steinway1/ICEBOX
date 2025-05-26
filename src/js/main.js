@@ -64,6 +64,7 @@ window.mailModal = require('./modules/modals/mail-modal');
 window.quizModal = require('./modules/modals/quiz-modal');
 window.salesModal = require('./modules/modals/sales-modal');
 const noticeModal = require('./modules/modals/notice-modal');
+const termsModal = require('./modules/modals/terms-modal');
 const Menu = require('./modules/modals/menu');
 const AddCartModal = require('./modules/dynamic/add-cart-modal');
 const Search = require('./modules/modals/search');
@@ -73,7 +74,7 @@ const Search = require('./modules/modals/search');
  * @type Objects
  */
 window.pgSelect = require('./modules/elements/pg-select');
-window.pgModal = require('./modules/elements/pg-modal');
+// window.pgModal = require('./modules/elements/pg-modal');
 
 /** -- Pages */
 const /* Loan App : /financing */
@@ -118,7 +119,7 @@ const pageObjectsArr = [
   header,
   cartModal,
   currencyModal,
-  pgModal,
+  //   pgModal,
   footer,
   pageEls,
   myBag,
@@ -203,6 +204,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Notice modal
   window.noticeModal = new noticeModal();
+
+  // Terms modal
+  window.termsModal = new termsModal();
 
   // Add to cart Modal
   window.addCartModal = new AddCartModal();
