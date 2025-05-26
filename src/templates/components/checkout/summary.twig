@@ -98,18 +98,19 @@
 		{% endif %}
 		{% if checkoutStep == 3 %}
 			<div class="col_8">
-				<button data-submit-checkout class="checkout-summary__btn">Complete Order</button>
-				<label for="no_refunds" class="checkout__pseudo-cb mg-bottom_12 --checkout">
-					<input type="checkbox" id="no_refunds" name="no_refunds" value="1" required="" checked>
+							<label for="no_refunds" class="checkout__pseudo-cb --checkout">
+					<input type="checkbox" id="no_refunds" name="no_refunds" value="1" required="">
 					<div class="checkout__pseudo-cb-box">
-						<div class="flex --12 --align-top">
+						<div class="flex --12">
 							<span class="checkout__pseudo-cb-dot"></span>
-							<h4>Store Policy
-								<span>By checking this box, you acknowledge and agree to the store's no refund policy.</span>
-							</h4>
+							<div>
+							  <h4>I agree to the Icebox.com <button href="javascript:void(0)" data-evt="openTermsModal" target="_blank">Terms and Conditions</button></h4>
+							  {# <button data-evt="openTermsModal" class="checkout__pseudo-cb-btn">Read Terms & Conditions</button> #}
+							</div>
 						</div>
 					</div>
 				</label>
+				<button data-submit-checkout class="checkout-summary__btn">Complete Order</button>
 			</div>
 		{% endif %}
 
