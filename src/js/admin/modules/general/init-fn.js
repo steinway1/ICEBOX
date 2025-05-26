@@ -1,14 +1,20 @@
-import { inputAllowOnlyDecimals, applyOverloader, removeOverloader, delay, appendPageLoader, removePageLoader } from "./utils";
-import bodymovin from "../../lib/lottie";
-import AirDatepicker from "../../lib/air-datepicker";
-import PageMsg from "../dynamic/page-msg";
-import { AjaxGetOrderDetails } from "./ajax.js";
-import { fakeFetchRemoveNote } from "./fake-ajax.js";
-
-import InputFormatter from "../ui/input-formatter";
+import {
+  inputAllowOnlyDecimals,
+  applyOverloader,
+  removeOverloader,
+  delay,
+  appendPageLoader,
+  removePageLoader,
+} from './utils';
+import bodymovin from '../../lib/lottie';
+import AirDatepicker from '../../lib/air-datepicker';
+import PageMsg from '../dynamic/page-msg';
+import { AjaxGetOrderDetails } from './ajax.js';
+import { fakeFetchRemoveNote } from './fake-ajax.js';
+import InputFormatter from '../ui/input-formatter';
 
 function updateInputsAllowOnlyDecimals() {
-  const onlyDecimalsInputs = document.querySelectorAll("input[data-allow-decimals]");
+  const onlyDecimalsInputs = document.querySelectorAll('input[data-allow-decimals]');
   for (const input of onlyDecimalsInputs) {
     inputAllowOnlyDecimals(input);
   }
@@ -16,43 +22,43 @@ function updateInputsAllowOnlyDecimals() {
 
 function initLottieElements() {
   const lottieContainers = [...document.querySelectorAll('[data-lottie="score"]')];
-  lottieContainers.forEach((container) => {
+  lottieContainers.forEach(container => {
     const animation = bodymovin.loadAnimation({
       container: container,
-      path: "https://gist.githubusercontent.com/steinway1/e4c3c198b9f2fc369dd72a38f3c22c73/raw/5c7af07965df5f07684b619936285a7e64b57069/toolbar-score.json",
+      path: 'https://gist.githubusercontent.com/steinway1/e4c3c198b9f2fc369dd72a38f3c22c73/raw/5c7af07965df5f07684b619936285a7e64b57069/toolbar-score.json',
       autoplay: true,
-      renderer: "svg",
+      renderer: 'svg',
       loop: true,
     });
   });
 }
 
 function attachDatePickers() {
-  const arr = [...document.querySelectorAll("[data-datepicker]")];
+  const arr = [...document.querySelectorAll('[data-datepicker]')];
   for (const input of arr) {
     const options = {
       autoClose: false,
       timepicker: false,
       onSelect({ date }) {
-        const datePart = date.toLocaleDateString("en-US", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
+        const datePart = date.toLocaleDateString('en-US', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
         });
         input.value = datePart;
       },
     };
 
     // Если есть атрибут data-date-today, устанавливаем текущую дату
-    if (input.hasAttribute("data-date-today")) {
+    if (input.hasAttribute('data-date-today')) {
       options.date = new Date(); // Устанавливаем текущую дату как выбранную
 
       // Форматируем дату сразу для input.value
       const today = new Date();
-      const datePart = today.toLocaleDateString("en-US", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
+      const datePart = today.toLocaleDateString('en-US', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
       });
 
       input.value = datePart;
@@ -65,16 +71,16 @@ function attachDatePickers() {
 function bindToggleCustomerRows() {
   const arr = [...document.querySelectorAll(['[data-evt="toggleCustomerRow"]'])];
   for (const elem of arr) {
-    elem.addEventListener("click", () => {
-      const row = elem.closest(".limit-form__row");
-      const text = elem.dataset.text || "More Details";
+    elem.addEventListener('click', () => {
+      const row = elem.closest('.limit-form__row');
+      const text = elem.dataset.text || 'More Details';
 
       if (row) {
-        if (row.classList.contains("--collapsed")) {
-          row.classList.remove("--collapsed");
-          elem.textContent = "Hide";
+        if (row.classList.contains('--collapsed')) {
+          row.classList.remove('--collapsed');
+          elem.textContent = 'Hide';
         } else {
-          row.classList.add("--collapsed");
+          row.classList.add('--collapsed');
           elem.textContent = text;
         }
       }
@@ -83,14 +89,14 @@ function bindToggleCustomerRows() {
 }
 
 function bindFingerSizeInput() {
-  const arr = [...document.querySelectorAll("[data-finger-input]")];
-  const validateValue = (value) => {
+  const arr = [...document.querySelectorAll('[data-finger-input]')];
+  const validateValue = value => {
     const num = parseFloat(value);
     return /^(\d+(\.5?)?)?$/.test(value) && num <= 25;
   };
 
   for (const input of arr) {
-    input.addEventListener("input", () => {
+    input.addEventListener('input', () => {
       // Resrtict Numeric Value
       const value = input.value;
       if (!validateValue(value)) {
@@ -101,17 +107,17 @@ function bindFingerSizeInput() {
 }
 
 function updateLiveDateTime() {
-  const elemArr = [...document.querySelectorAll("[data-time-now]")];
-  elemArr.forEach((el) => {
+  const elemArr = [...document.querySelectorAll('[data-time-now]')];
+  elemArr.forEach(el => {
     const updateTime = () => {
       const date = new Date();
-      const dateFormatted = date.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
+      const dateFormatted = date.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
       });
-      const timeFormatted = date.toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "numeric",
+      const timeFormatted = date.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
         hour12: true,
       });
       el.textContent = `${dateFormatted}, ${timeFormatted}`;
@@ -123,15 +129,15 @@ function updateLiveDateTime() {
 }
 
 async function bindCopyOrderDetails() {
-  document.addEventListener("click", async (e) => {
+  document.addEventListener('click', async e => {
     const target = e.target;
-    const copyBtn = target.closest("[data-copy-details]");
+    const copyBtn = target.closest('[data-copy-details]');
 
     if (copyBtn) {
       const orderId = copyBtn.dataset.copyDetails;
 
       if (!orderId) {
-        new PageMsg({ heading: "Error", msg: "No order ID Found" });
+        new PageMsg({ heading: 'Error', msg: 'No order ID Found' });
         return;
       }
 
@@ -143,10 +149,18 @@ async function bindCopyOrderDetails() {
         const orderDetails = await AjaxGetOrderDetails(orderId);
 
         if (!orderDetails) {
-          throw new Error("Order not found");
+          throw new Error('Order not found');
         }
 
-        const { customer = "", payment_type = "Unknown", total = "Unknown", paid_today = "Unknown", discount = "No", items_purchased = [], balance = "$0.00" } = orderDetails;
+        const {
+          customer = '',
+          payment_type = 'Unknown',
+          total = 'Unknown',
+          paid_today = 'Unknown',
+          discount = 'No',
+          items_purchased = [],
+          balance = '$0.00',
+        } = orderDetails;
 
         let textToCopy = [
           `Customer: ${customer}`,
@@ -154,18 +168,18 @@ async function bindCopyOrderDetails() {
           `Total: ${total}`,
           `Paid Today: ${paid_today}`,
           `Discount: ${discount}`,
-          `Items Purchased: ${items_purchased.map((item) => item.title).join(", ")}`,
+          `Items Purchased: ${items_purchased.map(item => item.title).join(', ')}`,
           `Balance: ${balance}`,
-        ].join("\n");
+        ].join('\n');
 
         navigator.clipboard.writeText(textToCopy);
 
         new PageMsg({
-          heading: "Copied!",
-          msg: "Order details copied to clipboard",
+          heading: 'Copied!',
+          msg: 'Order details copied to clipboard',
         });
       } catch (error) {
-        new PageMsg({ heading: "Error", msg: error.message });
+        new PageMsg({ heading: 'Error', msg: error.message });
       } finally {
         removeOverloader(copyBtn);
       }
@@ -174,81 +188,81 @@ async function bindCopyOrderDetails() {
 }
 
 function initSelectStates() {
-  const arr = [...document.querySelectorAll("[data-select-states]")];
+  const arr = [...document.querySelectorAll('[data-select-states]')];
 
   const states = [
-    { value: "AL", text: "Alabama" },
-    { value: "AK", text: "Alaska" },
-    { value: "AZ", text: "Arizona" },
-    { value: "AR", text: "Arkansas" },
-    { value: "CA", text: "California" },
-    { value: "CO", text: "Colorado" },
-    { value: "CT", text: "Connecticut" },
-    { value: "DE", text: "Delaware" },
-    { value: "FL", text: "Florida" },
-    { value: "GA", text: "Georgia" },
-    { value: "HI", text: "Hawaii" },
-    { value: "ID", text: "Idaho" },
-    { value: "IL", text: "Illinois" },
-    { value: "IN", text: "Indiana" },
-    { value: "IA", text: "Iowa" },
-    { value: "KS", text: "Kansas" },
-    { value: "KY", text: "Kentucky" },
-    { value: "LA", text: "Louisiana" },
-    { value: "ME", text: "Maine" },
-    { value: "MD", text: "Maryland" },
-    { value: "MA", text: "Massachusetts" },
-    { value: "MI", text: "Michigan" },
-    { value: "MN", text: "Minnesota" },
-    { value: "MS", text: "Mississippi" },
-    { value: "MO", text: "Missouri" },
-    { value: "MT", text: "Montana" },
-    { value: "NE", text: "Nebraska" },
-    { value: "NV", text: "Nevada" },
-    { value: "NH", text: "New Hampshire" },
-    { value: "NJ", text: "New Jersey" },
-    { value: "NM", text: "New Mexico" },
-    { value: "NY", text: "New York" },
-    { value: "NC", text: "North Carolina" },
-    { value: "ND", text: "North Dakota" },
-    { value: "OH", text: "Ohio" },
-    { value: "OK", text: "Oklahoma" },
-    { value: "OR", text: "Oregon" },
-    { value: "PA", text: "Pennsylvania" },
-    { value: "RI", text: "Rhode Island" },
-    { value: "SC", text: "South Carolina" },
-    { value: "SD", text: "South Dakota" },
-    { value: "TN", text: "Tennessee" },
-    { value: "TX", text: "Texas" },
-    { value: "UT", text: "Utah" },
-    { value: "VT", text: "Vermont" },
-    { value: "VA", text: "Virginia" },
-    { value: "WA", text: "Washington" },
-    { value: "WV", text: "West Virginia" },
-    { value: "WI", text: "Wisconsin" },
-    { value: "WY", text: "Wyoming" },
+    { value: 'AL', text: 'Alabama' },
+    { value: 'AK', text: 'Alaska' },
+    { value: 'AZ', text: 'Arizona' },
+    { value: 'AR', text: 'Arkansas' },
+    { value: 'CA', text: 'California' },
+    { value: 'CO', text: 'Colorado' },
+    { value: 'CT', text: 'Connecticut' },
+    { value: 'DE', text: 'Delaware' },
+    { value: 'FL', text: 'Florida' },
+    { value: 'GA', text: 'Georgia' },
+    { value: 'HI', text: 'Hawaii' },
+    { value: 'ID', text: 'Idaho' },
+    { value: 'IL', text: 'Illinois' },
+    { value: 'IN', text: 'Indiana' },
+    { value: 'IA', text: 'Iowa' },
+    { value: 'KS', text: 'Kansas' },
+    { value: 'KY', text: 'Kentucky' },
+    { value: 'LA', text: 'Louisiana' },
+    { value: 'ME', text: 'Maine' },
+    { value: 'MD', text: 'Maryland' },
+    { value: 'MA', text: 'Massachusetts' },
+    { value: 'MI', text: 'Michigan' },
+    { value: 'MN', text: 'Minnesota' },
+    { value: 'MS', text: 'Mississippi' },
+    { value: 'MO', text: 'Missouri' },
+    { value: 'MT', text: 'Montana' },
+    { value: 'NE', text: 'Nebraska' },
+    { value: 'NV', text: 'Nevada' },
+    { value: 'NH', text: 'New Hampshire' },
+    { value: 'NJ', text: 'New Jersey' },
+    { value: 'NM', text: 'New Mexico' },
+    { value: 'NY', text: 'New York' },
+    { value: 'NC', text: 'North Carolina' },
+    { value: 'ND', text: 'North Dakota' },
+    { value: 'OH', text: 'Ohio' },
+    { value: 'OK', text: 'Oklahoma' },
+    { value: 'OR', text: 'Oregon' },
+    { value: 'PA', text: 'Pennsylvania' },
+    { value: 'RI', text: 'Rhode Island' },
+    { value: 'SC', text: 'South Carolina' },
+    { value: 'SD', text: 'South Dakota' },
+    { value: 'TN', text: 'Tennessee' },
+    { value: 'TX', text: 'Texas' },
+    { value: 'UT', text: 'Utah' },
+    { value: 'VT', text: 'Vermont' },
+    { value: 'VA', text: 'Virginia' },
+    { value: 'WA', text: 'Washington' },
+    { value: 'WV', text: 'West Virginia' },
+    { value: 'WI', text: 'Wisconsin' },
+    { value: 'WY', text: 'Wyoming' },
   ];
 
-  arr.forEach((select) => {
+  arr.forEach(select => {
     // Keep existing options
     const existingOptions = select.innerHTML;
 
     // Add state options
-    const stateOptions = states.map((state) => `<option value="${state.value}">${state.text}</option>`).join("");
+    const stateOptions = states.map(state => `<option value="${state.value}">${state.text}</option>`).join('');
 
     select.innerHTML = existingOptions + stateOptions;
   });
 }
 
 function bindRemoveNote() {
-  document.addEventListener("click", async (e) => {
+  document.addEventListener('click', async e => {
     const target = e.target;
-    const removeBtn = target.closest("[data-remove-note]");
+    const removeBtn = target.closest('[data-remove-note]');
 
     if (removeBtn) {
       const noteId = removeBtn.dataset.removeNote;
       if (!noteId) {
-        console.warn("No note ID Found. Expected data-remove-note");
+        console.warn('No note ID Found. Expected data-remove-note');
         return;
       }
 
@@ -261,15 +275,15 @@ function bindRemoveNote() {
         const response = await fakeFetchRemoveNote(noteId);
 
         if (!response.ok) {
-          throw new Error("Failed note remove.");
+          throw new Error('Failed note remove.');
         }
 
         new PageMsg({
-          type: "success",
-          heading: "Success!",
-          msg: "Note removed successfully.",
+          type: 'success',
+          heading: 'Success!',
+          msg: 'Note removed successfully.',
         });
-        target.closest(".am-item-note")?.remove();
+        target.closest('.am-item-note')?.remove();
       } catch (err) {
         console.error(`Error removing note: ${err.message}`);
       } finally {
@@ -280,20 +294,20 @@ function bindRemoveNote() {
 }
 
 function wrapKeywordsElements() {
-  const arr = [...document.querySelectorAll("[data-wrap-keywords]")];
+  const arr = [...document.querySelectorAll('[data-wrap-keywords]')];
   for (const elem of arr) {
     const keywords = elem.textContent;
-    const keywordsArr = keywords.split(",");
-    const keywordsHtml = keywordsArr.map((keyword) => `<span class="m-tag --xs">${keyword}</span>`).join("");
+    const keywordsArr = keywords.split(',');
+    const keywordsHtml = keywordsArr.map(keyword => `<span class="m-tag --xs">${keyword}</span>`).join('');
     elem.innerHTML = keywordsHtml;
   }
 }
 
 function shieldCodeElements() {
-  const arr = [...document.querySelectorAll("[data-code-shield]")];
+  const arr = [...document.querySelectorAll('[data-code-shield]')];
   for (const elem of arr) {
-    const language = elem.dataset.codeShield || "Code";
-    const isJson = language.toLowerCase().includes("json");
+    const language = elem.dataset.codeShield || 'Code';
+    const isJson = language.toLowerCase().includes('json');
 
     let code;
 
@@ -304,7 +318,7 @@ function shieldCodeElements() {
           const jsonObj = JSON.parse(jsonString);
           code = JSON.stringify(jsonObj, null, 2);
         } catch (e) {
-          console.error("Parse JSON Error:", e);
+          console.error('Parse JSON Error:', e);
           code = jsonString;
         }
       }
@@ -319,27 +333,32 @@ function shieldCodeElements() {
 				</div>
 			`;
     } else {
-      let code = elem.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+      let code = elem.innerHTML
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
 
       code = code
-        .replace(/(&lt;\/?[a-zA-Z]+.*?&gt;)/g, "\n$1")
-        .replace(/\n\n/g, "\n")
+        .replace(/(&lt;\/?[a-zA-Z]+.*?&gt;)/g, '\n$1')
+        .replace(/\n\n/g, '\n')
         .trim();
 
       let indentLevel = 0;
       const lines = code
-        .split("\n")
-        .map((line) => {
+        .split('\n')
+        .map(line => {
           if (line.match(/&lt;\//)) {
             indentLevel = Math.max(0, indentLevel - 1);
           }
-          const indentedLine = "  ".repeat(indentLevel) + line.trim();
+          const indentedLine = '  '.repeat(indentLevel) + line.trim();
           if (line.match(/&lt;[a-zA-Z]+.*?&gt;/) && !line.match(/&lt;\//)) {
             indentLevel++;
           }
           return indentedLine;
         })
-        .join("\n");
+        .join('\n');
 
       elem.innerHTML = `
 		<div class="m-code-shield">
@@ -355,20 +374,20 @@ function shieldCodeElements() {
 }
 
 function bindCopyCodeBtn() {
-  document.addEventListener("click", async (e) => {
+  document.addEventListener('click', async e => {
     const target = e.target;
-    const copyBtn = target.closest(".copy-code-btn");
+    const copyBtn = target.closest('.copy-code-btn');
 
     if (copyBtn) {
-      const parent = copyBtn.closest(".m-code-shield");
-      const code = parent.querySelector("code").textContent;
+      const parent = copyBtn.closest('.m-code-shield');
+      const code = parent.querySelector('code').textContent;
       navigator.clipboard.writeText(code);
     }
   });
 }
 
 function bindInputDecimals() {
-  const arr = [...document.querySelectorAll("[data-input-decimal]")];
+  const arr = [...document.querySelectorAll('[data-input-decimal]')];
   for (const input of arr) {
     const precision = input.dataset.inputDecimal || 2;
     new InputFormatter(input).decimalMask(precision);
@@ -376,13 +395,13 @@ function bindInputDecimals() {
 }
 
 function bindToggleSpaceBox() {
-  document.addEventListener("click", async (e) => {
+  document.addEventListener('click', async e => {
     const toggleBtn = e.target.closest("[data-evt='toggleSpaceBox']");
 
     if (toggleBtn) {
-      const box = toggleBtn.closest(".space-box");
+      const box = toggleBtn.closest('.space-box');
       if (box) {
-        box.classList.toggle("--collapsed");
+        box.classList.toggle('--collapsed');
       }
     }
   });
@@ -390,34 +409,49 @@ function bindToggleSpaceBox() {
 
 function bindToggleSpaceTheme() {
   const BODY = document.body;
-  if (!BODY.classList.contains("space")) return;
+  if (!BODY.classList.contains('space')) return;
 
-  const STORAGE_KEY = "spaceTheme";
+  const STORAGE_KEY = 'spaceTheme';
   const toggleArr = [...document.querySelectorAll('input[name="spaceTheme"]')];
 
   const saved = localStorage.getItem(STORAGE_KEY); // "dark" | "light" | null
   let currentTheme = saved;
   if (!currentTheme) {
-    currentTheme = BODY.classList.contains("--theme-dark") ? "dark" : "light";
+    currentTheme = BODY.classList.contains('--theme-dark') ? 'dark' : 'light';
   }
 
-  BODY.classList.toggle("--theme-dark", currentTheme === "dark");
+  BODY.classList.toggle('--theme-dark', currentTheme === 'dark');
 
-  toggleArr.forEach((input) => {
+  toggleArr.forEach(input => {
     input.checked = input.value === currentTheme;
   });
 
-  toggleArr.forEach((input) => {
-    input.addEventListener("change", () => {
+  toggleArr.forEach(input => {
+    input.addEventListener('change', () => {
       if (!input.checked) return;
-      const isDark = input.value === "dark";
-      BODY.classList.toggle("--theme-dark", isDark);
-      localStorage.setItem(STORAGE_KEY, isDark ? "dark" : "light");
-      toggleArr.forEach((other) => {
+      const isDark = input.value === 'dark';
+      BODY.classList.toggle('--theme-dark', isDark);
+      localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
+      toggleArr.forEach(other => {
         if (other !== input) other.checked = false;
       });
     });
   });
+}
+
+function bindClipboardContent() {
+  const arr = [...document.querySelectorAll('[data-clipboard-content]')];
+  for (const elem of arr) {
+    const content = elem.textContent;
+    elem.addEventListener('click', () => {
+      navigator.clipboard.writeText(content);
+      new PageMsg({
+        type: 'success',
+        heading: 'Copied!',
+        msg: 'Content copied to clipboard',
+      });
+    });
+  }
 }
 
 export {
@@ -436,4 +470,5 @@ export {
   bindToggleSpaceBox,
   bindInputDecimals,
   bindToggleSpaceTheme,
+  bindClipboardContent,
 };
