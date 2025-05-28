@@ -1,0 +1,166 @@
+.sale-banner {
+  text-align: center;
+  border-top: 1px solid #edf0f5;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 120px;
+  padding: 86px 24px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: hsla(191, 46%, 96%, 1);
+    background-image:
+      radial-gradient(
+        at 76% 64%,
+        hsla(221, 46%, 85%, 0.3) 0px,
+        transparent 50%
+      ),
+      radial-gradient(
+        at 15% 0%,
+        hsla(199, 46%, 85%, 0.13) 0px,
+        transparent 50%
+      ),
+      radial-gradient(
+        at 12% 5%,
+        hsla(217, 46%, 85%, 0.48) 0px,
+        transparent 50%
+      ),
+      radial-gradient(
+        at 79% 59%,
+        hsla(198, 46%, 85%, 0.34) 0px,
+        transparent 50%
+      ),
+      radial-gradient(
+        at 84% 97%,
+        hsla(215, 46%, 85%, 0.34) 0px,
+        transparent 50%
+      );
+    opacity: 0.75;
+    filter: grayscale(70%);
+  }
+
+  &__marquee {
+    z-index: 3;
+    color: #fff;
+    letter-spacing: 2px;
+    background-color: #293642;
+    border-top: 1px solid #697a8a;
+    border-bottom: 1px solid #697a8a;
+    justify-content: flex-end;
+    align-items: center;
+    width: 150vw;
+    height: 36px;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    position: absolute;
+    top: 2%;
+    left: -46%;
+    transform: rotate(-3deg);
+    box-shadow: 0 16px 28px #2c425c2e;
+
+    &.--bottom {
+      justify-content: flex-start;
+      align-items: center;
+      inset: auto -46% 2% auto;
+      transform: rotate(-3deg);
+
+      span {
+        animation: saleMarqueeBottom 20s linear infinite;
+      }
+    }
+
+    span {
+      flex: none;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding-right: 24px;
+      animation: saleMarqueeTop 20s linear infinite;
+
+      &::after {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: #fff;
+      }
+
+      &:nth-child(even) {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  &__heading {
+    z-index: 3;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 26px;
+  }
+
+  &__subheading {
+    z-index: 3;
+    width: 100%;
+    max-width: 860px;
+    font-size: 16px;
+    line-height: 24px;
+    position: relative;
+  }
+
+  &__content {
+    z-index: 3;
+    grid-column-gap: 18px;
+    grid-row-gap: 18px;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+  }
+
+  @media screen and (max-width: 991px) {
+    border-top-style: none;
+  }
+
+  @media screen and (max-width: 479px) {
+    &__marquee {
+      justify-content: flex-start;
+      align-items: center;
+      top: 1%;
+
+      &.--bottom {
+        justify-content: flex-end;
+        align-items: center;
+      }
+    }
+  }
+}
+
+@keyframes saleMarqueeBottom {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes saleMarqueeTop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-200%);
+  }
+}

@@ -1,53 +1,22 @@
-<div class="sale-banner-tape">
-	<div>
-		<span>Limited Time</span>
-		<span>UP TO 50% SALE</span>
-		<span>Limited Time</span>
-		<span>UP TO 50% SALE</span>
-		<span>Limited Time</span>
-		<span>UP TO 50% SALE</span>
-	</div>
-	<div>
-		<span>Limited Time</span>
-		<span>UP TO 50% SALE</span>
-		<span>Limited Time</span>
-		<span>UP TO 50% SALE</span>
-		<span>Limited Time</span>
-		<span>UP TO 50% SALE</span>
-	</div>
-	<div>
-		<span>Limited Time</span>
-		<span>UP TO 50% SALE</span>
-		<span>Limited Time</span>
-		<span>UP TO 50% SALE</span>
-		<span>Limited Time</span>
-		<span>UP TO 50% SALE</span>
-	</div>
-</div>
+{% set sale_value = 50 %}
+{% set default_heading = 'Luxury Diamond &amp; Gold Jewelry Sale' %}
+{% set default_subheading = "Discover extraordinary value at <b>Icebox's exclusive sales event</b>, where luxury meets unprecedented savings on our finest jewelry collections. From stunning <b>diamond pendants</b> that capture light magnificently to substantial <b>gold chains on sale</b> in iconic styles, each discounted piece maintains our uncompromising standards of craftsmanship and quality. Our selection incudes premium <b>earrings for women</b> featuring brilliant stones alongside bold statement pieces for men, all crafted from authentic materials including <b>14K solid gold.</b>" %}
 
-<div class="res-banner res-banner_sale">
-	<img src="./assets/banners/result_banner-gold-chains.webp" loading="eager" sizes="100vw" alt="">
-	<div class="sale-banner__main">
-		<div class="sale-banner__tape">
-			<div>
-				<span>SALE</span>
-				<span>SALE</span>
-			</div>
-			<div>
-				<span>SALE</span>
-				<span>SALE</span>
-			</div>
-			<div>
-				<span>SALE</span>
-				<span>SALE</span>
-			</div>
-		</div>
-		<div class="sale-banner__description">
-			<div class="sale-banner__heading">
-				<span>Up To</span>50%<span>Off</span>
-			</div>
-			<div class="sale-banner__subheading">SALE<span>Limited time. Shop Now and Pay Later!</span>
-			</div>
-		</div>
-	</div>
+<div class="sale-banner">
+  <div class="sale-banner__marquee --top">
+    {% for i in 1..30 %}
+      <span>UP TO {{ sale_value }}% SALE</span>
+    {% endfor %}
+  </div>
+  <div class="sale-banner__content">
+    <h1 class="sale-banner__heading">{{ sale_page_heading ?? default_heading }}</h1>
+    <p class="sale-banner__subheading">
+      {{ sale_page_subheading ?? default_subheading }}
+    </p>
+  </div>
+  <div class="sale-banner__marquee --bottom">
+    {% for i in 1..30 %}
+      <span>UP TO {{ sale_value }}% SALE</span>
+    {% endfor %}
+  </div>
 </div>

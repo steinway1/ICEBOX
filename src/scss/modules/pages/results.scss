@@ -253,6 +253,12 @@ body.--controls-visible {
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  p {
+    font-size: 15px;
+    max-width: 860px;
+    margin-top: 12px;
+  }
 }
 
 .results__subheading {
@@ -976,7 +982,8 @@ body.--controls-visible {
     // content: '';
     z-index: 2;
     opacity: 0.7;
-    background-image: linear-gradient(#cbdbec00 60%, #f1f4f6),
+    background-image:
+      linear-gradient(#cbdbec00 60%, #f1f4f6),
       radial-gradient(circle at 0%, #212a35, #0d1e3000),
       linear-gradient(#0d1e30, #91abc7 20%, #dfe5eb 60%);
     position: absolute;
@@ -1085,209 +1092,6 @@ body.--controls-visible {
 .results__item-card > a {
   position: relative;
 }
-
-/* #region : Common Sale Banner */
-.sale-banner-tape {
-  width: 100%;
-  height: 42px;
-  color: #fff;
-  position: relative;
-  z-index: 2;
-  margin-bottom: -1px;
-  background-color: #0095c6;
-  justify-content: flex-end;
-  align-items: center;
-  display: flex;
-  overflow: hidden;
-  pointer-events: none;
-
-  & > div {
-    height: 100%;
-    flex: none;
-    justify-content: flex-end;
-    align-items: center;
-    display: flex;
-    animation: saleBannerTape 32s linear infinite;
-
-    span {
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      flex: none;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-left: 28px;
-      padding-right: 28px;
-      font-size: 13px;
-      font-weight: 700;
-
-      &::after {
-        content: "";
-        display: block;
-        margin-top: -1px;
-        position: absolute;
-        left: 0px;
-        width: 6px;
-        height: 6px;
-        background-color: #fff;
-        flex: none;
-        transform: rotate(45deg);
-      }
-
-      @include maxWidthXs {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-    }
-  }
-}
-
-.sale-banner__subheading {
-  color: #0095c6;
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 32px;
-
-  span {
-    font-size: 16px;
-    font-weight: 600;
-    display: block;
-  }
-}
-
-.sale-banner__heading {
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-  color: #0095c6;
-  text-transform: uppercase;
-  justify-content: center;
-  align-items: center;
-  font-size: 140px;
-  font-weight: 700;
-  line-height: 126px;
-  display: flex;
-
-  span {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 16px;
-  }
-}
-
-.sale-banner__main {
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  padding: 58px 46px;
-  display: flex;
-  position: relative;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.sale-banner__tape {
-  width: 100%;
-  height: 100%;
-  justify-content: flex-end;
-  align-items: center;
-  display: flex;
-  position: absolute;
-
-  & > div {
-    flex: none;
-    justify-content: flex-end;
-    align-items: center;
-    display: flex;
-    animation: saleBannerTape 35s linear infinite;
-
-    span {
-      color: rgba(0, 149, 198, 0.06);
-      flex: none;
-      padding-left: 42px;
-      padding-right: 42px;
-      font-size: 28vw;
-      font-weight: 700;
-      line-height: 20vw;
-
-      @media screen and (min-width: 1440px) {
-        font-size: 24vw;
-      }
-
-      @include maxWidthMd {
-        font-size: 38vw;
-      }
-
-      @include maxWidthXs {
-        color: rgba(0, 149, 198, 0.04);
-        padding-left: 20px;
-        padding-right: 20px;
-        font-size: 28vw;
-        line-height: 28vw;
-      }
-    }
-  }
-}
-
-.sale-banner__description {
-  z-index: 2;
-  grid-column-gap: 6px;
-  grid-row-gap: 6px;
-  text-align: center;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  position: relative;
-}
-
-@media screen and (max-width: 991px) {
-  .sale-banner__heading {
-    font-size: 100px;
-  }
-
-  .sale-banner__main {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .sale-banner__heading {
-    font-size: 24vw;
-    line-height: 22vw;
-  }
-
-  .sale-banner__main {
-    padding-top: 32px;
-    padding-bottom: 32px;
-  }
-}
-
-@media screen and (max-width: 479px) {
-  .sale-banner__subheading {
-    font-size: 28px;
-  }
-
-  .sale-banner__heading {
-    grid-column-gap: 8px;
-    grid-row-gap: 8px;
-    font-size: 28vw;
-    line-height: 24vw;
-  }
-}
-
-@keyframes saleBannerTape {
-  0% {
-    transform: translateX(0%);
-  }
-
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-/* #endregion : Common Sale Banner */
 
 /* #region  Filters */
 .page-filters {
@@ -1976,66 +1780,98 @@ body.--controls-visible {
 @keyframes filterSpinner {
   0%,
   100% {
-    box-shadow: 0em -2.6em 0em 0em #000000,
-      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2), 2.5em 0em 0 0em rgba(0, 0, 0, 0.2),
-      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.2), 0em 2.5em 0 0em rgba(0, 0, 0, 0.2),
-      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.2), -2.6em 0em 0 0em rgba(0, 0, 0, 0.5),
+    box-shadow:
+      0em -2.6em 0em 0em #000000,
+      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2),
+      2.5em 0em 0 0em rgba(0, 0, 0, 0.2),
+      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.2),
+      0em 2.5em 0 0em rgba(0, 0, 0, 0.2),
+      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.2),
+      -2.6em 0em 0 0em rgba(0, 0, 0, 0.5),
       -1.8em -1.8em 0 0em rgba(0, 0, 0, 0.7);
   }
 
   12.5% {
-    box-shadow: 0em -2.6em 0em 0em rgba(0, 0, 0, 0.7),
-      1.8em -1.8em 0 0em #000000, 2.5em 0em 0 0em rgba(0, 0, 0, 0.2),
-      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.2), 0em 2.5em 0 0em rgba(0, 0, 0, 0.2),
-      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.2), -2.6em 0em 0 0em rgba(0, 0, 0, 0.2),
+    box-shadow:
+      0em -2.6em 0em 0em rgba(0, 0, 0, 0.7),
+      1.8em -1.8em 0 0em #000000,
+      2.5em 0em 0 0em rgba(0, 0, 0, 0.2),
+      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.2),
+      0em 2.5em 0 0em rgba(0, 0, 0, 0.2),
+      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.2),
+      -2.6em 0em 0 0em rgba(0, 0, 0, 0.2),
       -1.8em -1.8em 0 0em rgba(0, 0, 0, 0.5);
   }
 
   25% {
-    box-shadow: 0em -2.6em 0em 0em rgba(0, 0, 0, 0.5),
-      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.7), 2.5em 0em 0 0em #000000,
-      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.2), 0em 2.5em 0 0em rgba(0, 0, 0, 0.2),
-      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.2), -2.6em 0em 0 0em rgba(0, 0, 0, 0.2),
+    box-shadow:
+      0em -2.6em 0em 0em rgba(0, 0, 0, 0.5),
+      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.7),
+      2.5em 0em 0 0em #000000,
+      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.2),
+      0em 2.5em 0 0em rgba(0, 0, 0, 0.2),
+      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.2),
+      -2.6em 0em 0 0em rgba(0, 0, 0, 0.2),
       -1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2);
   }
 
   37.5% {
-    box-shadow: 0em -2.6em 0em 0em rgba(0, 0, 0, 0.2),
-      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.5), 2.5em 0em 0 0em rgba(0, 0, 0, 0.7),
-      1.75em 1.75em 0 0em #000000, 0em 2.5em 0 0em rgba(0, 0, 0, 0.2),
-      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.2), -2.6em 0em 0 0em rgba(0, 0, 0, 0.2),
+    box-shadow:
+      0em -2.6em 0em 0em rgba(0, 0, 0, 0.2),
+      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.5),
+      2.5em 0em 0 0em rgba(0, 0, 0, 0.7),
+      1.75em 1.75em 0 0em #000000,
+      0em 2.5em 0 0em rgba(0, 0, 0, 0.2),
+      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.2),
+      -2.6em 0em 0 0em rgba(0, 0, 0, 0.2),
       -1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2);
   }
 
   50% {
-    box-shadow: 0em -2.6em 0em 0em rgba(0, 0, 0, 0.2),
-      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2), 2.5em 0em 0 0em rgba(0, 0, 0, 0.5),
-      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.7), 0em 2.5em 0 0em #000000,
-      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.2), -2.6em 0em 0 0em rgba(0, 0, 0, 0.2),
+    box-shadow:
+      0em -2.6em 0em 0em rgba(0, 0, 0, 0.2),
+      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2),
+      2.5em 0em 0 0em rgba(0, 0, 0, 0.5),
+      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.7),
+      0em 2.5em 0 0em #000000,
+      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.2),
+      -2.6em 0em 0 0em rgba(0, 0, 0, 0.2),
       -1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2);
   }
 
   62.5% {
-    box-shadow: 0em -2.6em 0em 0em rgba(0, 0, 0, 0.2),
-      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2), 2.5em 0em 0 0em rgba(0, 0, 0, 0.2),
-      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.5), 0em 2.5em 0 0em rgba(0, 0, 0, 0.7),
-      -1.8em 1.8em 0 0em #000000, -2.6em 0em 0 0em rgba(0, 0, 0, 0.2),
+    box-shadow:
+      0em -2.6em 0em 0em rgba(0, 0, 0, 0.2),
+      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2),
+      2.5em 0em 0 0em rgba(0, 0, 0, 0.2),
+      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.5),
+      0em 2.5em 0 0em rgba(0, 0, 0, 0.7),
+      -1.8em 1.8em 0 0em #000000,
+      -2.6em 0em 0 0em rgba(0, 0, 0, 0.2),
       -1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2);
   }
 
   75% {
-    box-shadow: 0em -2.6em 0em 0em rgba(0, 0, 0, 0.2),
-      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2), 2.5em 0em 0 0em rgba(0, 0, 0, 0.2),
-      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.2), 0em 2.5em 0 0em rgba(0, 0, 0, 0.5),
-      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.7), -2.6em 0em 0 0em #000000,
+    box-shadow:
+      0em -2.6em 0em 0em rgba(0, 0, 0, 0.2),
+      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2),
+      2.5em 0em 0 0em rgba(0, 0, 0, 0.2),
+      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.2),
+      0em 2.5em 0 0em rgba(0, 0, 0, 0.5),
+      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.7),
+      -2.6em 0em 0 0em #000000,
       -1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2);
   }
 
   87.5% {
-    box-shadow: 0em -2.6em 0em 0em rgba(0, 0, 0, 0.2),
-      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2), 2.5em 0em 0 0em rgba(0, 0, 0, 0.2),
-      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.2), 0em 2.5em 0 0em rgba(0, 0, 0, 0.2),
-      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.5), -2.6em 0em 0 0em rgba(0, 0, 0, 0.7),
+    box-shadow:
+      0em -2.6em 0em 0em rgba(0, 0, 0, 0.2),
+      1.8em -1.8em 0 0em rgba(0, 0, 0, 0.2),
+      2.5em 0em 0 0em rgba(0, 0, 0, 0.2),
+      1.75em 1.75em 0 0em rgba(0, 0, 0, 0.2),
+      0em 2.5em 0 0em rgba(0, 0, 0, 0.2),
+      -1.8em 1.8em 0 0em rgba(0, 0, 0, 0.5),
+      -2.6em 0em 0 0em rgba(0, 0, 0, 0.7),
       -1.8em -1.8em 0 0em #000000;
   }
 }
@@ -2457,6 +2293,9 @@ body.--controls-visible {
     padding: 8px 18px;
     border: 1px solid var(--black);
     transition: all 250ms ease;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 700;
 
     &.is-active {
       background-color: var(--black) !important;
