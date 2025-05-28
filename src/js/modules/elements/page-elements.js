@@ -471,38 +471,34 @@ const pageEls = new Object({
     initBannerUploader: () => {
       const input = document.querySelector('#bannerInputUpload');
       if (!input) return;
+
       const smartPicture = input.closest('.smart-picture');
       if (input && smartPicture) {
         input.addEventListener('change', async e => {
           const picture = input.files[0];
+          if (!picture) return;
+
           const formData = new FormData();
           formData.append('picture', picture);
-
-          /**
-           * @CHOU
-           * @TODO: Replace with actual fetch
-           */
-          const fakeFetch = () =>
-            new Promise(resolve => {
-              setTimeout(() => {
-                resolve({
-                  success: true,
-                  message: 'Banner uploaded successfully',
-                  url: URL.createObjectURL(picture),
-                });
-              }, 2000);
-            });
-
+          formData.append('page_url', window.location.href);
           try {
             smartPicture.classList.remove('--loaded');
-            const data = await fakeFetch();
 
-            if (data.success) {
+            const response = await fetch('/admin/ajax/upload-banner', {
+              method: 'POST',
+              body: formData,
+            });
+
+            const data = await response.json();
+
+            if (!data.error) {
               smartPicture.classList.add('--loaded');
               smartPicture.querySelector('img').src = data.url;
+            } else {
+              console.error('Upload failed:', data.msg || 'Unknown error');
             }
           } catch (err) {
-            console.error(err);
+            console.error('An error occurred while uploading:', err);
           }
         });
       }

@@ -544,6 +544,16 @@ class ProductPage {
         if (!input) throw new Error('custom-fields-fetch element is required');
 
         input.value = value;
+        const dataName = input.dataset.name;
+        if(dataName == 'Diamond Quality'){
+          if(value == 'VVS'){
+            console.log('show');
+            $('.product__vvs-notice').show();
+          }else{
+            console.log('hide');
+            $('.product__vvs-notice').hide();
+          }
+        }
         const event = new Event('change', { bubbles: true });
         const siblingButtons = parent.querySelectorAll('.option-btn');
         siblingButtons.forEach(b => b.classList.remove(IS_ACTIVE));
