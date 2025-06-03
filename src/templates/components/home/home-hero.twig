@@ -1,0 +1,243 @@
+<div class="home-hero {% if zero_offset %}--zero-offset{% endif %}">
+  {# Banner #}
+  {% if banner_src %}
+    <div class="home-hero__banner">
+      <img src="{{ banner_src }}" alt="Icebox Banner" />
+
+      {% if heading %}
+        <div class="home-hero__details">
+          <h2 class="home-hero__heading">{{ heading }}</h2>
+
+          {% if subheading %}
+            <p class="home-hero__subheading">
+              {{ subheading }}
+            </p>
+          {% endif %}
+
+          {% if collection_url %}
+            <a href="{{ collection_url }}" class="home-hero__cta">Shop Now</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  {% elseif not sell_layout %}
+    {# No Banner #}
+    <div class="home-hero__header wrapper">
+      {% if tag %}
+        <div class="home-hero__tag">
+          {{ tag }}
+        </div>
+      {% endif %}
+
+      {% if heading %}
+        <div class="home-hero__heading">
+          {{ heading }}
+        </div>
+      {% endif %}
+
+      {% if subheading %}
+        <p class="home-hero__subheading">
+          {{ subheading }}
+        </p>
+      {% endif %}
+
+      {% if custom_cta %}
+        <a href="{{ custom_cta_url }}" class="home-hero__cta --black-arrow">{{ custom_cta }}</a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {# Collection Items #}
+  {% if collection %}
+    <div class="home-hero__collection wrapper">
+      {% if collection_name %}
+        <div class="home-hero__collection-title">
+          {{ collection_name }}
+        </div>
+      {% endif %}
+
+      <div class="home-hero__items">
+        <div class="splide splide--hero">
+          {# Track #}
+          <div class="splide__track">
+            <div class="splide__list">
+              {% for item in collection %}
+                <div class="splide__slide">
+                  {% include 'elements/product-card.twig' with {
+                    productItem: item
+                  } %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          {# Footer #}
+          <div class="home-hero__footer splide__arrows">
+            {# Arrows #}
+            <button class="splide__arrow splide__arrow--prev">
+              <svg width="100%" height="100%" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-width="10" d="M6 0L4.942 1.058 9.127 5.25H0v1.5h9.127l-4.185 4.193L6 12l6-6-6-6z" fill="currentColor"></path>
+              </svg>
+            </button>
+            <div class="arrow-btn --blank">
+              <span>{{ cta_text }}</span>
+            </div>
+            <button class="splide__arrow splide__arrow--next">
+              <svg width="100%" height="100%" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-width="10" d="M6 0L4.942 1.058 9.127 5.25H0v1.5h9.127l-4.185 4.193L6 12l6-6-6-6z" fill="currentColor"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {# Youtube Shorts #}
+  {% if shorts_arr %}
+    <div class="home-hero__shorts">
+      <div class="splide splide--shorts">
+        <div class="splide__track">
+          <div class="splide__list">
+            {% for short in shorts_arr %}
+              <div class="splide__slide shorts-box">
+                <iframe width="100%" height="100%" src="{{ short }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        {# Footer #}
+        <div class="home-hero__footer splide__arrows wrapper">
+          {# Arrows #}
+          <button class="splide__arrow splide__arrow--prev">
+            <svg width="100%" height="100%" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-width="10" d="M6 0L4.942 1.058 9.127 5.25H0v1.5h9.127l-4.185 4.193L6 12l6-6-6-6z" fill="currentColor"></path>
+            </svg>
+          </button>
+          <a href="http://youtube.com/icebox" class="arrow-btn --blank --yt"><span>Go to Youtube</span></a>
+          <button class="splide__arrow splide__arrow--next">
+            <svg width="100%" height="100%" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-width="10" d="M6 0L4.942 1.058 9.127 5.25H0v1.5h9.127l-4.185 4.193L6 12l6-6-6-6z" fill="currentColor"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {# Custom Items #}
+  {% if custom_arr %}
+    <div class="home-hero__custom wrapper">
+      <div class="home-hero__custom-items">
+        {% for item in custom_arr %}
+          <div class="home-hero__custom-item">
+            <a href="{{ item.url }}"><img src="{{ item.img_src }}" alt="{{ item.label }}" /></a>
+            <h4>{{ item.label }}</h4>
+            <a href="{{ item.url }}">Start Now</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {# Diamond Shapes #}
+  {% if diamond_shapes %}
+    <div class="home-hero__shapes wrapper">
+      <div class="home-hero__shapes-grid">
+        {% for shape in diamond_shapes %}
+          <div class="home-hero__shape-item">
+            <a href="{{ shape.url }}" class="home-hero__shape-img"><img src="{{ shape.img_src }}" alt="{{ shape.label }}" /></a>
+            <h4>{{ shape.label }}</h4>
+            <a href="{{ shape.url }}">Shop Now</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {# Premium Timepieces #}
+  {% if watches_arr %}
+    <div class="home-hero__custom wrapper">
+      <div class="home-hero__custom-items">
+        {% for item in watches_arr %}
+          <div class="home-hero__custom-item">
+            <a href="{{ item.url }}"><img src="{{ item.img_src }}" alt="{{ item.label }}" /></a>
+            <h4>{{ item.label }}</h4>
+            <a href="{{ item.url }}">Shop Now</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {# Reviews #}
+  {% if reviews_arr %}
+    <div class="home-hero__reviews wrapper">
+      <div class="splide splide--reviews">
+        <div class="splide__track">
+          <div class="splide__list">
+            {% for review in reviews_arr %}
+              <div class="splide__slide">
+                {% include 'elements/review-box.twig' with {
+                  review: review
+                } %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        {# Footer #}
+        <div class="home-hero__footer splide__arrows wrapper">
+          {# Arrows #}
+          <button class="splide__arrow splide__arrow--prev">
+            <svg width="100%" height="100%" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-width="10" d="M6 0L4.942 1.058 9.127 5.25H0v1.5h9.127l-4.185 4.193L6 12l6-6-6-6z" fill="currentColor"></path>
+            </svg>
+          </button>
+          <button class="splide__arrow splide__arrow--next">
+            <svg width="100%" height="100%" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-width="10" d="M6 0L4.942 1.058 9.127 5.25H0v1.5h9.127l-4.185 4.193L6 12l6-6-6-6z" fill="currentColor"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {# Sell... #}
+  {% if sell_layout %}
+    <div class="home-hero__sell-section">
+      <div class="home-hero__sell wrapper">
+        <img src="{{ img_src }}" alt="Sell Your Gold, Diamonds & Watches" />
+        <div>
+          <h2 class="home-hero__heading">{{ heading }}</h2>
+          <p class="home-hero__subheading">
+            {{ subheading }}
+          </p>
+          <a href="/sell" class="arrow-btn --white"><span>Sell Now</span></a>
+        </div>
+      </div>
+      <div class="home-hero__sell-perks">
+        <div>
+          <h5>1000+ deals</h5>
+          <p>
+            We have conducted over 1000 transactions leaving clients satisfied
+          </p>
+        </div>
+        <div>
+          <h5>20+ years</h5>
+          <p>
+            We've mastered horology over 2 decades.
+          </p>
+        </div>
+        <div>
+          <h5>Top cash</h5>
+          <p>
+            We guarantee the highest payouts without any conditions
+          </p>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

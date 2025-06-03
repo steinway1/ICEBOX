@@ -291,7 +291,7 @@
 }
 
 .product-card__media {
-  aspect-ratio: 1/1;
+  aspect-ratio: 1/1.14;
   position: relative;
   overflow: hidden;
   background-color: white;
@@ -333,7 +333,7 @@
   }
 
   @include maxWidthXs {
-    aspect-ratio: 1/1.25;
+    aspect-ratio: 1/1.2;
   }
 }
 
@@ -1157,8 +1157,8 @@
 .product-card__over {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: 4px;
   position: absolute;
   inset: auto 8px 8px 8px;
@@ -1181,9 +1181,14 @@
   justify-content: center;
   gap: 6px;
   align-items: center;
-  opacity: 0.3;
+  //   opacity: 0.3;
+  border: 1px solid #e3e7ec;
+  background-color: white;
+  border-radius: 0.5rem;
   font-size: 10px;
   font-weight: 800;
+  color: #4e5053;
+  padding: 2px 9px;
   transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   display: flex;
   cursor: pointer;
@@ -1201,9 +1206,9 @@
 
   &::before {
     content: "";
-    width: 10px;
-    height: 10px;
-    background-image: url('data:image/svg+xml,<svg width="67" height="52" viewBox="0 0 67 52" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.7215 0H33.5H54.2785L67 14.3119L33.5 52L0 14.3119L12.7215 0Z" fill="%23111114"/></svg>');
+    width: 8px;
+    height: 8px;
+    background-image: url('data:image/svg+xml,<svg width="67" height="52" viewBox="0 0 67 52" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.7215 0H33.5H54.2785L67 14.3119L33.5 52L0 14.3119L12.7215 0Z" fill="%234e5053"/></svg>');
     background-size: 100% 100%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1454,10 +1459,10 @@
 
 .product-card__tags {
   position: absolute;
-  inset: 0 auto auto 0;
+  inset: 6px auto auto 6px;
   padding: 0;
   display: flex;
-  gap: 0;
+  gap: 4px;
   z-index: 3;
   overflow-y: hidden;
   overflow-x: auto;
@@ -1476,20 +1481,23 @@
   height: 22px;
   padding: 2px 6px;
   font-size: 9px;
+  border-radius: 0.3rem;
   font-weight: 900;
   display: flex;
   text-transform: uppercase;
+  border: 1px solid #e3e7ec;
   box-shadow: none;
   flex: none;
 
   &.--green {
-    background-color: var(--green);
-    color: white;
+    // background-color: var(--green);
+    // color: white;
   }
 
   &.--red {
-    background-color: var(--red);
-    color: white;
+    // background-color: var(--red);
+    // color: white;
+    color: var(--red);
   }
 }
 

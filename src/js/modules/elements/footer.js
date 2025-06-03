@@ -1,22 +1,20 @@
 const footer = new Object({
-  bindEvents: function() {
-    if (window.innerWidth < 480) {
-      const evtArr = [...document.querySelectorAll('.footer__col-head')]
-      for (const elem of evtArr) {
-        const col = elem.closest('.footer__col')
-        if (!col) return
-
-        if (!col.classList.contains('.--static')) {
-          elem.addEventListener('click', () => {
-            col.classList.toggle('--open')
-          })
+  bindEvents: function () {
+    const toggleArr = [...document.querySelectorAll('.footer-nav__col-head')];
+    for (const elem of toggleArr) {
+      elem.addEventListener('click', () => {
+        if (window.matchMedia('(max-width: 991px)').matches) {
+          const list = elem.parentElement.querySelector('.footer-nav__list');
+          const icon = elem.querySelector('.footer__toggle-icon');
+          list.classList.toggle('--active');
+          icon.classList.toggle('--active');
         }
-      }
+      });
     }
   },
   init: function () {
-    this.bindEvents()
-  }
-})
+    this.bindEvents();
+  },
+});
 
-module.exports = footer
+module.exports = footer;

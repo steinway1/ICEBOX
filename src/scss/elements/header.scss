@@ -47,16 +47,16 @@
       margin-right: -4px;
 
       svg {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         padding: 4px;
         // margin-right: -4px;
       }
 
       &.--large {
         svg {
-          width: 36px;
-          height: 32px;
+          width: 26px;
+          height: 22px;
           padding: 0;
           margin: 0;
         }
@@ -132,7 +132,7 @@
   }
 
   @include maxWidthMd {
-    gap: 6px;
+    gap: 12px;
   }
 }
 
@@ -149,12 +149,17 @@
   display: flex;
 
   a {
-    text-transform: uppercase;
-    padding: 10px 12px;
-    transition: all 0.25s ease;
-    font-size: 13px;
-    font-weight: 550;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 12px 14px;
+    font-weight: 400;
+    font-size: 15px;
+    display: flex;
     position: relative;
+    transition: all 250ms ease;
 
     &::after {
       content: "";
@@ -164,12 +169,12 @@
       right: 0;
       width: 0%;
       height: 1.5px;
-      background-color: var(--blue);
+      background-color: var(--black);
       transition: all 0.25s ease;
     }
 
     &:hover {
-      color: #0b789c;
+      color: var(--black);
 
       &::after {
         right: auto;
@@ -179,7 +184,8 @@
     }
 
     &.is-active {
-      color: #0b789c;
+      color: var(--black);
+      font-weight: 600;
 
       &::after {
         right: auto;
@@ -211,19 +217,22 @@
 }
 
 .cart-count {
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  top: -6px;
-  right: -8px;
-  color: #fff;
-  background-color: var(--blue);
-  border-radius: 50px;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  color: var(--white);
+  background-color: #404e60cc;
+  border: 1px solid #dde0e7;
+  border-radius: 50rem;
   justify-content: center;
   align-items: center;
-  font-size: 12px;
-  font-weight: 900;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  font-weight: 800;
   display: flex;
+  position: absolute;
+  top: -4px;
+  right: -10px;
 
   @include maxWidthMd {
     width: 16px;
@@ -238,7 +247,7 @@
 
 .header-nav-wrapper {
   background-color: #fff;
-  padding: 12px 0;
+  padding: 8px 0;
   position: relative;
   z-index: 2;
 
@@ -257,12 +266,12 @@
   transform: translate(-50%);
 
   img {
-    width: 122px;
+    width: 120px;
   }
 
   @include maxWidthXs {
     img {
-      width: 114px;
+      width: 112px;
     }
   }
 }
@@ -423,10 +432,10 @@
   font-weight: 600;
 
   &:hover {
-    background-color: rgb(232, 241, 246);
+    background-color: var(--black-100);
     background-position: 95%;
     padding-left: 18px;
-    border-color: #f3f8fa;
+    border-color: var(--black-100);
   }
 
   &.nav-drop-link_spot {

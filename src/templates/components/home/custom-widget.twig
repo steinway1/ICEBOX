@@ -1,0 +1,38 @@
+{% set heading = home_heading is defined and home_heading != '' ? home_heading : 'Famous Icebox Custom Jewelry' %}
+{% set subheading = home_subheading is defined and home_subheading != '' ? home_subheading : 'Icebox is world renowned for making custom jewelry for top celebrities in the highest quality, known for natural VS diamonds and creative designs.' %}
+
+<div class="custom-widget">
+  <div class="custom-widget__details wrapper">
+    <h1>{{ heading }}</h1>
+    <p>
+      {{ subheading }}
+    </p>
+    <span class="custom-widget__strong">Start your item today by calling at <a href="tel:4048420266" target="_blank">404-842-0266</a></span>
+  </div>
+  <div class="celeb-marquee">
+    {% for i in 1..2 %}
+      <div class="celeb-marquee__row">
+        <div>
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-1.avif" />
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-2.avif" />
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-3.avif" />
+        </div>
+        <div>
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-4.avif" />
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-5.avif" />
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-6.avif" />
+        </div>
+        <div>
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-7.avif" />
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-8.avif" />
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-9.avif" />
+        </div>
+        <div>
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-10.avif" />
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-11.avif" />
+          <img loading="eager" src="{{ THEME_ASSETS_FOLDER }}celebs/celeb-12.avif" />
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

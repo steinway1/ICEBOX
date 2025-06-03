@@ -1,199 +1,177 @@
-<!-- #region Welcome Section -->
-<section class="home-welcome">
-	<div class="home-welcome-box">
-		<a href="/all?gender[]=Male" class="smart-picture">
-			<img src="https://www.icebox.com/themes/default/frontend/oct-2023/assets/vday/home-men.webp" loading="eager" alt="Icebox Men Jewelry Collection">
-		</a>
-		<div class="home-welcome-details">
-			<div class="home-welcome__title-wrap">
-				<h2>Men's<br>Collection</h2>
-			</div>
-			<a href="/all?gender[]=Male" class="home-welcome__link">
-				<span>Shop Now</span>
-				{% include "components/svg/arrow-next.svg" %}
-			</a>
-		</div>
-	</div>
-	<div class="home-welcome-box">
-		<a href="/all?gender[]=Female" class="smart-picture">
-			<img src="https://www.icebox.com/themes/default/frontend/oct-2023/assets/vday/home-women.webp" loading="eager" alt="Icebox Women Jewelry Collection">
-		</a>
-		<div class="home-welcome-details">
-			<div class="home-welcome__title-wrap">
-				<h2>Women's<br>Collection</h2>
-			</div>
-			<a href="/all?gender[]=Female" class="home-welcome__link">
-				<span>Shop Now</span>
-				{% include "components/svg/arrow-next.svg" %}
-			</a>
-		</div>
-	</div>
-</section>
-<!-- #endregion -->
+{% include 'components/home/home-welcome.twig' %}
+{% include 'elements/perks-marquee.twig' %}
+{% include 'components/home/custom-widget.twig' %}
 
-{% include "elements/post-ticker.twig" %}
-{% include "components/general/categories-tabs.twig" %}
+{# Best Sellers #}
+{% include 'components/home/home-hero.twig' with {
+  banner_src: './assets/homepage-banner_best.avif',
+  heading: 'Icebox Best Sellers',
+  subheading: "Discover Icebox's top jewelry collection, celebrated for its quality and celebrity appeal. Each piece is crafted with precision, offering the finest luxury jewelry. From diamond necklaces to gold bracelets, our best sellers reflect our dedication to excellence.",
+  cta_text: 'Shop Best Sellers',
+  collection_url: '/best-sellers',
+  collection_name: 'Our Best Sellers',
+  collection: best_sellers
+} %}
 
-{% for section in homepage_sections %}
-	{% if section.static == false %}
-		{% if loop.index == 4 %}
-			{% include "elements/page-reviews.twig" %}
-		{% endif %}
-		<section class="home-row">
-			<div class="home-row__wrapper">
-				<div class="home-row__header">
-					<div class="home-row__img-flex">
-						<div class="smart-picture">
-							<img src="{{THEME_ASSETS_FOLDER}}avif/homebanner-{{ section.banner }}.avif" alt="The man with Icebox Outstanding Pendants on the neck" class="home-row__img">
-						</div>
-						<div class="home-row__summary-center wrapper">
-							<h2 class="home-row__heading">
-								{% if section.title == 'Accessories' %}
-									Leather Goods
-								{% else %}
-									{{ section.title }}
-								{% endif %}
-								<span>{{section.banner_text}}</span>
-							</h2>
-							<a href="{{ section.href }}" class="home-row-btn">
-								<span>Shop All</span>
-								{% include "components/svg/arrow-next.svg" %}
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="home-row__body splide home-splide">
-					<div class="home-row__cards-wrap">
-						<div class="cards-holder">
-							<div class="splide__track">
-								<div class="splide__list">
-									{% for item in section.items %}
-										{% include "elements/product-card_slider.twig" with {splideClass: true,productItem:item} %}
-									{% endfor %}
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="home-row__footer">
-						<div class="wrapper">
-							<div class="home-row__controls">
-								<a href="{{ section.href }}" class="home-row__mob-sub-link">Show More</a>
-								<div class="home-row__arrows-wrap splide__arrows">
-									<button class="home-row__slider-btn splide__arrow--prev">
-										{% include "components/svg/slider-prev.svg" %}
-									</button>
-									<button class="home-row__slider-btn splide__arrow--next">
-										{% include "components/svg/slider-next.svg" %}
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	{% else %}
-		<section class="home-row">
-			<div class="home-row__wrapper">
-				<div class="home-spot">
-					<img src="{{THEME_ASSETS_FOLDER}}avif/homebanner-custom.avif" alt="Custom Icebox jewelry made by order" class="home-spot__img move_right">
-					<div class="wrapper for_custom">
-						<div class="home-spot__details white_color">
-							<h3 class="home-spot__heading">Custom Design Jewelry<span>Stand out from the crowd with our custom jewelry, made with attention to detail and passion.</span>
-							</h3>
-							<a href="/custom-design" class="home-row-btn white_stroke">
-								<span>Start Design Now</span>
-								{% include "components/svg/arrow-next.svg" %}
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	{% endif %}
-{% endfor %}
+{# Celebrities #}
+{% include 'components/home/home-hero.twig' with {
+  heading: 'Celebrities Spotted In Icebox',
+  subheading: "Icebox's custom jewelry is a favorite among celebrities",
+  tag: 'CELEBRITIES',
+  shorts_arr: ['https://www.youtube.com/embed/OpuohO4Ni6w?autoplay=1&mute=1&loop=1&playlist=OpuohO4Ni6w&playsinline=1', 'https://www.youtube.com/embed/G8BDcv3sd6g?autoplay=1&mute=1&loop=1&playlist=G8BDcv3sd6g&playsinline=1', 'https://www.youtube.com/embed/PuvRqmVSPGg?autoplay=1&mute=1&loop=1&playlist=PuvRqmVSPGg&playsinline=1', 'https://www.youtube.com/embed/yAQtGIghkWc?autoplay=1&mute=1&loop=1&playlist=yAQtGIghkWc&playsinline=1', 'https://www.youtube.com/embed/s0yeyq-2vG8?autoplay=1&mute=1&loop=1&playlist=s0yeyq-2vG8&playsinline=1', 'https://www.youtube.com/embed/lws7RugOvf8?autoplay=1&mute=1&loop=1&playlist=lws7RugOvf8&playsinline=1']
+} %}
 
-<!-- Engagement -->
-<section class="home-row">
-	<div class="home-row__wrapper">
-		<div class="home-spot">
-			<img src="{{ THEME_ASSETS_FOLDER }}avif/homebanner-engagement.avif" alt="Icebox elegant engagement and wedding rings" class="home-spot__img move_right for_eng">
-			<div class="wrapper wrapper_engagement">
-				<div class="home-spot__details for_engagement">
-					<h3 class="home-spot__heading">Engagement &amp; Wedding<span>Complete your look with our exquisite jewelry accessories at Icebox.</span>
-					</h3>
-					<a href="/gia-products" class="home-row-btn white_stroke">
-						<span>Shop All</span>
-						{% include "components/svg/arrow-next.svg" %}
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="diamonds-row">
-			<div class="diamonds-row__wrapper">
-				<div class="wrapper">
-					<div class="diamonds-row__grid">
-						<a href="/gia-products?diamondshape[]=Round">
-							<img src="{{ THEME_ASSETS_FOLDER }}diamond-ring_round.webp" alt="Diamond Rings Round Shape">
-							<span>Round</span>
-						</a>
-						<a href="/gia-products?diamondshape[]=Oval">
-							<img src="{{ THEME_ASSETS_FOLDER }}diamond-ring_oval.webp" alt="Diamond Rings Oval Shape">
-							<span>Oval</span>
-						</a>
-						<a href="/gia-products?diamondshape[]=Princess">
-							<img src="{{ THEME_ASSETS_FOLDER }}diamond-ring_princess.webp" alt="Diamond Rings Princess Shape">
-							<span>Princess</span>
-						</a>
-						<a href="/gia-products?diamondshape[]=Emerald">
-							<img src="{{ THEME_ASSETS_FOLDER }}diamond-ring_emerald.webp" alt="Diamond Rings Emerald Shape">
-							<span>Emerald</span>
-						</a>
-						<a href="/gia-products?diamondshape[]=Pear">
-							<img src="{{ THEME_ASSETS_FOLDER }}diamond-ring_pear.webp" alt="Diamond Rings Pear Shape">
-							<span>Pear</span>
-						</a>
-						<a href="/results/rings?sub[]=Engagement%20Rings">
-							<img src="{{ THEME_ASSETS_FOLDER }}diamond-ring_wedding.webp" alt="Diamond Rings Wedding Bands">
-							<span>Wedding</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+{# Pendants #}
+{% include 'components/home/home-hero.twig' with {
+  banner_src: './assets/homepage-banner_pendants.avif',
+  heading: 'Pendants',
+  subheading: 'Browse our versatile collection of stunning gold pendant pieces that elevate any outfit. Each diamond pendant showcases brilliant stones set in premium metals for lasting beauty.',
+  collection_url: '/pendants'
+} %}
 
+{# Earrings #}
+{% include 'components/home/home-hero.twig' with {
+  banner_src: './assets/homepage-banner_earrings.avif',
+  heading: 'Earrings',
+  subheading: 'Elevate your style with our exceptional solitaire earrings diamond collection featuring premium stones in secure settings. Our diamond earrings for women showcase brilliant cuts that capture and reflect light beautiful.',
+  collection_url: '/earrings',
+  zero_offset: true
+} %}
 
-<!-- Locations -->
-<section class="home-row --locations">
-	<div class="home-row__wrapper">
-		<div class="wrapper">
-			<div class="home-row__row-details">
-				<h3 class="home-spot__heading --spot">Our flagship showroom is located in Atlanta, and Icebox boutiques located in Saks Fifth Avenue in Miami Brickell and Atlanta.</h3>
-			</div>
+{# Custom Jewelry #}
+{% include 'components/home/home-hero.twig' with {
+  heading: 'Custom Design Jewelry',
+  subheading: 'Stand out from the crowd with our custom jewelry, made with attention to detail and passion',
+  custom_cta: 'Start Design Now',
+  custom_cta_url: '/custom-design',
+  custom_arr: [
+    {
+      img_src: './assets/custom-letters.avif',
+      label: 'Custom Letters',
+      url: '/custom-letters'
+    },
+    {
+      img_src: './assets/custom-rings.avif',
+      label: 'Custom Rings',
+      url: '/custom-rings'
+    },
+    {
+      img_src: './assets/custom-pendants.avif',
+      label: 'Custom Pendants',
+      url: '/custom-pendants'
+    }
+  ]
+} %}
 
-			<div class="home-locations">
-				<div class="home-locations__grid">
+{# Necklaces #}
+{% include 'components/home/home-hero.twig' with {
+  banner_src: './assets/homepage-banner_necklaces.avif',
+  heading: 'Necklaces',
+  subheading: 'Discover our premium collection of diamond cuban link bracelets that represent the pinnacle of luxury jewelry craftsmanship. Each diamond cuban bracelet features meticulously set stones in solid gold settings.',
+  collection_url: '/necklace'
+} %}
 
-					{% for item in locations %}
-						<div class="home-location-item">
-							<div class="home-location-item__media">
-								<img src="{{item.imgSrc}}" loading="lazyload" alt="{{item.alt}}">
-							</div>
-							<div class="home-location-item__details">
-								<div>
-									<span class="home-location-item__city">{{item.shortAddress}}</span>
-									<h5 class="home-location-item__name">{{item.name}}</h5>
-									<p class="home-location-item__summary">{{item.description}}</p>
-								</div>
-								<a href="{{item.href}}">Book an Apppointment</a>
-							</div>
-						</div>
-					{% endfor %}
+{# Bracelets #}
+{% include 'components/home/home-hero.twig' with {
+  banner_src: './assets/homepage-banner_bracelets.avif',
+  heading: 'Bracelets',
+  subheading: 'Discover our premium collection of diamond cuban link bracelets that represent the pinnacle of luxury jewelry craftsmanship. Each diamond cuban bracelet features meticulously set stones in solid gold settings.',
+  collection_url: '/bracelets',
+  zero_offset: true
+} %}
 
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+{# Engagement Collection #}
+{% include 'components/home/home-hero.twig' with {
+  heading: 'Engagement & Wedding',
+  tag: 'Shop By Diamond Shape',
+  collection_url: '/results/rings/engagement-rings',
+  diamond_shapes: [
+    {
+      label: 'Round',
+      url: '/gia-products?diamondshape[]=Round',
+      img_src: './assets/diamond-ring_round.webp'
+    },
+    {
+      label: 'Princess',
+      url: '/gia-products?diamondshape[]=Princess',
+      img_src: './assets/diamond-ring_princess.webp'
+    },
+    {
+      label: 'Oval',
+      url: '/gia-products?diamondshape[]=Oval',
+      img_src: './assets/diamond-ring_oval.webp'
+    },
+    {
+      label: 'Emerald',
+      url: '/gia-products?diamondshape[]=Emerald',
+      img_src: './assets/diamond-ring_emerald.webp'
+    },
+    {
+      label: 'Pear',
+      url: '/gia-products?diamondshape[]=Pear',
+      img_src: './assets/diamond-ring_pear.webp'
+    },
+    {
+      label: 'Wedding',
+      url: '/results/rings/wedding-rings',
+      img_src: './assets/diamond-ring_wedding.webp'
+    }
+  ]
+} %}
+
+{# Rings #}
+{% include 'components/home/home-hero.twig' with {
+  banner_src: './assets/homepage-banner_rings.avif',
+  heading: 'Rings',
+  subheading: 'Begin your forever journey with our exceptional diamond engagement ring collection featuring premium stones in elegant settings. Our classic solitaire engagement ring designs showcase a single brilliant diamond.',
+  collection_url: '/rings'
+} %}
+
+{# Premium Timepieces #}
+{% include 'components/home/home-hero.twig' with {
+  heading: 'Premium Timepieces',
+  tag: 'Iced out & Plain Watches',
+  watches_arr: [
+    {
+      img_src: './assets/watch-men.webp',
+      label: "Men's Watches",
+      url: '/men-watches'
+    },
+    {
+      img_src: './assets/watch-women.webp',
+      label: "Women's Watches",
+      url: '/women-watches'
+    },
+    {
+      img_src: './assets/watch-bustdowns.webp',
+      label: 'Bustdowns',
+      url: '/bustdowns'
+    }
+  ]
+} %}
+
+{# Reviews #}
+{% include 'components/home/home-hero.twig' with {
+  heading: "Don't Take Our Word For It",
+  subheading: 'See what our customers have to say about us.',
+  tag: 'REVIEWS',
+  reviews_arr: [
+    {
+      name: 'Jose Alvarez',
+      location: 'Atlanta, GA',
+      text: 'I had a vintage Rolex Submariner that I inherited but never wore. The experts at Icebox not only recognized its true value but offered me a price that far exceeded my expectations. Their knowledge of luxury watch brands is unmatched in Atlanta. The entire process was professional, quick, and completely hassle-free!',
+      date: 'May 17, 2024'
+    }
+  ]
+} %}
+
+{# Sell... #}
+{% include 'components/home/home-hero.twig' with {
+  heading: 'Sell Your Gold, Diamonds & Watches. Visit our showroom for a cash offer on the spot.',
+  subheading: "We offer top cash for your unwanted jewelry, watches, and other valuables. Whether it's gold, diamonds, or luxury timepieces, we ensure you get the best price. Our expert appraisers provide competitive offers on the spot.",
+  sell_layout: true,
+  img_src: './assets/homepage-banner_sell.avif'
+} %}
+
+{# Store Location #}
+{% include 'components/home/store-location.twig' %}

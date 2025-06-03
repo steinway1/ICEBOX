@@ -1,0 +1,22 @@
+<div class="review-box">
+  <div class="review-box__content">
+    <div class="review-box__main">
+      <div class="review-box__header">
+        <div class="review-box__rating">
+          {% include 'components/svg/star-5.svg' %}
+        </div>
+        <div class="review-box__date">
+          {{ review.date }}
+        </div>
+      </div>
+      <p class="review-box__text">
+        {{ review.text }}
+      </p>
+    </div>
+    <div class="review-box__footer">
+      <div class="jtemp2">
+        {{ review.name }}<br /><span class="jtemp3">{{ review.location }}</span>
+      </div>
+    </div>
+  </div>
+</div>
