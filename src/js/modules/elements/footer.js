@@ -1,5 +1,9 @@
-const footer = new Object({
-  bindEvents: function () {
+export default class Footer {
+  constructor() {
+    this.init();
+  }
+
+  bindEvents() {
     const toggleArr = [...document.querySelectorAll('.footer-nav__col-head')];
     for (const elem of toggleArr) {
       elem.addEventListener('click', () => {
@@ -11,10 +15,9 @@ const footer = new Object({
         }
       });
     }
-  },
-  init: function () {
-    this.bindEvents();
-  },
-});
+  }
 
-module.exports = footer;
+  init() {
+    this.bindEvents();
+  }
+}

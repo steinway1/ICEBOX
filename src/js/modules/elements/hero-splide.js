@@ -1,5 +1,12 @@
-const heroSplide = {
-  init: function () {
+import Splide from '../../splide';
+import '../../splide-grid';
+
+class HeroSplide {
+  constructor() {
+    this.init();
+  }
+
+  init() {
     try {
       this.initSplide();
       this.initHeroSplide();
@@ -8,8 +15,9 @@ const heroSplide = {
     } catch (err) {
       console.log(err.message);
     }
-  },
-  initSplide: function () {
+  }
+
+  initSplide() {
     const heroSplide = [...document.querySelectorAll('.hero_splide')];
     if (heroSplide.length !== 0) {
       heroSplide.forEach(slide => {
@@ -31,8 +39,9 @@ const heroSplide = {
         slider.mount();
       });
     }
-  },
-  initHeroSplide: function () {
+  }
+
+  initHeroSplide() {
     const heroSplide = [...document.querySelectorAll('.splide--hero')];
     for (const slide of heroSplide) {
       let slider = new Splide(slide, {
@@ -60,10 +69,10 @@ const heroSplide = {
         },
       });
       slider.mount();
-      //   slider.mount(window.splide.Extensions);
     }
-  },
-  initShortsSplide: function () {
+  }
+
+  initShortsSplide() {
     const shortsSplide = [...document.querySelectorAll('.splide--shorts')];
     for (const slide of shortsSplide) {
       let slider = new Splide(slide, {
@@ -91,8 +100,9 @@ const heroSplide = {
       });
       slider.mount();
     }
-  },
-  initReviewsSplide: function () {
+  }
+
+  initReviewsSplide() {
     const reviewsSplide = [...document.querySelectorAll('.splide--reviews')];
     for (const slide of reviewsSplide) {
       let slider = new Splide(slide, {
@@ -119,7 +129,7 @@ const heroSplide = {
       });
       slider.mount();
     }
-  },
-};
+  }
+}
 
-module.exports = heroSplide;
+module.exports = HeroSplide;

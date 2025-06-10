@@ -1,69 +1,73 @@
-const currencyModal = new Object({
-  init: function () {
+export default class CurrencyModal {
+  constructor(rootEl) {
+    this.rootEl = rootEl;
+    this.init();
+  }
+
+  init() {
     this.renderDOM();
     this.bindEvents();
-  },
-  renderDOM: function () {
-    this._ = $(".cur-modal");
-    this.backdrop = this._.find(".cur-modal__backdrop");
-    this.container = this._.find(".cur-modal__container");
-    this.evtToggle = getEvtDOM("toggleCurrency");
-    this.input = this._.find("input");
-  },
-  bindEvents: function () {
-    if (currencyModal.evtToggle.length) {
-      $.each(currencyModal.evtToggle, (i) => {
-        currencyModal.evtToggle[i].onclick = () => {
-          currencyModal.toggle();
-        };
+  }
+
+  renderDOM() {
+    this._ = $('.cur-modal');
+    this.backdrop = this._.find('.cur-modal__backdrop');
+    this.container = this._.find('.cur-modal__container');
+    this.evtToggle = getEvtDOM('toggleCurrency');
+    this.input = this._.find('input');
+  }
+
+  bindEvents() {
+    if (this.evtToggle && this.evtToggle.length) {
+      $(this.evtToggle).each((i, toggle) => {
+        toggle.onclick = () => this.toggle();
       });
     }
 
-    if (currencyModal.input.length) {
-      currencyModal.input.on("keyup", function () {
-        currencyModal.intraSearch($(this));
-      });
+    if (this.input.length) {
+      this.input.on('keyup', () => this.intraSearch(this.input));
     }
-  },
-  toggle: function () {
-    this.input.val("").trigger("keyup");
-    let modal = currencyModal._;
-    if (modal.length) {
-      if (elemDisplayed(modal)) {
-        currencyModal.close();
+  }
+
+  toggle() {
+    this.input.val('').trigger('keyup');
+    if (this._.length) {
+      if (elemDisplayed(this._)) {
+        this.close();
       } else {
-        currencyModal.open();
+        this.open();
       }
     }
-  },
-  open: function () {
+  }
+
+  open() {
     lockScroll();
     this._.show();
     setTimeout(() => {
       this.backdrop.css({ opacity: 1 });
-      this.container.css({ transform: "translateX(0%)" });
+      this.container.css({ transform: 'translateX(0%)' });
     }, 1);
-  },
-  close: function () {
+  }
+
+  close() {
     unlockScroll();
     this.backdrop.css({ opacity: 0 });
-    this.container.css({ transform: "translateX(100%)" });
+    this.container.css({ transform: 'translateX(100%)' });
     setTimeout(() => {
       this._.hide();
-    }, getTransitionTime(currencyModal.backdrop));
-  },
-  intraSearch: function (input) {
-    let val = input.val().toLowerCase(),
-      arr = [...$(".cur-item")];
-    $.each(arr, function (index) {
-      let txt = $(arr[index]).find(".cur-item__name").text().toLowerCase();
-      if (~txt.indexOf(val)) {
-        $(arr[index]).show();
+    }, getTransitionTime(this.backdrop));
+  }
+
+  intraSearch(input) {
+    const val = input.val().toLowerCase();
+    const arr = [...$('.cur-item')];
+    arr.forEach(item => {
+      const txt = $(item).find('.cur-item__name').text().toLowerCase();
+      if (txt.includes(val)) {
+        $(item).show();
       } else {
-        $(arr[index]).hide();
+        $(item).hide();
       }
     });
-  },
-})
-
-module.exports = currencyModal
+  }
+}

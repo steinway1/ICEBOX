@@ -1,3 +1,5 @@
+import Splide from '../../splide';
+import '../../splide-grid';
 const ZoomGallery = require('../dynamic/zoom-gallery');
 
 class ProductPage {
@@ -545,11 +547,11 @@ class ProductPage {
 
         input.value = value;
         const dataName = input.dataset.name;
-        if(dataName == 'Diamond Quality'){
-          if(value == 'VVS'){
+        if (dataName == 'Diamond Quality') {
+          if (value == 'VVS') {
             console.log('show');
             $('.product__vvs-notice').show();
-          }else{
+          } else {
             console.log('hide');
             $('.product__vvs-notice').hide();
           }

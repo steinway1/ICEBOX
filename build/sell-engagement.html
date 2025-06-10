@@ -12,7 +12,14 @@
     <meta name="keywords" content="">
     <meta name="robots" content="index follow">
 
-    <link rel="stylesheet" href="css/partial.css" />
+    <link rel="preload" href="./assets/fonts/TSans.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="preload" as="style" href="css/partial.css" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="css/partial.css">
+    </noscript>
+
 
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <meta name="theme-color" content="#ffffff">
@@ -36,8 +43,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="https://www.icebox.com/assets/public-2022/v4/favicons/new/favicon-16x16.png?v=641530abd62e9">
     <link rel="manifest" href="./assets/favicons/site.webmanifest">
     <link rel="mask-icon" href="./assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
-
-    <script src="https://scripts.sirv.com/sirv.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/css/splide.min.css" integrity="sha512-KhFXpe+VJEu5HYbJyKQs9VvwGB+jQepqb4ZnlhUF/jQGxYJcjdxOTf6cr445hOc791FFLs18DKVpfrQnONOB1g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
@@ -649,7 +654,9 @@
             <span class="sell__call-btn-blink"></span>
         </div>
     </a>
-    <script src="./js/partial-min.js"></script>
+    <script async src="https://scripts.sirv.com/sirv.js"></script>
+    <script defer src="./js/partial-min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/3.5.0/tsparticles.bundle.min.js"></script>
     <script src="./js/promo/libs/confetti.browser.min.js"></script>
     <script src="./js/promo/libs/three.min.js"></script>

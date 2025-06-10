@@ -2,7 +2,7 @@
   {# Banner #}
   {% if banner_src %}
     <div class="home-hero__banner">
-      <img src="{{ banner_src }}" alt="Icebox Banner" />
+      <img width="800" height="800" loading="lazy" decoding="async" src="{{ banner_src }}" alt="Icebox Banner" />
 
       {% if heading %}
         <div class="home-hero__details">
@@ -101,7 +101,7 @@
           <div class="splide__list">
             {% for short in shorts_arr %}
               <div class="splide__slide shorts-box">
-                <iframe width="100%" height="100%" src="{{ short }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe loading="lazy" width="315" height="560" src="{{ short }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
             {% endfor %}
           </div>
@@ -132,7 +132,7 @@
       <div class="home-hero__custom-items">
         {% for item in custom_arr %}
           <div class="home-hero__custom-item">
-            <a href="{{ item.url }}"><img src="{{ item.img_src }}" alt="{{ item.label }}" /></a>
+            <a href="{{ item.url }}"><img width="500" height="500" loading="lazy" decoding="async" src="{{ item.img_src }}" alt="{{ item.label }}" /></a>
             <h4>{{ item.label }}</h4>
             <a href="{{ item.url }}">Start Now</a>
           </div>
@@ -147,7 +147,7 @@
       <div class="home-hero__shapes-grid">
         {% for shape in diamond_shapes %}
           <div class="home-hero__shape-item">
-            <a href="{{ shape.url }}" class="home-hero__shape-img"><img src="{{ shape.img_src }}" alt="{{ shape.label }}" /></a>
+            <a href="{{ shape.url }}" class="home-hero__shape-img"><img width="250" height="250" loading="lazy" decoding="async" src="{{ shape.img_src }}" alt="{{ shape.label }}" /></a>
             <h4>{{ shape.label }}</h4>
             <a href="{{ shape.url }}">Shop Now</a>
           </div>
@@ -162,7 +162,7 @@
       <div class="home-hero__custom-items">
         {% for item in watches_arr %}
           <div class="home-hero__custom-item">
-            <a href="{{ item.url }}"><img src="{{ item.img_src }}" alt="{{ item.label }}" /></a>
+            <a href="{{ item.url }}"><img width="500" height="500" loading="lazy" decoding="async" src="{{ item.img_src }}" alt="{{ item.label }}" /></a>
             <h4>{{ item.label }}</h4>
             <a href="{{ item.url }}">Shop Now</a>
           </div>
@@ -209,7 +209,7 @@
   {% if sell_layout %}
     <div class="home-hero__sell-section">
       <div class="home-hero__sell wrapper">
-        <img src="{{ img_src }}" alt="Sell Your Gold, Diamonds & Watches" />
+        <img width="900" height="504" loading="lazy" decoding="async" src="{{ img_src }}" alt="Sell Your Gold, Diamonds & Watches" />
         <div>
           <h2 class="home-hero__heading">{{ heading }}</h2>
           <p class="home-hero__subheading">

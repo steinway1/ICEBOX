@@ -1,9 +1,9 @@
 class SellPageGsap {
   constructor() {
-    this.perks = document.querySelectorAll(".sell-welcome__perk");
-    this.text = document.querySelector(".sell-welcome__text");
-    this.pic = document.querySelector(".sell-welcome__pic");
-    this.yElements = document.querySelectorAll("[data-ygsap]");
+    this.perks = document.querySelectorAll('.sell-welcome__perk');
+    this.text = document.querySelector('.sell-welcome__text');
+    this.pic = document.querySelector('.sell-welcome__pic');
+    this.yElements = document.querySelectorAll('[data-ygsap]');
 
     this.init();
   }
@@ -14,7 +14,7 @@ class SellPageGsap {
     this.animateWelcome();
   }
   animatePerks() {
-    this.perks.forEach((perk) => {
+    this.perks.forEach(perk => {
       gsap.fromTo(
         perk,
         {
@@ -24,13 +24,13 @@ class SellPageGsap {
         {
           opacity: 1,
           y: 0,
-          ease: "power2.out",
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: perk,
-            start: "top bottom-=100",
-            toggleActions: "play none none reverse", // Play при скролле вниз, reverse при скролле вверх
+            start: 'top bottom-=100',
+            toggleActions: 'play none none reverse', // Play при скролле вниз, reverse при скролле вверх
           },
-        }
+        },
       );
     });
   }
@@ -42,22 +42,22 @@ class SellPageGsap {
     if (window.innerWidth > 991) {
       gsap.to(text, {
         y: -60,
-        ease: "none",
+        ease: 'none',
         scrollTrigger: {
-          trigger: "body",
-          start: "top top",
-          end: "top -100%",
+          trigger: 'body',
+          start: 'top top',
+          end: 'top -100%',
           scrub: 1,
         },
       });
 
       gsap.to(perks, {
         y: -100,
-        ease: "none",
+        ease: 'none',
         scrollTrigger: {
-          trigger: "body",
-          start: "top top",
-          end: "top -100%",
+          trigger: 'body',
+          start: 'top top',
+          end: 'top -100%',
           scrub: 1,
         },
       });
@@ -65,11 +65,11 @@ class SellPageGsap {
 
     gsap.to(pic, {
       scale: 1.3,
-      ease: "none",
+      ease: 'none',
       scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "top -100%",
+        trigger: 'body',
+        start: 'top top',
+        end: 'top -100%',
         scrub: 1,
       },
     });
@@ -77,10 +77,8 @@ class SellPageGsap {
 
   // General Gsap Animations
   animateYElements() {
-    this.yElements.forEach((element) => {
-      const offset = element.dataset.ygsap
-        ? parseInt(element.dataset.ygsap)
-        : 80;
+    this.yElements.forEach(element => {
+      const offset = element.dataset.ygsap ? parseInt(element.dataset.ygsap) : 80;
 
       gsap.fromTo(
         element,
@@ -91,13 +89,13 @@ class SellPageGsap {
         {
           y: 0,
           opacity: 1,
-          ease: "power2.out",
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: element,
             start: `top bottom-=${offset}`,
-            toggleActions: "play none none reverse",
+            toggleActions: 'play none none reverse',
           },
-        }
+        },
       );
     });
   }
@@ -105,14 +103,14 @@ class SellPageGsap {
 
 class SellPageBook {
   constructor() {
-    this.rootEl = document.querySelector(".sell-book");
+    this.rootEl = document.querySelector('.sell-book');
     if (this.rootEl) {
-      this.container = this.rootEl.querySelector(".sell-book__container");
-      this.inputArr = [...this.container.querySelectorAll("input")];
-      this.selectArr = [...this.container.querySelectorAll("select")];
-      this.scroller = this.container.querySelector(".sell-book__scroller");
-      this.form = this.rootEl.querySelector("#bookApptForm");
-      this.resultText = this.rootEl.querySelector("[data-sell-book-result]");
+      this.container = this.rootEl.querySelector('.sell-book__container');
+      this.inputArr = [...this.container.querySelectorAll('input')];
+      this.selectArr = [...this.container.querySelectorAll('select')];
+      this.scroller = this.container.querySelector('.sell-book__scroller');
+      this.form = this.rootEl.querySelector('#bookApptForm');
+      this.resultText = this.rootEl.querySelector('[data-sell-book-result]');
 
       this.active = false;
 
@@ -126,23 +124,23 @@ class SellPageBook {
   }
   #bindEvents() {
     const closeArr = [...document.querySelectorAll('[data-sell-book="close"]')];
-    const openArr = [...document.querySelectorAll("[data-sell-appt]")];
+    const openArr = [...document.querySelectorAll('[data-sell-appt]')];
 
-    closeArr.forEach((el) => {
-      el.addEventListener("click", () => {
+    closeArr.forEach(el => {
+      el.addEventListener('click', () => {
         this.close();
       });
     });
 
-    openArr.forEach((el) => {
-      el.addEventListener("click", () => {
+    openArr.forEach(el => {
+      el.addEventListener('click', () => {
         this.show();
       });
     });
   }
   #bindFormSubmit() {
     if (this.form) {
-      this.form.addEventListener("submit", (e) => {
+      this.form.addEventListener('submit', e => {
         e.preventDefault();
         this.submitForm();
       });
@@ -161,12 +159,12 @@ class SellPageBook {
        * @CHOU Setup here
        */
       const res = await (() => {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
           $.ajax({
-            url: "/json/book-appointment",
-            type: "POST",
+            url: '/json/book-appointment',
+            type: 'POST',
             data: d,
-            dataType: "json",
+            dataType: 'json',
             success: function (response) {
               resolve(response);
             },
@@ -176,7 +174,7 @@ class SellPageBook {
 
       if (res.error) {
         this.appendResult(false);
-        throw new Error("Form submission failed");
+        throw new Error('Form submission failed');
       }
       this.appendResult(true);
     } catch (err) {
@@ -187,54 +185,51 @@ class SellPageBook {
   // Methods
   show() {
     this.active = true;
-    this.rootEl.style.display = "block";
+    this.rootEl.style.display = 'block';
     this.scroller.scrollTo(0, 0);
 
     requestAnimationFrame(() => {
-      this.rootEl.classList.add("--visible");
+      this.rootEl.classList.add('--visible');
     });
   }
   close() {
     this.active = false;
-    this.rootEl.classList.remove("--visible");
+    this.rootEl.classList.remove('--visible');
     setTimeout(() => {
-      this.rootEl.style.display = "none";
+      this.rootEl.style.display = 'none';
       this.reset();
     }, 500);
   }
   reset() {
-    this.resultText.textContent = "";
-    this.rootEl.classList.remove("--done");
-    this.rootEl.classList.remove("--over");
-    this.inputArr.forEach((input) => {
-      input.value = "";
+    this.resultText.textContent = '';
+    this.rootEl.classList.remove('--done');
+    this.rootEl.classList.remove('--over');
+    this.inputArr.forEach(input => {
+      input.value = '';
     });
-    this.selectArr.forEach((select) => {
-      select.value = "";
+    this.selectArr.forEach(select => {
+      select.value = '';
     });
   }
   appendLoader() {
-    this.rootEl.classList.add("--over");
+    this.rootEl.classList.add('--over');
   }
   removeLoader() {
-    this.rootEl.classList.remove("--over");
+    this.rootEl.classList.remove('--over');
   }
   appendResult(result) {
-    this.rootEl.classList.add("--done");
+    this.rootEl.classList.add('--done');
     this.resultText.innerHTML = result
       ? "Great! We'll be in touch soon."
-      : "Oops! Something went wrong.<br>Please try again.";
+      : 'Oops! Something went wrong.<br>Please try again.';
   }
 }
 
 class SellPageMenu {
   constructor() {
     this.active = false;
-    this.rootEl = document.querySelector(".sell-menu");
-    this.toggleArr = [
-      ...document.querySelectorAll(".sell-menu-btn"),
-      ...document.querySelectorAll(".sell-menu"),
-    ];
+    this.rootEl = document.querySelector('.sell-menu');
+    this.toggleArr = [...document.querySelectorAll('.sell-menu-btn'), ...document.querySelectorAll('.sell-menu')];
     this.init();
   }
   init() {
@@ -243,8 +238,8 @@ class SellPageMenu {
   #bindEvents() {
     if (!this.toggleArr) return;
 
-    this.toggleArr.forEach((el) => {
-      el.addEventListener("click", () => {
+    this.toggleArr.forEach(el => {
+      el.addEventListener('click', () => {
         this.toggle();
       });
     });
@@ -261,24 +256,24 @@ class SellPageMenu {
   open() {
     lockScroll();
     this.active = true;
-    this.rootEl.style.display = "block";
+    this.rootEl.style.display = 'block';
     requestAnimationFrame(() => {
-      this.rootEl.classList.remove("is-hidden");
+      this.rootEl.classList.remove('is-hidden');
     });
   }
   close() {
     unlockScroll();
     this.active = false;
-    this.rootEl.classList.add("is-hidden");
+    this.rootEl.classList.add('is-hidden');
     setTimeout(() => {
-      this.rootEl.style.display = "none";
+      this.rootEl.style.display = 'none';
     }, 500);
   }
 }
 
 class SellPageSplide {
   constructor() {
-    this.rootEl = document.querySelector("#sell-reviews-splide");
+    this.rootEl = document.querySelector('#sell-reviews-splide');
     if (this.rootEl) {
       this.init();
     }
@@ -292,12 +287,12 @@ class SellPageSplide {
         perPage: 2.5,
         perMove: 1,
         gap: 16,
-        type: "loop",
+        type: 'loop',
         pagination: false,
         breakpoints: {
           768: {
             perPage: 1.2,
-						gap: 8,
+            gap: 8,
           },
         },
       });
@@ -305,13 +300,14 @@ class SellPageSplide {
     }
   }
 }
+
 class SellPage {
   constructor(root) {
     this.rootEl = root;
     if (!this.rootEl) return;
 
-    this.header = document.querySelector(".sell-header");
-    this.loader = document.querySelector(".sell-loader");
+    this.header = document.querySelector('.sell-header');
+    this.loader = document.querySelector('.sell-loader');
 
     this.init();
     this.gsap = new SellPageGsap();
@@ -331,10 +327,10 @@ class SellPage {
   #bindHeaderToggle() {
     if (this.header && this.header instanceof Element) {
       const toggleHeader = () => {
-        this.header.classList.toggle("--hidden", !(window.scrollY > 100));
+        this.header.classList.toggle('--hidden', !(window.scrollY > 100));
       };
       const throttledToggleHeader = throttle(toggleHeader, 100);
-      window.addEventListener("scroll", throttledToggleHeader);
+      window.addEventListener('scroll', throttledToggleHeader);
     }
   }
   #bindLenisScroll() {
@@ -354,20 +350,20 @@ class SellPage {
 
   async hideLoader() {
     if (this.loader) {
-      const lines = [...this.loader.querySelectorAll("span")];
-      const logo = this.loader.querySelector(".sell-loader__logo");
+      const lines = [...this.loader.querySelectorAll('span')];
+      const logo = this.loader.querySelector('.sell-loader__logo');
       if (!lines.length || !logo) {
         this.loader.remove();
         return;
       }
 
-      logo.classList.add("--hidden");
+      logo.classList.add('--hidden');
 
       await delay(150);
 
       lines.reverse().forEach((line, index) => {
         setTimeout(() => {
-          line.style.transform = "scaleX(0)";
+          line.style.transform = 'scaleX(0)';
           if (index === lines.length - 1) {
             setTimeout(() => {
               this.loader.remove();

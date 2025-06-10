@@ -1,26 +1,33 @@
-const mailModal = new Object({
-  object_to_render: null,
-  init: function () {
+export default class MailModal {
+  constructor() {
+    this.object_to_render = null;
+    this.init();
+  }
+
+  init() {
     this.renderDOM();
     if (this.modal.length) {
       this.bindEvents();
     }
-  },
-  renderDOM: function () {
-    this.modal = $(".mail-modal");
-    this.backdrop = $(".mail-modal__backdrop");
-    this.container = $(".mail-modal__container");
+  }
+
+  renderDOM() {
+    this.modal = $('.mail-modal');
+    this.backdrop = $('.mail-modal__backdrop');
+    this.container = $('.mail-modal__container');
     this.evtClose = $('[data-mail-modal="close"]');
-  },
-  bindEvents: function () {
-    this.evtClose.on("click", function () {
-      mailModal.close();
+  }
+
+  bindEvents() {
+    this.evtClose.on('click', () => {
+      this.close();
     });
-  },
-  open: function (object) {
+  }
+
+  open(object) {
     lockScroll();
     this.modal.show();
-    this.modal.find("input").focus();
+    this.modal.find('input').focus();
     setTimeout(() => {
       this.modal.addClass(__ACTIVE);
     }, 5);
@@ -28,8 +35,9 @@ const mailModal = new Object({
     if (object) {
       this.object_to_render = object;
     }
-  },
-  close: function () {
+  }
+
+  close() {
     unlockScroll();
     this.modal.removeClass(__ACTIVE);
     setTimeout(() => {
@@ -39,7 +47,5 @@ const mailModal = new Object({
     if (this.object_to_render) {
       window.addCartModal.create(this.object_to_render);
     }
-  },
-});
-
-module.exports = mailModal;
+  }
+}

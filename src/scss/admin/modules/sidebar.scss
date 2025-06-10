@@ -1,4 +1,4 @@
-@use './mixin' as *;
+@use "./mixin" as *;
 
 .am-sidebar__nav {
   flex: 1;
@@ -10,7 +10,7 @@
   width: 260px;
   color: var(--white);
   background-color: #2d5b99;
-  transition: all .45s cubic-bezier(.39, .575, .565, 1);
+  transition: all 0.45s cubic-bezier(0.39, 0.575, 0.565, 1);
   position: fixed;
   top: 0%;
   bottom: 0%;
@@ -48,10 +48,10 @@
   justify-content: center;
   align-items: center;
   padding: 8px;
-  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   display: flex;
 
-  &>div {
+  & > div {
     width: 20px;
     height: 20px;
     justify-content: center;
@@ -59,7 +59,7 @@
     display: flex;
   }
 
-  &>span {
+  & > span {
     border-radius: 5px;
     justify-content: center;
     align-items: center;
@@ -83,7 +83,7 @@
   display: flex;
 
   span {
-    opacity: .7;
+    opacity: 0.7;
     border-radius: 0;
     font-size: 12px;
     font-weight: 400;
@@ -127,7 +127,7 @@
   border-radius: 4px;
   justify-content: center;
   align-items: center;
-  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   display: flex;
 }
 
@@ -202,7 +202,7 @@
   margin-bottom: -1px;
   padding: 0 18px;
   font-weight: 600;
-  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   position: relative;
 
   &:hover {
@@ -221,12 +221,12 @@
     border-color: #366bb4 !important;
   }
 
-  &>div {
+  & > div {
     align-items: center;
     padding: 12px 0;
     display: flex;
 
-    &>span {
+    & > span {
       flex: 1;
       justify-content: flex-start;
       align-items: center;
@@ -234,6 +234,12 @@
       position: relative;
       padding-right: 48px;
     }
+  }
+
+  .typo_xs {
+    opacity: 0.8;
+    display: block;
+	line-height: 22px;
   }
 }
 
@@ -256,7 +262,6 @@
 }
 
 @media screen and (max-width: 991px) {
-
   .am-sidebar__wrapper {
     padding-top: 24px;
   }

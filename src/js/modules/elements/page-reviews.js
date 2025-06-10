@@ -1,13 +1,14 @@
-const pageReviews = {
-  init: function () {
+export default class PageReviews {
+  constructor() {
     if (document.querySelector('.page-reviews.splide') !== null) {
-      this.initSplide()
+      this.initSplide();
     }
-  },
-  initSplide: function () {
+  }
+
+  initSplide() {
     try {
       let main = new Splide('.page-reviews', {
-        type: "slider",
+        type: 'slider',
         perPage: 3.4,
         perMove: 1,
         autoplay: 0,
@@ -19,18 +20,16 @@ const pageReviews = {
         speed: 500,
         breakpoints: {
           991: {
-            perPage: 2.2
+            perPage: 2.2,
           },
           620: {
-            perPage: 1.3
-          }
-        }
-      })
-      main.mount()
+            perPage: 1.3,
+          },
+        },
+      });
+      main.mount();
     } catch {
-      console.log('Page Review SPLIDE ERR')
+      console.log('Page Review SPLIDE ERR');
     }
   }
 }
-
-module.exports = pageReviews

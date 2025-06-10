@@ -1,33 +1,33 @@
 class JobApp {
   constructor(holder, settings = {}) {
-    this.holder = holder
-    this.filesHolder = this.holder.querySelector('#job_files_upload')
-    this.sections = [...this.holder.querySelectorAll('[data-loan-section]')]
-    this.content = this.holder.querySelector('.loan-case__content')
-    this.scroller = this.holder.querySelector('.loan-scroller')
-    this.footer = this.holder.querySelector('.loan-case__footer')
-    this.btnGroup = this.holder.querySelector('.loan-case__btn-group')
-    this.evtGo = [...this.holder.querySelectorAll('[data-loan-evt="go"]')]
-    this.evtToggle = [...this.holder.querySelectorAll('[data-loan-evt="toggle"]')]
-    this.evtSubmit = [...this.holder.querySelectorAll('[data-loan-evt="submit"]')]
-    this.evtBack = [...this.holder.querySelectorAll('[data-loan-evt="back"]')]
-    this.bar = this.holder.querySelector('.loan-bar')
-    this.bar_progress = this.holder.querySelector('.loan-bar__progress')
-    this.flow = this.holder.querySelector('.loan-flow')
-    this.finish = this.holder.querySelector('.loan-finish')
-    this.maxSteps = undefined
-    this.currentStep = undefined
-    this.stepsLeft = undefined
-    this.endReached = undefined
-    this.atStart = undefined
-    this.sliding = false
-    this.data = {}
+    this.holder = holder;
+    this.filesHolder = this.holder.querySelector('#job_files_upload');
+    this.sections = [...this.holder.querySelectorAll('[data-loan-section]')];
+    this.content = this.holder.querySelector('.loan-case__content');
+    this.scroller = this.holder.querySelector('.loan-scroller');
+    this.footer = this.holder.querySelector('.loan-case__footer');
+    this.btnGroup = this.holder.querySelector('.loan-case__btn-group');
+    this.evtGo = [...this.holder.querySelectorAll('[data-loan-evt="go"]')];
+    this.evtToggle = [...this.holder.querySelectorAll('[data-loan-evt="toggle"]')];
+    this.evtSubmit = [...this.holder.querySelectorAll('[data-loan-evt="submit"]')];
+    this.evtBack = [...this.holder.querySelectorAll('[data-loan-evt="back"]')];
+    this.bar = this.holder.querySelector('.loan-bar');
+    this.bar_progress = this.holder.querySelector('.loan-bar__progress');
+    this.flow = this.holder.querySelector('.loan-flow');
+    this.finish = this.holder.querySelector('.loan-finish');
+    this.maxSteps = undefined;
+    this.currentStep = undefined;
+    this.stepsLeft = undefined;
+    this.endReached = undefined;
+    this.atStart = undefined;
+    this.sliding = false;
+    this.data = {};
     this.settings = {
       scrollSpeed: settings.scrollSpeed || 600,
       easing: settings.easing || 'cubic-bezier(.39, .575, .565, 1)',
-    }
+    };
     if (this.holder) {
-      this.init()
+      this.init();
     }
   }
 
@@ -35,19 +35,19 @@ class JobApp {
    * Utils
    */
   get getLeftSteps() {
-    return this.steps - this.currentStep
+    return this.steps - this.currentStep;
   }
   get getActiveSection() {
-    return this.sections[this.currentStep]
+    return this.sections[this.currentStep];
   }
   get getActiveInput() {
-    const section = this.getActiveSection
+    const section = this.getActiveSection;
     if (section && section.contains(document.activeElement)) {
       if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT') {
-        return document.activeElement
+        return document.activeElement;
       }
     } else {
-      return undefined
+      return undefined;
     }
   }
   get getLoaderHTML() {
@@ -61,88 +61,98 @@ class JobApp {
                                     </svg>
                                 </div>
                             </div>
-    `
+    `;
   }
   createElem(tagName, options) {
-    const { className, id, innerHTML, style, attributes, toAppend } = options
-    const elem = document.createElement(tagName)
+    const { className, id, innerHTML, style, attributes, toAppend } = options;
+    const elem = document.createElement(tagName);
     if (className) elem.className = className;
     if (id) elem.id = id;
     if (innerHTML) elem.innerHTML = innerHTML;
     if (style) {
-      for (const key in options.style) { elem.style[key] = options.style[key] }
+      for (const key in options.style) {
+        elem.style[key] = options.style[key];
+      }
     }
     if (attributes) {
-      for (const key in options.attributes) { elem.setAttribute(key, options.attributes[key]) }
+      for (const key in options.attributes) {
+        elem.setAttribute(key, options.attributes[key]);
+      }
     }
     if (toAppend) {
-      for (const child of toArray(toAppend)) { elem.appendChild(child) }
+      for (const child of toArray(toAppend)) {
+        elem.appendChild(child);
+      }
     }
-    return elem
+    return elem;
   }
   toArray(target) {
-    return Array.isArray(target) ? target : [target]
+    return Array.isArray(target) ? target : [target];
   }
   loadingOn(timeToRemove) {
-    if (this.holder.querySelector('.loan-case-loader')) return
+    if (this.holder.querySelector('.loan-case-loader')) return;
     const loader = createElem('div', {
       className: 'loan-case-loader',
-      innerHTML: this.getLoaderHTML
-    })
-    this.holder.appendChild(loader)
+      innerHTML: this.getLoaderHTML,
+    });
+    this.holder.appendChild(loader);
     setTimeout(() => {
-      this.holder.classList.add(__LOCKED)
+      this.holder.classList.add(__LOCKED);
       if (timeToRemove) {
         setTimeout(() => {
-          this.holder.classList.remove(__LOCKED)
+          this.holder.classList.remove(__LOCKED);
           setTimeout(() => {
-            loader.remove()
+            loader.remove();
           }, 350);
         }, timeToRemove);
       }
     }, 1);
   }
   loadingOff() {
-    this.holder.classList.remove(__LOCKED)
-    const loader = this.holder.querySelector('.loan-case-loader')
+    this.holder.classList.remove(__LOCKED);
+    const loader = this.holder.querySelector('.loan-case-loader');
     if (loader) {
       setTimeout(() => {
-        loader.remove()
+        loader.remove();
       }, 350);
     }
   }
   showInputError(input, text) {
-    const err = document.querySelector('.loan-input-error') ? document.querySelector('.loan-input-error') : createElem('div', {
-      className: 'loan-input-error',
-      innerHTML: text
-    })
+    const err = document.querySelector('.loan-input-error')
+      ? document.querySelector('.loan-input-error')
+      : createElem('div', {
+          className: 'loan-input-error',
+          innerHTML: text,
+        });
     if (input) {
-      input.classList.add(__INVALID)
+      input.classList.add(__INVALID);
     }
-    this.footer.prepend(err)
+    this.footer.prepend(err);
   }
   clearErrors() {
-    const activeSection = this.getActiveSection
-    const inputs = [...activeSection.querySelectorAll('input'), ...activeSection.querySelectorAll('select')]
-    inputs.forEach(input => input.classList.remove(__INVALID))
-    const err = this.holder.querySelector('.loan-input-error')
-    if (err) err.remove()
+    const activeSection = this.getActiveSection;
+    const inputs = [...activeSection.querySelectorAll('input'), ...activeSection.querySelectorAll('select')];
+    inputs.forEach(input => input.classList.remove(__INVALID));
+    const err = this.holder.querySelector('.loan-input-error');
+    if (err) err.remove();
   }
   observeBar() {
-    const prevSections = this.sections.slice(0, this.currentStep).length
-    const progress = (prevSections + 1) / this.steps * 100
-    this.bar_progress.style.width = `${progress}%`
+    const prevSections = this.sections.slice(0, this.currentStep).length;
+    const progress = ((prevSections + 1) / this.steps) * 100;
+    this.bar_progress.style.width = `${progress}%`;
   }
   clearAllFields() {
-    const inputs = [...this.holder.querySelectorAll('input:not([type="checkbox"])')]
-    const selects = [...this.holder.querySelectorAll('select')]
-    const checkboxes = [...this.holder.querySelectorAll('input[type="checkbox"]')]
-    const fullArr = [...inputs, ...selects, ...checkboxes]
+    const inputs = [...this.holder.querySelectorAll('input:not([type="checkbox"])')];
+    const selects = [...this.holder.querySelectorAll('select')];
+    const checkboxes = [...this.holder.querySelectorAll('input[type="checkbox"]')];
+    const fullArr = [...inputs, ...selects, ...checkboxes];
 
-    inputs.forEach(input => input.value = '')
-    selects.forEach(select => select.selectedIndex = 0)
-    checkboxes.forEach((checkbox) => { checkbox.checked = false })
-    fullArr.forEach(elem => elem.dispatchEvent(new Event('change')))
+    inputs.forEach(input => (input.value = ''));
+    selects.forEach(select => (select.selectedIndex = 0));
+    checkboxes.forEach(checkbox => {
+      checkbox.checked = false;
+    });
+    fullArr.forEach(elem => elem.dispatchEvent(new Event('change')));
   }
 
   /**
@@ -152,216 +162,222 @@ class JobApp {
     $('#job_application_form').submit();
   }
   finishMessage() {
-    this.loadingOn(1000)
+    this.loadingOn(1000);
     setTimeout(() => {
-      this.flow.style.opacity = 0
-      let currentHeight = this.holder.offsetHeight
-      this.holder.style.height = `${currentHeight}px`
-      setTimeout(() => {
-        this.finish.style.display = 'block'
-        let scrollH = this.finish.scrollHeight
-        this.holder.style.height = `${scrollH}px`
-        setTimeout(() => {
-          this.finish.style.opacity = 1
-          window.scrollTo(0, 0)
-          const confetti = new PageConfetti()
-          confetti.push(false)
-        }, 10);
-      }, getTransitionTime(this.flow) + 10)
+      this.flow.style.opacity = 0;
+      let currentHeight = this.holder.offsetHeight;
+      this.holder.style.height = `${currentHeight}px`;
+      setTimeout(
+        () => {
+          this.finish.style.display = 'block';
+          let scrollH = this.finish.scrollHeight;
+          this.holder.style.height = `${scrollH}px`;
+          setTimeout(() => {
+            this.finish.style.opacity = 1;
+            window.scrollTo(0, 0);
+            const confetti = new PageConfetti();
+            confetti.push(false);
+          }, 10);
+        },
+        getTransitionTime(this.flow) + 10,
+      );
     }, 800);
   }
   slide(section) {
-    section.style.display = 'flex'
-    const height = section.scrollHeight
-    const pxToTransform = this.sections.slice(0, this.currentStep).reduce((acc, el) => acc + el.scrollHeight, 0)
-    this.content.style.height = `${height}px`
-    this.scroller.style.transform = `translateY(-${pxToTransform}px)`
-    this.sections.forEach(e => e.classList.remove(IS_ACTIVE))
-    section.classList.add(IS_ACTIVE)
+    section.style.display = 'flex';
+    const height = section.scrollHeight;
+    const pxToTransform = this.sections.slice(0, this.currentStep).reduce((acc, el) => acc + el.scrollHeight, 0);
+    this.content.style.height = `${height}px`;
+    this.scroller.style.transform = `translateY(-${pxToTransform}px)`;
+    this.sections.forEach(e => e.classList.remove(IS_ACTIVE));
+    section.classList.add(IS_ACTIVE);
     setTimeout(() => {
-      this.sliding = false
+      this.sliding = false;
     }, getTransitionTime(this.scroller));
   }
   go(toStep) {
-    if (this.holder.classList.contains(__LOCKED)) return
-    const inputs = [...this.holder.querySelectorAll('input'), ...this.holder.querySelectorAll('select')]
-    const step = toStep || this.currentStep || 0
-    const nextStep = step + 1
-    const nextSection = this.sections[nextStep]
+    if (this.holder.classList.contains(__LOCKED)) return;
+    const inputs = [...this.holder.querySelectorAll('input'), ...this.holder.querySelectorAll('select')];
+    const step = toStep || this.currentStep || 0;
+    const nextStep = step + 1;
+    const nextSection = this.sections[nextStep];
 
     if (!this.sections[nextStep + 1]) {
-      this.evtGo.forEach((btn) => {
-        btn.innerHTML = 'Submit'
-      })
+      this.evtGo.forEach(btn => {
+        btn.innerHTML = 'Submit';
+      });
     }
 
     if (nextSection) {
-      this.sliding = true
-      inputs.forEach(input => input.blur())
-      this.loadingOn()
+      this.sliding = true;
+      inputs.forEach(input => input.blur());
+      this.loadingOn();
       setTimeout(() => {
-        this.currentStep = nextStep
-        this.slide(nextSection)
-        this.loadingOff()
-        this.observeBar()
+        this.currentStep = nextStep;
+        this.slide(nextSection);
+        this.loadingOff();
+        this.observeBar();
       }, 600);
     } else {
-      this.save()
-      this.finishMessage()
+      this.save();
+      this.finishMessage();
     }
   }
   back(toStep) {
-    if (this.holder.classList.contains(__LOCKED)) return
-    this.clearErrors()
-    const step = toStep || this.currentStep || 0
-    const prevStep = step - 1
-    const prevSection = this.sections[prevStep]
+    if (this.holder.classList.contains(__LOCKED)) return;
+    this.clearErrors();
+    const step = toStep || this.currentStep || 0;
+    const prevStep = step - 1;
+    const prevSection = this.sections[prevStep];
     if (prevSection) {
-      this.evtGo.forEach((btn) => {
-        btn.innerHTML = 'Next'
-      })
-      this.currentStep = prevStep
-      this.slide(prevSection)
+      this.evtGo.forEach(btn => {
+        btn.innerHTML = 'Next';
+      });
+      this.currentStep = prevStep;
+      this.slide(prevSection);
     } else {
-      this.toggle()
+      this.toggle();
     }
   }
   validate(section) {
-    const requiredTextInputs = [...section.querySelectorAll('input[type="text"][required]:not(.--disabled'), ...section.querySelectorAll('input[type="email"][required]')]
-    const emptyInputs = requiredTextInputs.filter(input => !input.value)
-    const numberInputs = section.querySelectorAll('input[data-validate="number"]')
-    const selectInputs = section.querySelectorAll('select[required]')
-    const emailInputs = section.querySelectorAll('input[data-validate="email"]')
-    const zipInputs = section.querySelectorAll('input[data-validate="zip_code"]')
-    const fileInputs = section.querySelectorAll('input[required][type="file"]')
-    const sectionID = section.dataset.loanSection
+    const requiredTextInputs = [
+      ...section.querySelectorAll('input[type="text"][required]:not(.--disabled'),
+      ...section.querySelectorAll('input[type="email"][required]'),
+    ];
+    const emptyInputs = requiredTextInputs.filter(input => !input.value);
+    const numberInputs = section.querySelectorAll('input[data-validate="number"]');
+    const selectInputs = section.querySelectorAll('select[required]');
+    const emailInputs = section.querySelectorAll('input[data-validate="email"]');
+    const zipInputs = section.querySelectorAll('input[data-validate="zip_code"]');
+    const fileInputs = section.querySelectorAll('input[required][type="file"]');
+    const sectionID = section.dataset.loanSection;
 
-    if (requiredTextInputs.some(input => input.classList.contains(__INVALID))) return false
+    if (requiredTextInputs.some(input => input.classList.contains(__INVALID))) return false;
 
     if (selectInputs.length) {
       for (const select of selectInputs) {
         if (!select.value) {
-          this.showInputError(select, 'Please select an option')
-          return false
+          this.showInputError(select, 'Please select an option');
+          return false;
         }
       }
     }
     if (numberInputs.length) {
-      const value = numberInputs[0].value
-      const regex = /^\+\d{1}\s\(\d{3}\)\s\d{3}\-\d{4}$/
+      const value = numberInputs[0].value;
+      const regex = /^\+\d{1}\s\(\d{3}\)\s\d{3}\-\d{4}$/;
       if (!regex.test(value)) {
-        this.showInputError(numberInputs[0], 'Please enter a valid phone number')
-        return false
+        this.showInputError(numberInputs[0], 'Please enter a valid phone number');
+        return false;
       }
     }
     if (emailInputs.length) {
-      const value = emailInputs[0].value
-      const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+      const value = emailInputs[0].value;
+      const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
       if (!regex.test(value)) {
-        this.showInputError(emailInputs[0], 'Please enter a valid email')
-        return false
+        this.showInputError(emailInputs[0], 'Please enter a valid email');
+        return false;
       }
     }
     if (zipInputs.length) {
-      const value = zipInputs[0].value
-      const regex = /^\d{5}$/
+      const value = zipInputs[0].value;
+      const regex = /^\d{5}$/;
       if (!regex.test(value)) {
-        this.showInputError(zipInputs[0], 'Please enter a valid zip code')
-        return false
+        this.showInputError(zipInputs[0], 'Please enter a valid zip code');
+        return false;
       }
     }
     if (emptyInputs.length) {
-      this.showInputError(emptyInputs[0], 'This field is required')
-      return false
+      this.showInputError(emptyInputs[0], 'This field is required');
+      return false;
     }
     if (fileInputs.length) {
       for (const input of fileInputs) {
         if (!input.files[0]) {
-          console.log(input.files)
-          this.showInputError(null, 'Please upload a file')
-          return false
+          console.log(input.files);
+          this.showInputError(null, 'Please upload a file');
+          return false;
         }
       }
     }
-    this.clearErrors()
-    return true
+    this.clearErrors();
+    return true;
   }
   adjustActiveSectionHeight() {
-    const activeSection = this.getActiveSection
+    const activeSection = this.getActiveSection;
     if (activeSection) {
-      const height = activeSection.scrollHeight
-      this.content.style.height = `${height}px`
+      const height = activeSection.scrollHeight;
+      this.content.style.height = `${height}px`;
     }
   }
   toggle() {
-    const body = document.querySelector('body')
-    const headerNav = document.querySelector('.header__sub-nav')
-    const welcome = document.querySelector('.subpage__welcome')
-    const footerMain = document.querySelector('.footer__wrapper > .wrapper')
-    const loanWelcome = document.querySelector('.loan-welcome')
-    const heading = document.querySelector('.loan-case__heading')
-    const backGroup = document.querySelector('.loan-case__back-group')
-    const CASE_CLASS = 'loan_case'
-    const elements = [headerNav, welcome, footerMain, loanWelcome]
+    const body = document.querySelector('body');
+    const headerNav = document.querySelector('.header__sub-nav');
+    const welcome = document.querySelector('.subpage__welcome');
+    const footerMain = document.querySelector('.footer__wrapper > .wrapper');
+    const loanWelcome = document.querySelector('.loan-welcome');
+    const heading = document.querySelector('.loan-case__heading');
+    const backGroup = document.querySelector('.loan-case__back-group');
+    const CASE_CLASS = 'loan_case';
+    const elements = [headerNav, welcome, footerMain, loanWelcome];
 
-    const hideElement = (el) => {
-      const curHeight = el.scrollHeight
-      el.style.height = `${curHeight}px`
+    const hideElement = el => {
+      const curHeight = el.scrollHeight;
+      el.style.height = `${curHeight}px`;
       setTimeout(() => {
-        el.style.overflow = 'hidden'
-        el.style.height = '0px'
+        el.style.overflow = 'hidden';
+        el.style.height = '0px';
       }, 1);
-    }
-    const showElement = (el) => {
-      const curHeight = window.getComputedStyle(el).getPropertyValue('height')
-      const scrollHeight = el.scrollHeight
-      el.style.height = `${curHeight}`
+    };
+    const showElement = el => {
+      const curHeight = window.getComputedStyle(el).getPropertyValue('height');
+      const scrollHeight = el.scrollHeight;
+      el.style.height = `${curHeight}`;
       setTimeout(() => {
-        el.style.overflow = 'visible'
-        el.style.height = `${scrollHeight}px`
-      }, 1)
-    }
+        el.style.overflow = 'visible';
+        el.style.height = `${scrollHeight}px`;
+      }, 1);
+    };
 
     const hideLoan = () => {
-      body.classList.remove(CASE_CLASS)
+      body.classList.remove(CASE_CLASS);
       for (const element of elements) {
-        if (element) showElement(element)
+        if (element) showElement(element);
       }
 
-      this.scroller.style.display = 'none'
-      this.content.style.height = `0px`
+      this.scroller.style.display = 'none';
+      this.content.style.height = `0px`;
 
       if (backGroup) {
-        backGroup.style.height = `0px`
+        backGroup.style.height = `0px`;
       }
 
       if (heading) {
-        heading.innerHTML = 'Welcome To the Icebox Max Approval Financing Form'
-        heading.classList.remove('--big')
+        heading.innerHTML = 'Welcome To the Icebox Max Approval Financing Form';
+        heading.classList.remove('--big');
       }
 
-      this.clearErrors()
-      this.back(1)
-      this.clearAllFields()
-    }
+      this.clearErrors();
+      this.back(1);
+      this.clearAllFields();
+    };
     const showLoan = () => {
-      body.classList.add('loan_case')
+      body.classList.add('loan_case');
       for (const element of elements) {
-        if (element) hideElement(element)
+        if (element) hideElement(element);
       }
 
-      this.scroller.style.display = 'flex'
-      this.content.style.height = `${this.sections[0].scrollHeight}px`
+      this.scroller.style.display = 'flex';
+      this.content.style.height = `${this.sections[0].scrollHeight}px`;
 
       if (backGroup) {
-        backGroup.style.height = `${backGroup.scrollHeight}px`
+        backGroup.style.height = `${backGroup.scrollHeight}px`;
       }
 
       if (heading) {
-        heading.innerHTML = 'Job Application'
-        heading.classList.add('--big')
+        heading.innerHTML = 'Job Application';
+        heading.classList.add('--big');
       }
-    }
+    };
 
     if (body.classList.contains(CASE_CLASS)) {
       const askModal = new AskModal({
@@ -370,46 +386,46 @@ class JobApp {
         exitText: 'Exit',
         keepText: 'Keep Filling',
         exitCallback: hideLoan,
-      })
-      askModal.show()
+      });
+      askModal.show();
     } else {
-      showLoan()
+      showLoan();
     }
   }
   tabPress() {
     if (!this.sliding) {
-      const activeInput = this.getActiveInput
+      const activeInput = this.getActiveInput;
       if (!activeInput) {
-        const section = this.getActiveSection
-        const inputArray = [...section.querySelectorAll('input:not(.--disabled), select:not(.--disabled)')]
+        const section = this.getActiveSection;
+        const inputArray = [...section.querySelectorAll('input:not(.--disabled), select:not(.--disabled)')];
         if (inputArray.length) {
-          let inputToFocus
-          const invalidInputs = inputArray.filter(input => input.classList.contains('--invalid'))
+          let inputToFocus;
+          const invalidInputs = inputArray.filter(input => input.classList.contains('--invalid'));
           if (invalidInputs.length) {
-            inputToFocus = invalidInputs[0]
+            inputToFocus = invalidInputs[0];
           } else {
-            const emptyInputs = inputArray.filter(input => !input.value && input.value !== 0)
+            const emptyInputs = inputArray.filter(input => !input.value && input.value !== 0);
             if (emptyInputs.length) {
-              inputToFocus = emptyInputs[0]
+              inputToFocus = emptyInputs[0];
             } else {
-              inputToFocus = inputArray[0]
+              inputToFocus = inputArray[0];
             }
           }
-          inputToFocus.focus()
+          inputToFocus.focus();
         }
       } else {
-        const activeInputWrap = activeInput.parentNode.closest('.loan-input-wrap')
-        const nextInputWrap = activeInputWrap.nextElementSibling
+        const activeInputWrap = activeInput.parentNode.closest('.loan-input-wrap');
+        const nextInputWrap = activeInputWrap.nextElementSibling;
         if (nextInputWrap) {
-          const nextInput = nextInputWrap.querySelector('input, select')
+          const nextInput = nextInputWrap.querySelector('input, select');
           if (nextInput) {
-            nextInput.focus()
+            nextInput.focus();
           }
         } else {
-          const firstInputWrap = this.getActiveSection.querySelector('.loan-input-wrap')
-          const firstInput = firstInputWrap.querySelector('input, select')
+          const firstInputWrap = this.getActiveSection.querySelector('.loan-input-wrap');
+          const firstInput = firstInputWrap.querySelector('input, select');
           if (firstInput) {
-            firstInput.focus()
+            firstInput.focus();
           }
         }
       }
@@ -420,242 +436,242 @@ class JobApp {
    * Bind Events
    */
   bindStepEvt() {
-    this.evtGo.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault()
-        const section = this.getActiveSection
-        if (this.validate(section)) this.go()
-      })
-    })
-    this.evtBack.forEach((btn) => {
+    this.evtGo.forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const section = this.getActiveSection;
+        if (this.validate(section)) this.go();
+      });
+    });
+    this.evtBack.forEach(btn => {
       btn.addEventListener('click', () => {
-        this.back()
-      })
-    })
-    this.evtSubmit.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault()
-        this.evtGo[0].click()
-      })
-    })
-    this.evtToggle.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        this.toggle()
-      })
-    })
-
+        this.back();
+      });
+    });
+    this.evtSubmit.forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        this.evtGo[0].click();
+      });
+    });
+    this.evtToggle.forEach(btn => {
+      btn.addEventListener('click', e => {
+        this.toggle();
+      });
+    });
   }
   bindInputEvents() {
-    const inputs = [...this.holder.querySelectorAll('input')]
-    const selects = [...this.holder.querySelectorAll('select')]
-    const noWebsiteCheckbox = this.holder.querySelector('#loan_employer_website')
-    const inputWebsiteEmployer = this.holder.querySelector('#loan_employer_website')
+    const inputs = [...this.holder.querySelectorAll('input')];
+    const selects = [...this.holder.querySelectorAll('select')];
+    const noWebsiteCheckbox = this.holder.querySelector('#loan_employer_website');
+    const inputWebsiteEmployer = this.holder.querySelector('#loan_employer_website');
 
-    document.addEventListener('keydown', (e) => {
-      const isTab = e.key === 'Tab'
+    document.addEventListener('keydown', e => {
+      const isTab = e.key === 'Tab';
       if (isTab) {
         if (document.body.classList.contains('loan_case')) {
-          e.preventDefault()
-          this.tabPress()
+          e.preventDefault();
+          this.tabPress();
         }
       }
-    })
+    });
 
-    inputs.forEach((input) => {
+    inputs.forEach(input => {
       input.addEventListener('focus', () => {
-        this.clearErrors()
-        const parent = input.parentNode.closest('.loan-input-wrap')
+        this.clearErrors();
+        const parent = input.parentNode.closest('.loan-input-wrap');
         if (parent) {
-          parent.classList.add('--focused')
+          parent.classList.add('--focused');
         }
-      })
+      });
       input.addEventListener('blur', () => {
-        const parent = input.parentNode.closest('.loan-input-wrap')
+        const parent = input.parentNode.closest('.loan-input-wrap');
         if (parent) {
-          parent.classList.remove('--focused')
+          parent.classList.remove('--focused');
         }
-      })
-      input.addEventListener('keydown', (e) => {
-        this.clearErrors()
-        const isEnter = e.key === 'Enter'
-        const isTab = e.key === 'Tab'
+      });
+      input.addEventListener('keydown', e => {
+        this.clearErrors();
+        const isEnter = e.key === 'Enter';
+        const isTab = e.key === 'Tab';
         if (isEnter) {
-          this.evtGo[0].click()
+          this.evtGo[0].click();
         }
-      })
-    })
-    selects.forEach((select) => {
+      });
+    });
+    selects.forEach(select => {
       select.addEventListener('change', () => {
-        this.clearErrors()
-      })
-    })
+        this.clearErrors();
+      });
+    });
   }
   bindSSNInput() {
-    const inputs = this.holder.querySelectorAll('input[data-format="ssn"]')
+    const inputs = this.holder.querySelectorAll('input[data-format="ssn"]');
     for (const input of inputs) {
-      input.addEventListener('input', (e) => {
-        const value = e.target.value
-        let newValue = ''
+      input.addEventListener('input', e => {
+        const value = e.target.value;
+        let newValue = '';
         for (let i = 0; i < value.length; i++) {
-          const char = value.charAt(i)
+          const char = value.charAt(i);
           if (char.match(/^[0-9]$/) && newValue.length < 9) {
-            newValue += char
+            newValue += char;
           }
         }
-        e.target.value = newValue
-      })
-      input.addEventListener('blur', (e) => {
-        const value = e.target.value
+        e.target.value = newValue;
+      });
+      input.addEventListener('blur', e => {
+        const value = e.target.value;
         if (value) {
-          let newValue = value.replace(/([^0-9])/g, '')
-          newValue = newValue.slice(0, 3) + '—' + newValue.slice(3, 5) + '—' + newValue.slice(5)
-          e.target.value = newValue
+          let newValue = value.replace(/([^0-9])/g, '');
+          newValue = newValue.slice(0, 3) + '—' + newValue.slice(3, 5) + '—' + newValue.slice(5);
+          e.target.value = newValue;
         }
-      })
-      input.addEventListener('focus', (e) => {
-        e.target.value = e.target.value.replace(/([^0-9])/g, '')
-      })
+      });
+      input.addEventListener('focus', e => {
+        e.target.value = e.target.value.replace(/([^0-9])/g, '');
+      });
     }
   }
   bindNumberInput() {
-    const inputs = this.holder.querySelectorAll('input[data-validate="number"]')
+    const inputs = this.holder.querySelectorAll('input[data-validate="number"]');
     for (const input of inputs) {
       let keyCode;
       function mask(event) {
         event.keyCode && (keyCode = event.keyCode);
         let pos = this.selectionStart;
-        if (pos < 3) event.preventDefault()
-        let matrix = "+1 (___) ___-____",
+        if (pos < 3) event.preventDefault();
+        let matrix = '+1 (___) ___-____',
           i = 0,
-          def = matrix.replace(/\D/g, ""),
-          val = this.value.replace(/\D/g, ""),
+          def = matrix.replace(/\D/g, ''),
+          val = this.value.replace(/\D/g, ''),
           newValue = matrix.replace(/[_\d]/g, function (a) {
             return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
           });
-        i = newValue.indexOf("_");
+        i = newValue.indexOf('_');
         if (i != -1) {
           i < 5 && (i = 3);
           newValue = newValue.slice(0, i);
         }
-        let reg = matrix.substr(0, this.value.length).replace(/_+/g,
-          function (a) {
-            return "\\d{1," + a.length + "}";
-          }).replace(/[+()]/g, "\\$&");
-        reg = new RegExp("^" + reg + "$");
-        if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = newValue;
-        if (event.type == "blur" && this.value.length < 5) this.value = "";
+        let reg = matrix
+          .substr(0, this.value.length)
+          .replace(/_+/g, function (a) {
+            return '\\d{1,' + a.length + '}';
+          })
+          .replace(/[+()]/g, '\\$&');
+        reg = new RegExp('^' + reg + '$');
+        if (!reg.test(this.value) || this.value.length < 5 || (keyCode > 47 && keyCode < 58)) this.value = newValue;
+        if (event.type == 'blur' && this.value.length < 5) this.value = '';
       }
 
-      input.addEventListener("input", mask, false);
-      input.addEventListener("focus", mask, false);
-      input.addEventListener("blur", mask, false);
-      input.addEventListener("keydown", mask, false);
+      input.addEventListener('input', mask, false);
+      input.addEventListener('focus', mask, false);
+      input.addEventListener('blur', mask, false);
+      input.addEventListener('keydown', mask, false);
       input.addEventListener('mouseup', event => {
-        event.preventDefault()
+        event.preventDefault();
         if (input.value.length < 4) {
-          input.setSelectionRange(4, 4)
+          input.setSelectionRange(4, 4);
         } else {
-          input.setSelectionRange(input.value.length, input.value.length)
+          input.setSelectionRange(input.value.length, input.value.length);
         }
-      })
+      });
     }
   }
   bindResumeUpload() {
-    const input = document.querySelector('#job_resume')
-    const box = document.querySelector('[data-loan="files_upload"]')
-    const holder = this.filesHolder
+    const input = document.querySelector('#job_resume');
+    const box = document.querySelector('[data-loan="files_upload"]');
+    const holder = this.filesHolder;
     // if (!input || !box || !holder) throw new Error('JS : Bind ID Upload : Input or Box or Holder not found')
 
     if (input && box && holder) {
-
       function processFiles(files) {
-        const allowedExtensions = ['pdf', 'docx', 'doc']
+        const allowedExtensions = ['pdf', 'docx', 'doc'];
         for (const file of files) {
-          const name = file.name.toLowerCase()
-          const extension = name.split('.').pop()
+          const name = file.name.toLowerCase();
+          const extension = name.split('.').pop();
           if (allowedExtensions.includes(extension)) {
-            console.log(file)
+            console.log(file);
           }
         }
       }
 
       box.onclick = () => {
-        this.clearErrors()
-        input.click()
-      }
-      input.onchange = (e) => {
-        processFiles(e.target.files)
-      }
-      box.ondragover = (e) => {
-        this.clearErrors()
-        e.preventDefault()
-        box.classList.add(IS_ACTIVE)
-      }
-      box.ondragleave = (e) => {
-        this.clearErrors()
-        e.preventDefault()
-        box.classList.remove(IS_ACTIVE)
-      }
-      box.ondrop = (e) => {
-        this.clearErrors()
-        e.preventDefault()
-        box.classList.remove(IS_ACTIVE)
-      }
+        this.clearErrors();
+        input.click();
+      };
+      input.onchange = e => {
+        processFiles(e.target.files);
+      };
+      box.ondragover = e => {
+        this.clearErrors();
+        e.preventDefault();
+        box.classList.add(IS_ACTIVE);
+      };
+      box.ondragleave = e => {
+        this.clearErrors();
+        e.preventDefault();
+        box.classList.remove(IS_ACTIVE);
+      };
+      box.ondrop = e => {
+        this.clearErrors();
+        e.preventDefault();
+        box.classList.remove(IS_ACTIVE);
+      };
     }
   }
   bindDualSelect() {
-    const dualArr = this.holder.querySelectorAll('[data-loan-evt="dual_select"]')
+    const dualArr = this.holder.querySelectorAll('[data-loan-evt="dual_select"]');
     for (const dual of dualArr) {
-      const input = dual.querySelector('input:not([type="checkbox"])')
-      const checkbox = dual.querySelector('input[type="checkbox"]')
+      const input = dual.querySelector('input:not([type="checkbox"])');
+      const checkbox = dual.querySelector('input[type="checkbox"]');
       if (input && checkbox) {
         checkbox.onchange = () => {
-          let isChecked = checkbox.checked
+          let isChecked = checkbox.checked;
           if (isChecked) {
-            input.classList.add('--disabled')
-            input.setAttribute('disabled', 'disabled')
+            input.classList.add('--disabled');
+            input.setAttribute('disabled', 'disabled');
             if (input.type !== 'range') {
-              input.value = ''
+              input.value = '';
             }
           } else {
-            input.removeAttribute('disabled')
-            input.classList.remove('--disabled')
+            input.removeAttribute('disabled');
+            input.classList.remove('--disabled');
           }
-        }
+        };
       }
     }
 
-    const rangeOutputArr = [...this.holder.querySelectorAll('.custom-range__output')]
+    const rangeOutputArr = [...this.holder.querySelectorAll('.custom-range__output')];
     for (const input of rangeOutputArr) {
-      const parent = input.closest('[data-loan-evt="dual_select"]')
+      const parent = input.closest('[data-loan-evt="dual_select"]');
       if (parent) {
-        const rangeInput = parent.querySelector('input[type="range"]')
+        const rangeInput = parent.querySelector('input[type="range"]');
         if (rangeInput) {
-          const maxValue = rangeInput.max
-          const minValue = rangeInput.min
+          const maxValue = rangeInput.max;
+          const minValue = rangeInput.min;
 
-          input.addEventListener('input', (e) => {
-            e.target.value = e.target.value.replace(/[^0-9]/g, '')
-          })
+          input.addEventListener('input', e => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+          });
 
-          input.addEventListener('blur', (e) => {
-            e.target.value = Math.max(Math.min(e.target.value, maxValue), minValue)
-            rangeInput.value = e.target.value
-            rangeInput.dispatchEvent(new Event('input'))
-          })
+          input.addEventListener('blur', e => {
+            e.target.value = Math.max(Math.min(e.target.value, maxValue), minValue);
+            rangeInput.value = e.target.value;
+            rangeInput.dispatchEvent(new Event('input'));
+          });
         }
       }
     }
   }
   bindFormatting() {
-    const currencyArr = document.querySelectorAll('[data-format="currency"]')
+    const currencyArr = document.querySelectorAll('[data-format="currency"]');
     for (const input of currencyArr) {
       input.addEventListener('blur', () => {
-        const val = input.value
+        const val = input.value;
         if (val.length) {
-          input.value = formatAsCurrency(val)
+          input.value = formatAsCurrency(val);
         }
-      })
+      });
     }
   }
 
@@ -663,32 +679,32 @@ class JobApp {
    * Initial
    */
   setInitialVar() {
-    this.steps = this.sections.length
-    if (!this.steps) throw new Error('No Loan Sections Found')
-    this.currentStep = 0
-    this.stepsLeft = this.steps
-    this.endReached = false
-    this.atTheStart = true
+    this.steps = this.sections.length;
+    if (!this.steps) throw new Error('No Loan Sections Found');
+    this.currentStep = 0;
+    this.stepsLeft = this.steps;
+    this.endReached = false;
+    this.atTheStart = true;
   }
   setInitialLayout() {
-    const firstSection = this.sections[0]
-    const height = firstSection.scrollHeight
-    this.content.style.height = `${height}px`
-    this.content.style.transition = `all ${this.settings.scrollSpeed}ms ${this.settings.easing}`
-    this.scroller.style.transition = `all ${this.settings.scrollSpeed}ms ${this.settings.easing}`
+    const firstSection = this.sections[0];
+    const height = firstSection.scrollHeight;
+    this.content.style.height = `${height}px`;
+    this.content.style.transition = `all ${this.settings.scrollSpeed}ms ${this.settings.easing}`;
+    this.scroller.style.transition = `all ${this.settings.scrollSpeed}ms ${this.settings.easing}`;
     // this.sections.forEach(section => section.style.display = 'flex')
   }
   init() {
-    this.setInitialLayout()
-    this.setInitialVar()
-    this.bindStepEvt()
-    this.bindInputEvents()
-    this.bindNumberInput()
-    this.bindSSNInput()
-    this.bindResumeUpload()
-    this.bindDualSelect()
-    this.bindFormatting()
+    this.setInitialLayout();
+    this.setInitialVar();
+    this.bindStepEvt();
+    this.bindInputEvents();
+    this.bindNumberInput();
+    this.bindSSNInput();
+    this.bindResumeUpload();
+    this.bindDualSelect();
+    this.bindFormatting();
   }
 }
 
-module.exports = JobApp
+module.exports = JobApp;

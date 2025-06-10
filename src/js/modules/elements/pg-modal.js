@@ -1,36 +1,38 @@
+window.pgSelect = require('./pg-select');
+
 const pgModal = new Object({
   initialized: undefined,
   init: function () {
     this.renderDOM();
     this.bindEvents();
-    Object.values(this.initFn).forEach((target) => {
-      if (typeof target === "function") target();
+    Object.values(this.initFn).forEach(target => {
+      if (typeof target === 'function') target();
     });
     this.intialized = true;
   },
 
   renderDOM: function () {
     // Root
-    this.modal = $(".pg-modal");
-    this.container = $(".pg-modal__container");
-    this.backdrop = $(".pg-modal__backdrop");
+    this.modal = $('.pg-modal');
+    this.container = $('.pg-modal__container');
+    this.backdrop = $('.pg-modal__backdrop');
     this.close = $('[data-evt="closePgModal"]');
 
     // Sections
-    this.section = $(".pg-section");
-    this.row = $(".pg-row");
-    this.scrollContainer = $(".pg-modal__overscroll");
-    this.sectionBracelets = this.section.filter("#pgBracelets");
-    this.sectionDiamonds = this.section.filter("#pgDiamonds");
-    this.sectionRings = this.section.filter("#pgRings");
-    this.sectionNecklaces = this.section.filter("#pgNecklaces");
+    this.section = $('.pg-section');
+    this.row = $('.pg-row');
+    this.scrollContainer = $('.pg-modal__overscroll');
+    this.sectionBracelets = this.section.filter('#pgBracelets');
+    this.sectionDiamonds = this.section.filter('#pgDiamonds');
+    this.sectionRings = this.section.filter('#pgRings');
+    this.sectionNecklaces = this.section.filter('#pgNecklaces');
 
     // Controls
-    this.switchBtn = $(".pg-switch-btn");
+    this.switchBtn = $('.pg-switch-btn');
 
     // Select Tabs
-    this.selectArr = Array.from($(".pg-select"));
-    this.selectBtn = $(".pg-select-btn");
+    this.selectArr = Array.from($('.pg-select'));
+    this.selectBtn = $('.pg-select-btn');
   },
   bindEvents: function () {
     this.close.click(function () {
@@ -44,21 +46,21 @@ const pgModal = new Object({
       pgModal.modal.show();
       setTimeout(() => {
         pgModal.backdrop.css({ opacity: 1 });
-        pgModal.container.removeClass("is-hidden");
+        pgModal.container.removeClass('is-hidden');
       }, 1);
-      let att = $(target).attr("data-pg-open");
+      let att = $(target).attr('data-pg-open');
       pgModal.section.hide();
       switch (att) {
-        case "diamonds":
+        case 'diamonds':
           pgModal.sectionDiamonds.show();
           break;
-        case "rings":
+        case 'rings':
           pgModal.sectionRings.show();
           break;
-        case "bracelets":
+        case 'bracelets':
           pgModal.sectionBracelets.show();
           break;
-        case "necklaces":
+        case 'necklaces':
           pgModal.sectionNecklaces.show();
           break;
         default:
@@ -71,7 +73,7 @@ const pgModal = new Object({
     closeModal: function () {
       unlockScroll();
       pgModal.backdrop.css({ opacity: 0 });
-      pgModal.container.addClass("is-hidden");
+      pgModal.container.addClass('is-hidden');
       setTimeout(() => {
         pgModal.modal.hide();
       }, 475);
@@ -99,9 +101,9 @@ const pgModal = new Object({
               $(rowArr[i]).hide();
             });
             $.each(btnArr, function (i) {
-              $(btnArr[i]).removeClass("is-active");
+              $(btnArr[i]).removeClass('is-active');
             });
-            $(this).addClass("is-active");
+            $(this).addClass('is-active');
             $(rowArr[i]).show();
           };
         });
@@ -116,6 +118,6 @@ const pgModal = new Object({
       pgModal.fn.attachSectionControls();
     },
   },
-})
+});
 
-module.exports = pgModal
+module.exports = pgModal;
