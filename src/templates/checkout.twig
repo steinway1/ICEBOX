@@ -46,13 +46,4 @@
   <script>
     function CheckDestination() { var selectedCountry = $('#country').val(); if (selectedCountry.toLowerCase() == 'turkey') { showMessage('error', 'Error', 'Sorry we do not ship to Turkey, please select another destination!'); $('#country').val(''); } }
   </script>
-
-  <script>
-    $(document).ready(function () { dataLayer.push({ecommerce: null}) dataLayer.push({ event: 'begin_checkout', ecommerce: { currency: 'USD', value:'{{ cart.total_without_shipping_unformatted }}', items: [{% for item in cart.items %}
-      { item_name: '{{ item.name }}', item_id: '{{ item.product_id }}', price: '{{ item.unit_price }}', index:'{{ item.key }}', item_brand: "{{ item.brand }}", item_category: '{{ item.category }}', variant: '{{ item.options[0].value }}', quantity: {{ item.qty }}
-      },
-    {% endfor %}] }
-
-    }); });
-  </script>
 {% endblock %}

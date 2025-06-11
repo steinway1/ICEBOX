@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import { getEvtDOM, elemDisplayed, lockScroll, unlockScroll, getTransitionTime } from '../utils';
+
 class Menu {
   constructor(rootSelector = '.menu') {
     this._state = false;

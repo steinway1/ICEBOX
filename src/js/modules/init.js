@@ -1,4 +1,5 @@
 import SwitchCardColor from './elements/switch-card-color';
+import intlTelInput from '../intlTelInput';
 
 /**
  * Initializes lazy loading for product card images using Intersection Observer

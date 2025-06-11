@@ -1,3 +1,9 @@
+import $ from 'jquery';
+import { IS_HIDDEN, __LOCKED } from './constants';
+import { getTransitionTime, lockScroll, unlockScroll } from './utils';
+import intlTelInput from '../intlTelInput';
+import parsley from '../parsley.min.js';
+
 function initValidators() {
   $('.needs-validation').parsley({
     errorClass: 'is-invalid text-danger',

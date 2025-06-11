@@ -16,6 +16,7 @@ function lockScroll() {
     }
   }, 1);
 }
+
 function unlockScroll() {
   if (document.body.hasAttribute('ib-scroll-lock')) {
     let o = document.body.getAttribute('ib-scroll-lock');

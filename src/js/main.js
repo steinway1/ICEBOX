@@ -1,24 +1,15 @@
+// src/js/main.js
 var $ = require('jquery');
 window.$ = window.jQuery = $;
-require('./jQuery-zoom');
-require('./parsley.min');
-window.intlTelInput = require('./intlTelInput');
 
-Object.assign(
-  window,
-  require('./modules/constants'),
-  require('./modules/variables'),
-  require('./modules/utils'),
-  require('./modules/ajax'),
-);
+Object.assign(window, require('./modules/constants'), require('./modules/utils'));
 
-require('./modules/login');
-require('./modules/dynamic/price-modal');
+import './modules/login';
+import './modules/dynamic/price-modal';
 
 /**
  * Importing initial functions we call ALWAYS on any page
  */
-// const { initLazyLoadForProductCards } = require('./modules/utils');
 import {
   initLazyLoadForProductCards,
   initTelInput,

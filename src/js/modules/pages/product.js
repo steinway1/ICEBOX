@@ -1,5 +1,7 @@
 import Splide from '../../splide';
 import '../../splide-grid';
+import { lockScroll, unlockScroll, getTransitionTime, createElem } from '../utils';
+
 const ZoomGallery = require('../dynamic/zoom-gallery');
 
 class ProductPage {

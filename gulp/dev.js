@@ -96,6 +96,7 @@ const root = {
       },
       bundle: {
         main: './src/js/main.js',
+        vendor: './src/js/vendor.js',
         admin: './src/js/admin/main.js',
         main_v2: './src/js/main_v2.js',
         login: './src/js/login.js',
@@ -302,24 +303,6 @@ gulp.task('css-promo:dev', () => {
       .pipe(gulp.dest(root.dev.cssPromo))
   );
 });
-
-/* #region  Javascript */
-// gulp.task('js:dev', () => {
-//   return browserify({
-//     entries: [root.src.js.bundle.main],
-//     debug: true,
-//   })
-//     .transform(babelify, {
-//       presets: [['@babel/preset-env', { targets: { esmodules: true } }]],
-//       global: true,
-//     })
-//     .bundle()
-//     .pipe(source('partial.js'))
-//     .pipe(buffer())
-//     .pipe(plumber(setPlumberNotify('JAVASCRIPT')))
-//     .pipe(minify())
-//     .pipe(gulp.dest(root.dev.js));
-// });
 
 gulp.task('js:dev', () =>
   gulp

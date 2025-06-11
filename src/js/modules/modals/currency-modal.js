@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import { getEvtDOM, elemDisplayed, lockScroll, unlockScroll, getTransitionTime } from '../utils';
+
 export default class CurrencyModal {
   constructor(rootEl) {
     this.rootEl = rootEl;
