@@ -22,8 +22,11 @@
 				<div class="am-item__main">
 
 					<div class="am-item__pic-wrap">
-						{# <img src="{{item.thumbnail}}" loading="eager" alt=""> #}
-						{% include "admin/svg/admin-logo-square.svg" %}
+						{% if item.thumbnail %}
+							<img src="{{item.thumbnail}}" loading="eager" alt="">
+						{% else %}
+							{% include "admin/svg/admin-logo-square.svg" %}
+						{% endif %}
 						<button class="am-zoom-btn"></button>
 					</div>
 
