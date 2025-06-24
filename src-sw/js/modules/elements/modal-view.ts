@@ -121,6 +121,13 @@ export class ModalView {
 
     try {
       this.setLoading(true);
+      /**
+       * @CHOU Setup here
+       * put the real AJAX request here
+       *
+       * @returns {Promise<Item>}
+       * Item – see {@link Item}
+       */
       const item = await fakeAjaxGetItemById(id);
 
       if (!item) {
