@@ -1,0 +1,17 @@
+{# ui/carousel/carousel-snap.twig #}
+
+{# params
+  items -- array of items {label, link, img}
+  modifier -- string
+ #}
+
+{% macro carouselSnap(items, modifier) %}
+  <div class="carousel-snap --{{ modifier }}">
+    {% for item in items %}
+      <a href="{{ item.link }}">
+        <img src="{{ item.img }}" alt="{{ item.label }}" />
+        <span>{{ item.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+{% endmacro %}

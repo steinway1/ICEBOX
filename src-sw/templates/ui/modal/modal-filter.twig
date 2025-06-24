@@ -1,0 +1,29 @@
+<div class="modal-side modal-filters">
+  <div class="modal-side__backdrop"></div>
+  <div class="modal-side__container">
+    <div class="modal-side__header">
+      <span>Filters & Sort</span>
+      <button class="modal-side__close-btn"></button>
+    </div>
+
+    <div class="modal-side__body">
+      {# Show with box & papers only #}
+      <div class="modal-side__row --grey">
+        <label class="toggle-switch --dark filter-head">
+          <input type="checkbox" id="filter-with-box-and-papers" />
+          <span>With box & papers only</span>
+          <div></div>
+        </label>
+      </div>
+      {# Sort By #}
+      {% include 'ui/modal/modal-filter/modal-filter-sort.twig' %}
+      {# Filters #}
+      {% include 'ui/modal/modal-filter/modal-filter-filters.twig' %}
+    </div>
+
+    <div class="modal-side__footer">
+      <button class="btn">Reset All</button>
+      <button class="btn --black">Apply</button>
+    </div>
+  </div>
+</div>

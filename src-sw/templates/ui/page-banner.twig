@@ -1,0 +1,28 @@
+{% set perks = [
+  {
+    icon: 'delivery',
+    label: 'US Free Delivery'
+  },
+  {
+    icon: 'verify',
+    label: '100% Authenticated'
+  },
+  {
+    icon: 'headphones',
+    label: '24/7 Concierge Service'
+  },
+  {
+    icon: 'phone',
+    label: 'Call Us Now: <a href="tel:+14048420266" target="_blank" class="underline">(404) 842 0266</a>',
+    classname: 'lg-flex'
+  }
+] %}
+
+<div class="page-banner">
+  {% for perk in perks %}
+    <div class="{{ perk.classname }}">
+      {% include 'icons/' ~ perk.icon ~ '.svg' %}
+      <span>{{ perk.label }}</span>
+    </div>
+  {% endfor %}
+</div>

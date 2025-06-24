@@ -1,0 +1,15 @@
+<div class="listing">
+  {% for item in items %}
+    {% include 'ui/product-card/product-card.twig' with {
+      item: item
+    } %}
+  {% endfor %}
+</div>
+
+{% if loaded_items < (items|length) %}
+  {% include 'ui/loader/loader.twig' with {
+    lineLoaderText: 'Loading more products...',
+    tMargin: 24,
+    bMargin: 68
+  } %}
+{% endif %}

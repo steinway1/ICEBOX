@@ -1,0 +1,14 @@
+{% set style = '' %}
+{% if tMargin %}
+  {% set style = style ~ 'margin-top: ' ~ tMargin ~ 'px; ' %}
+{% endif %}
+{% if bMargin %}
+  {% set style = style ~ 'margin-bottom: ' ~ bMargin ~ 'px; ' %}
+{% endif %}
+
+<div class="line-loader-container" style="{{ style ? style : '' }}">
+  <div class="line-loader"></div>
+  {% if lineLoaderText %}
+    <span>{{ lineLoaderText }}</span>
+  {% endif %}
+</div>

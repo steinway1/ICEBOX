@@ -1,0 +1,5 @@
+<div class="social-bar flex-wrap">
+  {% for item in social_links %}
+    <a href="{{ item.link }}" class="social-bar__item flex-none {{ ' --' ~ item.icon_slug }}">{% include 'icons/' ~ item.icon_slug ~ '-fill.svg' %}</a>
+  {% endfor %}
+</div>

@@ -1,5 +1,5 @@
 // src/js/main.js
-var $ = require('jquery');
+var $ = require('jquery');q
 window.$ = window.jQuery = $;
 
 Object.assign(window, require('./modules/constants'), require('./modules/utils'));

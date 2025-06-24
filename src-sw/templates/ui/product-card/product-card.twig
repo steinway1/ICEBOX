@@ -1,0 +1,107 @@
+{% set whatsAppLink = "https://wa.me/7705841378?text=I'd%20like%20to%20buy%20" ~ item.title ~ ' ' ~ item.brand ~ ' ' ~ item.meta %}
+
+<div class="product-card">
+  {# Media #}
+  <div class="product-card__top">
+    <div class="product-card__media">
+      <a href="{{ item.link }}"><img src="{{ item.img_src }}" alt="{{ item.brand }} {{ item.model }} {{ item.meta }}" /></a>
+    </div>
+  </div>
+
+  {# Main #}
+  <div class="product-card__main">
+    {# Main -- Brand / Title / Meta #}
+    <div class="product-card__main-details">
+      {# Brand name #}
+      {% if item.brand %}
+        <span class="product-card__brand">{{ item.brand }}</span>
+      {% endif %}
+
+      {# Model name #}
+      {% if item.title %}
+        <h5 class="product-card__title">{{ item.title }}</h5>
+      {% endif %}
+
+      {# Meta #}
+      {% if item.meta %}
+        <span class="product-card__meta">{{ item.meta }}</span>
+      {% endif %}
+    </div>
+
+    {# Main -- Material / Papers / Box #}
+    <div class="product-card__specs">
+      {# Material #}
+      {% if item.material %}
+        <span class="product-card__spec">
+          {% include 'icons/material.svg' %}
+          <span>{{ item.material }}</span>
+        </span>
+      {% endif %}
+
+      {# Papers #}
+      {% if item.papers is defined %}
+        <span class="product-card__spec">
+          {% if item.papers %}
+            {% include 'icons/papers.svg' %}
+            <span>Papers</span>
+          {% else %}
+            {% include 'icons/papers-no.svg' %}
+            <span>No Papers</span>
+          {% endif %}
+        </span>
+      {% endif %}
+
+      {# Box #}
+      {% if item.box is defined %}
+        <span class="product-card__spec">
+          {% if item.box %}
+            {% include 'icons/box.svg' %}
+            <span>Have Box</span>
+          {% else %}
+            {% include 'icons/box-no.svg' %}
+            <span>No Box</span>
+          {% endif %}
+        </span>
+      {% endif %}
+    </div>
+
+    {# Main -- Price / MSRP #}
+    <div class="product-card__values">
+      {# Price #}
+      <div class="product-card__price">
+        <span class="product-card__price-value">$ {{ item.price }}</span>
+        {# MSRP Diff #}
+        {% if item.price_lower_msrp is defined or (item.price_above_msrp is defined and item.price_msrp_diff_percentage) %}
+          <span class="product-card__price-diff {{ item.price_lower_msrp ? '--low' : '--high' }}">
+            {% if item.price_lower_msrp %}
+              {% include 'icons/stock-low.svg' %}
+              <span>{{ item.price_msrp_diff_percentage }}</span>
+            {% elseif item.price_above_msrp %}
+              {% include 'icons/stock-high.svg' %}
+              <span>{{ item.price_msrp_diff_percentage }}</span>
+            {% endif %}
+          </span>
+        {% endif %}
+      </div>
+
+      {# MSRP #}
+      {% if item.msrp %}
+        <div class="product-card__msrp">
+          <span>MSRP: ${{ item.msrp }}</span>
+        </div>
+      {% endif %}
+    </div>
+
+    {# Whatsapp / Quick view #}
+    <div class="product-card__actions">
+      <a href="{{ whatsAppLink }}" target="_blank" class="product-card__action --whatsapp">
+        {% include 'icons/whatsapp.svg' %}
+        <span>Whatsapp</span>
+      </a>
+      <div class="product-card__action" data-action="quickView({{ item.id }})">
+        {% include 'icons/quick-view.svg' %}
+        <span>Quick view</span>
+      </div>
+    </div>
+  </div>
+</div>

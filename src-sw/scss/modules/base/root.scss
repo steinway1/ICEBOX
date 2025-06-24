@@ -1,0 +1,47 @@
+@use "./mixin.scss" as *;
+
+:root {
+  --white: #fff;
+  --black: #1a1b1d;
+  --black-400: #a3a5ae;
+  --black-500: #70747e;
+  --black-600: #70747e;
+  --grey-light: #f4f4f5;
+  --grey: #f4f4f5;
+  --grey-100: #f0f0f1;
+  --grey-200: #e0e0e7;
+
+  // Colors
+  --accent-1: #058bd8;
+  --accent-2: #2a3448;
+  --accent-3: #1b1f27;
+  --red: #c12350;
+  --youtube: #de1212;
+  --green: #07927b;
+  --green-100: #057563;
+
+  // Backdrops
+  --backdrop: rgba(35, 40, 52, 0.5);
+
+  // Transition
+  --transition: all 290ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  --transition-modal: all 375ms cubic-bezier(0.39, 0.575, 0.565, 1);
+
+  // Spacing
+  --p-default: 4.44vw;
+  --p-card: 16px;
+
+  // Responsive
+  @include minXl {
+    --p-default: 5vw;
+  }
+
+  @include maxLg {
+    --p-default: 48px;
+  }
+
+  @include maxSm {
+    --p-default: 24px;
+    --p-card: 12px;
+  }
+}

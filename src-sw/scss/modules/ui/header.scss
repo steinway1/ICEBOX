@@ -1,0 +1,159 @@
+@use "../base/mixin.scss" as *;
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: white;
+}
+
+.header__main {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--p-default);
+  height: 76px;
+  background-color: white;
+  border-bottom: 1px solid var(--grey);
+}
+
+.header__link {
+  font-weight: 500;
+  position: relative;
+  padding: 6px 0;
+  transition: var(--transition);
+
+  &:not(.--active):hover {
+    color: var(--black-500);
+
+    &::after {
+      width: 24px;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0px;
+    transform-origin: center center;
+    height: 2px;
+    background-color: var(--black);
+    transition: var(--transition);
+  }
+
+  &.--active {
+    &::after {
+      width: 24px;
+    }
+  }
+}
+
+.header__btn {
+  position: relative;
+  font-size: 13px;
+  gap: 6px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @include maxLg {
+    width: 40px;
+    height: 40px;
+    border-radius: 0.3rem;
+
+    &[data-action="toggleMenu"] {
+      background-color: var(--grey);
+      border: 1px solid var(--grey-100);
+    }
+
+    & > span:not(.header__cart-count) {
+      display: none;
+    }
+  }
+
+  @include minLg {
+    &[data-action="modalSearchToggle"] {
+      border-radius: 50rem;
+      padding: 10px 32px 10px 8px;
+      background-color: var(--grey);
+      border: 1px solid var(--grey-100);
+
+      svg {
+        width: 20px;
+        height: 20px;
+        opacity: 0.35;
+
+        path {
+          stroke-width: 2;
+        }
+      }
+
+      span {
+        opacity: 0.35;
+      }
+
+      @include hover-border-accent-1;
+    }
+
+    &[data-action="toggleMenu"] {
+      display: none;
+    }
+  }
+
+  @include maxSm {
+    &[data-action="wishlist"],
+    &[href*="wishlist"] {
+      display: none;
+    }
+  }
+}
+
+.header__sub-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+
+  @include maxLg {
+    gap: 4px;
+  }
+}
+
+.header__cart-count {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: -6px;
+  left: -6px;
+  background-color: var(--accent-2);
+  backdrop-filter: blur(5px);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 9px;
+  overflow: hidden;
+
+  span {
+    @include line-clamp(1);
+    max-width: 80%;
+  }
+
+  @include maxLg {
+    left: 2px;
+    top: 2px;
+  }
+}

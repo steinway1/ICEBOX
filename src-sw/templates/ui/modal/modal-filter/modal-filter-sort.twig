@@ -1,0 +1,15 @@
+<div class="modal-side__row">
+  <div class="filter-row">
+    <div class="filter-head">
+      <span>Sort By: {{ page_sort_current ?? 'No Sorting' }}</span>
+      {% include 'icons/arrow-flat-right.svg' %}
+    </div>
+    <div class="filter-toggle">
+      <div class="filter-body">
+        <div class="filter-list">
+          {% include 'ui/forms/page-sort.twig' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<nav class="footer__nav">
+  {# About Us #}
+  <div class="footer__nav-col">
+    <div class="footer__nav-col-head">
+      <span>Useful Links</span>
+    </div>
+    <div class="footer__nav-col-body">
+      <div class="footer__nav-links">
+        {% for link in useful_links %}
+          <a href="{{ link.link }}">{{ link.label }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {# Watch Brands #}
+  <div class="footer__nav-col">
+    <div class="footer__nav-col-head">
+      <span>Watch Brands</span>
+    </div>
+    <div class="footer__nav-col-body">
+      <div class="footer__nav-links">
+        {% for brand in watch_brands|slice(0, 7) %}
+          <a href="{{ brand.link }}">{{ brand.label }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {# Contacts #}
+  <div class="footer__nav-col --expanded">
+    <div class="footer__nav-col-head">
+      <span>Contact & Find Us</span>
+    </div>
+    <div class="footer__nav-col-body">
+      <div class="footer__nav-links gap-row-24">
+        <div>
+          <span class="text-xs font-semibold">Call Us Now</span>
+          <a href="tel:{{ phone }}" class="--lg"><span>{{ phone }}</span></a>
+        </div>
+        <div class="flex-col gap-row-6">
+          <div class="text-xs font-semibold">
+            Store Hours
+          </div>
+          <div class="text-sm">
+            Open Monday - Friday 11:00 AM - 6:00 PM
+            <br />
+            Open Saturday 12:00PM - 5:00PM
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

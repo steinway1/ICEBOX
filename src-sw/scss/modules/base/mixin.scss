@@ -1,0 +1,166 @@
+@mixin minXxl {
+  @media (min-width: 1920px) {
+    @content;
+  }
+}
+
+@mixin minXl {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin maxLg {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin minLg {
+  @media (min-width: 1025px) {
+    @content;
+  }
+}
+
+@mixin maxMd {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin minMd {
+  @media (min-width: 769px) {
+    @content;
+  }
+}
+
+@mixin maxSm {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin minSm {
+  @media (min-width: 481px) {
+    @content;
+  }
+}
+
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin hidebar {
+  & {
+    scrollbar-width: none;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin y-scroll {
+  & {
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin hover-border-black {
+  &:hover {
+    border-color: var(--black);
+    background-color: var(--white);
+  }
+}
+
+@mixin hover-border-accent-1 {
+  &:hover {
+    border-color: var(--accent-1);
+    background-color: var(--white);
+  }
+}
+
+@mixin hover-border-accent-2 {
+  &:hover {
+    border-color: var(--accent-2);
+    background-color: var(--white);
+  }
+}
+
+@mixin after-drop-arrow($strokeWidth: 1.5) {
+  &::after {
+    content: "";
+    position: static;
+    width: 10px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M1 3L5 7L9 3' stroke='%231a1b1d' stroke-width='#{$strokeWidth}' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 4px;
+  }
+}
+
+@mixin after-cross($strokeWidth: 2, $size: 18px) {
+  &::after {
+    content: "";
+    position: static;
+    width: $size;
+    height: $size;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="currentColor" fill="none"><path d="M19.0005 4.99988L5.00049 18.9999M5.00049 4.99988L19.0005 18.9999" stroke="currentColor" stroke-width="#{$strokeWidth}" stroke-linecap="round" stroke-linejoin="round"></path></svg>');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+@mixin backimage-checkmark {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 10.6L10.453 16L20 7" stroke="white" stroke-width="5"/></svg>');
+}
+
+@mixin scroller-snap-x($yPadding: 20px, $gap: 12px) {
+  & {
+    width: 100vw;
+    padding: $yPadding var(--p-default);
+    gap: $gap;
+    scroll-padding-left: var(--p-default);
+    scroll-snap-type: x mandatory;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    overflow: scroll hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    & > a,
+    * > div {
+      scroll-snap-align: start;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin active-opacity {
+  &:active {
+    opacity: 0.5;
+  }
+}

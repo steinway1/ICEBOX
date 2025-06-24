@@ -1,0 +1,70 @@
+{% set mainNav = [
+  {
+    label: 'Watches',
+    link: '/'
+  },
+  {
+    label: 'Accessories',
+    link: '/accessories'
+  },
+  {
+    label: 'Handbags',
+    link: '/handbags'
+  }
+] %}
+
+{% set subNav = [
+  {
+    label: 'Find anything...',
+    callback: 'modalSearchToggle',
+    icon: 'search'
+  },
+  {
+    label: 'Wishlist',
+    link: '/wishlist',
+    icon: 'heart'
+  },
+  {
+    label: 'Contacts',
+    callback: 'toggleHeaderContact',
+    icon: 'whatsapp',
+    className: 'header__contact-btn'
+  },
+  {
+    label: 'Menu',
+    callback: 'toggleMenu',
+    icon: 'menu'
+  }
+] %}
+
+<div class="header__main">
+  {# Logo + Main Nav #}
+  <div class="flex-center gap-col-48">
+    {% include 'ui/logo-link.twig' %}
+    <div class="flex-center gap-col-24 hide-lg">
+      {% for item in mainNav %}
+        <a href="{{ item.link }}" class="header__link{% if item.link == currentPath %} --active{% endif %}">{{ item.label }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  {# Sub Nav #}
+  <div class="header__sub-nav">
+    {% for item in subNav %}
+      {% if item.link %}
+        <a href="{{ item.link }}" class="header__btn {{ item.className }}">
+          {% include 'icons/' ~ item.icon ~ '.svg' %}
+          <span>{{ item.label }}</span>
+        </a>
+      {% else %}
+        <button class="header__btn {{ item.className }}" data-action="{{ item.callback }}">
+          {% if item.cartCount and cart.count > 0 %}
+            <span class="header__cart-count"><span>{{ cart.count }}</span></span>
+          {% endif %}
+          {% include 'icons/' ~ item.icon ~ '.svg' %}
+          <span>{{ item.label }}</span>
+        </button>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

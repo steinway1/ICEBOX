@@ -42,6 +42,7 @@ const settings = {
   server: { livereload: true, open: true, port: 8080 },
   assets: { verbose: true },
 };
+
 const setPlumberNotify = errorTitle => {
   return {
     errorHandler: notify.onError({
@@ -437,6 +438,7 @@ gulp.task('watch:dev', () => {
     gulp.watch('./src/templates/data/**', gulp.parallel('twig:dev', 'twig-admin:dev')),
     gulp.watch('./src/templates/admin/svg/**', gulp.parallel('twig-admin:dev')),
     gulp.watch('./src/templates/admin/assets/**/*', gulp.parallel('assets-admin:dev')),
+    gulp.watch('./src/assets/**/*', gulp.parallel('assets:dev')),
     gulp.watch('./src/scss/**/*.scss', gulp.parallel('css:dev', 'css-admin:dev', 'css-promo:dev')),
     gulp.watch(['./src/js/*.js', './src/js/modules/**/*.js'], gulp.parallel('js:dev')),
     gulp.watch('./src/js/admin/**/*.js', gulp.parallel('js-admin:dev')),

@@ -1,0 +1,42 @@
+{% set mainNav = main_nav %}
+
+<div class="menu">
+  <div class="menu__main">
+    <div class="menu__nav">
+      {% for item in mainNav %}
+        <a href="{{ item.link }}" class="menu__nav-link">
+          {{ item.label }}
+          {% include 'icons/arrow-flat-right.svg' %}
+        </a>
+      {% endfor %}
+    </div>
+    <div class="menu__sub-nav">
+      <div class="menu__sub-nav-list">
+        <a href="tel:{{ phone }}" class="menu__sub-nav-link">
+          {% include 'icons/phone.svg' %}
+          <span>Call us: {{ phone }}</span>
+        </a>
+        <a href="mailto:{{ email }}" class="menu__sub-nav-link">
+          {% include 'icons/email.svg' %}
+          <span>Email us: {{ email }}</span>
+        </a>
+        <a href="https://wa.me/{{ phone }}" class="menu__sub-nav-link">
+          {% include 'icons/whatsapp.svg' %}
+          <span>Chat on WhatsApp</span>
+        </a>
+      </div>
+      <a href="https://www.youtube.com/@swisswatchescom" class="btn --youtube flex-none">
+        {% include 'icons/youtube-fill.svg' %}
+        <span>Visit our YouTube channel</span>
+      </a>
+      <span class="text-xs opacity-70">
+        3255 Peachtree Road NE
+        <br />
+        Suite #3
+        <br />
+        Atlanta, GA 30305
+      </span>
+      {% include 'ui/social/social-bar.twig' %}
+    </div>
+  </div>
+</div>

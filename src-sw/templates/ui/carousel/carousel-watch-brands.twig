@@ -1,0 +1,12 @@
+{% import 'ui/carousel/carousel-snap.twig' as carousel %}
+
+{# 
+  watch_brands -- array of items {link, img, label}
+  Expected to have the the following fields:
+    link -- string
+    img -- string (src url -- ./assets/spot/...)
+    label -- string
+ #}
+{% set brands = watch_brands %}
+
+{{ carousel.carouselSnap(brands, 'watch-brands') }}

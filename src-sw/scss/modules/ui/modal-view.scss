@@ -1,0 +1,214 @@
+@use "../base/mixin.scss" as *;
+
+.modal-view {
+  display: none;
+  position: fixed;
+  z-index: 301;
+  inset: 0;
+  transition: var(--transition);
+
+  &.--loading {
+    .modal-view__loader {
+      display: flex;
+    }
+  }
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: var(--backdrop);
+  }
+
+  &__container {
+    z-index: 3;
+    background-color: #fff;
+    border-radius: 0.8rem;
+    width: 100%;
+    max-width: 920px;
+    min-height: 120px;
+    transition: all 0.45s cubic-bezier(0.39, 0.575, 0.565, 1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+
+    @include maxLg {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      width: auto;
+      max-width: none;
+      inset: auto 10px 0;
+      transform: translate(0%);
+    }
+  }
+
+  &__loader {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    min-height: 320px;
+    padding: 24px;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    grid-column-gap: 4px;
+    grid-row-gap: 4px;
+    border-bottom: 1px solid var(--grey);
+    text-align: center;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    display: flex;
+    position: relative;
+  }
+
+  &__close-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    position: absolute;
+    inset: 0 0 0 auto;
+    padding: 24px;
+    background-image: linear-gradient(to right, transparent, white);
+    @include after-cross;
+  }
+
+  &__footer {
+    padding: 8px;
+    display: flex;
+    gap: 8px;
+  }
+
+  &__item {
+    min-height: 120px;
+    padding: 24px;
+    display: flex;
+    gap: 24px;
+
+    @include maxLg {
+      flex-direction: column;
+      overflow: hidden scroll;
+      max-height: 58vh;
+      @include hidebar;
+    }
+  }
+
+  &__pic-wrap {
+    flex: 1;
+
+    @include maxLg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 0.6rem;
+
+      @include maxLg {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  &__details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__description {
+    font-size: 13px;
+    @include line-clamp(2);
+  }
+
+  &__description-more {
+    line-height: 26px;
+    font-weight: 600;
+    cursor: pointer;
+    @include no-select;
+  }
+
+  &__stock {
+    font-weight: 700;
+  }
+
+  &__disclaimer {
+    // padding: 16px;
+    // background-color: var(--grey-light);
+    // border-radius: 0.8rem;
+
+    span {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+  }
+
+  &__specs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__spec {
+    padding: 12px 0;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid var(--grey-100);
+    border-bottom: 1px solid var(--grey-100);
+    margin-bottom: -1px;
+
+    &.--material {
+      &::before {
+        background-image: url("../assets/icons/material.svg");
+      }
+    }
+
+    &.--papers {
+      &::before {
+        background-image: url("../assets/icons/papers.svg");
+      }
+    }
+
+    &.--box {
+      &::before {
+        background-image: url("../assets/icons/box.svg");
+      }
+    }
+
+    &.--condition {
+      &::before {
+        background-image: url("../assets/icons/condition.svg");
+      }
+    }
+
+    &::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}

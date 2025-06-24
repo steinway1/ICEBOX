@@ -1,0 +1,29 @@
+{% extends 'layouts/default.twig' %}
+
+{% set index_breadcrumbs = [
+  {
+    label: 'Home',
+    link: '/'
+  },
+  {
+    label: 'Watches',
+    link: '/'
+  }
+] %}
+
+{% block content %}
+  {% include 'ui/header/header.twig' %}
+  {% include 'ui/menu/menu.twig' %}
+
+  {% include 'ui/breadcrumbs.twig' with {
+    breadcrumbs: index_breadcrumbs
+  } %}
+  {% include 'ui/carousel/carousel-watch-brands.twig' %}
+  {% include 'ui/listing/listing-sticky-toolbar.twig' %}
+  {% include 'ui/listing/listing-toolbar.twig' %}
+  {% include 'ui/listing/listing.twig' with {
+    items: watches_collection
+  } %}
+
+  {% include 'ui/footer/footer.twig' %}
+{% endblock %}

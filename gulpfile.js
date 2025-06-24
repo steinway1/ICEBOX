@@ -1,8 +1,12 @@
+// gulpfile.js
 const gulp = require('gulp');
 
 require('./gulp/dev.js');
 require('./gulp/dist.js');
+// Swisswatches
+require('./gulp/dev-sw.ts');
 
+// Icebox Default
 gulp.task(
   'default',
   gulp.series(
@@ -21,7 +25,7 @@ gulp.task(
     gulp.parallel('watch-and-server:dev'),
   ),
 );
-
+// Icebox Build
 gulp.task(
   'build',
   gulp.series(
@@ -38,5 +42,30 @@ gulp.task(
       'fonts:build',
     ),
     gulp.parallel('twig-admin:build', 'css-admin:build', 'js-admin:build', 'fonts-admin:build', 'assets-admin:build'),
+  ),
+);
+
+// Swisswatches Default
+gulp.task(
+  'sw',
+  gulp.series(
+    'clean-sw:dev',
+    gulp.parallel('twig-sw:dev', 'scss-sw:dev', 'js-sw:dev', 'fonts-sw:dev', 'assets-sw:dev', 'icons-sw:dev'),
+    'serve-sw:dev',
+  ),
+);
+
+gulp.task(
+  'sw-build',
+  gulp.series(
+    'clean-sw:build',
+    gulp.parallel(
+      'twig-sw:build',
+      'scss-sw:build',
+      'js-sw:build',
+      'fonts-sw:build',
+      'assets-sw:build',
+      'icons-sw:build',
+    ),
   ),
 );

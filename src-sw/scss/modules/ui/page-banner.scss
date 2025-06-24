@@ -1,0 +1,33 @@
+@use "../base/mixin" as *;
+
+.page-banner {
+  height: 40px;
+  background-color: var(--grey);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  font-size: 11px;
+
+  & > div {
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+
+      path {
+        stroke-width: 1.5px !important;
+      }
+    }
+
+    @include maxLg {
+      display: none;
+    }
+  }
+}

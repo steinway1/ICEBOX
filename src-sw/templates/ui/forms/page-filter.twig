@@ -1,0 +1,28 @@
+{% if type not in ['range', 'select'] %}
+  {% for item in items %}
+    <label class="custom-checkbox">
+      <input type="checkbox" name="{{ name }}" value="{{ item.value }}" />
+      <span>{{ item.label }}</span>
+    </label>
+  {% endfor %}
+{% elseif type == 'range' %}
+  <div class="slider-container">
+    <!-- сами ползунки -->
+    <div class="custom-range" id="{{ filter.name }}" style="--min-percent: 0%; --max-percent: 100%;">
+      <input type="range" id="price-slider-min" min="{{ min }}" max="{{ max }}" value="{{ min }}" />
+      <input type="range" id="price-slider-max" min="{{ min }}" max="{{ max }}" value="{{ max }}" />
+    </div>
+
+    <!-- поля ввода чисел -->
+    <div class="slider-container-inputs">
+      <label>
+        <span>$</span>
+        <input type="number" id="price-input-min" min="{{ min }}" max="{{ max }}" value="{{ min }}" />
+      </label>
+      <label>
+        <span>$</span>
+        <input type="number" id="price-input-max" min="{{ min }}" max="{{ max }}" value="{{ max }}" />
+      </label>
+    </div>
+  </div>
+{% endif %}

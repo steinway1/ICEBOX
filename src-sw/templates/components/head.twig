@@ -1,0 +1,36 @@
+<meta charset="UTF-8" />
+<title>
+  {% if page_title is defined %}
+    {{ page_title }}
+  {% else %}
+    {{ page_default_title }}
+  {% endif %}
+</title>
+
+<meta name="description" />
+<meta name="keywords" />
+<meta name="robots" content="index follow" />
+
+<link rel="preload" href="./assets/fonts/TSans.woff2" as="font" type="font/woff2" crossorigin />
+
+<link rel="stylesheet" href="css/base.css" />
+<link rel="preload" as="style" href="css/partial.css" onload="this.rel='stylesheet'" />
+<noscript>
+  <link rel="stylesheet" href="css/partial.css" />
+</noscript>
+
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+{# <meta name="theme-color" content="#ffffff" />
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)" /> #}
+
+<meta property="og:image" content="{{ THEME_ASSETS_FOLDER }}open-graph.jpeg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="./assets/favicons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicons/favicon-16x16.png" />
+<link rel="manifest" href="./assets/favicons/site.webmanifest" />
+<link rel="mask-icon" href="./assets/favicons/safari-pinned-tab.svg" color="#5bbad5" />

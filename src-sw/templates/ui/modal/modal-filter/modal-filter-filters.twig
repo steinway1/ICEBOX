@@ -1,0 +1,23 @@
+{% for filter in page_filters %}
+  <div class="modal-side__row">
+    <div class="filter-row --togglable">
+      <div class="filter-head">
+        <span>{{ filter.title }}</span>
+        {% include 'icons/arrow-flat-right.svg' %}
+      </div>
+      <div class="filter-toggle">
+        <div class="filter-body">
+          <div class="filter-list">
+            {% include 'ui/forms/page-filter.twig' with {
+              type: filter.type,
+              name: filter.name,
+              items: filter.items,
+              min: filter.min,
+              max: filter.max
+            } %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}

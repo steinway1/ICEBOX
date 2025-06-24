@@ -1,0 +1,29 @@
+{% set THEME_ASSETS_FOLDER = './assets/' %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include 'components/head.twig' %}
+    {% block head %}
+      {# Head goes here #}
+    {% endblock %}
+  </head>
+
+  <body>
+    <main>
+      {% block content %}
+        {# Content goes here #}
+      {% endblock %}
+    </main>
+
+    {# Modals #}
+    {% include 'ui/modal/modal-search.twig' %}
+    {% include 'ui/modal/modal-view.twig' %}
+    {% include 'ui/modal/modal-filter.twig' %}
+
+    {% include 'components/scripts.twig' %}
+    {% block scripts %}
+      {# Scripts go here #}
+    {% endblock %}
+  </body>
+</html>

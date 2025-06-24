@@ -1,0 +1,67 @@
+@use "../base/mixin.scss" as *;
+
+.menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background-color: var(--grey);
+  overflow: hidden scroll;
+  padding-bottom: 32px;
+  @include hidebar;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    padding-top: 116px;
+    min-height: 80px;
+    background-color: white;
+  }
+
+  &__nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px var(--p-default);
+    font-weight: 550;
+    border-bottom: 1px solid var(--grey);
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  &__sub-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background-color: var(--grey);
+    min-height: 120px;
+    padding: 20px var(--p-default);
+  }
+
+  &__sub-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__sub-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    font-weight: 600;
+    gap: 10px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

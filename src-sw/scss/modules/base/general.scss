@@ -1,0 +1,193 @@
+@use "./mixin.scss" as *;
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  color: var(--black);
+  line-height: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.1px;
+  background-color: var(--white);
+  overflow-x: hidden;
+}
+
+strong {
+  font-weight: 600;
+}
+
+label {
+  font-size: 14px;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-link {
+  display: block;
+}
+
+.logo {
+  width: 120px;
+}
+
+.breadcrumbs {
+  background-color: var(--white);
+  padding: 8px var(--p-default);
+  width: 100vw;
+  overflow: hidden;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  border-bottom: 1px solid var(--grey);
+
+  & > a,
+  span {
+    flex: none;
+    @include line-clamp(1);
+
+    &.--last {
+      font-weight: 600;
+    }
+
+    &:not(:last-child) {
+      &:after {
+        content: "/";
+        margin: 0 8px;
+      }
+    }
+  }
+}
+
+.carousel-snap {
+  border-bottom: 1px solid var(--grey);
+  @include scroller-snap-x;
+
+  &.--watch-brands {
+    img {
+      background-color: var(--accent-2);
+    }
+  }
+
+  a {
+    display: flex;
+    border-radius: 50rem;
+    border: 1px solid var(--grey-100);
+    height: 56px;
+    font-weight: 450;
+    font-size: 13px;
+    flex: none;
+    padding: 3px;
+    transition: var(--transition);
+    @include no-select;
+
+    &:hover {
+      border-color: var(--accent-1);
+    }
+
+    img {
+      height: 100%;
+      border-radius: 50%;
+      color: var(--white);
+      aspect-ratio: 1/1;
+      flex: 0;
+      object-fit: cover;
+    }
+
+    span {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: 500;
+      font-size: 13px;
+      padding: 4px 14px 4px 10px;
+      @include line-clamp(1);
+    }
+  }
+}
+
+.social-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    border: 1px solid var(--grey-200);
+    transition: var(--transition);
+
+    &.--youtube {
+      color: var(--red);
+      border-color: var(--red) !important;
+
+      &:hover {
+        background-color: var(--red);
+        color: white;
+      }
+    }
+
+    &:hover {
+      border-color: var(--accent-2);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.btn {
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: 550;
+  flex: 1;
+  background-color: var(--grey);
+  border: 1px solid var(--grey-100);
+  border-radius: 0.6rem;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &.--red {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: white;
+  }
+
+  &.--youtube {
+    background-color: var(--youtube);
+    border-color: var(--youtube);
+    color: white;
+  }
+
+  &.--green {
+    background-color: var(--green);
+    border-color: var(--green);
+    color: white;
+
+    &.--outline {
+      background-color: transparent;
+      color: var(--green);
+    }
+  }
+
+  &.--black {
+    background-color: var(--black);
+    border-color: var(--black);
+    color: white;
+  }
+}
