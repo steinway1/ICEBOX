@@ -7,9 +7,29 @@
   inset: 0;
   transition: var(--transition);
 
+  &:not(.--open) {
+    .modal-view__backdrop {
+      background-color: transparent;
+    }
+
+    .modal-view__container {
+      transform: translate(0, 18px) translate(-50%, -50%);
+      opacity: 0;
+
+      @include maxLg {
+        transform: translateY(100%);
+        opacity: 1;
+      }
+    }
+  }
+
   &.--loading {
     .modal-view__loader {
       display: flex;
+    }
+
+    .modal-view__main {
+      display: none;
     }
   }
 
@@ -17,6 +37,7 @@
     position: absolute;
     inset: 0;
     background-color: var(--backdrop);
+    transition: var(--transition-modal);
   }
 
   &__container {
@@ -26,7 +47,7 @@
     width: 100%;
     max-width: 920px;
     min-height: 120px;
-    transition: all 0.45s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: var(--transition-modal);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -67,6 +88,26 @@
     padding: 24px;
     display: flex;
     position: relative;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    h4 {
+      @include line-clamp(1);
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 26px;
+    }
+
+    p {
+      @include line-clamp(1);
+      opacity: 0.5;
+      font-size: 12px;
+    }
   }
 
   &__close-btn {
@@ -114,6 +155,9 @@
       width: 100%;
       aspect-ratio: 1/1;
       border-radius: 0.6rem;
+      object-fit: cover;
+      filter: brightness(97%);
+      background-color: white;
 
       @include maxLg {
         max-width: 260px;
@@ -122,8 +166,14 @@
     }
   }
 
-  &__details {
+  &__details-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     flex: 1;
+  }
+
+  &__details {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -142,6 +192,7 @@
 
   &__description-more {
     line-height: 26px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     @include no-select;
