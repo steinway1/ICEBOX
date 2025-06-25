@@ -1,5 +1,5 @@
-import { getTransitionTime, lockScroll, unlockScroll, removeClasses } from '../../modules/general/utils'
-import { __FALSE, __TRUE, __FADE } from '../../modules/general/constants'
+import { getTransitionTime, lockScroll, unlockScroll, removeClasses } from '../../modules/general/utils';
+import { __FALSE, __TRUE, __FADE } from '../../modules/general/constants';
 
 export default class LockPin {
   constructor(settings = {}) {
@@ -68,7 +68,7 @@ export default class LockPin {
     this.outputSpanArr = [...this.output.querySelectorAll('span')];
     this.evtClose = this.holder.querySelector('[data-pin-evt="close"]');
     this.evtSubmit = this.holder.querySelector('[data-pin-evt="submit"]');
-    this.btnArrFiltered = this.btnArr.filter((btn) => {
+    this.btnArrFiltered = this.btnArr.filter(btn => {
       return !btn.dataset.pinEvt;
     });
   }
@@ -103,7 +103,7 @@ export default class LockPin {
     const pin = this.currentPin;
     const length = pin.length;
     if (length === 0) {
-      this.outputSpanArr.forEach((span) => {
+      this.outputSpanArr.forEach(span => {
         span.innerHTML = '';
       });
     } else if (length <= this.maxLength) {
@@ -149,7 +149,7 @@ export default class LockPin {
    */
   attachButtonClick() {
     for (const btn of this.btnArrFiltered) {
-      const handler = (e) => {
+      const handler = e => {
         if (!this.isLocked) {
           const num = Number(e.target.innerHTML);
           this.currentPin.push(num);
@@ -161,7 +161,7 @@ export default class LockPin {
     }
 
     // Close button handler
-    if (this.evtClose) {
+    if (this.allowClose && this.evtClose) {
       this.closeHandler = () => {
         if (!this.isLocked) {
           this.destroy();
@@ -183,7 +183,7 @@ export default class LockPin {
   }
 
   attachDocEvents() {
-    this.keydownHandler = (e) => {
+    this.keydownHandler = e => {
       if (this.holder) {
         if (!this.isLocked) {
           // e.preventDefault(); // Be cautious with preventDefault
@@ -222,7 +222,7 @@ export default class LockPin {
     this.buttonHandlers.clear();
 
     // Remove close and submit handlers
-    if (this.evtClose && this.closeHandler) {
+    if (this.allowClose && this.evtClose && this.closeHandler) {
       this.evtClose.removeEventListener('click', this.closeHandler);
       this.closeHandler = null;
     }

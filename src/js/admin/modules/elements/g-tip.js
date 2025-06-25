@@ -70,6 +70,7 @@ class GTip {
       console.log(target);
 
       if (target.matches('[data-evt="openGoogleTip"]')) {
+        this.input.value = '';
         this.card = target.closest('.whale-card');
         this.elem.setupLinks();
         this.elem.open();
