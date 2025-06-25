@@ -1,142 +1,121 @@
 class GTip {
-	constructor() {
-		this.card = null;
-		this.query = undefined;
-		this.elem = document.querySelector('.g-tip');
-		this.input = document.querySelector('.g-tip__input');
-		if (this.elem && this.input) {
-			this.extendElem();
-			this.bindEvents();
-		}
-	}
+  constructor() {
+    this.card = null;
+    this.query = '';
 
-	extendElem() {
-		this.elem.setupLinks = () => {
-			if (this.card) {
-				const linksToHide = ['Contract', 'Sportrac'];
-				const links = [...this.elem.querySelectorAll('a')];
-				const attr = this.card.dataset.showContract;
-				links.forEach((link) => {
-					link.style.display = 'block';
-				});
-				if (!attr) {
-					links.forEach((link) => {
-						if (linksToHide.includes(link.textContent)) {
-							link.style.display = 'none';
-						}
-					});
-				}
-			}
-		};
+    this.elem = document.querySelector('.g-tip');
+    this.input = this.elem?.querySelector('.g-tip__input') ?? null;
 
-		this.elem.open = () => {
-			if (this.card) {
-				const anchor = this.card.querySelector('.ext-search');
-				if (anchor) {
-					const rect = anchor.getBoundingClientRect();
-					const box = this.elem;
-					box.style.display = 'block';
-					let left =
-						rect.left > box.offsetWidth / 2
-							? rect.left - box.offsetWidth / 2 + anchor.offsetWidth / 2
-							: rect.left;
-					let top =
-						window.innerHeight - rect.bottom < box.offsetHeight + 20
-							? window.scrollY + rect.top - box.offsetHeight - 10
-							: window.scrollY + rect.top + anchor.offsetHeight + 10;
+    if (this.elem) {
+      this.extendElem();
+      this.bindEvents();
+    }
+  }
 
-					if (left < 0) {
-						left = 0;
-					} else if (left + box.offsetWidth > window.innerWidth) {
-						left = window.innerWidth - box.offsetWidth;
-					}
+  extendElem() {
+    this.elem.setupLinks = () => {
+      if (!this.card) return;
+      const linksToHide = ['Contract', 'Sportrac'];
+      const links = [...this.elem.querySelectorAll('a')];
+      const showContract = this.card.dataset.showContract;
 
-					box.style.left = `${left}px`;
-					box.style.top = `${top}px`;
-				}
-			}
-		};
+      links.forEach(link => {
+        link.style.display = 'block';
+        if (!showContract && linksToHide.includes(link.textContent)) {
+          link.style.display = 'none';
+        }
+      });
+    };
 
-		this.elem.reset = () => {
-			const box = this.elem;
-			box.style.display = 'none';
-			if (this.card) {
-				this.card = null;
-				this.query = undefined;
-			}
-		};
+    this.elem.open = () => {
+      if (!this.card) return;
+      const anchor = this.card.querySelector('.ext-search');
+      if (!anchor) return;
 
-		this.elem.submit = () => {
-			const query = `${this.query}`;
-			const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-			window.open(url, '_blank');
-		};
-	}
+      const rect = anchor.getBoundingClientRect();
+      const box = this.elem;
+      box.style.display = 'block';
 
-	bindEvents() {
-		const btnArr = [...document.querySelectorAll('[data-evt="openGoogleTip"]')];
-		btnArr.forEach((btn) => {
-			btn.onclick = (e) => {
-				this.card = e.target.closest('.whale-card');
-				this.elem.setupLinks();
-				this.elem.open();
-			};
-		});
+      let left = rect.left > box.offsetWidth / 2 ? rect.left - box.offsetWidth / 2 + anchor.offsetWidth / 2 : rect.left;
 
-		const queries = [...document.querySelectorAll('.g-tip__queries a')];
-		queries.forEach((query) => {
-			query.onclick = (e) => {
-				if (this.card) {
-					const name = this.card.querySelector('.whale-card__name');
-					if (name) {
-						this.query = `${name.textContent} ${query.textContent}`;
-						this.elem.submit();
-					}
-				}
-			};
-		});
+      let top =
+        window.innerHeight - rect.bottom < box.offsetHeight + 20
+          ? window.scrollY + rect.top - box.offsetHeight - 10
+          : window.scrollY + rect.top + anchor.offsetHeight + 10;
 
-		if (this.input) {
-			this.input.onkeydown = (e) => {
-				if (e.key === 'Enter') {
-					e.preventDefault();
-					if (this.card) {
-						const name = this.card.querySelector('.whale-card__name');
-						if (name) {
-							this.query = `${name.textContent} ${this.input.value}`;
-							this.elem.submit();
-						}
-					}
-				}
-			};
-		}
+      if (left < 0) left = 0;
+      if (left + box.offsetWidth > window.innerWidth) {
+        left = window.innerWidth - box.offsetWidth;
+      }
 
-		const submitInputArr = [...document.querySelectorAll('[data-evt="submitGoogleTip"]')];
-		submitInputArr.forEach((btn) => {
-			btn.onclick = () => {
-				if (this.card) {
-					const name = this.card.querySelector('.whale-card__name');
-					if (name) {
-						this.query = `${name.textContent} ${this.input.value}`;
-						this.elem.submit();
-					}
-				}
-			};
-		});
+      box.style.left = `${left}px`;
+      box.style.top = `${top}px`;
+    };
 
-		window.onscroll = () => {
-			this.elem.reset();
-		};
+    this.elem.reset = () => {
+      this.elem.style.display = 'none';
+      this.card = null;
+      this.query = '';
+    };
 
-		document.addEventListener('click', (e) => {
-			const target = e.target;
-			if (!target.classList.contains('ext-search') && !target.closest('.g-tip')) {
-				this.elem.reset();
-			}
-		});
-	}
+    this.elem.submit = () => {
+      const url = `https://www.google.com/search?q=${encodeURIComponent(this.query)}`;
+      window.open(url, '_blank');
+    };
+  }
+
+  bindEvents() {
+    document.addEventListener('click', e => {
+      const target = e.target;
+      console.log(target);
+
+      if (target.matches('[data-evt="openGoogleTip"]')) {
+        this.card = target.closest('.whale-card');
+        this.elem.setupLinks();
+        this.elem.open();
+        return; // done
+      }
+
+      if (target.matches('.g-tip__queries a')) {
+        if (this.card) {
+          const name = this.card.querySelector('.whale-card__name')?.textContent ?? '';
+          this.query = `${name} ${target.textContent}`.trim();
+          this.elem.submit();
+        }
+        return;
+      }
+
+      if (target.matches('[data-evt="submitGoogleTip"]')) {
+        if (this.card) {
+          const name = this.card.querySelector('.whale-card__name')?.textContent ?? '';
+          this.query = `${name} ${this.input.value}`.trim();
+          this.elem.submit();
+        }
+        return;
+      }
+
+      if (!target.classList.contains('ext-search') && !target.closest('.g-tip')) {
+        this.elem.reset();
+      }
+    });
+
+    if (this.input) {
+      this.input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (this.card) {
+            const name = this.card.querySelector('.whale-card__name')?.textContent ?? '';
+            this.query = `${name} ${this.input.value}`.trim();
+            this.elem.submit();
+          }
+        }
+      });
+    }
+
+    window.addEventListener('scroll', () => this.elem.reset(), { passive: true });
+  }
 }
 
 export function initGTip() {
-	new GTip()
+  new GTip();
 }

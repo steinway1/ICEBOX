@@ -1,13 +1,13 @@
-import $ from 'jquery'
-import LockPin from '../dynamic/lock-pin'
-import CrmSwiper from '../dynamic/crm-swiper'
-import { getTransitionTime } from '../general/utils'
-import { __SEALED, __REVEALED, __EDIT, IS_ACTIVE, IS_VISIBLE } from '../general/constants'
+import $ from 'jquery';
+import LockPin from '../dynamic/lock-pin';
+import CrmSwiper from '../dynamic/crm-swiper';
+import { getTransitionTime } from '../general/utils';
+import { __SEALED, __REVEALED, __EDIT, IS_ACTIVE, IS_VISIBLE } from '../general/constants';
 
 export default class WhalesPage {
   constructor(rootEl) {
-    this.rootEl = rootEl
-    if (!rootEl) return
+    this.rootEl = rootEl;
+    if (!rootEl) return;
 
     this.initFn = {
       attachMoreBtnClick: this.attachMoreBtnClick.bind(this),
@@ -18,16 +18,16 @@ export default class WhalesPage {
       attachToggleQuestion: this.attachToggleQuestion.bind(this),
       attachAvatarUpload: this.attachAvatarUpload.bind(this),
     };
-    this.init()
+    this.init();
   }
 
   init() {
-    const pin = new LockPin({
-      code: 3256,
-    });
-    pin.push();
+    // const pin = new LockPin({
+    //   code: 3256,
+    // });
+    // pin.push();
 
-    Object.values(this.initFn).forEach((fn) => {
+    Object.values(this.initFn).forEach(fn => {
       if (typeof fn === 'function') {
         try {
           fn();
@@ -142,7 +142,7 @@ export default class WhalesPage {
           }
         };
 
-        input.addEventListener('keydown', (e) => {
+        input.addEventListener('keydown', e => {
           if (e.key === 'Enter' || e.keyCode === 13) {
             cell.save();
           }
@@ -152,16 +152,14 @@ export default class WhalesPage {
   }
 
   attachMoreBtnClick() {
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', e => {
       const target = e.target;
       const btn =
-        e.target.dataset.evt === 'whale_toggle_more'
-          ? e.target
-          : e.target.closest('[data-evt="whale_toggle_more"]');
+        e.target.dataset.evt === 'whale_toggle_more' ? e.target : e.target.closest('[data-evt="whale_toggle_more"]');
       if (btn) {
         const card = target.closest('.whale-card');
         const drop_menu = card.parentNode.querySelector('.whale-more-drop');
-        document.querySelectorAll('.whale-card.--drop-active').forEach((elCard) => {
+        document.querySelectorAll('.whale-card.--drop-active').forEach(elCard => {
           if (elCard !== card) {
             elCard.classList.remove('--drop-active');
           }
@@ -176,7 +174,7 @@ export default class WhalesPage {
         }
       }
       if (!target.closest('.whale-more-wrap')) {
-        document.querySelectorAll('.whale-card.--drop-active').forEach((card) => {
+        document.querySelectorAll('.whale-card.--drop-active').forEach(card => {
           card.classList.remove('--drop-active');
         });
       }
@@ -185,7 +183,7 @@ export default class WhalesPage {
 
   attachDropdownBtnClick() {
     const btnArr = [...document.querySelectorAll('[data-tb-dropdown]')];
-    btnArr.forEach((btn) => {
+    btnArr.forEach(btn => {
       btn.onclick = () => {
         const dropdown = btn.parentNode.querySelector('.tb-dropdown');
         if (dropdown !== null) {
@@ -210,11 +208,11 @@ export default class WhalesPage {
   attachViewSwitch() {
     const btnArr = [...document.querySelectorAll('[data-switch-view]')];
     const removeCls = () => {
-      btnArr.forEach((btn) => {
+      btnArr.forEach(btn => {
         btn.classList.remove(IS_ACTIVE);
       });
     };
-    btnArr.forEach((btn) => {
+    btnArr.forEach(btn => {
       btn.onclick = () => {
         const attr = btn.getAttribute('data-switch-view');
         if (attr !== null && !btn.classList.contains(IS_ACTIVE)) {
@@ -232,13 +230,13 @@ export default class WhalesPage {
     document.addEventListener('click', function (e) {
       const target = e.target;
       if (!target.closest('.tb-btn')) {
-        dropdowns.forEach((drop) => {
+        dropdowns.forEach(drop => {
           drop.classList.remove(IS_VISIBLE);
           setTimeout(() => {
             drop.style.display = 'none';
           }, getTransitionTime(drop));
         });
-        dropButtons.forEach((btn) => {
+        dropButtons.forEach(btn => {
           btn.classList.remove(IS_ACTIVE);
         });
       }
@@ -254,7 +252,7 @@ export default class WhalesPage {
         const swiperInstance = new CrmSwiper({}, card).init();
       };
     }
-    document.onclick = (e) => {
+    document.onclick = e => {
       const target = e.target;
       if (target.closest('[data-evt="cardGoCRM"]')) {
         const card = target.closest('.whale-card');
@@ -281,22 +279,22 @@ export default class WhalesPage {
   }
 
   attachAvatarUpload() {
-    document.addEventListener('change', (e) => {
-      const target = e.target
+    document.addEventListener('change', e => {
+      const target = e.target;
       if (target.matches('input[data-input="avatar_upload"][type="file"]')) {
-        const reader = new FileReader()
+        const reader = new FileReader();
         try {
-          reader.onload = (e) => {
-            const img = target.closest('.whale-card .whale-card__avatar').querySelector('img')
+          reader.onload = e => {
+            const img = target.closest('.whale-card .whale-card__avatar').querySelector('img');
             if (img) {
-              img.src = e.target.result
+              img.src = e.target.result;
             }
-          }
-          reader.readAsDataURL(target.files[0])
+          };
+          reader.readAsDataURL(target.files[0]);
         } catch (err) {
-          throw new Error(`Upload avatar error: ${err.message}`)
+          throw new Error(`Upload avatar error: ${err.message}`);
         }
       }
-    })
+    });
   }
 }
