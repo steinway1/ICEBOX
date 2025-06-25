@@ -22,10 +22,10 @@ export default class WhalesPage {
   }
 
   init() {
-    // const pin = new LockPin({
-    //   code: 3256,
-    // });
-    // pin.push();
+    const pin = new LockPin({
+      code: 3256,
+    });
+    pin.push();
 
     Object.values(this.initFn).forEach(fn => {
       if (typeof fn === 'function') {
