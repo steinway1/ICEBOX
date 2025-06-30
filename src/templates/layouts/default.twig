@@ -4,35 +4,34 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 	<head>
 		{% include '../page-components/head.twig' %}
 		{{ block('include_head') }}
 	</head>
 
-
-	<body class="{% if bodyClass is defined %} {{bodyClass}}{% endif %}{% if promo_class %} {{promo_class}}{% endif %}">
-
+	<body class="{% if bodyClass is defined %}{{bodyClass}}{% endif %}{% if promo_class %} {{promo_class}}{% endif %}">
+		<main{% if mainClass is defined %} class="{{mainClass}}"{% endif %}>
+		
 		{% if topBanner is defined and topBanner.text != '' %}
-			<div class="top-banner">
-				{{ topBanner.text }}
-			</div>
-		{% endif %}
+				<div class="top-banner">
+					{{ topBanner.text }}
+				</div>
+			{% endif %}
 
-		{% include "../elements/header.twig" %}
-
-
-		<main {% if mainClass is defined %} class="{{mainClass}}" {% endif %}> {% block content %}{% endblock %}
+			{% include "../elements/header.twig" %}
+			
+			{% block content %}{% endblock %}
 
 			{% if logged %}
-				{% else %}
+			{% else %}
 			{% endif %}
+
 			{% if userIsAdmin == true %}
 				{% include "elements/admin-bar.twig" %}
 			{% endif %}
 		</main>
-		{% include "../elements/footer.twig" %}
 
+		{% include "../elements/footer.twig" %}
 
 		{% include "elements/menu3.twig" %}
 		{# {% include "../elements/menu.twig" %} #}
@@ -47,7 +46,5 @@
 		{% include "components/general/search.twig" %}
 		{% include "../page-components/scripts.twig" %}
 		{{ block('include_script') }}
-
 	</body>
-
 </html>

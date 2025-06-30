@@ -1,36 +1,35 @@
-<header class="header">
-	{% if black_friday %}
-		{% include "elements/promo/black-friday/2024/top-banner.twig" %}
-	{% endif %}
-	{% if cyber_monday %}
-		{% include "elements/promo/cyber-monday/2024/top-banner.twig" %}
-	{% endif %}
-	{% if cyber_week %}
-		{% include "elements/promo/cyber-week/2024/top-banner.twig" %}
-	{% endif %}
-	{% if xmas %}
-		{% include "elements/promo/xmas/2024/top-banner.twig" %}
-	{% endif %}
-	{% if new_year %}
-		{% include "elements/promo/new-year/2024/top-banner.twig" %}
-	{% endif %}
-	{% if vday %}
-		{% include "elements/promo/vday/2024/top-banner.twig" %}
-	{% endif %}
-	<div class="header-nav-wrapper">
-		<div class="wrapper">
-			<div class="header-nav">
-				{% include "components/header/header-navigation.twig" %}
-			</div>
-		</div>
-	</div>
-	<div class="header__sub-nav">
-		<div class="wrapper">
-			<div class="header__sub-nav-list">
-				{% include "components/header/categories.twig" %}
-			</div>
-			{% include "components/header/dropdown.twig" %}
-		</div>
-	</div>
-
+<header class="header" role="banner">
+  {% if black_friday %}
+    {% include 'elements/promo/black-friday/2024/top-banner.twig' %}
+  {% endif %}
+  {% if cyber_monday %}
+    {% include 'elements/promo/cyber-monday/2024/top-banner.twig' %}
+  {% endif %}
+  {% if cyber_week %}
+    {% include 'elements/promo/cyber-week/2024/top-banner.twig' %}
+  {% endif %}
+  {% if xmas %}
+    {% include 'elements/promo/xmas/2024/top-banner.twig' %}
+  {% endif %}
+  {% if new_year %}
+    {% include 'elements/promo/new-year/2024/top-banner.twig' %}
+  {% endif %}
+  {% if vday %}
+    {% include 'elements/promo/vday/2024/top-banner.twig' %}
+  {% endif %}
+  <div class="header-nav-wrapper">
+    <div class="wrapper">
+      <div class="header-nav">
+        {% include 'components/header/header-navigation.twig' %}
+      </div>
+    </div>
+  </div>
+  <div class="header__sub-nav">
+    <div class="wrapper">
+      <div class="header__sub-nav-list">
+        {% include 'components/header/categories.twig' %}
+      </div>
+      {% include 'components/header/dropdown.twig' %}
+    </div>
+  </div>
 </header>
