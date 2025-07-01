@@ -1,20 +1,19 @@
-{% for filter in page_filters %}
+{% for pageFilter in pageFilters %}
   <div class="modal-side__row">
-    <div class="filter-row --togglable">
+    <div class="filter-row">
       <div class="filter-head">
-        <span>{{ filter.title }}</span>
-        {% include 'icons/arrow-flat-right.svg' %}
+        <span>{{ pageFilter.title }}</span>
+        {% include 'icons/arrow-flat-down.svg' %}
       </div>
       <div class="filter-toggle">
         <div class="filter-body">
           <div class="filter-list">
-            {% include 'ui/forms/page-filter.twig' with {
-              type: filter.type,
-              name: filter.name,
-              items: filter.items,
-              min: filter.min,
-              max: filter.max
-            } %}
+            {% for option in pageFilter.options %}
+              <label class="custom-checkbox">
+                <input type="{{ pageFilter.radio ? 'radio' : 'checkbox' }}" name="{{ option.name }}" value="{{ option.value }}" {{ option.checked ? 'checked' }} />
+                <span>{{ option.caption }}</span>
+              </label>
+            {% endfor %}
           </div>
         </div>
       </div>

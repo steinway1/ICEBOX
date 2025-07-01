@@ -1,19 +1,15 @@
 <div class="listing-bar">
   <div class="listing-bar__count">
-    <span>Found 389 results</span>
+    <span>Found {{ items|length }} results</span>
   </div>
   <div class="flex-center gap-col-24 max-lg-hide">
-    <button>
+    <button data-action="modalFilterToggle">
       {% include 'icons/filter.svg' %}
       <span>Filters</span>
     </button>
-    {# <button class="--sort">
-      {% include 'icons/sort.svg' %}
-      <span>{{ page_current_sort ?? 'Popular first' }}</span>
-    </button> #}
   </div>
   <div class="flex-center gap-col-24 max-lg-hide">
-    <button>
+    <button data-action="modalFilterToggle">
       {% include 'icons/sort.svg' %}
       <span>{{ page_sort_current ?? 'No sorting' }}</span>
     </button>

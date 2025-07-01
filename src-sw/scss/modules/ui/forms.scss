@@ -4,6 +4,30 @@
   border-top: 1px solid var(--grey);
   border-bottom: 1px solid var(--grey);
   margin-bottom: -1px;
+
+  &.--active {
+    svg {
+      transform: rotate(180deg);
+    }
+
+    .filter-body {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &:not(.--active) {
+    .filter-body {
+      transform-origin: center center;
+      opacity: 0;
+      transform: scale(0.85);
+    }
+  }
+
+  svg {
+    transform-origin: center center;
+    transition: var(--transition);
+  }
 }
 
 .filter-head {
@@ -37,6 +61,7 @@
   padding-bottom: 32px;
   max-height: 380px;
   overflow: hidden auto;
+  transition: var(--transition);
   @include hidebar;
 }
 
@@ -136,7 +161,8 @@
       }
     }
 
-    &:checked ~ span {
+    &:checked ~ span,
+    &:checked ~ a {
       &::before {
         background-color: var(--black);
         border-color: var(--black);
@@ -145,10 +171,12 @@
     }
   }
 
-  span {
+  span,
+  a {
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
 
     &::before {
       content: "";
@@ -162,6 +190,23 @@
       background-repeat: no-repeat;
       transition: var(--transition);
       @include backimage-checkmark;
+    }
+
+    &.--radio {
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      &::before {
+        border-radius: 50rem;
+      }
+    }
+
+    &.--active {
+      &::before {
+        background-color: var(--black);
+        border-color: var(--black);
+        background-size: 12px 12px;
+      }
     }
   }
 }
@@ -266,4 +311,10 @@
       }
     }
   }
+}
+
+.filter-toggle {
+  height: 0;
+  overflow: hidden;
+  transition: var(--transition);
 }

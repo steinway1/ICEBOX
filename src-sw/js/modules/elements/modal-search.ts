@@ -3,8 +3,9 @@
 import type { SearchResults } from "../../types/items";
 
 import { modalSearchStore as store } from "../../store/index";
+
 import { CLASSNAMES } from "../../utils/constants";
-import { getTransitionTime } from "../../utils/utils";
+import { getTransitionTime, lockScroll, unlockScroll } from "../../utils/utils";
 
 import { fakeAjaxGetSearchResults } from "../../ajax/fake-ajax";
 
@@ -66,6 +67,8 @@ export class ModalSearch {
     const { rootEl, inputEl } = this;
     if (!rootEl) return;
 
+    lockScroll();
+
     this.reset();
 
     rootEl.style.display = "block";
@@ -78,6 +81,8 @@ export class ModalSearch {
   public close() {
     const { rootEl } = this;
     if (!rootEl) return;
+
+    unlockScroll();
 
     rootEl.classList.remove(CLASSNAMES.IS_OPEN);
     this.abortSearch();

@@ -1,10 +1,10 @@
-{% set whatsAppLink = "https://wa.me/7705841378?text=I'd%20like%20to%20buy%20" ~ item.title ~ ' ' ~ item.brand ~ ' ' ~ item.meta %}
+{% set whatsAppLink = "https://wa.me/7705841378?text=I'd%20like%20to%20buy%20" ~ productItem.name ~ ' ' ~ productItem.brand ~ ' ' ~ productItem.meta %}
 
 <div class="product-card">
   {# Media #}
   <div class="product-card__top">
     <div class="product-card__media">
-      <a href="{{ item.link }}"><img src="{{ item.img_src }}" alt="{{ item.brand }} {{ item.model }} {{ item.meta }}" /></a>
+      <a href="{{ productItem.href }}"><img src="{{ productItem.cover }}" alt="{{ productItem.brand }} {{ productItem.model }} {{ productItem.meta }}" /></a>
     </div>
   </div>
 
@@ -13,35 +13,35 @@
     {# Main -- Brand / Title / Meta #}
     <div class="product-card__main-details">
       {# Brand name #}
-      {% if item.brand %}
-        <span class="product-card__brand">{{ item.brand }}</span>
+      {% if productItem.brand %}
+        <span class="product-card__brand">{{ productItem.brand }}</span>
       {% endif %}
 
       {# Model name #}
-      {% if item.title %}
-        <h5 class="product-card__title">{{ item.title }}</h5>
+      {% if productItem.name %}
+        <h5 class="product-card__title">{{ productItem.name }}</h5>
       {% endif %}
 
       {# Meta #}
-      {% if item.meta %}
-        <span class="product-card__meta">{{ item.meta }}</span>
+      {% if productItem.meta %}
+        <span class="product-card__meta">{{ productItem.meta }}</span>
       {% endif %}
     </div>
 
     {# Main -- Material / Papers / Box #}
     <div class="product-card__specs">
       {# Material #}
-      {% if item.material %}
+      {% if productItem.material %}
         <span class="product-card__spec">
           {% include 'icons/material.svg' %}
-          <span>{{ item.material }}</span>
+          <span>{{ productItem.material }}</span>
         </span>
       {% endif %}
 
       {# Papers #}
-      {% if item.papers is defined %}
+      {% if productItem.papers is defined %}
         <span class="product-card__spec">
-          {% if item.papers %}
+          {% if productItem.papers %}
             {% include 'icons/papers.svg' %}
             <span>Papers</span>
           {% else %}
@@ -52,9 +52,9 @@
       {% endif %}
 
       {# Box #}
-      {% if item.box is defined %}
+      {% if productItem.box is defined %}
         <span class="product-card__spec">
-          {% if item.box %}
+          {% if productItem.box %}
             {% include 'icons/box.svg' %}
             <span>Have Box</span>
           {% else %}
@@ -69,25 +69,30 @@
     <div class="product-card__values">
       {# Price #}
       <div class="product-card__price">
-        <span class="product-card__price-value">$ {{ item.price }}</span>
+        <span class="product-card__price-value">$ {{ productItem.price }}</span>
         {# MSRP Diff #}
-        {% if item.price_lower_msrp is defined or (item.price_above_msrp is defined and item.price_msrp_diff_percentage) %}
-          <span class="product-card__price-diff {{ item.price_lower_msrp ? '--low' : '--high' }}">
-            {% if item.price_lower_msrp %}
+        {% if productItem.msrp and productItem.is_watch_market %}
+          {% set msrp_num = productItem.msrp_unformatted %}
+          {% set price_num = productItem.price_range_unformatted %}
+          {% set diff = (price_num - msrp_num) / msrp_num * 100 %}
+          {% set class = diff > 0 ? '--low' : diff < 0 ? '--high' : '' %}
+
+          <span class="product-card__price-diff {{ class }}">
+            {% if diff > 0 %}
               {% include 'icons/stock-low.svg' %}
-              <span>{{ item.price_msrp_diff_percentage }}</span>
-            {% elseif item.price_above_msrp %}
+              <span>{{ diff|number_format(0) }}%</span>
+            {% elseif diff < 0 %}
               {% include 'icons/stock-high.svg' %}
-              <span>{{ item.price_msrp_diff_percentage }}</span>
+              <span>{{ (diff|number_format(0)) * -1 }}%</span>
             {% endif %}
           </span>
         {% endif %}
       </div>
 
       {# MSRP #}
-      {% if item.msrp %}
+      {% if productItem.msrp %}
         <div class="product-card__msrp">
-          <span>MSRP: ${{ item.msrp }}</span>
+          <span>MSRP: ${{ productItem.msrp }}</span>
         </div>
       {% endif %}
     </div>
@@ -98,7 +103,7 @@
         {% include 'icons/whatsapp.svg' %}
         <span>Whatsapp</span>
       </a>
-      <div class="product-card__action" data-action="quickView" data-id="{{ item.id }}">
+      <div class="product-card__action" data-action="quickView" data-id="{{ productItem.id }}">
         {% include 'icons/quick-view.svg' %}
         <span>Quick view</span>
       </div>

@@ -1,6 +1,5 @@
-{% for sort in page_sort %}
-  <label class="custom-checkbox">
-    <input type="radio" name="sort-by" value="{{ sort.value }}" checked />
-    <span>{{ sort.label }}</span>
-  </label>
+{% for sort in pageSort %}
+  <div class="custom-checkbox">
+    <span class="--radio {{ sort.active ? '--active' : '' }}" onclick="{{ sort.onclick }}">{{ sort.title }}</span>
+  </div>
 {% endfor %}

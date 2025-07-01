@@ -1,13 +1,46 @@
 @use "../base/mixin.scss" as *;
 
+body:not(.--menu-active) {
+  .menu {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    visibility: hidden;
+  }
+}
+
+body.--menu-active {
+  .menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  header {
+    [data-action="toggleMenu"] {
+      svg {
+        opacity: 0;
+        scale: 1.4;
+      }
+
+      &::before {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
 .menu {
-  display: none;
+  display: block;
   position: fixed;
   inset: 0;
   z-index: 99;
   background-color: var(--grey);
   overflow: hidden scroll;
   padding-bottom: 32px;
+  transition: var(--transition-modal);
   @include hidebar;
 
   &__main {

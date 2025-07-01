@@ -6,6 +6,17 @@
   position: fixed;
   inset: 0;
   z-index: 303;
+  transition: var(--transition-modal);
+
+  &:not(.--active) {
+    .modal-side__container {
+      transform: translateX(100%);
+    }
+
+    .modal-side__backdrop {
+      opacity: 0;
+    }
+  }
 
   @include maxLg {
     --side-modal-padding: 24px;

@@ -2,7 +2,7 @@
 
 import { CLASSNAMES } from "../../utils/constants";
 import type { Item } from "../../types/items";
-import { getTransitionTime } from "../../utils/utils";
+import { getTransitionTime, lockScroll, unlockScroll } from "../../utils/utils";
 import { fakeAjaxGetItemById } from "../../ajax/fake-ajax";
 import { delay, createElement } from "../../utils/utils";
 import { modalQuickViewStore as store } from "../../store/quick-view-store";
@@ -41,6 +41,8 @@ export class ModalView {
     const { rootEl } = this;
     if (!rootEl || !id) return;
 
+    lockScroll();
+
     this.reset();
     rootEl.style.display = "block";
 
@@ -52,6 +54,8 @@ export class ModalView {
   public close() {
     const { rootEl } = this;
     if (!rootEl) return;
+
+    unlockScroll();
 
     rootEl.classList.remove(CLASSNAMES.IS_OPEN);
 

@@ -1,0 +1,30 @@
+{# Breadcrumbs #}
+<div class="breadcrumbs">
+  <a href="/">Home</a>
+  <a href="{{ category.link }}" class="--last">{{ category.caption }}</a>
+</div>
+
+{# Watch Carousel #}
+{% if category.is_watches %}
+  {% include 'ui/carousel/carousel-watch-brands.twig' %}
+{% endif %}
+
+{# Listing Toolbar #}
+{% include 'ui/listing/listing-sticky-toolbar.twig' %}
+{% include 'ui/listing/listing-toolbar.twig' %}
+
+{# Items #}
+<div class="listing">
+  {% for item in items %}
+    {% include 'ui/product-card/product-card.twig' with {
+      productItem: item
+    } %}
+  {% endfor %}
+</div>
+
+{# Items Loader #}
+{% if pages is defined and pages > 1 %}
+  <div class="line-loader-container">
+    <div class="line-loader"></div>
+  </div>
+{% endif %}
