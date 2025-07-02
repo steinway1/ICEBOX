@@ -4,6 +4,7 @@ export interface Item {
   brand?: string;
   model?: string;
   meta?: string;
+  name?: string;
   price: string;
   msrp?: string;
   less_msrp?: boolean;

@@ -19,9 +19,6 @@ export class ModalView {
   private readonly itemDetailsEl: HTMLElement | null = document.querySelector(
     "#modalViewItemDetails",
   );
-  private readonly quickViewElArr: Array<HTMLElement> = Array.from(
-    document.querySelectorAll("[data-action='quickView']"),
-  );
   private readonly closeElArr: Array<HTMLElement> = Array.from(
     document.querySelectorAll("[data-action='modalViewClose']"),
   );
@@ -95,15 +92,18 @@ export class ModalView {
    */
   private addEventListeners() {
     /** Quick view */
-    this.quickViewElArr.forEach((el) => {
-      el.addEventListener("click", (e) => {
-        const id = (e.currentTarget as HTMLElement).dataset.id;
-        if (!id) {
-          throw new Error("No id found");
-        }
+    document.addEventListener("click", (e) => {
+      const target = e.target as any;
+      const quickViewEl = target.closest("[data-action='quickView']");
 
-        this.open(Number(id));
-      });
+      if (!quickViewEl) return;
+
+      const id = quickViewEl.dataset.id;
+      if (!id) {
+        throw new Error("No id found");
+      }
+
+      this.open(Number(id));
     });
 
     /** Close */
@@ -152,6 +152,7 @@ export class ModalView {
     const {
       model,
       img_src,
+      name,
       brand,
       meta,
       price,
@@ -172,7 +173,7 @@ export class ModalView {
 
     /** Put title & meta description */
     if (itemTitleEl) {
-      const { titleEl, metaEl } = this.renderTitle({ model, brand, meta });
+      const { titleEl, metaEl } = this.renderTitle({ name, brand });
       itemTitleEl.appendChild(titleEl);
       itemTitleEl.appendChild(metaEl);
     }
@@ -205,21 +206,11 @@ export class ModalView {
     const imgEl = createElement("img", { src });
     return imgEl;
   }
-  private renderTitle({
-    model,
-    brand,
-    meta,
-    title,
-  }: {
-    model?: string;
-    brand?: string;
-    meta?: string;
-    title?: string;
-  }) {
+  private renderTitle({ name, brand }: { name?: string; brand?: string }) {
     const titleEl = createElement("h4", {
-      text: model ?? brand ?? title ?? "Undefined title",
+      text: name ?? "Undefined name",
     });
-    const metaEl = createElement("p", { text: meta ?? "Undefined meta" });
+    const metaEl = createElement("p", { text: brand ?? "Undefined brand" });
     return { titleEl, metaEl };
   }
   private renderSpecs({
@@ -277,7 +268,7 @@ export class ModalView {
       className: "modal-view__description-wrap",
     });
     const descriptionEl = createElement("p", {
-      text: description,
+      innerHTML: description,
       className: "modal-view__description",
     });
     descriptionElWrap.appendChild(descriptionEl);
@@ -287,8 +278,19 @@ export class ModalView {
         className: "modal-view__description-more",
         text: "Show more",
       });
+
+      moreEl.addEventListener("click", () => {
+        descriptionEl.classList.toggle(CLASSNAMES.IS_EXPANDED);
+        moreEl.textContent = descriptionEl.classList.contains(
+          CLASSNAMES.IS_EXPANDED,
+        )
+          ? "Show Less"
+          : "Show More";
+      });
+
       descriptionElWrap.appendChild(moreEl);
     }
+
     return descriptionElWrap;
   }
   private renderPrice({

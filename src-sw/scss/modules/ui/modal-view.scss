@@ -188,6 +188,38 @@
   &__description {
     font-size: 13px;
     @include line-clamp(2);
+
+    &.--expanded {
+      display: block;
+      position: relative;
+
+      @include line-clamp(none);
+      max-height: 180px;
+      overflow: hidden auto;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--black);
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        height: 38px;
+        width: 100%;
+        flex: none;
+        position: sticky;
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent, white);
+      }
+    }
   }
 
   &__description-more {
