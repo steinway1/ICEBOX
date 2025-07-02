@@ -234,20 +234,21 @@ export class ModalSearch {
 
     /** Build cards HTML */
     const cardsHTML = items
-      .map(
-        (item) => `
-          <a href="${item.url}" class="modal-search__card">
-            <img src="${item.img_src}" alt="${item.model ?? item.brand ?? ""}" />
+      .map((item) => {
+        const { url, cover, name, brand, meta, price } = item;
+        return `
+          <a href="${url}" class="modal-search__card">
+            <img src="${cover}" alt="${name ?? ""}" />
             <div class="modal-search__card-details">
               <h4>
-                <span>${(item.brand ?? "") + " " + (item.model ?? "")}</span>
-                <span>${item.meta ?? ""}</span>
+                <span>${brand ?? ""}</span>
+                <span>${name ?? ""}</span>
               </h4>
-              <strong>$ ${item.price}</strong>
+              <strong>$ ${price}</strong>
             </div>
           </a>
-        `,
-      )
+        `;
+      })
       .join("");
 
     /** Insert into DOM */

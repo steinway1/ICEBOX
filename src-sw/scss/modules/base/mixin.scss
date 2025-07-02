@@ -164,3 +164,16 @@
     opacity: 0.5;
   }
 }
+
+@mixin docPulse {
+  --pulse-duration: 1s;
+
+  animation: pulse var(--pulse-duration) infinite;
+  pointer-events: none;
+  transition-duration: 0;
+  user-select: none;
+
+  * {
+    transition: none !important;
+  }
+}
