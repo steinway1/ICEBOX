@@ -75,6 +75,7 @@
       width: 100px;
       height: 100px;
       overflow: hidden;
+      object-fit: cover;
 
       @include maxSm {
         width: 100px;
@@ -95,19 +96,19 @@
     h4 {
       line-height: 1.6;
 
-      span:first-child {
+      span:last-child {
         display: block;
         font-size: 14px;
         font-weight: 500;
-        margin-bottom: 4px;
         @include line-clamp(1);
       }
 
-      span:last-child {
+      span:first-child {
         display: block;
         font-size: 11px;
         color: var(--black-500);
         @include line-clamp(1);
+        margin-bottom: 4px;
       }
     }
   }

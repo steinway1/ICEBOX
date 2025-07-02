@@ -1,6 +1,7 @@
 export interface Item {
   id: number;
   img_src: string;
+  cover: string;
   brand?: string;
   model?: string;
   meta?: string;
