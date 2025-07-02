@@ -313,10 +313,10 @@ export class ModalView {
       className: "modal-view__price",
       innerHTML: `
         <div class="flex flex-wrap flex-center gap-12">
-          ${price ? `<span class="text-lg"><strong>Price: $ ${price}</strong></span>` : ""}
+          ${price ? `<span class="text-lg"><strong>Price:  ${price}</strong></span>` : ""}
           ${price_msrp_diff_percentage ? `<span class="text-xs font-bold text-${less_msrp ? "green" : "red"}">${price_msrp_diff_percentage}% ${less_msrp ? "less" : "above"} MSRP</span>` : ""}
         </div>
-        ${msrp ? `<span class="text-xs opacity-70">MSRP: $ ${msrp}</span>` : ""}
+        ${msrp ? `<span class="text-xs opacity-70">MSRP:  ${msrp}</span>` : ""}
       `,
     });
 

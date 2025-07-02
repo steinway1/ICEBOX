@@ -8,6 +8,7 @@ import { CLASSNAMES } from "../../utils/constants";
 import { getTransitionTime, lockScroll, unlockScroll } from "../../utils/utils";
 
 import { fakeAjaxGetSearchResults } from "../../ajax/fake-ajax";
+import {AjaxGetSearchResults} from "../../ajax/ajax";
 
 export class ModalSearch {
   private static readonly ROOT_SELECTOR = "#modalSearch";
@@ -161,7 +162,7 @@ export class ModalSearch {
        * @returns {Promise<SearchResults>}
        * Search results – see {@link SearchResults}
        */
-      const res: SearchResults = await fakeAjaxGetSearchResults(query);
+      const res: SearchResults = await AjaxGetSearchResults(query);
 
       if (!res) {
         this.setLoading(false);
@@ -235,16 +236,16 @@ export class ModalSearch {
     /** Build cards HTML */
     const cardsHTML = items
       .map((item) => {
-        const { url, cover, name, brand, meta, price } = item;
+        const { href, img_src, name, brand, meta, price } = item;
         return `
-          <a href="${url}" class="modal-search__card">
-            <img src="${cover}" alt="${name ?? ""}" />
+          <a href="${href}" class="modal-search__card">
+            <img src="${img_src}" alt="${name ?? ""}" />
             <div class="modal-search__card-details">
               <h4>
                 <span>${brand ?? ""}</span>
                 <span>${name ?? ""}</span>
               </h4>
-              <strong>$ ${price}</strong>
+              <strong>${price}</strong>
             </div>
           </a>
         `;
