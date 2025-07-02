@@ -6,6 +6,7 @@ import { getTransitionTime, lockScroll, unlockScroll } from "../../utils/utils";
 import { fakeAjaxGetItemById } from "../../ajax/fake-ajax";
 import { delay, createElement } from "../../utils/utils";
 import { modalQuickViewStore as store } from "../../store/quick-view-store";
+import {AjaxGetItemById} from "../../ajax/ajax";
 
 export class ModalView {
   private readonly rootEl: HTMLElement | null =
@@ -132,7 +133,7 @@ export class ModalView {
        * @returns {Promise<Item>}
        * Item – see {@link Item}
        */
-      const item = await fakeAjaxGetItemById(id);
+      const item = await AjaxGetItemById(id);
 
       if (!item) {
         this.reset();
