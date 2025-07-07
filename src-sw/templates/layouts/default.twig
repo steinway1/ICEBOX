@@ -1,4 +1,5 @@
 {% set THEME_ASSETS_FOLDER = './assets/' %}
+{% set body_class = body_class is defined ? ' class="' ~ body_class ~ '"' : '' %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +10,7 @@
     {% endblock %}
   </head>
 
-  <body>
+  <body {{ body_class }}>
     <main>
       {% block content %}
         {# Content goes here #}

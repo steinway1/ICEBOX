@@ -1,0 +1,114 @@
+@use "../base/mixin.scss" as *;
+
+body.body__contact {
+  .footer {
+    margin: 0;
+  }
+}
+
+.subpage {
+  min-height: 100vh;
+
+  &.--grey {
+    background-color: var(--grey);
+  }
+}
+
+.terms-area {
+  padding: 48px var(--p-default);
+  width: 100vw;
+  overflow: hidden;
+  max-width: 1420px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.terms-heading {
+  font-size: 24px;
+  // text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.terms-list {
+  display: flex;
+  flex-direction: column;
+
+  h4 {
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  li {
+    line-height: 28px;
+
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+
+    span {
+      font-weight: 700;
+      padding-right: 8px;
+    }
+
+    a {
+      text-decoration: underline;
+      font-weight: 600;
+      color: var(--accent-1);
+    }
+  }
+}
+
+.contact-area {
+  padding: var(--p-default);
+  max-width: 1520px;
+  margin: 0 auto;
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+    background-color: var(--white);
+    border: 1px solid var(--grey-100);
+  }
+
+  @include maxLg {
+    padding: 12px;
+  }
+
+  .grid-2 {
+    @include maxLg {
+      gap: 32px;
+    }
+  }
+}
+
+.contact-box {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
+  border: 1px solid var(--grey-100);
+  border-radius: 12px;
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .btn {
+    flex: none;
+    margin-right: auto;
+
+    @include maxSm {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}
