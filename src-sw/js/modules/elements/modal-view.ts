@@ -6,6 +6,7 @@ import { getTransitionTime, lockScroll, unlockScroll } from "../../utils/utils";
 import { fakeAjaxGetItemById } from "../../ajax/fake-ajax";
 import { delay, createElement } from "../../utils/utils";
 import { modalQuickViewStore as store } from "../../store/quick-view-store";
+import {AjaxGetItemById} from "../../ajax/ajax";
 
 export class ModalView {
   private readonly rootEl: HTMLElement | null =
@@ -132,7 +133,7 @@ export class ModalView {
        * @returns {Promise<Item>}
        * Item – see {@link Item}
        */
-      const item = await fakeAjaxGetItemById(id);
+      const item = await AjaxGetItemById(id);
 
       if (!item) {
         this.reset();
@@ -312,10 +313,10 @@ export class ModalView {
       className: "modal-view__price",
       innerHTML: `
         <div class="flex flex-wrap flex-center gap-12">
-          ${price ? `<span class="text-lg"><strong>Price: $ ${price}</strong></span>` : ""}
+          ${price ? `<span class="text-lg"><strong>Price:  ${price}</strong></span>` : ""}
           ${price_msrp_diff_percentage ? `<span class="text-xs font-bold text-${less_msrp ? "green" : "red"}">${price_msrp_diff_percentage}% ${less_msrp ? "less" : "above"} MSRP</span>` : ""}
         </div>
-        ${msrp ? `<span class="text-xs opacity-70">MSRP: $ ${msrp}</span>` : ""}
+        ${msrp ? `<span class="text-xs opacity-70">MSRP:  ${msrp}</span>` : ""}
       `,
     });
 
