@@ -1,0 +1,27 @@
+<div data-sign-form class="sign-modal">
+  <div data-action="modalSignClose" class="sign-modal__backdrop"></div>
+  <div class="sign-modal__container">
+    {% include 'ui/loader/overloader.twig' %}
+    <div class="sign-modal__header">
+      <div class="sign-modal__switch-group">
+        <button data-sign-go="phone" class="sign-modal__switch-btn --active">Login</button>
+        <button data-sign-go="reg" class="sign-modal__switch-btn">Sign Up</button>
+      </div>
+      <button data-action="modalSignClose" class="sign-modal__close-btn"></button>
+    </div>
+    <div class="sign-modal__body">
+      <div class="sign-modal__main">
+        {% include 'ui/modal/modal-sign/modal-sign-phone.twig' %}
+        {% include 'ui/modal/modal-sign/modal-sign-email.twig' %}
+        {% include 'ui/modal/modal-sign/modal-sign-forget.twig' %}
+        {% include 'ui/modal/modal-sign/modal-sign-otp.twig' %}
+        {% include 'ui/modal/modal-sign/modal-sign-reg.twig' %}
+      </div>
+    </div>
+
+    {# Message #}
+    <div class="sign-modal__msg">
+      Some message...
+    </div>
+  </div>
+</div>

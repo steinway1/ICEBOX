@@ -1,0 +1,54 @@
+{# Usage Example:
+   {% include 'ui/input.twig' with {
+     type:        'tel',
+     name:        'login_otp_phone',
+     id:          'phone_input_Login',
+     placeholder: '(202) 555-0111',
+     value:       otp_value,
+     class:       'custom-modifier',
+     attr:        [['data-input', 'tel']],
+     onlyDigits:  true
+   } %}
+#}
+
+{# Defaults #}
+{% set type = type is defined ? type : 'text' %}
+{% set name = name is defined ? name : '' %}
+{% set id = id is defined ? id : '' %}
+{% set required = required is defined ? required : false %}
+{% set extra_class = class is defined ? class : '' %}
+{% set placeholder = placeholder is defined ? placeholder : '' %}
+{% set value = value is defined ? value : '' %}
+{% set removeWrap = removeWrap is defined ? removeWrap : false %}
+{% set passToggle = passToggle is defined and passToggle %}
+{% set attr = attr is defined ? attr : [] %}
+{% set onlyDigits = onlyDigits is defined and onlyDigits %}
+
+{% macro render_attrs(attr) %}
+  {% for pair in attr if (pair|length) == 2 %}
+    {{ ' ' ~ pair[0] ~ '="' ~ pair[1] ~ '"' }}
+  {% endfor %}
+{% endmacro %}
+{% import _self as self %}
+
+{% set classes = 'input-field' ~ (extra_class ? ' ' ~ extra_class : '') %}
+{% set default_attrs = [['autocomplete', 'off'], ['spellcheck', 'false']] %}
+
+{% if onlyDigits %}
+  {% set digit_attrs = [['pattern', '\\d*'], ['inputmode', 'numeric'], ['data-input-digits', 'true']] %}
+  {% set all_attr = default_attrs|merge(attr)|merge(digit_attrs) %}
+{% else %}
+  {% set all_attr = default_attrs|merge(attr) %}
+{% endif %}
+
+{% set input = '<input' ~ ' type="' ~ type ~ '"' ~ (name ? ' name="' ~ name ~ '"' : '') ~ (id ? ' id="' ~ id ~ '"' : '') ~ ' class="' ~ classes ~ '"' ~ (placeholder ? ' placeholder="' ~ placeholder ~ '"' : '') ~ (value ? ' value="' ~ value ~ '"' : '') ~ (required ? ' required' : '') ~ self.render_attrs(all_attr) ~ ' />' %}
+
+{% set passToggleBtn = passToggle ? '<div class="pass-toggle-btn"><span class="pass-toggle-btn__icon"></span></div>' : '' %}
+
+{% if removeWrap %}
+  {{ input ~ passToggleBtn }}
+{% else %}
+  <div class="input-wrap">
+    {{ input ~ passToggleBtn }}
+  </div>
+{% endif %}

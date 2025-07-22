@@ -1,3 +1,5 @@
+// src-sw/js/modules/pages/globals.ts
+
 declare global {
   interface Window {
     toggleDocumentLoading: (isLoading: boolean) => void;

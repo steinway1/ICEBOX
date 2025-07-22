@@ -8,7 +8,7 @@ import { CLASSNAMES } from "../../utils/constants";
 import { getTransitionTime, lockScroll, unlockScroll } from "../../utils/utils";
 
 import { fakeAjaxGetSearchResults } from "../../ajax/fake-ajax";
-import {AjaxGetSearchResults} from "../../ajax/ajax";
+import { AjaxGetSearchResults } from "../../ajax/ajax";
 
 export class ModalSearch {
   private static readonly ROOT_SELECTOR = "#modalSearch";

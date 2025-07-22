@@ -1,0 +1,32 @@
+<div data-sign-view="reset" class="sign-modal__view">
+  <form id="pop_frm_login" method="post" action="/json-authenticate" class="sign-form needs-validation" novalidate>
+    <div class="sign-modal__content-box">
+      <div class="sign-modal__title-block">
+        <h4>Forgot Password?</h4>
+        <p>
+          Enter your email address below, and if an account exists, we'll send you a link to reset your password.
+        </p>
+      </div>
+      <div class="flex-col gap-8">
+        {% include 'ui/input.twig' with {
+          type: 'email',
+          name: 'reset_pwd_email',
+          id: 'reset_pwd_email',
+          placeholder: 'Enter your email',
+          required: true
+        } %}
+      </div>
+      <div class="sign-modal__btn-group">
+        {% include 'ui/button.twig' with {
+          text: 'Reset Password',
+          class: '--black',
+          class: 'js-submit'
+        } %}
+        {% include 'ui/button.twig' with {
+          text: 'Back to login',
+          attr: [['data-sign-go', 'phone']]
+        } %}
+      </div>
+    </div>
+  </form>
+</div>

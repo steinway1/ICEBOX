@@ -1,0 +1,248 @@
+@use "../base/mixin.scss" as *;
+
+[data-sign-form],
+.sign-modal {
+  &:not(.--loading) {
+    .overloader {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &.--loading {
+    .overloader {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &:not(.--show-msg) {
+    .sign-modal__msg {
+      transform: translateY(120%);
+      opacity: 0;
+    }
+  }
+
+  &.--show-msg {
+    .sign-modal__msg {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    &.--err {
+      .sign-modal__msg {
+        background-color: var(--red);
+        border-color: var(--red);
+        box-shadow: 0 12px 48px rgba(214, 34, 34, 0.25);
+      }
+    }
+  }
+}
+
+.sign-modal {
+  --pd: 32px;
+  z-index: 199;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition-modal);
+  position: fixed;
+  inset: 0%;
+
+  /**
+   * CLOSED STATE
+   */
+  &:not(.--open) {
+    display: none;
+
+    .sign-modal__backdrop {
+      opacity: 0;
+    }
+
+    .sign-modal__container {
+      transform: translate(0, 24px) scale(0.95);
+      opacity: 0;
+
+      @include maxMd {
+        transform: translateY(105%);
+        opacity: 1 !important;
+      }
+    }
+  }
+
+  &__backdrop {
+    position: absolute;
+    inset: 0%;
+    background-color: var(--backdrop);
+    transition: var(--transition-modal);
+    cursor: pointer;
+  }
+
+  &__container {
+    position: relative;
+    z-index: 3;
+    background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 1.2rem;
+    width: 100%;
+    max-width: 520px;
+    min-height: 120px;
+    transition: var(--transition-modal);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    perspective-origin: 50% 100%;
+    transform-origin: 50% 100%;
+
+    @include maxMd {
+      width: auto;
+      position: absolute;
+      margin: 0 auto;
+      inset: auto 10px 10px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 var(--pd);
+    min-height: 42px;
+    border-bottom: 1px solid var(--grey-100);
+  }
+
+  &__close-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46px;
+    height: 46px;
+    margin-right: -16px;
+    border-radius: 50%;
+    @include after-cross;
+  }
+
+  &__switch-group {
+    display: flex;
+  }
+
+  &__switch-btn {
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 28px 11px;
+    font-weight: 600;
+    transition: var(--transition-modal);
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1 !important;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 0px;
+      background-color: var(--black);
+      transition: var(--transition-modal);
+    }
+
+    &.--active {
+      opacity: 1;
+      &::after {
+        height: 3px;
+      }
+    }
+  }
+
+  &__main {
+    transition: var(--transition-modal);
+    will-change: height;
+  }
+
+  &__view {
+    display: none;
+    position: relative;
+
+    &.--active {
+      display: block;
+    }
+  }
+
+  &__content-box {
+    display: flex;
+    position: relative;
+    gap: 24px;
+    flex-flow: column;
+    width: 100%;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 120px;
+    padding: 62px 72px 72px;
+
+    @include maxMd {
+      padding: 32px;
+    }
+  }
+
+  &__title-block {
+    gap: 8px;
+    text-align: center;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    h4 {
+      letter-spacing: -0.4px;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 28px;
+    }
+
+    p {
+      opacity: 0.65;
+      line-height: 24px;
+      letter-spacing: normal;
+      max-width: 360px;
+      font-size: 13px;
+    }
+  }
+
+  &__btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: none;
+
+    button,
+    div {
+      flex: none;
+    }
+  }
+}
+
+.sign-modal__msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 550;
+  position: absolute;
+  inset: auto 10px 10px;
+  z-index: 10;
+  border-radius: 0.9rem;
+  background-color: var(--accent-1);
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  border: 1px solid var(--accent-1);
+  box-shadow: 0 12px 48px rgba(5, 139, 216, 0.4);
+  transition: var(--transition);
+  pointer-events: none;
+}

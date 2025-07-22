@@ -1,0 +1,20 @@
+{% extends 'layouts/default.twig' %}
+
+{% block content %}
+  <div class="page-not-found">
+    {% include 'ui/logo-link.twig' %}
+
+    <div class="page-not-found__title">
+      <h4>404</h4>
+      <p>
+        Oops... It seems you got a little bit lost.
+        <span>This page you are looking for does not exist.</span>
+      </p>
+    </div>
+
+    <div class="page-not-found__btn-group">
+      <a href="/">{% include 'icons/house.svg' %}Go back to homepage</a>
+      {# <a href="javascript:history.back()" class="--sub">Go previous page</a> #}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{# Usage Example:
+  {% include 'ui/button.twig' with {
+      text: 'Login',
+      class: '--black',
+      attr: [['type', 'submit']]
+  } %}
+ #}
+
+{% set text = text is defined ? text : '' %}
+{% set class = class is defined ? class : '' %}
+{% set attr = attr is defined ? attr : [] %}
+{% set asDiv = asDiv is defined ? asDiv : false %}
+
+{% macro render_attrs(attr) %}
+  {% for pair in attr if (pair|length) == 2 %}
+    {{ ' ' ~ pair[0] ~ '="' ~ pair[1] ~ '"' }}
+  {% endfor %}
+{% endmacro %}
+
+{% import _self as self %}
+
+{{ asDiv ? '<div class="' ~ 'btn ' ~ class ~ '"' ~ self.render_attrs(attr) ~ '>' : '<button class="' ~ 'btn ' ~ class ~ '"' ~ self.render_attrs(attr) ~ '>' }}
+
+<span>{{ text }}</span>
+
+{{ asDiv ? '</div>' : '</button>' }}

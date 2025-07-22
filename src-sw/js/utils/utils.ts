@@ -1,4 +1,3 @@
-import doc from "pdfkit";
 import { documentStore } from "../store/document-store";
 
 export const getTransitionTime = (el: HTMLElement): number => {

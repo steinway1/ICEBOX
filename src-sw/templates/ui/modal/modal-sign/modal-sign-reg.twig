@@ -1,0 +1,64 @@
+<div data-sign-view="reg" class="sign-modal__view">
+  <form id="pop_frm_login" method="post" action="/json-authenticate" class="sign-form needs-validation" novalidate>
+    <div class="sign-modal__content-box">
+      <div class="sign-modal__title-block">
+        <h4>Join Us</h4>
+        <p>
+          Get first access to the very best products.
+        </p>
+      </div>
+      <div class="flex-col gap-8">
+        <div class="flex gap-8">
+          {% include 'ui/input.twig' with {
+            type: 'text',
+            name: 'first_name',
+            id: 'signupFn',
+            placeholder: 'First name',
+            required: true
+          } %}
+          {% include 'ui/input.twig' with {
+            type: 'text',
+            name: 'last_name',
+            id: 'signupLn',
+            placeholder: 'Last name',
+            required: true
+          } %}
+        </div>
+        {% include 'ui/input.twig' with {
+          type: 'email',
+          name: 'email',
+          id: 'signupEmailField',
+          placeholder: 'Email address',
+          required: true
+        } %}
+        {% include 'ui/input.twig' with {
+          type: 'tel',
+          name: 'phone',
+          id: 'signup_phone',
+          placeholder: '(202) 555-0111',
+          attr: [['data-input', 'tel']]
+        } %}
+        {% include 'ui/input.twig' with {
+          type: 'password',
+          name: 'password',
+          id: 'userPasswordSignup',
+          passToggle: true,
+          placeholder: 'Password',
+          required: true
+        } %}
+        <div class="flex center mt-12">
+          <label class="custom-checkbox">
+            <input id="signupSubscribe" name="subscribe" type="checkbox" checked="" data-parsley-multiple="subscribe" />
+            <span class="custom-checkbox__label text-sm">Sign up for emails to get updates from Icebox on products, offers, and your Member benefits</span>
+          </label>
+        </div>
+      </div>
+      <div class="sign-modal__btn-group">
+        {% include 'ui/button.twig' with {
+          text: 'Create Account',
+          class: '--black'
+        } %}
+      </div>
+    </div>
+  </form>
+</div>

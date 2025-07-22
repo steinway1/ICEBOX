@@ -51,6 +51,17 @@
 
   {# Sub Nav #}
   <div class="header__sub-nav">
+    {% if user %}
+      <a href="/account" class="header__btn header__account-btn">
+        {% include 'icons/account.svg' %}
+        <span>My Account</span>
+      </a>
+    {% else %}
+      <button class="header__btn header__account-btn" data-action="modalSignOpen" data-sign-go="phone">
+        {% include 'icons/account.svg' %}
+        <span>My Account</span>
+      </button>
+    {% endif %}
     {% for item in subNav %}
       {% if item.link %}
         <a href="{{ item.link }}" class="header__btn {{ item.className }}">

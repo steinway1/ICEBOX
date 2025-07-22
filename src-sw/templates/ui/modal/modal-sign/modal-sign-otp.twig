@@ -1,0 +1,40 @@
+<div data-sign-view="otp" class="sign-modal__view">
+  <form id="pop_frm_login" method="post" action="/json-authenticate" class="sign-form" novalidate>
+    <div class="sign-modal__content-box">
+      <div class="sign-modal__title-block">
+        <h4>Enter Code Sent by SMS</h4>
+        <p>
+          We've sent you a 4 digit code.
+          <br />
+          Enter it below to continue.
+        </p>
+      </div>
+      <div class="flex gap-8">
+        {% for i in 1..4 %}
+          {% include 'ui/input.twig' with {
+            type: 'text',
+            onlyDigits: true,
+            id: 'otp_' ~ i,
+            class: '--otp',
+            attr: [['data-gtm-form-interact-field-id', i], ['maxlength', '1'], ['data-input-otp', '']],
+            removeWrap: true
+          } %}
+        {% endfor %}
+      </div>
+      <div class="sign-modal__btn-group">
+        {% include 'ui/button.twig' with {
+          text: 'Submit',
+          class: '--black js-submit'
+        } %}
+        {% include 'ui/button.twig' with {
+          text: 'Resend Code',
+          class: '--outline'
+        } %}
+        {% include 'ui/button.twig' with {
+          text: 'Back to login',
+          attr: [['data-sign-go', 'phone']]
+        } %}
+      </div>
+    </div>
+  </form>
+</div>

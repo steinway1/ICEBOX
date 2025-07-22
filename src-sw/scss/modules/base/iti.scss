@@ -1,0 +1,1009 @@
+@use "../base/mixin.scss" as *;
+
+.iti {
+  --iti-hover-color: rgba(0, 0, 0, 0);
+  --iti-border-color: #ccc;
+  --iti-dialcode-color: #999;
+  --iti-dropdown-bg: white;
+  --iti-spacer-horizontal: 8px;
+  --iti-flag-height: 12px;
+  --iti-flag-width: 16px;
+  --iti-border-width: 1px;
+  --iti-arrow-height: 4px;
+  --iti-arrow-width: 6px;
+  --iti-triangle-border: calc(var(--iti-arrow-width) / 2);
+  --iti-arrow-padding: 6px;
+  --iti-arrow-color: #555;
+  --iti-path-flags-1x: url("../assets/iti/flags.webp");
+  --iti-path-flags-2x: url("../assets/iti/flags@2x.webp");
+  --iti-path-globe-1x: url("../assets/iti/globe.webp");
+  --iti-path-globe-2x: url("../assets/iti/globe@2x.webp");
+  --iti-flag-sprite-width: 3904px;
+  --iti-flag-sprite-height: 12px;
+  --iti-mobile-popup-margin: 32px;
+  position: relative;
+  display: block;
+}
+
+.iti__flag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  height: auto !important;
+  background-image: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  font-size: 26px;
+}
+
+.iti__us::before {
+  content: "🇺🇸";
+}
+
+.iti * {
+  box-sizing: border-box;
+}
+.iti__hide {
+  display: none;
+}
+.iti__v-hide {
+  visibility: hidden;
+}
+.iti__a11y-text {
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  position: absolute;
+}
+.iti input.iti__tel-input,
+.iti input.iti__tel-input[type="text"],
+.iti input.iti__tel-input[type="tel"] {
+  position: relative;
+  z-index: 0;
+  margin: 0 !important;
+  padding-left: 64px !important;
+}
+.iti__country-container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: var(--iti-border-width);
+}
+.iti__selected-country {
+  z-index: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  background-color: var(--grey-100);
+  border-radius: 0.8rem;
+  margin: 3px;
+}
+.iti__selected-country-primary {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 12px;
+}
+.iti__arrow {
+  display: none;
+  margin-left: var(--iti-arrow-padding);
+  width: 0;
+  height: 0;
+  border-left: var(--iti-triangle-border) solid transparent;
+  border-right: var(--iti-triangle-border) solid transparent;
+  border-top: var(--iti-arrow-height) solid var(--iti-arrow-color);
+}
+[dir="rtl"] .iti__arrow {
+  margin-right: var(--iti-arrow-padding);
+  margin-left: 0;
+}
+.iti__arrow--up {
+  border-top: none;
+  border-bottom: var(--iti-arrow-height) solid var(--iti-arrow-color);
+}
+.iti__dropdown-content {
+  border-radius: 1rem;
+  background-color: var(--iti-dropdown-bg);
+}
+.iti--inline-dropdown .iti__dropdown-content {
+  position: absolute;
+  z-index: 2;
+  margin-top: -1px;
+  margin-left: calc(var(--iti-border-width) * -1);
+  border: 1px solid var(--grey-100);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.iti__search-input {
+  width: 100%;
+  border-width: 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--grey-100);
+  height: 48px;
+  padding: 8px 14px;
+  flex: none;
+
+  &::placeholder {
+    color: var(--black-400);
+    transition: var(--transition);
+  }
+}
+.iti__search-input + .iti__country-list {
+  border-top: 1px solid var(--iti-border-color);
+}
+.iti__country-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  @include hidebar;
+}
+.iti--inline-dropdown .iti__country-list {
+  max-height: 185px;
+}
+.iti--flexible-dropdown-width .iti__country-list {
+  white-space: nowrap;
+}
+@media (max-width: 500px) {
+  .iti--flexible-dropdown-width .iti__country-list {
+    white-space: normal;
+  }
+}
+.iti__country {
+  display: flex;
+  align-items: center;
+  padding: 8px var(--iti-spacer-horizontal);
+  outline: none;
+  font-size: 13px;
+  font-weight: 500;
+  height: 48px;
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  &:hover {
+    background-color: rgba(26, 30, 40, 0.06) !important;
+  }
+}
+.iti__dial-code {
+  color: var(--iti-dialcode-color);
+}
+.iti__country.iti__highlight {
+  background-color: var(--iti-hover-color);
+}
+.iti__country-list .iti__flag,
+.iti__country-name {
+  margin-right: var(--iti-spacer-horizontal);
+}
+[dir="rtl"] .iti__country-list .iti__flag,
+[dir="rtl"] .iti__country-name {
+  margin-right: 0;
+  margin-left: var(--iti-spacer-horizontal);
+}
+.iti--allow-dropdown
+  .iti__country-container:not(:has(+ input[disabled])):not(
+    :has(+ input[readonly])
+  ):hover,
+.iti--allow-dropdown
+  .iti__country-container:not(:has(+ input[disabled])):not(
+    :has(+ input[readonly])
+  ):hover
+  button {
+  cursor: pointer;
+}
+.iti--allow-dropdown
+  .iti__country-container:not(:has(+ input[disabled])):not(
+    :has(+ input[readonly])
+  )
+  .iti__selected-country-primary:hover,
+.iti--allow-dropdown
+  .iti__country-container:not(:has(+ input[disabled])):not(
+    :has(+ input[readonly])
+  )
+  .iti__selected-country:has(+ .iti__dropdown-content:hover)
+  .iti__selected-country-primary {
+  background-color: var(--iti-hover-color);
+}
+.iti .iti__selected-dial-code {
+  margin-left: 4px;
+}
+[dir="rtl"] .iti .iti__selected-dial-code {
+  margin-left: 0;
+  margin-right: 4px;
+}
+.iti--container {
+  position: fixed;
+  top: -1000px;
+  left: -1000px;
+  z-index: 1060;
+  padding: var(--iti-border-width);
+}
+.iti--container:hover {
+  cursor: pointer;
+}
+
+.iti--fullscreen-popup.iti--container {
+  background-color: var(--backdrop);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  padding: var(--iti-mobile-popup-margin);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.iti--fullscreen-popup .iti__dropdown-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 50vh;
+  width: 100%;
+  position: relative;
+}
+.iti--fullscreen-popup .iti__country {
+  padding: 10px 10px;
+  line-height: 1.5em;
+}
+
+.iti__flag {
+  --iti-flag-offset: 100px;
+  height: var(--iti-flag-height);
+  width: var(--iti-flag-width);
+  border-radius: 1px;
+  box-shadow: 0px 0px 1px 0px #888;
+  background-image: var(--iti-path-flags-2x);
+  background-repeat: no-repeat;
+  background-position: var(--iti-flag-offset) 0;
+  background-size: var(--iti-flag-sprite-width) var(--iti-flag-sprite-height);
+}
+
+.iti__af::before {
+  content: "🇦🇫";
+}
+.iti__al::before {
+  content: "🇦🇱";
+}
+.iti__dz::before {
+  content: "🇩🇿";
+}
+.iti__as::before {
+  content: "🇦🇸";
+}
+.iti__ad::before {
+  content: "🇦🇩";
+}
+.iti__ao::before {
+  content: "🇦🇴";
+}
+.iti__ai::before {
+  content: "🇦🇮";
+}
+.iti__ag::before {
+  content: "🇦🇬";
+}
+.iti__ar::before {
+  content: "🇦🇷";
+}
+.iti__am::before {
+  content: "🇦🇲";
+}
+.iti__aw::before {
+  content: "🇦🇼";
+}
+.iti__au::before {
+  content: "🇦🇺";
+}
+.iti__at::before {
+  content: "🇦🇹";
+}
+.iti__az::before {
+  content: "🇦🇿";
+}
+.iti__bs::before {
+  content: "🇧🇸";
+}
+.iti__bh::before {
+  content: "🇧🇭";
+}
+.iti__bd::before {
+  content: "🇧🇩";
+}
+.iti__bb::before {
+  content: "🇧🇧";
+}
+.iti__by::before {
+  content: "🇧🇾";
+}
+.iti__be::before {
+  content: "🇧🇪";
+}
+.iti__bz::before {
+  content: "🇧🇿";
+}
+.iti__bj::before {
+  content: "🇧🇯";
+}
+.iti__bm::before {
+  content: "🇧🇲";
+}
+.iti__bt::before {
+  content: "🇧🇹";
+}
+.iti__bo::before {
+  content: "🇧🇴";
+}
+.iti__ba::before {
+  content: "🇧🇦";
+}
+.iti__bw::before {
+  content: "🇧🇼";
+}
+.iti__br::before {
+  content: "🇧🇷";
+}
+.iti__io::before {
+  content: "🇮🇴";
+}
+.iti__bn::before {
+  content: "🇧🇳";
+}
+.iti__bg::before {
+  content: "🇧🇬";
+}
+.iti__bf::before {
+  content: "🇧🇫";
+}
+.iti__bi::before {
+  content: "🇧🇮";
+}
+.iti__kh::before {
+  content: "🇰🇭";
+}
+.iti__cm::before {
+  content: "🇨🇲";
+}
+.iti__ca::before {
+  content: "🇨🇦";
+}
+.iti__cv::before {
+  content: "🇨🇻";
+}
+.iti__ky::before {
+  content: "🇰🇾";
+}
+.iti__cf::before {
+  content: "🇨🇫";
+}
+.iti__td::before {
+  content: "🇹🇩";
+}
+.iti__cl::before {
+  content: "🇨🇱";
+}
+.iti__cn::before {
+  content: "🇨🇳";
+}
+.iti__cx::before {
+  content: "🇨🇽";
+}
+.iti__cc::before {
+  content: "🇨🇨";
+}
+.iti__co::before {
+  content: "🇨🇴";
+}
+.iti__km::before {
+  content: "🇰🇲";
+}
+.iti__cg::before {
+  content: "🇨🇬";
+}
+.iti__cd::before {
+  content: "🇨🇩";
+}
+.iti__ck::before {
+  content: "🇨🇰";
+}
+.iti__cr::before {
+  content: "🇨🇷";
+}
+.iti__ci::before {
+  content: "🇨🇮";
+}
+.iti__hr::before {
+  content: "🇭🇷";
+}
+.iti__cu::before {
+  content: "🇨🇺";
+}
+.iti__cw::before {
+  content: "🇨🇼";
+}
+.iti__cy::before {
+  content: "🇨🇾";
+}
+.iti__cz::before {
+  content: "🇨🇿";
+}
+.iti__dk::before {
+  content: "🇩🇰";
+}
+.iti__dj::before {
+  content: "🇩🇯";
+}
+.iti__dm::before {
+  content: "🇩🇲";
+}
+.iti__do::before {
+  content: "🇩🇴";
+}
+.iti__ec::before {
+  content: "🇪🇨";
+}
+.iti__eg::before {
+  content: "🇪🇬";
+}
+.iti__sv::before {
+  content: "🇸🇻";
+}
+.iti__gq::before {
+  content: "🇬🇶";
+}
+.iti__er::before {
+  content: "🇪🇷";
+}
+.iti__ee::before {
+  content: "🇪🇪";
+}
+.iti__et::before {
+  content: "🇪🇹";
+}
+.iti__fk::before {
+  content: "🇫🇰";
+}
+.iti__fo::before {
+  content: "🇫🇴";
+}
+.iti__fj::before {
+  content: "🇫🇯";
+}
+.iti__fi::before {
+  content: "🇫🇮";
+}
+.iti__fr::before {
+  content: "🇫🇷";
+}
+.iti__gf::before {
+  content: "🇬🇫";
+}
+.iti__pf::before {
+  content: "🇵🇫";
+}
+.iti__ga::before {
+  content: "🇬🇦";
+}
+.iti__gm::before {
+  content: "🇬🇲";
+}
+.iti__ge::before {
+  content: "🇬🇪";
+}
+.iti__de::before {
+  content: "🇩🇪";
+}
+.iti__gh::before {
+  content: "🇬🇭";
+}
+.iti__gi::before {
+  content: "🇬🇮";
+}
+.iti__gr::before {
+  content: "🇬🇷";
+}
+.iti__gl::before {
+  content: "🇬🇱";
+}
+.iti__gd::before {
+  content: "🇬🇩";
+}
+.iti__gp::before {
+  content: "🇬🇵";
+}
+.iti__gu::before {
+  content: "🇬🇺";
+}
+.iti__gt::before {
+  content: "🇬🇹";
+}
+.iti__gg::before {
+  content: "🇬🇬";
+}
+.iti__gn::before {
+  content: "🇬🇳";
+}
+.iti__gw::before {
+  content: "🇬🇼";
+}
+.iti__gy::before {
+  content: "🇬🇾";
+}
+.iti__ht::before {
+  content: "🇭🇹";
+}
+.iti__hn::before {
+  content: "🇭🇳";
+}
+.iti__hk::before {
+  content: "🇭🇰";
+}
+.iti__hu::before {
+  content: "🇭🇺";
+}
+.iti__is::before {
+  content: "🇮🇸";
+}
+.iti__in::before {
+  content: "🇮🇳";
+}
+.iti__id::before {
+  content: "🇮🇩";
+}
+.iti__ir::before {
+  content: "🇮🇷";
+}
+.iti__iq::before {
+  content: "🇮🇶";
+}
+.iti__ie::before {
+  content: "🇮🇪";
+}
+.iti__im::before {
+  content: "🇮🇲";
+}
+.iti__il::before {
+  content: "🇮🇱";
+}
+.iti__it::before {
+  content: "🇮🇹";
+}
+.iti__jm::before {
+  content: "🇯🇲";
+}
+.iti__jp::before {
+  content: "🇯🇵";
+}
+.iti__je::before {
+  content: "🇯🇪";
+}
+.iti__jo::before {
+  content: "🇯🇴";
+}
+.iti__kz::before {
+  content: "🇰🇿";
+}
+.iti__ke::before {
+  content: "🇰🇪";
+}
+.iti__ki::before {
+  content: "🇰🇮";
+}
+.iti__kw::before {
+  content: "🇰🇼";
+}
+.iti__kg::before {
+  content: "🇰🇬";
+}
+.iti__la::before {
+  content: "🇱🇦";
+}
+.iti__lv::before {
+  content: "🇱🇻";
+}
+.iti__lb::before {
+  content: "🇱🇧";
+}
+.iti__ls::before {
+  content: "🇱🇸";
+}
+.iti__lr::before {
+  content: "🇱🇷";
+}
+.iti__ly::before {
+  content: "🇱🇾";
+}
+.iti__li::before {
+  content: "🇱🇮";
+}
+.iti__lt::before {
+  content: "🇱🇹";
+}
+.iti__lu::before {
+  content: "🇱🇺";
+}
+.iti__mo::before {
+  content: "🇲🇴";
+}
+.iti__mk::before {
+  content: "🇲🇰";
+}
+.iti__mg::before {
+  content: "🇲🇬";
+}
+.iti__mw::before {
+  content: "🇲🇼";
+}
+.iti__my::before {
+  content: "🇲🇾";
+}
+.iti__mv::before {
+  content: "🇲🇻";
+}
+.iti__ml::before {
+  content: "🇲🇱";
+}
+.iti__mt::before {
+  content: "🇲🇹";
+}
+.iti__mh::before {
+  content: "🇲🇭";
+}
+.iti__mq::before {
+  content: "🇲🇶";
+}
+.iti__mr::before {
+  content: "🇲🇷";
+}
+.iti__mu::before {
+  content: "🇲🇺";
+}
+.iti__yt::before {
+  content: "🇾🇹";
+}
+.iti__mx::before {
+  content: "🇲🇽";
+}
+.iti__fm::before {
+  content: "🇫🇲";
+}
+.iti__md::before {
+  content: "🇲🇩";
+}
+.iti__mc::before {
+  content: "🇲🇨";
+}
+.iti__mn::before {
+  content: "🇲🇳";
+}
+.iti__me::before {
+  content: "🇲🇪";
+}
+.iti__ms::before {
+  content: "🇲🇸";
+}
+.iti__ma::before {
+  content: "🇲🇦";
+}
+.iti__mz::before {
+  content: "🇲🇿";
+}
+.iti__mm::before {
+  content: "🇲🇲";
+}
+.iti__na::before {
+  content: "🇳🇦";
+}
+.iti__nr::before {
+  content: "🇳🇷";
+}
+.iti__np::before {
+  content: "🇳🇵";
+}
+.iti__nl::before {
+  content: "🇳🇱";
+}
+.iti__nc::before {
+  content: "🇳🇨";
+}
+.iti__nz::before {
+  content: "🇳🇿";
+}
+.iti__ni::before {
+  content: "🇳🇮";
+}
+.iti__ne::before {
+  content: "🇳🇪";
+}
+.iti__ng::before {
+  content: "🇳🇬";
+}
+.iti__nu::before {
+  content: "🇳🇺";
+}
+.iti__nf::before {
+  content: "🇳🇫";
+}
+.iti__kp::before {
+  content: "🇰🇵";
+}
+.iti__mp::before {
+  content: "🇲🇵";
+}
+.iti__no::before {
+  content: "🇳🇴";
+}
+.iti__om::before {
+  content: "🇴🇲";
+}
+.iti__pk::before {
+  content: "🇵🇰";
+}
+.iti__pw::before {
+  content: "🇵🇼";
+}
+.iti__ps::before {
+  content: "🇵🇸";
+}
+.iti__pa::before {
+  content: "🇵🇦";
+}
+.iti__pg::before {
+  content: "🇵🇬";
+}
+.iti__py::before {
+  content: "🇵🇾";
+}
+.iti__pe::before {
+  content: "🇵🇪";
+}
+.iti__ph::before {
+  content: "🇵🇭";
+}
+.iti__pl::before {
+  content: "🇵🇱";
+}
+.iti__pt::before {
+  content: "🇵🇹";
+}
+.iti__pr::before {
+  content: "🇵🇷";
+}
+.iti__qa::before {
+  content: "🇶🇦";
+}
+.iti__re::before {
+  content: "🇷🇪";
+}
+.iti__ro::before {
+  content: "🇷🇴";
+}
+.iti__ru::before {
+  content: "🇷🇺";
+}
+.iti__rw::before {
+  content: "🇷🇼";
+}
+.iti__bl::before {
+  content: "🇧🇱";
+}
+.iti__sh::before {
+  content: "🇸🇭";
+}
+.iti__kn::before {
+  content: "🇰🇳";
+}
+.iti__lc::before {
+  content: "🇱🇨";
+}
+.iti__mf::before {
+  content: "🇲🇫";
+}
+.iti__pm::before {
+  content: "🇵🇲";
+}
+.iti__vc::before {
+  content: "🇻🇨";
+}
+.iti__ws::before {
+  content: "🇼🇸";
+}
+.iti__sm::before {
+  content: "🇸🇲";
+}
+.iti__st::before {
+  content: "🇸🇹";
+}
+.iti__sa::before {
+  content: "🇸🇦";
+}
+.iti__sn::before {
+  content: "🇸🇳";
+}
+.iti__rs::before {
+  content: "🇷🇸";
+}
+.iti__sc::before {
+  content: "🇸🇨";
+}
+.iti__sl::before {
+  content: "🇸🇱";
+}
+.iti__sg::before {
+  content: "🇸🇬";
+}
+.iti__sx::before {
+  content: "🇸🇽";
+}
+.iti__sk::before {
+  content: "🇸🇰";
+}
+.iti__si::before {
+  content: "🇸🇮";
+}
+.iti__sb::before {
+  content: "🇸🇧";
+}
+.iti__so::before {
+  content: "🇸🇴";
+}
+.iti__za::before {
+  content: "🇿🇦";
+}
+.iti__kr::before {
+  content: "🇰🇷";
+}
+.iti__ss::before {
+  content: "🇸🇸";
+}
+.iti__es::before {
+  content: "🇪🇸";
+}
+.iti__lk::before {
+  content: "🇱🇰";
+}
+.iti__sd::before {
+  content: "🇸🇩";
+}
+.iti__sr::before {
+  content: "🇸🇷";
+}
+.iti__sj::before {
+  content: "🇸🇯";
+}
+.iti__sz::before {
+  content: "🇸🇿";
+}
+.iti__se::before {
+  content: "🇸🇪";
+}
+.iti__ch::before {
+  content: "🇨🇭";
+}
+.iti__sy::before {
+  content: "🇸🇾";
+}
+.iti__tw::before {
+  content: "🇹🇼";
+}
+.iti__tj::before {
+  content: "🇹🇯";
+}
+.iti__tz::before {
+  content: "🇹🇿";
+}
+.iti__th::before {
+  content: "🇹🇭";
+}
+.iti__tl::before {
+  content: "🇹🇱";
+}
+.iti__tg::before {
+  content: "🇹🇬";
+}
+.iti__tk::before {
+  content: "🇹🇰";
+}
+.iti__to::before {
+  content: "🇹🇴";
+}
+.iti__tt::before {
+  content: "🇹🇹";
+}
+.iti__tn::before {
+  content: "🇹🇳";
+}
+.iti__tr::before {
+  content: "🇹🇷";
+}
+.iti__tm::before {
+  content: "🇹🇲";
+}
+.iti__tc::before {
+  content: "🇹🇨";
+}
+.iti__tv::before {
+  content: "🇹🇻";
+}
+.iti__ug::before {
+  content: "🇺🇬";
+}
+.iti__ua::before {
+  content: "🇺🇦";
+}
+.iti__ae::before {
+  content: "🇦🇪";
+}
+.iti__gb::before {
+  content: "🇬🇧";
+}
+.iti__us::before {
+  content: "🇺🇸";
+}
+.iti__uy::before {
+  content: "🇺🇾";
+}
+.iti__uz::before {
+  content: "🇺🇿";
+}
+.iti__vu::before {
+  content: "🇻🇺";
+}
+.iti__ax::before {
+  content: "🇦🇽";
+}
+.iti__va::before {
+  content: "🇻🇦";
+}
+.iti__ve::before {
+  content: "🇻🇪";
+}
+.iti__vn::before {
+  content: "🇻🇳";
+}
+.iti__wf::before {
+  content: "🇼🇫";
+}
+.iti__eh::before {
+  content: "🇪🇭";
+}
+.iti__ye::before {
+  content: "🇾🇪";
+}
+.iti__zm::before {
+  content: "🇿🇲";
+}
+.iti__zw::before {
+  content: "🇿🇼";
+}
+
+.iti__globe {
+  background-image: var(--iti-path-globe-2x);
+  background-size: contain;
+  background-position: right;
+  box-shadow: none;
+  height: 19px;
+}
+
+@media (min-resolution: 2x) {
+  .iti__flag {
+    background-image: var(--iti-path-flags-2x);
+  }
+  .iti__globe {
+    background-image: var(--iti-path-globe-2x);
+  }
+}

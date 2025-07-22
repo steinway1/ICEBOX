@@ -1,0 +1,28 @@
+<div data-sign-view="phone" class="sign-modal__view --active">
+  <form id="frm_login_otp" method="post" action="/send-otp" class="sign-form">
+    <div class="sign-modal__content-box">
+      <div class="sign-modal__title-block">
+        <h4>Login with phone</h4>
+        <p>
+          We'll send you a 4 digit code to get access.
+        </p>
+      </div>
+      {% include 'ui/input.twig' with {
+        type: 'tel',
+        name: 'login_otp_phone',
+        id: 'phone_input_Login',
+        attr: [['data-input', 'tel']]
+      } %}
+      <div class="sign-modal__btn-group">
+        {% include 'ui/button.twig' with {
+          text: 'Send OTP',
+          class: '--black'
+        } %}
+        {% include 'ui/button.twig' with {
+          text: 'Sign with email',
+          attr: [['data-sign-go', 'email']]
+        } %}
+      </div>
+    </div>
+  </form>
+</div>
