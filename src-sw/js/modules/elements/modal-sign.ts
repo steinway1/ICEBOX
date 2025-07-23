@@ -156,10 +156,10 @@ export class ModalSign {
   /**
    * Change view
    */
-  private async onChangeView(view: SignView) {
+  private async onChangeView(rawView: SignView) {
     const { mainEl, viewElArr } = this;
     if (!mainEl || !viewElArr) return;
-
+    const view = rawView.replace(/^['"]|['"]$/g, "") as SignView;
     const viewToShow = viewElArr.find((el) => el.dataset.signView === view);
     if (!viewToShow) throw new Error("View not found");
 
