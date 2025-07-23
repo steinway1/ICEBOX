@@ -161,9 +161,9 @@ export class Login {
       const res = await fetch("/send-otp", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({
+        body: new URLSearchParams({
           country_code: country,
           phone_number: phone,
         }),
@@ -173,11 +173,17 @@ export class Login {
         this.showMsg("Failed to send OTP", true);
         throw new Error("Failed to send OTP");
       }
+      const data = await res.json();
+      if(!data.error){
+        this.showMsg("OTP sent successfully", false);
+        setTimeout(() => {
+          this.hideMsg();
+        }, 3000);
+      }else{
+        this.showMsg(data.msg,true);
+      }
 
-      this.showMsg("OTP sent successfully", false);
-      setTimeout(() => {
-        this.hideMsg();
-      }, 3000);
+
     } catch (err) {
       console.error(err);
     } finally {
@@ -210,7 +216,6 @@ export class Login {
 
     const { phoneInput, countryCodeInput } = this;
     const otpValue = `${otp1.value}${otp2.value}${otp3.value}${otp4.value}`;
-
     /**
      * Throw error if OTP is not 4 digits or contains spaces
      */
@@ -219,17 +224,7 @@ export class Login {
       return;
     }
 
-    /**
-     * Throw error if phone or country code input is missing
-     */
-    if (!phoneInput || !countryCodeInput) {
-      console.warn(
-        "Phone or country code input not found. Selectors: ",
-        "#otp_phone",
-        "#otp_country",
-      );
-      return;
-    }
+
 
     /**
      * Fetch the OTP from the server
@@ -237,27 +232,31 @@ export class Login {
     try {
       this.setLoading(true);
 
-      const res = await fetch("/verify-otp", {
+      const res = await fetch("/confirm-otp", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({
+        body: new URLSearchParams({
           country_code: countryCodeInput.value,
           phone_number: phoneInput.value,
-          otp: otpValue,
+          otp_code: otpValue
         }),
       });
-
       if (!res.ok) {
-        this.showMsg("Invalid OTP", true);
-        throw new Error("Invalid OTP");
+        this.showMsg("Failed to verify OTP", true);
+        throw new Error("Failed to verify OTP");
       }
-
-      this.showMsg("OTP verified successfully", false);
-      setTimeout(() => {
-        this.hideMsg();
-      }, 3000);
+      const data = await res.json();
+      if(!data.error){
+        this.showMsg(data.msg, false);
+        setTimeout(() => {
+          this.hideMsg();
+          location.reload();
+        }, 3000);
+      }else{
+        this.showMsg(data.msg,true);
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -269,16 +268,6 @@ export class Login {
     const { rootEl, loginPhoneInput, countryCodeInput, phoneInput } = this;
     if (!rootEl) return;
 
-    /**
-     * Throw error if login phone input is missing
-     */
-    if (!loginPhoneInput) {
-      console.warn(
-        "Login phone input not found. Selector: ",
-        "#phone_input_Login",
-      );
-      return;
-    }
 
     /**
      * Get the intlTelInput instance for the phone input
@@ -297,17 +286,7 @@ export class Login {
     const countryCode = "+" + selectedCountryData.dialCode;
     const phone = fullPhone.replace(countryCode, "");
 
-    /**
-     * Throw error if phone or country code input is missing
-     */
-    if (!phoneInput || !countryCodeInput) {
-      console.warn(
-        "Phone or country code input not found. Selectors: ",
-        "#otp_phone",
-        "#otp_country",
-      );
-      return;
-    }
+
 
     /**
      * Set the hidden input values
@@ -323,9 +302,9 @@ export class Login {
       const res = await fetch("/send-otp", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({
+        body: new URLSearchParams({
           country_code: countryCode,
           phone_number: phone,
         }),
@@ -338,7 +317,12 @@ export class Login {
 
       const data = await res.json();
       const MsgClass = data.error ? true : false;
-      this.showMsg(data.msg, MsgClass);
+      if(data.msg != ''){
+        this.showMsg(data.msg, MsgClass);
+      }
+      if(!data.error){
+        signModalStore.set({ view: "otp" })
+      }
     } catch (err) {
       this.showMsg("Failed to send OTP", true);
       console.error(err);
