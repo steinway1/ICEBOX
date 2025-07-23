@@ -23,6 +23,11 @@
     {% include 'ui/modal/modal-filter.twig' %}
     {% include 'ui/modal/modal-sign.twig' %}
 
+    {# Admin #}
+    {% if user.admin %}
+      {% include 'ui/admin/admin-bar.twig' %}
+    {% endif %}
+
     {% include 'components/scripts.twig' %}
     {% block scripts %}
       {# Scripts go here #}

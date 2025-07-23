@@ -18,3 +18,15 @@ export function fakeAjaxGetItemById(id: number): Promise<Item> {
     }, 1000);
   });
 }
+
+export function fakeAjaxPost(url: string, data: any): Promise<any> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      if (data === false) {
+        resolve({ success: false });
+      } else {
+        resolve({ success: true });
+      }
+    }, 1000);
+  });
+}

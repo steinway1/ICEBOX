@@ -1,0 +1,147 @@
+<div class="admin-card" id="product_admin_overlay_{{ productItem.id }}">
+  <div class="admin-card__wrapper">
+    <div class="admin-card__fields-grid">
+      {# Options #}
+      {# 
+          ——————————————— Brand ———————————————
+         #}
+      <div class="admin-card__field-wrap">
+        <select id="brand_select_{{ productItem.id }}" class="admin-card__field --select" onchange="UpdateItemBrand({{ productItem.id }})">
+          {% for brand in watch_brands %}
+            <option value="{{ brand.label }}" {{ brand.label == productItem.brand ? 'selected' : '' }}>
+              {{ brand.label }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      {# 
+          ——————————————— Papers ———————————————
+         #}
+      <div class="admin-card__field-wrap">
+        <select id="papers_select_{{ productItem.id }}" class="admin-card__field --select" onchange="UpdateItemPapers({{ productItem.id }})">
+          <option value="">
+            Papers
+          </option>
+          <option value="Yes" {{ productItem.papers == 'Yes' ? 'selected' : '' }}>
+            Yes
+          </option>
+          <option value="No" {{ productItem.papers == 'No' ? 'selected' : '' }}>
+            No
+          </option>
+          <option value="Card" {{ productItem.papers == 'Card' ? 'selected' : '' }}>
+            Card
+          </option>
+          <option value="Partial" {{ productItem.papers == 'Partial' ? 'selected' : '' }}>
+            Partial
+          </option>
+          <option value="Receipt" {{ productItem.papers == 'Receipt' ? 'selected' : '' }}>
+            Receipt
+          </option>
+        </select>
+      </div>
+
+      {# 
+          ——————————————— Box ———————————————
+         #}
+      <div class="admin-card__field-wrap">
+        <select id="box_select_{{ productItem.id }}" class="admin-card__field --select" onchange="UpdateItemBox({{ productItem.id }})">
+          <option value="">
+            Box
+          </option>
+          <option value="Yes" {{ productItem.box == 'Yes' ? 'selected' : '' }}>
+            Yes
+          </option>
+          <option value="No" {{ productItem.box == 'No' ? 'selected' : '' }}>
+            No
+          </option>
+        </select>
+      </div>
+
+      {# 
+          ——————————————— Published ———————————————
+         #}
+      <div class="admin-card__field-wrap">
+        <select id="published_select_{{ productItem.id }}" class="admin-card__field --select" onchange="UpdateItemPublished({{ productItem.id }})">
+          <option value="">
+            Published
+          </option>
+          <option value="Yes" {{ productItem.published == 'Yes' ? 'selected' : '' }}>
+            Published: Yes
+          </option>
+          <option value="No" {{ productItem.published == 'No' ? 'selected' : '' }}>
+            Published: No
+          </option>
+        </select>
+      </div>
+
+      {# 
+          ——————————————— Material ———————————————
+         #}
+      <div class="admin-card__field-wrap">
+        <select id="material_select_{{ productItem.id }}" class="admin-card__field --select" onchange="UpdateItemMaterial({{ productItem.id }})">
+          {% for material in watch_materials %}
+            <option value="{{ material.label }}" {{ material.label == productItem.material ? 'selected' : '' }}>
+              {{ material.label }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      {# 
+          ——————————————— Model ———————————————
+         #}
+      <div class="admin-card__field-wrap">
+        <input id="model_input_{{ productItem.id }}" class="admin-card__field" type="text" placeholder="Model" onchange="UpdateItemModel({{ productItem.id }})" />
+      </div>
+
+      {# 
+          ——————————————— Serial ———————————————
+         #}
+      <div class="admin-card__field-wrap">
+        <input id="serial_input_{{ productItem.id }}" class="admin-card__field" type="text" placeholder="Serial" onchange="UpdateItemSerial({{ productItem.id }})" />
+      </div>
+
+      {# 
+          ——————————————— Nick Name ———————————————
+         #}
+      <div class="admin-card__field-wrap">
+        <input id="nickname_input_{{ productItem.id }}" class="admin-card__field" type="text" placeholder="Nick Name" onchange="UpdateItemNickname({{ productItem.id }})" />
+      </div>
+
+      {# 
+          ——————————————— Case ———————————————
+         #}
+      <div class="admin-card__field-wrap">
+        <input id="case_input_{{ productItem.id }}" class="admin-card__field" type="text" placeholder="Case" onchange="UpdateItemCase({{ productItem.id }})" />
+      </div>
+
+      {# 
+          ——————————————— Year ———————————————
+         #}
+      <div class="admin-card__field-wrap">
+        <input id="year_input_{{ productItem.id }}" class="admin-card__field" type="text" placeholder="Year" onchange="UpdateItemYear({{ productItem.id }})" />
+      </div>
+
+      {# 
+          ——————————————— Invoice ———————————————
+         #}
+      <div class="admin-card__field-wrap">
+        <input id="invoice_input_{{ productItem.id }}" class="admin-card__field" type="text" placeholder="Invoice" onchange="UpdateItemInvoice({{ productItem.id }})" />
+      </div>
+    </div>
+
+    {# Controls #}
+    <div class="admin-card__fields-grid">
+      <label class="admin-card__btn" data-tip="Add Pics" for="add_pics_{{ productItem.id }}">
+        {% include 'icons/image-upload.svg' %}
+        <input id="add_pics_{{ productItem.id }}" type="file" accept="image/*" multiple onchange="UpdateItemPics({{ productItem.id }})" />
+      </label>
+      {% if productItem.published == 'Yes' %}
+        <button data-tip="Unpublish" class="admin-card__btn">{% include 'icons/view-off.svg' %}</button>
+      {% else %}
+        <button data-tip="Publish" class="admin-card__btn">{% include 'icons/view-on.svg' %}</button>
+      {% endif %}
+    </div>
+  </div>
+</div>

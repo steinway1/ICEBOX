@@ -1,5 +1,11 @@
+/**
+ * Usage:
+ * new InputDigits(input: HTMLInputElement);s
+ */
 export class InputDigits {
-  constructor(private el: HTMLInputElement) {
+  private el: HTMLInputElement;
+
+  constructor(el: HTMLInputElement) {
     this.el = el;
     this.handleInput = this.handleInput.bind(this);
     this.init();

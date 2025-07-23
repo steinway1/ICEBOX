@@ -1,0 +1,9 @@
+<div class="admin-bar">
+  <button data-ask="add-watches" class="admin-bar__btn">Add Watches</button>
+  <button class="admin-bar__btn">Add Other</button>
+  {% if show_admin_controls %}
+    <button data-tip="Hide controls" class="admin-bar__btn --active">{% include 'icons/slider-controls.svg' %}</button>
+  {% else %}
+    <button data-tip="Show controls" class="admin-bar__btn">{% include 'icons/slider-controls.svg' %}</button>
+  {% endif %}
+</div>

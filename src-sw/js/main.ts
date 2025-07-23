@@ -7,8 +7,9 @@ import { ModalSign } from "./modules/elements/modal-sign";
 import { Menu } from "./modules/elements/menu";
 
 import { initBehaviors } from "./modules/behaviors/init";
+import { AdminBehaviors } from "./admin";
 
-import { signModalStore } from "./store/sign-modal-store";
+import { initPageTips } from "./modules/elements/page-tips";
 
 document.addEventListener("DOMContentLoaded", () => {
   initBehaviors();
@@ -18,4 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   new ModalFilter();
   new ModalSign();
   new Menu();
+
+  new AdminBehaviors();
+
+  initPageTips();
 });
