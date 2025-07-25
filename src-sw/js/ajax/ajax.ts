@@ -35,3 +35,18 @@ export function AjaxGetSearchResults(query): Promise<Item> {
             });
     });
 }
+
+export function AjaxCreateWatches(n: number): Promise<Item> {
+    return new Promise((resolve) => {
+        fetch('admin/ajax/create-watches-bulk/' + n)
+            .then(response => response.json())
+            .then(result => {
+                if (!result.error) {
+                    resolve(result);
+                }
+            })
+            .catch(error => {
+                console.error('Error creating bulk watches:', error);
+            });
+    });
+}
