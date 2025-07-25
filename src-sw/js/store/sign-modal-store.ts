@@ -21,8 +21,8 @@ interface SignModalState {
 }
 
 export const signModalStore = createStore<SignModalState>({
-  isOpen: false,
-  view: "phone",
+  isOpen: true,
+  view: "reg",
   isLoading: false,
   loadingText: "Wait a moment...",
 

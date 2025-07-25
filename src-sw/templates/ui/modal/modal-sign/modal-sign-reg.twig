@@ -9,7 +9,7 @@
       </div>
       <div class="flex-col gap-8">
         <div class="flex gap-8">
-          {% include 'ui/input.twig' with {
+          {# {% include 'ui/input.twig' with {
             type: 'text',
             name: 'first_name',
             id: 'signupFn',
@@ -30,7 +30,7 @@
           id: 'signupEmailField',
           placeholder: 'Email address',
           required: true
-        } %}
+        } %} #}
         {% include 'ui/input.twig' with {
           type: 'tel',
           name: 'phone',
@@ -38,20 +38,20 @@
           placeholder: '(202) 555-0111',
           attr: [['data-input', 'tel']]
         } %}
-        {% include 'ui/input.twig' with {
+        {# {% include 'ui/input.twig' with {
           type: 'password',
           name: 'password',
           id: 'userPasswordSignup',
           passToggle: true,
           placeholder: 'Password',
           required: true
-        } %}
-        <div class="flex center mt-12">
+        } %} #}
+        {# <div class="flex center mt-12">
           <label class="custom-checkbox">
             <input id="signupSubscribe" name="subscribe" type="checkbox" checked="" data-parsley-multiple="subscribe" />
             <span class="custom-checkbox__label text-sm">Sign up for emails to get updates from Icebox on products, offers, and your Member benefits</span>
           </label>
-        </div>
+        </div> #}
       </div>
       <div class="sign-modal__btn-group">
         {% include 'ui/button.twig' with {
