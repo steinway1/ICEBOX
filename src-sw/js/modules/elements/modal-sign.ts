@@ -124,7 +124,8 @@ export class ModalSign {
   private bindEventListeners() {
     // Close modal
     this.closeElArr.forEach((el) => {
-      el.addEventListener("click", () => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
         signModalStore.set({ isOpen: false });
       });
     });

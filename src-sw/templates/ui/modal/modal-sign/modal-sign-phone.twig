@@ -19,9 +19,13 @@
           class: '--black'
         } %}
         {% include 'ui/button.twig' with {
+          text: 'Get back',
+          attr: [['data-action', 'modalSignClose']]
+        } %}
+        {# {% include 'ui/button.twig' with {
           text: 'Sign with email',
           attr: [['data-sign-go', 'email']]
-        } %}
+        } %} #}
       </div>
     </div>
   </form>

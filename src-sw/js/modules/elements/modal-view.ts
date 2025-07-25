@@ -6,7 +6,9 @@ import { getTransitionTime, lockScroll, unlockScroll } from "../../utils/utils";
 import { fakeAjaxGetItemById } from "../../ajax/fake-ajax";
 import { delay, createElement } from "../../utils/utils";
 import { modalQuickViewStore as store } from "../../store/quick-view-store";
-import {AjaxGetItemById} from "../../ajax/ajax";
+import { AjaxGetItemById } from "../../ajax/ajax";
+import { signModalStore } from "../../store/sign-modal-store";
+import { sign } from "@splidejs/splide/src/js/utils";
 
 export class ModalView {
   private readonly rootEl: HTMLElement | null =
@@ -24,8 +26,14 @@ export class ModalView {
     document.querySelectorAll("[data-action='modalViewClose']"),
   );
 
+  private openedTime: number;
+  private openedLimit: number;
+
   constructor() {
     if (!this.rootEl) return;
+
+    this.openedTime = 0;
+    this.openedLimit = 10;
     this.init();
   }
   private init() {
@@ -104,7 +112,21 @@ export class ModalView {
         throw new Error("No id found");
       }
 
+      /**
+       * @CHOU - put correct logic here
+       * Check if user is authorized
+       */
+      const isAuthorized = (window as any).isUserAuthorized
+        ? (window as any).isUserAuthorized()
+        : false;
+
+      if (!isAuthorized && this.openedTime >= this.openedLimit) {
+        signModalStore.set({ isOpen: true, view: "phone" });
+        return;
+      }
+
       this.open(Number(id));
+      this.openedTime += 1;
     });
 
     /** Close */

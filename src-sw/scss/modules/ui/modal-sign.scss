@@ -25,15 +25,14 @@
 
   &.--show-msg {
     .sign-modal__msg {
+      display: flex;
       transform: translateY(0);
       opacity: 1;
     }
 
     &.--err {
       .sign-modal__msg {
-        background-color: var(--red);
-        border-color: var(--red);
-        box-shadow: 0 12px 48px rgba(214, 34, 34, 0.25);
+        color: var(--red);
       }
     }
   }
@@ -228,21 +227,15 @@
 }
 
 .sign-modal__msg {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
   font-weight: 550;
-  position: absolute;
-  inset: auto 10px 10px;
+  position: static;
   z-index: 10;
-  border-radius: 0.9rem;
-  background-color: var(--accent-1);
-  color: white;
-  padding: 12px 24px;
+  padding: 6px 12px 28px;
   text-align: center;
-  border: 1px solid var(--accent-1);
-  box-shadow: 0 12px 48px rgba(5, 139, 216, 0.4);
   transition: var(--transition);
+  color: var(--green);
   pointer-events: none;
 }
