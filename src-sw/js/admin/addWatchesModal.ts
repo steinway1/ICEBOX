@@ -2,6 +2,7 @@ import { ModalAsk, ModalAskSettings } from "../dynamic/modal-ask";
 import { createElem } from "../utils/createElem";
 import { InputDigits } from "../modules/behaviors/input-digits";
 import { fakeAjaxPost } from "../ajax/fake-ajax";
+import { AjaxCreateWatches} from "../ajax/ajax";
 
 export class AddWatchesModal {
   private modalInstance: ModalAsk | null;
@@ -76,7 +77,7 @@ export class AddWatchesModal {
   /**
    * —————————————————— Render Content ——————————————————
    */
-  async submit() {
+  async *submit() {
     const { inputElem } = this;
 
     /** Check if input element exists */
@@ -104,9 +105,9 @@ export class AddWatchesModal {
      */
     try {
       this.modalInstance?.setLoading(true);
-      const res = await fakeAjaxPost("/admin/add-watches", value);
+      const res = await AjaxCreateWatches(value);
       /** If request is bad, throw error */
-      if (!res.success) {
+      if (!res.ok) {
         throw new Error("Request failed");
       }
 
