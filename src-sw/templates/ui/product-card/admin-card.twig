@@ -124,6 +124,14 @@
       </div>
 
       {# 
+          ——————————————— URL ———————————————
+         #}
+      <div class="admin-card__field-wrap --full">
+        <input id="url_input_{{ productItem.id }}" class="admin-card__field" type="text" placeholder="URL" onchange="UpdateItemUrl({{ productItem.id }})" />
+        <button data-admin-card="copy-url" data-tip="Copy URL" class="admin-card__copy-btn"></button>
+      </div>
+
+      {# 
           ——————————————— Invoice ———————————————
          #}
       <div class="admin-card__field-wrap">

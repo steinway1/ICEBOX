@@ -1,4 +1,5 @@
 import { AddWatchesModal } from "./addWatchesModal";
+import { AdminProductCard } from "./adminProductCard";
 
 export class AdminBehaviors {
   constructor() {
@@ -6,5 +7,6 @@ export class AdminBehaviors {
   }
   private init() {
     new AddWatchesModal();
+    new AdminProductCard();
   }
 }
