@@ -21,7 +21,7 @@ export class ProductCard {
         (e) => {
           const target = e.target as HTMLElement;
           const productCard = target.closest(
-            ".product-card",
+            ".product-card__media",
           ) as HTMLElement | null;
           if (productCard) {
             const video = productCard.querySelector(
@@ -41,7 +41,7 @@ export class ProductCard {
         (e) => {
           const target = e.target as HTMLElement;
           const productCard = target.closest(
-            ".product-card",
+            ".product-card__media",
           ) as HTMLElement | null;
           if (productCard) {
             const video = productCard.querySelector(
