@@ -244,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const blogPageRoot = document.querySelector('.main_article');
   if (blogPageRoot) {
+    alert('initialize blog page');
     import('./modules/pages/blog-page').then(({ default: BlogPage }) => new BlogPage()).catch(console.error);
   }
 

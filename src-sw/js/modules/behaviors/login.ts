@@ -77,37 +77,86 @@ export class Login {
     const setLoading = this.setLoading;
 
     (window as any).Parsley.on("form:submit", function () {
-      var form = $(this.$element[0]);
-      var url = form.attr("action");
+      const form = $(this.$element[0]);
+      const url = form.attr("action");
+
+      if (form.hasClass("otp-registration")) {
+        const loginPhoneInput = form.find('input[name="phone"]')[0];
+
+        if (!loginPhoneInput) {
+          console.warn("Phone input not found in form");
+          return;
+        }
+
+        const iti = intlTelInputGlobals.getInstance(loginPhoneInput);
+        if (!iti) {
+          console.warn("intlTelInput instance not found for loginPhoneInput");
+          return;
+        }
+
+        const fullPhone = iti.getNumber();
+        const selectedCountryData = iti.getSelectedCountryData();
+        const countryCode = "+" + selectedCountryData.dialCode;
+        const phone = fullPhone.replace(countryCode, "");
+
+        const ensureHiddenInput = (name, value) => {
+          let input = form.find(`input[name="${name}"]`);
+          if (!input.length) {
+            input = $(`<input type="hidden" name="${name}">`).appendTo(form);
+          }
+          input.val(value);
+        };
+
+        ensureHiddenInput("country_code", countryCode);
+        ensureHiddenInput("phone_number", phone);
+      }
+
       setLoading(true);
       $.ajax({
         type: "POST",
         url: url,
         data: form.serialize(),
         success: function (data) {
-          var r = $.parseJSON(data);
+          setLoading(false);
+          const r = $.parseJSON(data);
+
           if (!r.error) {
-            //show success state on button and return message in r.msg
             showMsg(r.msg, false);
-            window.setTimeout(function () {
-              if (r.link != undefined && r.link != "") {
-                window.location.href = r.link;
-              } else {
-                window.location.reload();
+            if (r.ask_otp != null) {
+              setTimeout(() => {
+                hideMsg();
+              }, 3000);
+              if(!r.error){
+                signModalStore.set({ view: "otp" })
+                $('#otp_country').val(r.country_code);
+                $('#otp_phone').val(r.phone);
               }
-            }, 3000);
+            } else {
+              window.setTimeout(function () {
+                if (r.link !== undefined && r.link !== "") {
+                  window.location.href = r.link;
+                } else {
+                  window.location.reload();
+                }
+              }, 3000);
+            }
           } else {
-            //show failed state on button and return message in r.msg
-            showMsg(r.msg, true);
+            showMsg(r.msg,true);
             setTimeout(() => {
               hideMsg();
             }, 3000);
           }
         },
+        error: function () {
+          showMsg("An error occurred. Please try again.", true);
+          setLoading(false);
+        },
       });
+
       return false;
     });
   }
+
 
   private bindFormsSubmit() {
     this.formsArr.forEach((form) => {
