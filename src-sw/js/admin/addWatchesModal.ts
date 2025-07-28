@@ -77,7 +77,7 @@ export class AddWatchesModal {
   /**
    * —————————————————— Render Content ——————————————————
    */
-  async *submit() {
+  async submit() {
     const { inputElem } = this;
 
     /** Check if input element exists */
@@ -107,8 +107,10 @@ export class AddWatchesModal {
       this.modalInstance?.setLoading(true);
       const res = await AjaxCreateWatches(value);
       /** If request is bad, throw error */
-      if (!res.ok) {
+      if (res.error) {
         throw new Error("Request failed");
+      }else{
+        alert(res.msg);
       }
 
       this.modalInstance?.close();
