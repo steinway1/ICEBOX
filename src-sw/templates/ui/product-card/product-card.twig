@@ -1,6 +1,10 @@
 {% set whatsAppLink = "https://wa.me/7705841378?text=I'd%20like%20to%20buy%20" ~ productItem.name ~ ' ' ~ productItem.brand ~ ' ' ~ productItem.meta %}
+{% set extraClassname = '' %}
+{% if productItem.is_sold %}
+  {% set extraClassname = extraClassname ~ ' --sold' %}
+{% endif %}
 
-<div class="product-card">
+<div class="product-card {{ extraClassname }}">
   {# Admin Overly #}
   {% if user.admin and show_admin_controls %}
     {% include 'ui/product-card/admin-card.twig' with {
@@ -12,6 +16,13 @@
   <div class="product-card__top">
     <div class="product-card__media">
       <a href="{{ productItem.href }}"><img src="{{ productItem.cover }}" alt="{{ productItem.brand }} {{ productItem.model }} {{ productItem.meta }}" /></a>
+      {% if productItem.video_src %}
+        <video playsinline="playsinline" muted="muted" loop="loop" preload="metadata" aria-label="{{ productItem.name }}" poster="{{ productItem.cover }}">
+          {% for video in productItem.video_src %}
+            <source src="{{ video }}" />
+          {% endfor %}
+        </video>
+      {% endif %}
     </div>
   </div>
 
