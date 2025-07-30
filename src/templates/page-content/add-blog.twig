@@ -1,185 +1,165 @@
 <div class="main_article edit_article">
-	<div class="article__wrapper">
-		<div class="article-body">
-			<div class="article__read-content">
+  <div class="article__wrapper">
+    <div class="article-body">
+      <div class="article__read-content">
+        <div class="article-welcome">
+          <div class="article__title-wrap">
+            <div data-edit-box="heading" class="blog-edit-box">
+              <input data-blog-edit="heading" placeholder="Add Title" type="text" class="blog-edit-box__input" />
+            </div>
+            <div data-edit-box="summary" class="blog-edit-box">
+              <input data-blog-edit="summary" placeholder="Add Excerpt" type="text" class="blog-edit-box__input" />
+            </div>
+          </div>
+          <div data-edit-box="minutes" class="blog-edit-box">
+            <input data-blog-edit="minutes" placeholder="Minutes to read" type="text" class="blog-edit-box__input" />
+          </div>
+        </div>
 
-				<div class="article-welcome">
-					<div class="article__title-wrap">
-						<div data-edit-box="heading" class="blog-edit-box">
-							<input data-blog-edit="heading" placeholder="Add Title" type="text" class="blog-edit-box__input">
-						</div>
-						<div data-edit-box="summary" class="blog-edit-box">
-							<input data-blog-edit="summary" placeholder="Add Excerpt" type="text" class="blog-edit-box__input">
-						</div>
-					</div>
-					<div data-edit-box="minutes" class="blog-edit-box">
-						<input data-blog-edit="minutes" placeholder="Minutes to read" type="text" class="blog-edit-box__input">
-					</div>
-				</div>
+        <div class="article-cover">
+          <div data-edit-box="cover" class="blog-edit-box">
+            <input type="file" name="files[]" data-blog-edit="cover" id="cover_upload" accept="image/jpeg, image/png, image/webp, image/gif," />
+          </div>
+        </div>
 
-				<div class="article-cover">
-					<div data-edit-box="cover" class="blog-edit-box">
-						<input type="file" name="files[]" data-blog-edit="cover" id="cover_upload" accept="image/jpeg, image/png, image/webp, image/gif,">
-					</div>
-				</div>
+        <div class="article-spot">
+          <span class="post-author">
+            <div data-edit-box="author" class="blog-edit-box">
+              <input data-blog-edit="author" placeholder="Author Name" type="text" class="blog-edit-box__input" />
+            </div>
+          </span>
+          <button data-evt="shareArticle" class="article__share-btn">Share Article</button>
+        </div>
 
-				<div class="article-spot">
-					<span class="post-author">
-						<div data-edit-box="author" class="blog-edit-box">
-							<input data-blog-edit="author" placeholder="Author Name" type="text" class="blog-edit-box__input">
-						</div>
-					</span>
-					<button data-evt="shareArticle" class="article__share-btn">Share Article</button>
-				</div>
+        <div class="article__content editable__content">
+          {# Product Section -- Items in GRID -- Result HTML #}
+          {# <div class="article-content-section --product" data-content-type="product">
+            <div class="blog__cards-grid">
+              {% for i in 0..2 %}
+                <div class="blog-card">
+                  <a href="#" target="_blank" class="blog-card__media"><img src="./assets/product-sample1.webp" alt="" /></a>
+                  <div class="blog-card__details">
+                    <h5 class="blog-card__name"><a href="" target="_blank">Prong Set Diamond Tennis Bracelet 14K Solid Gold 1.50ctw</a></h5>
+                    <span class="blog-card__price">$11,190</span>
+                    <a href="#" target="_blank" class="blog-card__link">Shop Now</a>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div> #}
 
-				<div
-					class="article__content editable__content">
+          {# Product Section -- Items in SLIDER -- Result HTML #}
+          <div class="article-content-section --slider" data-content-type="product">
+            <div class="splide splide_blog">
+              <div class="splide__track">
+                <div class="splide__list">
+                  {% for i in 0..10 %}
+                    <div class="blog-card splide__slide">
+                      <a href="#" target="_blank" class="blog-card__media"><img src="./assets/product-sample1.webp" alt="" /></a>
+                      <div class="blog-card__details">
+                        <h5 class="blog-card__name"><a href="" target="_blank">Prong Set Diamond Tennis Bracelet 14K Solid Gold 1.50ctw</a></h5>
+                        <span class="blog-card__price">$11,190</span>
+                        <a href="#" target="_blank" class="blog-card__link">Shop Now</a>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-					{# Product Section -- Items in GRID -- Result HTML #}
-					<div class="article-content-section --product" data-content-type="product">
-						<div class="blog__cards-grid">
-							{% for i in 0..2 %}
-								<div class="blog-card">
-									<a href="#" target="_blank" class="blog-card__media">
-										<img src="./assets/product-sample1.webp" alt="">
-									</a>
-									<div class="blog-card__details">
-										<h5 class="blog-card__name">
-											<a href="" target="_blank">Prong Set Diamond Tennis Bracelet 14K Solid Gold 1.50ctw</a>
-										</h5>
-										<span class="blog-card__price">$11,190</span>
-										<a href="#" target="_blank" class="blog-card__link">Shop Now</a>
-									</div>
-								</div>
-							{% endfor %}
-						</div>
-					</div>
+        <div class="edit-box-grid">
+          <button data-add-section="largeTitle" data-edit-box="addLargeTitle" class="blog-edit-box">
+            {% include 'components/svg/edit-bigger.svg' %}
+            <span>Large Heading</span>
+          </button>
+          <button data-add-section="tinyTitle" data-edit-box="addTinyTitle" class="blog-edit-box">
+            {% include 'components/svg/edit-smaller.svg' %}
+            <span>Tiny Heading</span>
+          </button>
+          <button data-add-section="textBlock" data-edit-box="addTextBlock" class="blog-edit-box">
+            {% include 'components/svg/blog-text.svg' %}
+            <span>Text Block</span>
+          </button>
+          <button data-add-section="spacer" data-edit-box="addSpacer" class="blog-edit-box">
+            {% include 'components/svg/blog-spacer.svg' %}
+            <span>Spacer</span>
+          </button>
+          <button data-add-section="productBlock" data-edit-box="addProduct" class="blog-edit-box">
+            {% include 'components/svg/blog-product.svg' %}
+            <span>Product</span>
+          </button>
+          <button data-add-section="sliderBlock" data-edit-box="addSlider" class="blog-edit-box">
+            {% include 'components/svg/blog-slider.svg' %}
+            <span>Slider</span>
+          </button>
+          <button data-add-section="list" data-edit-box="addList" class="blog-edit-box">
+            {% include 'components/svg/blog-list.svg' %}
+            <span>List</span>
+          </button>
+          <button data-add-section="ytEmbed" data-edit-box="addYoutube" class="blog-edit-box">
+            {% include 'components/svg/blog-youtube.svg' %}
+            <span>Youtube Embed</span>
+          </button>
+        </div>
+        <button class="article__save-btn" data-evt="saveArticle">Save Article</button>
 
-					{# Product Section -- Items in SLIDER -- Result HTML #}
-					<div class="article-content-section --slider" data-content-type="product">
-						<div class="splide splide_blog">
-							<div class="splide__track">
-								<div class="splide__list">
-									{% for i in 0..10 %}
-										<div class="blog-card splide__slide">
-											<a href="#" target="_blank" class="blog-card__media">
-												<img src="./assets/product-sample1.webp" alt="">
-											</a>
-											<div class="blog-card__details">
-												<h5 class="blog-card__name">
-													<a href="" target="_blank">Prong Set Diamond Tennis Bracelet 14K Solid Gold 1.50ctw</a>
-												</h5>
-												<span class="blog-card__price">$11,190</span>
-												<a href="#" target="_blank" class="blog-card__link">Shop Now</a>
-											</div>
-										</div>
-									{% endfor %}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+        <div class="article__social-block">
+          <div class="big-social-grid">
+            <a href="https://www.youtube.com/channel/UCv8gFyATae1x0VmDHmNbIhg?sub_confirmation=1" class="big-social-box">
+              <div>
+                YouTube<span>2,000,000+ subscribers</span>
+              </div><img src="{{ THEME_ASSETS_FOLDER }}social-box_youtube.svg" loading="lazy" alt="" />
+            </a>
+            <a href="https://www.tiktok.com/@icebox" class="big-social-box">
+              <div>
+                TikTok<span>7,400,000+ followers</span>
+              </div><img src="{{ THEME_ASSETS_FOLDER }}social-box_tiktok.svg" loading="lazy" alt="" />
+            </a>
+            <a href="https://www.instagram.com/icebox/" class="big-social-box">
+              <div>
+                Instagram<span>4,400,000+ followers</span>
+              </div><img src="{{ THEME_ASSETS_FOLDER }}social-box_instagram.svg" loading="lazy" alt="" />
+            </a>
+            <a href="https://www.twitter.com/icebox" class="big-social-box">
+              <div>
+                Twitter<span>33,000+ followers</span>
+              </div><img src="{{ THEME_ASSETS_FOLDER }}social-box_twitter.svg" loading="lazy" alt="" />
+            </a>
+            <a href="https://www.snapchat.com/p/76d86003-980f-4fa7-ae24-85adc580de82/1442749846900736?timestamp=1&chapterid=206898777550848%3Fshare_id%3DQTlEREI4&locale=en_GB" class="big-social-box">
+              <div>
+                Snapchat<span>1,000,000+ followers</span>
+              </div><img src="{{ THEME_ASSETS_FOLDER }}social-box_snapchat.svg" loading="lazy" alt="" />
+            </a>
+            <a href="https://www.facebook.com/Icebox" class="big-social-box">
+              <div>
+                Facebook<span>900,000+ followers</span>
+              </div><img src="{{ THEME_ASSETS_FOLDER }}social-box_facebook.svg" loading="lazy" alt="" />
+            </a>
+          </div>
+        </div>
 
-				<div class="edit-box-grid">
-					<button data-add-section="largeTitle" data-edit-box="addLargeTitle" class="blog-edit-box">
-						{% include "components/svg/edit-bigger.svg" %}
-						<span>Large Heading</span>
-					</button>
-					<button data-add-section="tinyTitle" data-edit-box="addTinyTitle" class="blog-edit-box">
-						{% include "components/svg/edit-smaller.svg" %}
-						<span>Tiny Heading</span>
-					</button>
-					<button data-add-section="textBlock" data-edit-box="addTextBlock" class="blog-edit-box">
-						{% include "components/svg/blog-text.svg" %}
-						<span>Text Block</span>
-					</button>
-					<button data-add-section="spacer" data-edit-box="addSpacer" class="blog-edit-box">
-						{% include "components/svg/blog-spacer.svg" %}
-						<span>Spacer</span>
-					</button>
-					<button data-add-section="productBlock" data-edit-box="addProduct" class="blog-edit-box">
-						{% include "components/svg/blog-product.svg" %}
-						<span>Product</span>
-					</button>
-					<button data-add-section="sliderBlock" data-edit-box="addSlider" class="blog-edit-box">
-						{% include "components/svg/blog-slider.svg" %}
-						<span>Slider</span>
-					</button>
-					<button data-add-section="list" data-edit-box="addList" class="blog-edit-box">
-						{% include "components/svg/blog-list.svg" %}
-						<span>List</span>
-					</button>
-					<button data-add-section="ytEmbed" data-edit-box="addYoutube" class="blog-edit-box">
-						{% include "components/svg/blog-youtube.svg" %}
-						<span>Youtube Embed</span>
-					</button>
-				</div>
-				<button class="article__save-btn" data-evt="saveArticle">Save Article</button>
-
-				<div class="article__social-block">
-					<div class="big-social-grid">
-						<a href="https://www.youtube.com/channel/UCv8gFyATae1x0VmDHmNbIhg?sub_confirmation=1" class="big-social-box">
-							<div>YouTube<span>2,000,000+ subscribers</span>
-							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_youtube.svg" loading="lazy" alt="">
-						</a>
-						<a href="https://www.tiktok.com/@icebox" class="big-social-box">
-							<div>TikTok<span>7,400,000+ followers</span>
-							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_tiktok.svg" loading="lazy" alt="">
-						</a>
-						<a href="https://www.instagram.com/icebox/" class="big-social-box">
-							<div>Instagram<span>4,400,000+ followers</span>
-							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_instagram.svg" loading="lazy" alt="">
-						</a>
-						<a href="https://www.twitter.com/icebox" class="big-social-box">
-							<div>Twitter<span>33,000+ followers</span>
-							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_twitter.svg" loading="lazy" alt="">
-						</a>
-						<a href="https://www.snapchat.com/p/76d86003-980f-4fa7-ae24-85adc580de82/1442749846900736?timestamp=1&chapterid=206898777550848%3Fshare_id%3DQTlEREI4&locale=en_GB" class="big-social-box">
-							<div>Snapchat<span>1,000,000+ followers</span>
-							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_snapchat.svg" loading="lazy" alt="">
-						</a>
-						<a href="https://www.facebook.com/Icebox" class="big-social-box">
-							<div>Facebook<span>900,000+ followers</span>
-							</div><img src="{{ THEME_ASSETS_FOLDER }}social-box_facebook.svg" loading="lazy" alt="">
-						</a>
-					</div>
-				</div>
-
-				<div class="blog__posts-grid">
-					{% for blog in blogs %}
-						{% include "elements/blog-post.twig" with {
-            article: blog
+        <div class="blog__posts-grid">
+          {% for blog in blogs %}
+            {% include 'elements/blog-post.twig' with {
+              article: blog
             } %}
-					{% endfor %}
-				</div>
-
-			</div>
-		</div>
-	</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="edit-tip">
-	<div class="edit-tip__wrapper">
-		<button data-edit-tip="bold" class="edit-tip__btn">
-			{% include "components/svg/edit-bold.svg" %}
-		</button>
-		<button data-edit-tip="italic" class="edit-tip__btn">
-			{% include "components/svg/edit-italic.svg" %}
-		</button>
-		<button data-edit-tip="list" class="edit-tip__btn">
-			{% include "components/svg/edit-list.svg" %}
-		</button>
-		<button data-edit-tip="highlight" class="edit-tip__btn">
-			{% include "components/svg/edit-highlight.svg" %}
-		</button>
-		<button data-edit-tip="highlightFull" class="edit-tip__btn">
-			{% include "components/svg/edit-highlight-full.svg" %}
-		</button>
-		<button data-edit-tip="link" class="edit-tip__btn">
-			{% include "components/svg/edit-link.svg"%}
-		</button>
-		<button data-edit-tip="clear" class="edit-tip__btn">
-			{% include "components/svg/edit-clear.svg" %}
-		</button>
-	</div>
+  <div class="edit-tip__wrapper">
+    <button data-edit-tip="bold" class="edit-tip__btn">{% include 'components/svg/edit-bold.svg' %}</button>
+    <button data-edit-tip="italic" class="edit-tip__btn">{% include 'components/svg/edit-italic.svg' %}</button>
+    <button data-edit-tip="list" class="edit-tip__btn">{% include 'components/svg/edit-list.svg' %}</button>
+    <button data-edit-tip="highlight" class="edit-tip__btn">{% include 'components/svg/edit-highlight.svg' %}</button>
+    <button data-edit-tip="highlightFull" class="edit-tip__btn">{% include 'components/svg/edit-highlight-full.svg' %}</button>
+    <button data-edit-tip="link" class="edit-tip__btn">{% include 'components/svg/edit-link.svg' %}</button>
+    <button data-edit-tip="clear" class="edit-tip__btn">{% include 'components/svg/edit-clear.svg' %}</button>
+  </div>
 </div>

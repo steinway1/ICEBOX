@@ -6,6 +6,7 @@ import { ModalFilter } from "./modules/elements/modal-filter";
 import { ModalSign } from "./modules/elements/modal-sign";
 import { Menu } from "./modules/elements/menu";
 import { ProductCard } from "./modules/elements/product-card";
+import { Product } from "./modules/pages/product";
 
 import { initBehaviors } from "./modules/behaviors/init";
 import { AdminBehaviors } from "./admin";
@@ -21,7 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
   new ModalSign();
   new Menu();
   new ProductCard();
+  new Product();
+
+  // Admin
   new AdminBehaviors();
 
+  // Page Tips
   initPageTips();
 });

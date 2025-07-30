@@ -1,0 +1,29 @@
+<div class="product__view">
+  <div class="product__view-thumbs">
+    <div class="swiper swiper--product-thumbs">
+      <div class="swiper-wrapper">
+        {% for item in media_elements %}
+          <div class="product__media swiper-slide">
+            <div class="product__media-wrapper">
+              <img src="{{ item.src }}" alt="{{ item.alt }}" />
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="product__view-main">
+    <div class="swiper swiper--product-main">
+      <div class="swiper-wrapper">
+        {% for item in media_elements %}
+          <div class="product__media swiper-slide">
+            <div class="product__media-wrapper">
+              <img src="{{ item.src }}" alt="{{ item.alt }}" />
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

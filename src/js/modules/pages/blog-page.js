@@ -101,4 +101,4 @@ class BlogPage {
   }
 }
 
-module.exports = new BlogPage();
+module.exports = BlogPage;

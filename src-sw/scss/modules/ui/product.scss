@@ -1,0 +1,53 @@
+@use "../base/mixin.scss" as *;
+
+body.body--product {
+  .breadcrumbs {
+    background-color: var(--grey);
+    font-size: 11px;
+
+    a {
+      opacity: 0.6;
+    }
+
+    @include maxLg {
+      display: none;
+    }
+  }
+}
+
+.product-content {
+  width: 100vw;
+  max-width: 100vw;
+  min-height: 100vh;
+}
+
+.product__main-wrapper {
+  display: flex;
+  gap: 54px;
+  padding: 46px var(--p-default);
+  width: 100%;
+  max-width: 100%;
+
+  @include maxLg {
+    flex-direction: column;
+    gap: 42px;
+    padding-top: var(--p-default);
+  }
+}
+
+.product__side {
+  width: 42%;
+  flex: none;
+
+  @include maxLg {
+    width: 100%;
+  }
+}
+
+.product__view {
+  flex: 1;
+}
+
+.product__view-main {
+  width: 100%;
+}

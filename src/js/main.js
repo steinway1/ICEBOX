@@ -239,15 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /**
-   * Blog Page
-   * /blog
-   */
-  const blogPageRoot = document.querySelector('.main_article');
-  if (blogPageRoot) {
-    import('./modules/pages/blog-page').then(({ default: BlogPage }) => new BlogPage()).catch(console.error);
-  }
-
-  /**
    * Form Page
    * /form
    */
@@ -389,6 +380,28 @@ document.addEventListener('DOMContentLoaded', () => {
   import('./modules/dynamic/pageTip').then(({ default: PageTip }) => {
     window.pageTip = new PageTip();
   });
+
+  /**
+   * Blog Page
+   * /blog
+   */
+  const blogPageRoot = document.querySelector('.main_article');
+  if (blogPageRoot) {
+    import('./modules/pages/blog-page').then(({ default: BlogPage }) => new BlogPage()).catch(console.error);
+  }
+
+  const editArticleRoot = document.querySelector('.edit_article');
+  if (editArticleRoot) {
+    import('./modules/pages/edit-article')
+      .then(({ default: EditArticle }) => {
+        window.editArticle = new EditArticle('editable__content', {
+          setInitialLayout: true,
+        });
+
+        window.editArticle.init();
+      })
+      .catch(console.error);
+  }
 });
 
 /**
