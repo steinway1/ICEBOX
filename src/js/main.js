@@ -4,6 +4,9 @@ require('./jquery.crs.min');
 require('./jQuery-zoom');
 require('./parsley.min');
 
+// Edit Article page
+require('./modules/pages/add-blog');
+
 window.popper = require('./popper');
 window.tippy = require('./tippy');
 window.Splide = require('./splide');
