@@ -3,6 +3,7 @@ import { Login } from "./login";
 import { InputDigits } from "./input-digits";
 import { InputOtp } from "./input-otp";
 import { PassToggle } from "./pass-toggle";
+import { StickyElements } from "./sticky-elements";
 
 interface BehaviorDefinition {
   selector: string;
@@ -29,6 +30,10 @@ const behaviors: BehaviorDefinition[] = [
   {
     selector: ".pass-toggle-btn",
     BehaviorClass: PassToggle,
+  },
+  {
+    selector: "[data-sticky]",
+    BehaviorClass: StickyElements,
   },
 ];
 

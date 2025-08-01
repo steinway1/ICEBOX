@@ -1,0 +1,22 @@
+<div class="product__btn-group">
+  {# Whatsapp #}
+  <a href="{{ whatsapp_url }}" class="btn --black">
+    {% include 'icons/whatsapp-fill.svg' %}
+    <span>Chat us on WhatsApp</span>
+  </a>
+
+  {# Call #}
+  <a href="tel:{{ phone }}" class="btn --outline"><span>Call now: {{ phone }}</span></a>
+
+  {# Notice #}
+  <span class="product__buy-notice">Currently, we require you to contact us directly to make a purchase.</span>
+
+  {# Authenticity badge #}
+  <span class="product__authenticity-badge">
+    <img src="{{ THEME_ASSETS_FOLDER }}/auth-badge.avif" alt="" />
+    <span>
+      <span>100% Authenticity Guaranteed</span>
+      <span>Swisswatches.com guarantees 100% authenticity by personally verifying each watch.</span>
+    </span>
+  </span>
+</div>

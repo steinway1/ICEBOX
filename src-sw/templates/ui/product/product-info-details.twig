@@ -1,0 +1,79 @@
+{# 
+  Info about:
+    - Case size
+    - Case material
+    - Dial color
+    - Box
+    - Papers
+    - Reference number
+    - Model
+    - Year
+ #}
+
+<div>
+  <h4 class="subtitle --border-b">More about this watch</h4>
+
+  {# Case size #}
+  {% if product.item.case_size %}
+    <div class="product__details-row">
+      <span>Case size</span>
+      <span>{{ product.item.case_size }}</span>
+    </div>
+  {% endif %}
+
+  {# Case material #}
+  {% if product.item.material or product.item.case_material %}
+    <div class="product__details-row">
+      <span>Case material</span>
+      <span>{{ product.item.case_material is defined and product.item.case_material ? product.item.case_material : product.item.material }}</span>
+    </div>
+  {% endif %}
+
+  {# Dial color #}
+  {% if product.item.dial_color %}
+    <div class="product__details-row">
+      <span>Dial color</span>
+      <span>{{ product.item.dial_color }}</span>
+    </div>
+  {% endif %}
+
+  {# Box #}
+  {% if product.item.box %}
+    <div class="product__details-row">
+      <span>Box</span>
+      <span>{{ product.item.box }}</span>
+    </div>
+  {% endif %}
+
+  {# Papers #}
+  {% if product.item.papers %}
+    <div class="product__details-row">
+      <span>Papers</span>
+      <span>{{ product.item.papers }}</span>
+    </div>
+  {% endif %}
+
+  {# Reference number #}
+  {% if product.item.reference or product.item.reference_number %}
+    <div class="product__details-row">
+      <span>Reference number</span>
+      <span>{{ product.item.reference_number is defined and product.item.reference_number ? product.item.reference_number : product.item.reference }}</span>
+    </div>
+  {% endif %}
+
+  {# Model #}
+  {% if product.item.model %}
+    <div class="product__details-row">
+      <span>Model</span>
+      <span>{{ product.item.model }}</span>
+    </div>
+  {% endif %}
+
+  {# Year #}
+  {% if product.item.year %}
+    <div class="product__details-row">
+      <span>Year</span>
+      <span>{{ product.item.year }}</span>
+    </div>
+  {% endif %}
+</div>

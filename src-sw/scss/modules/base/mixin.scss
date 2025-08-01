@@ -110,6 +110,32 @@
   }
 }
 
+@mixin after-right-arrow($strokeWidth: 2, $size: 22px) {
+  &::after {
+    content: "";
+    position: static;
+    width: $size;
+    height: $size;
+    background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12L20 12" stroke="%23171C29" stroke-width="#{$strokeWidth}"/><path d="M12.125 4L20 11.875L12.125 19.75" stroke="%23171C29" stroke-width="#{$strokeWidth}"/></svg>');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+@mixin after-left-arrow($strokeWidth: 2, $size: 22px) {
+  &::after {
+    content: "";
+    position: static;
+    width: $size;
+    height: $size;
+    background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 12L4 12" stroke="%23171C29" stroke-width="#{$strokeWidth}"/><path d="M11.875 4L4 11.875L11.875 19.75" stroke="%23171C29" stroke-width="#{$strokeWidth}"/></svg>');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
 @mixin after-cross($strokeWidth: 2, $size: 18px) {
   &::after {
     content: "";

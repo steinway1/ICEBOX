@@ -1,28 +1,36 @@
 <div class="product__view">
-  <div class="product__view-thumbs">
-    <div class="swiper swiper--product-thumbs">
+  <div data-sticky data-sticky-rule="header" data-sticky-offset="24" data-sticky-mobile="false" class="product__view-main">
+    {# Thumbnails #}
+    <div class="swiper swiper--product-thumbnails">
       <div class="swiper-wrapper">
-        {% for item in media_elements %}
-          <div class="product__media swiper-slide">
+        {% for item in product.media.elements %}
+          <div class="product__media --thumb swiper-slide">
             <div class="product__media-wrapper">
-              <img src="{{ item.src }}" alt="{{ item.alt }}" />
+              <div class="product__media-container">
+                <img src="{{ item.src }}" alt="{{ item.alt }}" />
+              </div>
             </div>
           </div>
         {% endfor %}
       </div>
     </div>
-  </div>
 
-  <div class="product__view-main">
+    {# Main Gallry #}
     <div class="swiper swiper--product-main">
       <div class="swiper-wrapper">
-        {% for item in media_elements %}
+        {% for item in product.media.elements %}
           <div class="product__media swiper-slide">
             <div class="product__media-wrapper">
-              <img src="{{ item.src }}" alt="{{ item.alt }}" />
+              <div class="product__media-container">
+                <div class="swiper-zoom-container">
+                  <img src="{{ item.src }}" alt="{{ item.alt }}" />
+                </div>
+              </div>
             </div>
           </div>
         {% endfor %}
+        <button class="product__swiper-button swiper--product-button-prev"></button>
+        <button class="product__swiper-button swiper--product-button-next"></button>
       </div>
     </div>
   </div>

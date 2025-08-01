@@ -1,0 +1,70 @@
+{% set sale_price = product.item.salePrice %}
+{% set sale_price_defined = product.item.salePrice is defined %}
+
+{# Collect brand + model + dial_size + case_size + material #}
+{% set meta_parts = [] %}
+
+{% if product.item.model is defined and product.item.model %}
+  {% set meta_parts = meta_parts|merge([product.item.model]) %}
+{% endif %}
+
+{% if product.item.brand is defined and product.item.brand %}
+  {% set meta_parts = meta_parts|merge([product.item.brand]) %}
+{% endif %}
+
+{% if product.item.dial_size is defined and product.item.dial_size %}
+  {% set meta_parts = meta_parts|merge([product.item.dial_size]) %}
+{% endif %}
+
+{% if product.item.case_size is defined and product.item.case_size %}
+  {% set meta_parts = meta_parts|merge([product.item.case_size]) %}
+{% endif %}
+
+{% if product.item.material is defined and product.item.material %}
+  {% set meta_parts = meta_parts|merge([product.item.material]) %}
+{% endif %}
+
+{# Product main info #}
+<div class="product__side-row">
+  {# Label #}
+  <span class="product__label">PRE-OWNED WATCHES</span>
+
+  {# Title / Meta / Legal notice #}
+  <div class="product__title-wrap">
+    <h1 class="product__title">{{ product.item.name }}</h1>
+    <p class="product__meta">
+      {{ meta_parts|join(' ') }}
+    </p>
+    <span class="product__legal-notice">Swisswatches.com is not associated with any watch brand</span>
+  </div>
+
+  {# Price #}
+  <div class="product__price-wrap">
+    {# MSRP #}
+    <div class="product__msrp">
+      {% if product.item.msrp %}
+        <span>MSRP</span>
+        <span>{{ product.item.msrp ? product.item.msrp : 'N/A' }}</span>
+      {% endif %}
+    </div>
+
+    {# Price / Sale Price / Price label #}
+    <div class="product__price-row">
+      {# Price #}
+      <span class="product__price">{{ sale_price_defined ? sale_price : product.item.price }}</span>
+
+      {# Sale Price #}
+      {% if sale_price or sale_price_defined %}
+        <span class="product__price --strike">{{ product.item.price }}</span>
+      {% endif %}
+
+      {# Labels -- Sale label #}
+      {% if sale_price or sale_price_defined %}
+        <span class="product__price-label --sale">Save {{ product.item.discountRate }}%</span>
+      {% endif %}
+
+      {# Labels -- MSRP ?: Deal Label #}
+      <span class="product__price-label --deal">Good Deal</span>
+    </div>
+  </div>
+</div>

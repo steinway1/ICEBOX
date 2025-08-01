@@ -1,0 +1,44 @@
+<div class="product__specs">
+  {# Material #}
+  <span class="product__spec">
+    {% include 'icons/material.svg' %}
+    <div>
+      <span class="product__spec-label">Material</span>
+      <span class="product__spec-value">{{ product.item.material }}</span>
+    </div>
+  </span>
+
+  {# Box #}
+  <span class="product__spec">
+    {% if product.item.box %}
+      {% include 'icons/box.svg' %}
+      <div>
+        <span class="product__spec-label">Box</span>
+        <span class="product__spec-value">Have Box</span>
+      </div>
+    {% else %}
+      {% include 'icons/box-no.svg' %}
+      <div>
+        <span class="product__spec-label">Box</span>
+        <span class="product__spec-value">No Box</span>
+      </div>
+    {% endif %}
+  </span>
+
+  {# Papers #}
+  <span class="product__spec">
+    {% if product.item.papers %}
+      {% include 'icons/papers.svg' %}
+      <div>
+        <span class="product__spec-label">Papers</span>
+        <span class="product__spec-value">Have Papers</span>
+      </div>
+    {% else %}
+      {% include 'icons/papers-no.svg' %}
+      <div>
+        <span class="product__spec-label">Papers</span>
+        <span class="product__spec-value">No Papers</span>
+      </div>
+    {% endif %}
+  </span>
+</div>
