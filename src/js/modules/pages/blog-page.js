@@ -100,13 +100,11 @@ const blogPage = {
     initSliders: () => {
       const sliders = [...document.querySelectorAll('.splide_blog')];
       for (const slider of sliders) {
-        console.log(`Init slider ${slider}`);
-        console.log(slider);
         const splide = new Splide(slider, {
           type: 'loop',
           perPage: 3,
           perMove: 1,
-          arrows: false,
+          arrows: true,
           pagination: false,
           gap: 8,
           breakpoints: {
