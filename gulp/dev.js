@@ -18,7 +18,7 @@ const sassGlob = require('gulp-sass-glob');
 const sourceMaps = require('gulp-sourcemaps');
 const groupMedia = require('gulp-group-css-media-queries');
 // JS
-const esbuild = require('gulp-esbuild'); // ← ДОБАВИЛИ
+const esbuild = require('gulp-esbuild');
 const webpack = require('webpack-stream');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
@@ -35,11 +35,17 @@ const mergeStream = require('merge-stream');
 // Other
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
+const browserSync = require('browser-sync').create();
 
 // Utils
 const settings = {
   fileInclude: { prefix: '@@', basepath: '@file' },
-  server: { livereload: true, open: true, port: 8080 },
+  server: {
+    livereload: true,
+    open: true,
+    port: 8080,
+    host: '0.0.0.0',
+  },
   assets: { verbose: true },
 };
 
@@ -450,3 +456,27 @@ gulp.task('server:dev', () => {
 });
 
 gulp.task('watch-and-server:dev', gulp.parallel('watch:dev', 'server:dev'));
+
+/**
+ * Server
+ */
+gulp.task('serve:dev', () => {
+  browserSync.init({
+    server: { baseDir: './dev/' },
+    open: true,
+    port: 8080,
+  });
+
+  gulp.watch('./src/templates/**/*.twig', gulp.parallel('twig:dev', 'twig-admin:dev')).on('change', browserSync.reload);
+  gulp.watch('./src/templates/data/**', gulp.parallel('twig:dev', 'twig-admin:dev')).on('change', browserSync.reload);
+  gulp.watch('./src/templates/admin/svg/**', gulp.parallel('twig-admin:dev')).on('change', browserSync.reload);
+  gulp.watch('./src/templates/admin/assets/**/*', gulp.parallel('assets-admin:dev')).on('change', browserSync.reload);
+  gulp.watch('./src/assets/**/*', gulp.parallel('assets:dev')).on('change', browserSync.reload);
+  gulp
+    .watch('./src/scss/**/*.scss', gulp.parallel('css:dev', 'css-admin:dev', 'css-promo:dev'))
+    .on('change', browserSync.reload);
+  gulp.watch(['./src/js/*.js', './src/js/modules/**/*.js'], gulp.parallel('js:dev')).on('change', browserSync.reload);
+  gulp.watch('./src/js/admin/**/*.js', gulp.parallel('js-admin:dev')).on('change', browserSync.reload);
+  gulp.watch('./src/js/promo/**/*.js', gulp.parallel('js-promo:dev')).on('change', browserSync.reload);
+  gulp.watch(['./src/templates/data/**/*.json'], gulp.series('twig:dev', 'css:dev')).on('change', browserSync.reload);
+});

@@ -3,7 +3,6 @@ const gulp = require('gulp');
 
 require('./gulp/dev.js');
 require('./gulp/dist.js');
-// Swisswatches
 require('./gulp/dev-sw.ts');
 
 // Icebox Default
@@ -22,9 +21,10 @@ gulp.task(
       'css-promo:dev',
     ),
     gulp.parallel('twig-admin:dev', 'js-admin:dev', 'fonts-admin:dev', 'css-admin:dev', 'assets-admin:dev'),
-    gulp.parallel('watch-and-server:dev'),
+    gulp.parallel('serve:dev'),
   ),
 );
+
 // Icebox Build
 gulp.task(
   'build',
