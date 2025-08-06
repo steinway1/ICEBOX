@@ -1,0 +1,132 @@
+<div class="footer">
+  <div class="footer__main">
+    <div class="footer__content wrapper">
+      {# Logo + Address #}
+      <div class="footer__company-details">
+        <a href="/" class="footer__logo">{% include 'components/svg/logo.svg' %}</a>
+        <div class="footer__address">
+          <h5 class="footer__heading">Our Location</h5>
+          <div class="footer__typo">
+            3255 Peachtree Rd NE,<br />Suite #2<br />Atlanta, GA 30305, USA
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-nav">
+        {# About #}
+        <div class="footer-nav__col">
+          <div class="footer-nav__col-head">
+            <h5 class="footer__heading">More Pages</h5>
+            <div class="footer__toggle-icon">
+              {% include 'components/svg/plus.svg' %}
+            </div>
+          </div>
+          <div class="footer-nav__list">
+            {% for item in footer.linksAbout %}
+              {% if item.href == '/account' %}
+                {% if user == false %}
+                  <a href="javascript:void(0);" class="js-toggle-sign">Create Account</a>
+                {% else %}
+                  <a href="{{ item.href }}">My Account</a>
+                {% endif %}
+              {% else %}
+                <a href="{{ item.href }}">{{ item.caption }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        {# Categories #}
+        <div class="footer-nav__col">
+          <div class="footer-nav__col-head">
+            <h5 class="footer__heading">Shop By Category</h5>
+            <div class="footer__toggle-icon">
+              {% include 'components/svg/plus.svg' %}
+            </div>
+          </div>
+          <div class="footer-nav__list">
+            {% for item in footer.linksProducts %}
+              {% if item.id != 15 %}
+                <a href="{{ item.href }}">
+                  {% if item.caption == 'Watches' %}
+                    Bustdowns
+                  {% endif %}
+                  {% if item.caption == 'Watch Market' %}
+                    Watches
+                  {% endif %}
+                  {% if item.caption != 'Watches' and item.caption != 'Watch Market' %}
+                    {{ item.caption }}
+                  {% endif %}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        {# Get In Touch #}
+        <div class="footer-nav__col">
+          <div class="footer-nav__col-head">
+            <h5 class="footer__heading">Get In Touch</h5>
+            <div class="footer__toggle-icon">
+              {% include 'components/svg/plus.svg' %}
+            </div>
+          </div>
+          <div class="footer-nav__list">
+            <div class="footer__spot-col">
+              <h5 class="footer__sm-heading">Via Email</h5>
+              <a href="mailto:sales@icebox.com" class="--underline">sales@icebox.com</a>
+            </div>
+            <div class="footer__spot-col">
+              <h5 class="footer__sm-heading">Call Us</h5>
+              <a href="tel:+14048420266" class="--underline">(404) 842-0266</a>
+            </div>
+            <div class="footer__spot-col">
+              <h5 class="footer__sm-heading">For Your Letters</h5>
+              <a href="mailto:press@icebox.com" class="--underline">press@icebox.com</a>
+            </div>
+          </div>
+        </div>
+
+        {# Connect Icebox #}
+        <div class="footer-nav__col">
+          <div class="footer-nav__col-head">
+            <h5 class="footer__heading">Connect Icebox</h5>
+            <div class="footer__toggle-icon">
+              {% include 'components/svg/plus.svg' %}
+            </div>
+          </div>
+          <div class="footer-nav__list">
+            <div class="footer__spot-col">
+              <h5 class="footer__sm-heading">Schedule Time:</h5>
+              <div>
+                Monday - Friday: 11AM - 6PM<br />Saturday: 12PM - 5PM<br />Sunday: <span>Closed</span>
+              </div>
+            </div>
+            <div class="footer__social-grid">
+              <a href="https://www.instagram.com/icebox" target="_blank">{% include 'components/svg/social-instagram.svg' %}</a>
+              <a href="https://x.com/icebox" target="_blank">{% include 'components/svg/social-twitter.svg' %}</a>
+              <a href="https://www.facebook.com/icebox" target="_blank">{% include 'components/svg/social-facebook.svg' %}</a>
+              <a href="https://www.youtube.com/icebox" target="_blank">{% include 'components/svg/social-youtube.svg' %}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# Bottom #}
+  <div class="footer__bottom">
+    <div class="footer__disclaimer wrapper">
+      <div data-evt="toggleCurrency" class="footer__currency">
+        Icebox.com 2025 ⓒ . All Rights Reserved.
+      </div>
+      <div class="footer__pay-methods">
+        {% include 'components/svg/pay-mastercard.svg' %}
+        {% include 'components/svg/pay-visa.svg' %}
+        {% include 'components/svg/pay-amex.svg' %}
+        {% include 'components/svg/pay-paypal.svg' %}
+        {% include 'components/svg/pay-stripe.svg' %}
+      </div>
+    </div>
+  </div>
+</div>
