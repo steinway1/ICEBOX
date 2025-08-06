@@ -177,10 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /** Homepage
    * /index
    */
-  const homepageMain = document.querySelector('.main_homepage');
-  if (homepageMain) {
-    import('./modules/pages/homepage').then(({ default: Homepage }) => new Homepage()).catch(console.error);
-  }
+  import('./modules/pages/homepage').then(({ default: Homepage }) => new Homepage()).catch(console.error);
 
   /**
    * Pass Reset
