@@ -27,9 +27,106 @@ class ResultsPage {
     this.bindViewSwitch();
     this.bindCareModal();
     this.changeToLowerCaseSubcategories();
+    this.bindEditableBannerText();
   }
 
   // Methods
+  async bindEditableBannerText() {
+    const editableBannerText = document.getElementById('resultsBannerText');
+    if (!editableBannerText) return;
+
+    const categoryId = editableBannerText.dataset.categoryId;
+    if (!categoryId) return;
+
+    let initialText = editableBannerText.innerHTML.trim();
+    let hasChanges = false;
+
+    // Get or create the save button
+    function getOrCreateSaveBtn() {
+      let saveBtn = editableBannerText.nextElementSibling;
+      if (!saveBtn || !saveBtn.classList.contains('results-banner__save-btn')) {
+        saveBtn = document.createElement('span');
+        saveBtn.className = 'results-banner__save-btn';
+        saveBtn.textContent = 'Save';
+        editableBannerText.parentNode.insertBefore(saveBtn, editableBannerText.nextSibling);
+      }
+      editableBannerText.classList.add('--edited');
+      return saveBtn;
+    }
+
+    // Remove the save button
+    function removeSaveBtn() {
+      const saveBtn = editableBannerText.nextElementSibling;
+      if (saveBtn && saveBtn.classList.contains('results-banner__save-btn')) {
+        saveBtn.remove();
+      }
+      editableBannerText.classList.remove('--edited');
+    }
+
+    // Get the cleaned text
+    function getCleanedText() {
+      return editableBannerText.innerHTML.trim();
+    }
+
+    // Show or hide the save button
+    function showOrHideSaveBtn() {
+      const currentText = getCleanedText();
+      if (currentText !== initialText) {
+        hasChanges = true;
+        getOrCreateSaveBtn();
+      } else {
+        hasChanges = false;
+        removeSaveBtn();
+      }
+    }
+
+    // Listen for input events (contentEditable changes)
+    editableBannerText.addEventListener('input', showOrHideSaveBtn);
+    editableBannerText.addEventListener('blur', showOrHideSaveBtn);
+
+    // Save button click
+    editableBannerText.parentNode.addEventListener('click', async e => {
+      const saveBtn = editableBannerText.nextElementSibling;
+      if (saveBtn && saveBtn.classList.contains('results-banner__save-btn') && e.target === saveBtn) {
+        const newText = getCleanedText();
+        if (newText !== initialText) {
+          try {
+            saveBtn.textContent = 'Saving...';
+            saveBtn.disabled = true;
+
+            /**
+             * @CHOU Put the correct request here
+             */
+            const response = await fetch('/admin/category/banner-text', {
+              method: 'POST',
+              body: JSON.stringify({
+                category_id: categoryId,
+                banner_text: newText,
+              }),
+            });
+            if (response.ok) {
+              initialText = newText;
+              hasChanges = false;
+              removeSaveBtn();
+            } else {
+              saveBtn.textContent = 'Error';
+              setTimeout(() => {
+                saveBtn.textContent = 'Save';
+                saveBtn.disabled = false;
+              }, 2000);
+            }
+          } catch (err) {
+            saveBtn.textContent = 'Error';
+            setTimeout(() => {
+              saveBtn.textContent = 'Save';
+              saveBtn.disabled = false;
+            }, 2000);
+          }
+        }
+      }
+    });
+  }
+
   changeToLowerCaseSubcategories() {
     const tabs = [...document.querySelectorAll('.results__subcategories-wrap .custom-checkbox')];
     for (const tab of tabs) {

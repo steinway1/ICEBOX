@@ -1,23 +1,29 @@
 <div class="res-banner">
-	<div class="res-banner__main">
-		<div class="wrapper">
-			<div class="results__descriptive-wrap">
-				<div class="results__breadcrumbs">
-					<a href="/">Icebox</a>
-					<span>—</span>
-					<a href="{{category.href}}">{{category.caption}}</a>
-				</div>
-				<h1 class="results__heading">{{category.heading}}</h1>
-				<p class="results__subheading">{{category.banner_text | raw}}</p>
-			</div>
-		</div>
-	</div>
-	<div class="smart-picture">
-		<img src="{{category.big_banner}}" loading="lazy" sizes="100vw" alt="{{category.big_banner_alt}}">
-		{% if user.admin %}
-		<label class="res-banner__uploader">
-			<input type="file" id="bannerInputUpload" class="hidden-input" accept="image/*">
-		</label>
-		{% endif %}
-	</div>
+  <div class="res-banner__main">
+    <div class="wrapper">
+      <div class="results__descriptive-wrap">
+        <div class="results__breadcrumbs">
+          <a href="/">Icebox</a>
+          <span>—</span>
+          <a href="{{ category.href }}">{{ category.caption }}</a>
+        </div>
+        <h1 class="results__heading">{{ category.heading }}</h1>
+        {% if user.admin %}
+          <p contentEditable="true" data-category-id="{{ category.id }}" class="results__subheading" id="resultsBannerText">
+            {{ category.banner_text|raw }}
+          </p>
+        {% else %}
+          <p class="results__subheading">
+            {{ category.banner_text|raw }}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="smart-picture">
+    <img src="{{ category.big_banner }}" loading="lazy" sizes="100vw" alt="{{ category.big_banner_alt }}" />
+    {% if user.admin %}
+      <label class="res-banner__uploader"><input type="file" id="bannerInputUpload" class="hidden-input" accept="image/*" /></label>
+    {% endif %}
+  </div>
 </div>
