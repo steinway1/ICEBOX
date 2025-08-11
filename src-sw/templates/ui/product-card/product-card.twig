@@ -3,9 +3,6 @@
 {% if productItem.is_sold %}
   {% set extraClassname = extraClassname ~ ' --sold' %}
 {% endif %}
-{% if not productItem.cover or productItem.cover is empty %}
-  {% set extraClassname = extraClassname ~ ' --no-media' %}
-{% endif %}
 
 <div class="product-card {{ extraClassname }}">
   {# Admin Overly #}
@@ -18,9 +15,13 @@
   {# Media #}
   <div class="product-card__top">
     <div class="product-card__media">
-      {% if productItem.cover %}
-        <a href="{{ productItem.href }}"><img src="{{ productItem.cover }}" alt="{{ productItem.brand }} {{ productItem.model }} {{ productItem.meta }}" /></a>
-      {% endif %}
+      <a href="{{ productItem.href }}">
+        {% if productItem.cover %}
+          <img src="{{ productItem.cover }}" alt="{{ productItem.brand }} {{ productItem.model }} {{ productItem.meta }}" />
+        {% else %}
+          <img src="{{ THEME_ASSETS_FOLDER }}media-placeholder.svg" alt="{{ productItem.brand }} {{ productItem.model }} {{ productItem.meta }}" class="--placeholder" />
+        {% endif %}
+      </a>
       {% if productItem.video_src %}
         <video playsinline="playsinline" muted="muted" loop="loop" preload="metadata" aria-label="{{ productItem.name }}" poster="{{ productItem.cover }}">
           {% for video in productItem.video_src %}
