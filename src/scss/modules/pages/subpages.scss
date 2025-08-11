@@ -1,4 +1,4 @@
-@use 'modules/base/mixin' as *;
+@use "modules/base/mixin" as *;
 .sub-box {
   z-index: 2;
   min-height: 100px;
@@ -22,7 +22,7 @@
     display: flex;
   }
 
-  ul li>span {
+  ul li > span {
     font-weight: 700;
     margin-right: 4px;
   }
@@ -117,14 +117,11 @@
   display: flex;
 }
 
-
-
 @media screen and (max-width: 479px) {
   .sub-background {
     margin-top: -5%;
   }
 }
-
 
 /* #region  Background */
 .sub-background {
@@ -135,48 +132,66 @@
   left: 0%;
   right: 0%;
   overflow: hidden;
-  opacity: .5;
+  opacity: 0.5;
 }
 
-.sub-background>div:first-child {
+.sub-background > div:first-child {
   z-index: 2;
   width: 100%;
   height: 100%;
   position: absolute;
-  transform: translate(0, -50%)skew(0deg, 25deg);
+  transform: translate(0, -50%) skew(0deg, 25deg);
 }
 
-.sub-background>div>div:nth-child(1) {
+.sub-background > div > div:nth-child(1) {
   height: 24px;
-  opacity: .23;
-  background-image: linear-gradient(194deg, rgba(0, 149, 198, .22), rgba(56, 190, 235, .6) 37%, rgba(249, 250, 251, 0) 84%);
+  opacity: 0.23;
+  background-image: linear-gradient(
+    194deg,
+    rgba(0, 149, 198, 0.22),
+    rgba(56, 190, 235, 0.6) 37%,
+    rgba(249, 250, 251, 0) 84%
+  );
   margin-left: 40%;
 }
 
-.sub-background>div>div:nth-child(2) {
+.sub-background > div > div:nth-child(2) {
   height: 74px;
-  opacity: .44;
-  background-image: linear-gradient(194deg, rgba(0, 149, 198, .22), rgba(18, 167, 216, .64) 40%, rgba(249, 250, 251, 0) 84%);
+  opacity: 0.44;
+  background-image: linear-gradient(
+    194deg,
+    rgba(0, 149, 198, 0.22),
+    rgba(18, 167, 216, 0.64) 40%,
+    rgba(249, 250, 251, 0) 84%
+  );
   margin-left: 20%;
 }
 
-.sub-background>div>div:nth-child(3) {
+.sub-background > div > div:nth-child(3) {
   width: 100%;
   height: 20vh;
   opacity: 1;
   background-color: #f5fafd;
-  background-image: linear-gradient(23deg, rgba(0, 149, 198, .15), #effaff 78%);
+  background-image: linear-gradient(
+    23deg,
+    rgba(0, 149, 198, 0.15),
+    #effaff 78%
+  );
   transform: none;
 }
 
-.sub-background>div>div:nth-child(4) {
+.sub-background > div > div:nth-child(4) {
   height: 68px;
-  opacity: .76;
-  background-image: linear-gradient(194deg, rgba(0, 149, 198, .22), rgba(249, 250, 251, 0) 84%);
+  opacity: 0.76;
+  background-image: linear-gradient(
+    194deg,
+    rgba(0, 149, 198, 0.22),
+    rgba(249, 250, 251, 0) 84%
+  );
   margin-right: 40%;
 }
 
-.sub-background>div:last-child {
+.sub-background > div:last-child {
   z-index: 2;
   height: 70%;
   background-image: linear-gradient(to top, #fff, rgba(255, 255, 255, 0));
@@ -198,31 +213,31 @@
     top: 0%;
   }
 
-  .sub-background>div>div:nth-child(3) {
+  .sub-background > div > div:nth-child(3) {
     height: 10vh;
   }
 }
 
 @media screen and (max-width: 479px) {
-  .sub-background>div:first-child {
+  .sub-background > div:first-child {
     padding-left: 0;
     top: 7%;
   }
 
-  .sub-background>div>div:nth-child(1) {
+  .sub-background > div > div:nth-child(1) {
     margin-left: -48%;
   }
 
-  .sub-background>div>div:nth-child(2) {
+  .sub-background > div > div:nth-child(2) {
     height: 84px;
     margin-left: -122%;
   }
 
-  .sub-background>div>div:nth-child(3) {
+  .sub-background > div > div:nth-child(3) {
     height: 50px;
   }
 
-  .sub-background>div:last-child {
+  .sub-background > div:last-child {
     height: 65%;
   }
 }
@@ -263,8 +278,7 @@
 }
 
 .sub-box__rows-wrapper {
-  grid-column-gap: 34px;
-  grid-row-gap: 34px;
+  gap: 64px;
   flex-direction: column;
   display: flex;
 }
@@ -318,12 +332,22 @@
   }
 }
 
+.faq-note {
+  font-size: 15px;
+  line-height: 28px;
+  font-weight: 500;
+  padding: 20px;
+  background-color: #f6f7fa;
+  border-radius: 0.5rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 ul.faq-list {
   gap: 0;
 
   h4 {
-    margin-bottom: 14px;
+    margin-bottom: 24px;
   }
 
   li {
@@ -394,7 +418,7 @@ main.main_finance {
   background-color: #f5f6f8;
 
   .subpage__finance-content {
-    &>.wrapper {
+    & > .wrapper {
       @include maxWidthXs {
         padding-left: 0px;
         padding-right: 0px;
@@ -495,7 +519,7 @@ main.main_finance {
   overflow: hidden;
 
   &::after {
-    content: '';
+    content: "";
     background-image: linear-gradient(#f7f8fa00, #fff);
     height: 60%;
     position: absolute;
@@ -504,7 +528,7 @@ main.main_finance {
   }
 
   img {
-    opacity: .25;
+    opacity: 0.25;
     filter: grayscale(100%);
     object-fit: cover;
     object-position: 50% 0%;
@@ -588,7 +612,7 @@ main.main_finance {
     margin: 12px;
   }
 
-  +.lx-box__inner-form {
+  + .lx-box__inner-form {
     padding-top: 28px;
   }
 }
@@ -601,7 +625,7 @@ main.main_finance {
     cursor: pointer;
     -webkit-user-select: none;
     user-select: none;
-    border-radius: .7rem;
+    border-radius: 0.7rem;
     flex: 1;
     justify-content: center;
     align-items: center;
@@ -609,8 +633,8 @@ main.main_finance {
     font-size: 16px;
     font-weight: 600;
     transition-property: all;
-    transition-duration: .2s;
-    transition-timing-function: cubic-bezier(.39, .575, .565, 1);
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
     display: flex;
   }
 
@@ -621,7 +645,7 @@ main.main_finance {
     pointer-events: none;
 
     &:checked {
-      +span {
+      + span {
         background-color: #eaecf1;
       }
     }
@@ -687,7 +711,7 @@ main.main_finance {
   padding-right: 18px;
   font-size: 16px;
   font-weight: 600;
-  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   width: 100%;
 
   @media screen and (min-width: 992px) {
@@ -698,7 +722,7 @@ main.main_finance {
 
   &::placeholder {
     color: #9fa3ac;
-    transition: all .2s cubic-bezier(.39, .575, .565, 1);
+    transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   }
 
   &:focus {
@@ -725,7 +749,7 @@ main.main_finance {
   padding-top: 14px;
   padding-bottom: 14px;
   font-weight: 700;
-  transition: all .2s cubic-bezier(.39, .575, .565, 1);
+  transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   font-size: 16px;
 
   &.--sub {
@@ -767,7 +791,7 @@ main.main_finance {
   display: flex;
   gap: 12px;
 
-  &>span {
+  & > span {
     font-size: 14px;
     font-weight: 600;
     color: #9fa3ac;
@@ -777,7 +801,7 @@ main.main_finance {
       flex: 1;
       background-color: #9fa3ac;
       height: 1px;
-      opacity: .4;
+      opacity: 0.4;
     }
   }
 }
@@ -791,7 +815,8 @@ main.main_finance {
   max-width: 360px;
   display: block;
 
-  span, a {
+  span,
+  a {
     font-weight: 600;
     text-decoration: underline;
   }
