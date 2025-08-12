@@ -17,6 +17,8 @@
       {% endblock %}
     </main>
 
+    {% include 'ui/admin/admin-bar.twig' %}
+
     {# Modals #}
     {% include 'ui/modal/modal-search.twig' %}
     {% include 'ui/modal/modal-view.twig' %}
@@ -24,9 +26,6 @@
     {% include 'ui/modal/modal-sign.twig' %}
 
     {# Admin #}
-    {% if user.admin %}
-      {% include 'ui/admin/admin-bar.twig' %}
-    {% endif %}
 
     {% include 'components/scripts.twig' %}
     {% block scripts %}
