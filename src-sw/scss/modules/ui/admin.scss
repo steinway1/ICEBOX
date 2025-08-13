@@ -12,8 +12,7 @@
   max-width: 420px;
   overflow-x: auto;
   overflow-y: hidden;
-
-  padding: 6px;
+  padding: 4px;
   gap: 6px;
   color: #fff;
   background-color: #1b1f27;
@@ -28,6 +27,21 @@
 
   @include maxSm {
     max-width: calc(100vw - 24px);
+  }
+
+  &__info-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+    span {
+      &:first-child {
+        opacity: 0.6;
+      }
+    }
   }
 
   &__wrapper {

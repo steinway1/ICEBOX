@@ -1,4 +1,9 @@
 <div class="admin-bar">
+  {% if product.clarity %}
+    <div class="admin-bar__info-col">
+      <span>Clarity:</span> <span>{{ product.clarity }}</span>
+    </div>
+  {% endif %}
   <button data-ask="add-watches" class="admin-bar__btn">Add Watches</button>
   <button class="admin-bar__btn">Add Other</button>
   {% if show_admin_controls %}
