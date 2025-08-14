@@ -7,6 +7,7 @@ import { ModalSign } from "./modules/elements/modal-sign";
 import { Menu } from "./modules/elements/menu";
 import { ProductCard } from "./modules/elements/product-card";
 import { Product } from "./modules/pages/product";
+import { Footer } from "./modules/elements/footer";
 
 import { initBehaviors } from "./modules/behaviors/init";
 import { AdminBehaviors } from "./admin";
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   new Menu();
   new ProductCard();
   new Product();
+  new Footer();
 
   // Admin
   new AdminBehaviors();
