@@ -1,0 +1,17 @@
+<div class="listing --empty">
+  <div class="listing__empty-wrap">
+    <h1>Sorry, there is no result for <span>"{{ search_query }}"</span></h1>
+    <p>
+      Please check your spelling or try another word.
+    </p>
+
+    {# Search Input #}
+    <div data-empty-search class="modal-search__input-container">
+      <div class="modal-search__icon">
+        {% include 'icons/search.svg' %}
+      </div>
+      <input type="text" class="modal-search__input" autocomplete="off" placeholder="Try another search..." />
+      <button class="modal-search__button"></button>
+    </div>
+  </div>
+</div>

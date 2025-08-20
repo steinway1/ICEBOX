@@ -4,6 +4,7 @@ import { InputDigits } from "./input-digits";
 import { InputOtp } from "./input-otp";
 import { PassToggle } from "./pass-toggle";
 import { StickyElements } from "./sticky-elements";
+import { EmptySearchInput } from "./empty-search";
 
 interface BehaviorDefinition {
   selector: string;
@@ -34,6 +35,10 @@ const behaviors: BehaviorDefinition[] = [
   {
     selector: "[data-sticky]",
     BehaviorClass: StickyElements,
+  },
+  {
+    selector: "[data-empty-search]",
+    BehaviorClass: EmptySearchInput,
   },
 ];
 
