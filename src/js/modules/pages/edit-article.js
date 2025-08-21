@@ -20,11 +20,8 @@ var EditArticle = function (articleContent, options) {
     setInitialLayout: true,
   };
 
-  /**
-   *
-   * Utils
-   *
-   */
+  /** ----------------------- Utils Functions ----------------------- */
+
   function toArray(value) {
     return Array.isArray(value) ? value : [value];
   }
@@ -215,11 +212,8 @@ var EditArticle = function (articleContent, options) {
     UPLOADED_BLOG_IMG = imgUrl;
   }
 
-  /**
-   *
-   * Process Export Functions
-   *
-   */
+  /** ----------------------- Process Export Functions ----------------------- */
+
   function clearSection(section) {
     const cloned = section.cloneNode(true);
     const controls = cloned.querySelector('.content-section-controls');
@@ -289,12 +283,11 @@ var EditArticle = function (articleContent, options) {
     return items;
   }
 
-  /**
-   *
-   * Create Section Elements
-   *
-   */
+  /** ----------------------- Create Section Elements ----------------------- */
+
   var Create = new Object();
+
+  /** Create : Product Card */
   Create.blogCard = () => {
     const card = createElem('div', {
       className: 'blog-card',
@@ -314,9 +307,13 @@ var EditArticle = function (articleContent, options) {
     });
     return card;
   };
+
+  /** Create : Disclaimer */
   Create.disclaimer = () => {
     return createElem('div', { className: 'blog__cards-disclaimer' });
   };
+
+  /** Create : Section Controls */
   Create.sectionControls = () => {
     const controls = createElem('div', {
       className: 'content-section-controls',
@@ -329,12 +326,22 @@ var EditArticle = function (articleContent, options) {
     return controls;
   };
 
-  /**
-   *
-   * Create Sections
-   *
-   */
+  /** Create : List Item */
+  Create.listItem = text => {
+    const item = createElem('p', {
+      className: 'list-item tip_edit',
+      innerHTML: `<p contenteditable="true" spellcheck="false">${text}</p>
+      <button class="list-item__remove-btn"></button>
+      `,
+    });
+    return item;
+  };
+
+  /** ----------------------- Create Sections ----------------------- */
+
   var CreateSection = new Object();
+
+  /** Create : Large Title */
   CreateSection.largeTitle = () => {
     const section = createElem('div', {
       className: 'article-content-section --heading',
@@ -352,6 +359,8 @@ var EditArticle = function (articleContent, options) {
     append(section, heading, Create.sectionControls());
     return section;
   };
+
+  /** Create : Tiny Title */
   CreateSection.tinyTitle = () => {
     const section = createElem('div', {
       className: 'article-content-section --heading',
@@ -369,6 +378,8 @@ var EditArticle = function (articleContent, options) {
     append(section, heading, Create.sectionControls());
     return section;
   };
+
+  /** Create : Text Block */
   CreateSection.textBlock = () => {
     const section = createElem('div', {
       className: 'article-content-section --text',
@@ -387,6 +398,8 @@ var EditArticle = function (articleContent, options) {
     append(section, p, Create.sectionControls());
     return section;
   };
+
+  /** Create : Spacer */
   CreateSection.spacer = () => {
     const section = createElem('div', {
       className: 'article-content-section --spacer',
@@ -397,6 +410,8 @@ var EditArticle = function (articleContent, options) {
     append(section, Create.sectionControls());
     return section;
   };
+
+  /** Create : Product Block */
   CreateSection.productBlock = () => {
     const section = createElem('div', {
       className: 'article-content-section --product',
@@ -419,6 +434,8 @@ var EditArticle = function (articleContent, options) {
     append(section, grid, disclaimer, Create.sectionControls());
     return section;
   };
+
+  /** Create : Slider Block */
   CreateSection.sliderBlock = () => {
     const section = createElem('div', {
       className: 'article-content-section --slider',
@@ -445,6 +462,8 @@ var EditArticle = function (articleContent, options) {
     append(section, ...inputs, Create.sectionControls());
     return section;
   };
+
+  /** Create : YouTube Embed */
   CreateSection.ytEmbed = () => {
     const section = createElem('div', {
       className: 'article-content-section --yt-embed',
@@ -465,20 +484,49 @@ var EditArticle = function (articleContent, options) {
     append(section, disclaimer, textarea, Create.sectionControls());
     return section;
   };
+
+  /** Create : List */
   CreateSection.list = () => {
-    return;
+    const section = createElem('div', {
+      className: 'article-content-section --list',
+      attributes: {
+        'data-content-type': 'list',
+      },
+    });
+    const listItems = Array(3)
+      .fill()
+      .map((_, i) =>
+        Create.listItem(
+          i === 0
+            ? 'On the other hand, we denounce with righteous indignation and dislike men who are...'
+            : i === 2
+              ? 'These cases are perfectly simple and easy to distinguish.'
+              : 'In a free hour, when our power of choice is untrammelled and when nothing prevents our being',
+        ),
+      );
+
+    const addItemBtn = createElem('button', {
+      className: 'blog-edit-box',
+      attributes: {
+        'data-edit-box': 'addListItem',
+      },
+      innerHTML: `<span>Add List Item</span>`,
+    });
+
+    append(section, ...listItems, addItemBtn, Create.sectionControls());
+    return section;
   };
 
-  /**
-   *
-   * Append Welcome
-   *
-   */
+  /** ----------------------- Append Welcome ----------------------- */
+
   var HandleWelcome = new Object();
+
+  /** Handle Welcome : Heading */
   HandleWelcome.heading = input => {
-    const value = input.value,
-      holder = document.querySelector('.article__title-wrap'),
-      box = input.closest('.blog-edit-box');
+    const value = input.value;
+    const holder = document.querySelector('.article__title-wrap');
+    const box = input.closest('.blog-edit-box');
+
     if (!holder) throw new Error('JS : Append Welcome Heading : Title Holder not found');
     if (!box) throw new Error('JS : Append Welcome Heading : Title Box not found');
     if (value) {
@@ -503,6 +551,8 @@ var EditArticle = function (articleContent, options) {
       bind(heading, ['click', 'contextmenu'], toggle);
     }
   };
+
+  /** Handle Welcome : Summary */
   HandleWelcome.summary = input => {
     const value = input.value ? (/lorem/i.test(input.value) ? 'Add Summary' : input.value) : 'Add Summary';
     const holder = document.querySelector('.article__title-wrap');
@@ -530,6 +580,8 @@ var EditArticle = function (articleContent, options) {
     };
     bind(summary, ['click', 'contextmenu'], toggle);
   };
+
+  /** Handle Welcome : Minutes */
   HandleWelcome.minutes = input => {
     const value = input.value;
     const holder = document.querySelector('.article-welcome');
@@ -557,6 +609,8 @@ var EditArticle = function (articleContent, options) {
     };
     bind(minutes, ['click', 'contextmenu'], toggle);
   };
+
+  /** Handle Welcome : Author */
   HandleWelcome.author = input => {
     const value = input.value,
       holder = document.querySelector('.post-author'),
@@ -596,6 +650,8 @@ var EditArticle = function (articleContent, options) {
       bind(date, ['click', 'contextmenu'], toggle);
     }
   };
+
+  /** Handle Welcome : Cover */
   HandleWelcome.cover = input => {
     const box = closestParent(input, '.blog-edit-box');
     if (!box) throw new Error('JS : Append Welcome Cover : Cover Edit Box not found');
@@ -632,50 +688,63 @@ var EditArticle = function (articleContent, options) {
     };
   };
 
-  /**
-   *
-   * Add Sections
-   *
-   */
+  /** ----------------------- Add Sections ----------------------- */
+
   var AddSection = new Object();
+
+  /** Add : Large Title */
   AddSection.largeTitle = () => {
     const section = CreateSection.largeTitle();
     append(articleContent, section);
   };
+
+  /** Add : Tiny Title */
   AddSection.tinyTitle = () => {
     const section = CreateSection.tinyTitle();
     append(articleContent, section);
   };
+
+  /** Add : Text Block */
   AddSection.textBlock = () => {
     const section = CreateSection.textBlock();
     append(articleContent, section);
   };
+
+  /** Add : Spacer */
   AddSection.spacer = () => {
     const section = CreateSection.spacer();
     append(articleContent, section);
   };
+
+  /** Add : Product Block */
   AddSection.productBlock = () => {
     const section = CreateSection.productBlock();
     append(articleContent, section);
   };
+
+  /** Add : Slider Block */
   AddSection.sliderBlock = () => {
     const section = CreateSection.sliderBlock();
     append(articleContent, section);
   };
+
+  /** Add : YouTube Embed */
   AddSection.ytEmbed = () => {
     const section = CreateSection.ytEmbed();
     append(articleContent, section);
   };
+
+  /** Add : List */
   AddSection.list = () => {
-    return;
+    const section = CreateSection.list();
+    append(articleContent, section);
   };
 
-  /**
-   *
-   * Section Modify Events
-   *
-   */
+  /** ----------------------- Section Modify Events ----------------------- */
+
   var _section = new Object();
+
+  /** Modify section : Remove */
   _section.remove = section => {
     const h = section.scrollHeight;
     section.style.height = h + 'px';
@@ -688,6 +757,8 @@ var EditArticle = function (articleContent, options) {
       }, getTransitionTime(section));
     }, 1);
   };
+
+  /** Modify section : Move Up */
   _section.moveUp = section => {
     const prev = section.previousElementSibling;
     if (prev !== null) {
@@ -703,6 +774,8 @@ var EditArticle = function (articleContent, options) {
       }, getTransitionTime(section));
     }
   };
+
+  /** Modify section : Move Down */
   _section.moveDown = section => {
     const next = section.nextElementSibling;
     if (next !== null) {
@@ -728,6 +801,8 @@ var EditArticle = function (articleContent, options) {
    * --youtube embed input
    */
   var BindDocument = new Object();
+
+  /** Bind : Section Controls */
   BindDocument.sectionControls = () => {
     document.addEventListener('click', event => {
       const target = event.target;
@@ -750,6 +825,8 @@ var EditArticle = function (articleContent, options) {
       }
     });
   };
+
+  /** Bind : Add Product Card */
   BindDocument.addProductCard = () => {
     document.addEventListener('click', event => {
       const target = event.target;
@@ -766,6 +843,8 @@ var EditArticle = function (articleContent, options) {
       }
     });
   };
+
+  /** Bind : YouTube Embed Input */
   BindDocument.ytEmbedInput = () => {
     const validateRegExp = /^<iframe.*src=["'].*youtube.*["'].*<\/iframe>$/i;
     document.addEventListener('input', event => {
@@ -806,6 +885,8 @@ var EditArticle = function (articleContent, options) {
       }
     });
   };
+
+  /** Bind : Product Card Input */
   BindDocument.productCardInput = () => {
     const validate = input => {
       const val = input.value;
@@ -878,6 +959,52 @@ var EditArticle = function (articleContent, options) {
       }
     });
   };
+
+  /** Bind : List Item Remove */
+  BindDocument.listItemRemove = () => {
+    document.addEventListener('click', event => {
+      const target = event.target;
+      if (target.closest('.list-item__remove-btn')) {
+        const listItem = target.closest('.list-item');
+        if (!listItem) throw new Error(`Expected to find closest .list-item`);
+
+        const section = listItem.closest('.article-content-section');
+        if (!section) throw new Error(`Expected to find closest .article-content-section`);
+
+        const allListItems = section.querySelectorAll('.list-item');
+
+        if (allListItems.length === 1) {
+          _section.remove(section);
+        } else {
+          listItem.remove();
+        }
+      }
+    });
+  };
+
+  /** Bind : List Item Add */
+  BindDocument.listItemAdd = () => {
+    document.addEventListener('click', event => {
+      const target = event.target;
+      if (target.closest('[data-edit-box="addListItem"]')) {
+        const section = target.closest('.article-content-section');
+        if (!section) throw new Error(`Expected to find closest .article-content-section`);
+
+        const listItems = section.querySelectorAll('.list-item');
+        const newItem = Create.listItem(
+          'On the other hand, we denounce with righteous indignation and dislike men who are...',
+        );
+
+        if (listItems.length === 0) {
+          section.insertBefore(newItem, section.firstChild);
+        } else {
+          listItems[listItems.length - 1].after(newItem);
+        }
+      }
+    });
+  };
+
+  /** Bind : Selection Change */
   BindDocument.selectionChange = () => {
     document.addEventListener('selectionchange', event => {
       const element = event.target.activeElement;
@@ -899,7 +1026,11 @@ var EditArticle = function (articleContent, options) {
     });
   };
 
+  /** ----------------------- Tip ----------------------- */
+
   var Tip = new Object();
+
+  /** Tip : Move */
   Tip.move = selectionRange => {
     const tip = document.querySelector('.edit-tip');
     if (!tip || !selectionRange) return;
@@ -913,11 +1044,15 @@ var EditArticle = function (articleContent, options) {
     tip.style.left = `${left}px`;
     tip.classList.add(IS_VISIBLE);
   };
+
+  /** Tip : Hide */
   Tip.hide = () => {
     const tip = document.querySelector('.edit-tip');
     if (!tip) return;
     tip.classList.remove(IS_VISIBLE);
   };
+
+  /** Tip : Bind */
   Tip.bind = () => {
     const arr = [
       ...document.querySelectorAll('[data-edit-tip="bold"]'),
@@ -938,7 +1073,11 @@ var EditArticle = function (articleContent, options) {
     }
   };
 
+  /** ----------------------- Editable ----------------------- */
+
   var Editable = new Object();
+
+  /** Editable : Clear */
   Editable.clear = function (spans) {
     spans = toArray(spans);
     for (const span of spans) {
@@ -953,6 +1092,8 @@ var EditArticle = function (articleContent, options) {
       span.parentNode.replaceChild(fragment, span);
     }
   };
+
+  /** Editable : Wrap */
   Editable.wrap = function (range, cls, customTag) {
     const tag = customTag || 'span';
     const attributes =
@@ -967,6 +1108,8 @@ var EditArticle = function (articleContent, options) {
     range.deleteContents();
     range.insertNode(newSpan);
   };
+
+  /** Editable : Wrap Into Span */
   Editable.wrapIntoSpan = cls => {
     const selection = window.getSelection();
     if (String(selection).length < 1) {
@@ -1044,12 +1187,11 @@ var EditArticle = function (articleContent, options) {
     Editable.wrap(range, cls);
   };
 
-  /**
-   *
-   * Main
-   *
-   */
+  /** ----------------------- Main ----------------------- */
+
   var Article = new Object();
+
+  /** Bind : Add Sections */
   Article.bindAddSections = function () {
     this.arr = [...document.querySelectorAll('[data-add-section]')];
     for (const box of this.arr) {
@@ -1068,6 +1210,8 @@ var EditArticle = function (articleContent, options) {
       bind(box, 'click', updateSectionsControls);
     }
   };
+
+  /** Bind : Welcome Section */
   Article.bindWelcomeSection = function () {
     const inputsArr = [
       ...document.querySelectorAll('[data-blog-edit="heading"]'),
@@ -1110,16 +1254,24 @@ var EditArticle = function (articleContent, options) {
       HandleWelcome.cover(inputCoverUpload);
     }
   };
+
+  /** Bind : Document Events */
   Article.bindDocumentEvents = function () {
     BindDocument.sectionControls();
     BindDocument.addProductCard();
     BindDocument.ytEmbedInput();
     BindDocument.productCardInput();
+    BindDocument.listItemRemove();
+    BindDocument.listItemAdd();
     BindDocument.selectionChange();
   };
+
+  /** Bind : Tip */
   Article.bindTip = function () {
     Tip.bind();
   };
+
+  /** Set Initial Layout */
   Article.setInitialLayout = function () {
     if (!options.setInitialLayout) return;
     const { largeTitle, tinyTitle, textBlock, productBlock, sliderBlock, spacer, ytEmbed } = AddSection;
@@ -1127,6 +1279,8 @@ var EditArticle = function (articleContent, options) {
     tinyTitle();
     textBlock();
   };
+
+  /** Init : Splide */
   Article.initSplide = function () {
     const splides = [...document.querySelectorAll('.splide_blog')];
     for (const splide of splides) {
@@ -1147,6 +1301,8 @@ var EditArticle = function (articleContent, options) {
       }).mount();
     }
   };
+
+  /** Init : Article */
   Article.init = function () {
     const funcArr = [
       this.setInitialLayout,
@@ -1166,12 +1322,13 @@ var EditArticle = function (articleContent, options) {
     }
   };
 
-  /**
-   * Export Article
-   */
+  /** ----------------------- Export Article ----------------------- */
+
   var _export = {};
   _export.obj = {};
   _export.obj.raw = String();
+
+  /** Export : Title */
   _export.getTitle = () => {
     const title = document.querySelector('#article_title');
     if (!title || !title.innerHTML) {
@@ -1180,6 +1337,8 @@ var EditArticle = function (articleContent, options) {
     }
     return title.innerHTML;
   };
+
+  /** Export : Summary */
   _export.getSummary = () => {
     const summary = document.querySelector('#article_summary');
     if (!summary || !summary.innerHTML) {
@@ -1188,6 +1347,8 @@ var EditArticle = function (articleContent, options) {
     }
     return summary.innerHTML;
   };
+
+  /** Export : Author */
   _export.getAuthor = () => {
     const author = document.querySelector('#article_author');
     if (!author || !author.innerHTML) {
@@ -1196,6 +1357,8 @@ var EditArticle = function (articleContent, options) {
     }
     return author.innerHTML;
   };
+
+  /** Export : Read Time */
   _export.getReadTime = () => {
     const minutes = document.querySelector('#article_read_time');
     if (!minutes || !minutes.innerHTML) {
@@ -1204,9 +1367,13 @@ var EditArticle = function (articleContent, options) {
     }
     return parseInt(minutes.innerHTML);
   };
+
+  /** Export : Cover */
   _export.getCover = () => {
     return UPLOADED_BLOG_IMG;
   };
+
+  /** Export : Content */
   _export.getContent = () => {
     let sections = {};
     const sectionsArr = [...articleContent.querySelectorAll('.article-content-section')];
@@ -1245,6 +1412,8 @@ var EditArticle = function (articleContent, options) {
 
     return sections;
   };
+
+  /** Export : Do */
   _export.do = () => {
     _export.obj.content = _export.getContent();
     _export.obj.author = _export.getAuthor();
@@ -1264,22 +1433,3 @@ var EditArticle = function (articleContent, options) {
 };
 
 module.exports = EditArticle;
-
-/**
- * Init Edit Blog / Add Article
- */
-// document.addEventListener('DOMContentLoaded', () => {
-//   const articleContent = document.querySelector('.editable__content');
-
-//   if (articleContent) {
-//     const Article = new EditArticle('editable__content', {
-//       setInitialLayout: true,
-//     });
-//     Article.init();
-
-//     const saveArticleArr = [...document.querySelectorAll('[data-evt="saveArticle"]')];
-//     for (const btn of saveArticleArr) {
-//       btn.onclick = Article.export.do;
-//     }
-//   }
-// });
