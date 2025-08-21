@@ -52,6 +52,9 @@ function showSignMessage(msg, css_class) {
       el.innerHTML = original_msg;
     }, 4000);
   }
+  if (window.signModal) {
+    window.signModal.stopLoading();
+  }
 }
 
 window.Parsley.on('form:submit', function () {
@@ -78,6 +81,7 @@ window.Parsley.on('form:submit', function () {
       } else {
         //show failed state on button and return message in r.msg
         showSignMessage(r.msg, 'is-failed');
+        window.signModal.stopLoading();
       }
     },
   });
@@ -414,6 +418,8 @@ $(document).ready(function () {
         if (!r.error) {
           $('.sign-modal__phone-span').html(fullPhone);
           window.signModal.switch('otp');
+        } else {
+          window.signModal.stopLoading();
         }
       },
     });
@@ -444,6 +450,7 @@ function confirmLoginOtp() {
     });
   } else {
     showSignMessage('Enter 4 digits OTP', 'is-failed');
+    window.signModal.stopLoading();
   }
 }
 
