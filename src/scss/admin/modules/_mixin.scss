@@ -11,49 +11,56 @@ $screen-md-min: 768px;
 // media devices
 
 @mixin maxScreen($width) {
-	@media screen and (max-width: $width) {
-		@content;
-	}
+  @media screen and (max-width: $width) {
+    @content;
+  }
 }
 
 @mixin minScreen($width) {
-	@media screen and (min-width: $width) {
-		@content;
-	}
+  @media screen and (min-width: $width) {
+    @content;
+  }
 }
 
 @mixin maxWidthXs {
-	@media screen and (max-width: #{$screen-xs-max}) {
-		@content;
-	}
+  @media screen and (max-width: #{$screen-xs-max}) {
+    @content;
+  }
 }
 
 @mixin maxWidthSm {
-	@media screen and (max-width: #{$screen-sm-max}) {
-		@content;
-	}
+  @media screen and (max-width: #{$screen-sm-max}) {
+    @content;
+  }
 }
 
 @mixin maxWidthMd {
-	@media screen and (max-width: #{$screen-md-max}) {
-		@content;
-	}
+  @media screen and (max-width: #{$screen-md-max}) {
+    @content;
+  }
 }
 
 @mixin minWidthXs {
-	@media screen and (min-width: 480px) {
-		@content;
-	}
+  @media screen and (min-width: 480px) {
+    @content;
+  }
 }
 
 @mixin minWidthSm {
-	@media screen and (min-width: 768px) {
-		@content;
-	}
+  @media screen and (min-width: 768px) {
+    @content;
+  }
 }
 
 @mixin minWidthMd {
-	@media screen and (min-width: 992px) {
-		@content;
-	}
+  @media screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin clamp($lines: 1) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
