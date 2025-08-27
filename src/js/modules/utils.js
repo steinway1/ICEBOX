@@ -128,7 +128,7 @@ function saveCartEmail() {
   }
 }
 function showMessage(type, title, msg) {
-  var alert_type = type === 'success' ? pageAlerts.classes.info : pageAlerts.classes.error;
+  var alert_type = type === 'success' ? 'page-alert_info' : 'page-alert_error';
   pageAlerts.showAlert(alert_type, title, msg);
 }
 

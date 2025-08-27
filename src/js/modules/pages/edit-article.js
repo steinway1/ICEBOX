@@ -209,7 +209,7 @@ var EditArticle = function (articleContent, options) {
       box.style.display = 'flex';
     };
     bind(img, 'click', toggle);
-    UPLOADED_BLOG_IMG = imgUrl;
+    window.UPLOADED_BLOG_IMG = imgUrl;
   }
 
   function bindImageSection(section) {
@@ -2049,7 +2049,7 @@ var EditArticle = function (articleContent, options) {
   _export.getSummary = () => {
     const summary = document.querySelector('#article_summary');
     if (!summary || !summary.innerHTML) {
-      showMessage('Export Error: Provide excerpt or type "lorem", ECA-E2');
+      showMessage('error', 'Provide excerpt or type "lorem"', 'Export Error: Provide excerpt or type "lorem", ECA-E2');
       return null;
     }
     return summary.innerHTML;
@@ -2059,7 +2059,7 @@ var EditArticle = function (articleContent, options) {
   _export.getAuthor = () => {
     const author = document.querySelector('#article_author');
     if (!author || !author.innerHTML) {
-      showMessage('Export Error: Author is not provided, ECA-E3');
+      showMessage('error', 'Author is not provided', 'Export Error: Author is not provided, ECA-E3');
       return null;
     }
     return author.innerHTML;
@@ -2069,7 +2069,7 @@ var EditArticle = function (articleContent, options) {
   _export.getReadTime = () => {
     const minutes = document.querySelector('#article_read_time');
     if (!minutes || !minutes.innerHTML) {
-      showMessage('Export Error: Read time is not provided, ECA-E4');
+      showMessage('error', 'Read time is not provided', 'Export Error: Read time is not provided, ECA-E4');
       return null;
     }
     return parseInt(minutes.innerHTML);
@@ -2077,7 +2077,11 @@ var EditArticle = function (articleContent, options) {
 
   /** Export : Cover */
   _export.getCover = () => {
-    return UPLOADED_BLOG_IMG;
+    if (!window.UPLOADED_BLOG_IMG) {
+      showMessage('error', 'Cover is not provided', 'Export Error: Cover is not provided, ECA-E5');
+      return null;
+    }
+    return window.UPLOADED_BLOG_IMG;
   };
 
   /** Export : Content */
@@ -2131,13 +2135,57 @@ var EditArticle = function (articleContent, options) {
 
   /** Export : Do */
   _export.do = () => {
-    _export.obj.content = _export.getContent();
-    _export.obj.author = _export.getAuthor();
-    _export.obj.cover = _export.getCover();
-    _export.obj.read_time = _export.getReadTime();
-    _export.obj.summary = _export.getSummary();
-    _export.obj.title = _export.getTitle();
-    SaveAdminBlog(_export.obj);
+    let obj = {};
+    obj.content = _export.getContent();
+    obj.author = _export.getAuthor();
+    obj.cover = _export.getCover();
+    obj.read_time = _export.getReadTime();
+    obj.summary = _export.getSummary();
+    obj.title = _export.getTitle();
+
+    /**
+     * Remove Proto
+     */
+    const removeProto = object => {
+      if (object === null || typeof object !== 'object') {
+        return object;
+      }
+
+      const newObj = Object.create(null);
+      for (const key in object) {
+        if (object.hasOwnProperty(key)) {
+          if (typeof object[key] === 'object') {
+            newObj[key] = removeProto(object[key]);
+          } else {
+            newObj[key] = object[key];
+          }
+        }
+      }
+
+      return newObj;
+    };
+
+    const cleanObj = removeProto(obj);
+
+    /**
+     * Save Article
+     */
+    $.ajax({
+      url: '/admin/ajax/add-blog',
+      type: 'POST',
+      data: { article: JSON.stringify(cleanObj) },
+      success: function (data) {
+        var r = $.parseJSON(data);
+        if (!r.error) {
+          showMessage('success', r.msg);
+          setTimeout(function () {
+            window.location.reload();
+          }, 3000);
+        } else {
+          showMessage('error', r.msg);
+        }
+      },
+    });
   };
 
   Article.add = AddSection;
