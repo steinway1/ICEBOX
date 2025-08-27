@@ -708,7 +708,7 @@ var EditArticle = function (articleContent, options) {
 
     const iframe = createElem('iframe', {
       attributes: {
-        src: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7097450.059238128!2d-87.57437982756466!3d29.70377188537367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f505f4376e605b%3A0x13dd0214a5f77093!2sIcebox%20Diamonds%20%26%20Watches!5e0!3m2!1sru!2sus!4v1755746107702!5m2!1sru!2sus',
+        src: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13255.429758921076!2d-84.39182751162193!3d33.841786929379396!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f505f4376e605b%3A0x13dd0214a5f77093!2sIcebox%20Diamonds%20%26%20Watches!5e0!3m2!1sen!2stn!4v1756299034342!5m2!1sen!2stn',
         width: '600',
         height: '450',
         style: 'border:0;',
