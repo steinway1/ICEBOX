@@ -2203,7 +2203,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const articleContent = document.querySelector('.editable__content');
 
   if (articleContent) {
-    alert('a');
     const Article = new EditArticle('editable__content', {
       setInitialLayout: true,
     });
