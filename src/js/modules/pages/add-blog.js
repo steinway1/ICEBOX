@@ -1,3 +1,5 @@
+import Splide from '../../splide';
+
 /**
  * Edit Article Page
  * {@category Blog}
@@ -18,11 +20,8 @@ var EditArticle = function (articleContent, options) {
     setInitialLayout: true,
   };
 
-  /**
-   *
-   * Utils
-   *
-   */
+  /** ----------------------- Utils Functions ----------------------- */
+
   function toArray(value) {
     return Array.isArray(value) ? value : [value];
   }
@@ -210,89 +209,112 @@ var EditArticle = function (articleContent, options) {
       box.style.display = 'flex';
     };
     bind(img, 'click', toggle);
-    UPLOADED_BLOG_IMG = imgUrl;
+    window.UPLOADED_BLOG_IMG = imgUrl;
   }
 
-  /**
-   *
-   * Process Export Functions
-   *
-   */
-  function clearSection(section) {
-    const cloned = section.cloneNode(true);
-    const controls = cloned.querySelector('.content-section-controls');
-    const textarea = cloned.querySelector('textarea');
-    const disclaimers = cloned.querySelectorAll('.blog__cards-disclaimer');
-    const editBoxes = cloned.querySelectorAll('.blog-edit-box');
-    const inputs = cloned.querySelectorAll('.blog-card__input');
+  function bindImageSection(section) {
+    const input = section.querySelector('.blog__image-input');
+    const box = section.querySelector('.blog-edit-box');
 
-    const elemsToRemoves = [controls, ...disclaimers, ...editBoxes, ...inputs, textarea];
+    if (!box) throw new Error('JS : Append Welcome Cover : Cover Edit Box not found');
+    if (!input) throw new Error('JS : Append Welcome Cover : Cover Input not found');
 
-    elemsToRemoves.forEach(elem => {
-      if (elem) elem.remove();
-    });
-
-    const elems = cloned.querySelectorAll('*');
-    for (const elem of elems) {
-      elem.removeAttribute('contenteditable');
-      elem.removeAttribute('spellcheck');
-      removeClasses(elem, 'tip_edit');
-    }
-    return cloned;
-  }
-
-  function processText(section) {
-    let cleared = clearSection(section);
-    return cleared.outerHTML;
-  }
-
-  function processEmbed(section) {
-    const iframe = section.querySelector('iframe');
-    if (!iframe) {
-      showMessage('Export Error: No iframe found in Embed Section , ECA-E9');
-      return null;
-    }
-    let cleared = clearSection(section);
-    return cleared.outerHTML;
-  }
-
-  function processProduct(section) {
-    let items = {};
-
-    const inputs = [...section.querySelectorAll('input')];
-
-    for (const input of inputs) {
-      const value = input.value;
-      const index = inputs.indexOf(input);
-      if (!value) {
-        if (!input.required) {
-          continue;
-        } else {
-          error(`Export Error: Link for product not found. Section: ${section.dataset.contentType}`, 'ECA-E10');
-          continue;
-        }
-      } else {
-        if (input.classList.contains(__INVALID)) {
-          error(`Export Error: Link for product is invalid. Section: ${section.dataset.contentType}`, 'ECA-E11');
-          continue;
-        } else {
-          items[index] = {
-            link: value,
-            id: value.match(/-\d{4}$/)[0].slice(1),
-          };
-        }
-      }
+    function updateImage(imgUrl) {
+      box.style.backgroundImage = `url(${imgUrl})`;
+      box.classList.add('--filled');
     }
 
-    return items;
+    function processFile(file) {
+      if (!file) throw new Error('No file selected');
+      if (!file.type.match('image.*')) throw new Error('Not an image');
+
+      // Create a new FileList with the single file to preserve it in the input
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      input.files = dataTransfer.files;
+
+      let reader = new FileReader();
+      reader.onload = e => {
+        updateImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    box.onclick = () => {
+      input.click();
+    };
+    input.onchange = e => {
+      processFile(e.target.files[0]);
+    };
+    box.ondragover = e => {
+      e.preventDefault();
+      box.classList.add(IS_ACTIVE);
+    };
+    box.ondragleave = e => {
+      e.preventDefault();
+      box.classList.remove(IS_ACTIVE);
+    };
+    box.ondrop = e => {
+      e.preventDefault();
+      box.classList.remove(IS_ACTIVE);
+      processFile(e.dataTransfer.files[0]);
+    };
   }
 
-  /**
-   *
-   * Create Section Elements
-   *
-   */
+  function bindLinkCardImageUpload(card) {
+    const input = card.querySelector('input');
+    const box = card.querySelector('.blog-edit-box');
+
+    if (!box) throw new Error('JS : Append Welcome Cover : Cover Edit Box not found');
+    if (!input) throw new Error('JS : Append Welcome Cover : Cover Input not found');
+
+    function updateImage(imgUrl) {
+      box.style.backgroundImage = `url(${imgUrl})`;
+      box.classList.add('--filled');
+    }
+
+    function processFile(file) {
+      if (!file) throw new Error('No file selected');
+      if (!file.type.match('image.*')) throw new Error('Not an image');
+
+      // Create a new FileList with the single file to preserve it in the input
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      input.files = dataTransfer.files;
+
+      let reader = new FileReader();
+      reader.onload = e => {
+        updateImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    box.onclick = () => {
+      input.click();
+    };
+    input.onchange = e => {
+      processFile(e.target.files[0]);
+    };
+    box.ondragover = e => {
+      e.preventDefault();
+      box.classList.add(IS_ACTIVE);
+    };
+    box.ondragleave = e => {
+      e.preventDefault();
+      box.classList.remove(IS_ACTIVE);
+    };
+    box.ondrop = e => {
+      e.preventDefault();
+      box.classList.remove(IS_ACTIVE);
+      processFile(e.dataTransfer.files[0]);
+    };
+  }
+
+  /** ----------------------- Create Section Elements ----------------------- */
+
   var Create = new Object();
+
+  /** Create : Product Card */
   Create.blogCard = () => {
     const card = createElem('div', {
       className: 'blog-card',
@@ -312,9 +334,42 @@ var EditArticle = function (articleContent, options) {
     });
     return card;
   };
+
+  Create.LinkCard = () => {
+    const inputBox = createElem('div', {
+      className: 'blog-edit-box',
+      attributes: {
+        'data-edit-box': 'cardImage',
+      },
+      innerHTML: `
+        <input type="file" name="files[]" accept="image/jpeg, image/png, image/webp, image/gif" data-input="cardImage">
+      `,
+    });
+
+    const card = createElem('div', {
+      className: 'blog-link-card',
+      innerHTML: `
+        <button class="blog-link-card__remove-btn"></button>
+        <a href="javascript:void(0)"></a>
+        <div>
+          <h4 contenteditable>Some title goes here...</h4>
+          <p contenteditable>Some description goes here..</p>
+          <input data-input="linkCardLink" type="text" placeholder="Link (optional)" class="blog-card__input">
+        </div>
+      `,
+    });
+
+    card.querySelector('a').appendChild(inputBox);
+    bindLinkCardImageUpload(card);
+    return card;
+  };
+
+  /** Create : Disclaimer */
   Create.disclaimer = () => {
     return createElem('div', { className: 'blog__cards-disclaimer' });
   };
+
+  /** Create : Section Controls */
   Create.sectionControls = () => {
     const controls = createElem('div', {
       className: 'content-section-controls',
@@ -327,12 +382,22 @@ var EditArticle = function (articleContent, options) {
     return controls;
   };
 
-  /**
-   *
-   * Create Sections
-   *
-   */
+  /** Create : List Item */
+  Create.listItem = text => {
+    const item = createElem('p', {
+      className: 'list-item tip_edit',
+      innerHTML: `<p contenteditable="true" spellcheck="false">${text}</p>
+      <button class="list-item__remove-btn"></button>
+      `,
+    });
+    return item;
+  };
+
+  /** ----------------------- Create Sections ----------------------- */
+
   var CreateSection = new Object();
+
+  /** Create : Large Title */
   CreateSection.largeTitle = () => {
     const section = createElem('div', {
       className: 'article-content-section --heading',
@@ -350,6 +415,8 @@ var EditArticle = function (articleContent, options) {
     append(section, heading, Create.sectionControls());
     return section;
   };
+
+  /** Create : Tiny Title */
   CreateSection.tinyTitle = () => {
     const section = createElem('div', {
       className: 'article-content-section --heading',
@@ -367,6 +434,8 @@ var EditArticle = function (articleContent, options) {
     append(section, heading, Create.sectionControls());
     return section;
   };
+
+  /** Create : Text Block */
   CreateSection.textBlock = () => {
     const section = createElem('div', {
       className: 'article-content-section --text',
@@ -385,6 +454,8 @@ var EditArticle = function (articleContent, options) {
     append(section, p, Create.sectionControls());
     return section;
   };
+
+  /** Create : Spacer */
   CreateSection.spacer = () => {
     const section = createElem('div', {
       className: 'article-content-section --spacer',
@@ -395,6 +466,32 @@ var EditArticle = function (articleContent, options) {
     append(section, Create.sectionControls());
     return section;
   };
+
+  /** Create : Spacer Empty */
+  CreateSection.spacerEmpty = () => {
+    const section = createElem('div', {
+      className: 'article-content-section --spacer-empty',
+      attributes: {
+        'data-content-type': 'spacer_empty',
+      },
+      innerHTML: `<div class="empty-space-adjust"></div>`,
+    });
+
+    const input = createElem('input', {
+      className: 'blog__product-input',
+      attributes: {
+        placeholder: 'Spacer height from 48 to 999',
+        'data-input': 'spacerEmpty',
+        'data-input-initial': true,
+        required: true,
+      },
+    });
+
+    append(section, input, Create.sectionControls());
+    return section;
+  };
+
+  /** Create : Product Block */
   CreateSection.productBlock = () => {
     const section = createElem('div', {
       className: 'article-content-section --product',
@@ -417,6 +514,33 @@ var EditArticle = function (articleContent, options) {
     append(section, grid, disclaimer, Create.sectionControls());
     return section;
   };
+
+  /** Create : Cards Block */
+  CreateSection.cardsBlock = () => {
+    const section = createElem('div', {
+      className: 'article-content-section --cards',
+      attributes: {
+        'data-content-type': 'cards',
+      },
+    });
+    const grid = createElem('div', { className: 'blog__cards-grid' });
+
+    const moreBtn = createElem('button', {
+      className: 'blog-edit-box',
+      attributes: {
+        'data-content-edit': true,
+        'data-edit-box': 'addLinkCard',
+      },
+      innerHTML: `<span>Add Card</span>`,
+    });
+
+    const card = Create.LinkCard();
+    append(grid, card, moreBtn);
+    append(section, grid, Create.sectionControls());
+    return section;
+  };
+
+  /** Create : Slider Block */
   CreateSection.sliderBlock = () => {
     const section = createElem('div', {
       className: 'article-content-section --slider',
@@ -443,6 +567,8 @@ var EditArticle = function (articleContent, options) {
     append(section, ...inputs, Create.sectionControls());
     return section;
   };
+
+  /** Create : YouTube Embed */
   CreateSection.ytEmbed = () => {
     const section = createElem('div', {
       className: 'article-content-section --yt-embed',
@@ -463,20 +589,241 @@ var EditArticle = function (articleContent, options) {
     append(section, disclaimer, textarea, Create.sectionControls());
     return section;
   };
+
+  /** Create : List */
   CreateSection.list = () => {
-    return;
+    const section = createElem('div', {
+      className: 'article-content-section --list',
+      attributes: {
+        'data-content-type': 'list',
+      },
+    });
+    const listItems = Array(3)
+      .fill()
+      .map((_, i) =>
+        Create.listItem(
+          i === 0
+            ? 'On the other hand, we denounce with righteous indignation and dislike men who are...'
+            : i === 2
+              ? 'These cases are perfectly simple and easy to distinguish.'
+              : 'In a free hour, when our power of choice is untrammelled and when nothing prevents our being',
+        ),
+      );
+
+    const addItemBtn = createElem('button', {
+      className: 'blog-edit-box',
+      attributes: {
+        'data-edit-box': 'addListItem',
+      },
+      innerHTML: `<span>Add List Item</span>`,
+    });
+
+    append(section, ...listItems, addItemBtn, Create.sectionControls());
+    return section;
   };
 
-  /**
-   *
-   * Append Welcome
-   *
-   */
+  /** Create : Button Link */
+  CreateSection.buttonLink = () => {
+    // button
+    const section = createElem('div', {
+      className: 'article-content-section --button',
+      attributes: {
+        'data-content-type': 'button',
+      },
+    });
+
+    const btn = createElem('a', {
+      className: 'blog__btn-link',
+      attributes: {
+        href: '#',
+        target: '_blank',
+      },
+      innerHTML: `<span>Explore more</span>`,
+    });
+
+    // Inputs
+    const inputContainer = createElem('div', {
+      className: 'flex-col gap-8',
+    });
+
+    const inputUrl = createElem('input', {
+      className: 'blog__product-input',
+      attributes: {
+        placeholder: 'Button link',
+        'data-input': 'buttonLink',
+      },
+    });
+
+    const inputTitle = createElem('input', {
+      className: 'blog__product-input',
+      attributes: {
+        placeholder: 'Button title',
+        'data-input': 'buttonTitle',
+      },
+    });
+
+    // Stylize button
+    const stylizeContainer = createElem('div', {
+      className: 'flex-wrap gap-16',
+    });
+
+    const stylizeColorBlack = createElem('label', {
+      className: 'custom-checkbox',
+      innerHTML: `
+        <input data-input="button-stylize-theme" type="radio" name="button-stylize-theme" value="black" checked>
+        <span>Black theme</span>
+      `,
+    });
+
+    const stylizeColorBlue = createElem('label', {
+      className: 'custom-checkbox',
+      innerHTML: `
+        <input data-input="button-stylize-theme" type="radio" name="button-stylize-theme" value="blue">
+        <span>Blue theme</span>
+      `,
+    });
+
+    const stylizeColorGrey = createElem('label', {
+      className: 'custom-checkbox',
+      innerHTML: `
+        <input data-input="button-stylize-theme" type="radio" name="button-stylize-theme" value="grey">
+        <span>Grey theme</span>
+      `,
+    });
+
+    append(stylizeContainer, stylizeColorBlack, stylizeColorBlue, stylizeColorGrey);
+    append(inputContainer, inputUrl, inputTitle);
+    append(section, btn, inputContainer, stylizeContainer, Create.sectionControls());
+    return section;
+  };
+
+  /** Create : Icebox Map */
+  CreateSection.map = () => {
+    const section = createElem('div', {
+      className: 'article-content-section --map',
+      attributes: {
+        'data-content-type': 'map',
+      },
+    });
+
+    const iframe = createElem('iframe', {
+      attributes: {
+        src: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7097450.059238128!2d-87.57437982756466!3d29.70377188537367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f505f4376e605b%3A0x13dd0214a5f77093!2sIcebox%20Diamonds%20%26%20Watches!5e0!3m2!1sru!2sus!4v1755746107702!5m2!1sru!2sus',
+        width: '600',
+        height: '450',
+        style: 'border:0;',
+        allowfullscreen: '',
+        loading: 'lazy',
+        referrerpolicy: 'no-referrer-when-downgrade',
+      },
+    });
+
+    // Stylize Map
+    const stylizeContainer = createElem('div', {
+      className: 'content-section-controls gap-16',
+    });
+
+    const stylizeTheme1 = createElem('label', {
+      className: 'custom-checkbox',
+      innerHTML: `
+            <input data-input="map-stylize-theme" type="radio" name="map-stylize-theme" value="theme1" checked>
+            <span>Theme 1</span>
+          `,
+    });
+
+    const stylizeTheme2 = createElem('label', {
+      className: 'custom-checkbox',
+      innerHTML: `
+            <input data-input="map-stylize-theme" type="radio" name="map-stylize-theme" value="theme2">
+            <span>Theme 2</span>
+          `,
+    });
+
+    const stylizeTheme3 = createElem('label', {
+      className: 'custom-checkbox',
+      innerHTML: `
+            <input data-input="map-stylize-theme" type="radio" name="map-stylize-theme" value="theme3">
+            <span>Theme 3</span>
+          `,
+    });
+
+    append(stylizeContainer, stylizeTheme1, stylizeTheme2, stylizeTheme3);
+    append(section, iframe, stylizeContainer, Create.sectionControls());
+    return section;
+  };
+
+  /** Create : Image */
+  CreateSection.image = () => {
+    const section = createElem('div', {
+      className: 'article-content-section --image',
+      attributes: {
+        'data-content-type': 'image',
+      },
+    });
+
+    const inputBox = createElem('div', {
+      className: 'blog-edit-box',
+      attributes: {
+        'data-edit-box': 'image',
+      },
+    });
+
+    const input = createElem('input', {
+      className: 'blog__image-input',
+      attributes: {
+        type: 'file',
+        name: 'files[]',
+        'data-input': 'image',
+        accept: 'image/jpeg, image/png, image/webp, image/gif',
+      },
+    });
+
+    // Stylize Image
+    const stylizeContainer = createElem('div', {
+      className: 'content-section-controls gap-16',
+    });
+
+    const stylizeTheme1 = createElem('label', {
+      className: 'custom-checkbox',
+      innerHTML: `
+                <input data-input="image-stylize-theme" type="radio" name="image-stylize-theme" value="16-6" checked>
+                <span>16:6</span>
+              `,
+    });
+
+    const stylizeTheme2 = createElem('label', {
+      className: 'custom-checkbox',
+      innerHTML: `
+                <input data-input="image-stylize-theme" type="radio" name="image-stylize-theme" value="16-9">
+                <span>16:9</span>
+              `,
+    });
+
+    const stylizeTheme3 = createElem('label', {
+      className: 'custom-checkbox',
+      innerHTML: `
+                <input data-input="image-stylize-theme" type="radio" name="image-stylize-theme" value="4-3">
+                <span>4:3</span>
+              `,
+    });
+
+    append(stylizeContainer, stylizeTheme1, stylizeTheme2, stylizeTheme3);
+    append(inputBox, input);
+    append(section, inputBox, stylizeContainer, Create.sectionControls());
+
+    return section;
+  };
+
+  /** ----------------------- Append Welcome ----------------------- */
+
   var HandleWelcome = new Object();
+
+  /** Handle Welcome : Heading */
   HandleWelcome.heading = input => {
-    const value = input.value,
-      holder = document.querySelector('.article__title-wrap'),
-      box = input.closest('.blog-edit-box');
+    const value = input.value;
+    const holder = document.querySelector('.article__title-wrap');
+    const box = input.closest('.blog-edit-box');
+
     if (!holder) throw new Error('JS : Append Welcome Heading : Title Holder not found');
     if (!box) throw new Error('JS : Append Welcome Heading : Title Box not found');
     if (value) {
@@ -501,6 +848,8 @@ var EditArticle = function (articleContent, options) {
       bind(heading, ['click', 'contextmenu'], toggle);
     }
   };
+
+  /** Handle Welcome : Summary */
   HandleWelcome.summary = input => {
     const value = input.value ? (/lorem/i.test(input.value) ? 'Add Summary' : input.value) : 'Add Summary';
     const holder = document.querySelector('.article__title-wrap');
@@ -528,6 +877,8 @@ var EditArticle = function (articleContent, options) {
     };
     bind(summary, ['click', 'contextmenu'], toggle);
   };
+
+  /** Handle Welcome : Minutes */
   HandleWelcome.minutes = input => {
     const value = input.value;
     const holder = document.querySelector('.article-welcome');
@@ -555,6 +906,8 @@ var EditArticle = function (articleContent, options) {
     };
     bind(minutes, ['click', 'contextmenu'], toggle);
   };
+
+  /** Handle Welcome : Author */
   HandleWelcome.author = input => {
     const value = input.value,
       holder = document.querySelector('.post-author'),
@@ -594,6 +947,8 @@ var EditArticle = function (articleContent, options) {
       bind(date, ['click', 'contextmenu'], toggle);
     }
   };
+
+  /** Handle Welcome : Cover */
   HandleWelcome.cover = input => {
     const box = closestParent(input, '.blog-edit-box');
     if (!box) throw new Error('JS : Append Welcome Cover : Cover Edit Box not found');
@@ -630,50 +985,94 @@ var EditArticle = function (articleContent, options) {
     };
   };
 
-  /**
-   *
-   * Add Sections
-   *
-   */
+  /** ----------------------- Add Sections ----------------------- */
+
   var AddSection = new Object();
+
+  /** Add : Large Title */
   AddSection.largeTitle = () => {
     const section = CreateSection.largeTitle();
     append(articleContent, section);
   };
+
+  /** Add : Tiny Title */
   AddSection.tinyTitle = () => {
     const section = CreateSection.tinyTitle();
     append(articleContent, section);
   };
+
+  /** Add : Text Block */
   AddSection.textBlock = () => {
     const section = CreateSection.textBlock();
     append(articleContent, section);
   };
+
+  /** Add : Spacer */
   AddSection.spacer = () => {
     const section = CreateSection.spacer();
     append(articleContent, section);
   };
+
+  /** Add : Spacer Empty */
+  AddSection.spacerEmpty = () => {
+    const section = CreateSection.spacerEmpty();
+    append(articleContent, section);
+  };
+
+  /** Add : Product Block */
   AddSection.productBlock = () => {
     const section = CreateSection.productBlock();
     append(articleContent, section);
   };
+
+  /** Add : Slider Block */
   AddSection.sliderBlock = () => {
     const section = CreateSection.sliderBlock();
     append(articleContent, section);
   };
+
+  /** Add : YouTube Embed */
   AddSection.ytEmbed = () => {
     const section = CreateSection.ytEmbed();
     append(articleContent, section);
   };
+
+  /** Add : List */
   AddSection.list = () => {
-    return;
+    const section = CreateSection.list();
+    append(articleContent, section);
   };
 
-  /**
-   *
-   * Section Modify Events
-   *
-   */
+  /** Add : Button Link */
+  AddSection.buttonLink = () => {
+    const section = CreateSection.buttonLink();
+    append(articleContent, section);
+  };
+
+  /** Add : Google Maps */
+  AddSection.map = () => {
+    const section = CreateSection.map();
+    append(articleContent, section);
+  };
+
+  /** Add : Image */
+  AddSection.image = () => {
+    const section = CreateSection.image();
+    append(articleContent, section);
+    bindImageSection(section);
+  };
+
+  /** Add : Cards */
+  AddSection.cards = () => {
+    const section = CreateSection.cardsBlock();
+    append(articleContent, section);
+  };
+
+  /** ----------------------- Section Modify Events ----------------------- */
+
   var _section = new Object();
+
+  /** Modify section : Remove */
   _section.remove = section => {
     const h = section.scrollHeight;
     section.style.height = h + 'px';
@@ -686,6 +1085,8 @@ var EditArticle = function (articleContent, options) {
       }, getTransitionTime(section));
     }, 1);
   };
+
+  /** Modify section : Move Up */
   _section.moveUp = section => {
     const prev = section.previousElementSibling;
     if (prev !== null) {
@@ -701,6 +1102,8 @@ var EditArticle = function (articleContent, options) {
       }, getTransitionTime(section));
     }
   };
+
+  /** Modify section : Move Down */
   _section.moveDown = section => {
     const next = section.nextElementSibling;
     if (next !== null) {
@@ -726,6 +1129,8 @@ var EditArticle = function (articleContent, options) {
    * --youtube embed input
    */
   var BindDocument = new Object();
+
+  /** Bind : Section Controls */
   BindDocument.sectionControls = () => {
     document.addEventListener('click', event => {
       const target = event.target;
@@ -748,6 +1153,8 @@ var EditArticle = function (articleContent, options) {
       }
     });
   };
+
+  /** Bind : Add Product Card */
   BindDocument.addProductCard = () => {
     document.addEventListener('click', event => {
       const target = event.target;
@@ -764,6 +1171,47 @@ var EditArticle = function (articleContent, options) {
       }
     });
   };
+
+  /** Bind : Add Link Card */
+  BindDocument.addLinkCard = () => {
+    document.addEventListener('click', event => {
+      const target = event.target;
+      if (target.closest('[data-edit-box="addLinkCard"]')) {
+        const grid = target.closest('.blog__cards-grid');
+        if (!grid) throw new Error(`Expected to find closest .blog__cards-grid`);
+        const card = Create.LinkCard();
+        const arr = [...grid.querySelectorAll('.blog-link-card')];
+        if (!arr.length) {
+          t.before(card);
+        } else {
+          arr.at(-1).after(card);
+        }
+      }
+    });
+  };
+
+  /** Bind : Link Card Remove */
+  BindDocument.linkCardRemove = () => {
+    document.addEventListener('click', event => {
+      const target = event.target;
+      if (target.closest('.blog-link-card__remove-btn')) {
+        const card = target.closest('.blog-link-card');
+
+        if (card) {
+          const grid = card.closest('.blog__cards-grid');
+          const allCards = grid ? grid.querySelectorAll('.blog-link-card') : [];
+
+          if (allCards.length > 1) {
+            card.remove();
+          } else {
+            error("You can't remove the only card", 'ECA-24');
+          }
+        }
+      }
+    });
+  };
+
+  /** Bind : YouTube Embed Input */
   BindDocument.ytEmbedInput = () => {
     const validateRegExp = /^<iframe.*src=["'].*youtube.*["'].*<\/iframe>$/i;
     document.addEventListener('input', event => {
@@ -804,6 +1252,57 @@ var EditArticle = function (articleContent, options) {
       }
     });
   };
+
+  /** Bind : Spacer Empty Input */
+  BindDocument.spacerEmptyInput = () => {
+    const MIN_HEIGHT = 48;
+    const MAX_HEIGHT = 999;
+    const DEFAULT_HEIGHT = 68;
+
+    document.addEventListener('input', event => {
+      const target = event.target;
+      if (target.closest('[data-input="spacerEmpty"]')) {
+        const section = target.closest('.article-content-section');
+        if (!section) throw new Error(`Expected to find closest article-content-section`);
+
+        const val = target.value;
+
+        // Check if the value is a number
+        if (val && !/^\d+$/.test(val)) {
+          addClasses(target, __INVALID);
+          return;
+        }
+
+        // Find the empty-space-adjust element
+        const emptySpaceAdjust = section.querySelector('.empty-space-adjust');
+
+        // If the value is empty, set default height
+        if (!val) {
+          removeClasses(target, __INVALID);
+          if (emptySpaceAdjust) {
+            emptySpaceAdjust.style.height = `${DEFAULT_HEIGHT}px`;
+          }
+          return;
+        }
+
+        const numVal = parseInt(val, 10);
+
+        // Check the range using constants
+        if (numVal >= MIN_HEIGHT && numVal <= MAX_HEIGHT) {
+          removeClasses(target, __INVALID);
+
+          // Set the height
+          if (emptySpaceAdjust) {
+            emptySpaceAdjust.style.height = `${numVal}px`;
+          }
+        } else {
+          addClasses(target, __INVALID);
+        }
+      }
+    });
+  };
+
+  /** Bind : Product Card Input */
   BindDocument.productCardInput = () => {
     const validate = input => {
       const val = input.value;
@@ -876,6 +1375,52 @@ var EditArticle = function (articleContent, options) {
       }
     });
   };
+
+  /** Bind : List Item Remove */
+  BindDocument.listItemRemove = () => {
+    document.addEventListener('click', event => {
+      const target = event.target;
+      if (target.closest('.list-item__remove-btn')) {
+        const listItem = target.closest('.list-item');
+        if (!listItem) throw new Error(`Expected to find closest .list-item`);
+
+        const section = listItem.closest('.article-content-section');
+        if (!section) throw new Error(`Expected to find closest .article-content-section`);
+
+        const allListItems = section.querySelectorAll('.list-item');
+
+        if (allListItems.length === 1) {
+          _section.remove(section);
+        } else {
+          listItem.remove();
+        }
+      }
+    });
+  };
+
+  /** Bind : List Item Add */
+  BindDocument.listItemAdd = () => {
+    document.addEventListener('click', event => {
+      const target = event.target;
+      if (target.closest('[data-edit-box="addListItem"]')) {
+        const section = target.closest('.article-content-section');
+        if (!section) throw new Error(`Expected to find closest .article-content-section`);
+
+        const listItems = section.querySelectorAll('.list-item');
+        const newItem = Create.listItem(
+          'On the other hand, we denounce with righteous indignation and dislike men who are...',
+        );
+
+        if (listItems.length === 0) {
+          section.insertBefore(newItem, section.firstChild);
+        } else {
+          listItems[listItems.length - 1].after(newItem);
+        }
+      }
+    });
+  };
+
+  /** Bind : Selection Change */
   BindDocument.selectionChange = () => {
     document.addEventListener('selectionchange', event => {
       const element = event.target.activeElement;
@@ -897,7 +1442,101 @@ var EditArticle = function (articleContent, options) {
     });
   };
 
+  /** Bind : Button Link Input */
+  BindDocument.buttonLinkInput = () => {
+    document.addEventListener('input', event => {
+      const target = event.target;
+      if (target.dataset.input === 'buttonLink') {
+        const section = target.closest('.article-content-section');
+        if (section) {
+          const button = section.querySelector('.blog__btn-link');
+          if (button) {
+            button.href = target.value || '#';
+          }
+        }
+      }
+      if (target.dataset.input === 'buttonTitle') {
+        const section = target.closest('.article-content-section');
+        if (section) {
+          const button = section.querySelector('.blog__btn-link span');
+          if (button) {
+            button.textContent = target.value || 'Button title';
+          }
+        }
+      }
+    });
+  };
+
+  /** Bind : Button Link Stylize */
+  BindDocument.buttonLinkStylize = () => {
+    document.addEventListener('change', event => {
+      const target = event.target;
+      if (target.closest('[data-input="button-stylize-theme"]')) {
+        const section = target.closest('.article-content-section');
+        if (section) {
+          const button = section.querySelector('.blog__btn-link');
+
+          if (button) {
+            const theme = target.value;
+
+            switch (theme) {
+              case 'black':
+                button.className = 'blog__btn-link --black';
+                break;
+              case 'blue':
+                button.className = 'blog__btn-link --blue';
+                break;
+              case 'grey':
+                button.className = 'blog__btn-link --grey';
+                break;
+            }
+          }
+        }
+      }
+    });
+  };
+
+  /** Bind : Map Stylize */
+  BindDocument.mapStylize = () => {
+    document.addEventListener('change', event => {
+      const target = event.target;
+      if (target.closest('[data-input="map-stylize-theme"]')) {
+        const section = target.closest('.article-content-section');
+        if (section) {
+          const iframe = section.querySelector('iframe');
+          if (iframe) {
+            iframe.className = `map-iframe --${target.value}`;
+          }
+        }
+      }
+    });
+  };
+
+  /** Bind : Image Stylize */
+  BindDocument.imageStylize = () => {
+    document.addEventListener('change', event => {
+      const target = event.target;
+      if (target.closest('[data-input="image-stylize-theme"]')) {
+        const section = target.closest('.article-content-section');
+        if (section) {
+          const box = section.querySelector('.blog-edit-box');
+          if (box) {
+            let filledClass = '';
+            if (box.classList.contains('--filled')) {
+              filledClass = '--filled';
+            }
+            box.className = `blog-edit-box --${target.value} ${filledClass}`;
+          }
+        }
+      }
+    });
+  };
+
+  /** ----------------------- Tip ----------------------- */
+
   var Tip = new Object();
+
+  /** Tip : Move */
   Tip.move = selectionRange => {
     const tip = document.querySelector('.edit-tip');
     if (!tip || !selectionRange) return;
@@ -911,11 +1550,15 @@ var EditArticle = function (articleContent, options) {
     tip.style.left = `${left}px`;
     tip.classList.add(IS_VISIBLE);
   };
+
+  /** Tip : Hide */
   Tip.hide = () => {
     const tip = document.querySelector('.edit-tip');
     if (!tip) return;
     tip.classList.remove(IS_VISIBLE);
   };
+
+  /** Tip : Bind */
   Tip.bind = () => {
     const arr = [
       ...document.querySelectorAll('[data-edit-tip="bold"]'),
@@ -936,7 +1579,11 @@ var EditArticle = function (articleContent, options) {
     }
   };
 
+  /** ----------------------- Editable ----------------------- */
+
   var Editable = new Object();
+
+  /** Editable : Clear */
   Editable.clear = function (spans) {
     spans = toArray(spans);
     for (const span of spans) {
@@ -951,6 +1598,8 @@ var EditArticle = function (articleContent, options) {
       span.parentNode.replaceChild(fragment, span);
     }
   };
+
+  /** Editable : Wrap */
   Editable.wrap = function (range, cls, customTag) {
     const tag = customTag || 'span';
     const attributes =
@@ -965,6 +1614,8 @@ var EditArticle = function (articleContent, options) {
     range.deleteContents();
     range.insertNode(newSpan);
   };
+
+  /** Editable : Wrap Into Span */
   Editable.wrapIntoSpan = cls => {
     const selection = window.getSelection();
     if (String(selection).length < 1) {
@@ -1042,12 +1693,11 @@ var EditArticle = function (articleContent, options) {
     Editable.wrap(range, cls);
   };
 
-  /**
-   *
-   * Main
-   *
-   */
+  /** ----------------------- Main ----------------------- */
+
   var Article = new Object();
+
+  /** Bind : Add Sections */
   Article.bindAddSections = function () {
     this.arr = [...document.querySelectorAll('[data-add-section]')];
     for (const box of this.arr) {
@@ -1066,6 +1716,8 @@ var EditArticle = function (articleContent, options) {
       bind(box, 'click', updateSectionsControls);
     }
   };
+
+  /** Bind : Welcome Section */
   Article.bindWelcomeSection = function () {
     const inputsArr = [
       ...document.querySelectorAll('[data-blog-edit="heading"]'),
@@ -1108,23 +1760,41 @@ var EditArticle = function (articleContent, options) {
       HandleWelcome.cover(inputCoverUpload);
     }
   };
+
+  /** Bind : Document Events */
   Article.bindDocumentEvents = function () {
     BindDocument.sectionControls();
     BindDocument.addProductCard();
+    BindDocument.addLinkCard();
+    BindDocument.linkCardRemove();
     BindDocument.ytEmbedInput();
+    BindDocument.spacerEmptyInput();
     BindDocument.productCardInput();
+    BindDocument.listItemRemove();
+    BindDocument.listItemAdd();
     BindDocument.selectionChange();
+    BindDocument.buttonLinkInput();
+    BindDocument.buttonLinkStylize();
+    BindDocument.mapStylize();
+    BindDocument.imageStylize();
   };
+
+  /** Bind : Tip */
   Article.bindTip = function () {
     Tip.bind();
   };
+
+  /** Set Initial Layout */
   Article.setInitialLayout = function () {
     if (!options.setInitialLayout) return;
-    const { largeTitle, tinyTitle, textBlock, productBlock, sliderBlock, spacer, ytEmbed } = AddSection;
+    const { largeTitle, tinyTitle, textBlock, productBlock, sliderBlock, spacer, ytEmbed, map } = AddSection;
     largeTitle();
     tinyTitle();
     textBlock();
+    map();
   };
+
+  /** Init : Splide */
   Article.initSplide = function () {
     const splides = [...document.querySelectorAll('.splide_blog')];
     for (const splide of splides) {
@@ -1145,6 +1815,8 @@ var EditArticle = function (articleContent, options) {
       }).mount();
     }
   };
+
+  /** Init : Article */
   Article.init = function () {
     const funcArr = [
       this.setInitialLayout,
@@ -1164,12 +1836,206 @@ var EditArticle = function (articleContent, options) {
     }
   };
 
-  /**
-   * Export Article
-   */
+  /** ----------------------- Process Export Functions ----------------------- */
+
+  function clearSection(section) {
+    const cloned = section.cloneNode(true);
+    const controls = cloned.querySelector('.content-section-controls');
+    const textarea = cloned.querySelector('textarea');
+    const disclaimers = cloned.querySelectorAll('.blog__cards-disclaimer');
+    const editBoxes = cloned.querySelectorAll('.blog-edit-box');
+    const inputs = cloned.querySelectorAll('.blog-card__input');
+    const productInputs = cloned.querySelectorAll('.blog__product-input');
+    const flexWrapDivs = cloned.querySelectorAll('.flex-wrap');
+    const flexDivs = cloned.querySelectorAll('.flex');
+
+    const elemsToRemoves = [
+      controls,
+      ...disclaimers,
+      ...editBoxes,
+      ...inputs,
+      textarea,
+      ...productInputs,
+      ...flexWrapDivs,
+      ...flexDivs,
+    ];
+
+    elemsToRemoves.forEach(elem => {
+      if (elem) elem.remove();
+    });
+
+    const elems = cloned.querySelectorAll('*');
+    for (const elem of elems) {
+      elem.removeAttribute('contenteditable');
+      elem.removeAttribute('spellcheck');
+      removeClasses(elem, 'tip_edit');
+    }
+    return cloned;
+  }
+
+  function processText(section) {
+    let cleared = clearSection(section);
+    return cleared.outerHTML;
+  }
+
+  function processEmbed(section) {
+    const iframe = section.querySelector('iframe');
+    if (!iframe) {
+      showMessage('Export Error: No iframe found in Embed Section , ECA-E9');
+      return null;
+    }
+    let cleared = clearSection(section);
+    return cleared.outerHTML;
+  }
+
+  function processProduct(section) {
+    let items = {};
+
+    const inputs = [...section.querySelectorAll('input')];
+
+    for (const input of inputs) {
+      const value = input.value;
+      const index = inputs.indexOf(input);
+      if (!value) {
+        if (!input.required) {
+          continue;
+        } else {
+          error(`Export Error: Link for product not found. Section: ${section.dataset.contentType}`, 'ECA-E10');
+          continue;
+        }
+      } else {
+        if (input.classList.contains(__INVALID)) {
+          error(`Export Error: Link for product is invalid. Section: ${section.dataset.contentType}`, 'ECA-E11');
+          continue;
+        } else {
+          items[index] = {
+            link: value,
+            id: value.match(/-\d{4}$/)[0].slice(1),
+          };
+        }
+      }
+    }
+
+    return items;
+  }
+
+  function processCards(section) {
+    let items = [];
+    const cards = section.querySelectorAll('.blog-link-card');
+
+    for (const card of cards) {
+      const fileInput = card.querySelector('input[type="file"]');
+      const linkInput = card.querySelector('input[data-input="linkCardLink"]');
+      const h4 = card.querySelector('h4');
+      const p = card.querySelector('p');
+
+      if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+        error(`Export Error: No image uploaded to the card. Section: ${section.dataset.contentType}`, 'ECA-E25');
+        return null;
+      }
+
+      if (!h4 || h4.innerHTML.trim().length === 0) {
+        error(`Export Error: Card title is missing. Section: ${section.dataset.contentType}`, 'ECA-E26');
+        return null;
+      }
+
+      if (!p || p.innerHTML.trim().length === 0) {
+        error(`Export Error: Card description is missing. Section: ${section.dataset.contentType}`, 'ECA-E27');
+        return null;
+      }
+
+      items.push(card);
+    }
+
+    const resHTML = items
+      .map(card => {
+        const clonedCard = card.cloneNode(true);
+
+        // Remove input elements
+        const inputs = clonedCard.querySelectorAll('input');
+        inputs.forEach(input => input.remove());
+
+        // Remove remove button
+        const removeBtn = clonedCard.querySelector('.blog-link-card__remove-btn');
+        if (removeBtn) removeBtn.remove();
+
+        // Replace blog-edit-box with image
+        const editBox = clonedCard.querySelector('.blog-edit-box');
+        const fileInput = card.querySelector('input[type="file"]');
+        const linkInput = card.querySelector('input[data-input="linkCardLink"]');
+
+        if (editBox && fileInput && fileInput.files && fileInput.files.length > 0) {
+          const file = fileInput.files[0];
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.alt = '';
+
+            // Check if linkInput has a value
+            if (linkInput && linkInput.value.trim()) {
+              const link = document.createElement('a');
+              link.href = linkInput.value.trim();
+              link.target = '_blank';
+              link.appendChild(img);
+              editBox.replaceWith(link);
+            } else {
+              const wrapper = document.createElement('div');
+              wrapper.appendChild(img);
+              editBox.replaceWith(wrapper);
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+
+        return clonedCard.outerHTML;
+      })
+      .join('');
+
+    return resHTML;
+  }
+
+  function processButtonLink(section) {
+    const buttonLink = section.querySelector('.blog__btn-link');
+    const linkInput = section.querySelector('input[data-input="buttonLink"]');
+    const titleInput = section.querySelector('input[data-input="buttonTitle"]');
+
+    if (!buttonLink) {
+      error(`Export Error: Button link is not found. Section: ${section.dataset.contentType}`, 'ECA-E28');
+      return null;
+    }
+
+    if (!linkInput || !linkInput.value.trim()) {
+      error(`Export Error: Button link URL is not provided. Section: ${section.dataset.contentType}`, 'ECA-E29');
+      return null;
+    }
+
+    if (!titleInput || !titleInput.value.trim()) {
+      error(`Export Error: Button link title is not provided. Section: ${section.dataset.contentType}`, 'ECA-E30');
+      return null;
+    }
+
+    let cleared = clearSection(section);
+    return cleared.outerHTML;
+  }
+
+  function processImage(section) {
+    const imageInput = section.querySelector('input[type="file"]');
+    if (!imageInput || !imageInput.files || imageInput.files.length === 0) {
+      error(`Export Error: Image is not found. Section: ${section.dataset.contentType}`, 'ECA-E31');
+      return null;
+    }
+
+    return imageInput.files[0];
+  }
+
+  /** ----------------------- Export Article ----------------------- */
+
   var _export = {};
   _export.obj = {};
   _export.obj.raw = String();
+
+  /** Export : Title */
   _export.getTitle = () => {
     const title = document.querySelector('#article_title');
     if (!title || !title.innerHTML) {
@@ -1178,33 +2044,47 @@ var EditArticle = function (articleContent, options) {
     }
     return title.innerHTML;
   };
+
+  /** Export : Summary */
   _export.getSummary = () => {
     const summary = document.querySelector('#article_summary');
     if (!summary || !summary.innerHTML) {
-      showMessage('Export Error: Provide excerpt or type "lorem", ECA-E2');
+      showMessage('error', 'Provide excerpt or type "lorem"', 'Export Error: Provide excerpt or type "lorem", ECA-E2');
       return null;
     }
     return summary.innerHTML;
   };
+
+  /** Export : Author */
   _export.getAuthor = () => {
     const author = document.querySelector('#article_author');
     if (!author || !author.innerHTML) {
-      showMessage('Export Error: Author is not provided, ECA-E3');
+      showMessage('error', 'Author is not provided', 'Export Error: Author is not provided, ECA-E3');
       return null;
     }
     return author.innerHTML;
   };
+
+  /** Export : Read Time */
   _export.getReadTime = () => {
     const minutes = document.querySelector('#article_read_time');
     if (!minutes || !minutes.innerHTML) {
-      showMessage('Export Error: Read time is not provided, ECA-E4');
+      showMessage('error', 'Read time is not provided', 'Export Error: Read time is not provided, ECA-E4');
       return null;
     }
     return parseInt(minutes.innerHTML);
   };
+
+  /** Export : Cover */
   _export.getCover = () => {
-    return UPLOADED_BLOG_IMG;
+    if (!window.UPLOADED_BLOG_IMG) {
+      showMessage('error', 'Cover is not provided', 'Export Error: Cover is not provided, ECA-E5');
+      return null;
+    }
+    return window.UPLOADED_BLOG_IMG;
   };
+
+  /** Export : Content */
   _export.getContent = () => {
     let sections = {};
     const sectionsArr = [...articleContent.querySelectorAll('.article-content-section')];
@@ -1222,16 +2102,25 @@ var EditArticle = function (articleContent, options) {
         targetSection.type = type;
         //targetSection.element = section
 
-        const textTypes = ['large_title', 'tiny_title', 'text', 'spacer'];
+        const textTypes = ['large_title', 'tiny_title', 'text', 'spacer', 'spacer_empty', 'list'];
         const productTypes = ['product', 'slider'];
-        const embedTypes = ['youtube'];
+        const cardsTypes = ['cards'];
+        const embedTypes = ['youtube', 'map'];
+        const buttonTypes = ['button'];
+        const imageTypes = ['image'];
 
         if (textTypes.includes(type)) {
           targetSection.raw = processText(section);
         } else if (productTypes.includes(type)) {
           targetSection.items = processProduct(section);
+        } else if (cardsTypes.includes(type)) {
+          targetSection.raw = processCards(section);
         } else if (embedTypes.includes(type)) {
           targetSection.raw = processEmbed(section);
+        } else if (buttonTypes.includes(type)) {
+          targetSection.raw = processButtonLink(section);
+        } else if (imageTypes.includes(type)) {
+          targetSection.file = processImage(section);
         } else {
           error(
             `Export Error: No processor for such content type. Section Index: ${sectionsArr.indexOf(section)}`,
@@ -1243,14 +2132,60 @@ var EditArticle = function (articleContent, options) {
 
     return sections;
   };
+
+  /** Export : Do */
   _export.do = () => {
-    _export.obj.content = _export.getContent();
-    _export.obj.author = _export.getAuthor();
-    _export.obj.cover = _export.getCover();
-    _export.obj.read_time = _export.getReadTime();
-    _export.obj.summary = _export.getSummary();
-    _export.obj.title = _export.getTitle();
-    SaveAdminBlog(_export.obj);
+    let obj = {};
+    obj.content = _export.getContent();
+    obj.author = _export.getAuthor();
+    obj.cover = _export.getCover();
+    obj.read_time = _export.getReadTime();
+    obj.summary = _export.getSummary();
+    obj.title = _export.getTitle();
+
+    /**
+     * Remove Proto
+     */
+    const removeProto = object => {
+      if (object === null || typeof object !== 'object') {
+        return object;
+      }
+
+      const newObj = Object.create(null);
+      for (const key in object) {
+        if (object.hasOwnProperty(key)) {
+          if (typeof object[key] === 'object') {
+            newObj[key] = removeProto(object[key]);
+          } else {
+            newObj[key] = object[key];
+          }
+        }
+      }
+
+      return newObj;
+    };
+
+    const cleanObj = removeProto(obj);
+
+    /**
+     * Save Article
+     */
+    $.ajax({
+      url: '/admin/ajax/add-blog',
+      type: 'POST',
+      data: { article: JSON.stringify(cleanObj) },
+      success: function (data) {
+        var r = $.parseJSON(data);
+        if (!r.error) {
+          showMessage('success', r.msg);
+          setTimeout(function () {
+            window.location.reload();
+          }, 3000);
+        } else {
+          showMessage('error', r.msg);
+        }
+      },
+    });
   };
 
   Article.add = AddSection;
@@ -1268,6 +2203,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const articleContent = document.querySelector('.editable__content');
 
   if (articleContent) {
+    alert('a');
     const Article = new EditArticle('editable__content', {
       setInitialLayout: true,
     });
